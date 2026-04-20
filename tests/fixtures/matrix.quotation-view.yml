@@ -1,0 +1,50 @@
+id: matrix.quotation-view
+title: Quotation Flow - Component View Matrix
+type: component_view_matrix
+version: "0.1"
+data:
+  views:
+    - id: quotation
+      label: Quotation View
+      stages:
+        - id: browse
+          label: browse
+        - id: client
+          label: client
+        - id: basket
+          label: basket
+        - id: validation
+          label: validation
+        - id: completed
+          label: completed
+  components:
+    - name: QuotationFlow
+      kind: core
+      stages:
+        quotation:
+          - browse
+          - client
+          - basket
+          - validation
+          - completed
+      children:
+        - name: Store
+          kind: boundary
+          stages:
+            quotation:
+              - browse
+              - client
+              - basket
+        - name: Basket
+          kind: core
+          stages:
+            quotation:
+              - basket
+              - validation
+          children:
+            - name: BasketItem
+              kind: core
+              stages:
+                quotation:
+                  - basket
+                  - validation

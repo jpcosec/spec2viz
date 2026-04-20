@@ -1,0 +1,23 @@
+id: sequence.create-quotation
+title: Create Quotation
+type: sequence
+version: "0.1"
+data:
+  participants:
+    - id: User
+      kind: actor
+    - id: QuotationFlow
+      kind: component
+    - id: Store
+      kind: boundary
+  messages:
+    - from: User
+      to: QuotationFlow
+      message: open quotation flow
+    - from: QuotationFlow
+      to: Store
+      message: load catalog
+      kind: sync
+    - from: User
+      to: QuotationFlow
+      message: add item
