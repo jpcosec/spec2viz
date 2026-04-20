@@ -1,4 +1,3 @@
-import pytest
 from yaml_charts.models.base import DiagramType, Metadata, Style, BaseDiagram
 
 
