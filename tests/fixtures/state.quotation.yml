@@ -15,8 +15,8 @@ data:
   transitions:
     - from: browsing
       to: client_selected
-      on: select_client
+      "on": select_client
     - from: client_selected
       to: completed
-      on: complete
+      "on": complete
       guard: all validations passed
