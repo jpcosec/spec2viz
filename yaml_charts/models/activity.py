@@ -22,3 +22,6 @@ class ActivityData(BaseModel):
 class ActivityDiagram(BaseDiagram):
     type: Literal[DiagramType.activity] = DiagramType.activity
     data: ActivityData
+
+
+__all__ = ["StepModel", "ActivityData", "ActivityDiagram"]

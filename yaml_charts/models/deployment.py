@@ -27,10 +27,13 @@ class ConnectionModel(BaseModel):
 class DeploymentData(BaseModel):
     model_config = ConfigDict(extra="forbid")
     nodes:       dict[str, DeploymentNodeModel]
-    artifacts:   dict[str, ArtifactModel]
-    connections: list[ConnectionModel] = []
+    artifacts:   dict[str, ArtifactModel]      = {}
+    connections: list[ConnectionModel]          = []
 
 
 class DeploymentDiagram(BaseDiagram):
     type: Literal[DiagramType.deployment] = DiagramType.deployment
     data: DeploymentData
+
+
+__all__ = ["DeploymentNodeModel", "ArtifactModel", "ConnectionModel", "DeploymentData", "DeploymentDiagram"]

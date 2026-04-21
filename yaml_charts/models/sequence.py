@@ -29,3 +29,6 @@ class SequenceData(BaseModel):
 class SequenceDiagram(BaseDiagram):
     type: Literal[DiagramType.sequence] = DiagramType.sequence
     data: SequenceData
+
+
+__all__ = ["ParticipantModel", "MessageModel", "SequenceData", "SequenceDiagram"]

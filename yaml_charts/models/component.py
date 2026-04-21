@@ -28,3 +28,6 @@ class ComponentData(BaseModel):
 class ComponentDiagram(BaseDiagram):
     type: Literal[DiagramType.component] = DiagramType.component
     data: ComponentData
+
+
+__all__ = ["NodeModel", "EdgeModel", "ComponentData", "ComponentDiagram"]

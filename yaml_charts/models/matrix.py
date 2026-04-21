@@ -38,3 +38,6 @@ class MatrixData(BaseModel):
 class MatrixDiagram(BaseDiagram):
     type: Literal[DiagramType.component_view_matrix] = DiagramType.component_view_matrix
     data: MatrixData
+
+
+__all__ = ["MatrixStageModel", "MatrixViewModel", "MatrixComponentModel", "MatrixData", "MatrixDiagram"]
