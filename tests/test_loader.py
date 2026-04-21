@@ -38,3 +38,11 @@ def test_unsupported_type_raises(tmp_path):
     f.write_text("id: x\ntitle: X\ntype: random_diagram\nversion: '0.1'\ndata: {}\n")
     with pytest.raises(ParseError, match="Unsupported diagram type"):
         load(f)
+
+def test_malformed_yaml_raises():
+    with pytest.raises(ParseError, match="YAML parse error"):
+        load(Path("tests/fixtures/invalid/malformed.yml"))
+
+def test_bad_schema_raises():
+    with pytest.raises(ParseError, match="Invalid diagram schema"):
+        load(Path("tests/fixtures/invalid/bad_schema.yml"))

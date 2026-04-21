@@ -1,0 +1,44 @@
+id: activity.complex
+title: Complex Activity
+type: activity
+version: "0.1"
+
+data:
+  start: validate_input
+
+  steps:
+    validate_input:
+      label: Validate input
+      next: check_auth
+
+    check_auth:
+      label: Is user authenticated?
+      kind: decision
+      branches:
+        "yes": load_data
+        "no": show_auth_error
+
+    show_auth_error:
+      label: Show auth error
+      next: end
+
+    load_data:
+      label: Load data
+      next: check_data
+
+    check_data:
+      label: Is data valid?
+      kind: decision
+      branches:
+        "yes": save_result
+        "no": show_data_error
+
+    save_result:
+      label: Save result
+      next: end
+
+    show_data_error:
+      label: Show data error
+      next: end
+
+  end: end

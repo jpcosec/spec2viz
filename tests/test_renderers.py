@@ -1,4 +1,5 @@
 import json
+import pytest
 from pathlib import Path
 from yaml_charts.loader import load
 from yaml_charts.compilers import compile_ir
@@ -6,6 +7,8 @@ from yaml_charts.renderers import render
 from yaml_charts.renderers.plantuml import PlantUMLRenderer
 from yaml_charts.renderers.vega import VegaRenderer
 from yaml_charts.renderers.mermaid import MermaidRenderer
+from yaml_charts.exceptions import RenderError
+from yaml_charts.ir import SequenceIR, MatrixIR
 
 FIXTURES = Path("tests/fixtures")
 
@@ -38,6 +41,22 @@ def test_activity_puml():
     assert "Load basket" in out
     assert "if (" in out
 
+def test_activity_complex_puml():
+    out = PlantUMLRenderer().render(_ir("activity.complex.yml"))
+    assert out.count("if (") == 2
+    assert "Load data" in out
+    assert "Save result" in out
+    assert "Show auth error" in out
+    assert "Show data error" in out
+
+def test_activity_complex_mermaid():
+    out = MermaidRenderer().render(_ir("activity.complex.yml"))
+    assert out.count("{") == 2
+    assert "Load data" in out
+    assert "Save result" in out
+    assert "Show auth error" in out
+    assert "Show data error" in out
+
 def test_deployment_puml():
     out = PlantUMLRenderer().render(_ir("deployment.runtime.yml"))
     assert "Browser" in out
@@ -65,6 +84,44 @@ def test_vega_spans():
     spans = next(d for d in spec["data"] if d["name"] == "spans")["values"]
     qf = next(s for s in spans if s["component"] == "QuotationFlow")
     assert qf["start"] == 0 and qf["end"] == 5
+
+def test_vega_rows():
+    spec = VegaRenderer().render(_ir("matrix.quotation-view.yml"))
+    rows = next(d for d in spec["data"] if d["name"] == "rows")["values"]
+    ids = [r["id"] for r in rows]
+    assert "QuotationFlow" in ids
+    depths = {r["id"]: r["depth"] for r in rows}
+    assert depths["QuotationFlow"] == 0
+    assert depths["BasketItem"] > depths["Basket"]
+
+def test_vega_signals():
+    spec = VegaRenderer().render(_ir("matrix.quotation-view.yml"))
+    names = {s["name"] for s in spec["signals"]}
+    assert {"left", "top", "cellWidth", "rowHeight", "barPadding"} <= names
+
+def test_vega_scales():
+    spec = VegaRenderer().render(_ir("matrix.quotation-view.yml"))
+    assert any(s["name"] == "kindColor" for s in spec["scales"])
+
+def test_vega_marks_types():
+    spec = VegaRenderer().render(_ir("matrix.quotation-view.yml"))
+    types = {m["type"] for m in spec["marks"]}
+    assert {"text", "rect", "rule"} <= types
+
+def test_vega_rejects_wrong_ir():
+    ir = _ir("sequence.create-quotation.yml")
+    with pytest.raises(RenderError):
+        VegaRenderer().render(ir)
+
+def test_plantuml_rejects_matrix():
+    ir = _ir("matrix.quotation-view.yml")
+    with pytest.raises(RenderError):
+        PlantUMLRenderer().render(ir)
+
+def test_mermaid_rejects_matrix():
+    ir = _ir("matrix.quotation-view.yml")
+    with pytest.raises(RenderError):
+        MermaidRenderer().render(ir)
 
 
 # ── Mermaid ───────────────────────────────────────────────────────────────────
