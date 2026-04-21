@@ -1,0 +1,9 @@
+@startuml
+actor User
+participant QuotationFlow
+boundary Store
+
+User -> QuotationFlow: open quotation flow
+QuotationFlow -> Store: load catalog
+User -> QuotationFlow: add item
+@enduml

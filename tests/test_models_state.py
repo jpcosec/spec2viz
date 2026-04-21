@@ -1,6 +1,6 @@
 import yaml
 from pathlib import Path
-from yaml_charts.models.state import StateDiagram
+from spec2viz.models.state import StateDiagram
 
 FIXTURE = Path("tests/fixtures/state.quotation.yml")
 

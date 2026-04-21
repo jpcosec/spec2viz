@@ -1,8 +1,8 @@
 import pytest
 from pathlib import Path
-from yaml_charts.loader import load
-from yaml_charts.validator import validate
-from yaml_charts.exceptions import ValidationError
+from spec2viz.loader import load
+from spec2viz.validator import validate
+from spec2viz.exceptions import ValidationError
 
 FIXTURES = Path("tests/fixtures")
 INVALID  = FIXTURES / "invalid"

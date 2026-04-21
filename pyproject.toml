@@ -3,18 +3,31 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "yaml-charts"
+name = "spec2viz"
 version = "0.1.0"
 description = "Diagram-as-Data: YAML semantic diagrams rendered to PlantUML, Mermaid, and Vega."
+readme = "README.md"
 requires-python = ">=3.11"
+license = {text = "UNLICENSED"}
 dependencies = [
     "pydantic>=2.0",
     "pyyaml>=6.0",
     "click>=8.0",
 ]
+keywords = ["yaml", "specification", "diagram", "chart", "visualization", "cli"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: Other/Proprietary License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Documentation",
+]
 
 [project.scripts]
-yaml-charts = "yaml_charts.cli:main"
+spec2viz = "spec2viz.cli:main"
+yaml-charts = "yaml_charts:legacy_main"
 
 [project.optional-dependencies]
 dev = [
@@ -23,3 +36,6 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["spec2viz*", "yaml_charts*"]

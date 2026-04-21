@@ -1,0 +1,10 @@
+@startuml
+node "Browser" as browser {
+  artifact "Quotation UI" as quotation_ui
+}
+node "App Server" as app_server {
+  artifact "Quotation API" as quotation_api
+}
+
+quotation_ui --> quotation_api : HTTPS
+@enduml

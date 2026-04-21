@@ -1,0 +1,8 @@
+graph TD
+    subgraph browser ["Browser"]
+        quotation_ui["Quotation UI"]
+    end
+    subgraph app_server ["App Server"]
+        quotation_api["Quotation API"]
+    end
+    quotation_ui -->|HTTPS| quotation_api

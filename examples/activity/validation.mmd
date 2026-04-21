@@ -1,0 +1,15 @@
+flowchart TD
+    __start([Start])
+    load_basket["Load basket"]
+    calculate_price["Calculate price"]
+    check_validity{"Is quotation valid?"}
+    export_summary["Export summary"]
+    show_errors["Show validation errors"]
+    __end([End])
+    __start --> load_basket
+    load_basket --> calculate_price
+    calculate_price --> check_validity
+    check_validity -->|yes| export_summary
+    check_validity -->|no| show_errors
+    export_summary --> __end
+    show_errors --> __end

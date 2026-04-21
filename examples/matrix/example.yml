@@ -1,0 +1,87 @@
+id: matrix.quotation-view
+title: Quotation Flow - Component View Matrix
+type: component_view_matrix
+version: "0.1"
+data:
+  views:
+    - id: quotation
+      label: Quotation View
+      stages:
+        - id: browse
+          label: browse
+        - id: client
+          label: client
+        - id: basket
+          label: basket
+        - id: validation
+          label: validation
+        - id: completed
+          label: completed
+    - id: admin
+      label: Administration Panel
+      stages:
+        - id: setup
+          label: setup
+        - id: config
+          label: config
+        - id: users
+          label: users
+        - id: logs
+          label: logs
+
+  components:
+    - name: QuotationSystem
+      kind: core
+      stages:
+        quotation: [browse, client, basket, validation, completed]
+        admin: [setup, config, users, logs]
+      children:
+        - name: Frontend
+          kind: boundary
+          stages:
+            quotation: [browse, client, basket]
+          children:
+            - name: WebUI
+              kind: ui
+              stages:
+                quotation: [browse, client, basket]
+            - name: MobileApp
+              kind: ui
+              stages:
+                quotation: [browse, client]
+        - name: Backend
+          kind: core
+          stages:
+            quotation: [basket, validation, completed]
+            admin: [config, users, logs]
+          children:
+            - name: OrderService
+              kind: service
+              stages:
+                quotation: [basket, validation, completed]
+              children:
+                - name: BasketManager
+                  kind: core
+                  stages:
+                    quotation: [basket]
+                - name: ValidationEngine
+                  kind: core
+                  stages:
+                    quotation: [validation]
+            - name: AdminService
+              kind: service
+              stages:
+                admin: [setup, config, users, logs]
+              children:
+                - name: UserStore
+                  kind: database
+                  stages:
+                    admin: [users]
+                - name: AuditLog
+                  kind: database
+                  stages:
+                    admin: [logs]
+            - name: Database
+              kind: database
+              stages:
+                quotation: [completed]

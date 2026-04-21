@@ -1,0 +1,11 @@
+@startuml
+start
+:Load basket;
+:Calculate price;
+if (Is quotation valid??) then (yes)
+:Export summary;
+else (no)
+:Show validation errors;
+endif
+stop
+@enduml

@@ -1,14 +1,14 @@
 import json
 import pytest
 from pathlib import Path
-from yaml_charts.loader import load
-from yaml_charts.compilers import compile_ir
-from yaml_charts.renderers import render
-from yaml_charts.renderers.plantuml import PlantUMLRenderer
-from yaml_charts.renderers.vega import VegaRenderer
-from yaml_charts.renderers.mermaid import MermaidRenderer
-from yaml_charts.exceptions import RenderError
-from yaml_charts.ir import SequenceIR, MatrixIR
+from spec2viz.loader import load
+from spec2viz.compilers import compile_ir
+from spec2viz.renderers import render
+from spec2viz.renderers.plantuml import PlantUMLRenderer
+from spec2viz.renderers.vega import VegaRenderer
+from spec2viz.renderers.mermaid import MermaidRenderer
+from spec2viz.exceptions import RenderError
+from spec2viz.ir import SequenceIR, MatrixIR
 
 FIXTURES = Path("tests/fixtures")
 

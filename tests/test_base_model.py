@@ -1,4 +1,4 @@
-from yaml_charts.models.base import DiagramType, Metadata, Style, BaseDiagram
+from spec2viz.models.base import DiagramType, Metadata, Style, BaseDiagram
 
 
 def test_diagram_type_values():

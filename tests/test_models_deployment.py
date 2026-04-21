@@ -1,6 +1,6 @@
 import yaml
 from pathlib import Path
-from yaml_charts.models.deployment import DeploymentDiagram
+from spec2viz.models.deployment import DeploymentDiagram
 
 FIXTURE = Path("tests/fixtures/deployment.runtime.yml")
 

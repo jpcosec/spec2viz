@@ -1,6 +1,6 @@
 import pytest
-from yaml_charts.exceptions import (
-    YamlChartsError,
+from spec2viz.exceptions import (
+    Spec2VizError,
     ParseError,
     ValidationError,
     CompileError,
@@ -8,11 +8,11 @@ from yaml_charts.exceptions import (
 )
 
 def test_exception_hierarchy():
-    assert issubclass(ParseError, YamlChartsError)
-    assert issubclass(ValidationError, YamlChartsError)
-    assert issubclass(CompileError, YamlChartsError)
-    assert issubclass(RenderError, YamlChartsError)
+    assert issubclass(ParseError, Spec2VizError)
+    assert issubclass(ValidationError, Spec2VizError)
+    assert issubclass(CompileError, Spec2VizError)
+    assert issubclass(RenderError, Spec2VizError)
 
 def test_exceptions_are_catchable_as_base():
-    with pytest.raises(YamlChartsError):
+    with pytest.raises(Spec2VizError):
         raise ParseError("bad yaml")

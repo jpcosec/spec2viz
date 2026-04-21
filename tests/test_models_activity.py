@@ -1,6 +1,6 @@
 import yaml
 from pathlib import Path
-from yaml_charts.models.activity import ActivityDiagram
+from spec2viz.models.activity import ActivityDiagram
 
 FIXTURE = Path("tests/fixtures/activity.validation.yml")
 

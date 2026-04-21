@@ -1,13 +1,13 @@
 import pytest
 from pathlib import Path
-from yaml_charts.loader import load
-from yaml_charts.models.sequence   import SequenceDiagram
-from yaml_charts.models.state      import StateDiagram
-from yaml_charts.models.component  import ComponentDiagram
-from yaml_charts.models.activity   import ActivityDiagram
-from yaml_charts.models.deployment import DeploymentDiagram
-from yaml_charts.models.matrix     import MatrixDiagram
-from yaml_charts.exceptions import ParseError
+from spec2viz.loader import load
+from spec2viz.models.sequence   import SequenceDiagram
+from spec2viz.models.state      import StateDiagram
+from spec2viz.models.component  import ComponentDiagram
+from spec2viz.models.activity   import ActivityDiagram
+from spec2viz.models.deployment import DeploymentDiagram
+from spec2viz.models.matrix     import MatrixDiagram
+from spec2viz.exceptions import ParseError
 
 FIXTURES = Path("tests/fixtures")
 

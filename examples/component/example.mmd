@@ -1,0 +1,19 @@
+graph TD
+    QuotationFlow["Quotation Flow Engine"]
+    QuotationFlow --> ClientService
+    QuotationFlow --> PricingEngine
+    QuotationFlow --> BasketManager
+    ClientService["Client Management"]
+    ClientService --> ClientSelection
+    ClientService --> AddressValidator
+    BasketManager["Basket Manager"]
+    BasketManager --> Basket
+    BasketManager --> BasketItem
+    PricingEngine["Pricing Engine"]
+    Store["Retail Store"]
+    Persistence["Data Persistence"]
+    Persistence --> SQLDatabase
+    SQLDatabase["SQL Database"]
+    QuotationFlow -->|interaction| Store
+    QuotationFlow -->|save_state| Persistence
+    PricingEngine -->|fetch_prices| SQLDatabase

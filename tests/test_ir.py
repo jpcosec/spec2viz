@@ -1,4 +1,4 @@
-from yaml_charts.ir import (
+from spec2viz.ir import (
     MatrixIR, Stage, Row, Span,
     SequenceIR, Participant, Message,
     StateIR, StateNode, Transition,

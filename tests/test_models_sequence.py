@@ -1,6 +1,6 @@
 import yaml
 from pathlib import Path
-from yaml_charts.models.sequence import SequenceDiagram
+from spec2viz.models.sequence import SequenceDiagram
 
 FIXTURE = Path("tests/fixtures/sequence.create-quotation.yml")
 

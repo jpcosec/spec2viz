@@ -1,0 +1,25 @@
+@startuml
+package "Quotation Flow Engine" {
+  [ClientService]
+  [PricingEngine]
+  [BasketManager]
+}
+package "Client Management" {
+  [ClientSelection]
+  [AddressValidator]
+}
+package "Basket Manager" {
+  [Basket]
+  [BasketItem]
+}
+component [Pricing Engine] as PricingEngine
+boundary [Retail Store] as Store
+package "Data Persistence" {
+  [SQLDatabase]
+}
+database [SQL Database] as SQLDatabase
+
+QuotationFlow --> Store : interaction
+QuotationFlow --> Persistence : save_state
+PricingEngine --> SQLDatabase : fetch_prices
+@enduml

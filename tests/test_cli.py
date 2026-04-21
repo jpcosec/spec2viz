@@ -1,21 +1,28 @@
 from pathlib import Path
 from click.testing import CliRunner
-from yaml_charts.cli import main
+from spec2viz.cli import main
 
 FIXTURES = Path("tests/fixtures")
-runner   = CliRunner()
+runner = CliRunner()
 
 
 # ── validate ──────────────────────────────────────────────────────────────────
 
+
 def test_validate_valid():
-    r = runner.invoke(main, ["validate", str(FIXTURES / "sequence.create-quotation.yml")])
+    r = runner.invoke(
+        main, ["validate", str(FIXTURES / "sequence.create-quotation.yml")]
+    )
     assert r.exit_code == 0
     assert "OK" in r.output
 
+
 def test_validate_invalid():
-    r = runner.invoke(main, ["validate", str(FIXTURES / "invalid" / "unknown_node.yml")])
+    r = runner.invoke(
+        main, ["validate", str(FIXTURES / "invalid" / "unknown_node.yml")]
+    )
     assert r.exit_code != 0
+
 
 def test_validate_all_types():
     for name in [
@@ -32,60 +39,139 @@ def test_validate_all_types():
 
 # ── render ────────────────────────────────────────────────────────────────────
 
+
 def test_render_sequence(tmp_path):
-    r = runner.invoke(main, ["render", str(FIXTURES / "sequence.create-quotation.yml"), "--out", str(tmp_path)])
+    r = runner.invoke(
+        main,
+        [
+            "render",
+            str(FIXTURES / "sequence.create-quotation.yml"),
+            "--out",
+            str(tmp_path),
+        ],
+    )
     assert r.exit_code == 0
     assert (tmp_path / "sequence.create-quotation.puml").exists()
 
+
 def test_render_matrix(tmp_path):
-    r = runner.invoke(main, ["render", str(FIXTURES / "matrix.quotation-view.yml"), "--out", str(tmp_path)])
+    r = runner.invoke(
+        main,
+        ["render", str(FIXTURES / "matrix.quotation-view.yml"), "--out", str(tmp_path)],
+    )
     assert r.exit_code == 0
     assert (tmp_path / "matrix.quotation-view.vega.json").exists()
 
+
 def test_render_state(tmp_path):
-    r = runner.invoke(main, ["render", str(FIXTURES / "state.quotation.yml"), "--out", str(tmp_path)])
+    r = runner.invoke(
+        main, ["render", str(FIXTURES / "state.quotation.yml"), "--out", str(tmp_path)]
+    )
     assert r.exit_code == 0
     assert (tmp_path / "state.quotation.puml").exists()
 
+
 def test_render_activity(tmp_path):
-    r = runner.invoke(main, ["render", str(FIXTURES / "activity.validation.yml"), "--out", str(tmp_path)])
+    r = runner.invoke(
+        main,
+        ["render", str(FIXTURES / "activity.validation.yml"), "--out", str(tmp_path)],
+    )
     assert r.exit_code == 0
     assert (tmp_path / "activity.validation.puml").exists()
 
+
 def test_render_deployment(tmp_path):
-    r = runner.invoke(main, ["render", str(FIXTURES / "deployment.runtime.yml"), "--out", str(tmp_path)])
+    r = runner.invoke(
+        main,
+        ["render", str(FIXTURES / "deployment.runtime.yml"), "--out", str(tmp_path)],
+    )
     assert r.exit_code == 0
     assert (tmp_path / "deployment.runtime.puml").exists()
 
+
 def test_render_component(tmp_path):
-    r = runner.invoke(main, ["render", str(FIXTURES / "component.quotation.yml"), "--out", str(tmp_path)])
+    r = runner.invoke(
+        main,
+        ["render", str(FIXTURES / "component.quotation.yml"), "--out", str(tmp_path)],
+    )
     assert r.exit_code == 0
     assert (tmp_path / "component.quotation.puml").exists()
 
+
 def test_render_override(tmp_path):
-    r = runner.invoke(main, ["render", str(FIXTURES / "sequence.create-quotation.yml"),
-                             "--out", str(tmp_path), "--renderer", "mermaid"])
+    r = runner.invoke(
+        main,
+        [
+            "render",
+            str(FIXTURES / "sequence.create-quotation.yml"),
+            "--out",
+            str(tmp_path),
+            "--renderer",
+            "mermaid",
+        ],
+    )
     assert r.exit_code == 0
     assert (tmp_path / "sequence.create-quotation.mmd").exists()
 
+
 def test_render_backend_alias(tmp_path):
-    r = runner.invoke(main, ["render", str(FIXTURES / "state.quotation.yml"),
-                             "--out", str(tmp_path), "--backend", "mermaid"])
+    r = runner.invoke(
+        main,
+        [
+            "render",
+            str(FIXTURES / "state.quotation.yml"),
+            "--out",
+            str(tmp_path),
+            "--backend",
+            "mermaid",
+        ],
+    )
     assert r.exit_code == 0
     assert (tmp_path / "state.quotation.mmd").exists()
 
+
 def test_render_multiple(tmp_path):
-    r = runner.invoke(main, [
-        "render",
-        str(FIXTURES / "sequence.create-quotation.yml"),
-        str(FIXTURES / "state.quotation.yml"),
-        "--out", str(tmp_path),
-    ])
+    r = runner.invoke(
+        main,
+        [
+            "render",
+            str(FIXTURES / "sequence.create-quotation.yml"),
+            str(FIXTURES / "state.quotation.yml"),
+            "--out",
+            str(tmp_path),
+        ],
+    )
     assert r.exit_code == 0
     assert (tmp_path / "sequence.create-quotation.puml").exists()
     assert (tmp_path / "state.quotation.puml").exists()
 
+
 def test_render_invalid_fails(tmp_path):
-    r = runner.invoke(main, ["render", str(FIXTURES / "invalid" / "unknown_node.yml"),
-                             "--out", str(tmp_path)])
+    r = runner.invoke(
+        main,
+        [
+            "render",
+            str(FIXTURES / "invalid" / "unknown_node.yml"),
+            "--out",
+            str(tmp_path),
+        ],
+    )
+    assert r.exit_code != 0
+
+
+def test_schema_stdout():
+    r = runner.invoke(main, ["schema", "--type", "sequence"])
+    assert r.exit_code == 0
+    assert '"title": "SequenceDiagram"' in r.output
+
+
+def test_schema_outfile(tmp_path):
+    out = tmp_path / "schema.json"
+    r = runner.invoke(main, ["schema", "--type", "state", "--out", str(out)])
+    assert r.exit_code == 0
+    assert out.exists()
+
+
+def test_schema_invalid_type_fails():
+    r = runner.invoke(main, ["schema", "--type", "unknown"])
     assert r.exit_code != 0

@@ -1,6 +1,6 @@
 import yaml
 from pathlib import Path
-from yaml_charts.models.matrix import MatrixDiagram
+from spec2viz.models.matrix import MatrixDiagram
 
 FIXTURE = Path("tests/fixtures/matrix.quotation-view.yml")
 

@@ -1,6 +1,6 @@
 import yaml
 from pathlib import Path
-from yaml_charts.models.component import ComponentDiagram
+from spec2viz.models.component import ComponentDiagram
 
 FIXTURE = Path("tests/fixtures/component.quotation.yml")
 

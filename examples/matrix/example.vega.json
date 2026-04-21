@@ -1,0 +1,635 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Quotation Flow - Component View Matrix",
+  "width": 1500,
+  "height": 498,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "left",
+      "value": 220
+    },
+    {
+      "name": "top",
+      "value": 70
+    },
+    {
+      "name": "cellWidth",
+      "value": 140
+    },
+    {
+      "name": "rowHeight",
+      "value": 34
+    },
+    {
+      "name": "barPadding",
+      "value": 6
+    }
+  ],
+  "data": [
+    {
+      "name": "stages",
+      "values": [
+        {
+          "id": "browse",
+          "index": 0,
+          "label": "browse",
+          "view": "Quotation View"
+        },
+        {
+          "id": "client",
+          "index": 1,
+          "label": "client",
+          "view": "Quotation View"
+        },
+        {
+          "id": "basket",
+          "index": 2,
+          "label": "basket",
+          "view": "Quotation View"
+        },
+        {
+          "id": "validation",
+          "index": 3,
+          "label": "validation",
+          "view": "Quotation View"
+        },
+        {
+          "id": "completed",
+          "index": 4,
+          "label": "completed",
+          "view": "Quotation View"
+        },
+        {
+          "id": "setup",
+          "index": 5,
+          "label": "setup",
+          "view": "Administration Panel"
+        },
+        {
+          "id": "config",
+          "index": 6,
+          "label": "config",
+          "view": "Administration Panel"
+        },
+        {
+          "id": "users",
+          "index": 7,
+          "label": "users",
+          "view": "Administration Panel"
+        },
+        {
+          "id": "logs",
+          "index": 8,
+          "label": "logs",
+          "view": "Administration Panel"
+        }
+      ]
+    },
+    {
+      "name": "views",
+      "source": "stages",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "view"
+          ],
+          "fields": [
+            "index",
+            "index"
+          ],
+          "ops": [
+            "min",
+            "max"
+          ],
+          "as": [
+            "minIdx",
+            "maxIdx"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "viewBoundaries",
+      "source": "views",
+      "transform": [
+        {
+          "type": "formula",
+          "expr": "[datum.minIdx, datum.maxIdx + 1]",
+          "as": "indices"
+        },
+        {
+          "type": "flatten",
+          "fields": [
+            "indices"
+          ]
+        },
+        {
+          "type": "aggregate",
+          "groupby": [
+            "indices"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "stageBoundaries",
+      "values": [
+        {
+          "index": 0
+        },
+        {
+          "index": 1
+        },
+        {
+          "index": 2
+        },
+        {
+          "index": 3
+        },
+        {
+          "index": 4
+        },
+        {
+          "index": 5
+        },
+        {
+          "index": 6
+        },
+        {
+          "index": 7
+        },
+        {
+          "index": 8
+        },
+        {
+          "index": 9
+        }
+      ]
+    },
+    {
+      "name": "rows",
+      "values": [
+        {
+          "id": "QuotationSystem",
+          "label": "QuotationSystem",
+          "row": 0,
+          "depth": 0
+        },
+        {
+          "id": "Frontend",
+          "label": "Frontend",
+          "row": 1,
+          "depth": 1
+        },
+        {
+          "id": "WebUI",
+          "label": "WebUI",
+          "row": 2,
+          "depth": 2
+        },
+        {
+          "id": "MobileApp",
+          "label": "MobileApp",
+          "row": 3,
+          "depth": 2
+        },
+        {
+          "id": "Backend",
+          "label": "Backend",
+          "row": 4,
+          "depth": 1
+        },
+        {
+          "id": "OrderService",
+          "label": "OrderService",
+          "row": 5,
+          "depth": 2
+        },
+        {
+          "id": "BasketManager",
+          "label": "BasketManager",
+          "row": 6,
+          "depth": 3
+        },
+        {
+          "id": "ValidationEngine",
+          "label": "ValidationEngine",
+          "row": 7,
+          "depth": 3
+        },
+        {
+          "id": "AdminService",
+          "label": "AdminService",
+          "row": 8,
+          "depth": 2
+        },
+        {
+          "id": "UserStore",
+          "label": "UserStore",
+          "row": 9,
+          "depth": 3
+        },
+        {
+          "id": "AuditLog",
+          "label": "AuditLog",
+          "row": 10,
+          "depth": 3
+        },
+        {
+          "id": "Database",
+          "label": "Database",
+          "row": 11,
+          "depth": 2
+        }
+      ]
+    },
+    {
+      "name": "spans",
+      "values": [
+        {
+          "component": "QuotationSystem",
+          "row": 0,
+          "start": 0,
+          "end": 5,
+          "kind": "core",
+          "depth": 0
+        },
+        {
+          "component": "QuotationSystem",
+          "row": 0,
+          "start": 5,
+          "end": 9,
+          "kind": "core",
+          "depth": 0
+        },
+        {
+          "component": "Frontend",
+          "row": 1,
+          "start": 0,
+          "end": 3,
+          "kind": "boundary",
+          "depth": 1
+        },
+        {
+          "component": "WebUI",
+          "row": 2,
+          "start": 0,
+          "end": 3,
+          "kind": "ui",
+          "depth": 2
+        },
+        {
+          "component": "MobileApp",
+          "row": 3,
+          "start": 0,
+          "end": 2,
+          "kind": "ui",
+          "depth": 2
+        },
+        {
+          "component": "Backend",
+          "row": 4,
+          "start": 2,
+          "end": 5,
+          "kind": "core",
+          "depth": 1
+        },
+        {
+          "component": "Backend",
+          "row": 4,
+          "start": 6,
+          "end": 9,
+          "kind": "core",
+          "depth": 1
+        },
+        {
+          "component": "OrderService",
+          "row": 5,
+          "start": 2,
+          "end": 5,
+          "kind": "service",
+          "depth": 2
+        },
+        {
+          "component": "BasketManager",
+          "row": 6,
+          "start": 2,
+          "end": 3,
+          "kind": "core",
+          "depth": 3
+        },
+        {
+          "component": "ValidationEngine",
+          "row": 7,
+          "start": 3,
+          "end": 4,
+          "kind": "core",
+          "depth": 3
+        },
+        {
+          "component": "AdminService",
+          "row": 8,
+          "start": 5,
+          "end": 9,
+          "kind": "service",
+          "depth": 2
+        },
+        {
+          "component": "UserStore",
+          "row": 9,
+          "start": 7,
+          "end": 8,
+          "kind": "database",
+          "depth": 3
+        },
+        {
+          "component": "AuditLog",
+          "row": 10,
+          "start": 8,
+          "end": 9,
+          "kind": "database",
+          "depth": 3
+        },
+        {
+          "component": "Database",
+          "row": 11,
+          "start": 4,
+          "end": 5,
+          "kind": "database",
+          "depth": 2
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "kindColor",
+      "type": "ordinal",
+      "domain": [
+        "service",
+        "ui",
+        "core",
+        "database",
+        "boundary"
+      ],
+      "range": [
+        "#94A3B8",
+        "#94A3B8",
+        "#F59E0B",
+        "#10B981",
+        "#60A5FA"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "text",
+      "from": {
+        "data": "views"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "left + (datum.minIdx + datum.maxIdx + 1) * cellWidth / 2"
+          },
+          "y": {
+            "value": 15
+          },
+          "text": {
+            "field": "view"
+          },
+          "align": {
+            "value": "center"
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "fontSize": {
+            "value": 15
+          },
+          "fill": {
+            "value": "#475569"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "stages"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "left + datum.index * cellWidth + cellWidth / 2"
+          },
+          "y": {
+            "value": 40
+          },
+          "text": {
+            "field": "label"
+          },
+          "align": {
+            "value": "center"
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "fontSize": {
+            "value": 13
+          },
+          "fill": {
+            "value": "#475569"
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "from": {
+        "data": "stageBoundaries"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "left + datum.index * cellWidth"
+          },
+          "y": {
+            "signal": "top - 20"
+          },
+          "y2": {
+            "signal": "top + 12 * rowHeight + 10"
+          },
+          "stroke": {
+            "value": "#CBD5E1"
+          },
+          "strokeDash": {
+            "value": [
+              4,
+              4
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "from": {
+        "data": "viewBoundaries"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "left + datum.indices * cellWidth"
+          },
+          "y": {
+            "signal": "top - 40"
+          },
+          "y2": {
+            "signal": "top + 12 * rowHeight + 20"
+          },
+          "stroke": {
+            "value": "#475569"
+          },
+          "strokeWidth": {
+            "value": 2.5
+          },
+          "strokeOpacity": {
+            "value": 0.6
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "rows"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "value": 0
+          },
+          "x2": {
+            "signal": "width"
+          },
+          "y": {
+            "signal": "top + datum.row * rowHeight"
+          },
+          "height": {
+            "signal": "rowHeight"
+          },
+          "fill": {
+            "signal": "datum.depth === 0 ? (datum.row % 2 === 0 ? '#475569' : '#94A3B8') : (datum.row % 2 === 0 ? '#CBD5E1' : '#E2E8F0')"
+          },
+          "fillOpacity": {
+            "value": 0.15
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "from": {
+        "data": "rows"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "12 + datum.depth * 18"
+          },
+          "x2": {
+            "signal": "12 + datum.depth * 18"
+          },
+          "y": {
+            "signal": "top + datum.row * rowHeight + 2"
+          },
+          "y2": {
+            "signal": "top + datum.row * rowHeight + rowHeight - 2"
+          },
+          "stroke": {
+            "signal": "datum.depth === 0 ? '#475569' : '#94A3B8'"
+          },
+          "strokeWidth": {
+            "signal": "datum.depth === 0 ? 3 : 1.5"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "rows"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "20 + datum.depth * 18"
+          },
+          "y": {
+            "signal": "top + datum.row * rowHeight + rowHeight / 2"
+          },
+          "text": {
+            "field": "label"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fontSize": {
+            "value": 13
+          },
+          "fill": {
+            "value": "#111827"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "spans"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "left + datum.start * cellWidth + 4"
+          },
+          "x2": {
+            "signal": "left + datum.end * cellWidth - 4"
+          },
+          "y": {
+            "signal": "top + datum.row * rowHeight + barPadding"
+          },
+          "height": {
+            "signal": "rowHeight - barPadding * 2"
+          },
+          "cornerRadius": {
+            "value": 7
+          },
+          "fill": {
+            "scale": "kindColor",
+            "field": "kind"
+          },
+          "fillOpacity": {
+            "signal": "max(0.3, 1 - (datum.depth * 0.25))"
+          },
+          "stroke": {
+            "scale": "kindColor",
+            "field": "kind"
+          },
+          "strokeOpacity": {
+            "value": 0.7
+          },
+          "strokeWidth": {
+            "value": 1.5
+          }
+        }
+      }
+    }
+  ]
+}

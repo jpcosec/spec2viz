@@ -1,0 +1,20 @@
+flowchart TD
+    __start([Start])
+    validate_input["Validate input"]
+    check_auth{"Is user authenticated?"}
+    show_auth_error["Show auth error"]
+    load_data["Load data"]
+    check_data{"Is data valid?"}
+    save_result["Save result"]
+    show_data_error["Show data error"]
+    __end([End])
+    __start --> validate_input
+    validate_input --> check_auth
+    check_auth -->|yes| load_data
+    check_auth -->|no| show_auth_error
+    show_auth_error --> __end
+    load_data --> check_data
+    check_data -->|yes| save_result
+    check_data -->|no| show_data_error
+    save_result --> __end
+    show_data_error --> __end

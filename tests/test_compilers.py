@@ -1,7 +1,7 @@
 from pathlib import Path
-from yaml_charts.loader import load
-from yaml_charts.compilers import compile_ir
-from yaml_charts.ir import (
+from spec2viz.loader import load
+from spec2viz.compilers import compile_ir
+from spec2viz.ir import (
     SequenceIR, StateIR, ComponentIR, ActivityIR, DeploymentIR, MatrixIR,
 )
 

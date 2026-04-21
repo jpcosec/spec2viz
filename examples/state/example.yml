@@ -1,0 +1,22 @@
+id: state.quotation
+title: Quotation State Machine
+type: state
+version: "0.1"
+data:
+  entity: Quotation
+  initial: browsing
+  states:
+    - id: browsing
+      label: Browsing
+    - id: client_selected
+      label: Client Selected
+    - id: completed
+      label: Completed
+  transitions:
+    - from: browsing
+      to: client_selected
+      "on": select_client
+    - from: client_selected
+      to: completed
+      "on": complete
+      guard: all validations passed

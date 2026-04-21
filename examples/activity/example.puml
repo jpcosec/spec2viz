@@ -1,0 +1,15 @@
+@startuml
+start
+:Validate input;
+if (Is user authenticated??) then (yes)
+:Load data;
+if (Is data valid??) then (yes)
+:Save result;
+else (no)
+:Show data error;
+endif
+else (no)
+:Show auth error;
+endif
+stop
+@enduml
