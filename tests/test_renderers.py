@@ -74,6 +74,27 @@ def test_mermaid_sequence():
     assert "sequenceDiagram" in out
     assert "User" in out
 
+def test_mermaid_state():
+    out = MermaidRenderer().render(_ir("state.quotation.yml"))
+    assert "stateDiagram-v2" in out
+    assert "[*] --> browsing" in out
+
+def test_mermaid_component():
+    out = MermaidRenderer().render(_ir("component.quotation.yml"))
+    assert "graph TD" in out
+    assert "QuotationFlow" in out
+
+def test_mermaid_activity():
+    out = MermaidRenderer().render(_ir("activity.validation.yml"))
+    assert "flowchart TD" in out
+    assert "Load basket" in out
+
+def test_mermaid_deployment():
+    out = MermaidRenderer().render(_ir("deployment.runtime.yml"))
+    assert "graph TD" in out
+    assert "Browser" in out
+    assert "HTTPS" in out
+
 
 # ── Dispatch ──────────────────────────────────────────────────────────────────
 
