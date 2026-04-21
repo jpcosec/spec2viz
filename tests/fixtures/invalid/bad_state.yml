@@ -1,0 +1,14 @@
+id: state.bad
+title: Bad State
+type: state
+version: "0.1"
+data:
+  entity: Thing
+  initial: open
+  states:
+    - id: open
+      label: Open
+  transitions:
+    - from: open
+      to: nonexistent_state
+      "on": close

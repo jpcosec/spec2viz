@@ -30,7 +30,7 @@ def validate_cmd(path: Path):
 @main.command("render")
 @click.argument("paths", nargs=-1, type=click.Path(exists=True, path_type=Path), required=True)
 @click.option("--out", default=".", show_default=True, type=click.Path(path_type=Path))
-@click.option("--renderer", default=None, help="plantuml | vega | mermaid")
+@click.option("--renderer", "--backend", default=None, help="plantuml | vega | mermaid")
 def render_cmd(paths: tuple[Path, ...], out: Path, renderer: str | None):
     """Render one or more diagram YAML files."""
     for path in paths:

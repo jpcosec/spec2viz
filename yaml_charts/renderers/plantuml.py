@@ -67,27 +67,28 @@ class PlantUMLRenderer:
     def _activity(self, ir: ActivityIR) -> str:
         lines = ["@startuml", "start"]
         step_map = {s.id: s for s in ir.steps}
-        visited: set[str] = set()
-        current: str | None = ir.start
-        while current and current != ir.end and current not in visited:
+        self._emit_steps(lines, step_map, ir.start, ir.end, set())
+        lines.extend(["stop", "@enduml"])
+        return "\n".join(lines)
+
+    def _emit_steps(self, lines, step_map, current, end, visited):
+        while current and current != end and current not in visited:
             visited.add(current)
-            step = step_map[current]
+            step = step_map.get(current)
+            if step is None:
+                break
             if step.kind == "decision":
                 lines.append(f"if ({step.label}?) then (yes)")
                 yes = step.branches.get("yes")
-                if yes and yes != ir.end and yes in step_map:
-                    lines.append(f"  :{step_map[yes].label};")
+                self._emit_steps(lines, step_map, yes, end, set(visited))
                 lines.append("else (no)")
                 no = step.branches.get("no")
-                if no and no != ir.end and no in step_map:
-                    lines.append(f"  :{step_map[no].label};")
+                self._emit_steps(lines, step_map, no, end, set(visited))
                 lines.append("endif")
-                break
+                return
             else:
                 lines.append(f":{step.label};")
                 current = step.next
-        lines.extend(["stop", "@enduml"])
-        return "\n".join(lines)
 
     def _deployment(self, ir: DeploymentIR) -> str:
         art_map = {a.id: a for a in ir.artifacts}

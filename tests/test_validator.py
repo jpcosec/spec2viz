@@ -29,3 +29,11 @@ def test_bad_activity_step_raises():
 def test_bad_deployment_artifact_raises():
     with pytest.raises(ValidationError, match="missing_artifact"):
         validate(load(INVALID / "bad_deployment.yml"))
+
+def test_bad_sequence_participant_raises():
+    with pytest.raises(ValidationError, match="GhostComponent"):
+        validate(load(INVALID / "bad_sequence.yml"))
+
+def test_bad_state_transition_raises():
+    with pytest.raises(ValidationError, match="nonexistent_state"):
+        validate(load(INVALID / "bad_state.yml"))

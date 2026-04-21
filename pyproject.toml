@@ -5,6 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "yaml-charts"
 version = "0.1.0"
+description = "Diagram-as-Data: YAML semantic diagrams rendered to PlantUML, Mermaid, and Vega."
 requires-python = ">=3.11"
 dependencies = [
     "pydantic>=2.0",
