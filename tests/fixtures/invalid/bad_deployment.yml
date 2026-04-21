@@ -1,0 +1,13 @@
+id: deployment.bad
+title: Bad Deployment
+type: deployment
+version: "0.1"
+data:
+  nodes:
+    browser:
+      label: Browser
+      kind: client
+      contains:
+        - missing_artifact
+  artifacts: {}
+  connections: []
