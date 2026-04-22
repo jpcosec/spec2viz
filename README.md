@@ -44,6 +44,41 @@ spec2viz render tests/fixtures/sequence.create-quotation.yml --out out
 spec2viz render tests/fixtures/state.quotation.yml --backend mermaid --out out
 ```
 
+## PlantUML Kind Styling
+
+Component specs can now carry renderer-specific color overrides in YAML. This keeps purpose in the semantic `kind` field while letting PlantUML choose how each kind should look.
+
+```yaml
+id: architecture.example
+title: Example Architecture
+type: component
+version: "0.1"
+style:
+  kinds:
+    core:
+      plantuml:
+        background: "#D8ECFF"
+        border: "#4C78A8"
+        font: "#16324F"
+    boundary:
+      plantuml:
+        background: "#FCECC9"
+        border: "#D4A73C"
+        font: "#5E450B"
+data:
+  nodes:
+    App:
+      kind: core
+    Api:
+      kind: boundary
+```
+
+Notes:
+
+- this currently applies to PlantUML rendering for `component` diagrams
+- `kind` stays semantic; the `style.kinds` block is only a renderer hint
+- if you omit `style.kinds`, PlantUML falls back to the built-in palette for `core`, `boundary`, and `database`
+
 Export the JSON Schema for all supported specs or one diagram type:
 
 ```bash
@@ -90,6 +125,15 @@ Sample source specs and rendered outputs live under `examples/`.
 - `examples/activity/example.yml`
 - `examples/deployment/example.yml`
 - `examples/matrix/example.yml`
+- `examples/schema/spec2viz.schema.json`
+- `examples/schema/sequence.schema.json`
+
+Refresh the checked-in schema examples when the models change:
+
+```bash
+spec2viz schema --out examples/schema/spec2viz.schema.json
+spec2viz schema --type sequence --out examples/schema/sequence.schema.json
+```
 
 ## Validation and Tests
 
