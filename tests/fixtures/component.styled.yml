@@ -1,0 +1,23 @@
+id: component.styled
+title: Styled Components
+type: component
+version: "0.1"
+style:
+  kinds:
+    core:
+      plantuml:
+        background: "#112233"
+        border: "#445566"
+        font: "#778899"
+data:
+  nodes:
+    App:
+      label: App
+      kind: core
+    Boundary:
+      label: Boundary
+      kind: boundary
+  edges:
+    - from: App
+      to: Boundary
+      relation: uses
