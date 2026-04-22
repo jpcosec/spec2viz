@@ -49,6 +49,12 @@ def test_component_puml_uses_yaml_style_overrides():
     assert "skinparam component<<core>> FontColor #778899" in out
 
 
+def test_component_puml_nests_children_without_redefining_them():
+    out = PlantUMLRenderer().render(_ir("component.quotation.yml"))
+    assert out.count('rectangle "Store" as Store <<boundary>>') == 1
+    assert out.count('package "QuotationFlow" as QuotationFlow <<core>> {') == 1
+
+
 def test_activity_puml():
     out = PlantUMLRenderer().render(_ir("activity.validation.yml"))
     assert "start" in out and "stop" in out

@@ -64,20 +64,45 @@ class PlantUMLRenderer:
         if style_kinds:
             lines.extend(self._emit_component_kind_styles(style_kinds))
             lines.append("")
+        node_map = {node.id: node for node in ir.nodes}
+        contained = {
+            child_id
+            for node in ir.nodes
+            for child_id in node.contains
+            if child_id in node_map
+        }
         for node in ir.nodes:
-            if node.contains:
-                lines.append(f'package "{node.label}" as {node.id} <<{node.kind}>> {{')
-                for child in node.contains:
-                    lines.append(f"  [{child}]")
-                lines.append("}")
-            else:
-                kw = self._component_keyword(node.kind)
-                lines.append(f'{kw} "{node.label}" as {node.id} <<{node.kind}>>')
+            if node.id in contained:
+                continue
+            self._emit_component_node(lines, node, node_map, indent="")
         lines.append("")
         for edge in ir.edges:
             lines.append(f"{edge.from_} --> {edge.to} : {edge.label or edge.relation}")
         lines.append("@enduml")
         return "\n".join(lines)
+
+    def _emit_component_node(
+        self,
+        lines: list[str],
+        node,
+        node_map: dict[str, object],
+        indent: str,
+    ) -> None:
+        if node.contains:
+            lines.append(
+                f'{indent}package "{node.label}" as {node.id} <<{node.kind}>> {{'
+            )
+            for child_id in node.contains:
+                child = node_map.get(child_id)
+                if child is None:
+                    lines.append(f"{indent}  [{child_id}]")
+                    continue
+                self._emit_component_node(lines, child, node_map, indent=f"{indent}  ")
+            lines.append(f"{indent}}}")
+            return
+
+        kw = self._component_keyword(node.kind)
+        lines.append(f'{indent}{kw} "{node.label}" as {node.id} <<{node.kind}>>')
 
     def _component_keyword(self, kind: str) -> str:
         if kind == "boundary":
