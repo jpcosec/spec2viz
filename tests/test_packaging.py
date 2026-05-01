@@ -1,10 +1,11 @@
 import importlib
 import warnings
 from pathlib import Path
+import json
 
 from click.testing import CliRunner
 
-from spec2viz import render_to_file
+from spec2viz import json_schema, render_to_file
 from spec2viz.cli import main as spec2viz_main
 from spec2viz.models.activity import ActivityData, ActivityDiagram, StepModel
 from spec2viz.models.base import BaseDiagram, Metadata, Style
@@ -35,32 +36,6 @@ from spec2viz.models.sequence import (
     SequenceDiagram,
 )
 from spec2viz.models.state import StateData, StateDiagram, StateModel, TransitionModel
-
-
-def test_legacy_import_shim_warns_and_reexports_api():
-    with warnings.catch_warnings(record=True) as caught:
-        warnings.simplefilter("always")
-        legacy = importlib.import_module("yaml_charts")
-
-    assert any("spec2viz" in str(item.message) for item in caught)
-    assert legacy.load is not None
-    assert legacy.render_to_file is not None
-
-
-def test_legacy_submodule_import_resolves():
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", DeprecationWarning)
-        loader = importlib.import_module("yaml_charts.loader")
-
-    assert loader.load is not None
-
-
-def test_legacy_cli_alias_is_exposed():
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", DeprecationWarning)
-        legacy = importlib.import_module("yaml_charts")
-
-    assert callable(legacy.legacy_main)
 
 
 def test_primary_cli_still_exposes_commands():
@@ -119,3 +94,11 @@ def test_examples_render_successfully(tmp_path):
     for example_path in example_paths:
         output_path = render_to_file(example_path, out=tmp_path)
         assert output_path.exists(), f"missing output for {example_path}"
+
+
+def test_schema_examples_match_generated_output():
+    checked_in_full_schema = Path("examples/schema/spec2viz.schema.json")
+    checked_in_sequence_schema = Path("examples/schema/sequence.schema.json")
+
+    assert json.loads(checked_in_full_schema.read_text()) == json_schema()
+    assert json.loads(checked_in_sequence_schema.read_text()) == json_schema("sequence")

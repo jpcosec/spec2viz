@@ -12,6 +12,7 @@ class DiagramType(str, Enum):
     activity = "activity"
     deployment = "deployment"
     component_view_matrix = "component_view_matrix"
+    reflection = "reflection"
 
 
 class Metadata(BaseModel):

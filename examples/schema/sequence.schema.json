@@ -1,0 +1,227 @@
+{
+  "$defs": {
+    "MessageModel": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "description": "Participant id that sends the message.",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "description": "Participant id that receives the message.",
+          "title": "To",
+          "type": "string"
+        },
+        "message": {
+          "description": "Label displayed on the message arrow.",
+          "title": "Message",
+          "type": "string"
+        },
+        "kind": {
+          "default": "sync",
+          "description": "Message interaction type, such as sync or async.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional condition that qualifies when the message is sent.",
+          "title": "Condition"
+        },
+        "group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional group label for visually related messages.",
+          "title": "Group"
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "message"
+      ],
+      "title": "MessageModel",
+      "type": "object"
+    },
+    "Metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "author": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Name of the person or team responsible for the diagram spec.",
+          "title": "Author"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Free-form summary that explains the intent of the diagram.",
+          "title": "Description"
+        }
+      },
+      "title": "Metadata",
+      "type": "object"
+    },
+    "ParticipantModel": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Unique participant identifier referenced by messages.",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "default": "component",
+          "description": "Semantic participant kind used for styling or grouping.",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "ParticipantModel",
+      "type": "object"
+    },
+    "SequenceData": {
+      "additionalProperties": false,
+      "properties": {
+        "participants": {
+          "description": "Ordered participants that appear across the sequence diagram.",
+          "items": {
+            "$ref": "#/$defs/ParticipantModel"
+          },
+          "title": "Participants",
+          "type": "array"
+        },
+        "messages": {
+          "description": "Ordered interactions exchanged between participants.",
+          "items": {
+            "$ref": "#/$defs/MessageModel"
+          },
+          "title": "Messages",
+          "type": "array"
+        }
+      },
+      "required": [
+        "participants",
+        "messages"
+      ],
+      "title": "SequenceData",
+      "type": "object"
+    },
+    "Style": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "default": "default",
+          "description": "Renderer theme name used to style the generated output.",
+          "title": "Theme",
+          "type": "string"
+        },
+        "kinds": {
+          "additionalProperties": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "description": "Kind-specific style overrides keyed by semantic kind name.",
+          "title": "Kinds",
+          "type": "object"
+        }
+      },
+      "title": "Style",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "Stable identifier for the diagram specification.",
+      "title": "Id",
+      "type": "string"
+    },
+    "title": {
+      "description": "Human-readable title shown in rendered output.",
+      "title": "Title",
+      "type": "string"
+    },
+    "type": {
+      "const": "sequence",
+      "default": "sequence",
+      "description": "Discriminator for sequence diagram specs.",
+      "title": "Type",
+      "type": "string"
+    },
+    "version": {
+      "description": "Schema or document version for the specification.",
+      "title": "Version",
+      "type": "string"
+    },
+    "metadata": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Metadata"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional authorship and descriptive metadata for the spec."
+    },
+    "style": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Style"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional presentation hints for renderers."
+    },
+    "data": {
+      "$ref": "#/$defs/SequenceData",
+      "description": "Sequence-specific participants and messages."
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "version",
+    "data"
+  ],
+  "title": "SequenceDiagram",
+  "type": "object"
+}

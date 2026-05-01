@@ -27,7 +27,6 @@ classifiers = [
 
 [project.scripts]
 spec2viz = "spec2viz.cli:main"
-yaml-charts = "yaml_charts:legacy_main"
 
 [project.optional-dependencies]
 dev = [
@@ -38,4 +37,4 @@ dev = [
 testpaths = ["tests"]
 
 [tool.setuptools.packages.find]
-include = ["spec2viz*", "yaml_charts*"]
+include = ["spec2viz*"]
