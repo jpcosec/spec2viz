@@ -12,6 +12,8 @@ from spec2viz.compilers.component  import ComponentCompiler
 from spec2viz.compilers.activity   import ActivityCompiler
 from spec2viz.compilers.deployment import DeploymentCompiler
 from spec2viz.compilers.matrix     import MatrixCompiler
+from spec2viz.compilers.reflection import ReflectionCompiler
+from spec2viz.models.reflection import ReflectionDiagram
 from spec2viz.exceptions import CompileError
 
 
@@ -23,4 +25,5 @@ def compile_ir(diagram: BaseDiagram):
         case ActivityDiagram():   return ActivityCompiler().compile(diagram)
         case DeploymentDiagram(): return DeploymentCompiler().compile(diagram)
         case MatrixDiagram():     return MatrixCompiler().compile(diagram)
+        case ReflectionDiagram(): return ReflectionCompiler().compile(diagram)
         case _: raise CompileError(f"No compiler for diagram type: {diagram.type}")

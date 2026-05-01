@@ -413,6 +413,64 @@
       "title": "EdgeModel",
       "type": "object"
     },
+    "EnforcementArtifact": {
+      "additionalProperties": false,
+      "description": "Condensed version of the IR for consumption by linters, auditors, and gates.",
+      "properties": {
+        "fingerprint": {
+          "description": "Hash or version identifier to ensure artifact integrity.",
+          "title": "Fingerprint",
+          "type": "string"
+        },
+        "facts": {
+          "description": "List of atomic facts that form the enforcement surface.",
+          "items": {
+            "$ref": "#/$defs/EnforcementFact"
+          },
+          "title": "Facts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "fingerprint",
+        "facts"
+      ],
+      "title": "EnforcementArtifact",
+      "type": "object"
+    },
+    "EnforcementFact": {
+      "description": "A single atomic fact extracted for enforcement purposes.",
+      "properties": {
+        "source": {
+          "description": "Subject identifier of the fact.",
+          "title": "Source",
+          "type": "string"
+        },
+        "target": {
+          "description": "Object identifier of the fact.",
+          "title": "Target",
+          "type": "string"
+        },
+        "relation": {
+          "description": "The semantic relation between source and target.",
+          "title": "Relation",
+          "type": "string"
+        },
+        "context": {
+          "additionalProperties": true,
+          "description": "Condensed 6D context or additional attributes.",
+          "title": "Context",
+          "type": "object"
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "relation"
+      ],
+      "title": "EnforcementFact",
+      "type": "object"
+    },
     "MatrixComponentModel": {
       "additionalProperties": false,
       "properties": {
@@ -754,6 +812,311 @@
       "title": "ParticipantModel",
       "type": "object"
     },
+    "ReflectionDiagram": {
+      "additionalProperties": false,
+      "description": "Diagram type specifically for architectural reflection and enforcement.",
+      "properties": {
+        "id": {
+          "description": "Stable identifier for the diagram specification.",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "description": "Human-readable title shown in rendered output.",
+          "title": "Title",
+          "type": "string"
+        },
+        "type": {
+          "const": "reflection",
+          "default": "reflection",
+          "description": "Discriminator for reflection diagram specs.",
+          "title": "Type",
+          "type": "string"
+        },
+        "version": {
+          "description": "Schema or document version for the specification.",
+          "title": "Version",
+          "type": "string"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Metadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional authorship and descriptive metadata for the spec."
+        },
+        "style": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Style"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional presentation hints for renderers."
+        },
+        "data": {
+          "$ref": "#/$defs/ReflectionIR",
+          "description": "The core semantic IR containing nodes and edges."
+        },
+        "enforcement": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EnforcementArtifact"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional condensed artifact for inward architectural enforcement."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "version",
+        "data"
+      ],
+      "title": "ReflectionDiagram",
+      "type": "object"
+    },
+    "ReflectionEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "description": "Source node identifier.",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "description": "Target node identifier.",
+          "title": "To",
+          "type": "string"
+        },
+        "relation": {
+          "default": "relates",
+          "description": "Semantic relationship type (e.g., depends_on, inherits).",
+          "title": "Relation",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional label shown alongside the relationship.",
+          "title": "Label"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SemanticMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional 6D metadata for the edge."
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "title": "ReflectionEdge",
+      "type": "object"
+    },
+    "ReflectionIR": {
+      "additionalProperties": false,
+      "description": "Semantic Intermediate Representation for reflection and enforcement.",
+      "properties": {
+        "nodes": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ReflectionNode"
+          },
+          "description": "Reflection nodes keyed by their stable identifier.",
+          "title": "Nodes",
+          "type": "object"
+        },
+        "edges": {
+          "description": "Relationships between the reflection nodes.",
+          "items": {
+            "$ref": "#/$defs/ReflectionEdge"
+          },
+          "title": "Edges",
+          "type": "array"
+        }
+      },
+      "required": [
+        "nodes"
+      ],
+      "title": "ReflectionIR",
+      "type": "object"
+    },
+    "ReflectionNode": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "default": "core",
+          "description": "Semantic kind of the node (e.g., repository, module).",
+          "title": "Kind",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional display label for the node.",
+          "title": "Label"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SemanticMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional 6D metadata for the node."
+        }
+      },
+      "title": "ReflectionNode",
+      "type": "object"
+    },
+    "SemanticMetadata": {
+      "additionalProperties": false,
+      "description": "Metadata supporting the 6D model for cross-ecosystem alignment.",
+      "properties": {
+        "author": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Name of the person or team responsible for the diagram spec.",
+          "title": "Author"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Free-form summary that explains the intent of the diagram.",
+          "title": "Description"
+        },
+        "who": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Who: Context actor or responsible entity.",
+          "title": "Who"
+        },
+        "what": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "What: The object of the semantic relation.",
+          "title": "What"
+        },
+        "where": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Where: Topology or persistence context.",
+          "title": "Where"
+        },
+        "when": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "When: Temporal or phase context.",
+          "title": "When"
+        },
+        "how": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "How: Mechanical or technical context.",
+          "title": "How"
+        },
+        "why": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Why: Rationale or business rule.",
+          "title": "Why"
+        }
+      },
+      "title": "SemanticMetadata",
+      "type": "object"
+    },
     "SequenceData": {
       "additionalProperties": false,
       "properties": {
@@ -1091,6 +1454,7 @@
       "component": "#/$defs/ComponentDiagram",
       "component_view_matrix": "#/$defs/MatrixDiagram",
       "deployment": "#/$defs/DeploymentDiagram",
+      "reflection": "#/$defs/ReflectionDiagram",
       "sequence": "#/$defs/SequenceDiagram",
       "state": "#/$defs/StateDiagram"
     },
@@ -1114,6 +1478,9 @@
     },
     {
       "$ref": "#/$defs/MatrixDiagram"
+    },
+    {
+      "$ref": "#/$defs/ReflectionDiagram"
     }
   ]
 }
