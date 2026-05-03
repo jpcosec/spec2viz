@@ -1,13 +1,15 @@
 ---
-id: '001'
-domain: reflection
-status: done
-priority: p0
-depends_on: []
+id: '004'
+domain: views
+status: open
+priority: p1
+depends_on:
+- '001'
+- '003'
 created: ''
 ---
 
-# Define semantic IR reflection contract
+# Render human-facing diagram from fixture
 
 ## Objective
 
@@ -20,9 +22,9 @@ CLI-managed task materialized from the desk board source of truth.
 
 ## What to Fix
 
-- Domain: `reflection`
-- Priority: `p0`
-- Status: `done`
+- Domain: `views`
+- Priority: `p1`
+- Status: `open`
 
 ## How to Do It
 

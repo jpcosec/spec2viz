@@ -1,13 +1,16 @@
 ---
-id: '001'
+id: '005'
 domain: reflection
-status: done
-priority: p0
-depends_on: []
+status: open
+priority: p1
+depends_on:
+- '001'
+- '002'
+- '003'
 created: ''
 ---
 
-# Define semantic IR reflection contract
+# Compile enforcement artifact from fixture
 
 ## Objective
 
@@ -21,8 +24,8 @@ CLI-managed task materialized from the desk board source of truth.
 ## What to Fix
 
 - Domain: `reflection`
-- Priority: `p0`
-- Status: `done`
+- Priority: `p1`
+- Status: `open`
 
 ## How to Do It
 

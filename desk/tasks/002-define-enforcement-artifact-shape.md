@@ -1,18 +1,34 @@
 ---
-id: 2
+id: '002'
 domain: enforcement
 status: done
 priority: p0
-
-created: "2026-05-01"
+depends_on:
+- '001'
+created: ''
 ---
 
 # Define enforcement artifact shape
 
 ## Objective
 
-Define one machine-consumable artifact shape produced from semantic IR for inward enforcement.
+CLI-managed task materialized from the desk board source of truth.
+
+## Reference
+
+- Board: `spec2viz/desk/tasks/Board.md`
+- Desk: `spec2viz`
+
+## What to Fix
+
+- Domain: `enforcement`
+- Priority: `p0`
+- Status: `done`
+
+## How to Do It
+
+Use the repo tests, changelog, and board workflow managed by the CLI.
 
 ## Validation
 
-- one explicit artifact shape exists for the first reflection slice
+Run the relevant repo tests and keep the board plus changelog in sync.

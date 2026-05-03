@@ -1,13 +1,14 @@
 ---
-id: '001'
-domain: reflection
-status: done
-priority: p0
-depends_on: []
+id: '006'
+domain: integration
+status: open
+priority: p1
+depends_on:
+- '005'
 created: ''
 ---
 
-# Define semantic IR reflection contract
+# Prove architecture rule consumption
 
 ## Objective
 
@@ -20,9 +21,9 @@ CLI-managed task materialized from the desk board source of truth.
 
 ## What to Fix
 
-- Domain: `reflection`
-- Priority: `p0`
-- Status: `done`
+- Domain: `integration`
+- Priority: `p1`
+- Status: `open`
 
 ## How to Do It
 

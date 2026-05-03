@@ -1,13 +1,14 @@
 ---
-id: '001'
-domain: reflection
-status: done
-priority: p0
-depends_on: []
+id: '003'
+domain: fixtures
+status: open
+priority: p1
+depends_on:
+- '001'
 created: ''
 ---
 
-# Define semantic IR reflection contract
+# Create canonical architecture spec fixture
 
 ## Objective
 
@@ -20,9 +21,9 @@ CLI-managed task materialized from the desk board source of truth.
 
 ## What to Fix
 
-- Domain: `reflection`
-- Priority: `p0`
-- Status: `done`
+- Domain: `fixtures`
+- Priority: `p1`
+- Status: `open`
 
 ## How to Do It
 
