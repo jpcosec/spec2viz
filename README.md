@@ -4,6 +4,8 @@
 
 It is meant for teams that want to author structured specs once and render them into outputs such as PlantUML, Mermaid, and Vega.
 
+Within the `wikipu-ecosystem`, `spec2viz` is the human-watchable rendering layer over canonical `specYaml` semantics. Renderer hints may exist, but semantic truth belongs upstream in `specyaml/`.
+
 ## What It Does
 
 - validates diagram specs with Pydantic models
