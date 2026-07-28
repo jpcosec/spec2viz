@@ -1,0 +1,8 @@
+documents:
+- name: atom-spec2viz
+  path: desk/atoms/atom-spec2viz.md
+  hash_c: 6ce81c4e821e5c83734f52a8c140115dbad4f6e476eb4b862db65594a0be2c09
+  hash_d: b1c8587407aa606e21c565c56b153e6259478aaa6ed9938df57f4972e44a836f
+  semantic_tags:
+  - type.knowledge.atom
+  - workspace.desk.atoms

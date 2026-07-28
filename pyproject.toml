@@ -38,3 +38,6 @@ testpaths = ["tests"]
 
 [tool.setuptools.packages.find]
 include = ["spec2viz*"]
+
+[tool.setuptools]
+py-modules = ["yaml_charts"]

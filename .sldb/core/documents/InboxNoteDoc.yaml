@@ -1,0 +1,22 @@
+documents:
+- name: 20260727-204634-unclear-how-should-existing-mermaid-diagrams-migrate-to-spec2viz-source-specs
+  path: desk/inbox/20260727-204634-unclear-how-should-existing-mermaid-diagrams-migrate-to-spec2viz-source-specs.md
+  hash_c: 13508b11ac5ff30ceaa4e3f795b313258988e6cecddb61d2e1aaac670c5dcfdf
+  hash_d: c6e59523ecb4a86ae550256a04c4f030de9e28e630b607449ac5e87c22a98397
+  semantic_tags:
+  - type.desk.inbox-note
+  - workspace.desk.inbox
+- name: 20260727-204635-suggestion-add-render-antonia-html-command
+  path: desk/inbox/20260727-204635-suggestion-add-render-antonia-html-command.md
+  hash_c: 83b245d673324b9a9e05307308c67a49e8c16aa1e695302d997545555b729063
+  hash_d: dde7297bce6d87a2f41d14d15b8f9766f973727bc22bd41c4418e908783ae857
+  semantic_tags:
+  - type.desk.inbox-note
+  - workspace.desk.inbox
+- name: 20260727-204743-suggestion-cli-bug-deskops-add-pill-from-yaml-still-requires-all-arguments
+  path: desk/inbox/20260727-204743-suggestion-cli-bug-deskops-add-pill-from-yaml-still-requires-all-arguments.md
+  hash_c: 2d8dc5f3575c1e6d8cfd5bc50a508ec8a7dfd0b8fc20e3102579882b154cb0df
+  hash_d: 7ffcf5916122a1c2589d8be8fea4e174bec0701d81ce756dd7f1bb746b171795
+  semantic_tags:
+  - type.desk.inbox-note
+  - workspace.desk.inbox

@@ -1,23 +1,56 @@
 @startuml
-package "Quotation Flow Engine" {
-  [ClientService]
-  [PricingEngine]
-  [BasketManager]
+skinparam component<<boundary>> BackgroundColor #FCECC9
+skinparam component<<boundary>> BorderColor #D4A73C
+skinparam component<<boundary>> FontColor #5E450B
+skinparam rectangle<<boundary>> BackgroundColor #FCECC9
+skinparam rectangle<<boundary>> BorderColor #D4A73C
+skinparam rectangle<<boundary>> FontColor #5E450B
+skinparam database<<boundary>> BackgroundColor #FCECC9
+skinparam database<<boundary>> BorderColor #D4A73C
+skinparam database<<boundary>> FontColor #5E450B
+skinparam package<<boundary>> BackgroundColor #FCECC9
+skinparam package<<boundary>> BorderColor #D4A73C
+skinparam package<<boundary>> FontColor #5E450B
+skinparam component<<core>> BackgroundColor #D8ECFF
+skinparam component<<core>> BorderColor #4C78A8
+skinparam component<<core>> FontColor #16324F
+skinparam rectangle<<core>> BackgroundColor #D8ECFF
+skinparam rectangle<<core>> BorderColor #4C78A8
+skinparam rectangle<<core>> FontColor #16324F
+skinparam database<<core>> BackgroundColor #D8ECFF
+skinparam database<<core>> BorderColor #4C78A8
+skinparam database<<core>> FontColor #16324F
+skinparam package<<core>> BackgroundColor #D8ECFF
+skinparam package<<core>> BorderColor #4C78A8
+skinparam package<<core>> FontColor #16324F
+skinparam component<<database>> BackgroundColor #DCEFD8
+skinparam component<<database>> BorderColor #5A9B5A
+skinparam component<<database>> FontColor #1F4F1F
+skinparam rectangle<<database>> BackgroundColor #DCEFD8
+skinparam rectangle<<database>> BorderColor #5A9B5A
+skinparam rectangle<<database>> FontColor #1F4F1F
+skinparam database<<database>> BackgroundColor #DCEFD8
+skinparam database<<database>> BorderColor #5A9B5A
+skinparam database<<database>> FontColor #1F4F1F
+skinparam package<<database>> BackgroundColor #DCEFD8
+skinparam package<<database>> BorderColor #5A9B5A
+skinparam package<<database>> FontColor #1F4F1F
+
+package "Quotation Flow Engine" as QuotationFlow <<core>> {
+  package "Client Management" as ClientService <<core>> {
+    [ClientSelection]
+    [AddressValidator]
+  }
+  component "Pricing Engine" as PricingEngine <<core>>
+  package "Basket Manager" as BasketManager <<core>> {
+    [Basket]
+    [BasketItem]
+  }
 }
-package "Client Management" {
-  [ClientSelection]
-  [AddressValidator]
+rectangle "Retail Store" as Store <<boundary>>
+package "Data Persistence" as Persistence <<boundary>> {
+  database "SQL Database" as SQLDatabase <<database>>
 }
-package "Basket Manager" {
-  [Basket]
-  [BasketItem]
-}
-component [Pricing Engine] as PricingEngine
-boundary [Retail Store] as Store
-package "Data Persistence" {
-  [SQLDatabase]
-}
-database [SQL Database] as SQLDatabase
 
 QuotationFlow --> Store : interaction
 QuotationFlow --> Persistence : save_state

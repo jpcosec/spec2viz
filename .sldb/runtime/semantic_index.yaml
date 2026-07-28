@@ -1,0 +1,38 @@
+tags:
+  type.desk.inbox-note:
+  - 20260727-204634-unclear-how-should-existing-mermaid-diagrams-migrate-to-spec2viz-source-specs
+  - 20260727-204635-suggestion-add-render-antonia-html-command
+  - 20260727-204743-suggestion-cli-bug-deskops-add-pill-from-yaml-still-requires-all-arguments
+  type.knowledge.atom:
+  - atom-spec2viz
+  workspace.desk.atoms:
+  - atom-spec2viz
+  workspace.desk.inbox:
+  - 20260727-204634-unclear-how-should-existing-mermaid-diagrams-migrate-to-spec2viz-source-specs
+  - 20260727-204635-suggestion-add-render-antonia-html-command
+  - 20260727-204743-suggestion-cli-bug-deskops-add-pill-from-yaml-still-requires-all-arguments
+documents:
+  20260727-204634-unclear-how-should-existing-mermaid-diagrams-migrate-to-spec2viz-source-specs:
+    model: InboxNoteDoc
+    path: desk/inbox/20260727-204634-unclear-how-should-existing-mermaid-diagrams-migrate-to-spec2viz-source-specs.md
+    tags:
+    - type.desk.inbox-note
+    - workspace.desk.inbox
+  20260727-204635-suggestion-add-render-antonia-html-command:
+    model: InboxNoteDoc
+    path: desk/inbox/20260727-204635-suggestion-add-render-antonia-html-command.md
+    tags:
+    - type.desk.inbox-note
+    - workspace.desk.inbox
+  20260727-204743-suggestion-cli-bug-deskops-add-pill-from-yaml-still-requires-all-arguments:
+    model: InboxNoteDoc
+    path: desk/inbox/20260727-204743-suggestion-cli-bug-deskops-add-pill-from-yaml-still-requires-all-arguments.md
+    tags:
+    - type.desk.inbox-note
+    - workspace.desk.inbox
+  atom-spec2viz:
+    model: AtomDoc
+    path: desk/atoms/atom-spec2viz.md
+    tags:
+    - type.knowledge.atom
+    - workspace.desk.atoms

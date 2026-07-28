@@ -540,15 +540,61 @@ data:
 
 ## 11.1 Propósito
 
-Representar una matriz bi-jerárquica:
+El **Component View Matrix** responde a una pregunta arquitectónica específica:
 
-```text
-Y axis = component hierarchy
-X axis = views -> stages
-cells/spans = participation
+> **"¿En qué vista/etapa participa cada componente del sistema?"**
+
+Es una matriz bi-jerárquica:
+
+```
+                    Vista A                    Vista B
+                 ┌──────────────┐          ┌──────────────┐
+Componente 1     │ ████████████ │          │              │
+Componente 2     │      ████████│          │ ████████████ │
+Componente 3     │ ████         │          │ ██████████   │
+                 └──────────────┘          └──────────────┘
+                   browse  edit  save        setup  config
 ```
 
-## 11.2 Schema conceptual
+- **Y axis**: jerarquía de componentes (con nesting)
+- **X axis**: vistas, cada una con etapas ordenadas
+- **Barras**: span de participación de cada componente
+
+## 11.2 Cuándo usarlo
+
+✅ **Arquitectura de microservicios o módulos** — qué servicio responde a qué pantalla
+
+✅ **Bounded contexts** — delimitar qué dominio opera en qué flujo
+
+✅ **Refactoring** — identificar componentes huérfanos o demasiado acoplados
+
+✅ **Tech lead planning** — mapear ownership de features
+
+## 11.3 Cuándo NO usarlo
+
+❌ **Componentes UI atómicos** (Button, Input, Card) → usar component diagram simple o tabla
+
+❌ **Relaciones entre componentes** (API calls, data flow) → usar component diagram o sequence diagram
+
+❌ **Flujos de usuario** (secuencia de acciones) → usar sequence diagram o activity diagram
+
+❌ **Estados de una entidad** → usar state diagram
+
+## 11.4 Kinds disponibles
+
+Cada componente tiene un `kind` semántico:
+
+| kind | Uso típico | Color sugerido |
+|------|-----------|---------------|
+| `core` | Lógica de negocio principal | Naranja |
+| `boundary` | Interfaces, adapters, gateways | Azul |
+| `service` | Microservicios, workers | Gris |
+| `database` | Persistencia | Verde |
+| `ui` | Componentes de interfaz pesados | Gris claro |
+| `external_system` | Integraciones externas | Púrpura |
+| `decision_engine` | Reglas, validación | Rosa |
+
+## 11.5 Schema conceptual
 
 ```yaml
 id: matrix.quotation-view
@@ -558,74 +604,166 @@ version: 0.1
 
 data:
   views:
-    quotation:
+    - id: quotation
       label: Quotation View
       stages:
-        - browse
-        - client
-        - basket
-        - validation
-        - completed
+        - id: browse
+          label: browse
+        - id: client
+          label: client
+        - id: basket
+          label: basket
+        - id: validation
+          label: validation
+        - id: completed
+          label: completed
+    - id: admin
+      label: Administration Panel
+      stages:
+        - id: setup
+          label: setup
+        - id: config
+          label: config
+        - id: users
+          label: users
+        - id: logs
+          label: logs
 
   components:
-    - name: QuotationFlow
+    - name: QuotationSystem
       kind: core
       stages:
-        quotation:
-          - browse
-          - client
-          - basket
-          - validation
-          - completed
+        quotation: [browse, client, basket, validation, completed]
+        admin: [setup, config, users, logs]
       children:
-        - name: Persistence
+        - name: Frontend
           kind: boundary
           stages:
-            quotation:
-              - browse
-              - validation
-              - completed
-
-        - name: Store
-          kind: boundary
-          stages:
-            quotation:
-              - browse
-              - client
-              - basket
-
-        - name: Basket
+            quotation: [browse, client, basket]
+          children:
+            - name: WebUI
+              kind: ui
+              stages:
+                quotation: [browse, client, basket]
+            - name: MobileApp
+              kind: ui
+              stages:
+                quotation: [browse, client]
+        - name: Backend
           kind: core
           stages:
-            quotation:
-              - basket
-              - validation
+            quotation: [basket, validation, completed]
+            admin: [config, users, logs]
           children:
-            - name: BasketDay
-              kind: core
+            - name: OrderService
+              kind: service
               stages:
-                quotation:
-                  - basket
-                  - validation
-              children:
-                - name: Item
-                  label: Item (basket mode)
-                  kind: core
-                  stages:
-                    quotation:
-                      - basket
-                      - validation
+                quotation: [basket, validation, completed]
+            - name: AdminService
+              kind: service
+              stages:
+                admin: [setup, config, users, logs]
+            - name: Database
+              kind: database
+              stages:
+                quotation: [completed]
 ```
 
-## 11.3 Reglas
+## 11.6 Estructura de views
 
-Cada view debe tener stages ordenadas.
+```yaml
+views:
+  - id: quotation          # ID único (snake_case)
+    label: Quotation View  # Label para mostrar
+    stages:
+      - id: browse         # ID del stage
+        label: browse      # Label para mostrar
+      - id: client
+        label: client
+```
 
-Cada component puede tener `children`.
+## 11.7 Estructura de components
 
-Cada component puede declarar presencia en una o más views.
+```yaml
+components:
+  - name: OrderService     # ID único (PascalCase)
+    kind: service          # categoría semántica
+    label: Order Service   # opcional: label custom
+    stages:                # en qué etapas participa
+      quotation: [basket, validation, completed]
+      admin: []            # vacío = no participa
+    children: []           # componentes anidados
+```
 
-Un stage declarado por un component debe existir en la view correspondiente.
+**Nota:** `name` debe ser único a nivel global (no solo por nivel).
+
+## 11.8 Reglas
+
+1. Cada view debe tener stages ordenadas (el renderer las muestra en orden)
+2. Cada `stages[view]` en un component debe referenciar stages existentes
+3. Componentes pueden participar en múltiples views
+4. `children` heredan contexto pero declaran sus propias etapas
+5. Un componente sin stages en una view = no aparece en esa columna
+
+## 11.9 Anti-patrones
+
+**❌ Matrix de componentes UI atómicos:**
+
+```yaml
+# ANTI-PATRÓN: esto no es lo que el matrix está diseñado para
+components:
+  - name: Button
+    kind: ui
+    stages:
+      v1: [list, detail]
+  - name: Input
+    kind: ui
+    stages:
+      v1: [detail]
+```
+
+→ **Solución:** Usar una tabla markdown o un heatmap simple Vega
+
+**❌ Matrix para flujos de datos:**
+
+```yaml
+# ANTI-PATRÓN: esto mezcla concerns
+components:
+  - name: UserService
+    stages:
+      auth: [login]
+  - name: calls API
+    # esto no es un componente
+```
+
+→ **Solución:** Usar sequence diagram para flujos, component diagram para relaciones
+
+**❌ Jerarquía plana sin sentido:**
+
+```yaml
+# ANTI-PATRÓN: todos al mismo nivel sin jerarquía
+components:
+  - name: ComponentA
+  - name: ComponentB
+  - name: ComponentC
+```
+
+→ **Solución:** Si no hay jerarquía, usar component diagram simple
+
+## 11.10 Comparación rápida
+
+| Pregunta | Diagrama a usar |
+|----------|-----------------|
+| ¿Qué componentes existen? | `component` |
+| ¿Qué componentes participan en qué flujos? | `component_view_matrix` |
+| ¿Cómo se comunican los componentes? | `component` + `sequence` |
+| ¿Qué componentes UI necesito? | Tabla / heatmap simple |
+| ¿Qué estados tiene una entidad? | `state` |
+| ¿Cuál es el flujo de un proceso? | `activity` |
+
+## 11.11 Ejemplo completo de salida Vega
+
+Ver `examples/matrix/example.vega.json` para el JSON generado.
 
 ---
 

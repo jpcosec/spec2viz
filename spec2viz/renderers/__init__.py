@@ -5,6 +5,8 @@ from spec2viz.models.reflection import EnforcementArtifact
 from spec2viz.renderers.plantuml import PlantUMLRenderer
 from spec2viz.renderers.vega     import VegaRenderer
 from spec2viz.renderers.mermaid  import MermaidRenderer
+from spec2viz.renderers.d2       import D2Renderer
+from spec2viz.renderers.antonia  import AntoniaHtmlRenderer
 from spec2viz.exceptions import RenderError
 
 class JsonRenderer:
@@ -17,6 +19,8 @@ RENDERER_MAP = {
     "plantuml": PlantUMLRenderer,
     "vega":     VegaRenderer,
     "mermaid":  MermaidRenderer,
+    "d2":       D2Renderer,
+    "antonia-html": AntoniaHtmlRenderer,
     "json":     JsonRenderer,
 }
 
@@ -24,6 +28,8 @@ EXT_MAP = {
     "plantuml": ".puml",
     "vega":     ".vega.json",
     "mermaid":  ".mmd",
+    "d2":       ".d2",
+    "antonia-html": ".html",
     "json":     ".artifact.json",
 }
 
