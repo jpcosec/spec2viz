@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>spec2viz Architecture & Knowledge Base</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --bg-sidebar: #0f172a;
+      --border-color: #334155;
+      --primary: #38bdf8;
+      --primary-hover: #0284c7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-green: #4ade80;
+      --accent-purple: #c084fc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar Navigation */
+    aside {
+      width: 280px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand {
+      padding: 20px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav {
+      flex: 1;
+      padding: 20px 10px;
+      overflow-y: auto;
+    }
+
+    .nav-category span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      padding: 10px;
+      display: block;
+    }
+
+    .nav-category a {
+      display: block;
+      padding: 8px 12px;
+      color: var(--text-main);
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      margin-bottom: 4px;
+    }
+
+    .nav-category a:hover {
+      background-color: var(--bg-card);
+      color: var(--primary);
+    }
+
+    /* Main Area */
+    main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 40px;
+    }
+
+    .macro-separator {
+      margin: 40px 0 20px 0;
+    }
+
+    .macro-separator h2 {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8px;
+    }
+
+    section {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    section .desc {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .board {
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 8px;
+      padding: 20px;
+      overflow-x: auto;
+    }
+
+    /* Atom Drawer / Modal Panel */
+    #atom-panel {
+      width: 420px;
+      background-color: var(--bg-card);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 100;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    #atom-panel.active {
+      transform: translateX(0);
+    }
+
+    .atom-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .atom-header h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .atom-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--bg-dark);
+      padding: 5px;
+      gap: 4px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .atom-tab {
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .atom-tab.active {
+      background-color: var(--primary);
+      color: var(--bg-dark);
+    }
+
+    .atom-content {
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <div class="brand">
+      <span>📐 spec2viz Architecture</span>
+    </div>
+    <nav>
+      <div class="nav-category"><span>Arquitectura de Componentes</span><a href="#component-architecture">component-architecture</a></div>
+<div class="nav-category"><span>Pipelines de Compilación</span><a href="#sequence-pipeline">sequence-pipeline</a></div>
+<div class="nav-category"><span>Flujos Operacionales</span><a href="#activity-task-workflow">activity-task-workflow</a></div>
+
+    </nav>
+  </aside>
+
+  <main>
+    <div class="macro-separator"><h2>— Arquitectura de Componentes —</h2></div>
+<section id="component-architecture" data-spec="docs/architecture/spec2viz/component-architecture.yml">
+  <div class="lbl"></div>
+  <h2>Arquitectura Interna de spec2viz</h2>
+  <p class="desc">Módulos principales y flujo de datos entre el CLI, Loader, Validator, AST Compilers, IR y Renderers.</p>
+  <div class="board">
+    <div class="mermaid">
+      graph TD
+          cli["CLI Entrypoint (spec2viz.cli)"]
+          loader["Spec Loader (spec2viz.loader)"]
+          models["Pydantic Schema Models (spec2viz.models)"]
+          validator["Schema Validator (spec2viz.validator)"]
+          compilers["AST Compilers (spec2viz.compilers)"]
+          ir["Intermediate Representation (spec2viz.ir)"]
+          renderers["Multi-Backend Renderers (spec2viz.renderers)"]
+          deskops_bridge["Deskops Integration Bridge (spec2viz.deskops)"]
+          cli -->|Carga spec YAML| loader
+          loader -->|Valida tipo y esquema| models
+          loader -->|Chequeo sintáctico| validator
+          loader -->|Pasa DiagramModel| compilers
+          compilers -->|Compila a IR desacoplado| ir
+          ir -->|Transforma IR a output gráfico| renderers
+          cli -->|Resuelve rutas de desk/| deskops_bridge
+    </div>
+  </div>
+</section>
+<div class="macro-separator"><h2>— Pipelines de Compilación —</h2></div>
+<section id="sequence-pipeline" data-spec="docs/architecture/spec2viz/sequence-pipeline.yml">
+  <div class="lbl"></div>
+  <h2>Pipeline de Compilación y Renderizado</h2>
+  <p class="desc">Traza de llamadas desde la ejecución CLI hasta la emisión de gráficos.</p>
+  <div class="board">
+    <div class="mermaid">
+      sequenceDiagram
+          actor User
+          participant CLI
+          participant Loader
+          participant Compiler
+          participant IR
+          participant Renderer
+          User->>CLI: spec2viz render spec.yml --backend mermaid
+          CLI->>Loader: load(spec.yml)
+          Loader->>Compiler: compile(DiagramModel)
+          Compiler->>IR: Instancia DiagramIR desacoplado
+          CLI->>Renderer: render(DiagramIR)
+          Renderer->>User: Retorna código renderizado (Mermaid/PlantUML)
+    </div>
+  </div>
+</section>
+<div class="macro-separator"><h2>— Flujos Operacionales —</h2></div>
+<section id="activity-task-workflow" data-spec="docs/architecture/spec2viz/activity-task-workflow.yml">
+  <div class="lbl"></div>
+  <h2>Ciclo de Vida de Tareas y Subagentes</h2>
+  <p class="desc">Flujo paso a paso desde el borrador en drawer hasta la validación y commit atómico por subagentes.</p>
+  <div class="board">
+    <div class="mermaid">
+      flowchart TD
+          __start([Start])
+          diseno_drawer["Diseñar TaskDoc en desk/drawer/tasks/"]
+          ambiguity_review["Ejecutar Ambiguity Review (Autonomía de Contexto Cero)"]
+          promocion["Promover tarea a Board activo"]
+          despacho_executor["Despachar Subagente Executor independiente"]
+          implementacion_codigo["Modificar código dentro del Scope"]
+          despacho_tester["Despachar Subagente Tester independiente"]
+          emision_evidencias["Generar validation.log y result-summary.md"]
+          commit_cierre["Ejecutar deskops closeout commit"]
+          ritual_fase["Ejecutar Ritual de Fase al terminar capa"]
+          fin["Tarea Completada"]
+          __end([End])
+          __start --> diseno_drawer
+          diseno_drawer --> ambiguity_review
+          ambiguity_review --> promocion
+          promocion --> despacho_executor
+          despacho_executor --> implementacion_codigo
+          implementacion_codigo --> despacho_tester
+          despacho_tester --> emision_evidencias
+          emision_evidencias --> commit_cierre
+          commit_cierre --> ritual_fase
+          ritual_fase --> __end
+    </div>
+  </div>
+</section>
+  </main>
+
+  <div id="atom-panel">
+    <div class="atom-header">
+      <h3 id="atom-node-title">Atom Detail</h3>
+      <button class="close-btn" onclick="closeAtomPanel()">&times;</button>
+    </div>
+    <div class="atom-tabs" id="atom-tabs"></div>
+    <div class="atom-content" id="atom-content">
+      <p style="color: var(--text-muted)">Haz clic en un nodo de diagrama o selecciona un componente para explorar su Knowledge Base de 5WH1+.</p>
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+
+    function closeAtomPanel() {
+      document.getElementById('atom-panel').classList.remove('active');
+    }
+
+    function selectNodeAtoms(nodeTitle) {
+      const panel = document.getElementById('atom-panel');
+      const titleEl = document.getElementById('atom-node-title');
+      const tabsEl = document.getElementById('atom-tabs');
+      const contentEl = document.getElementById('atom-content');
+
+      const normTitle = nodeTitle.trim().toLowerCase();
+      const nodeData = window.ATOMS_DB ? window.ATOMS_DB[normTitle] : null;
+
+      if (!nodeData || !nodeData.atoms) {
+        titleEl.innerText = nodeTitle;
+        tabsEl.innerHTML = '';
+        contentEl.innerHTML = '<p style="color: var(--text-muted)">No hay átomos registrados para este nodo.</p>';
+        panel.classList.add('active');
+        return;
+      }
+
+      titleEl.innerText = nodeData.title;
+      tabsEl.innerHTML = '';
+
+      const questions = ['what', 'why', 'how', 'how_not', 'when', 'where', 'for_whom'];
+      let firstActive = null;
+
+      questions.forEach(q => {
+        if (nodeData.atoms[q]) {
+          const btn = document.createElement('button');
+          btn.className = 'atom-tab';
+          btn.innerText = q.replace('_', ' ');
+          btn.onclick = () => {
+            document.querySelectorAll('.atom-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            contentEl.innerHTML = `<h4>5WH1+: ${q.toUpperCase()}</h4><br><p>${nodeData.atoms[q].body}</p>`;
+          };
+          tabsEl.appendChild(btn);
+          if (!firstActive) firstActive = btn;
+        }
+      });
+
+      if (firstActive) firstActive.click();
+      panel.classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.mermaid').forEach(el => {
+          el.addEventListener('click', (e) => {
+            const node = e.target.closest('.node');
+            if (node) {
+              const label = node.innerText;
+              if (label) selectNodeAtoms(label);
+            }
+          });
+        });
+      }, 1000);
+    });
+  </script>
+
+<script>window.ATOMS_DB = {"deskops integration bridge": {"title": "Deskops Integration Bridge", "atoms": {"where": {"id": "atom-deskops-bridge-where", "body": "# Deskops Integration Bridge - WHERE\n\n## Answer\n\nEst\u00e1 implementado en `spec2viz/deskops.py`."}, "when": {"id": "atom-deskops-bridge-when", "body": "# Deskops Integration Bridge - WHEN\n\n## Answer\n\nSe ejecuta al invocar `spec2viz build --config vistas.yml --out arquitectura.html --atoms-dir desk/atoms/`."}, "how_not": {"id": "atom-deskops-bridge-how_not", "body": "# Deskops Integration Bridge - HOW_NOT\n\n## Answer\n\nNo debe editar directamente el contenido de los \u00e1tomos en `desk/` ni alterar las reglas de cierre de tareas de deskops."}, "for_whom": {"id": "atom-deskops-bridge-for_whom", "body": "# Deskops Integration Bridge - FOR_WHOM\n\n## Answer\n\nPara desarrolladores, ingenieros de sistemas y visores interactivos de arquitectura del ecosistema."}, "what": {"id": "atom-deskops-bridge-what", "body": "# Deskops Integration Bridge - WHAT\n\n## Answer\n\nEl Deskops Integration Bridge es la capa de integraci\u00f3n de `spec2viz` con la base de conocimiento y espacios de trabajo de `deskops`."}, "why": {"id": "atom-deskops-bridge-why", "body": "# Deskops Integration Bridge - WHY\n\n## Answer\n\nExiste para permitir la construcci\u00f3n de vistas HTML interactivas de arquitectura que vinculan nodos gr\u00e1ficos con la base de datos de \u00e1tomos (`ATOMS_DB`)."}}}, "intermediate representation": {"title": "Intermediate Representation", "atoms": {"for_whom": {"id": "atom-intermediate-representation-for_whom", "body": "# Intermediate Representation - FOR_WHOM\n\n## Answer\n\nPara los autores de nuevos renderizadores (PlantUML, Mermaid, D2, Vega) que consumen diagramas."}, "what": {"id": "atom-intermediate-representation-what", "body": "# Intermediate Representation - WHAT\n\n## Answer\n\nLa Representaci\u00f3n Intermedia (IR) es una colecci\u00f3n de dataclasses puras de Python (`SequenceIR`, `ComponentIR`, `StateIR`) que representan diagramas listos para dibujar."}, "where": {"id": "atom-intermediate-representation-where", "body": "# Intermediate Representation - WHERE\n\n## Answer\n\nEst\u00e1 definida \u00edntegramente en `spec2viz/ir.py`."}, "how_not": {"id": "atom-intermediate-representation-how_not", "body": "# Intermediate Representation - HOW_NOT\n\n## Answer\n\nNo debe contener l\u00f3gica de parseo de archivos ni sintaxis espec\u00edfica de PlantUML o Mermaid."}, "when": {"id": "atom-intermediate-representation-when", "body": "# Intermediate Representation - WHEN\n\n## Answer\n\nEs la estructura de datos que viaja desde los compiladores hacia los renderizadores."}, "why": {"id": "atom-intermediate-representation-why", "body": "# Intermediate Representation - WHY\n\n## Answer\n\nExiste para resolver el problema de matriz $M \\times N$ entre $M$ tipos de especificaciones y $N$ motores gr\u00e1ficos de salida."}, "how": {"id": "atom-intermediate-representation-how", "body": "# Intermediate Representation - HOW\n\n## Answer\n\nDefine campos gr\u00e1ficos limpios (nodos, bordes, secuencias, participantes) sin dependencias de Pydantic ni del formato YAML original."}}}, "schema validator": {"title": "Schema Validator", "atoms": {"how_not": {"id": "atom-schema-validator-how_not", "body": "# Schema Validator - HOW_NOT\n\n## Answer\n\nNo debe mutar la estructura del modelo ni ignorar referencias rotas sin lanzar `ParseError`."}, "where": {"id": "atom-schema-validator-where", "body": "# Schema Validator - WHERE\n\n## Answer\n\nEst\u00e1 implementado en `spec2viz/validator.py`."}, "how": {"id": "atom-schema-validator-how", "body": "# Schema Validator - HOW\n\n## Answer\n\nInspecciona la estructura de `DiagramModel` y verifica que cada `from` y `to` de los bordes o mensajes coincida con un ID v\u00e1lido declarado en la lista de nodos/participantes."}, "for_whom": {"id": "atom-schema-validator-for_whom", "body": "# Schema Validator - FOR_WHOM\n\n## Answer\n\nPara autores de diagramas que necesitan detectar referencias hu\u00e9rfanas antes de renderizar."}, "when": {"id": "atom-schema-validator-when", "body": "# Schema Validator - WHEN\n\n## Answer\n\nSe ejecuta inmediatamente despu\u00e9s de `spec2viz.loader.load()` y antes del proceso de compilaci\u00f3n a IR."}, "what": {"id": "atom-schema-validator-what", "body": "# Schema Validator - WHAT\n\n## Answer\n\n`spec2viz.validator` es el m\u00f3dulo de verificaci\u00f3n sem\u00e1ntica secundaria que comprueba consistencia de referencias cruzadas en el diagrama."}, "why": {"id": "atom-schema-validator-why", "body": "# Schema Validator - WHY\n\n## Answer\n\nExiste porque la validaci\u00f3n Pydantic comprueba estructura de campos, pero el validador verifica que los identificadores de nodos y participantes referenciados en los bordes realmente existan."}}}, "multi-backend renderers": {"title": "Multi-Backend Renderers", "atoms": {"when": {"id": "atom-multi-backend-renderers-when", "body": "# Multi-Backend Renderers - WHEN\n\n## Answer\n\nEs el \u00faltimo paso del pipeline `spec2viz render` antes de escribir la salida a disco."}, "what": {"id": "atom-multi-backend-renderers-what", "body": "# Multi-Backend Renderers - WHAT\n\n## Answer\n\nLos Multi-Backend Renderers son los generadores finales que traducen un objeto `DiagramIR` en c\u00f3digo fuente espec\u00edfico (`Mermaid`, `PlantUML`, `D2`, `Vega`, `HTML`)."}, "why": {"id": "atom-multi-backend-renderers-why", "body": "# Multi-Backend Renderers - WHY\n\n## Answer\n\nExisten para permitir que una sola especificaci\u00f3n YAML pueda proyectarse hacia m\u00faltiples formatos gr\u00e1ficos seg\u00fan la necesidad del usuario."}, "where": {"id": "atom-multi-backend-renderers-where", "body": "# Multi-Backend Renderers - WHERE\n\n## Answer\n\nSe ubican bajo `spec2viz/renderers/` (`mermaid.py`, `plantuml.py`, `d2.py`, `vega.py`)."}, "how": {"id": "atom-multi-backend-renderers-how", "body": "# Multi-Backend Renderers - HOW\n\n## Answer\n\nImplementan el patr\u00f3n Visitor o dispatch por tipo sobre el `DiagramIR` e imprimen las cadenas formateadas correspondientes."}, "for_whom": {"id": "atom-multi-backend-renderers-for_whom", "body": "# Multi-Backend Renderers - FOR_WHOM\n\n## Answer\n\nPara los usuarios finales y herramientas de visualizaci\u00f3n que muestran los diagramas."}, "how_not": {"id": "atom-multi-backend-renderers-how_not", "body": "# Multi-Backend Renderers - HOW_NOT\n\n## Answer\n\nNo deben re-validar el YAML ni leer archivos del disco directamente."}}}, "cli entrypoint": {"title": "CLI Entrypoint", "atoms": {"when": {"id": "atom-cli-entrypoint-when", "body": "# CLI Entrypoint - WHEN\n\n## Answer\n\nSe utiliza al compilar esquemas YAML desde la terminal, al ejecutar builds autom\u00e1ticos o al verificar la validez de un diagrama en git hooks."}, "where": {"id": "atom-cli-entrypoint-where", "body": "# CLI Entrypoint - WHERE\n\n## Answer\n\nEst\u00e1 implementado en `spec2viz/cli.py` y expuesto como el ejecutable global `spec2viz` v\u00eda `pyproject.toml`."}, "how": {"id": "atom-cli-entrypoint-how", "body": "# CLI Entrypoint - HOW\n\n## Answer\n\nLee los argumentos con Click (`render`, `validate`, `schema`, `build`), despacha la carga del archivo YAML a `spec2viz.loader` y canaliza la IR resultante hacia el renderizador solicitado."}, "how_not": {"id": "atom-cli-entrypoint-how_not", "body": "# CLI Entrypoint - HOW_NOT\n\n## Answer\n\nNo debe contener l\u00f3gica de negocio de parsing ni manipulaci\u00f3n directa de cadenas HTML; esas responsabilidades pertenecen al loader, los compiladores y `deskops.py`."}, "why": {"id": "atom-cli-entrypoint-why", "body": "# CLI Entrypoint - WHY\n\n## Answer\n\nExiste para proporcionar un punto de entrada estandarizado para desarrolladores y pipelines de CI/CD sin necesidad de escribir scripts de Python adicionales."}, "for_whom": {"id": "atom-cli-entrypoint-for_whom", "body": "# CLI Entrypoint - FOR_WHOM\n\n## Answer\n\nPara desarrolladores, mantenedores de arquitectura y agentes automatizados de CI/CD que interact\u00faan con el repositorio."}, "what": {"id": "atom-cli-entrypoint-what", "body": "# CLI Entrypoint - WHAT\n\n## Answer\n\n`spec2viz.cli` es la interfaz por l\u00ednea de comandos (CLI) principal construida con Click para renderizar especificaciones, validar esquemas y construir vistas de arquitectura deskops."}}}, "spec loader": {"title": "Spec Loader", "atoms": {"how_not": {"id": "atom-spec-loader-how_not", "body": "# Spec Loader - HOW_NOT\n\n## Answer\n\nNo debe suprimir los errores de Pydantic silenciosamente ni retornar objetos parcialmente validados si el esquema es incorrecto."}, "when": {"id": "atom-spec-loader-when", "body": "# Spec Loader - WHEN\n\n## Answer\n\nSe invoca inmediatamente despu\u00e9s de recibir una ruta de archivo en la CLI o API de Python antes de compilar."}, "how": {"id": "atom-spec-loader-how", "body": "# Spec Loader - HOW\n\n## Answer\n\nUtiliza `yaml.safe_load()` para convertir YAML en diccionarios y luego invoca `TypeAdapter(AnyDiagram).validate_python()` usando el discriminador `type`."}, "where": {"id": "atom-spec-loader-where", "body": "# Spec Loader - WHERE\n\n## Answer\n\nSe encuentra ubicado en `spec2viz/loader.py`."}, "what": {"id": "atom-spec-loader-what", "body": "# Spec Loader - WHAT\n\n## Answer\n\n`spec2viz.loader` es el componente responsable de leer archivos YAML desde el disco y deserializarlos en modelos Pydantic validados."}, "why": {"id": "atom-spec-loader-why", "body": "# Spec Loader - WHY\n\n## Answer\n\nExiste para aislar la lectura del sistema de archivos y el an\u00e1lisis sint\u00e1ctico de la l\u00f3gica de compilaci\u00f3n y renderizado."}, "for_whom": {"id": "atom-spec-loader-for_whom", "body": "# Spec Loader - FOR_WHOM\n\n## Answer\n\nPara los compiladores e ingenieros de software que requieren objetos DiagramModel fuertemente tipados."}}}, "ast compilers": {"title": "AST Compilers", "atoms": {"how": {"id": "atom-ast-compilers-how", "body": "# AST Compilers - HOW\n\n## Answer\n\nRecorren la jerarqu\u00eda de nodos, etapas o mensajes del modelo Pydantic y construyen instancias de `SequenceIR`, `ComponentIR`, `StateIR`, etc."}, "when": {"id": "atom-ast-compilers-when", "body": "# AST Compilers - WHEN\n\n## Answer\n\nSe ejecutan en la etapa intermedia del pipeline justo antes de invocar a los renderizadores."}, "where": {"id": "atom-ast-compilers-where", "body": "# AST Compilers - WHERE\n\n## Answer\n\nSe encuentran dentro de `spec2viz/compilers/` (`sequence.py`, `component.py`, `activity.py`, etc.)."}, "why": {"id": "atom-ast-compilers-why", "body": "# AST Compilers - WHY\n\n## Answer\n\nExisten para desacoplar el modelo sint\u00e1ctico del YAML de las estructuras gr\u00e1ficas necesarias para dibujar el diagrama."}, "how_not": {"id": "atom-ast-compilers-how_not", "body": "# AST Compilers - HOW_NOT\n\n## Answer\n\nNo deben generar cadenas de texto finales como PlantUML o Mermaid; solo deben emitir dataclasses IR agn\u00f3sticas."}, "for_whom": {"id": "atom-ast-compilers-for_whom", "body": "# AST Compilers - FOR_WHOM\n\n## Answer\n\nPara el pipeline interno de spec2viz como puente entre la especificaci\u00f3n y los renderizadores."}, "what": {"id": "atom-ast-compilers-what", "body": "# AST Compilers - WHAT\n\n## Answer\n\nLos AST Compilers son traductores que transforman modelos de datos validados (`DiagramModel`) en objetos de Representaci\u00f3n Intermedia (`DiagramIR`)."}}}, "pydantic schema models": {"title": "Pydantic Schema Models", "atoms": {"why": {"id": "atom-pydantic-models-why", "body": "# Pydantic Schema Models - WHY\n\n## Answer\n\nExisten para garantizar una validaci\u00f3n de esquemas estricta, autocompletado en IDEs y generaci\u00f3n autom\u00e1tica de JSON Schema."}, "how": {"id": "atom-pydantic-models-how", "body": "# Pydantic Schema Models - HOW\n\n## Answer\n\nDefinen subclases de `BaseDiagram` y `BaseModel` configuradas con `ConfigDict(extra=\"forbid\")` para rechazar campos no reconocidos y validar campos requeridos."}, "where": {"id": "atom-pydantic-models-where", "body": "# Pydantic Schema Models - WHERE\n\n## Answer\n\nEst\u00e1n organizados por dominio dentro del directorio `spec2viz/models/` (`sequence.py`, `component.py`, `state.py`, etc.)."}, "what": {"id": "atom-pydantic-models-what", "body": "# Pydantic Schema Models - WHAT\n\n## Answer\n\nLos Pydantic Schema Models son las clases de datos Pydantic v2 que definen la estructura sem\u00e1ntica de cada tipo de diagrama (`SequenceDiagram`, `ComponentDiagram`, etc.)."}, "how_not": {"id": "atom-pydantic-models-how_not", "body": "# Pydantic Schema Models - HOW_NOT\n\n## Answer\n\nNo deben permitir campos adicionales arbitrarios sin tipar ni relajar la validaci\u00f3n usando `extra=\"ignore\"` en modelos de producci\u00f3n."}, "for_whom": {"id": "atom-pydantic-models-for_whom", "body": "# Pydantic Schema Models - FOR_WHOM\n\n## Answer\n\nPara el motor de validaci\u00f3n de esquemas y los desarrolladores que extienden los formatos soportados."}, "when": {"id": "atom-pydantic-models-when", "body": "# Pydantic Schema Models - WHEN\n\n## Answer\n\nSe usan durante la fase de carga (`loader`), validaci\u00f3n (`validator`) y compilaci\u00f3n a IR."}}}, "deskops integration bridge architecture": {"title": "Deskops Integration Bridge Architecture", "atoms": {"how": {"id": "atom-deskops-bridge-how", "body": "# Deskops Integration Bridge Architecture - HOW\n\n## Answer\n\nEl mecanismo de integraci\u00f3n entre `spec2viz` y `deskops` opera a trav\u00e9s de los siguientes pasos t\u00e9cnicos en `spec2viz/deskops.py`:\n\n1. **Extracci\u00f3n y Parseo de \u00c1tomos (`parse_atoms`):**\n   - Escanea el directorio de conocimiento `desk/atoms/*.md`.\n   - Utiliza una expresi\u00f3n regular (`^---\\s*$`) para separar el frontmatter YAML del cuerpo del Markdown.\n   - Extrae la clave `title` (normalizada a min\u00fasculas) y la dimensi\u00f3n 5WH1+ (`five_wh_one_plus`: `what`, `why`, `how`, `how_not`, `when`, `where`, `for_whom`).\n   - Indexa en una estructura jer\u00e1rquica JSON: `window.ATOMS_DB[title_norm][\"atoms\"][question] = { \"id\": fm.id, \"body\": body }`.\n\n2. **Resoluci\u00f3n de Vistas y Plantilla (`render_deskops`):**\n   - Carga el registro `vistas.yml` y agrupa las vistas por la propiedad `category`.\n   - Para cada vista, lee la fuente especificada (`.mmd`, `.svg`, o `.html`) desde `base_dir`.\n   - Construye la barra de navegaci\u00f3n lateral (`{{NAV}}`) y la estructura de secciones (`{{SECTIONS}}`).\n\n3. **Inyecci\u00f3n en Tiempo de Compilaci\u00f3n:**\n   - Reemplaza los marcadores `{{NAV}}` y `{{SECTIONS}}` en `template.html`.\n   - Inyecta `window.ATOMS_DB = JSON.stringify(atoms_db)` en el script final del documento HTML.\n\n4. **Vinculaci\u00f3n Interactiva en el Navegador:**\n   - En el cliente web, al hacer clic en un nodo de diagrama Mermaid o SVG, se normaliza el t\u00edtulo del nodo y se busca en `window.ATOMS_DB`.\n   - Se despliega el panel interactivo (*Atom Drawer*) permitiendo navegar por las pesta\u00f1as 5WH1+ registradas para ese componente de arquitectura."}}}, "spec2viz": {"title": "spec2viz", "atoms": {"what": {"id": "atom-spec2viz", "body": "# spec2viz\n\n## Answer\n\n_Answer the selected 5WH1+ question as one stable knowledge unit._\n\nspec2viz is a Python tool that compiles semantic YAML diagram specs into renderer-agnostic intermediate representations and outputs PlantUML, Mermaid, or SVG for sequence, state, component, activity, deployment, and matrix diagrams. It lets teams author structured diagram specs as YAML (semantic truth) and render them into multiple visual backends, ensuring that diagram artifacts are versionable, LLM-editable, and reproducible \u2014 without manual PUML/Mermaid editing."}}}};</script>
+</body>
+</html>

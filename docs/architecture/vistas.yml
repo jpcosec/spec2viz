@@ -1,0 +1,25 @@
+template: template.html
+vistas:
+  - id: component-architecture
+    category: Arquitectura de Componentes
+    title: Arquitectura Interna de spec2viz
+    desc: Módulos principales y flujo de datos entre el CLI, Loader, Validator, AST Compilers, IR y Renderers.
+    src: spec2viz/component-architecture.mmd
+    specs:
+      - docs/architecture/spec2viz/component-architecture.yml
+
+  - id: sequence-pipeline
+    category: Pipelines de Compilación
+    title: Pipeline de Compilación y Renderizado
+    desc: Traza de llamadas desde la ejecución CLI hasta la emisión de gráficos.
+    src: spec2viz/sequence-pipeline.mmd
+    specs:
+      - docs/architecture/spec2viz/sequence-pipeline.yml
+
+  - id: activity-task-workflow
+    category: Flujos Operacionales
+    title: Ciclo de Vida de Tareas y Subagentes
+    desc: Flujo paso a paso desde el borrador en drawer hasta la validación y commit atómico por subagentes.
+    src: spec2viz/activity-task-workflow.mmd
+    specs:
+      - docs/architecture/spec2viz/activity-task-workflow.yml

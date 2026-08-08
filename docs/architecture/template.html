@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>spec2viz Architecture & Knowledge Base</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --bg-sidebar: #0f172a;
+      --border-color: #334155;
+      --primary: #38bdf8;
+      --primary-hover: #0284c7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-green: #4ade80;
+      --accent-purple: #c084fc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar Navigation */
+    aside {
+      width: 280px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand {
+      padding: 20px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav {
+      flex: 1;
+      padding: 20px 10px;
+      overflow-y: auto;
+    }
+
+    .nav-category span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      padding: 10px;
+      display: block;
+    }
+
+    .nav-category a {
+      display: block;
+      padding: 8px 12px;
+      color: var(--text-main);
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      margin-bottom: 4px;
+    }
+
+    .nav-category a:hover {
+      background-color: var(--bg-card);
+      color: var(--primary);
+    }
+
+    /* Main Area */
+    main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 40px;
+    }
+
+    .macro-separator {
+      margin: 40px 0 20px 0;
+    }
+
+    .macro-separator h2 {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8px;
+    }
+
+    section {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    section .desc {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .board {
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 8px;
+      padding: 20px;
+      overflow-x: auto;
+    }
+
+    /* Atom Drawer / Modal Panel */
+    #atom-panel {
+      width: 420px;
+      background-color: var(--bg-card);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 100;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    #atom-panel.active {
+      transform: translateX(0);
+    }
+
+    .atom-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .atom-header h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .atom-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--bg-dark);
+      padding: 5px;
+      gap: 4px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .atom-tab {
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .atom-tab.active {
+      background-color: var(--primary);
+      color: var(--bg-dark);
+    }
+
+    .atom-content {
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <div class="brand">
+      <span>📐 spec2viz Architecture</span>
+    </div>
+    <nav>
+      {{NAV}}
+    </nav>
+  </aside>
+
+  <main>
+    {{SECTIONS}}
+  </main>
+
+  <div id="atom-panel">
+    <div class="atom-header">
+      <h3 id="atom-node-title">Atom Detail</h3>
+      <button class="close-btn" onclick="closeAtomPanel()">&times;</button>
+    </div>
+    <div class="atom-tabs" id="atom-tabs"></div>
+    <div class="atom-content" id="atom-content">
+      <p style="color: var(--text-muted)">Haz clic en un nodo de diagrama o selecciona un componente para explorar su Knowledge Base de 5WH1+.</p>
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+
+    function closeAtomPanel() {
+      document.getElementById('atom-panel').classList.remove('active');
+    }
+
+    function selectNodeAtoms(nodeTitle) {
+      const panel = document.getElementById('atom-panel');
+      const titleEl = document.getElementById('atom-node-title');
+      const tabsEl = document.getElementById('atom-tabs');
+      const contentEl = document.getElementById('atom-content');
+
+      const normTitle = nodeTitle.trim().toLowerCase();
+      const nodeData = window.ATOMS_DB ? window.ATOMS_DB[normTitle] : null;
+
+      if (!nodeData || !nodeData.atoms) {
+        titleEl.innerText = nodeTitle;
+        tabsEl.innerHTML = '';
+        contentEl.innerHTML = '<p style="color: var(--text-muted)">No hay átomos registrados para este nodo.</p>';
+        panel.classList.add('active');
+        return;
+      }
+
+      titleEl.innerText = nodeData.title;
+      tabsEl.innerHTML = '';
+
+      const questions = ['what', 'why', 'how', 'how_not', 'when', 'where', 'for_whom'];
+      let firstActive = null;
+
+      questions.forEach(q => {
+        if (nodeData.atoms[q]) {
+          const btn = document.createElement('button');
+          btn.className = 'atom-tab';
+          btn.innerText = q.replace('_', ' ');
+          btn.onclick = () => {
+            document.querySelectorAll('.atom-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            contentEl.innerHTML = `<h4>5WH1+: ${q.toUpperCase()}</h4><br><p>${nodeData.atoms[q].body}</p>`;
+          };
+          tabsEl.appendChild(btn);
+          if (!firstActive) firstActive = btn;
+        }
+      });
+
+      if (firstActive) firstActive.click();
+      panel.classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.mermaid').forEach(el => {
+          el.addEventListener('click', (e) => {
+            const node = e.target.closest('.node');
+            if (node) {
+              const label = node.innerText;
+              if (label) selectNodeAtoms(label);
+            }
+          });
+        });
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
