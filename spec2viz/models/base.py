@@ -16,7 +16,7 @@ class DiagramType(str, Enum):
 
 
 class Metadata(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
 
     author: str | None = Field(
         default=None,
@@ -29,7 +29,7 @@ class Metadata(BaseModel):
 
 
 class Style(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
 
     theme: str = Field(
         default="default",
@@ -44,7 +44,7 @@ class Style(BaseModel):
 class BaseDiagram(BaseModel):
     """Base class for all diagram types. Subclasses must add a `data` field."""
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
 
     id: str = Field(description="Stable identifier for the diagram specification.")
     title: str = Field(description="Human-readable title shown in rendered output.")

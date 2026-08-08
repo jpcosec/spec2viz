@@ -20,3 +20,10 @@ documents:
   semantic_tags:
   - type.desk.inbox-note
   - workspace.desk.inbox
+- name: 20260807-122956-suggestion-spec2viz-2-0-architecture-refactor-proposal
+  path: inbox/20260807-122956-suggestion-spec2viz-2-0-architecture-refactor-proposal.md
+  hash_c: ab4428f15288a43ab52fad2dc5e0eb78aaff011a1d609b24d85c17ebd55ce1d8
+  hash_d: be177e82b51d202524fcce88ad3aee3294734e69e48c168a35ddc6cdb49e97d4
+  semantic_tags:
+  - type.desk.inbox-note
+  - workspace.desk.inbox

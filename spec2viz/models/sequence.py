@@ -5,7 +5,7 @@ from spec2viz.models.base import BaseDiagram, DiagramType
 
 
 class ParticipantModel(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
     id: str = Field(description="Unique participant identifier referenced by messages.")
     kind: str = Field(
         default="component",
@@ -14,7 +14,7 @@ class ParticipantModel(BaseModel):
 
 
 class MessageModel(BaseModel):
-    model_config = ConfigDict(populate_by_name=True, extra="forbid")
+    model_config = ConfigDict(populate_by_name=True, extra="ignore")
     from_: str = Field(
         alias="from", description="Participant id that sends the message."
     )
@@ -33,7 +33,7 @@ class MessageModel(BaseModel):
 
 
 class SequenceData(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
     participants: list[ParticipantModel] = Field(
         description="Ordered participants that appear across the sequence diagram."
     )

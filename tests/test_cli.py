@@ -175,3 +175,98 @@ def test_schema_outfile(tmp_path):
 def test_schema_invalid_type_fails():
     r = runner.invoke(main, ["schema", "--type", "unknown"])
     assert r.exit_code != 0
+
+
+def test_help_mentions_build_and_all_renderers():
+    r = runner.invoke(main, ["--help"])
+    assert r.exit_code == 0
+    assert "build" in r.output
+
+    r = runner.invoke(main, ["render", "--help"])
+    assert r.exit_code == 0
+    for name in ["plantuml", "mermaid", "vega", "d2", "antonia-html", "json"]:
+        assert name in r.output
+
+
+def test_render_d2(tmp_path):
+    r = runner.invoke(
+        main,
+        [
+            "render",
+            str(FIXTURES / "component.quotation.yml"),
+            "--out",
+            str(tmp_path),
+            "--renderer",
+            "d2",
+        ],
+    )
+    assert r.exit_code == 0
+    assert (tmp_path / "component.quotation.d2").exists()
+
+
+def test_render_antonia_html(tmp_path):
+    r = runner.invoke(
+        main,
+        [
+            "render",
+            str(FIXTURES / "sequence.create-quotation.yml"),
+            "--out",
+            str(tmp_path),
+            "--renderer",
+            "antonia-html",
+        ],
+    )
+    assert r.exit_code == 0
+    assert (tmp_path / "sequence.create-quotation.html").exists()
+
+
+def test_render_json_reflection_artifact(tmp_path):
+    r = runner.invoke(
+        main,
+        [
+            "render",
+            "examples/reflection/canonical.yml",
+            "--out",
+            str(tmp_path),
+            "--renderer",
+            "json",
+        ],
+    )
+    assert r.exit_code == 0
+    assert (tmp_path / "canonical.artifact.json").exists()
+
+
+def test_build_command(tmp_path):
+    (tmp_path / "template.html").write_text(
+        "<html><body>{{NAV}}{{SECTIONS}}</body></html>", encoding="utf-8"
+    )
+    (tmp_path / "view.mmd").write_text("graph TD\nA-->B\n", encoding="utf-8")
+    config = tmp_path / "vistas.yml"
+    config.write_text(
+        """
+template: template.html
+vistas:
+  - id: sample
+    src: view.mmd
+""",
+        encoding="utf-8",
+    )
+
+    out = tmp_path / "out.html"
+    r = runner.invoke(main, ["build", "--config", str(config), "--out", str(out)])
+    assert r.exit_code == 0
+    assert out.exists()
+    assert "Rendered deskops architecture" in r.output
+
+
+def test_build_command_reports_errors(tmp_path):
+    (tmp_path / "template.html").write_text(
+        "<html><body>{{NAV}}{{SECTIONS}}</body></html>", encoding="utf-8"
+    )
+    config = tmp_path / "vistas.yml"
+    config.write_text("template: template.html\nvistas: [\n  {id: broken, src: missing.mmd}\n]\n", encoding="utf-8")
+
+    out = tmp_path / "out.html"
+    r = runner.invoke(main, ["build", "--config", str(config), "--out", str(out)])
+    assert r.exit_code != 0
+    assert "Error building deskops" in r.output

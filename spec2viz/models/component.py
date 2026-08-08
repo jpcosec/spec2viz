@@ -5,7 +5,7 @@ from spec2viz.models.base import BaseDiagram, DiagramType
 
 
 class NodeModel(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
     label: str | None = Field(
         default=None, description="Optional display name for the component node."
     )
@@ -19,7 +19,7 @@ class NodeModel(BaseModel):
 
 
 class EdgeModel(BaseModel):
-    model_config = ConfigDict(populate_by_name=True, extra="forbid")
+    model_config = ConfigDict(populate_by_name=True, extra="ignore")
     from_: str = Field(alias="from", description="Source component identifier.")
     to: str = Field(description="Destination component identifier.")
     relation: str = Field(
@@ -32,7 +32,7 @@ class EdgeModel(BaseModel):
 
 
 class ComponentData(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
     nodes: dict[str, NodeModel] = Field(
         description="Component nodes keyed by identifier."
     )

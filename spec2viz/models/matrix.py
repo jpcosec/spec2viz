@@ -5,13 +5,13 @@ from spec2viz.models.base import BaseDiagram, DiagramType
 
 
 class MatrixStageModel(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
     id: str = Field(description="Stable stage identifier used inside matrix views.")
     label: str = Field(description="Display label rendered for the stage column.")
 
 
 class MatrixViewModel(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
     id: str = Field(description="Stable identifier for the matrix view.")
     label: str = Field(description="Display label rendered for the view.")
     stages: list[MatrixStageModel] = Field(
@@ -20,7 +20,7 @@ class MatrixViewModel(BaseModel):
 
 
 class MatrixComponentModel(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
     name: str = Field(
         description="Stable component identifier used within the matrix hierarchy."
     )
@@ -44,7 +44,7 @@ MatrixComponentModel.model_rebuild()
 
 
 class MatrixData(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
     views: list[MatrixViewModel] = Field(
         description="Matrix views that define the column layout."
     )

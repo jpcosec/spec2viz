@@ -5,7 +5,7 @@ from spec2viz.models.base import BaseDiagram, DiagramType
 
 
 class StepModel(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
     label: str = Field(description="Display label rendered for the activity step.")
     kind: str = Field(
         default="action", description="Semantic step type, such as action or decision."
@@ -20,7 +20,7 @@ class StepModel(BaseModel):
 
 
 class ActivityData(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
     start: str = Field(description="Identifier of the first step in the activity flow.")
     steps: dict[str, StepModel] = Field(
         description="All activity steps keyed by identifier."

@@ -1,9 +1,13 @@
 from pathlib import Path
+import pytest
 from spec2viz.loader import load
 from spec2viz.compilers import compile_ir
+from spec2viz.compilers.matrix import _contiguous
+from spec2viz.exceptions import CompileError
 from spec2viz.ir import (
     SequenceIR, StateIR, ComponentIR, ActivityIR, DeploymentIR, MatrixIR,
 )
+from spec2viz.models.base import BaseDiagram
 
 FIXTURES = Path("tests/fixtures")
 
@@ -94,3 +98,17 @@ def test_matrix_spans():
     qf_spans = [s for s in ir.spans if s.component == "QuotationFlow"]
     assert len(qf_spans) == 1
     assert qf_spans[0].start == 0 and qf_spans[0].end == 5
+
+
+def test_matrix_contiguous_helper_handles_empty_and_gaps():
+    assert _contiguous([]) == []
+    assert _contiguous([0, 1, 3, 4, 7]) == [(0, 2), (3, 5), (7, 8)]
+
+
+def test_compile_ir_rejects_unknown_diagram_type():
+    class DummyDiagram(BaseDiagram):
+        pass
+
+    diagram = DummyDiagram(id="x", title="x", type="reflection", version="1")
+    with pytest.raises(CompileError, match="No compiler"):
+        compile_ir(diagram)

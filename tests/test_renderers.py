@@ -7,8 +7,11 @@ from spec2viz.renderers import render
 from spec2viz.renderers.plantuml import PlantUMLRenderer
 from spec2viz.renderers.vega import VegaRenderer
 from spec2viz.renderers.mermaid import MermaidRenderer
+from spec2viz.renderers.d2 import D2Renderer
+from spec2viz.renderers.antonia import AntoniaHtmlRenderer
+from spec2viz.renderers import JsonRenderer
 from spec2viz.exceptions import RenderError
-from spec2viz.ir import SequenceIR, MatrixIR
+from spec2viz.ir import DeploymentArtifact, DeploymentConnection, DeploymentIR, DeploymentNode, SequenceIR, MatrixIR
 
 FIXTURES = Path("tests/fixtures")
 
@@ -198,6 +201,141 @@ def test_mermaid_deployment():
     assert "HTTPS" in out
 
 
+# ── D2 / HTML / JSON ──────────────────────────────────────────────────────────
+
+
+def test_d2_sequence():
+    out = D2Renderer().render(_ir("sequence.create-quotation.yml"))
+    assert "direction: right" in out
+    assert "User -> QuotationFlow: open quotation flow" in out
+
+
+def test_d2_state():
+    out = D2Renderer().render(_ir("state.quotation.yml"))
+    assert "browsing -> client_selected: select_client" in out
+
+
+def test_d2_component():
+    out = D2Renderer().render(_ir("component.quotation.yml"))
+    assert 'QuotationFlow: "QuotationFlow"' in out
+    assert 'QuotationFlow.ClientSelection: "ClientSelection"' in out
+
+
+def test_d2_activity():
+    out = D2Renderer().render(_ir("activity.validation.yml"))
+    assert "__start: Start" in out
+    assert "check_validity.shape: diamond" in out
+    assert "__end: End" in out
+
+
+def test_d2_deployment():
+    out = D2Renderer().render(_ir("deployment.runtime.yml"))
+    assert 'browser.quotation_ui: "Quotation UI"' in out
+    assert 'quotation_ui -> quotation_api: "HTTPS"' in out
+
+
+def test_d2_and_mermaid_deployment_without_protocol():
+    ir = DeploymentIR(
+        title="runtime",
+        nodes=[DeploymentNode(id="n1", label="N1", kind="server")],
+        artifacts=[],
+        connections=[DeploymentConnection(from_="a", to="b")],
+    )
+    assert "a -> b" in D2Renderer().render(ir)
+    assert "a --> b" in MermaidRenderer().render(ir)
+
+
+def test_d2_rejects_matrix():
+    with pytest.raises(RenderError):
+        D2Renderer().render(_ir("matrix.quotation-view.yml"))
+
+
+def test_plantuml_sequence_message_condition_and_group():
+    from spec2viz.ir import SequenceIR, Participant, Message
+    ir = SequenceIR(
+        title="Test",
+        participants=[Participant(id="A"), Participant(id="B")],
+        messages=[
+            Message(from_="A", to="B", message="hello", condition="cond1", group="g1"),
+            Message(from_="B", to="A", message="world", condition="cond2", group=None),
+        ],
+    )
+    out = PlantUMLRenderer().render(ir)
+    assert "[cond1]" in out
+    assert "group g1" in out
+    assert "end" in out  # group close
+    assert "[cond2]" in out
+    assert "group g1" not in out  # second message has no group
+
+
+def test_plantuml_state_transition_with_action():
+    from spec2viz.ir import StateIR, StateNode, Transition
+    ir = StateIR(
+        title="Test",
+        entity="Order",
+        initial="open",
+        states=[StateNode(id="open", label="Open"), StateNode(id="closed", label="Closed")],
+        transitions=[Transition(from_="open", to="closed", on="finish", action="doSomething")],
+    )
+    out = PlantUMLRenderer().render(ir)
+    assert " / doSomething" in out
+
+
+def test_plantuml_component_style_kinds_non_dict_plantuml():
+    from spec2viz.ir import ComponentIR, ComponentNode, ComponentEdge
+    ir = ComponentIR(
+        title="Test",
+        nodes=[ComponentNode(id="A", label="A", kind="core")],
+        edges=[],
+        style_kinds={"core": {"plantuml": "not a dict"}},
+    )
+    out = PlantUMLRenderer().render(ir)
+    # Should not crash and should produce valid output
+    assert "@startuml" in out
+
+
+def test_plantuml_activity_broken_chain():
+    from spec2viz.ir import ActivityIR, ActivityStep
+    ir = ActivityIR(
+        title="Test",
+        start="step1",
+        steps=[
+            ActivityStep(id="step1", label="Step 1", kind="action", next="missing"),
+        ],
+        end="end",
+    )
+    out = PlantUMLRenderer().render(ir)
+    assert "@startuml" in out
+    assert "start" in out
+    assert "stop" in out
+    # Should not crash on missing step
+
+
+def test_plantuml_activity_decision_branches():
+    from spec2viz.ir import ActivityIR, ActivityStep
+    ir = ActivityIR(
+        title="Test",
+        start="decide",
+        steps=[
+            ActivityStep(id="decide", label="Decide?", kind="decision", branches={"yes": "yes_step", "no": "no_step"}),
+            ActivityStep(id="yes_step", label="Yes", next="end"),
+            ActivityStep(id="no_step", label="No", next="end"),
+        ],
+        end="end",
+    )
+    out = PlantUMLRenderer().render(ir)
+    assert "if (Decide??) then (yes)" in out or "if (Decide?) then (yes)" in out
+    assert "else (no)" in out
+    assert "endif" in out
+
+
+def test_json_renderer_handles_model_and_plain_dict():
+    model_payload = JsonRenderer().render(compile_ir(load("examples/reflection/canonical.yml")))
+    plain_payload = JsonRenderer().render({"ok": True})
+    assert isinstance(model_payload, dict)
+    assert plain_payload == {"ok": True}
+
+
 # ── Dispatch ──────────────────────────────────────────────────────────────────
 
 
@@ -214,3 +352,16 @@ def test_render_dispatch_vega():
 def test_render_dispatch_override():
     out = render(_ir("sequence.create-quotation.yml"), renderer="mermaid")
     assert "sequenceDiagram" in out
+
+
+def test_render_dispatch_unknown_renderer():
+    with pytest.raises(RenderError):
+        render(_ir("sequence.create-quotation.yml"), renderer="nope")
+
+
+def test_render_dispatch_without_default_renderer():
+    class UnknownIR:
+        pass
+
+    with pytest.raises(RenderError):
+        render(UnknownIR())

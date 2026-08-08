@@ -28,7 +28,7 @@ class SemanticMetadata(Metadata):
 
 
 class ReflectionNode(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
 
     kind: str = Field(
         default="core", description="Semantic kind of the node (e.g., repository, module)."
@@ -42,7 +42,7 @@ class ReflectionNode(BaseModel):
 
 
 class ReflectionEdge(BaseModel):
-    model_config = ConfigDict(populate_by_name=True, extra="forbid")
+    model_config = ConfigDict(populate_by_name=True, extra="ignore")
 
     from_: str = Field(alias="from", description="Source node identifier.")
     to: str = Field(description="Target node identifier.")
@@ -60,7 +60,7 @@ class ReflectionEdge(BaseModel):
 class ReflectionIR(BaseModel):
     """Semantic Intermediate Representation for reflection and enforcement."""
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
 
     nodes: Dict[str, ReflectionNode] = Field(
         description="Reflection nodes keyed by their stable identifier."
@@ -84,7 +84,7 @@ class EnforcementFact(BaseModel):
 class EnforcementArtifact(BaseModel):
     """Condensed version of the IR for consumption by linters, auditors, and gates."""
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
 
     fingerprint: str = Field(
         description="Hash or version identifier to ensure artifact integrity."

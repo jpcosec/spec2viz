@@ -31,9 +31,11 @@ Inspect the available commands:
 
 ```bash
 spec2viz --help
+spec2viz render --help
+spec2viz build --help
 ```
 
-Validate a spec:
+Validate one or more semantic specs:
 
 ```bash
 spec2viz validate tests/fixtures/sequence.create-quotation.yml
@@ -44,6 +46,24 @@ Render one or more specs:
 ```bash
 spec2viz render tests/fixtures/sequence.create-quotation.yml --out out
 spec2viz render tests/fixtures/state.quotation.yml --backend mermaid --out out
+spec2viz render examples/component/example.yml --renderer d2 --out out
+spec2viz render examples/reflection/example.enforcement.yml --renderer json --out out
+```
+
+Supported renderers:
+
+- `plantuml`
+- `mermaid`
+- `vega`
+- `d2`
+- `antonia-html`
+- `json`
+
+Build a deskops architecture HTML bundle from a `vistas.yml` registry:
+
+```bash
+spec2viz build --config examples/fixtures/vistas.yml --out out/architecture.html
+spec2viz build --config examples/fixtures/vistas.yml --out out/architecture.html --base-dir examples/fixtures --atoms-dir desk/atoms
 ```
 
 ## PlantUML Kind Styling
