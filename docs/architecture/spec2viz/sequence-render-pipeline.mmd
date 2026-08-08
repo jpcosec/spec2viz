@@ -1,0 +1,23 @@
+sequenceDiagram
+    actor User
+    participant CLI
+    participant Facade
+    participant Loader
+    participant Validator
+    participant Compiler
+    participant Renderer
+    participant Disk
+    User->>CLI: spec2viz render spec.yml --backend mermaid
+    CLI->>Facade: render_to_file(path, out, renderer)
+    Facade->>Loader: load(path)
+    Loader->>Loader: yaml.safe_load() + TypeAdapter.validate_python()
+    Loader->>Facade: returns BaseDiagram
+    Facade->>Validator: validate(diagram)
+    Validator->>Facade: returns None or raises ValidationError
+    Facade->>Compiler: compile_ir(diagram)
+    Compiler->>Facade: returns DiagramIR
+    Facade->>Renderer: render(ir, mermaid)
+    Renderer->>Facade: returns string
+    Facade->>Disk: output_path.write_text(result)
+    Facade->>CLI: returns output_path
+    CLI->>User: Rendered spec.yml -> output.mmd

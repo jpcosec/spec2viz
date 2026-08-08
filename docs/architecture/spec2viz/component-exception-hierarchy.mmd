@@ -1,0 +1,18 @@
+graph TD
+    spec2viz_error["Spec2VizError"]
+    parse_error["ParseError"]
+    validation_error["ValidationError"]
+    compile_error["CompileError"]
+    render_error["RenderError"]
+    loader_mod["loader.py"]
+    validator_mod["validator.py"]
+    compilers_mod["compilers/"]
+    renderers_mod["renderers/"]
+    parse_error -->|inherits| spec2viz_error
+    validation_error -->|inherits| spec2viz_error
+    compile_error -->|inherits| spec2viz_error
+    render_error -->|inherits| spec2viz_error
+    loader_mod -->|raises| parse_error
+    validator_mod -->|raises| validation_error
+    compilers_mod -->|raises| compile_error
+    renderers_mod -->|raises| render_error

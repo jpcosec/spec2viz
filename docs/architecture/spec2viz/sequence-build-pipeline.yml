@@ -1,0 +1,79 @@
+id: sequence.build-pipeline
+title: "Deskops Build Pipeline Call Chain"
+type: sequence
+version: "0.1"
+
+data:
+  participants:
+    - id: User
+      kind: actor
+    - id: CLI
+      kind: component
+    - id: Deskops
+      kind: component
+    - id: AtomParser
+      kind: component
+    - id: AtomsDir
+      kind: boundary
+    - id: VistasYML
+      kind: boundary
+    - id: Template
+      kind: boundary
+    - id: Disk
+      kind: boundary
+
+  messages:
+    - from: User
+      to: CLI
+      message: "spec2viz build --config vistas.yml --out arch.html --atoms-dir desk/atoms/"
+
+    - from: CLI
+      to: Deskops
+      message: "build_deskops(config, out, base_dir, atoms_dir)"
+
+    - from: Deskops
+      to: VistasYML
+      message: "yaml.safe_load(config_path)"
+
+    - from: Deskops
+      to: Template
+      message: "read_text(template_path)"
+
+    - from: Deskops
+      to: AtomParser
+      message: "parse_atoms(atoms_dir)"
+
+    - from: AtomParser
+      to: AtomsDir
+      message: "glob('*.md')"
+
+    - from: AtomParser
+      to: AtomParser
+      message: "regex split frontmatter + yaml.safe_load"
+
+    - from: AtomParser
+      to: Deskops
+      message: "returns JSON string"
+      kind: reply
+
+    - from: Deskops
+      to: Deskops
+      message: "build NAV + SECTIONS HTML"
+
+    - from: Deskops
+      to: Deskops
+      message: "replace {{NAV}}, {{SECTIONS}}, {{ATOMS_DB}}"
+
+    - from: Deskops
+      to: Disk
+      message: "out_path.write_text(html)"
+
+    - from: Deskops
+      to: CLI
+      message: "returns"
+      kind: reply
+
+    - from: CLI
+      to: User
+      message: "Rendered deskops architecture -> arch.html"
+      kind: reply

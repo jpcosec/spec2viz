@@ -1,55 +1,111 @@
-id: spec2viz.component-architecture
-title: Arquitectura Interna de spec2viz
+id: component.spec2viz-architecture
+title: "spec2viz Module Dependency Graph"
 type: component
 version: "0.1"
-metadata:
-  author: antIA / Antigravity
-  description: Módulos principales y flujo de datos interno de spec2viz
+
 data:
   nodes:
     cli:
-      label: CLI Entrypoint (spec2viz.cli)
+      label: CLI
+      kind: boundary
+
+    facade:
+      label: API Facade
       kind: core
+
     loader:
-      label: Spec Loader (spec2viz.loader)
+      label: Loader
       kind: core
+
     models:
-      label: Pydantic Schema Models (spec2viz.models)
+      label: Pydantic Models
       kind: core
+
     validator:
-      label: Schema Validator (spec2viz.validator)
-      kind: boundary
+      label: Validator
+      kind: core
+
     compilers:
-      label: AST Compilers (spec2viz.compilers)
+      label: Compiler Dispatch
       kind: core
+
     ir:
-      label: Intermediate Representation (spec2viz.ir)
-      kind: database
-    renderers:
-      label: Multi-Backend Renderers (spec2viz.renderers)
+      label: Intermediate Repr
       kind: core
-    deskops_bridge:
-      label: Deskops Integration Bridge (spec2viz.deskops)
+
+    renderers:
+      label: Renderer Dispatch
+      kind: core
+
+    schema_mod:
+      label: Schema Export
+      kind: core
+
+    deskops:
+      label: Deskops Builder
       kind: boundary
+
+    exceptions:
+      label: Exception Hierarchy
+      kind: core
+
   edges:
     - from: cli
+      to: facade
+      relation: uses
+      label: "render / validate commands"
+
+    - from: cli
+      to: deskops
+      relation: uses
+      label: "build command"
+
+    - from: cli
+      to: schema_mod
+      relation: uses
+      label: "schema command"
+
+    - from: facade
       to: loader
-      label: Carga spec YAML
+      relation: uses
+      label: "load(path)"
+
+    - from: facade
+      to: validator
+      relation: uses
+      label: "validate(diagram)"
+
+    - from: facade
+      to: compilers
+      relation: uses
+      label: "compile_ir(diagram)"
+
+    - from: facade
+      to: renderers
+      relation: uses
+      label: "render(ir, name)"
+
     - from: loader
       to: models
-      label: Valida tipo y esquema
-    - from: loader
-      to: validator
-      label: Chequeo sintáctico
-    - from: loader
-      to: compilers
-      label: Pasa DiagramModel
+      relation: uses
+      label: "TypeAdapter(AnyDiagram).validate_python()"
+
+    - from: validator
+      to: models
+      relation: uses
+      label: "inspect references"
+
+    - from: compilers
+      to: models
+      relation: reads
+      label: "read model fields"
+
     - from: compilers
       to: ir
-      label: Compila a IR desacoplado
-    - from: ir
-      to: renderers
-      label: Transforma IR a output gráfico
-    - from: cli
-      to: deskops_bridge
-      label: Resuelve rutas de desk/
+      relation: uses
+      label: "emit IR dataclasses"
+
+    - from: renderers
+      to: ir
+      relation: reads
+      label: "consume IR dataclasses"

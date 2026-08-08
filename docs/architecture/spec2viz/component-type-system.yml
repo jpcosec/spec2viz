@@ -1,0 +1,203 @@
+id: component.type-system
+title: "Type System: Models, IR, and Renderers"
+type: component
+version: "0.1"
+
+data:
+  nodes:
+    base_diagram:
+      label: BaseDiagram
+      kind: core
+
+    sequence_d:
+      label: SequenceDiagram
+      kind: core
+    state_d:
+      label: StateDiagram
+      kind: core
+    component_d:
+      label: ComponentDiagram
+      kind: core
+    activity_d:
+      label: ActivityDiagram
+      kind: core
+    deployment_d:
+      label: DeploymentDiagram
+      kind: core
+    matrix_d:
+      label: MatrixDiagram
+      kind: core
+    reflection_d:
+      label: ReflectionDiagram
+      kind: core
+
+    sequence_ir:
+      label: SequenceIR
+      kind: core
+    state_ir:
+      label: StateIR
+      kind: core
+    component_ir:
+      label: ComponentIR
+      kind: core
+    activity_ir:
+      label: ActivityIR
+      kind: core
+    deployment_ir:
+      label: DeploymentIR
+      kind: core
+    matrix_ir:
+      label: MatrixIR
+      kind: core
+    enforcement:
+      label: EnforcementArtifact
+      kind: core
+
+    plantuml:
+      label: PlantUML
+      kind: boundary
+    mermaid:
+      label: Mermaid
+      kind: boundary
+    d2:
+      label: D2
+      kind: boundary
+    vega:
+      label: Vega
+      kind: boundary
+    antonia:
+      label: Antonia HTML
+      kind: boundary
+    json_r:
+      label: JSON
+      kind: boundary
+
+  edges:
+    # Inheritance
+    - from: sequence_d
+      to: base_diagram
+      relation: inherits
+    - from: state_d
+      to: base_diagram
+      relation: inherits
+    - from: component_d
+      to: base_diagram
+      relation: inherits
+    - from: activity_d
+      to: base_diagram
+      relation: inherits
+    - from: deployment_d
+      to: base_diagram
+      relation: inherits
+    - from: matrix_d
+      to: base_diagram
+      relation: inherits
+    - from: reflection_d
+      to: base_diagram
+      relation: inherits
+
+    # Compilation (Model -> IR)
+    - from: sequence_d
+      to: sequence_ir
+      relation: uses
+      label: SequenceCompiler
+    - from: state_d
+      to: state_ir
+      relation: uses
+      label: StateCompiler
+    - from: component_d
+      to: component_ir
+      relation: uses
+      label: ComponentCompiler
+    - from: activity_d
+      to: activity_ir
+      relation: uses
+      label: ActivityCompiler
+    - from: deployment_d
+      to: deployment_ir
+      relation: uses
+      label: DeploymentCompiler
+    - from: matrix_d
+      to: matrix_ir
+      relation: uses
+      label: MatrixCompiler
+    - from: reflection_d
+      to: enforcement
+      relation: uses
+      label: ReflectionCompiler
+
+    # Default renderers
+    - from: sequence_ir
+      to: plantuml
+      relation: uses
+      label: default
+    - from: state_ir
+      to: plantuml
+      relation: uses
+      label: default
+    - from: component_ir
+      to: plantuml
+      relation: uses
+      label: default
+    - from: activity_ir
+      to: plantuml
+      relation: uses
+      label: default
+    - from: deployment_ir
+      to: plantuml
+      relation: uses
+      label: default
+    - from: matrix_ir
+      to: vega
+      relation: uses
+      label: default
+    - from: enforcement
+      to: json_r
+      relation: uses
+      label: default
+
+    # Alternative renderers
+    - from: sequence_ir
+      to: mermaid
+      relation: uses
+      label: alt
+    - from: state_ir
+      to: mermaid
+      relation: uses
+      label: alt
+    - from: component_ir
+      to: mermaid
+      relation: uses
+      label: alt
+    - from: activity_ir
+      to: mermaid
+      relation: uses
+      label: alt
+    - from: deployment_ir
+      to: mermaid
+      relation: uses
+      label: alt
+    - from: sequence_ir
+      to: d2
+      relation: uses
+      label: alt
+    - from: state_ir
+      to: d2
+      relation: uses
+      label: alt
+    - from: component_ir
+      to: d2
+      relation: uses
+      label: alt
+    - from: activity_ir
+      to: d2
+      relation: uses
+      label: alt
+    - from: deployment_ir
+      to: d2
+      relation: uses
+      label: alt
+    - from: matrix_ir
+      to: antonia
+      relation: uses
+      label: alt

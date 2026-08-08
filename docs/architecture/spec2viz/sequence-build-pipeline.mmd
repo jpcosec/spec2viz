@@ -1,0 +1,22 @@
+sequenceDiagram
+    actor User
+    participant CLI
+    participant Deskops
+    participant AtomParser
+    participant AtomsDir
+    participant VistasYML
+    participant Template
+    participant Disk
+    User->>CLI: spec2viz build --config vistas.yml --out arch.html --atoms-dir desk/atoms/
+    CLI->>Deskops: build_deskops(config, out, base_dir, atoms_dir)
+    Deskops->>VistasYML: yaml.safe_load(config_path)
+    Deskops->>Template: read_text(template_path)
+    Deskops->>AtomParser: parse_atoms(atoms_dir)
+    AtomParser->>AtomsDir: glob('*.md')
+    AtomParser->>AtomParser: regex split frontmatter + yaml.safe_load
+    AtomParser->>Deskops: returns JSON string
+    Deskops->>Deskops: build NAV + SECTIONS HTML
+    Deskops->>Deskops: replace {{NAV}}, {{SECTIONS}}, {{ATOMS_DB}}
+    Deskops->>Disk: out_path.write_text(html)
+    Deskops->>CLI: returns
+    CLI->>User: Rendered deskops architecture -> arch.html

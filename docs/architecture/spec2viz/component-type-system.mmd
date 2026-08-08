@@ -1,0 +1,54 @@
+graph TD
+    base_diagram["BaseDiagram"]
+    sequence_d["SequenceDiagram"]
+    state_d["StateDiagram"]
+    component_d["ComponentDiagram"]
+    activity_d["ActivityDiagram"]
+    deployment_d["DeploymentDiagram"]
+    matrix_d["MatrixDiagram"]
+    reflection_d["ReflectionDiagram"]
+    sequence_ir["SequenceIR"]
+    state_ir["StateIR"]
+    component_ir["ComponentIR"]
+    activity_ir["ActivityIR"]
+    deployment_ir["DeploymentIR"]
+    matrix_ir["MatrixIR"]
+    enforcement["EnforcementArtifact"]
+    plantuml["PlantUML"]
+    mermaid["Mermaid"]
+    d2["D2"]
+    vega["Vega"]
+    antonia["Antonia HTML"]
+    json_r["JSON"]
+    sequence_d -->|inherits| base_diagram
+    state_d -->|inherits| base_diagram
+    component_d -->|inherits| base_diagram
+    activity_d -->|inherits| base_diagram
+    deployment_d -->|inherits| base_diagram
+    matrix_d -->|inherits| base_diagram
+    reflection_d -->|inherits| base_diagram
+    sequence_d -->|SequenceCompiler| sequence_ir
+    state_d -->|StateCompiler| state_ir
+    component_d -->|ComponentCompiler| component_ir
+    activity_d -->|ActivityCompiler| activity_ir
+    deployment_d -->|DeploymentCompiler| deployment_ir
+    matrix_d -->|MatrixCompiler| matrix_ir
+    reflection_d -->|ReflectionCompiler| enforcement
+    sequence_ir -->|default| plantuml
+    state_ir -->|default| plantuml
+    component_ir -->|default| plantuml
+    activity_ir -->|default| plantuml
+    deployment_ir -->|default| plantuml
+    matrix_ir -->|default| vega
+    enforcement -->|default| json_r
+    sequence_ir -->|alt| mermaid
+    state_ir -->|alt| mermaid
+    component_ir -->|alt| mermaid
+    activity_ir -->|alt| mermaid
+    deployment_ir -->|alt| mermaid
+    sequence_ir -->|alt| d2
+    state_ir -->|alt| d2
+    component_ir -->|alt| d2
+    activity_ir -->|alt| d2
+    deployment_ir -->|alt| d2
+    matrix_ir -->|alt| antonia

@@ -1,25 +1,64 @@
 template: template.html
 vistas:
   - id: component-architecture
-    category: Arquitectura de Componentes
-    title: Arquitectura Interna de spec2viz
-    desc: Módulos principales y flujo de datos entre el CLI, Loader, Validator, AST Compilers, IR y Renderers.
+    category: Arquitectura de Módulos
+    title: Grafo de Dependencias de Módulos
+    nav: Módulos
+    desc: Dependencias reales entre CLI, API Facade, Loader, Validator, Compilers, IR, Renderers, Schema Export y Deskops Builder.
     src: spec2viz/component-architecture.mmd
     specs:
       - docs/architecture/spec2viz/component-architecture.yml
 
-  - id: sequence-pipeline
-    category: Pipelines de Compilación
-    title: Pipeline de Compilación y Renderizado
-    desc: Traza de llamadas desde la ejecución CLI hasta la emisión de gráficos.
-    src: spec2viz/sequence-pipeline.mmd
+  - id: component-type-system
+    category: Arquitectura de Módulos
+    title: Sistema de Tipos y Dispatch
+    nav: Tipos
+    desc: "Jerarquía de 7 tipos de diagrama (BaseDiagram), sus compiladores, IR y compatibilidad con 6 renderers."
+    src: spec2viz/component-type-system.mmd
     specs:
-      - docs/architecture/spec2viz/sequence-pipeline.yml
+      - docs/architecture/spec2viz/component-type-system.yml
 
-  - id: activity-task-workflow
-    category: Flujos Operacionales
-    title: Ciclo de Vida de Tareas y Subagentes
-    desc: Flujo paso a paso desde el borrador en drawer hasta la validación y commit atómico por subagentes.
-    src: spec2viz/activity-task-workflow.mmd
+  - id: component-exception-hierarchy
+    category: Arquitectura de Módulos
+    title: Jerarquía de Excepciones
+    nav: Excepciones
+    desc: "Spec2VizError y sus subclases: ParseError (loader), ValidationError (validator), CompileError (compilers), RenderError (renderers)."
+    src: spec2viz/component-exception-hierarchy.mmd
     specs:
-      - docs/architecture/spec2viz/activity-task-workflow.yml
+      - docs/architecture/spec2viz/component-exception-hierarchy.yml
+
+  - id: sequence-render-pipeline
+    category: Pipelines de Ejecución
+    title: Pipeline de Render
+    nav: Render
+    desc: "Traza completa de llamadas para spec2viz render: CLI → Facade → load() → validate() → compile_ir() → render() → write_text()."
+    src: spec2viz/sequence-render-pipeline.mmd
+    specs:
+      - docs/architecture/spec2viz/sequence-render-pipeline.yml
+
+  - id: sequence-build-pipeline
+    category: Pipelines de Ejecución
+    title: Pipeline de Build Deskops
+    nav: Build
+    desc: "Traza completa para spec2viz build: CLI → Deskops → parse_atoms() → render_deskops() → write_text()."
+    src: spec2viz/sequence-build-pipeline.mmd
+    specs:
+      - docs/architecture/spec2viz/sequence-build-pipeline.yml
+
+  - id: state-diagram-type-lifecycle
+    category: Modelos de Estado
+    title: Ciclo de Vida de una Spec
+    nav: Lifecycle
+    desc: "Máquina de estados de un archivo YAML: Raw → Dict → DiagramModel → Validated → IR → Output, con transiciones de error."
+    src: spec2viz/state-diagram-type-lifecycle.mmd
+    specs:
+      - docs/architecture/spec2viz/state-diagram-type-lifecycle.yml
+
+  - id: activity-render-error-handling
+    category: Flujos de Actividad
+    title: Manejo de Errores en Render
+    nav: Errores
+    desc: "Flujo de decisiones del CLI render: para cada path, intenta load → validate → compile → render, con catch de excepciones por etapa."
+    src: spec2viz/activity-render-error-handling.mmd
+    specs:
+      - docs/architecture/spec2viz/activity-render-error-handling.yml

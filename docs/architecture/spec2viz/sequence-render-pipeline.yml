@@ -1,0 +1,86 @@
+id: sequence.render-pipeline
+title: "Render Pipeline Call Chain"
+type: sequence
+version: "0.1"
+
+data:
+  participants:
+    - id: User
+      kind: actor
+    - id: CLI
+      kind: component
+    - id: Facade
+      kind: component
+    - id: Loader
+      kind: component
+    - id: Validator
+      kind: component
+    - id: Compiler
+      kind: component
+    - id: Renderer
+      kind: component
+    - id: Disk
+      kind: boundary
+
+  messages:
+    - from: User
+      to: CLI
+      message: "spec2viz render spec.yml --backend mermaid"
+
+    - from: CLI
+      to: Facade
+      message: "render_to_file(path, out, renderer)"
+
+    - from: Facade
+      to: Loader
+      message: "load(path)"
+
+    - from: Loader
+      to: Loader
+      message: "yaml.safe_load() + TypeAdapter.validate_python()"
+
+    - from: Loader
+      to: Facade
+      message: "returns BaseDiagram"
+      kind: reply
+
+    - from: Facade
+      to: Validator
+      message: "validate(diagram)"
+
+    - from: Validator
+      to: Facade
+      message: "returns None or raises ValidationError"
+      kind: reply
+
+    - from: Facade
+      to: Compiler
+      message: "compile_ir(diagram)"
+
+    - from: Compiler
+      to: Facade
+      message: "returns DiagramIR"
+      kind: reply
+
+    - from: Facade
+      to: Renderer
+      message: "render(ir, mermaid)"
+
+    - from: Renderer
+      to: Facade
+      message: "returns string"
+      kind: reply
+
+    - from: Facade
+      to: Disk
+      message: "output_path.write_text(result)"
+
+    - from: Facade
+      to: CLI
+      message: "returns output_path"
+      kind: reply
+
+    - from: CLI
+      to: User
+      message: "Rendered spec.yml -> output.mmd"
+      kind: reply

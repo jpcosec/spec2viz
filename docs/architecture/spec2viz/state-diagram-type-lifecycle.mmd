@@ -1,0 +1,11 @@
+stateDiagram-v2
+    [*] --> raw_yaml
+    raw_yaml --> parsed_dict : yaml.safe_load() [valid YAML syntax]
+    raw_yaml --> error : yaml.safe_load() [malformed YAML]
+    parsed_dict --> validated_model : TypeAdapter.validate_python() [schema matches]
+    parsed_dict --> error : TypeAdapter.validate_python() [schema mismatch]
+    validated_model --> semantically_valid : validate() [references resolve]
+    validated_model --> error : validate() [broken refs]
+    semantically_valid --> compiled_ir : compile_ir()
+    compiled_ir --> rendered_output : render()
+    compiled_ir --> error : render() [no renderer]

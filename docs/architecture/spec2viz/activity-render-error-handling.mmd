@@ -1,0 +1,30 @@
+flowchart TD
+    __start([Start])
+    receive_paths["Receive SPEC paths from CLI args"]
+    iterate_path{"For each path"}
+    try_render["Call render_to_file(path, out, renderer)"]
+    load_step{"load(path): YAML parse + Pydantic validate"}
+    validate_step{"validate(diagram): check cross-references"}
+    compile_step{"compile_ir(diagram): pattern-match compiler"}
+    render_step{"render(ir, renderer): dispatch to backend"}
+    write_output["Write result to disk"]
+    echo_success["echo 'Rendered X -> Y'"]
+    catch_error["echo error to stderr + sys.exit(1)"]
+    done["Exit"]
+    __end([End])
+    __start --> receive_paths
+    receive_paths --> iterate_path
+    iterate_path -->|has_next| try_render
+    iterate_path -->|empty| __end
+    try_render --> load_step
+    load_step -->|ok| validate_step
+    load_step -->|ParseError| catch_error
+    validate_step -->|ok| compile_step
+    validate_step -->|ValidationError| catch_error
+    compile_step -->|ok| render_step
+    compile_step -->|CompileError| catch_error
+    render_step -->|ok| write_output
+    render_step -->|RenderError| catch_error
+    write_output --> echo_success
+    echo_success --> iterate_path
+    catch_error --> __end
