@@ -55,10 +55,10 @@ class Participant:
 
 @dataclass
 class Message:
-    index: int
-    from_: str
-    to: str
-    message: str
+    index: int = 0
+    from_: str = ""
+    to: str = ""
+    message: str = ""
     kind: str = "sync"
     condition: str | None = None
     group: str | None = None

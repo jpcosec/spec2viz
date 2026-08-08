@@ -60,7 +60,6 @@
       "type": "object"
     },
     "Metadata": {
-      "additionalProperties": false,
       "properties": {
         "author": {
           "anyOf": [
@@ -141,7 +140,6 @@
       "type": "object"
     },
     "Style": {
-      "additionalProperties": false,
       "properties": {
         "theme": {
           "default": "default",
@@ -163,7 +161,6 @@
       "type": "object"
     }
   },
-  "additionalProperties": false,
   "properties": {
     "id": {
       "description": "Stable identifier for the diagram specification.",

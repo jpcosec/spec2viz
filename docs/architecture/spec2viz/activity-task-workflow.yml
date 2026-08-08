@@ -1,0 +1,40 @@
+id: spec2viz.activity-task-workflow
+title: Flujo de Actividad del Ciclo de Vida y Subagentes
+type: activity
+version: "0.1"
+metadata:
+  author: antIA / Antigravity
+  description: Flujo paso a paso desde el borrador en drawer hasta el commit de cierre por subagentes
+data:
+  start: diseno_drawer
+  end: fin
+  steps:
+    diseno_drawer:
+      label: Diseñar TaskDoc en desk/drawer/tasks/
+      next: ambiguity_review
+    ambiguity_review:
+      label: Ejecutar Ambiguity Review (Autonomía de Contexto Cero)
+      next: promocion
+    promocion:
+      label: Promover tarea a Board activo
+      next: despacho_executor
+    despacho_executor:
+      label: Despachar Subagente Executor independiente
+      next: implementacion_codigo
+    implementacion_codigo:
+      label: Modificar código dentro del Scope
+      next: despacho_tester
+    despacho_tester:
+      label: Despachar Subagente Tester independiente
+      next: emision_evidencias
+    emision_evidencias:
+      label: Generar validation.log y result-summary.md
+      next: commit_cierre
+    commit_cierre:
+      label: Ejecutar deskops closeout commit
+      next: ritual_fase
+    ritual_fase:
+      label: Ejecutar Ritual de Fase al terminar capa
+      next: fin
+    fin:
+      label: Tarea Completada

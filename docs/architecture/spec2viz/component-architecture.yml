@@ -1,0 +1,55 @@
+id: spec2viz.component-architecture
+title: Arquitectura Interna de spec2viz
+type: component
+version: "0.1"
+metadata:
+  author: antIA / Antigravity
+  description: Módulos principales y flujo de datos interno de spec2viz
+data:
+  nodes:
+    cli:
+      label: CLI Entrypoint (spec2viz.cli)
+      kind: core
+    loader:
+      label: Spec Loader (spec2viz.loader)
+      kind: core
+    models:
+      label: Pydantic Schema Models (spec2viz.models)
+      kind: core
+    validator:
+      label: Schema Validator (spec2viz.validator)
+      kind: boundary
+    compilers:
+      label: AST Compilers (spec2viz.compilers)
+      kind: core
+    ir:
+      label: Intermediate Representation (spec2viz.ir)
+      kind: database
+    renderers:
+      label: Multi-Backend Renderers (spec2viz.renderers)
+      kind: core
+    deskops_bridge:
+      label: Deskops Integration Bridge (spec2viz.deskops)
+      kind: boundary
+  edges:
+    - from: cli
+      to: loader
+      label: Carga spec YAML
+    - from: loader
+      to: models
+      label: Valida tipo y esquema
+    - from: loader
+      to: validator
+      label: Chequeo sintáctico
+    - from: loader
+      to: compilers
+      label: Pasa DiagramModel
+    - from: compilers
+      to: ir
+      label: Compila a IR desacoplado
+    - from: ir
+      to: renderers
+      label: Transforma IR a output gráfico
+    - from: cli
+      to: deskops_bridge
+      label: Resuelve rutas de desk/

@@ -1,6 +1,0 @@
-@startuml
-[*] --> browsing
-
-browsing --> client_selected : select_client
-client_selected --> completed : complete [all validations passed]
-@enduml

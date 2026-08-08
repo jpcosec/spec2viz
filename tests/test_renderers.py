@@ -265,7 +265,7 @@ def test_plantuml_sequence_message_condition_and_group():
     assert "group g1" in out
     assert "end" in out  # group close
     assert "[cond2]" in out
-    assert "group g1" not in out  # second message has no group
+    assert out.count("group g1") == 1  # group appears only once for first message
 
 
 def test_plantuml_state_transition_with_action():

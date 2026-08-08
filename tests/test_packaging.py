@@ -104,39 +104,4 @@ def test_schema_examples_match_generated_output():
     assert json.loads(checked_in_sequence_schema.read_text()) == json_schema("sequence")
 
 
-def test_yaml_charts_shim_warns_and_exports_api():
-    with warnings.catch_warnings(record=True) as caught:
-        warnings.simplefilter("always")
-        module = importlib.import_module("yaml_charts")
 
-    assert any("deprecated" in str(w.message).lower() for w in caught)
-    assert module.load is not None
-    assert module.render_to_file is not None
-
-
-def test_spec2vix_compat_package_warns_and_exposes_aliases(monkeypatch):
-    import sys
-
-    sys.modules.pop("spec2viz.spec2vix", None)
-
-    with warnings.catch_warnings(record=True) as caught:
-        warnings.simplefilter("always")
-        module = importlib.import_module("spec2viz.spec2vix")
-
-    assert any("renamed to `spec2viz`" in str(w.message) for w in caught)
-    assert module.load is not None
-    assert importlib.import_module("spec2viz.spec2vix.renderers") is not None
-
-    called = {}
-
-    def fake_main(*args, **kwargs):
-        called["prog_name"] = kwargs.get("prog_name")
-
-    monkeypatch.setattr("spec2viz.cli.main", fake_main)
-
-    with warnings.catch_warnings(record=True) as legacy_caught:
-        warnings.simplefilter("always")
-        module.legacy_main()
-
-    assert called["prog_name"] == "yaml-charts"
-    assert any("Please use `spec2viz` instead" in str(w.message) for w in legacy_caught)

@@ -1,0 +1,16 @@
+graph TD
+    cli["CLI Entrypoint (spec2viz.cli)"]
+    loader["Spec Loader (spec2viz.loader)"]
+    models["Pydantic Schema Models (spec2viz.models)"]
+    validator["Schema Validator (spec2viz.validator)"]
+    compilers["AST Compilers (spec2viz.compilers)"]
+    ir["Intermediate Representation (spec2viz.ir)"]
+    renderers["Multi-Backend Renderers (spec2viz.renderers)"]
+    deskops_bridge["Deskops Integration Bridge (spec2viz.deskops)"]
+    cli -->|Carga spec YAML| loader
+    loader -->|Valida tipo y esquema| models
+    loader -->|Chequeo sintáctico| validator
+    loader -->|Pasa DiagramModel| compilers
+    compilers -->|Compila a IR desacoplado| ir
+    ir -->|Transforma IR a output gráfico| renderers
+    cli -->|Resuelve rutas de desk/| deskops_bridge

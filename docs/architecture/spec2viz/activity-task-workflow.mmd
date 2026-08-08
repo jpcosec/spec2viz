@@ -1,0 +1,23 @@
+flowchart TD
+    __start([Start])
+    diseno_drawer["Diseñar TaskDoc en desk/drawer/tasks/"]
+    ambiguity_review["Ejecutar Ambiguity Review (Autonomía de Contexto Cero)"]
+    promocion["Promover tarea a Board activo"]
+    despacho_executor["Despachar Subagente Executor independiente"]
+    implementacion_codigo["Modificar código dentro del Scope"]
+    despacho_tester["Despachar Subagente Tester independiente"]
+    emision_evidencias["Generar validation.log y result-summary.md"]
+    commit_cierre["Ejecutar deskops closeout commit"]
+    ritual_fase["Ejecutar Ritual de Fase al terminar capa"]
+    fin["Tarea Completada"]
+    __end([End])
+    __start --> diseno_drawer
+    diseno_drawer --> ambiguity_review
+    ambiguity_review --> promocion
+    promocion --> despacho_executor
+    despacho_executor --> implementacion_codigo
+    implementacion_codigo --> despacho_tester
+    despacho_tester --> emision_evidencias
+    emision_evidencias --> commit_cierre
+    commit_cierre --> ritual_fase
+    ritual_fase --> __end

@@ -1,0 +1,13 @@
+sequenceDiagram
+    actor User
+    participant CLI
+    participant Loader
+    participant Compiler
+    participant IR
+    participant Renderer
+    User->>CLI: spec2viz render spec.yml --backend mermaid
+    CLI->>Loader: load(spec.yml)
+    Loader->>Compiler: compile(DiagramModel)
+    Compiler->>IR: Instancia DiagramIR desacoplado
+    CLI->>Renderer: render(DiagramIR)
+    Renderer->>User: Retorna código renderizado (Mermaid/PlantUML)
