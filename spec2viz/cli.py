@@ -62,15 +62,16 @@ def schema(diagram_type: str | None, out: Path | None):
         import json
         click.echo(json.dumps(json_schema(diagram_type), indent=2))
 
-@main.command(short_help="Build deskops architecture HTML from a vistas registry.")
-@click.option("--config", required=True, type=click.Path(exists=True, path_type=Path), help="Path to the vistas.yml registry file.")
+@main.command(short_help="Build deskops architecture HTML from a vistas registry or diagram store.")
+@click.option("--config", required=True, type=click.Path(exists=True, path_type=Path), help="Path to a legacy vistas.yml registry or a hierarchical diagram store config.")
 @click.option("--out", required=True, type=click.Path(path_type=Path), help="HTML file to write.")
 @click.option("--base-dir", type=click.Path(exists=True, path_type=Path), help="Base directory for template and vista source paths. Defaults to the config file directory.")
 @click.option("--atoms-dir", type=click.Path(exists=True, path_type=Path), help="Directory with W5H1 atom markdown files to inject as window.ATOMS_DB.")
 def build(config: Path, out: Path, base_dir: Path | None, atoms_dir: Path | None):
-    """Build a deskops architecture HTML bundle from a vistas.yml registry.
+    """Build a deskops architecture HTML bundle from a vistas registry or diagram store.
 
-    The registry can point at Mermaid, SVG, or HTML vista sources plus an HTML template.
+    The config can point at Mermaid, SVG, or HTML vista sources plus an HTML template.
+    Hierarchical stores can aggregate other stores and legacy vistas.yml leaves.
     """
     from spec2viz.deskops import build_deskops
     try:

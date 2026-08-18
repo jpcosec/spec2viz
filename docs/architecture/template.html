@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>spec2viz Architecture & Knowledge Base</title>
+  <title>{{CATALOG_TITLE}}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -93,6 +93,77 @@
       overflow-y: auto;
       padding: 40px;
       position: relative;
+    }
+
+    .catalog-toolbar {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 24px;
+    }
+
+    .catalog-toolbar-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .catalog-toolbar label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      min-width: 180px;
+    }
+
+    .catalog-toolbar select,
+    .catalog-toolbar input {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+
+    .catalog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag-chip,
+    .meta-badge {
+      border: 1px solid var(--border-color);
+      background: var(--bg-dark);
+      color: var(--text-muted);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.72rem;
+      cursor: pointer;
+    }
+
+    .tag-chip.active {
+      background: var(--primary);
+      color: var(--bg-dark);
+      border-color: var(--primary);
+    }
+
+    .section-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: -6px 0 16px 0;
+    }
+
+    .meta-badge {
+      cursor: default;
+    }
+
+    .meta-badge.subtle {
+      opacity: 0.85;
     }
 
     .macro-separator {
@@ -306,7 +377,7 @@
 <body>
   <aside>
     <div class="brand">
-      <span>📐 spec2viz Architecture</span>
+      <span>📐 {{BRAND_NAME}}</span>
     </div>
     <nav>
       {{NAV}}
@@ -314,6 +385,7 @@
   </aside>
 
   <main>
+    {{FILTERS}}
     {{SECTIONS}}
   </main>
 
@@ -338,6 +410,7 @@
 
   <script>
     mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    window.SPEC2VIZ_CATALOG = {{CATALOG_METADATA}};
 
     const popover = document.getElementById('hover-popover');
     const popoverTitle = document.getElementById('popover-title');
@@ -452,7 +525,48 @@
       panel.classList.add('active');
     }
 
+    function applyCatalogFilters() {
+      const typeValue = document.querySelector('select[data-filter="tipo"]')?.value || '';
+      const projectValue = document.querySelector('select[data-filter="proyecto"]')?.value || '';
+      const categoryValue = document.querySelector('select[data-filter="categoría"]')?.value || '';
+      const searchValue = (document.getElementById('catalog-search')?.value || '').trim().toLowerCase();
+      const activeTags = Array.from(document.querySelectorAll('.tag-chip.active')).map(btn => btn.dataset.tag || '');
+
+      document.querySelectorAll('.catalog-item').forEach(section => {
+        const sectionType = section.dataset.type || '';
+        const sectionProject = section.dataset.project || '';
+        const sectionCategory = section.dataset.category || '';
+        const sectionTags = (section.dataset.tags || '').toLowerCase();
+        const sectionText = section.innerText.toLowerCase();
+
+        const matchesType = !typeValue || sectionType === typeValue;
+        const matchesProject = !projectValue || sectionProject === projectValue;
+        const matchesCategory = !categoryValue || sectionCategory === categoryValue;
+        const matchesSearch = !searchValue || sectionText.includes(searchValue) || sectionTags.includes(searchValue);
+        const matchesTags = activeTags.length === 0 || activeTags.every(tag => sectionTags.includes(tag.toLowerCase()));
+        const visible = matchesType && matchesProject && matchesCategory && matchesSearch && matchesTags;
+        section.style.display = visible ? '' : 'none';
+      });
+
+      document.querySelectorAll('.category-block').forEach(block => {
+        const visibleItems = Array.from(block.querySelectorAll('.catalog-item')).some(item => item.style.display !== 'none');
+        block.style.display = visibleItems ? '' : 'none';
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.catalog-toolbar select, #catalog-search').forEach(el => {
+        el.addEventListener('input', applyCatalogFilters);
+        el.addEventListener('change', applyCatalogFilters);
+      });
+
+      document.querySelectorAll('.tag-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('active');
+          applyCatalogFilters();
+        });
+      });
+
       setTimeout(() => {
         document.querySelectorAll('.mermaid .node').forEach(node => {
           node.addEventListener('mouseenter', (e) => {
@@ -472,6 +586,8 @@
           });
         });
       }, 1200);
+
+      applyCatalogFilters();
     });
   </script>
 </body>

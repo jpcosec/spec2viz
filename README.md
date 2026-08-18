@@ -59,12 +59,15 @@ Supported renderers:
 - `antonia-html`
 - `json`
 
-Build a deskops architecture HTML bundle from a `vistas.yml` registry:
+Build a deskops architecture HTML bundle from a legacy `vistas.yml` registry or a hierarchical diagram store:
 
 ```bash
 spec2viz build --config examples/fixtures/vistas.yml --out out/architecture.html
 spec2viz build --config examples/fixtures/vistas.yml --out out/architecture.html --base-dir examples/fixtures --atoms-dir desk/atoms
+spec2viz build --config catalog.yml --out out/catalog.html
 ```
+
+Hierarchical stores can aggregate other stores and legacy `vistas.yml` leaves, then expose one filtered HTML catalog by category, type, project, and tags.
 
 ## PlantUML Kind Styling
 

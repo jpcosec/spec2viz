@@ -257,6 +257,64 @@ vistas:
     assert r.exit_code == 0
     assert out.exists()
     assert "Rendered deskops architecture" in r.output
+    html = out.read_text(encoding="utf-8")
+    assert "catalog-search" in html
+
+
+def test_build_command_supports_store_of_stores(tmp_path):
+    root = tmp_path
+    child = root / "child"
+    child.mkdir()
+
+    (root / "template.html").write_text(
+        "<html><head><title>{{CATALOG_TITLE}}</title></head><body><aside>{{NAV}}</aside><main>{{FILTERS}}{{SECTIONS}}</main></body></html>",
+        encoding="utf-8",
+    )
+    (child / "view.mmd").write_text("graph TD\nA-->B\n", encoding="utf-8")
+    (child / "spec-component.yml").write_text(
+        "id: spec-component\ntitle: Example\ntype: component\nversion: '1.0'\ndata:\n  nodes: {}\n  edges: []\n",
+        encoding="utf-8",
+    )
+    (child / "vistas.yml").write_text(
+        """
+template: unused.html
+vistas:
+  - id: sample
+    category: Arquitectura
+    title: Sample Diagram
+    nav: Sample
+    desc: Demo child vista
+    src: view.mmd
+    specs:
+      - spec-component
+""",
+        encoding="utf-8",
+    )
+    (root / "catalog.yml").write_text(
+        """
+template: template.html
+title: Repo Catalog
+brand_name: Diagram Catalog
+stores:
+  - path: child/vistas.yml
+    project: demo/project
+    tags:
+      - domain:crm
+""",
+        encoding="utf-8",
+    )
+
+    out = root / "out.html"
+    r = runner.invoke(main, ["build", "--config", str(root / "catalog.yml"), "--out", str(out)])
+    assert r.exit_code == 0, r.output
+    html = out.read_text(encoding="utf-8")
+    assert "Repo Catalog" in html
+    assert "Diagram Catalog" in html
+    assert "catalog-search" in html
+    assert "data-project=\"demo/project\"" in html
+    assert "data-type=\"component\"" in html
+    assert "domain:crm" in html
+    assert "Sample Diagram" in html
 
 
 def test_build_command_reports_errors(tmp_path):

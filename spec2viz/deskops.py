@@ -4,10 +4,19 @@ import yaml
 import json
 import re
 
+from spec2viz.orchestrator import (
+    load_catalog,
+    render_catalog_metadata,
+    render_filter_bar,
+    render_nav,
+    render_sections,
+)
+
+
 def parse_atoms(atoms_dir: Path) -> str:
     if not atoms_dir or not atoms_dir.exists():
         return "{}"
-    
+
     atoms_db = {}
     for md_file in atoms_dir.glob("*.md"):
         content = md_file.read_text(encoding="utf-8")
@@ -30,88 +39,48 @@ def parse_atoms(atoms_dir: Path) -> str:
                 print(f"Failed to parse atom {md_file}: {e}")
     return json.dumps(atoms_db)
 
+
 def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: Path | None = None) -> str:
+    catalog = load_catalog(config_path)
     if base_dir is None:
         base_dir = config_path.parent
-    reg = yaml.safe_load(config_path.read_text(encoding="utf-8"))
-    
-    tpl_path = base_dir / reg["template"]
+
+    tpl_path = base_dir / catalog.template
     tpl = tpl_path.read_text(encoding="utf-8")
 
-    categories = {}
-    for v in reg.get("vistas", []):
-        cat = v.get("category", "Otras Vistas")
-        if cat not in categories:
-            categories[cat] = []
-        categories[cat].append(v)
+    nav = render_nav(catalog.items)
+    filters = render_filter_bar(catalog.items)
+    sections = render_sections(catalog.items, base_dir)
 
-    nav = ""
-    sections = []
-    
-    for cat, vistas in categories.items():
-        nav += f'<div class="nav-category"><span>{cat}</span>'
-        nav += "".join(f'<a href="#{v["id"]}">{v.get("nav", v.get("lbl", v["id"]))}</a>' for v in vistas)
-        nav += "</div>\n"
-        
-        sections.append(f'<div class="macro-separator"><h2>— {cat} —</h2></div>')
-        for v in vistas:
-            src = v.get("src") or v.get("mmd")
-            content = (base_dir / src).read_text(encoding="utf-8").strip() if src else ""
-            
-            attrs = ""
-            specs = v.get("specs") or []
-            if specs:
-                attrs += " " + " ".join(f'data-spec="{s}"' for s in specs)
-            puml = v.get("puml")
-            if puml:
-                attrs += f' data-puml="{puml}"'
-            
-            if src and str(src).endswith(".svg"):
-                board_content = f"""  <div class="board puml-board">
-{content}
-  </div>"""
-            elif src and str(src).endswith(".html"):
-                is_markup = content.lstrip().startswith("<div") or "<style>" in content
-                indent = "" if is_markup else "    "
-                style = "" if is_markup else " style=\"font-family:'JetBrains Mono',monospace; font-size:12px; white-space:pre-wrap; color:var(--bone-dim);\""
-                indented = "\n".join(indent + line for line in content.splitlines())
-                board_content = f"""  <div class="board"{style}>
-{indented}
-  </div>"""
-            else:
-                indented = "\n".join("      " + line for line in content.splitlines())
-                board_content = f"""  <div class="board">
-    <div class="mermaid">
-{indented}
-    </div>
-  </div>"""
+    html = tpl.replace("{{NAV}}", nav)
+    html = html.replace("{{FILTERS}}", filters)
+    html = html.replace("{{SECTIONS}}", sections)
+    html = html.replace("{{PROJECT_NAME}}", catalog.project_name)
+    html = html.replace("{{BRAND_NAME}}", catalog.brand_name)
+    html = html.replace("{{CATALOG_TITLE}}", catalog.title)
+    html = html.replace("{{CATALOG_METADATA}}", render_catalog_metadata(catalog, catalog.items))
 
-            notes = v.get("notes") or []
-            notes_html = ""
-            if notes:
-                items = "".join(f"<li>{n}</li>" for n in notes)
-                notes_html = f"""\n  <div class="gap-notes"><strong>Gaps de implementación</strong><ul>{items}</ul></div>"""
+    if "{{FILTERS}}" not in tpl and "{{SECTIONS}}" in tpl:
+        html = html.replace(sections, filters + sections, 1)
 
-            sections.append(
-                f'''<section id="{v["id"]}"{attrs}>
-  <div class="lbl">{v.get("lbl", "")}</div>
-  <h2>{v.get("title", v["id"])}</h2>
-  <p class="desc">{v.get("desc", "")}</p>
-{board_content}{notes_html}
-</section>'''
-            )
-
-    html = tpl.replace("{{NAV}}", nav).replace("{{SECTIONS}}", "\n".join(sections))
-    
     atoms_json = parse_atoms(atoms_dir) if atoms_dir else "{}"
     if "{{ATOMS_DB}}" in html:
         html = html.replace("{{ATOMS_DB}}", atoms_json)
     else:
-        # Inject before </body> if template doesn't have the tag
-        injection = f"\n<script>window.ATOMS_DB = {atoms_json};</script>\n</body>"
+        injection = (
+            f"\n<script>window.ATOMS_DB = {atoms_json}; "
+            f"window.SPEC2VIZ_CATALOG = {render_catalog_metadata(catalog, catalog.items)};</script>\n</body>"
+        )
         html = html.replace("</body>", injection)
-        
+
+    if "window.SPEC2VIZ_CATALOG" not in html:
+        html = html.replace(
+            "</body>",
+            f"\n<script>window.SPEC2VIZ_CATALOG = {render_catalog_metadata(catalog, catalog.items)};</script>\n</body>",
+        )
+
     return html
+
 
 def build_deskops(config_path: Path, out_path: Path, base_dir: Path | None = None, atoms_dir: Path | None = None):
     html = render_deskops(config_path, base_dir, atoms_dir)
