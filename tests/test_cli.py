@@ -184,15 +184,28 @@ def test_schema_invalid_type_fails():
     assert r.exit_code != 0
 
 
-def test_help_mentions_build_and_all_renderers():
+def test_help_mentions_taxonomy_groups_and_renderers():
     r = runner.invoke(main, ["--help"])
     assert r.exit_code == 0
-    assert "build" in r.output
+    assert "diagram" in r.output
+    assert "catalog" in r.output
+    assert "Legacy top-level commands remain available" in r.output
 
     r = runner.invoke(main, ["render", "--help"])
     assert r.exit_code == 0
     for name in ["plantuml", "mermaid", "vega", "d2", "antonia-html", "json"]:
         assert name in r.output
+
+    r = runner.invoke(main, ["diagram", "--help"])
+    assert r.exit_code == 0
+    assert "render" in r.output
+    assert "validate" in r.output
+    assert "schema" in r.output
+
+    r = runner.invoke(main, ["catalog", "--help"])
+    assert r.exit_code == 0
+    assert "build" in r.output
+    assert "schema" in r.output
 
 
 def test_render_d2(tmp_path):
@@ -241,6 +254,37 @@ def test_render_json_reflection_artifact(tmp_path):
     )
     assert r.exit_code == 0
     assert (tmp_path / "canonical.artifact.json").exists()
+
+
+def test_catalog_schema_stdout():
+    r = runner.invoke(main, ["catalog", "schema"])
+    assert r.exit_code == 0
+    assert '"title": "DiagramStoreEnvelope"' in r.output
+
+
+def test_catalog_build_alias_matches_legacy_build(tmp_path):
+    (tmp_path / "template.html").write_text(
+        "<html><body>{{NAV}}{{FILTERS}}{{SECTIONS}}</body></html>", encoding="utf-8"
+    )
+    (tmp_path / "view.mmd").write_text("graph TD\nA-->B\n", encoding="utf-8")
+    config = tmp_path / "vistas.yml"
+    config.write_text(
+        """
+template: template.html
+vistas:
+  - id: sample
+    src: view.mmd
+""",
+        encoding="utf-8",
+    )
+
+    legacy = tmp_path / "legacy.html"
+    grouped = tmp_path / "grouped.html"
+    r1 = runner.invoke(main, ["build", "--config", str(config), "--out", str(legacy)])
+    r2 = runner.invoke(main, ["catalog", "build", "--config", str(config), "--out", str(grouped)])
+    assert r1.exit_code == 0, r1.output
+    assert r2.exit_code == 0, r2.output
+    assert legacy.read_text(encoding="utf-8") == grouped.read_text(encoding="utf-8")
 
 
 def test_build_command(tmp_path):

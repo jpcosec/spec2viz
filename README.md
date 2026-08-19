@@ -31,23 +31,27 @@ Inspect the available commands:
 
 ```bash
 spec2viz --help
-spec2viz render --help
-spec2viz build --help
+spec2viz diagram --help
+spec2viz catalog --help
 ```
 
-Validate one or more semantic specs:
+Diagram commands:
+
+```bash
+spec2viz diagram validate tests/fixtures/sequence.create-quotation.yml
+spec2viz diagram render tests/fixtures/sequence.create-quotation.yml --out out
+spec2viz diagram render tests/fixtures/state.quotation.yml --backend mermaid --out out
+spec2viz diagram render examples/component/example.yml --renderer d2 --out out
+spec2viz diagram render examples/reflection/example.enforcement.yml --renderer json --out out
+spec2viz diagram schema --type sequence --out sequence.schema.json
+```
+
+Legacy aliases still work:
 
 ```bash
 spec2viz validate tests/fixtures/sequence.create-quotation.yml
-```
-
-Render one or more specs:
-
-```bash
 spec2viz render tests/fixtures/sequence.create-quotation.yml --out out
-spec2viz render tests/fixtures/state.quotation.yml --backend mermaid --out out
-spec2viz render examples/component/example.yml --renderer d2 --out out
-spec2viz render examples/reflection/example.enforcement.yml --renderer json --out out
+spec2viz schema --type sequence --out sequence.schema.json
 ```
 
 Supported renderers:
@@ -59,13 +63,14 @@ Supported renderers:
 - `antonia-html`
 - `json`
 
-Build a deskops architecture HTML bundle from a legacy `vistas.yml` registry or a hierarchical diagram store:
+Catalog commands build a deskops architecture HTML bundle from a legacy `vistas.yml` registry or a hierarchical diagram store:
 
 ```bash
-spec2viz build --config examples/fixtures/vistas.yml --out out/architecture.html
-spec2viz build --config examples/fixtures/vistas.yml --out out/architecture.html --base-dir examples/fixtures --atoms-dir desk/atoms
-spec2viz build --config catalog.yml --out out/catalog.html
-spec2viz build --config examples/catalog/project.yml --out out/catalog.html
+spec2viz catalog build --config examples/fixtures/vistas.yml --out out/architecture.html
+spec2viz catalog build --config examples/fixtures/vistas.yml --out out/architecture.html --base-dir examples/fixtures --atoms-dir desk/atoms
+spec2viz catalog build --config catalog.yml --out out/catalog.html
+spec2viz catalog build --config examples/catalog/project.yml --out out/catalog.html
+spec2viz catalog schema --out diagram-store.schema.json
 ```
 
 Hierarchical stores can aggregate other stores and legacy `vistas.yml` leaves, then expose one filtered HTML catalog by category, type, project, and tags.
