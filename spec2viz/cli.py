@@ -106,6 +106,23 @@ def render(paths: list[Path], out: Path, renderer: str | None):
     _render_paths(paths, out, renderer)
 
 
+@diagram.command("generate", short_help="Generate a component spec from Python source AST.")
+@click.argument("src_dir", type=click.Path(exists=True, path_type=Path), metavar="SRC_DIR")
+@click.option("--out", default="architecture.spec.yaml", show_default=True, type=click.Path(path_type=Path), help="Output spec YAML file.")
+@click.option("--id", "project_id", default=None, help="Project identifier for the spec. Defaults to directory name.")
+@click.option("--title", default=None, help="Human-readable title. Defaults to '<project> AST Architecture'.")
+@click.option("--package", default=None, help="Root package to filter (e.g. 'sldb'). Scans all if omitted.")
+def diagram_generate(src_dir: Path, out: Path, project_id: str | None, title: str | None, package: str | None):
+    """Scan Python source files and generate a spec2viz component diagram spec."""
+    from spec2viz.generators import generate_python_ast_spec, write_spec
+
+    pid = project_id or src_dir.resolve().parent.name
+    ttl = title or f"{pid} AST Architecture"
+    spec = generate_python_ast_spec(src_dir, project_id=pid, title=ttl, root_package=package)
+    write_spec(spec, out)
+    click.echo(f"Generated {out} ({len(spec['data']['nodes'])} nodes, {len(spec['data']['edges'])} edges)")
+
+
 @diagram.command("validate", short_help="Validate semantic diagram spec files.")
 @click.argument("paths", nargs=-1, type=click.Path(exists=True, path_type=Path), metavar="SPEC ...")
 def diagram_validate(paths: list[Path]):
