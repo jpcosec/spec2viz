@@ -581,4 +581,4 @@ def _read_item_source(item: CatalogItem) -> str:
         indented = "\n".join(indent + line for line in content.splitlines())
         return f'  <div class="board"{style}>\n{indented}\n  </div>'
     indented = "\n".join("      " + line for line in content.splitlines())
-    return f'  <div class="board">\n    <div class="mermaid">\n{indented}\n    </div>\n  </div>'
+    return f'  <div class="board">\n    <pre class="mermaid">\n{indented}\n    </pre>\n  </div>'
