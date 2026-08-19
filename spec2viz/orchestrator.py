@@ -580,5 +580,6 @@ def _read_item_source(item: CatalogItem) -> str:
         style = "" if is_markup else ' style="font-family:\'JetBrains Mono\',monospace; font-size:12px; white-space:pre-wrap; color:var(--bone-dim);"'
         indented = "\n".join(indent + line for line in content.splitlines())
         return f'  <div class="board"{style}>\n{indented}\n  </div>'
-    indented = "\n".join("      " + line for line in content.splitlines())
+    safe_content = html.escape(content)
+    indented = "\n".join("      " + line for line in safe_content.splitlines())
     return f'  <div class="board">\n    <pre class="mermaid">\n{indented}\n    </pre>\n  </div>'

@@ -95,7 +95,7 @@ vistas:
     assert 'data-spec="spec-a"' in html
     assert 'data-spec="spec-b"' in html
     assert 'data-puml="flow.puml"' in html
-    assert '<div class="mermaid">' in html
+    assert '<pre class="mermaid">' in html
     assert '<div class="board puml-board">' in html
     assert "plain html snippet" in html
     assert "Gaps de implementación" in html
@@ -171,3 +171,4 @@ vistas:
 
     assert out.exists()
     assert "graph TD" in out.read_text(encoding="utf-8")
+
