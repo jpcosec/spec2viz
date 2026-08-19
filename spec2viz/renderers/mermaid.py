@@ -37,14 +37,32 @@ class MermaidRenderer:
 
     def _component(self, ir: ComponentIR) -> str:
         lines = ["graph TD"]
-        for node in ir.nodes:
+        child_ids = {child for node in ir.nodes for child in node.contains}
+
+        def render_node(node_id, indent="    "):
+            node = next((n for n in ir.nodes if n.id == node_id), None)
+            if not node:
+                lines.append(f"{indent}{node_id}")
+                return
             label = node.label or node.id
-            lines.append(f"    {node.id}[\"{label}\"]")
-            for child in node.contains:
-                lines.append(f"    {node.id} --> {child}")
+            if not node.contains:
+                lines.append(f"{indent}{node.id}[\"{label}\"]")
+            else:
+                lines.append(f"{indent}subgraph {node.id} [\"{label}\"]")
+                for child_id in node.contains:
+                    render_node(child_id, indent + "    ")
+                lines.append(f"{indent}end")
+
+        for node in ir.nodes:
+            if node.id not in child_ids:
+                render_node(node.id)
+
         for edge in ir.edges:
             label = edge.label or edge.relation
-            lines.append(f"    {edge.from_} -->|{label}| {edge.to}")
+            if label:
+                lines.append(f"    {edge.from_} -->|{label}| {edge.to}")
+            else:
+                lines.append(f"    {edge.from_} --> {edge.to}")
         return "\n".join(lines)
 
     def _activity(self, ir: ActivityIR) -> str:
