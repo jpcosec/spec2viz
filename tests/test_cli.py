@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 from click.testing import CliRunner
 from spec2viz.cli import main
@@ -423,6 +424,63 @@ diagram_store:
     assert "project/demo" in html
     assert "domain:workflow" in html
     assert "data-type=\"state\"" in html
+
+
+def test_build_command_extracts_types_from_specs_dir_and_makes_anchor_ids_unique(tmp_path):
+    root = tmp_path
+    (root / "template.html").write_text(
+        "<html><body><aside>{{NAV}}</aside><main>{{FILTERS}}{{SECTIONS}}</main></body></html>",
+        encoding="utf-8",
+    )
+
+    for folder in [root / "alpha" / "docs" / "vistas", root / "beta" / "docs" / "vistas"]:
+        folder.mkdir(parents=True)
+        (folder.parent.parent / "project.yaml").write_text("project_name: Demo\nclient: sample\n", encoding="utf-8")
+        (folder.parent.parent / "specs").mkdir(exist_ok=True)
+        (folder.parent.parent / "specs" / "same-view.yml").write_text(
+            "id: same-view\ntitle: Same\ntype: component\nversion: '1.0'\ndata:\n  nodes: {}\n  edges: []\n",
+            encoding="utf-8",
+        )
+        (folder.parent.parent / "rendered").mkdir(exist_ok=True)
+        (folder.parent.parent / "rendered" / "same-view.mmd").write_text("graph TD\nA-->B\n", encoding="utf-8")
+        (folder / "vistas.yml").write_text(
+            "template: template.html\nvistas:\n  - id: vista01\n    title: Demo\n    category: Arquitectura\n    specs:\n      - same-view\n    mmd: ../../rendered/same-view.mmd\n",
+            encoding="utf-8",
+        )
+
+    (root / "catalog.yml").write_text(
+        "template: template.html\nstores:\n  - path: alpha/docs/vistas/vistas.yml\n  - path: beta/docs/vistas/vistas.yml\n",
+        encoding="utf-8",
+    )
+
+    out = root / "out.html"
+    r = runner.invoke(main, ["catalog", "build", "--config", str(root / "catalog.yml"), "--out", str(out)])
+    assert r.exit_code == 0, r.output
+    html = out.read_text(encoding="utf-8")
+    assert html.count('data-type="component"') == 2
+    anchor_ids = set(re.findall(r'id="(sample-demo-vista01-[a-f0-9]{8})"', html))
+    assert len(anchor_ids) == 2
+
+
+def test_build_command_extracts_html_section_fragments(tmp_path):
+    (tmp_path / "template.html").write_text(
+        "<html><body>{{NAV}}{{FILTERS}}{{SECTIONS}}</body></html>", encoding="utf-8"
+    )
+    (tmp_path / "bundle.html").write_text(
+        "<html><body><section id=\"d1\"><div class=\"board\"><pre class=\"mermaid\">graph TD\\nA-->B</pre></div></section></body></html>",
+        encoding="utf-8",
+    )
+    (tmp_path / "catalog.yml").write_text(
+        "template: template.html\nitems:\n  - id: frag\n    title: Fragment\n    src: bundle.html#d1\n    type: component\n    category: Arquitectura\n",
+        encoding="utf-8",
+    )
+
+    out = tmp_path / "out.html"
+    r = runner.invoke(main, ["catalog", "build", "--config", str(tmp_path / "catalog.yml"), "--out", str(out)])
+    assert r.exit_code == 0, r.output
+    html = out.read_text(encoding="utf-8")
+    assert 'bundle.html#d1' not in html
+    assert '<div class="board"><pre class="mermaid">graph TD\\nA-->B</pre></div>' in html
 
 
 def test_build_command_reports_errors(tmp_path):

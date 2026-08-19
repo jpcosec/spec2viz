@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 from spec2viz.deskops import build_deskops, parse_atoms, render_deskops
@@ -89,7 +90,7 @@ vistas:
 
     html = render_deskops(base / "vistas.yml", atoms_dir=atoms_dir)
 
-    assert '<a href="#flow">Flow label</a>' in html
+    assert re.search(r'<a href="#flow-[a-f0-9]{8}">Flow label</a>', html)
     assert 'data-spec="spec-a"' in html
     assert 'data-spec="spec-b"' in html
     assert 'data-puml="flow.puml"' in html
