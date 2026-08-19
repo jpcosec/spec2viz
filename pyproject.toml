@@ -39,4 +39,7 @@ testpaths = ["tests"]
 [tool.setuptools.packages.find]
 include = ["spec2viz*"]
 
+[tool.setuptools.package-data]
+spec2viz = ["templates/*.html"]
+
 

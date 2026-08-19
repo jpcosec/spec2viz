@@ -1,16 +1,255 @@
+from __future__ import annotations
+
 from pathlib import Path
-import yaml
 
 import json
 import re
+import sys
+from dataclasses import dataclass, field
+
+import yaml
 
 from spec2viz.orchestrator import (
+    CatalogItem,
     load_catalog,
     render_catalog_metadata,
     render_filter_bar,
     render_nav,
     render_sections,
 )
+
+
+@dataclass
+class AtomBuildWarning:
+    scope: str
+    message: str
+
+
+@dataclass
+class SldbAtomResolver:
+    pythonpath: str | None = None
+    warnings: list[AtomBuildWarning] = field(default_factory=list)
+    _store_payload_cache: dict[str, dict[str, dict]] = field(default_factory=dict)
+    _view_store_cache: dict[str, Path | None] = field(default_factory=dict)
+
+    def build_atoms_by_view(self, items: list[CatalogItem]) -> dict[str, dict[str, dict]]:
+        atoms_by_view: dict[str, dict[str, dict]] = {}
+        for item in items:
+            view_key = self._view_key(item)
+            store_path = self._discover_store_for_item(item)
+            if store_path is None:
+                atoms_by_view[view_key] = {}
+                continue
+            atoms_by_view[view_key] = self._load_store_payload(store_path)
+        return atoms_by_view
+
+    def _view_key(self, item: CatalogItem) -> str:
+        return item.anchor_id
+
+    def _discover_store_for_item(self, item: CatalogItem) -> Path | None:
+        view_key = self._view_key(item)
+        if view_key in self._view_store_cache:
+            return self._view_store_cache[view_key]
+
+        try:
+            from sldb.store.layout import store_exists
+            from sldb.store.resolver import find_local_store
+        except Exception as exc:  # pragma: no cover - exercised through fallback path
+            self._warn("sldb", f"SLDB unavailable while resolving stores: {exc}")
+            self._view_store_cache[view_key] = None
+            return None
+
+        candidates: list[Path] = []
+        src_path = self._resolve_item_src_path(item)
+        if src_path is not None:
+            candidates.append(src_path.parent)
+        candidates.append(Path(item.source_base_dir))
+
+        boundary = self._project_boundary(item, src_path)
+        store_path = None
+        for candidate in candidates:
+            if boundary is not None:
+                store_path = self._find_local_store_with_boundary(candidate, boundary, store_exists)
+            else:
+                store_path = find_local_store(candidate)
+            if store_path is not None:
+                break
+
+        if store_path is not None and boundary is not None and not self._is_relative_to(store_path.parent, boundary):
+            store_path = None
+
+        self._view_store_cache[view_key] = store_path
+        return store_path
+
+    def _resolve_item_src_path(self, item: CatalogItem) -> Path | None:
+        if not item.src:
+            return None
+        src_value = item.src.split("#", 1)[0]
+        return (Path(item.source_base_dir) / src_value).resolve()
+
+    def _project_boundary(self, item: CatalogItem, src_path: Path | None) -> Path | None:
+        if not item.project:
+            return None
+        probe = src_path.parent if src_path is not None else Path(item.source_base_dir)
+        repo_root = self._find_repo_root(probe.resolve())
+        if repo_root is None:
+            return None
+        boundary = (repo_root / item.project).resolve()
+        return boundary if boundary.exists() else None
+
+    def _find_repo_root(self, start: Path) -> Path | None:
+        current = start.resolve()
+        for directory in [current, *current.parents]:
+            if (directory / "README.md").exists() and ((directory / "projects").exists() or (directory / "software").exists()):
+                return directory
+        return None
+
+    def _find_local_store_with_boundary(self, start: Path, boundary: Path, store_exists) -> Path | None:
+        current = start.resolve()
+        boundary = boundary.resolve()
+        for directory in [current, *current.parents]:
+            if not self._is_relative_to(directory, boundary):
+                break
+            candidate = directory / ".sldb"
+            if store_exists(candidate):
+                return candidate.resolve()
+            if directory == boundary:
+                break
+        return None
+
+    def _is_relative_to(self, path: Path, other: Path) -> bool:
+        try:
+            path.resolve().relative_to(other.resolve())
+            return True
+        except ValueError:
+            return False
+
+    def _load_store_payload(self, store_path: Path) -> dict[str, dict]:
+        cache_key = str(store_path.resolve())
+        if cache_key in self._store_payload_cache:
+            return self._store_payload_cache[cache_key]
+
+        try:
+            payload = self._load_store_payload_uncached(store_path.resolve())
+        except Exception as exc:  # pragma: no cover - defensive guard
+            self._warn(str(store_path), f"Failed to load atoms through SLDB: {exc}")
+            payload = {}
+
+        self._store_payload_cache[cache_key] = payload
+        return payload
+
+    def _load_store_payload_uncached(self, store_path: Path) -> dict[str, dict]:
+        try:
+            from sldb.cli.model_utils import resolve_model_ref
+            from sldb.runtime.validation import extract_model_data
+            from sldb.store.io import load_documents_index, load_models_index, load_store_index
+            from sldb.store.layout import project_root, store_exists
+        except Exception as exc:  # pragma: no cover - exercised through fallback path
+            raise RuntimeError(f"SLDB import failed: {exc}") from exc
+
+        payload: dict[str, dict] = {}
+        visited: set[str] = set()
+
+        def visit(current_store: Path):
+            current_key = str(current_store.resolve())
+            if current_key in visited:
+                return
+            visited.add(current_key)
+
+            root = project_root(current_store)
+            store_index = load_store_index(current_store)
+            atom_entry = next((entry for entry in store_index.models if entry.name == "AtomDoc"), None)
+            if atom_entry is not None:
+                model_type = resolve_model_ref(atom_entry.model_ref, self.pythonpath)
+                model_index = load_models_index(root / atom_entry.models_index)
+                documents_index = load_documents_index(root / model_index.documents_index)
+                for document in documents_index.documents:
+                    doc_path = root / document.path
+                    if not doc_path.exists():
+                        self._warn(current_key, f"Missing tracked atom doc: {doc_path}")
+                        continue
+                    try:
+                        atom = extract_model_data(model_type, doc_path.read_text(encoding="utf-8"))
+                    except Exception as exc:
+                        self._warn(current_key, f"Skipped invalid atom doc {doc_path}: {exc}")
+                        continue
+                    self._merge_atom(payload, atom, doc_path, current_store)
+
+            for linked in store_index.stores:
+                linked_store = Path(linked.path)
+                linked_store = linked_store if linked_store.is_absolute() else (root / linked_store)
+                linked_store = linked_store.resolve()
+                if not store_exists(linked_store):
+                    self._warn(current_key, f"Linked store missing: {linked.name} -> {linked_store}")
+                    continue
+                visit(linked_store)
+
+        visit(store_path)
+        return payload
+
+    def _merge_atom(self, payload: dict[str, dict], atom: dict, doc_path: Path, store_path: Path) -> None:
+        title = str(atom.get("title") or "").strip()
+        question = str(atom.get("five_wh_one_plus") or "").strip().lower()
+        body = str(atom.get("answer") or "").strip()
+        if not title or not question or not body:
+            return
+
+        title_norm = _normalize_key(title)
+        if not title_norm:
+            return
+
+        tags = atom.get("tags") or []
+        entry = payload.setdefault(
+            title_norm,
+            {"title": title, "atoms": {}, "aliases": _alias_candidates(title, tags)},
+        )
+        entry["aliases"] = _alias_candidates(title, tags)
+        entry["atoms"][question] = {
+            "id": atom.get("id") or doc_path.stem,
+            "body": body,
+            "path": str(doc_path),
+            "store": str(store_path),
+            "tags": tags,
+            "provenance": atom.get("provenance"),
+        }
+
+    def _warn(self, scope: str, message: str) -> None:
+        warning = AtomBuildWarning(scope=scope, message=message)
+        self.warnings.append(warning)
+        print(f"[spec2viz][atoms] {scope}: {message}", file=sys.stderr)
+
+
+def _normalize_key(value: str) -> str:
+    value = (value or "").strip().lower()
+    value = re.sub(r"[^\w\s]+", " ", value)
+    return re.sub(r"\s+", " ", value)
+
+
+def _alias_candidates(title: str, tags: list[str]) -> list[str]:
+    aliases: list[str] = []
+    normalized_title = _normalize_key(title)
+    if normalized_title:
+        aliases.append(normalized_title)
+        words = [word for word in normalized_title.split() if len(word) >= 3]
+        aliases.extend(words)
+        aliases.extend([f"{a} {b}" for a, b in zip(words, words[1:])])
+
+    for tag in tags or []:
+        if ":" not in tag:
+            continue
+        _namespace, value = tag.split(":", 1)
+        normalized_value = _normalize_key(value.replace("-", " ").replace("_", " "))
+        if normalized_value:
+            aliases.append(normalized_value)
+            aliases.extend([word for word in normalized_value.split() if len(word) >= 3])
+
+    seen: set[str] = set()
+    result: list[str] = []
+    for alias in aliases:
+        if alias and alias not in seen:
+            seen.add(alias)
+            result.append(alias)
+    return result
 
 
 def parse_atoms(atoms_dir: Path) -> str:
@@ -28,16 +267,36 @@ def parse_atoms(atoms_dir: Path) -> str:
                 title = fm.get("title")
                 question = fm.get("five_wh_one_plus")
                 if title and question:
-                    title_norm = title.strip().lower()
+                    title_norm = _normalize_key(title)
+                    tags = fm.get("tags") or []
                     if title_norm not in atoms_db:
-                        atoms_db[title_norm] = {"title": title.strip(), "atoms": {}}
+                        atoms_db[title_norm] = {
+                            "title": title.strip(),
+                            "aliases": _alias_candidates(title, tags),
+                            "atoms": {},
+                        }
                     atoms_db[title_norm]["atoms"][question.strip().lower()] = {
                         "id": fm.get("id", md_file.stem),
-                        "body": body
+                        "body": body,
                     }
-            except Exception as e:
-                print(f"Failed to parse atom {md_file}: {e}")
+            except Exception as exc:
+                print(f"Failed to parse atom {md_file}: {exc}")
     return json.dumps(atoms_db)
+
+
+def build_atoms_by_view(items: list[CatalogItem], atoms_dir: Path | None = None) -> tuple[dict[str, dict[str, dict]], list[AtomBuildWarning]]:
+    resolver = SldbAtomResolver()
+    atoms_by_view = resolver.build_atoms_by_view(items)
+
+    if atoms_dir:
+        fallback = json.loads(parse_atoms(atoms_dir))
+        for item in items:
+            view_key = item.anchor_id
+            if atoms_by_view.get(view_key):
+                continue
+            atoms_by_view[view_key] = fallback
+
+    return atoms_by_view, resolver.warnings
 
 
 def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: Path | None = None) -> str:
@@ -45,8 +304,17 @@ def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: P
     if base_dir is None:
         base_dir = config_path.parent
 
-    tpl_path = base_dir / catalog.template
-    tpl = tpl_path.read_text(encoding="utf-8")
+    tpl_path = base_dir / catalog.template if catalog.template else None
+    if tpl_path and tpl_path.exists():
+        tpl = tpl_path.read_text(encoding="utf-8")
+    else:
+        builtin_tpl = Path(__file__).resolve().parent / "templates" / "default.html"
+        if builtin_tpl.exists():
+            tpl = builtin_tpl.read_text(encoding="utf-8")
+        elif tpl_path:
+            tpl = tpl_path.read_text(encoding="utf-8")
+        else:
+            raise FileNotFoundError("No catalog template configured and built-in template missing.")
 
     nav = render_nav(catalog.items)
     filters = render_filter_bar(catalog.items)
@@ -63,21 +331,23 @@ def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: P
     if "{{FILTERS}}" not in tpl and "{{SECTIONS}}" in tpl:
         html = html.replace(sections, filters + sections, 1)
 
-    atoms_json = parse_atoms(atoms_dir) if atoms_dir else "{}"
-    if "{{ATOMS_DB}}" in html:
-        html = html.replace("{{ATOMS_DB}}", atoms_json)
-    else:
-        injection = (
-            f"\n<script>window.ATOMS_DB = {atoms_json}; "
-            f"window.SPEC2VIZ_CATALOG = {render_catalog_metadata(catalog, catalog.items)};</script>\n</body>"
-        )
-        html = html.replace("</body>", injection)
+    atoms_by_view, warnings = build_atoms_by_view(catalog.items, atoms_dir=atoms_dir)
+    atoms_by_view_json = json.dumps(atoms_by_view)
+    warnings_json = json.dumps([warning.__dict__ for warning in warnings])
+    catalog_metadata = render_catalog_metadata(catalog, catalog.items)
 
-    if "window.SPEC2VIZ_CATALOG" not in html:
-        html = html.replace(
-            "</body>",
-            f"\n<script>window.SPEC2VIZ_CATALOG = {render_catalog_metadata(catalog, catalog.items)};</script>\n</body>",
-        )
+    if "{{ATOMS_DB}}" in html:
+        html = html.replace("{{ATOMS_DB}}", "{}")
+
+    injection = (
+        "\n<script>"
+        f"window.ATOMS_DB = {{}}; "
+        f"window.ATOMS_BY_VIEW = {atoms_by_view_json}; "
+        f"window.SPEC2VIZ_ATOM_WARNINGS = {warnings_json}; "
+        f"window.SPEC2VIZ_CATALOG = {catalog_metadata};"
+        "</script>\n</body>"
+    )
+    html = html.replace("</body>", injection)
 
     return html
 

@@ -235,7 +235,7 @@ class CatalogLoader:
     def _load_legacy_vistas(self, config_path: Path, data: dict) -> CatalogConfig:
         base_dir = config_path.parent
         catalog = CatalogConfig(
-            template=data["template"],
+            template=data.get("template", "template.html"),
             title=data.get("title") or data.get("brand_name") or "spec2viz Catalog",
             brand_name=data.get("brand_name") or data.get("title") or "spec2viz Catalog",
             project_name=data.get("project_name") or data.get("project") or "spec2viz",

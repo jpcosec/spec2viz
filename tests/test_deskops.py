@@ -2,7 +2,7 @@ import json
 import re
 from pathlib import Path
 
-from spec2viz.deskops import build_deskops, parse_atoms, render_deskops
+from spec2viz.deskops import SldbAtomResolver, build_atoms_by_view, build_deskops, parse_atoms, render_deskops
 
 
 def test_parse_atoms_handles_missing_dir(tmp_path):
@@ -34,6 +34,7 @@ Broken.
 
     payload = json.loads(parse_atoms(atoms_dir))
     assert payload["architecture"]["title"] == "Architecture"
+    assert "architecture" in payload["architecture"]["aliases"]
     assert payload["architecture"]["atoms"]["what"]["id"] == "atom-1"
     assert payload["architecture"]["atoms"]["what"]["body"] == "Body text."
 
@@ -98,7 +99,8 @@ vistas:
     assert '<div class="board puml-board">' in html
     assert "plain html snippet" in html
     assert "Gaps de implementación" in html
-    assert "window.ATOMS_DB" in html
+    assert "window.ATOMS_DB = {}" in html
+    assert "window.ATOMS_BY_VIEW" in html
     assert "because reasons." in html.lower()
 
 
@@ -120,7 +122,31 @@ vistas:
 
     html = render_deskops(base / "vistas.yml", atoms_dir=base / "missing")
     assert "window.ATOMS_DB = {}" in html
+    assert "window.ATOMS_BY_VIEW" in html
     assert html.count("</body>") == 1
+
+
+def test_build_atoms_by_view_uses_store_scoped_payload(monkeypatch, tmp_path):
+    item = type("Item", (), {"anchor_id": "view-1", "source_base_dir": str(tmp_path), "src": None})()
+
+    def fake_discover(self, _item):
+        return Path("/tmp/store-a")
+
+    def fake_load(self, store_path):
+        assert store_path == Path("/tmp/store-a")
+        return {"runtime": {"title": "Runtime", "aliases": ["runtime"], "atoms": {"what": {"id": "atom-1", "body": "Body"}}}}
+
+    monkeypatch.setattr(SldbAtomResolver, "_discover_store_for_item", fake_discover)
+    monkeypatch.setattr(SldbAtomResolver, "_load_store_payload", fake_load)
+
+    atoms_by_view, warnings = build_atoms_by_view([item])
+
+    assert warnings == []
+    assert atoms_by_view == {
+        "view-1": {
+            "runtime": {"title": "Runtime", "aliases": ["runtime"], "atoms": {"what": {"id": "atom-1", "body": "Body"}}}
+        }
+    }
 
 
 def test_build_deskops_writes_output_file(tmp_path):
