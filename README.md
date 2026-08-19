@@ -65,9 +65,26 @@ Build a deskops architecture HTML bundle from a legacy `vistas.yml` registry or 
 spec2viz build --config examples/fixtures/vistas.yml --out out/architecture.html
 spec2viz build --config examples/fixtures/vistas.yml --out out/architecture.html --base-dir examples/fixtures --atoms-dir desk/atoms
 spec2viz build --config catalog.yml --out out/catalog.html
+spec2viz build --config examples/catalog/project.yml --out out/catalog.html
 ```
 
 Hierarchical stores can aggregate other stores and legacy `vistas.yml` leaves, then expose one filtered HTML catalog by category, type, project, and tags.
+
+Minimal `project.yml` / diagram-store shape:
+
+```yaml
+diagram_store:
+  kind: diagram-store
+  template: template.html
+  title: Repo Diagram Catalog
+  brand_name: Repo Diagram Catalog
+  project_name: projects/example
+  stores:
+    - path: projects/example/docs/vistas.yml
+      project: projects/example
+      tags:
+        - domain:crm
+```
 
 ## PlantUML Kind Styling
 
@@ -104,11 +121,12 @@ Notes:
 - `kind` stays semantic; the `style.kinds` block is only a renderer hint
 - if you omit `style.kinds`, PlantUML falls back to the built-in palette for `core`, `boundary`, and `database`
 
-Export the JSON Schema for all supported specs or one diagram type:
+Export the JSON Schema for all supported specs or one diagram/store type:
 
 ```bash
 spec2viz schema > spec2viz.schema.json
 spec2viz schema --type sequence --out sequence.schema.json
+spec2viz schema --type diagram-store --out diagram-store.schema.json
 ```
 
 ## Python API

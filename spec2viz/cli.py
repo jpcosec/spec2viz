@@ -50,11 +50,11 @@ def validate_cmd(paths: list[Path]):
     "--type",
     "diagram_type",
     default=None,
-    help="Limit the schema to one diagram type: sequence, state, component, activity, deployment, or matrix.",
+    help="Limit the schema to one type: sequence, state, component, activity, deployment, matrix, or diagram-store.",
 )
 @click.option("--out", type=click.Path(path_type=Path), help="Write the schema to this file instead of stdout.")
 def schema(diagram_type: str | None, out: Path | None):
-    """Export JSON Schema for all spec types or one diagram type."""
+    """Export JSON Schema for all spec types or one diagram/store type."""
     if out:
         write_json_schema(out, diagram_type=diagram_type)
         click.echo(f"Wrote schema to {out}")

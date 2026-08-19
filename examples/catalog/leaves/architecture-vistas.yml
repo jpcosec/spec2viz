@@ -1,0 +1,10 @@
+template: ../template.html
+vistas:
+  - id: sample-component
+    category: Arquitectura
+    title: Sample Component View
+    nav: Componentes
+    desc: Example component leaf consumed through a hierarchical diagram store.
+    src: sample-component.mmd
+    specs:
+      - sample-component.yml

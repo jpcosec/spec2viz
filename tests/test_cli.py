@@ -172,6 +172,13 @@ def test_schema_outfile(tmp_path):
     assert out.exists()
 
 
+def test_schema_diagram_store_stdout():
+    r = runner.invoke(main, ["schema", "--type", "diagram-store"])
+    assert r.exit_code == 0
+    assert '"title": "DiagramStoreEnvelope"' in r.output
+    assert '"diagram_store"' in r.output
+
+
 def test_schema_invalid_type_fails():
     r = runner.invoke(main, ["schema", "--type", "unknown"])
     assert r.exit_code != 0
@@ -315,6 +322,63 @@ stores:
     assert "data-type=\"component\"" in html
     assert "domain:crm" in html
     assert "Sample Diagram" in html
+
+
+def test_build_command_supports_project_yml_envelope(tmp_path):
+    root = tmp_path
+    child = root / "child"
+    child.mkdir()
+
+    (root / "template.html").write_text(
+        "<html><head><title>{{CATALOG_TITLE}}</title></head><body><aside>{{NAV}}</aside><main>{{FILTERS}}{{SECTIONS}}</main></body></html>",
+        encoding="utf-8",
+    )
+    (child / "view.mmd").write_text("graph TD\nA-->B\n", encoding="utf-8")
+    (child / "spec-state.yml").write_text(
+        "id: spec-state\ntitle: Example State\ntype: state\nversion: '1.0'\ndata:\n  entity: X\n  initial: a\n  states:\n    - id: a\n      label: A\n  transitions: []\n",
+        encoding="utf-8",
+    )
+    (child / "vistas.yml").write_text(
+        """
+template: ../template.html
+vistas:
+  - id: sample-state
+    category: Estados
+    title: State Diagram
+    nav: State
+    desc: Demo leaf
+    src: view.mmd
+    specs:
+      - spec-state.yml
+""",
+        encoding="utf-8",
+    )
+    (root / "project.yml").write_text(
+        """
+diagram_store:
+  kind: diagram-store
+  template: template.html
+  title: Project Catalog
+  brand_name: Project Brand
+  project_name: project/demo
+  stores:
+    - path: child/vistas.yml
+      project: project/demo
+      tags:
+        - domain:workflow
+""",
+        encoding="utf-8",
+    )
+
+    out = root / "out.html"
+    r = runner.invoke(main, ["build", "--config", str(root / "project.yml"), "--out", str(out)])
+    assert r.exit_code == 0, r.output
+    html = out.read_text(encoding="utf-8")
+    assert "Project Catalog" in html
+    assert "Project Brand" in html
+    assert "project/demo" in html
+    assert "domain:workflow" in html
+    assert "data-type=\"state\"" in html
 
 
 def test_build_command_reports_errors(tmp_path):

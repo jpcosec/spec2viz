@@ -14,6 +14,7 @@ from spec2viz.models.deployment import DeploymentDiagram
 from spec2viz.models.matrix import MatrixDiagram
 from spec2viz.models.sequence import SequenceDiagram
 from spec2viz.models.state import StateDiagram
+from spec2viz.models.catalog import DiagramStore, DiagramStoreEnvelope
 
 
 _MODEL_BY_TYPE: dict[DiagramType, Type[BaseDiagram]] = {
@@ -29,6 +30,9 @@ _MODEL_BY_TYPE: dict[DiagramType, Type[BaseDiagram]] = {
 def json_schema(diagram_type: str | DiagramType | None = None) -> dict:
     if diagram_type is None:
         return TypeAdapter(AnyDiagram).json_schema()
+
+    if str(diagram_type) in {"diagram-store", "catalog", "project"}:
+        return DiagramStoreEnvelope.model_json_schema()
 
     resolved_type = DiagramType(diagram_type)
     return _MODEL_BY_TYPE[resolved_type].model_json_schema()

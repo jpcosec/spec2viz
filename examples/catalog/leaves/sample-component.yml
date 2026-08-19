@@ -1,0 +1,16 @@
+id: sample-component
+title: Sample Component
+type: component
+version: '1.0'
+data:
+  nodes:
+    api:
+      label: API
+      kind: service
+    crm:
+      label: CRM
+      kind: integration
+  edges:
+    - from: api
+      to: crm
+      relation: syncs

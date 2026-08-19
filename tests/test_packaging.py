@@ -87,7 +87,11 @@ def test_every_model_field_has_a_description():
 
 
 def test_examples_render_successfully(tmp_path):
-    example_paths = sorted(Path("examples").glob("**/*.yml"))
+    example_paths = [
+        path
+        for path in sorted(Path("examples").glob("**/*.yml"))
+        if "/catalog/" not in path.as_posix() and path.name not in {"project.yml", "vistas.yml"}
+    ]
 
     assert example_paths
 
