@@ -2,7 +2,7 @@ import json
 import re
 from pathlib import Path
 
-from spec2viz.deskops import SldbAtomResolver, build_atoms_by_view, build_deskops, parse_atoms, render_deskops
+from spec2viz.deskops import SldbAtomResolver, build_atoms_by_view, build_coverage_by_view, build_deskops, parse_atoms, render_deskops
 
 
 def test_parse_atoms_handles_missing_dir(tmp_path):
@@ -101,6 +101,7 @@ vistas:
     assert "Gaps de implementación" in html
     assert "window.ATOMS_DB = {}" in html
     assert "window.ATOMS_BY_VIEW" in html
+    assert "window.COVERAGE_BY_VIEW" in html
     assert "because reasons." in html.lower()
 
 
@@ -123,7 +124,90 @@ vistas:
     html = render_deskops(base / "vistas.yml", atoms_dir=base / "missing")
     assert "window.ATOMS_DB = {}" in html
     assert "window.ATOMS_BY_VIEW" in html
+    assert "window.COVERAGE_BY_VIEW" in html
     assert html.count("</body>") == 1
+
+
+def test_build_coverage_by_view_projects_kgdb_payload(tmp_path):
+    item = type(
+        "Item",
+        (),
+        {
+            "anchor_id": "view-1",
+            "source_base_dir": str(tmp_path),
+            "src": "docs/view.html#d1",
+            "diagram_type": "component",
+            "title": "View 1",
+            "project": "demo/project",
+        },
+    )()
+    snapshot_path = tmp_path / ".sldb/runtime/knowledge_graph.kg.json"
+    snapshot_path.parent.mkdir(parents=True)
+    snapshot_path.write_text(
+        json.dumps(
+            {
+                "nodes": [
+                    {
+                        "identity": {"node_id": "view:view-1", "node_type": "view"},
+                        "semantics": {
+                            "view_id": "view-1",
+                            "diagram_type": "component",
+                            "title": "Projected View",
+                            "source_ref": "docs/view.html#d1",
+                        },
+                        "edges": [
+                            {
+                                "target_id": "diagram_element:view-1:node:runtime",
+                                "relation_type": "contains",
+                                "metadata": {},
+                            }
+                        ],
+                    },
+                    {
+                        "identity": {"node_id": "diagram_element:view-1:node:runtime", "node_type": "diagram_element"},
+                        "semantics": {
+                            "view_id": "view-1",
+                            "diagram_type": "component",
+                            "element_id": "node:runtime",
+                            "element_kind": "node",
+                            "label": "Runtime",
+                        },
+                        "edges": [
+                            {
+                                "target_id": "facet:what",
+                                "relation_type": "expects_facet",
+                                "metadata": {"facet": "what", "source_field": "label"},
+                            },
+                            {
+                                "target_id": "atom:runtime",
+                                "relation_type": "covers_facet",
+                                "metadata": {
+                                    "atom_id": "runtime",
+                                    "facet": "what",
+                                    "score": 1.0,
+                                    "match_basis": "title",
+                                    "evidence": 'label="Runtime" matched atom.title="Runtime"',
+                                },
+                            },
+                        ],
+                    },
+                    {
+                        "identity": {"node_id": "facet:what", "node_type": "facet"},
+                        "semantics": {"facet": "what"},
+                        "edges": [],
+                    },
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    payload, warnings = build_coverage_by_view([item], kgdb_snapshot_path=snapshot_path)
+
+    assert warnings == []
+    assert payload["view-1"]["summary"]["elements_fully_covered"] == 1
+    assert payload["view-1"]["elements"][0]["covered_facets"][0]["atom_id"] == "runtime"
+    assert payload["view-1"]["elements"][0]["missing_facets"] == []
 
 
 def test_build_atoms_by_view_uses_store_scoped_payload(monkeypatch, tmp_path):

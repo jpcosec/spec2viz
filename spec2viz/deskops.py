@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from statistics import mean
 
 import json
 import re
@@ -21,6 +22,12 @@ from spec2viz.orchestrator import (
 
 @dataclass
 class AtomBuildWarning:
+    scope: str
+    message: str
+
+
+@dataclass
+class CoverageBuildWarning:
     scope: str
     message: str
 
@@ -299,6 +306,203 @@ def build_atoms_by_view(items: list[CatalogItem], atoms_dir: Path | None = None)
     return atoms_by_view, resolver.warnings
 
 
+def build_coverage_by_view(
+    items: list[CatalogItem], kgdb_snapshot_path: Path | None = None
+) -> tuple[dict[str, dict], list[CoverageBuildWarning]]:
+    warnings: list[CoverageBuildWarning] = []
+    snapshot_path = kgdb_snapshot_path or _discover_snapshot_path(items)
+    if snapshot_path is None or not snapshot_path.exists():
+        warnings.append(CoverageBuildWarning(scope="kgdb", message="KGDB snapshot not found; coverage projection is empty."))
+        return {item.anchor_id: _empty_coverage_payload(item) for item in items}, warnings
+
+    try:
+        snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        warnings.append(CoverageBuildWarning(scope=str(snapshot_path), message=f"Failed to read KGDB snapshot: {exc}"))
+        return {item.anchor_id: _empty_coverage_payload(item) for item in items}, warnings
+
+    nodes = {node.get("identity", {}).get("node_id"): node for node in snapshot.get("nodes", []) if node.get("identity", {}).get("node_id")}
+    views_by_source_ref = {}
+    for node_id, node in nodes.items():
+        if not node_id or node.get("identity", {}).get("node_type") != "view":
+            continue
+        source_ref = str(node.get("semantics", {}).get("source_ref") or "").strip()
+        if source_ref:
+            views_by_source_ref[source_ref] = node
+
+    payload: dict[str, dict] = {}
+    project_root = _project_root_from_snapshot(snapshot_path)
+    for item in items:
+        view_key = item.anchor_id
+        source_ref = _item_source_ref(item, project_root)
+        view_node = views_by_source_ref.get(source_ref)
+        if view_node is None:
+            payload[view_key] = _empty_coverage_payload(item)
+            continue
+        payload[view_key] = _project_view_payload(item, view_node, nodes)
+
+    return payload, warnings
+
+
+def _discover_snapshot_path(items: list[CatalogItem]) -> Path | None:
+    candidates: list[Path] = []
+    for item in items:
+        base = Path(item.source_base_dir).resolve()
+        candidates.extend([base, *base.parents])
+    seen: set[Path] = set()
+    for candidate in candidates:
+        if candidate in seen:
+            continue
+        seen.add(candidate)
+        snapshot = candidate / ".sldb" / "runtime" / "knowledge_graph.kg.json"
+        if snapshot.exists():
+            return snapshot
+    return None
+
+
+def _project_root_from_snapshot(snapshot_path: Path) -> Path:
+    return snapshot_path.resolve().parents[2]
+
+
+def _item_source_ref(item: CatalogItem, project_root: Path) -> str:
+    if not item.src:
+        return ""
+    src_value = item.src
+    src_path_text, fragment = src_value.split("#", 1) if "#" in src_value else (src_value, None)
+    resolved = (Path(item.source_base_dir) / src_path_text).resolve()
+    try:
+        relative = resolved.relative_to(project_root).as_posix()
+    except ValueError:
+        relative = resolved.as_posix()
+    return f"{relative}#{fragment}" if fragment else relative
+
+
+def _empty_coverage_payload(item: CatalogItem) -> dict:
+    return {
+        "view_id": item.anchor_id,
+        "view_node_id": None,
+        "diagram_type": item.diagram_type or "",
+        "title": item.title,
+        "source_ref": "",
+        "scope": item.project or "",
+        "summary": {
+            "total_elements": 0,
+            "elements_fully_covered": 0,
+            "avg_coverage_ratio": 0.0,
+            "expected_facet_count": 0,
+            "covered_facet_count": 0,
+            "missing_facet_count": 0,
+        },
+        "elements": [],
+    }
+
+
+def _project_view_payload(item: CatalogItem, view_node: dict, nodes: dict[str, dict]) -> dict:
+    semantics = view_node.get("semantics", {})
+    elements: list[dict] = []
+    for edge in sorted(view_node.get("edges", []), key=lambda edge: edge.get("target_id", "")):
+        if edge.get("relation_type") != "contains":
+            continue
+        element_node = nodes.get(edge.get("target_id"))
+        if not element_node:
+            continue
+        element_payload = _project_element_payload(element_node, nodes)
+        elements.append(element_payload)
+
+    fully_covered = sum(1 for element in elements if element["expected_facets"] and not element["missing_facets"])
+    coverage_ratios = [element["coverage_ratio"] for element in elements]
+    expected_count = sum(len(element["expected_facets"]) for element in elements)
+    covered_count = sum(len({entry["facet"] for entry in element["covered_facets"]}) for element in elements)
+    missing_count = sum(len(element["missing_facets"]) for element in elements)
+    return {
+        "view_id": item.anchor_id,
+        "view_node_id": view_node.get("identity", {}).get("node_id"),
+        "diagram_type": semantics.get("diagram_type") or item.diagram_type or "",
+        "title": semantics.get("title") or item.title,
+        "source_ref": semantics.get("source_ref") or item.src or "",
+        "scope": semantics.get("scope") or item.project or "",
+        "summary": {
+            "total_elements": len(elements),
+            "elements_fully_covered": fully_covered,
+            "avg_coverage_ratio": round(mean(coverage_ratios), 4) if coverage_ratios else 0.0,
+            "expected_facet_count": expected_count,
+            "covered_facet_count": covered_count,
+            "missing_facet_count": missing_count,
+        },
+        "elements": sorted(elements, key=lambda element: element["element_id"]),
+    }
+
+
+def _project_element_payload(element_node: dict, nodes: dict[str, dict]) -> dict:
+    semantics = element_node.get("semantics", {})
+    expected_facets: list[dict] = []
+    covered_facets: list[dict] = []
+    for edge in element_node.get("edges", []):
+        relation_type = edge.get("relation_type")
+        metadata = edge.get("metadata", {})
+        if relation_type == "expects_facet":
+            facet_node = nodes.get(edge.get("target_id"))
+            facet_name = metadata.get("facet") or facet_node.get("semantics", {}).get("facet") if facet_node else None
+            if not facet_name:
+                continue
+            expected_facets.append(
+                {
+                    "facet": facet_name,
+                    "facet_node_id": edge.get("target_id"),
+                    "source_field": metadata.get("source_field") or _source_field_for(semantics, facet_name),
+                }
+            )
+        if relation_type == "covers_facet":
+            facet_name = metadata.get("facet")
+            atom_id = metadata.get("atom_id")
+            if not facet_name or not atom_id:
+                continue
+            covered_facets.append(
+                {
+                    "facet": facet_name,
+                    "facet_node_id": f"facet:{facet_name}",
+                    "atom_id": atom_id,
+                    "atom_node_id": edge.get("target_id"),
+                    "score": metadata.get("score", 0.0),
+                    "match_basis": metadata.get("match_basis"),
+                    "evidence": metadata.get("evidence"),
+                }
+            )
+
+    expected_facets = sorted(expected_facets, key=lambda item: item["facet"])
+    covered_facets = sorted(covered_facets, key=lambda item: (item["facet"], item["atom_id"]))
+    covered_names = {item["facet"] for item in covered_facets}
+    missing_facets = [item for item in expected_facets if item["facet"] not in covered_names]
+    ratio = round(len({item["facet"] for item in covered_facets if item["facet"] in {entry['facet'] for entry in expected_facets}}) / len(expected_facets), 4) if expected_facets else 0.0
+    return {
+        "element_id": semantics.get("element_id") or "",
+        "element_node_id": element_node.get("identity", {}).get("node_id"),
+        "element_kind": semantics.get("element_kind") or "",
+        "label": semantics.get("label"),
+        "source": semantics.get("source"),
+        "target": semantics.get("target"),
+        "expected_facets": expected_facets,
+        "covered_facets": covered_facets,
+        "missing_facets": missing_facets,
+        "coverage_ratio": ratio,
+    }
+
+
+def _source_field_for(semantics: dict, facet: str) -> str:
+    diagram_type = semantics.get("diagram_type")
+    element_kind = semantics.get("element_kind")
+    mapping = {
+        ("component", "node", "what"): "label",
+        ("component", "edge", "how"): "semantics.relation",
+        ("component", "edge", "why"): "semantics.relation",
+        ("state", "state", "what"): "label",
+        ("state", "transition", "how"): "semantics.action",
+        ("state", "transition", "when"): "semantics.on",
+        ("state", "transition", "why"): "semantics.guard",
+    }
+    return mapping.get((diagram_type, element_kind, facet), "label")
+
+
 def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: Path | None = None) -> str:
     catalog = load_catalog(config_path)
     if base_dir is None:
@@ -332,8 +536,11 @@ def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: P
         html = html.replace(sections, filters + sections, 1)
 
     atoms_by_view, warnings = build_atoms_by_view(catalog.items, atoms_dir=atoms_dir)
+    coverage_by_view, coverage_warnings = build_coverage_by_view(catalog.items)
     atoms_by_view_json = json.dumps(atoms_by_view)
+    coverage_by_view_json = json.dumps(coverage_by_view)
     warnings_json = json.dumps([warning.__dict__ for warning in warnings])
+    coverage_warnings_json = json.dumps([warning.__dict__ for warning in coverage_warnings])
     catalog_metadata = render_catalog_metadata(catalog, catalog.items)
 
     if "{{ATOMS_DB}}" in html:
@@ -343,7 +550,9 @@ def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: P
         "\n<script>"
         f"window.ATOMS_DB = {{}}; "
         f"window.ATOMS_BY_VIEW = {atoms_by_view_json}; "
+        f"window.COVERAGE_BY_VIEW = {coverage_by_view_json}; "
         f"window.SPEC2VIZ_ATOM_WARNINGS = {warnings_json}; "
+        f"window.SPEC2VIZ_COVERAGE_WARNINGS = {coverage_warnings_json}; "
         f"window.SPEC2VIZ_CATALOG = {catalog_metadata};"
         "</script>\n</body>"
     )
