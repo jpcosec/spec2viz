@@ -952,6 +952,66 @@
       sections.forEach(section => observer.observe(section));
     }
 
+    function calculateCoverage() {
+      let totalNodes = 0;
+      let totalMatched = 0;
+      
+      document.querySelectorAll('section.catalog-item').forEach(section => {
+        const board = section.querySelector('.board');
+        if (!board) return;
+        const nodes = Array.from(board.querySelectorAll('.mermaid .node, .mermaid g.classGroup, .mermaid g.stateGroup, .mermaid rect.actor, .mermaid g.cluster'));
+        if (nodes.length === 0) return;
+        
+        let sectionNodes = 0;
+        let matched = 0;
+        nodes.forEach(node => {
+          const labelEl = node.querySelector('.nodeLabel, .label, foreignObject, text') || node;
+          const text = (labelEl.innerText || labelEl.textContent || '').trim();
+          if (!text) return;
+          sectionNodes++;
+          if (findAtomData(text, node)) matched++;
+        });
+        
+        if (sectionNodes === 0) return;
+        totalNodes += sectionNodes;
+        totalMatched += matched;
+        
+        const pct = Math.round((matched / sectionNodes) * 100);
+        const metaDiv = section.querySelector('.section-meta');
+        if (metaDiv) {
+          const badge = document.createElement('span');
+          badge.className = 'meta-badge coverage';
+          badge.style.marginLeft = 'auto';
+          badge.style.border = '1px solid currentColor';
+          badge.style.background = 'rgba(0,0,0,0.2)';
+          badge.style.fontWeight = '500';
+          
+          if (pct === 100) badge.style.color = '#4ade80';
+          else if (pct >= 50) badge.style.color = 'var(--amber)';
+          else badge.style.color = '#f87171';
+          
+          badge.textContent = `Atoms: ${pct}%`;
+          badge.title = `${matched} de ${sectionNodes} elementos documentados`;
+          metaDiv.appendChild(badge);
+        }
+      });
+      
+      const sidebarScroll = document.querySelector('.sidebar-scroll');
+      if (sidebarScroll && totalNodes > 0) {
+        const globalPct = Math.round((totalMatched / totalNodes) * 100);
+        const color = globalPct === 100 ? '#4ade80' : globalPct >= 50 ? 'var(--amber)' : '#f87171';
+        const html = `
+        <div class="sidebar-card" style="margin-top: 14px;">
+          <div class="sidebar-card-title">Atom Coverage</div>
+          <div style="font-size: 24px; font-weight: 300; font-family: 'JetBrains Mono', monospace; margin: 8px 0; color: ${color};">
+            ${globalPct}%
+          </div>
+          <div class="sidebar-note">${totalMatched} de ${totalNodes} elementos del catálogo tienen su conocimiento 5WH1+ documentado en desk/atoms.</div>
+        </div>`;
+        sidebarScroll.insertAdjacentHTML('beforeend', html);
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', async () => {
       buildNavAccordion();
       initAnnotations();
@@ -970,6 +1030,7 @@
       bindMermaidNodes();
       highlightActiveNav();
       applyCatalogFilters();
+      calculateCoverage();
     });
   </script>
 </body>
