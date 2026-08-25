@@ -10,7 +10,7 @@ from spec2viz import json_schema, load, render_to_file, validate, write_json_sch
 from spec2viz.exceptions import Spec2VizError
 
 
-DIAGRAM_RENDERERS = ["plantuml", "mermaid", "vega", "d2", "antonia-html", "json"]
+DIAGRAM_RENDERERS = ["plantuml", "mermaid", "vega", "d2", "antonia-html", "tree", "graph", "json"]
 
 
 def _render_paths(paths: list[Path], out: Path, renderer: str | None):
@@ -32,6 +32,36 @@ def _validate_paths(paths: list[Path]):
         except Spec2VizError as exc:
             click.echo(f"{path.name}: ERROR: {exc}", err=True)
             sys.exit(1)
+
+
+def _lint_paths(paths: list[Path]):
+    """Lint mermaid text files (.mmd) or render specs to mermaid then lint."""
+    from spec2viz.linters.mermaid import lint_mermaid
+
+    had_issue = False
+    for path in paths:
+        try:
+            if path.suffix == ".mmd":
+                text = path.read_text(encoding="utf-8")
+            else:
+                from spec2viz import compile_ir, load
+                from spec2viz.renderers import render
+
+                text = render(compile_ir(load(path)), "mermaid")
+            problems = lint_mermaid(text)
+        except Spec2VizError as exc:
+            click.echo(f"{path.name}: ERROR: {exc}", err=True)
+            had_issue = True
+            continue
+        if problems:
+            had_issue = True
+            click.echo(f"{path.name}: {len(problems)} issue(s)", err=True)
+            for p in problems:
+                click.echo(f"  - {p}", err=True)
+        else:
+            click.echo(f"{path.name}: OK")
+    if had_issue:
+        sys.exit(1)
 
 
 def _write_schema(diagram_type: str | None, out: Path | None):
@@ -137,6 +167,20 @@ def validate_cmd(paths: list[Path]):
     _validate_paths(paths)
 
 
+@diagram.command("lint", short_help="Lint rendered mermaid for browser-breaking syntax.")
+@click.argument("paths", nargs=-1, type=click.Path(exists=True, path_type=Path), metavar="SPEC_OR_MMD ...")
+def diagram_lint(paths: list[Path]):
+    """Lint .mmd files, or render specs to mermaid and lint the result."""
+    _lint_paths(paths)
+
+
+@main.command("lint", short_help="Lint rendered mermaid for browser-breaking syntax.")
+@click.argument("paths", nargs=-1, type=click.Path(exists=True, path_type=Path), metavar="SPEC_OR_MMD ...")
+def lint_cmd(paths: list[Path]):
+    """Legacy alias for `diagram lint`."""
+    _lint_paths(paths)
+
+
 @diagram.command("schema", short_help="Export JSON Schema for semantic diagram specs.")
 @click.option(
     "--type",
@@ -169,6 +213,67 @@ def catalog_schema(out: Path | None):
     """Export JSON Schema for diagram-store / project.yml configs."""
     _write_schema("diagram-store", out)
 
+
+@catalog.command("serve", short_help="Serve catalog locally with auto-save for annotations.")
+@click.option("--html", required=True, type=click.Path(exists=True, path_type=Path), help="Path to the built architecture.html to serve.")
+@click.option("--port", default=8000, show_default=True, type=int, help="Port to serve on.")
+def catalog_serve(html: Path, port: int):
+    """Serve the built catalog and provide a POST endpoint to auto-save annotations."""
+    import http.server
+    import socketserver
+    
+    class Handler(http.server.SimpleHTTPRequestHandler):
+        def do_GET(self):
+            if self.path == '/' or self.path.startswith('/index'):
+                self.send_response(200)
+                self.send_header('Content-type', 'text/html')
+                self.end_headers()
+                content = html.read_text(encoding='utf-8')
+                script = '''<script>
+                // Auto-save logic overrides annoWriteStore
+                if (typeof annoWriteStore === "function") {
+                    const _oldAnnoWriteStore = annoWriteStore;
+                    window.annoWriteStore = function(items) {
+                        _oldAnnoWriteStore(items);
+                        fetch('/api/annotations', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify(items)
+                        }).then(r => console.log('Auto-saved to disk', r.status));
+                    };
+                }
+                </script></body>'''
+                content = content.replace('</body>', script)
+                self.wfile.write(content.encode('utf-8'))
+            else:
+                self.send_response(404)
+                self.end_headers()
+
+        def do_POST(self):
+            if self.path == '/api/annotations':
+                content_len = int(self.headers.get('Content-Length', 0))
+                post_body = self.rfile.read(content_len)
+                try:
+                    data = json.loads(post_body)
+                    out_path = html.parent / 'comentarios-arquitectura.json'
+                    out_path.write_text(json.dumps(data, indent=2), encoding='utf-8')
+                    self.send_response(200)
+                    self.end_headers()
+                except Exception as e:
+                    click.echo(f"Error saving: {e}")
+                    self.send_response(400)
+                    self.end_headers()
+            else:
+                self.send_response(404)
+                self.end_headers()
+
+    with socketserver.TCPServer(("127.0.0.1", port), Handler) as httpd:
+        click.echo(f"🚀 Serving catalog at http://localhost:{port}")
+        click.echo(f"💾 Auto-saving annotations to: {html.parent / 'comentarios-arquitectura.json'}")
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            click.echo("\nStopping server...")
 
 @catalog.command("build", short_help="Build catalog HTML from a vistas registry or diagram store.")
 @click.option("--config", required=True, type=click.Path(exists=True, path_type=Path), help="Path to a legacy vistas.yml registry or a hierarchical diagram store config.")
