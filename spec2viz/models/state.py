@@ -8,6 +8,7 @@ class StateModel(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(description="Stable state identifier referenced by transitions.")
     label: str = Field(description="Display label rendered for the state.")
+    contains: list[str] | None = Field(default=None, description="Optional child states for composite (nested) states.")
 
 
 class TransitionModel(BaseModel):

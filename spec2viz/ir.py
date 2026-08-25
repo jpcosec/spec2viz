@@ -78,6 +78,7 @@ class SequenceIR:
 class StateNode:
     id: str
     label: str
+    contains: list[str] | None = None
 
 
 @dataclass
