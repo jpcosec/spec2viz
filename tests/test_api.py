@@ -158,7 +158,7 @@ def test_render_to_file_deployment(tmp_path):
 
 def test_render_to_file_component(tmp_path):
     p = render_to_file(FIXTURES / "component.quotation.yml", out=tmp_path)
-    assert p.suffix == ".puml"
+    assert p.name.endswith(".graph.html")
     assert "QuotationFlow" in p.read_text()
 
 

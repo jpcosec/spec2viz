@@ -83,6 +83,7 @@ diagram_store:
   template: template.html
   title: Repo Diagram Catalog
   brand_name: Repo Diagram Catalog
+  brand_subtitle: Visor transversal de diagramas del repo Example
   project_name: projects/example
   stores:
     - path: projects/example/docs/vistas.yml
@@ -90,6 +91,13 @@ diagram_store:
       tags:
         - domain:crm
 ```
+
+Template rule for new projects:
+
+- keep `template: template.html` in the catalog config
+- do **not** create `template.html` locally unless you want an explicit override
+- when the file is absent, spec2viz falls back to the built-in template at `spec2viz/templates/default.html`
+- when the file exists, spec2viz now prints a warning that a local override is active
 
 ## PlantUML Kind Styling
 

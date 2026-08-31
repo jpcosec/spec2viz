@@ -9,6 +9,7 @@ from spec2viz.renderers.vega import VegaRenderer
 from spec2viz.renderers.mermaid import MermaidRenderer
 from spec2viz.renderers.d2 import D2Renderer
 from spec2viz.renderers.antonia import AntoniaHtmlRenderer
+from spec2viz.renderers.graph_html import GraphRenderer
 from spec2viz.renderers import JsonRenderer
 from spec2viz.exceptions import RenderError
 from spec2viz.ir import DeploymentArtifact, DeploymentConnection, DeploymentIR, DeploymentNode, SequenceIR, MatrixIR
@@ -334,6 +335,62 @@ def test_json_renderer_handles_model_and_plain_dict():
     plain_payload = JsonRenderer().render({"ok": True})
     assert isinstance(model_payload, dict)
     assert plain_payload == {"ok": True}
+
+
+def test_graph_html_renderer_is_standalone_and_depth_aware():
+    out = GraphRenderer().render(_ir("component.quotation.yml"))
+    assert "Hierarchical Tree" in out
+    assert "https://d3js.org" not in out
+    assert 'data-depth="${depth}"' in out
+    assert "const totalNodes = Object.keys(NODES).length;" in out
+    assert "const DEFAULT_EXPANDED_DEPTH = 2;" in out
+
+
+def test_graph_html_renderer_rejects_wrong_ir():
+    with pytest.raises(RenderError):
+        GraphRenderer().render(_ir("sequence.create-quotation.yml"))
+
+
+# ── Mermaid linter ─────────────────────────────────────────────────
+
+
+def test_mermaid_return_arrow_is_valid_and_lints_clean():
+    from spec2viz.linters.mermaid import lint_mermaid
+
+    out = MermaidRenderer().render(_ir("sequence.create-quotation.yml"))
+    assert "<<--" not in out  # invalid mermaid must never be emitted
+    assert lint_mermaid(out) == []
+
+
+def test_linter_flags_invalid_return_arrow():
+    from spec2viz.linters.mermaid import lint_mermaid
+
+    bad = "sequenceDiagram\n    A<<--B: reply"
+    problems = lint_mermaid(bad)
+    assert any("<<--" in p or "invalid sequence arrow" in p for p in problems)
+
+
+def test_linter_flags_raw_angle_brackets():
+    from spec2viz.linters.mermaid import lint_mermaid
+
+    bad = "sequenceDiagram\n    A->>B: GET path?x=<id>"
+    assert lint_mermaid(bad, check_html=True)
+    assert lint_mermaid(bad, check_html=False) == []
+
+
+def test_render_to_file_sanitizes_mermaid_messages(tmp_path):
+    from spec2viz import render_to_file
+
+    spec = tmp_path / "s.yml"
+    spec.write_text(
+        'id: s\ntitle: S\ntype: sequence\nversion: "0.1"\n'
+        "data:\n  participants:\n    - id: A\n      kind: actor\n"
+        "    - id: B\n      kind: component\n"
+        "  messages:\n    - from: A\n      to: B\n      message: get <id> now\n"
+    )
+    out = render_to_file(spec, out=tmp_path, renderer="mermaid")
+    text = out.read_text(encoding="utf-8")
+    assert "#lt;id#gt;" in text
 
 
 # ── Dispatch ──────────────────────────────────────────────────────────────────

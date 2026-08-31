@@ -96,7 +96,7 @@ def test_render_component(tmp_path):
         ["render", str(FIXTURES / "component.quotation.yml"), "--out", str(tmp_path)],
     )
     assert r.exit_code == 0
-    assert (tmp_path / "component.quotation.puml").exists()
+    assert (tmp_path / "component.quotation.graph.html").exists()
 
 
 def test_render_override(tmp_path):
@@ -367,6 +367,48 @@ stores:
     assert "data-type=\"component\"" in html
     assert "domain:crm" in html
     assert "Sample Diagram" in html
+
+
+def test_build_command_supports_brand_subtitle_in_builtin_template(tmp_path):
+    root = tmp_path
+    (root / "view.mmd").write_text("graph TD\nA-->B\n", encoding="utf-8")
+    (root / "spec-component.yml").write_text(
+        "id: spec-component\ntitle: Example\ntype: component\nversion: '1.0'\ndata:\n  nodes: {}\n  edges: []\n",
+        encoding="utf-8",
+    )
+    (root / "catalog.yml").write_text(
+        "template: missing-template.html\ntitle: Repo Catalog\nbrand_name: Diagram Catalog\nbrand_subtitle: Repo subtitle from config\nvistas:\n  - id: sample\n    category: Arquitectura\n    title: Sample Diagram\n    src: view.mmd\n    specs:\n      - spec-component.yml\n",
+        encoding="utf-8",
+    )
+
+    out = root / "out.html"
+    r = runner.invoke(main, ["build", "--config", str(root / "catalog.yml"), "--out", str(out)])
+    assert r.exit_code == 0, r.output
+    html = out.read_text(encoding="utf-8")
+    assert "Repo subtitle from config" in html
+    assert "Visor transversal de diagramas de spec2viz" not in html
+
+
+def test_build_command_warns_on_local_template_override(tmp_path):
+    root = tmp_path
+    (root / "template.html").write_text(
+        "<html><head><title>{{CATALOG_TITLE}}</title></head><body><aside>{{NAV}}</aside><main>{{FILTERS}}{{SECTIONS}}</main></body></html>",
+        encoding="utf-8",
+    )
+    (root / "view.mmd").write_text("graph TD\nA-->B\n", encoding="utf-8")
+    (root / "spec-component.yml").write_text(
+        "id: spec-component\ntitle: Example\ntype: component\nversion: '1.0'\ndata:\n  nodes: {}\n  edges: []\n",
+        encoding="utf-8",
+    )
+    (root / "catalog.yml").write_text(
+        "template: template.html\nvistas:\n  - id: sample\n    category: Arquitectura\n    title: Sample Diagram\n    src: view.mmd\n    specs:\n      - spec-component.yml\n",
+        encoding="utf-8",
+    )
+
+    out = root / "out.html"
+    r = runner.invoke(main, ["build", "--config", str(root / "catalog.yml"), "--out", str(out)])
+    assert r.exit_code == 0, r.output
+    assert "using local catalog template override" in r.output
 
 
 def test_build_command_supports_project_yml_envelope(tmp_path):

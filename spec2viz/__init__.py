@@ -57,6 +57,10 @@ def render_to_file(
     if isinstance(result, dict):
         output_path.write_text(json.dumps(result, indent=2))
     else:
+        if renderer_name == "mermaid":
+            from spec2viz.linters.mermaid import assert_mermaid_ok
+
+            assert_mermaid_ok(result, source=path.name)
         output_path.write_text(result)
 
     return output_path

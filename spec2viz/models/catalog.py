@@ -42,6 +42,7 @@ class DiagramStore(BaseModel):
     title: str | None = None
     catalog_title: str | None = None
     brand_name: str | None = None
+    brand_subtitle: str | None = None
     project_name: str | None = None
     project: str | None = None
     category: str | None = None

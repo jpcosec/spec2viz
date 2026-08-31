@@ -510,6 +510,7 @@ def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: P
 
     tpl_path = base_dir / catalog.template if catalog.template else None
     if tpl_path and tpl_path.exists():
+        print(f"spec2viz: using local catalog template override: {tpl_path}", file=sys.stderr)
         tpl = tpl_path.read_text(encoding="utf-8")
     else:
         builtin_tpl = Path(__file__).resolve().parent / "templates" / "default.html"
@@ -529,6 +530,7 @@ def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: P
     html = html.replace("{{SECTIONS}}", sections)
     html = html.replace("{{PROJECT_NAME}}", catalog.project_name)
     html = html.replace("{{BRAND_NAME}}", catalog.brand_name)
+    html = html.replace("{{BRAND_SUBTITLE}}", catalog.brand_subtitle)
     html = html.replace("{{CATALOG_TITLE}}", catalog.title)
     html = html.replace("{{CATALOG_METADATA}}", render_catalog_metadata(catalog, catalog.items))
 

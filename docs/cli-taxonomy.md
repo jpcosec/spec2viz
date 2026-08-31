@@ -48,6 +48,10 @@ Legacy top-level commands remain as aliases:
 ### Catalog source
 - legacy leaf registry: `vistas.yml`
 - hierarchical store root: `project.yml` or `catalog.yml` with `diagram_store`
+- template policy for new projects:
+  - keep `template: template.html` in config
+  - do not materialize `template.html` locally unless you need an explicit override
+  - absence of the file means: use the built-in fallback template
 
 ## Output taxonomy
 

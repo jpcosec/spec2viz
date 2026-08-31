@@ -7,6 +7,8 @@ from spec2viz.renderers.vega     import VegaRenderer
 from spec2viz.renderers.mermaid  import MermaidRenderer
 from spec2viz.renderers.d2       import D2Renderer
 from spec2viz.renderers.antonia  import AntoniaHtmlRenderer
+from spec2viz.renderers.tree     import TreeRenderer
+from spec2viz.renderers.graph_html import GraphRenderer
 from spec2viz.exceptions import RenderError
 
 class JsonRenderer:
@@ -21,6 +23,8 @@ RENDERER_MAP = {
     "mermaid":  MermaidRenderer,
     "d2":       D2Renderer,
     "antonia-html": AntoniaHtmlRenderer,
+    "tree":     TreeRenderer,
+    "graph":    GraphRenderer,
     "json":     JsonRenderer,
 }
 
@@ -30,13 +34,15 @@ EXT_MAP = {
     "mermaid":  ".mmd",
     "d2":       ".d2",
     "antonia-html": ".html",
+    "tree":     ".tree.html",
+    "graph":    ".graph.html",
     "json":     ".artifact.json",
 }
 
 DEFAULT_RENDERER = {
     SequenceIR:   "plantuml",
     StateIR:      "plantuml",
-    ComponentIR:  "plantuml",
+    ComponentIR:  "graph",
     ActivityIR:   "plantuml",
     DeploymentIR: "plantuml",
     MatrixIR:     "vega",

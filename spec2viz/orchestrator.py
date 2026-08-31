@@ -164,6 +164,7 @@ class CatalogConfig:
     template: str
     title: str = "spec2viz Catalog"
     brand_name: str = "spec2viz Catalog"
+    brand_subtitle: str = "Visor transversal de diagramas de spec2viz"
     project_name: str = "spec2viz"
     html_artifact: str = ""
     items: list[CatalogItem] = field(default_factory=list)
@@ -200,6 +201,7 @@ class CatalogLoader:
             template=template,
             title=data.get("title") or data.get("catalog_title") or "spec2viz Catalog",
             brand_name=data.get("brand_name") or data.get("title") or "spec2viz Catalog",
+            brand_subtitle=data.get("brand_subtitle") or "Visor transversal de diagramas de spec2viz",
             project_name=data.get("project_name") or data.get("project") or "spec2viz",
             html_artifact=data.get("html_artifact", ""),
         )
@@ -238,6 +240,7 @@ class CatalogLoader:
             template=data.get("template", "template.html"),
             title=data.get("title") or data.get("brand_name") or "spec2viz Catalog",
             brand_name=data.get("brand_name") or data.get("title") or "spec2viz Catalog",
+            brand_subtitle=data.get("brand_subtitle") or "Visor transversal de diagramas de spec2viz",
             project_name=data.get("project_name") or data.get("project") or "spec2viz",
             html_artifact=data.get("html_artifact", ""),
         )
@@ -538,6 +541,7 @@ def render_catalog_metadata(catalog: CatalogConfig, items: list[CatalogItem]) ->
     payload = {
         "title": catalog.title,
         "brand_name": catalog.brand_name,
+        "brand_subtitle": catalog.brand_subtitle,
         "project_name": catalog.project_name,
         "item_count": len(items),
     }
@@ -580,6 +584,11 @@ def _read_item_source(item: CatalogItem) -> str:
         style = "" if is_markup else ' style="font-family:\'JetBrains Mono\',monospace; font-size:12px; white-space:pre-wrap; color:var(--bone-dim);"'
         indented = "\n".join(indent + line for line in content.splitlines())
         return f'  <div class="board"{style}>\n{indented}\n  </div>'
+    # Lint the raw mermaid before it is embedded, so a broken .mmd fails the
+    # build loudly instead of rendering a blank diagram in the browser.
+    from spec2viz.linters.mermaid import assert_mermaid_ok
+
+    assert_mermaid_ok(content, source=str(src_value), check_html=False)
     safe_content = html.escape(content)
     indented = "\n".join("      " + line for line in safe_content.splitlines())
     return f'  <div class="board">\n    <pre class="mermaid">\n{indented}\n    </pre>\n  </div>'
