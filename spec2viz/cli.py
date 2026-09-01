@@ -96,6 +96,36 @@ def main():
     pass
 
 
+@main.command("about", short_help="Where diagrams live and how the flow reaches HTML.")
+def about():
+    """Point to where the diagrams live and the full spec -> HTML flow."""
+    pkg_root = Path(__file__).resolve().parent.parent
+    examples = pkg_root / "examples"
+    click.echo("spec2viz — semantic specs -> diagrams -> catalog HTML\n")
+
+    click.echo("Where the diagrams live:")
+    click.echo(f"  package examples : {examples}")
+    if examples.is_dir():
+        for sub in sorted(p for p in examples.iterdir() if p.is_dir()):
+            specs = sorted(
+                list(sub.rglob("*.yml")) + list(sub.rglob("*.yaml"))
+            )
+            if specs:
+                rel = ", ".join(s.relative_to(examples).as_posix() for s in specs[:3])
+                click.echo(f"    - {sub.name:<11} {rel}")
+    click.echo("  catalog config   : examples/catalog/project.yml\n")
+
+    click.echo("Flow to HTML:")
+    click.echo("  1. diagram validate <spec.yml>")
+    click.echo("  2. diagram render   <spec.yml> --out <dir>")
+    click.echo("  3. diagram lint     <rendered.mmd>")
+    click.echo("  4. catalog build    --config <vistas.yml> --out <out.html>")
+    click.echo("     (build alias = catalog build; --atoms-dir injects window.ATOMS_DB)\n")
+
+    click.echo("Serve a built catalog:")
+    click.echo("  catalog serve --html <out.html> --port 8000")
+
+
 @main.group(help="Work with semantic diagram specs.")
 def diagram():
     pass
