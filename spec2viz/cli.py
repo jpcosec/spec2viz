@@ -216,7 +216,7 @@ def lint_cmd(paths: list[Path]):
     "--type",
     "diagram_type",
     default=None,
-    help="Limit the schema to one type: sequence, state, component, activity, deployment, or matrix.",
+    help="Limit the schema to one type: class, sequence, state, component, activity, deployment, or component_view_matrix.",
 )
 @click.option("--out", type=click.Path(path_type=Path), help="Write the schema to this file instead of stdout.")
 def diagram_schema(diagram_type: str | None, out: Path | None):
@@ -229,7 +229,7 @@ def diagram_schema(diagram_type: str | None, out: Path | None):
     "--type",
     "diagram_type",
     default=None,
-    help="Limit the schema to one type: sequence, state, component, activity, deployment, matrix, or diagram-store.",
+    help="Limit the schema to one type: class, sequence, state, component, activity, deployment, component_view_matrix, or diagram-store.",
 )
 @click.option("--out", type=click.Path(path_type=Path), help="Write the schema to this file instead of stdout.")
 def schema(diagram_type: str | None, out: Path | None):

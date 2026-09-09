@@ -14,9 +14,11 @@ from spec2viz.models.activity    import ActivityDiagram
 from spec2viz.models.deployment  import DeploymentDiagram
 from spec2viz.models.matrix      import MatrixDiagram
 from spec2viz.models.reflection  import ReflectionDiagram
+from spec2viz.models.class_diagram import ClassDiagram
 
 AnyDiagram = Annotated[
     Union[
+        ClassDiagram,
         SequenceDiagram, StateDiagram, ComponentDiagram,
         ActivityDiagram, DeploymentDiagram, MatrixDiagram,
         ReflectionDiagram,

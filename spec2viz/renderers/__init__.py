@@ -10,6 +10,7 @@ from spec2viz.renderers.antonia  import AntoniaHtmlRenderer
 from spec2viz.renderers.tree     import TreeRenderer
 from spec2viz.renderers.graph_html import GraphRenderer
 from spec2viz.exceptions import RenderError
+from spec2viz.ir import ClassIR
 
 class JsonRenderer:
     def render(self, ir):
@@ -40,6 +41,7 @@ EXT_MAP = {
 }
 
 DEFAULT_RENDERER = {
+    ClassIR:      "mermaid",
     SequenceIR:   "plantuml",
     StateIR:      "plantuml",
     ComponentIR:  "graph",

@@ -15,9 +15,11 @@ from spec2viz.models.matrix import MatrixDiagram
 from spec2viz.models.sequence import SequenceDiagram
 from spec2viz.models.state import StateDiagram
 from spec2viz.models.catalog import DiagramStore, DiagramStoreEnvelope
+from spec2viz.models.class_diagram import ClassDiagram
 
 
 _MODEL_BY_TYPE: dict[DiagramType, Type[BaseDiagram]] = {
+    DiagramType.class_: ClassDiagram,
     DiagramType.sequence: SequenceDiagram,
     DiagramType.state: StateDiagram,
     DiagramType.component: ComponentDiagram,

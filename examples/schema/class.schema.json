@@ -1,0 +1,381 @@
+{
+  "$defs": {
+    "ClassAttribute": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_?!-]*$",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.\\[\\], ?|<>-]*$",
+          "title": "Type",
+          "type": "string"
+        },
+        "visibility": {
+          "default": "public",
+          "enum": [
+            "public",
+            "private",
+            "protected",
+            "package"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "static": {
+          "default": false,
+          "title": "Static",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "title": "ClassAttribute",
+      "type": "object"
+    },
+    "ClassData": {
+      "additionalProperties": false,
+      "properties": {
+        "direction": {
+          "default": "TB",
+          "enum": [
+            "TB",
+            "LR"
+          ],
+          "title": "Direction",
+          "type": "string"
+        },
+        "classes": {
+          "minProperties": 1,
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_]*$": {
+              "$ref": "#/$defs/ClassDefinition"
+            }
+          },
+          "title": "Classes",
+          "type": "object"
+        },
+        "relations": {
+          "items": {
+            "$ref": "#/$defs/ClassRelation"
+          },
+          "title": "Relations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "classes"
+      ],
+      "title": "ClassData",
+      "type": "object"
+    },
+    "ClassDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[^\\r\\n{}\\\\\"]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "kind": {
+          "default": "class",
+          "enum": [
+            "class",
+            "interface",
+            "abstract",
+            "record",
+            "protocol",
+            "enum"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "attributes": {
+          "items": {
+            "$ref": "#/$defs/ClassAttribute"
+          },
+          "title": "Attributes",
+          "type": "array"
+        },
+        "methods": {
+          "items": {
+            "$ref": "#/$defs/ClassMethod"
+          },
+          "title": "Methods",
+          "type": "array"
+        }
+      },
+      "title": "ClassDefinition",
+      "type": "object"
+    },
+    "ClassMethod": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_?!-]*$",
+          "title": "Name",
+          "type": "string"
+        },
+        "parameters": {
+          "items": {
+            "$ref": "#/$defs/ClassParameter"
+          },
+          "title": "Parameters",
+          "type": "array"
+        },
+        "returns": {
+          "default": "void",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.\\[\\], ?|<>-]*$",
+          "title": "Returns",
+          "type": "string"
+        },
+        "visibility": {
+          "default": "public",
+          "enum": [
+            "public",
+            "private",
+            "protected",
+            "package"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "abstract": {
+          "default": false,
+          "title": "Abstract",
+          "type": "boolean"
+        },
+        "static": {
+          "default": false,
+          "title": "Static",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "ClassMethod",
+      "type": "object"
+    },
+    "ClassParameter": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_?!-]*$",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.\\[\\], ?|<>-]*$",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "title": "ClassParameter",
+      "type": "object"
+    },
+    "ClassRelation": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+          "title": "To",
+          "type": "string"
+        },
+        "relation": {
+          "enum": [
+            "inheritance",
+            "realization",
+            "composition",
+            "aggregation",
+            "association",
+            "dependency"
+          ],
+          "title": "Relation",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[^\\r\\n{}\\\\\"]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "from_multiplicity": {
+          "anyOf": [
+            {
+              "pattern": "^(?:\\*|[0-9]+(?:\\.\\.(?:[0-9]+|\\*))?)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "From Multiplicity"
+        },
+        "to_multiplicity": {
+          "anyOf": [
+            {
+              "pattern": "^(?:\\*|[0-9]+(?:\\.\\.(?:[0-9]+|\\*))?)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "To Multiplicity"
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "relation"
+      ],
+      "title": "ClassRelation",
+      "type": "object"
+    },
+    "Metadata": {
+      "properties": {
+        "author": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Name of the person or team responsible for the diagram spec.",
+          "title": "Author"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Free-form summary that explains the intent of the diagram.",
+          "title": "Description"
+        }
+      },
+      "title": "Metadata",
+      "type": "object"
+    },
+    "Style": {
+      "properties": {
+        "theme": {
+          "default": "default",
+          "description": "Renderer theme name used to style the generated output.",
+          "title": "Theme",
+          "type": "string"
+        },
+        "kinds": {
+          "additionalProperties": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "description": "Kind-specific style overrides keyed by semantic kind name.",
+          "title": "Kinds",
+          "type": "object"
+        }
+      },
+      "title": "Style",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "Stable identifier for the diagram specification.",
+      "title": "Id",
+      "type": "string"
+    },
+    "title": {
+      "description": "Human-readable title shown in rendered output.",
+      "title": "Title",
+      "type": "string"
+    },
+    "type": {
+      "const": "class",
+      "default": "class",
+      "title": "Type",
+      "type": "string"
+    },
+    "version": {
+      "description": "Schema or document version for the specification.",
+      "title": "Version",
+      "type": "string"
+    },
+    "metadata": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Metadata"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional authorship and descriptive metadata for the spec."
+    },
+    "style": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Style"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional presentation hints for renderers."
+    },
+    "data": {
+      "$ref": "#/$defs/ClassData"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "version",
+    "data"
+  ],
+  "title": "ClassDiagram",
+  "type": "object"
+}

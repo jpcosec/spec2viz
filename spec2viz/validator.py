@@ -7,16 +7,69 @@ from spec2viz.models.component  import ComponentDiagram
 from spec2viz.models.activity   import ActivityDiagram
 from spec2viz.models.deployment import DeploymentDiagram
 from spec2viz.models.matrix     import MatrixDiagram, MatrixComponentModel
+from spec2viz.models.class_diagram import ClassDiagram
 
 
 def validate(diagram: BaseDiagram) -> None:
     match diagram:
+        case ClassDiagram():      _validate_class(diagram)
         case ComponentDiagram():  _validate_component(diagram)
         case SequenceDiagram():   _validate_sequence(diagram)
         case StateDiagram():      _validate_state(diagram)
         case ActivityDiagram():   _validate_activity(diagram)
         case DeploymentDiagram(): _validate_deployment(diagram)
         case MatrixDiagram():     _validate_matrix(diagram)
+
+
+def _validate_class(d: ClassDiagram) -> None:
+    classes = d.data.classes
+    parents: dict[str, list[str]] = {ident: [] for ident in classes}
+    for ident, definition in classes.items():
+        names = [a.name for a in definition.attributes]
+        if len(names) != len(set(names)):
+            raise ValidationError(f"Duplicate attribute in class '{ident}' in {d.id}")
+        signatures = set()
+        for method in definition.methods:
+            parameters = [p.name for p in method.parameters]
+            if len(parameters) != len(set(parameters)):
+                raise ValidationError(f"Duplicate parameter in '{ident}.{method.name}' in {d.id}")
+            signature = (method.name, tuple(p.type for p in method.parameters))
+            if signature in signatures:
+                raise ValidationError(f"Duplicate method signature in '{ident}.{method.name}' in {d.id}")
+            signatures.add(signature)
+            if method.static and method.abstract:
+                raise ValidationError(f"Method '{ident}.{method.name}' cannot be both static and abstract in {d.id}")
+    for relation in d.data.relations:
+        if relation.from_ not in classes or relation.to not in classes:
+            raise ValidationError(f"Class relation references unknown class: {relation.from_} -> {relation.to} in {d.id}")
+        if relation.relation in {"inheritance", "realization"}:
+            if relation.from_ == relation.to:
+                raise ValidationError(f"Class cannot inherit from or realize itself in {d.id}")
+            if relation.from_multiplicity or relation.to_multiplicity:
+                raise ValidationError(f"Inheritance and realization do not have multiplicities in {d.id}")
+            parents[relation.from_].append(relation.to)
+        if relation.relation == "realization" and classes[relation.to].kind not in {"interface", "protocol"}:
+            raise ValidationError(f"Realization target '{relation.to}' must be an interface or protocol in {d.id}")
+        for multiplicity in (relation.from_multiplicity, relation.to_multiplicity):
+            if multiplicity and ".." in multiplicity:
+                low, high = multiplicity.split("..")
+                if high != "*" and int(low) > int(high):
+                    raise ValidationError(f"Inverted multiplicity '{multiplicity}' in {d.id}")
+    active, done = set(), set()
+
+    def visit(ident):
+        if ident in active:
+            raise ValidationError(f"Inheritance/realization cycle at '{ident}' in {d.id}")
+        if ident in done:
+            return
+        active.add(ident)
+        for parent in parents[ident]:
+            visit(parent)
+        active.remove(ident)
+        done.add(ident)
+
+    for ident in classes:
+        visit(ident)
 
 
 def _validate_component(d: ComponentDiagram) -> None:

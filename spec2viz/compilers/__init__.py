@@ -15,10 +15,13 @@ from spec2viz.compilers.matrix     import MatrixCompiler
 from spec2viz.compilers.reflection import ReflectionCompiler
 from spec2viz.models.reflection import ReflectionDiagram
 from spec2viz.exceptions import CompileError
+from spec2viz.models.class_diagram import ClassDiagram
+from spec2viz.compilers.class_diagram import ClassCompiler
 
 
 def compile_ir(diagram: BaseDiagram):
     match diagram:
+        case ClassDiagram():      return ClassCompiler().compile(diagram)
         case SequenceDiagram():   return SequenceCompiler().compile(diagram)
         case StateDiagram():      return StateCompiler().compile(diagram)
         case ComponentDiagram():  return ComponentCompiler().compile(diagram)

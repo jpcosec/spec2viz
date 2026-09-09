@@ -8,6 +8,58 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 
+# Class members remain structured through compilation; renderers own syntax.
+@dataclass
+class ClassParameterIR:
+    name: str
+    type: str
+
+
+@dataclass
+class ClassAttributeIR:
+    name: str
+    type: str
+    visibility: str
+    static: bool
+
+
+@dataclass
+class ClassMethodIR:
+    name: str
+    parameters: list[ClassParameterIR]
+    returns: str
+    visibility: str
+    abstract: bool
+    static: bool
+
+
+@dataclass
+class ClassNodeIR:
+    id: str
+    label: str
+    kind: str
+    attributes: list[ClassAttributeIR]
+    methods: list[ClassMethodIR]
+
+
+@dataclass
+class ClassRelationIR:
+    from_: str
+    to: str
+    relation: str
+    label: str | None
+    from_multiplicity: str | None
+    to_multiplicity: str | None
+
+
+@dataclass
+class ClassIR:
+    title: str
+    direction: str
+    classes: list[ClassNodeIR]
+    relations: list[ClassRelationIR]
+
+
 # ── Matrix ────────────────────────────────────────────────────────────────────
 
 
@@ -180,6 +232,8 @@ class DeploymentIR:
 
 
 __all__ = [
+    "ClassParameterIR", "ClassAttributeIR", "ClassMethodIR", "ClassNodeIR",
+    "ClassRelationIR", "ClassIR",
     "Stage",
     "Row",
     "Span",

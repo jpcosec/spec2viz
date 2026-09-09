@@ -1,6 +1,8 @@
 from __future__ import annotations
 from spec2viz.ir import SequenceIR, StateIR, ComponentIR, ActivityIR, DeploymentIR
 from spec2viz.exceptions import RenderError
+from spec2viz.ir import ClassIR
+from spec2viz.renderers.class_diagram import render_plantuml_class
 
 _PARTICIPANT_KW = {"actor": "actor", "boundary": "boundary", "database": "database"}
 _ARROW = {"sync": "->", "async": "->>", "return": "<--"}
@@ -15,6 +17,8 @@ _DEFAULT_COMPONENT_KIND_STYLES = {
 class PlantUMLRenderer:
     def render(self, ir) -> str:
         match ir:
+            case ClassIR():
+                return render_plantuml_class(ir)
             case SequenceIR():
                 return self._sequence(ir)
             case StateIR():

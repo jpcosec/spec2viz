@@ -6,6 +6,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class DiagramType(str, Enum):
+    class_ = "class"
     component = "component"
     sequence = "sequence"
     state = "state"

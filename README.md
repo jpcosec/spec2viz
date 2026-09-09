@@ -10,7 +10,7 @@ Within the `hum-ecosystem`, `spec2viz` is the human-watchable rendering layer ov
 
 - validates diagram specs with Pydantic models
 - compiles semantic specs into renderer-agnostic IR
-- renders sequence, state, component, activity, deployment, and matrix views
+- renders class, sequence, state, component, activity, deployment, and matrix views
 - supports both a Python API and a CLI
 
 ## Install
@@ -26,6 +26,9 @@ python3 -m pip install -e .[dev]
 ```
 
 ## CLI
+
+Class diagrams support structured attributes, method signatures, protocols/records,
+and UML relationships. See [the class diagram schema and workflow](docs/CLASS_DIAGRAMS.md).
 
 Inspect the available commands:
 

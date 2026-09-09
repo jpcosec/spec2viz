@@ -1,6 +1,8 @@
 from __future__ import annotations
 from spec2viz.ir import SequenceIR, StateIR, ComponentIR, ActivityIR, DeploymentIR
 from spec2viz.exceptions import RenderError
+from spec2viz.ir import ClassIR
+from spec2viz.renderers.class_diagram import render_mermaid_class
 
 # Mermaid sequence arrows. Return must be "-->>" (dashed). "<<--" is NOT
 # valid mermaid and breaks the parser in the browser.
@@ -38,6 +40,7 @@ def _esc_message(text: object) -> str:
 class MermaidRenderer:
     def render(self, ir) -> str:
         match ir:
+            case ClassIR():      return render_mermaid_class(ir)
             case SequenceIR():   return self._sequence(ir)
             case StateIR():      return self._state(ir)
             case ComponentIR():  return self._component(ir)
