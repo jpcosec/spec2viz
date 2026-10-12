@@ -131,3 +131,54 @@ def test_catalog_build_embeds_atoms_once_and_honors_atoms_tag(tmp_path):
     assert html.count("Cuerpo 0.") == 1 and html.count("Cuerpo 1.") == 1  # una vez, no una por vista
     html = build("--atoms-tag", "dominio:oc")
     assert "Cuerpo 0." in html and "Cuerpo 1." not in html
+
+
+MD_HARNESS = """
+const escapeHtmlUnused = null;
+%s
+const [body, known] = JSON.parse(process.argv[1]);
+console.log(JSON.stringify(renderAtomBody(body, id => known[id] || null)));
+"""
+
+
+def _md(template: Path, body: str, known: dict | None = None) -> str:
+    src = template.read_text(encoding="utf-8")
+    block = re.search(r"// <atom-md>.*?// </atom-md>", src, re.S)
+    assert block
+    out = subprocess.run(
+        ["node", "-e", MD_HARNESS % block.group(0), json.dumps([body, known or {}])],
+        capture_output=True, text=True, check=True,
+    )
+    return json.loads(out.stdout)
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="requiere node para ejecutar el template")
+@pytest.mark.parametrize("template", TEMPLATES, ids=lambda p: p.parent.name)
+class TestAtomMarkdown:
+    def test_html_is_escaped(self, template):
+        html = _md(template, '<script>alert(1)</script> & "x"')
+        assert "<script>" not in html and "&lt;script&gt;" in html and "&amp;" in html
+
+    def test_inline_formatting(self, template):
+        html = _md(template, "**fuerte** y *suave* y `cod <b>`")
+        assert "<strong>fuerte</strong>" in html and "<em>suave</em>" in html and "<code>cod &lt;b&gt;</code>" in html
+
+    def test_paragraphs_breaks_and_lists(self, template):
+        html = _md(template, "uno\ndos\n\n- a\n- b")
+        assert "<p>uno<br>dos</p>" in html and "<ul><li>a</li><li>b</li></ul>" in html
+
+    def test_external_link_only_safe_schemes(self, template):
+        assert 'href="https://x.cl/a"' in _md(template, "[t](https://x.cl/a)")
+        assert "<a " not in _md(template, "[t](javascript:alert(1))")
+
+    def test_atom_link_present_and_absent(self, template):
+        known = {"a-1": {"id": "a-1", "title": "Plazo <48h>", "question": "what", "body": "x"}}
+        html = _md(template, "ver [[a-1]]", known)
+        assert 'data-atom-id="a-1"' in html and "Plazo &lt;48h&gt;" in html
+        html = _md(template, "ver [[a-9]]", known)
+        assert "atom-link-missing" in html and "data-atom-id" not in html and ">a-9<" in html
+
+    def test_predicate_link(self, template):
+        known = {"a-1": {"id": "a-1", "title": "Destino", "question": "what", "body": "x"}}
+        html = _md(template, "[depende de:: [[a-1]]]", known)
+        assert "<em>depende de</em>: <a" in html and ">Destino</a>" in html

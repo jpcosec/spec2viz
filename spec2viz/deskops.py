@@ -422,6 +422,9 @@ def _atom_index(payload: dict[str, dict]) -> dict[str, dict]:
     return index
 
 
+_WIKILINK = re.compile(r"\[\[([^\[\]]+?)\]\]")
+
+
 class UnknownAtomError(ValueError):
     """Un spec referencia un atomo que no existe entre los cargados (`--strict-atoms`)."""
 
@@ -430,11 +433,13 @@ def build_explicit_atoms(
     items: list[CatalogItem],
     raw_atoms_by_view: dict[str, dict[str, dict]],
     strict: bool = False,
-) -> tuple[dict[str, dict[str, dict]], set[str], list[AtomBuildWarning]]:
+) -> tuple[dict[str, dict[str, dict]], set[str], list[AtomBuildWarning], dict[str, dict]]:
     """Resuelve los `atoms:` de los specs.
 
-    Devuelve (`view -> clave -> {title, list}`, vistas totalmente explicitas, warnings).
+    Devuelve (`view -> clave -> {title, list}`, vistas totalmente explicitas, warnings,
+    `id -> atomo` de los enlazados con `[[id]]` desde los explicitos, un nivel).
     """
+    linked: dict[str, dict] = {}
     result: dict[str, dict[str, dict]] = {}
     complete: set[str] = set()
     warnings: list[AtomBuildWarning] = []
@@ -455,13 +460,18 @@ def build_explicit_atoms(
                     print(f"[spec2viz][atoms] {msg}", file=sys.stderr)
             if found:
                 resolved[key] = {"title": key, "explicit": True, "list": found}
+                for atom in found:
+                    for target in _WIKILINK.findall(atom.get("body") or ""):
+                        target = target.strip()
+                        if target in index:
+                            linked[target] = index[target]
         if resolved:
             result[item.anchor_id] = resolved
         if total and with_atoms == total and len(resolved) == len(explicit):
             complete.add(item.anchor_id)
     if strict and warnings:
         raise UnknownAtomError("; ".join(w.message for w in warnings))
-    return result, complete, warnings
+    return result, complete, warnings, linked
 
 
 def split_shared_atoms(atoms_by_view: dict[str, dict[str, dict]]) -> tuple[dict[str, dict], dict[str, dict[str, dict]]]:
@@ -727,7 +737,7 @@ def render_deskops(
         html = html.replace(sections, filters + sections, 1)
 
     raw_atoms_by_view, warnings = _raw_atoms_by_view(catalog.items, atoms_dir)
-    explicit_atoms, complete_views, explicit_warnings = build_explicit_atoms(
+    explicit_atoms, complete_views, explicit_warnings, linked_atoms = build_explicit_atoms(
         catalog.items, raw_atoms_by_view, strict=strict_atoms
     )
     warnings = [*warnings, *explicit_warnings]
@@ -743,6 +753,7 @@ def render_deskops(
     atoms_by_view_json = json.dumps(atoms_by_view)
     shared_atoms_json = json.dumps(shared_atoms)
     explicit_atoms_json = json.dumps(explicit_atoms)
+    linked_atoms_json = json.dumps(linked_atoms)
     coverage_by_view_json = json.dumps(coverage_by_view)
     warnings_json = json.dumps([warning.__dict__ for warning in warnings])
     coverage_warnings_json = json.dumps([warning.__dict__ for warning in coverage_warnings])
@@ -756,6 +767,7 @@ def render_deskops(
         f"window.ATOMS_DB = {shared_atoms_json}; "
         f"window.ATOMS_BY_VIEW = {atoms_by_view_json}; "
         f"window.ATOMS_EXPLICIT = {explicit_atoms_json}; "
+        f"window.ATOMS_LINKED = {linked_atoms_json}; "
         f"window.COVERAGE_BY_VIEW = {coverage_by_view_json}; "
         f"window.SPEC2VIZ_ATOM_WARNINGS = {warnings_json}; "
         f"window.SPEC2VIZ_COVERAGE_WARNINGS = {coverage_warnings_json}; "

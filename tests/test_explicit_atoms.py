@@ -70,7 +70,7 @@ def _build(tmp_path, atoms, *extra):
 
 
 def _explicit(html):
-    data = json.loads(re.search(r"window\.ATOMS_EXPLICIT = (\{.*?\}); window\.COVERAGE", html, re.S).group(1))
+    data = json.loads(re.search(r"window\.ATOMS_EXPLICIT = (\{.*?\}); window\.ATOMS_LINKED", html, re.S).group(1))
     assert len(data) == 1
     return {"v1": next(iter(data.values()))}
 
@@ -115,3 +115,17 @@ def test_partially_explicit_view_keeps_fuzzy_payload(tmp_path):
     atoms = _project(tmp_path, ["atom-uno"], None)
     res, html = _build(tmp_path, atoms)
     assert "Cuerpo de atom-ruido." in html
+
+
+def test_atoms_linked_from_explicit_are_embedded_one_level(tmp_path):
+    atoms = _project(tmp_path, ["atom-uno"], ["atom-dos"])
+    (atoms / "atom-uno.md").write_text(
+        "---\ntitle: Uno\nfive_wh_one_plus: what\nid: atom-uno\n---\nVer [depende:: [[atom-ruido]]] y [[atom-lejano]].\n", encoding="utf-8")
+    _atom(atoms, "atom-lejano", "Lejano")
+    (atoms / "atom-ruido.md").write_text(
+        "---\ntitle: Otro tema\nfive_wh_one_plus: what\nid: atom-ruido\n---\nSigue [[atom-lejano2]].\n", encoding="utf-8")
+    _atom(atoms, "atom-lejano2", "Nivel dos")
+    res, html = _build(tmp_path, atoms)
+    assert res.exit_code == 0, res.output
+    linked = json.loads(re.search(r"window\.ATOMS_LINKED = (\{.*?\}); window\.COVERAGE", html, re.S).group(1))
+    assert set(linked) == {"atom-ruido", "atom-lejano"}  # un nivel: no atom-lejano2

@@ -686,6 +686,66 @@
       return best;
     }
 
+    // <atom-md>
+    function escapeHtml(str) {
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // Busca un atomo por id: vinculados (un nivel desde los explicitos), explicitos de la vista y payload difuso.
+    function lookupAtomById(id, nodeEl) {
+      if (window.ATOMS_LINKED && window.ATOMS_LINKED[id]) return window.ATOMS_LINKED[id];
+      const viewKey = nodeEl?.closest?.('section')?.id;
+      const explicit = (viewKey && window.ATOMS_EXPLICIT?.[viewKey]) || {};
+      for (const e of Object.values(explicit)) {
+        const hit = (e.list || []).find(a => a.id === id);
+        if (hit) return hit;
+      }
+      const db = (typeof getViewAtomsDb === 'function' ? getViewAtomsDb(nodeEl) : null) || {};
+      for (const entry of Object.values(db)) {
+        for (const [question, a] of Object.entries(entry.atoms || {})) {
+          if (a.id === id) return { id, title: entry.title, question, body: a.body };
+        }
+      }
+      return null;
+    }
+
+    // Markdown minimo y seguro: se escapa el HTML primero y solo se generan etiquetas conocidas.
+    function renderAtomBody(body, lookup) {
+      const find = lookup || (() => null);
+      const stash = [];
+      const keep = (html) => { stash.push(html); return '\u0000' + (stash.length - 1) + '\u0000'; };
+      const atomLink = (id, label) => {
+        const atom = find(id);
+        if (!atom) return keep(`<span class="atom-link-missing" style="opacity:.55" title="${id}">${id}</span>`);
+        return keep(`<a href="#" class="atom-link" data-atom-id="${id}">${label || escapeHtml(atom.title || id)}</a>`);
+      };
+      const inline = (text) => {
+        let t = escapeHtml(text);
+        t = t.replace(/`([^`]+)`/g, (_, c) => keep(`<code>${c}</code>`));
+        t = t.replace(/\[([^\[\]:]+?)::\s*\[\[([^\[\]]+?)\]\]\s*\]/g, (_, pred, id) => keep(`<em>${pred.trim()}</em>: `) + atomLink(id.trim()));
+        t = t.replace(/\[\[([^\[\]]+?)\]\]/g, (_, id) => atomLink(id.trim()));
+        t = t.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:|#|\/)[^\s)]*)\)/g,
+          (_, label, url) => keep(`<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`));
+        t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        t = t.replace(/(^|[^*])\*([^*\s][^*]*?)\*(?!\*)/g, '$1<em>$2</em>');
+        return t;
+      };
+      const blocks = String(body == null ? '' : body).replace(/\r\n/g, '\n').trim().split(/\n{2,}/);
+      const out = blocks.map(block => {
+        const lines = block.split('\n');
+        if (lines.every(l => /^\s*[-*]\s+/.test(l))) {
+          return '<ul>' + lines.map(l => `<li>${inline(l.replace(/^\s*[-*]\s+/, ''))}</li>`).join('') + '</ul>';
+        }
+        return '<p>' + lines.map(inline).join('<br>') + '</p>';
+      }).join('');
+      let html = out;
+      for (let i = 0; i < 4 && /\u0000\d+\u0000/.test(html); i++) {
+        html = html.replace(/\u0000(\d+)\u0000/g, (_, n) => stash[Number(n)]);
+      }
+      return html;
+    }
+    // </atom-md>
+
     // Vinculacion explicita (`atoms: [id]` en el spec): window.ATOMS_EXPLICIT[vista][etiqueta normalizada].
     function explicitAtomData(nodeText, nodeEl) {
       const viewKey = nodeEl?.closest('section')?.id;
@@ -914,11 +974,21 @@
         btn.onclick = () => {
           document.querySelectorAll('.atom-tab').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          contentEl.innerHTML = `<h4>5WH1+: ${a.question.toUpperCase()} (${a.id})</h4><p>${a.body}</p>`;
+          contentEl.innerHTML = `<h4>5WH1+: ${escapeHtml(a.question.toUpperCase())} (${escapeHtml(a.id)})</h4>${renderAtomBody(a.body, id => lookupAtomById(id, nodeEl))}`;
         };
         tabsEl.appendChild(btn);
         if (!firstActive) firstActive = btn;
       });
+      contentEl.onclick = (ev) => {
+        const link = ev.target.closest('a[data-atom-id]');
+        if (!link) return;
+        ev.preventDefault();
+        const target = lookupAtomById(link.dataset.atomId, nodeEl);
+        if (!target) return;
+        document.querySelectorAll('.atom-tab').forEach(b => b.classList.remove('active'));
+        titleEl.innerText = target.title || target.id;
+        contentEl.innerHTML = `<h4>5WH1+: ${escapeHtml(String(target.question || '').toUpperCase())} (${escapeHtml(target.id)})</h4>${renderAtomBody(target.body, id => lookupAtomById(id, nodeEl))}`;
+      };
       if (firstActive) firstActive.click();
       panel.classList.add('active');
     }
