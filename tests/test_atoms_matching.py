@@ -18,20 +18,22 @@ HARNESS = """
 const norm = (str) => str ? str.trim().toLowerCase().replace(/\\s+/g, ' ') : '';
 const getViewAtomsDb = () => DB;
 %s
-const [db, text] = JSON.parse(process.argv[1]);
+const [db, text, explicit] = JSON.parse(process.argv[1]);
 globalThis.DB = db;
-const hit = findAtomData(text, null);
-console.log(JSON.stringify(hit ? hit.title : null));
+globalThis.window = { ATOMS_EXPLICIT: explicit || {} };
+const nodeEl = { closest: () => ({ id: 'v1' }) };
+const hit = findAtomData(text, nodeEl);
+console.log(JSON.stringify(hit ? (hit.explicit ? hit.list.map(a => a.id) : hit.title) : null));
 """
 
 
-def _match(template: Path, db: dict, text: str):
+def _match(template: Path, db: dict, text: str, explicit: dict | None = None):
     src = template.read_text(encoding="utf-8")
     block = re.search(r"// <atom-match>.*?// </atom-match>", src, re.S)
     assert block, "falta el bloque <atom-match> en el template"
     code = HARNESS % block.group(0)
     out = subprocess.run(
-        ["node", "-e", code, json.dumps([db, text])], capture_output=True, text=True, check=True
+        ["node", "-e", code, json.dumps([db, text, explicit])], capture_output=True, text=True, check=True
     )
     return json.loads(out.stdout)
 
@@ -66,6 +68,19 @@ class TestTemplateMatching:
 
     def test_two_shared_tokens_matching_most_of_the_alias(self, template):
         assert _match(template, DB, "Evaluacion ordenes") == "Evaluación de órdenes"
+
+
+    def test_explicit_atoms_win_and_all_are_returned(self, template):
+        explicit = {"v1": {"producto": {"title": "producto", "explicit": True, "list": [
+            {"id": "a1", "title": "T", "question": "what", "body": "x"},
+            {"id": "a2", "title": "T", "question": "what", "body": "y"},
+        ]}}}
+        # "Producto" calzaria por fuzzy con otro atomo; con explicito solo salen los suyos
+        assert _match(template, DB, "Producto", explicit) == ["a1", "a2"]
+
+    def test_node_without_explicit_falls_back_to_fuzzy(self, template):
+        explicit = {"v1": {"otro": {"title": "otro", "explicit": True, "list": [{"id": "a1", "title": "T", "question": "what", "body": "x"}]}}}
+        assert _match(template, DB, "Evaluación de órdenes", explicit) == "Evaluación de órdenes"
 
 
 def _two_atoms(tmp_path):

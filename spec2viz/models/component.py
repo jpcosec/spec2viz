@@ -16,6 +16,10 @@ class NodeModel(BaseModel):
         default_factory=list,
         description="Identifiers of nested components contained by this node.",
     )
+    atoms: list[str] = Field(
+        default_factory=list,
+        description="Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+    )
 
 
 class EdgeModel(BaseModel):

@@ -17,6 +17,10 @@ class DeploymentNodeModel(BaseModel):
         default_factory=list,
         description="Artifact or node identifiers hosted within this deployment node.",
     )
+    atoms: list[str] = Field(
+        default_factory=list,
+        description="Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+    )
 
 
 class ArtifactModel(BaseModel):
@@ -26,6 +30,10 @@ class ArtifactModel(BaseModel):
     )
     kind: str = Field(
         default="component", description="Semantic artifact kind used in rendering."
+    )
+    atoms: list[str] = Field(
+        default_factory=list,
+        description="Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
     )
 
 

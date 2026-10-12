@@ -48,6 +48,10 @@ class ClassDefinition(BaseModel):
     kind: Literal["class", "interface", "abstract", "record", "protocol", "enum"] = "class"
     attributes: list[ClassAttribute] = Field(default_factory=list)
     methods: list[ClassMethod] = Field(default_factory=list)
+    atoms: list[str] = Field(
+        default_factory=list,
+        description="Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+    )
 
 
 class ClassRelation(BaseModel):

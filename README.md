@@ -76,6 +76,27 @@ spec2viz catalog build --config examples/catalog/project.yml --out out/catalog.h
 spec2viz catalog schema --out diagram-store.schema.json
 ```
 
+### Linking atoms to diagram elements
+
+Elements may declare which atoms (`desk/atoms`, by `id`) explain them with an optional `atoms: [atom-id, ...]` list
+on component/deployment nodes (and deployment artifacts), activity steps, state states, class definitions and
+sequence participants:
+
+```yaml
+data:
+  states:
+    - id: nueva
+      label: "4 Nueva"
+      atoms: [atom-estado-nueva, atom-plazo-48h]
+```
+
+`catalog build` resolves the ids against the loaded atoms (`--atoms-dir` or the sldb store) and embeds a
+label/id -> atoms map (`window.ATOMS_EXPLICIT`; the SVG is not annotated because Mermaid offers no robust hook for that).
+In the browser a node with explicit atoms shows exactly those (all of them) and skips fuzzy text matching;
+nodes without `atoms` fall back to the fuzzy matcher (exact title/alias, contained phrase, or 2+ shared tokens).
+An unknown id is a build warning; `--strict-atoms` makes it an error. When every element of a view declares
+atoms, the other atoms are not embedded for that view. `--atoms-tag <tag>` (repeatable) limits the fuzzy pool by tag.
+
 Hierarchical stores can aggregate other stores and legacy `vistas.yml` leaves, then expose one filtered HTML catalog by category, type, project, and tags.
 
 Minimal `project.yml` / diagram-store shape:

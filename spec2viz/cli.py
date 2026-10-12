@@ -72,11 +72,11 @@ def _write_schema(diagram_type: str | None, out: Path | None):
         click.echo(json.dumps(json_schema(diagram_type), indent=2))
 
 
-def _build_catalog(config: Path, out: Path, base_dir: Path | None, atoms_dir: Path | None, atoms_tags: tuple[str, ...] = ()):
+def _build_catalog(config: Path, out: Path, base_dir: Path | None, atoms_dir: Path | None, atoms_tags: tuple[str, ...] = (), strict_atoms: bool = False):
     from spec2viz.deskops import build_deskops
 
     try:
-        build_deskops(config, out, base_dir, atoms_dir, list(atoms_tags) or None)
+        build_deskops(config, out, base_dir, atoms_dir, list(atoms_tags) or None, strict_atoms)
         click.echo(f"Rendered deskops architecture -> {out}")
     except Exception as exc:
         click.echo(f"Error building deskops: {exc}", err=True)
@@ -311,9 +311,10 @@ def catalog_serve(html: Path, port: int):
 @click.option("--base-dir", type=click.Path(exists=True, path_type=Path), help="Base directory for template and vista source paths. Defaults to the config file directory.")
 @click.option("--atoms-dir", type=click.Path(exists=True, path_type=Path), help="Directory with W5H1 atom markdown files to inject as window.ATOMS_DB.")
 @click.option("--atoms-tag", "atoms_tags", multiple=True, help="Embed only atoms carrying this tag (full `ns:value` or just `value`); repeatable. Default: all atoms.")
-def catalog_build(config: Path, out: Path, base_dir: Path | None, atoms_dir: Path | None, atoms_tags: tuple[str, ...]):
+@click.option("--strict-atoms", is_flag=True, help="Fail the build if a spec `atoms:` id does not exist among the loaded atoms (default: warning).")
+def catalog_build(config: Path, out: Path, base_dir: Path | None, atoms_dir: Path | None, atoms_tags: tuple[str, ...], strict_atoms: bool):
     """Build a diagram catalog HTML bundle from a vistas registry or diagram store."""
-    _build_catalog(config, out, base_dir, atoms_dir, atoms_tags)
+    _build_catalog(config, out, base_dir, atoms_dir, atoms_tags, strict_atoms)
 
 
 @main.command("build", short_help="Build catalog HTML from a vistas registry or diagram store.")
@@ -322,9 +323,10 @@ def catalog_build(config: Path, out: Path, base_dir: Path | None, atoms_dir: Pat
 @click.option("--base-dir", type=click.Path(exists=True, path_type=Path), help="Base directory for template and vista source paths. Defaults to the config file directory.")
 @click.option("--atoms-dir", type=click.Path(exists=True, path_type=Path), help="Directory with W5H1 atom markdown files to inject as window.ATOMS_DB.")
 @click.option("--atoms-tag", "atoms_tags", multiple=True, help="Embed only atoms carrying this tag (full `ns:value` or just `value`); repeatable. Default: all atoms.")
-def build(config: Path, out: Path, base_dir: Path | None, atoms_dir: Path | None, atoms_tags: tuple[str, ...]):
+@click.option("--strict-atoms", is_flag=True, help="Fail the build if a spec `atoms:` id does not exist among the loaded atoms (default: warning).")
+def build(config: Path, out: Path, base_dir: Path | None, atoms_dir: Path | None, atoms_tags: tuple[str, ...], strict_atoms: bool):
     """Legacy alias for `catalog build`."""
-    _build_catalog(config, out, base_dir, atoms_dir, atoms_tags)
+    _build_catalog(config, out, base_dir, atoms_dir, atoms_tags, strict_atoms)
 
 
 if __name__ == "__main__":

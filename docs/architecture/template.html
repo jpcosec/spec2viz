@@ -686,7 +686,26 @@
       return best;
     }
 
+    // Vinculacion explicita (`atoms: [id]` en el spec): window.ATOMS_EXPLICIT[vista][etiqueta normalizada].
+    function explicitAtomData(nodeText, nodeEl) {
+      const viewKey = nodeEl?.closest('section')?.id;
+      const map = viewKey && window.ATOMS_EXPLICIT?.[viewKey];
+      return (map && map[normKey(nodeText)]) || null;
+    }
+
+    // Lista plana de atomos de una entrada: explicita (todos) o por coincidencia difusa (por pregunta).
+    function atomList(data) {
+      if (!data) return [];
+      if (data.explicit) return data.list || [];
+      const questions = ['what', 'why', 'how', 'how_not', 'when', 'where', 'for_whom'];
+      return questions.filter(q => data.atoms && data.atoms[q]).map(q => ({
+        id: data.atoms[q].id, title: data.title, question: q, body: data.atoms[q].body,
+      }));
+    }
+
     function findAtomData(nodeText, nodeEl) {
+      const explicit = explicitAtomData(nodeText, nodeEl);
+      if (explicit) return explicit;
       const atomsDb = getViewAtomsDb(nodeEl);
       if (!atomsDb) return null;
       const cleanText = norm(nodeText);
@@ -844,21 +863,17 @@
       popoverTitle.innerText = nodeText;
       popoverBadges.innerHTML = '';
 
-      if (!data || !data.atoms) {
+      const list = atomList(data);
+      if (!list.length) {
         popoverSnippet.innerText = annoMode ? 'Modo comentarios activo.' : 'Sin átomos 5WH1+ registrados.';
       } else {
-        const questions = ['what', 'why', 'how', 'how_not', 'when', 'where', 'for_whom'];
-        let firstSnippet = '';
-        questions.forEach(q => {
-          if (data.atoms[q]) {
-            const span = document.createElement('span');
-            span.className = 'badge active';
-            span.innerText = q.replace('_', ' ');
-            popoverBadges.appendChild(span);
-            if (!firstSnippet) firstSnippet = `[${q.toUpperCase()}] ${data.atoms[q].body.substring(0, 100)}...`;
-          }
+        list.forEach(a => {
+          const span = document.createElement('span');
+          span.className = 'badge active';
+          span.innerText = a.question.replace('_', ' ');
+          popoverBadges.appendChild(span);
         });
-        popoverSnippet.innerText = firstSnippet || 'Haz clic para explorar los átomos.';
+        popoverSnippet.innerText = `[${list[0].question.toUpperCase()}] ${String(list[0].body).substring(0, 100)}...`;
       }
 
       const left = Math.min(e.clientX + 15, window.innerWidth - 340);
@@ -880,7 +895,8 @@
       const contentEl = document.getElementById('atom-content');
       const data = findAtomData(nodeTitle, nodeEl);
 
-      if (!data || !data.atoms) {
+      const list = atomList(data);
+      if (!list.length) {
         titleEl.innerText = nodeTitle;
         tabsEl.innerHTML = '';
         contentEl.innerHTML = '<p>No hay átomos 5WH1+ registrados para este componente.</p>';
@@ -888,23 +904,20 @@
         return;
       }
 
-      titleEl.innerText = data.title;
+      titleEl.innerText = data.explicit ? nodeTitle : data.title;
       tabsEl.innerHTML = '';
-      const questions = ['what', 'why', 'how', 'how_not', 'when', 'where', 'for_whom'];
       let firstActive = null;
-      questions.forEach(q => {
-        if (data.atoms[q]) {
-          const btn = document.createElement('button');
-          btn.className = 'atom-tab';
-          btn.innerText = q.replace('_', ' ');
-          btn.onclick = () => {
-            document.querySelectorAll('.atom-tab').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            contentEl.innerHTML = `<h4>5WH1+: ${q.toUpperCase()} (${data.atoms[q].id})</h4><p>${data.atoms[q].body}</p>`;
-          };
-          tabsEl.appendChild(btn);
-          if (!firstActive) firstActive = btn;
-        }
+      list.forEach(a => {
+        const btn = document.createElement('button');
+        btn.className = 'atom-tab';
+        btn.innerText = data.explicit ? `${a.question.replace('_', ' ')} · ${a.title}` : a.question.replace('_', ' ');
+        btn.onclick = () => {
+          document.querySelectorAll('.atom-tab').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          contentEl.innerHTML = `<h4>5WH1+: ${a.question.toUpperCase()} (${a.id})</h4><p>${a.body}</p>`;
+        };
+        tabsEl.appendChild(btn);
+        if (!firstActive) firstActive = btn;
       });
       if (firstActive) firstActive.click();
       panel.classList.add('active');

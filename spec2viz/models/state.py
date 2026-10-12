@@ -9,6 +9,10 @@ class StateModel(BaseModel):
     id: str = Field(description="Stable state identifier referenced by transitions.")
     label: str = Field(description="Display label rendered for the state.")
     contains: list[str] | None = Field(default=None, description="Optional child states for composite (nested) states.")
+    atoms: list[str] = Field(
+        default_factory=list,
+        description="Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+    )
 
 
 class TransitionModel(BaseModel):

@@ -111,6 +111,14 @@
           "description": "Semantic artifact kind used in rendering.",
           "title": "Kind",
           "type": "string"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
         }
       },
       "title": "ArtifactModel",
@@ -231,6 +239,14 @@
             "$ref": "#/$defs/ClassMethod"
           },
           "title": "Methods",
+          "type": "array"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
           "type": "array"
         }
       },
@@ -685,6 +701,14 @@
           },
           "title": "Contains",
           "type": "array"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
         }
       },
       "title": "DeploymentNodeModel",
@@ -1094,6 +1118,14 @@
           },
           "title": "Contains",
           "type": "array"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
         }
       },
       "title": "NodeModel",
@@ -1112,6 +1144,14 @@
           "description": "Semantic participant kind used for styling or grouping.",
           "title": "Kind",
           "type": "string"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
         }
       },
       "required": [
@@ -1636,6 +1676,14 @@
           "default": null,
           "description": "Optional child states for composite (nested) states.",
           "title": "Contains"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
         }
       },
       "required": [
@@ -1678,6 +1726,14 @@
           "description": "Conditional branch labels mapped to destination step identifiers.",
           "title": "Branches",
           "type": "object"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
         }
       },
       "required": [

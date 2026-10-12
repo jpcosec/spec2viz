@@ -104,6 +104,14 @@
           "description": "Semantic participant kind used for styling or grouping.",
           "title": "Kind",
           "type": "string"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
         }
       },
       "required": [

@@ -318,6 +318,15 @@ def filter_atoms_payload(payload: dict[str, dict], tags: list[str] | None) -> di
 def build_atoms_by_view(
     items: list[CatalogItem], atoms_dir: Path | None = None, atoms_tags: list[str] | None = None
 ) -> tuple[dict[str, dict[str, dict]], list[AtomBuildWarning]]:
+    atoms_by_view, warnings = _raw_atoms_by_view(items, atoms_dir)
+    if atoms_tags:
+        atoms_by_view = {k: filter_atoms_payload(v, atoms_tags) for k, v in atoms_by_view.items()}
+    return atoms_by_view, warnings
+
+
+def _raw_atoms_by_view(
+    items: list[CatalogItem], atoms_dir: Path | None = None
+) -> tuple[dict[str, dict[str, dict]], list[AtomBuildWarning]]:
     resolver = SldbAtomResolver()
     atoms_by_view = resolver.build_atoms_by_view(items)
 
@@ -329,10 +338,130 @@ def build_atoms_by_view(
                 continue
             atoms_by_view[view_key] = fallback
 
-    if atoms_tags:
-        atoms_by_view = {k: filter_atoms_payload(v, atoms_tags) for k, v in atoms_by_view.items()}
-
     return atoms_by_view, resolver.warnings
+
+
+# --- vinculacion explicita nodo -> atomos (`atoms: [id, ...]` en el spec) -------------------
+
+# coleccion del spec donde viven los elementos, por tipo de diagrama
+_ELEMENT_COLLECTIONS = {
+    "component": ("nodes",),
+    "deployment": ("nodes", "artifacts"),
+    "activity": ("steps",),
+    "state": ("states",),
+    "class": ("classes",),
+    "sequence": ("participants",),
+}
+
+
+def label_key(value: str) -> str:
+    """Misma normalizacion que `normKey` del template (minusculas, sin puntuacion)."""
+    return re.sub(r"\s+", " ", re.sub(r"[^\w\s]+", " ", (value or "").strip().lower())).strip()
+
+
+def _spec_elements(spec: dict) -> list[tuple[str, str, list[str]]]:
+    """(id, label, atoms) de cada elemento del spec que el catalogo puede mostrar."""
+    data = spec.get("data") or {}
+    out: list[tuple[str, str, list[str]]] = []
+    for collection in _ELEMENT_COLLECTIONS.get(str(spec.get("type")), ()):
+        raw = data.get(collection) or {}
+        pairs = raw.items() if isinstance(raw, dict) else [(e.get("id"), e) for e in raw if isinstance(e, dict)]
+        for eid, el in pairs:
+            if not eid:
+                continue
+            el = el if isinstance(el, dict) else {}
+            atoms = [str(a) for a in (el.get("atoms") or [])]
+            out.append((str(eid), str(el.get("label") or eid), atoms))
+    return out
+
+
+def collect_explicit_atoms(item: CatalogItem) -> tuple[dict[str, list[str]], int, int]:
+    """Mapa `clave de etiqueta -> [atom-id]` de los specs de la vista, total de elementos y cuantos traen `atoms`.
+
+    Se indexa por etiqueta e id normalizados porque el template solo ve el texto del nodo
+    renderizado (en Mermaid no hay forma robusta de poner `data-atoms` en el SVG).
+    """
+    from spec2viz.orchestrator import CatalogLoader
+
+    loader = CatalogLoader()
+    explicit: dict[str, list[str]] = {}
+    total = 0
+    with_atoms = 0
+    for spec_ref in item.specs:
+        spec_path = loader._resolve_spec_path(spec_ref, Path(item.source_base_dir))
+        if spec_path is None:
+            continue
+        try:
+            spec = yaml.safe_load(spec_path.read_text(encoding="utf-8")) or {}
+        except Exception:
+            continue
+        if not isinstance(spec, dict):
+            continue
+        for eid, label, atoms in _spec_elements(spec):
+            total += 1
+            if not atoms:
+                continue
+            with_atoms += 1
+            for key in {label_key(label), label_key(eid)}:
+                bucket = explicit.setdefault(key, [])
+                bucket.extend(a for a in atoms if a not in bucket)
+    return explicit, total, with_atoms
+
+
+def _atom_index(payload: dict[str, dict]) -> dict[str, dict]:
+    index: dict[str, dict] = {}
+    for entry in payload.values():
+        for question, atom in (entry.get("atoms") or {}).items():
+            if atom.get("id"):
+                index[str(atom["id"])] = {
+                    "id": atom["id"],
+                    "title": entry.get("title", ""),
+                    "question": question,
+                    "body": atom.get("body", ""),
+                }
+    return index
+
+
+class UnknownAtomError(ValueError):
+    """Un spec referencia un atomo que no existe entre los cargados (`--strict-atoms`)."""
+
+
+def build_explicit_atoms(
+    items: list[CatalogItem],
+    raw_atoms_by_view: dict[str, dict[str, dict]],
+    strict: bool = False,
+) -> tuple[dict[str, dict[str, dict]], set[str], list[AtomBuildWarning]]:
+    """Resuelve los `atoms:` de los specs.
+
+    Devuelve (`view -> clave -> {title, list}`, vistas totalmente explicitas, warnings).
+    """
+    result: dict[str, dict[str, dict]] = {}
+    complete: set[str] = set()
+    warnings: list[AtomBuildWarning] = []
+    for item in items:
+        explicit, total, with_atoms = collect_explicit_atoms(item)
+        if not explicit:
+            continue
+        index = _atom_index(raw_atoms_by_view.get(item.anchor_id) or {})
+        resolved: dict[str, dict] = {}
+        for key, ids in explicit.items():
+            found = []
+            for atom_id in ids:
+                if atom_id in index:
+                    found.append(index[atom_id])
+                else:
+                    msg = f"{item.id}: atomo '{atom_id}' (nodo '{key}') no existe entre los atomos cargados"
+                    warnings.append(AtomBuildWarning(scope=item.anchor_id, message=msg))
+                    print(f"[spec2viz][atoms] {msg}", file=sys.stderr)
+            if found:
+                resolved[key] = {"title": key, "explicit": True, "list": found}
+        if resolved:
+            result[item.anchor_id] = resolved
+        if total and with_atoms == total and len(resolved) == len(explicit):
+            complete.add(item.anchor_id)
+    if strict and warnings:
+        raise UnknownAtomError("; ".join(w.message for w in warnings))
+    return result, complete, warnings
 
 
 def split_shared_atoms(atoms_by_view: dict[str, dict[str, dict]]) -> tuple[dict[str, dict], dict[str, dict[str, dict]]]:
@@ -562,6 +691,7 @@ def render_deskops(
     base_dir: Path | None = None,
     atoms_dir: Path | None = None,
     atoms_tags: list[str] | None = None,
+    strict_atoms: bool = False,
 ) -> str:
     catalog = load_catalog(config_path)
     if base_dir is None:
@@ -596,11 +726,23 @@ def render_deskops(
     if "{{FILTERS}}" not in tpl and "{{SECTIONS}}" in tpl:
         html = html.replace(sections, filters + sections, 1)
 
-    atoms_by_view, warnings = build_atoms_by_view(catalog.items, atoms_dir=atoms_dir, atoms_tags=atoms_tags)
+    raw_atoms_by_view, warnings = _raw_atoms_by_view(catalog.items, atoms_dir)
+    explicit_atoms, complete_views, explicit_warnings = build_explicit_atoms(
+        catalog.items, raw_atoms_by_view, strict=strict_atoms
+    )
+    warnings = [*warnings, *explicit_warnings]
+    atoms_by_view = {
+        view: filter_atoms_payload(payload, atoms_tags) if atoms_tags else payload
+        for view, payload in raw_atoms_by_view.items()
+    }
+    # vista con todos sus nodos explicitos: no hace falta coincidencia difusa, no se embebe nada mas
+    for view in complete_views:
+        atoms_by_view[view] = {}
     shared_atoms, atoms_by_view = split_shared_atoms(atoms_by_view)
     coverage_by_view, coverage_warnings = build_coverage_by_view(catalog.items)
     atoms_by_view_json = json.dumps(atoms_by_view)
     shared_atoms_json = json.dumps(shared_atoms)
+    explicit_atoms_json = json.dumps(explicit_atoms)
     coverage_by_view_json = json.dumps(coverage_by_view)
     warnings_json = json.dumps([warning.__dict__ for warning in warnings])
     coverage_warnings_json = json.dumps([warning.__dict__ for warning in coverage_warnings])
@@ -613,6 +755,7 @@ def render_deskops(
         "\n<script>"
         f"window.ATOMS_DB = {shared_atoms_json}; "
         f"window.ATOMS_BY_VIEW = {atoms_by_view_json}; "
+        f"window.ATOMS_EXPLICIT = {explicit_atoms_json}; "
         f"window.COVERAGE_BY_VIEW = {coverage_by_view_json}; "
         f"window.SPEC2VIZ_ATOM_WARNINGS = {warnings_json}; "
         f"window.SPEC2VIZ_COVERAGE_WARNINGS = {coverage_warnings_json}; "
@@ -630,6 +773,7 @@ def build_deskops(
     base_dir: Path | None = None,
     atoms_dir: Path | None = None,
     atoms_tags: list[str] | None = None,
+    strict_atoms: bool = False,
 ):
-    html = render_deskops(config_path, base_dir, atoms_dir, atoms_tags)
+    html = render_deskops(config_path, base_dir, atoms_dir, atoms_tags, strict_atoms)
     out_path.write_text(html, encoding="utf-8")

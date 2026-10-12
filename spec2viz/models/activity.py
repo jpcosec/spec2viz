@@ -17,6 +17,10 @@ class StepModel(BaseModel):
         default_factory=dict,
         description="Conditional branch labels mapped to destination step identifiers.",
     )
+    atoms: list[str] = Field(
+        default_factory=list,
+        description="Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+    )
 
 
 class ActivityData(BaseModel):

@@ -53,3 +53,7 @@ diagram_store:
 ```
 
 This is a diagram schema; it does not generate implementations or require an object-oriented inheritance hierarchy. For Clojure, `protocol` and `record` describe `defprotocol` and `defrecord` contracts.
+
+## Linking atoms
+
+Each entry under `data.classes` accepts an optional `atoms: [atom-id, ...]`; `spec2viz catalog build` shows exactly those atoms when the class is clicked (see README, "Linking atoms to diagram elements").
