@@ -182,3 +182,18 @@ class TestAtomMarkdown:
         known = {"a-1": {"id": "a-1", "title": "Destino", "question": "what", "body": "x"}}
         html = _md(template, "[depende de:: [[a-1]]]", known)
         assert "<em>depende de</em>: <a" in html and ">Destino</a>" in html
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="requiere node para ejecutar el template")
+@pytest.mark.parametrize("template", TEMPLATES, ids=lambda p: p.parent.name)
+def test_tabs_follow_the_target_atom(template):
+    src = template.read_text(encoding="utf-8")
+    block = re.search(r"// <atom-md>.*?// </atom-md>", src, re.S).group(0)
+    code = block + """
+const target = { id: 't', title: 'Etapa', question: 'what' };
+console.log(JSON.stringify([atomTabLabels([target], false), atomTabLabels([{question:'how_not',title:'T'}], true)]));
+"""
+    out = subprocess.run(["node", "-e", code], capture_output=True, text=True, check=True)
+    assert json.loads(out.stdout) == [["what"], ["how not · T"]]
+    # la navegacion por enlace regenera las pestanas con el atomo destino (no deja las del anterior)
+    assert "showAtoms([target], false)" in src

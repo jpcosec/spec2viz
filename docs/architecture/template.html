@@ -744,6 +744,9 @@
       }
       return html;
     }
+    function atomTabLabels(atoms, labelWithTitle) {
+      return atoms.map(a => labelWithTitle ? `${a.question.replace('_', ' ')} · ${a.title}` : a.question.replace('_', ' '));
+    }
     // </atom-md>
 
     // Vinculacion explicita (`atoms: [id]` en el spec): window.ATOMS_EXPLICIT[vista][etiqueta normalizada].
@@ -964,32 +967,36 @@
         return;
       }
 
+      const lookup = id => lookupAtomById(id, nodeEl);
+      const showAtoms = (atoms, labelWithTitle) => {
+        tabsEl.innerHTML = '';
+        let firstActive = null;
+        atomTabLabels(atoms, labelWithTitle).forEach((label, i) => {
+          const a = atoms[i];
+          const btn = document.createElement('button');
+          btn.className = 'atom-tab';
+          btn.innerText = label;
+          btn.onclick = () => {
+            document.querySelectorAll('.atom-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            contentEl.innerHTML = `<h4>5WH1+: ${escapeHtml(a.question.toUpperCase())} (${escapeHtml(a.id)})</h4>${renderAtomBody(a.body, lookup)}`;
+          };
+          tabsEl.appendChild(btn);
+          if (!firstActive) firstActive = btn;
+        });
+        if (firstActive) firstActive.click();
+      };
       titleEl.innerText = data.explicit ? nodeTitle : data.title;
-      tabsEl.innerHTML = '';
-      let firstActive = null;
-      list.forEach(a => {
-        const btn = document.createElement('button');
-        btn.className = 'atom-tab';
-        btn.innerText = data.explicit ? `${a.question.replace('_', ' ')} · ${a.title}` : a.question.replace('_', ' ');
-        btn.onclick = () => {
-          document.querySelectorAll('.atom-tab').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          contentEl.innerHTML = `<h4>5WH1+: ${escapeHtml(a.question.toUpperCase())} (${escapeHtml(a.id)})</h4>${renderAtomBody(a.body, id => lookupAtomById(id, nodeEl))}`;
-        };
-        tabsEl.appendChild(btn);
-        if (!firstActive) firstActive = btn;
-      });
+      showAtoms(list, !!data.explicit);
       contentEl.onclick = (ev) => {
         const link = ev.target.closest('a[data-atom-id]');
         if (!link) return;
         ev.preventDefault();
-        const target = lookupAtomById(link.dataset.atomId, nodeEl);
+        const target = lookup(link.dataset.atomId);
         if (!target) return;
-        document.querySelectorAll('.atom-tab').forEach(b => b.classList.remove('active'));
         titleEl.innerText = target.title || target.id;
-        contentEl.innerHTML = `<h4>5WH1+: ${escapeHtml(String(target.question || '').toUpperCase())} (${escapeHtml(target.id)})</h4>${renderAtomBody(target.body, id => lookupAtomById(id, nodeEl))}`;
+        showAtoms([target], false);  // pestanas regeneradas para el atomo destino
       };
-      if (firstActive) firstActive.click();
       panel.classList.add('active');
     }
 
