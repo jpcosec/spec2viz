@@ -285,13 +285,39 @@ def parse_atoms(atoms_dir: Path) -> str:
                     atoms_db[title_norm]["atoms"][question.strip().lower()] = {
                         "id": fm.get("id", md_file.stem),
                         "body": body,
+                        "tags": tags,
                     }
             except Exception as exc:
                 print(f"Failed to parse atom {md_file}: {exc}")
     return json.dumps(atoms_db)
 
 
-def build_atoms_by_view(items: list[CatalogItem], atoms_dir: Path | None = None) -> tuple[dict[str, dict[str, dict]], list[AtomBuildWarning]]:
+def _tag_matches(tag: str, wanted: str) -> bool:
+    """`wanted` calza con el tag completo (`ns:valor`) o con su valor sin namespace."""
+    tag = str(tag).strip().lower()
+    wanted = wanted.strip().lower()
+    return tag == wanted or (":" in tag and tag.split(":", 1)[1] == wanted)
+
+
+def filter_atoms_payload(payload: dict[str, dict], tags: list[str] | None) -> dict[str, dict]:
+    """Deja solo los atomos que tengan al menos uno de `tags`; sin `tags` no filtra."""
+    if not tags:
+        return payload
+    filtered: dict[str, dict] = {}
+    for key, entry in payload.items():
+        kept = {
+            question: atom
+            for question, atom in (entry.get("atoms") or {}).items()
+            if any(_tag_matches(t, w) for t in (atom.get("tags") or []) for w in tags)
+        }
+        if kept:
+            filtered[key] = {**entry, "atoms": kept}
+    return filtered
+
+
+def build_atoms_by_view(
+    items: list[CatalogItem], atoms_dir: Path | None = None, atoms_tags: list[str] | None = None
+) -> tuple[dict[str, dict[str, dict]], list[AtomBuildWarning]]:
     resolver = SldbAtomResolver()
     atoms_by_view = resolver.build_atoms_by_view(items)
 
@@ -303,7 +329,35 @@ def build_atoms_by_view(items: list[CatalogItem], atoms_dir: Path | None = None)
                 continue
             atoms_by_view[view_key] = fallback
 
+    if atoms_tags:
+        atoms_by_view = {k: filter_atoms_payload(v, atoms_tags) for k, v in atoms_by_view.items()}
+
     return atoms_by_view, resolver.warnings
+
+
+def split_shared_atoms(atoms_by_view: dict[str, dict[str, dict]]) -> tuple[dict[str, dict], dict[str, dict[str, dict]]]:
+    """Saca a un `ATOMS_DB` comun el payload repetido en varias vistas.
+
+    El template cae a `ATOMS_DB` cuando la vista no esta en `ATOMS_BY_VIEW`, asi que el
+    payload mas repetido (no vacio) se emite una sola vez en vez de una por vista.
+    """
+    counts: dict[str, int] = {}
+    for payload in atoms_by_view.values():
+        if payload:
+            key = json.dumps(payload, sort_keys=True)
+            counts[key] = counts.get(key, 0) + 1
+    if not counts:
+        return {}, atoms_by_view
+    shared_key, shared_count = max(counts.items(), key=lambda kv: kv[1])
+    if shared_count < 2:
+        return {}, atoms_by_view
+    shared = json.loads(shared_key)
+    rest = {
+        view: payload
+        for view, payload in atoms_by_view.items()
+        if not (payload and json.dumps(payload, sort_keys=True) == shared_key)
+    }
+    return shared, rest
 
 
 def build_coverage_by_view(
@@ -503,7 +557,12 @@ def _source_field_for(semantics: dict, facet: str) -> str:
     return mapping.get((diagram_type, element_kind, facet), "label")
 
 
-def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: Path | None = None) -> str:
+def render_deskops(
+    config_path: Path,
+    base_dir: Path | None = None,
+    atoms_dir: Path | None = None,
+    atoms_tags: list[str] | None = None,
+) -> str:
     catalog = load_catalog(config_path)
     if base_dir is None:
         base_dir = config_path.parent
@@ -537,9 +596,11 @@ def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: P
     if "{{FILTERS}}" not in tpl and "{{SECTIONS}}" in tpl:
         html = html.replace(sections, filters + sections, 1)
 
-    atoms_by_view, warnings = build_atoms_by_view(catalog.items, atoms_dir=atoms_dir)
+    atoms_by_view, warnings = build_atoms_by_view(catalog.items, atoms_dir=atoms_dir, atoms_tags=atoms_tags)
+    shared_atoms, atoms_by_view = split_shared_atoms(atoms_by_view)
     coverage_by_view, coverage_warnings = build_coverage_by_view(catalog.items)
     atoms_by_view_json = json.dumps(atoms_by_view)
+    shared_atoms_json = json.dumps(shared_atoms)
     coverage_by_view_json = json.dumps(coverage_by_view)
     warnings_json = json.dumps([warning.__dict__ for warning in warnings])
     coverage_warnings_json = json.dumps([warning.__dict__ for warning in coverage_warnings])
@@ -550,7 +611,7 @@ def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: P
 
     injection = (
         "\n<script>"
-        f"window.ATOMS_DB = {{}}; "
+        f"window.ATOMS_DB = {shared_atoms_json}; "
         f"window.ATOMS_BY_VIEW = {atoms_by_view_json}; "
         f"window.COVERAGE_BY_VIEW = {coverage_by_view_json}; "
         f"window.SPEC2VIZ_ATOM_WARNINGS = {warnings_json}; "
@@ -563,6 +624,12 @@ def render_deskops(config_path: Path, base_dir: Path | None = None, atoms_dir: P
     return html
 
 
-def build_deskops(config_path: Path, out_path: Path, base_dir: Path | None = None, atoms_dir: Path | None = None):
-    html = render_deskops(config_path, base_dir, atoms_dir)
+def build_deskops(
+    config_path: Path,
+    out_path: Path,
+    base_dir: Path | None = None,
+    atoms_dir: Path | None = None,
+    atoms_tags: list[str] | None = None,
+):
+    html = render_deskops(config_path, base_dir, atoms_dir, atoms_tags)
     out_path.write_text(html, encoding="utf-8")

@@ -683,23 +683,39 @@
       return window.ATOMS_DB || {};
     }
 
-    function tokenSet(str) {
-      return new Set(norm(str).split(/\s+/).filter(t => t && t.length >= 3));
+    // <atom-match>
+    const ATOM_MATCH_MIN_SCORE = 40;
+
+    function normKey(str) {
+      return norm(str).replace(/[^\p{L}\p{N}\s]+/gu, ' ').replace(/\s+/g, ' ').trim();
     }
 
+    function tokenSet(str) {
+      return new Set(normKey(str).split(/\s+/).filter(t => t && t.length >= 3));
+    }
+
+    // Puntaje de parecido nodo<->atomo. Un solo token compartido NO basta (daba falsos positivos
+    // con cientos de atomos): se exige titulo/alias exacto, frase contenida (>=2 palabras) o
+    // >=2 tokens compartidos que cubran >=60% del lado mas corto.
     function matchScore(cleanText, atomEntry) {
       let best = 0;
+      const text = normKey(cleanText);
+      if (!text) return 0;
       const aliases = [atomEntry?.title || '', ...(atomEntry?.aliases || [])];
-      const textTokens = tokenSet(cleanText);
+      const textTokens = tokenSet(text);
       for (const alias of aliases) {
-        const cleanAlias = norm(alias);
+        const cleanAlias = normKey(alias);
         if (!cleanAlias) continue;
-        if (cleanText === cleanAlias) best = Math.max(best, 100);
-        else if (cleanText.includes(cleanAlias) || cleanAlias.includes(cleanText)) best = Math.max(best, 80);
+        if (text === cleanAlias) { best = Math.max(best, 100); continue; }
+        const textWords = text.split(' ').length;
+        const aliasWords = cleanAlias.split(' ').length;
+        if (aliasWords >= 2 && (' ' + text + ' ').includes(' ' + cleanAlias + ' ')) best = Math.max(best, 80);
+        else if (textWords >= 2 && (' ' + cleanAlias + ' ').includes(' ' + text + ' ')) best = Math.max(best, 80);
         const aliasTokens = tokenSet(cleanAlias);
         let overlap = 0;
         aliasTokens.forEach(tok => { if (textTokens.has(tok)) overlap += 1; });
-        if (overlap > 0) best = Math.max(best, overlap * 10);
+        const smaller = Math.min(aliasTokens.size, textTokens.size);
+        if (overlap >= 2 && smaller > 0 && overlap / smaller >= 0.6) best = Math.max(best, 40 + overlap);
       }
       return best;
     }
@@ -718,8 +734,9 @@
           bestScore = score;
         }
       }
-      return bestScore >= 10 ? best : null;
+      return bestScore >= ATOM_MATCH_MIN_SCORE ? best : null;
     }
+    // </atom-match>
 
     function annoLabel(el) {
       if (el.matches('g.cluster')) {
