@@ -315,6 +315,12 @@
       padding-bottom:28px;
     }
     .mermaid{display:block;min-width:max-content;padding-bottom:12px}
+    .atom-refs{margin-top:14px;padding-top:10px;border-top:1px solid rgba(212,165,116,.25)}
+    .atom-refs h4{margin:0 0 6px}
+    .atom-refs ul{list-style:none;padding:0;margin:0}
+    .atom-refs li{margin:0 0 8px}
+    .atom-refs code{font-size:11px;opacity:.75}
+    .atom-refs .ref-summary{font-size:12px;opacity:.8;margin-top:2px}
     .mermaid svg,
     .puml-board svg,
     .diagram-canvas svg{display:block;max-width:none;height:auto;margin:0 auto;overflow:visible}
@@ -790,6 +796,23 @@
       return (map && map[normKey(nodeText)]) || null;
     }
 
+    // Referencias explicitas (`refs: [Model:name]` en el spec): window.REFS_EXPLICIT[vista][etiqueta normalizada].
+    function explicitRefs(nodeText, nodeEl) {
+      const viewKey = nodeEl?.closest('section')?.id;
+      const map = viewKey && window.REFS_EXPLICIT?.[viewKey];
+      return (map && map[normKey(nodeText)]) || [];
+    }
+
+    function refsHtml(refs) {
+      if (!refs || !refs.length) return '';
+      const items = refs.map(r => {
+        const title = escapeHtml(r.title || r.name || r.ref);
+        const summary = r.summary ? `<div class="ref-summary">${escapeHtml(String(r.summary).slice(0, 160))}</div>` : '';
+        return `<li><span class="meta-badge">${escapeHtml(r.model || '')}</span> <strong>${title}</strong> <code title="${escapeHtml(r.path || '')}">${escapeHtml(r.ref)}</code>${summary}</li>`;
+      }).join('');
+      return `<div class="atom-refs"><h4>Referencias sldb</h4><ul>${items}</ul></div>`;
+    }
+
     // Lista plana de atomos de una entrada: explicita (todos) o por coincidencia difusa (por pregunta).
     function atomList(data) {
       if (!data) return [];
@@ -1038,8 +1061,10 @@
       popoverBadges.innerHTML = '';
 
       const list = atomList(data);
+      const refCount = explicitRefs(nodeText, nodeEl).length;
       if (!list.length) {
-        popoverSnippet.innerText = annoMode ? 'Modo comentarios activo.' : 'Sin átomos 5WH1+ registrados.';
+        popoverSnippet.innerText = annoMode ? 'Modo comentarios activo.'
+          : refCount ? `${refCount} referencia(s) sldb.` : 'Sin átomos 5WH1+ registrados.';
       } else {
         list.forEach(a => {
           const span = document.createElement('span');
@@ -1070,10 +1095,11 @@
       const data = findAtomData(nodeTitle, nodeEl);
 
       const list = atomList(data);
+      const refs = refsHtml(explicitRefs(nodeTitle, nodeEl));
       if (!list.length) {
         titleEl.innerText = nodeTitle;
         tabsEl.innerHTML = '';
-        contentEl.innerHTML = '<p>No hay átomos 5WH1+ registrados para este componente.</p>';
+        contentEl.innerHTML = refs || '<p>No hay átomos 5WH1+ registrados para este componente.</p>';
         panel.classList.add('active');
         return;
       }
@@ -1090,7 +1116,7 @@
           btn.onclick = () => {
             document.querySelectorAll('.atom-tab').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            contentEl.innerHTML = `<h4>5WH1+: ${escapeHtml(a.question.toUpperCase())} (${escapeHtml(a.id)})</h4>${renderAtomBody(a.body, lookup)}`;
+            contentEl.innerHTML = `<h4>5WH1+: ${escapeHtml(a.question.toUpperCase())} (${escapeHtml(a.id)})</h4>${renderAtomBody(a.body, lookup)}${refs}`;
           };
           tabsEl.appendChild(btn);
           if (!firstActive) firstActive = btn;

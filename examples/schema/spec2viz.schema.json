@@ -119,6 +119,15 @@
           },
           "title": "Atoms",
           "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
         }
       },
       "title": "ArtifactModel",
@@ -247,6 +256,15 @@
             "type": "string"
           },
           "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
           "type": "array"
         }
       },
@@ -709,6 +727,15 @@
           },
           "title": "Atoms",
           "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
         }
       },
       "title": "DeploymentNodeModel",
@@ -1126,6 +1153,15 @@
           },
           "title": "Atoms",
           "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
         }
       },
       "title": "NodeModel",
@@ -1151,6 +1187,15 @@
             "type": "string"
           },
           "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
           "type": "array"
         }
       },
@@ -1684,6 +1729,15 @@
           },
           "title": "Atoms",
           "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
         }
       },
       "required": [
@@ -1733,6 +1787,15 @@
             "type": "string"
           },
           "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
           "type": "array"
         }
       },

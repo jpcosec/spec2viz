@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased - 2026-10-16
+
+- added `refs: [Model:name]` to every spec element (component, deployment, class, activity, state,
+  sequence): references to sldb documents, resolved at `catalog build` and listed in the element panel
+- the catalog atom resolver uses only the public `sldb.api` surface (`load_runtime_documents`,
+  `open_store`, `store_links`); `structuredLanguageDB>=0.1.3` is now a declared dependency
+- the architecture bundle uses the built-in template; the stale `docs/architecture/template.html`
+  override is gone and the Mermaid projections are regenerated from their specs
+- sequence renderers emit one block per run of consecutive messages sharing a `group`; `;` is escaped
+  in Mermaid messages; the antonIA HTML escapes the Mermaid source
+
 ## 0.2.0 - 2026-05-01
 
 Defined the semantic IR reflection contract and enforcement artifact shape.

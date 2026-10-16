@@ -12,7 +12,7 @@ from spec2viz.cli import main
 from spec2viz.deskops import filter_atoms_payload, parse_atoms, split_shared_atoms
 
 ROOT = Path(__file__).resolve().parents[1]
-TEMPLATES = [ROOT / "spec2viz" / "templates" / "default.html", ROOT / "docs" / "architecture" / "template.html"]
+TEMPLATES = [ROOT / "spec2viz" / "templates" / "default.html"]
 
 HARNESS = """
 const norm = (str) => str ? str.trim().toLowerCase().replace(/\\s+/g, ' ') : '';

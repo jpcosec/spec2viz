@@ -127,5 +127,5 @@ def test_atoms_linked_from_explicit_are_embedded_one_level(tmp_path):
     _atom(atoms, "atom-lejano2", "Nivel dos")
     res, html = _build(tmp_path, atoms)
     assert res.exit_code == 0, res.output
-    linked = json.loads(re.search(r"window\.ATOMS_LINKED = (\{.*?\}); window\.COVERAGE", html, re.S).group(1))
+    linked = json.loads(re.search(r"window\.ATOMS_LINKED = (\{.*?\}); window\.REFS_EXPLICIT", html, re.S).group(1))
     assert set(linked) == {"atom-ruido", "atom-lejano"}  # un nivel: no atom-lejano2

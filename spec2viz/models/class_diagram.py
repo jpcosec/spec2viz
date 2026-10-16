@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from typing import Annotated, Literal
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints
-from spec2viz.models.base import BaseDiagram, DiagramType
+from spec2viz.models.base import DocRef, BaseDiagram, DiagramType
 
 Identifier = Annotated[str, StringConstraints(pattern=r"^[A-Za-z_][A-Za-z0-9_]*$")]
 MemberName = Annotated[str, StringConstraints(pattern=r"^[A-Za-z_][A-Za-z0-9_?!-]*$")]
@@ -51,6 +51,10 @@ class ClassDefinition(BaseModel):
     atoms: list[str] = Field(
         default_factory=list,
         description="Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+    )
+    refs: list[DocRef] = Field(
+        default_factory=list,
+        description="Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
     )
 
 

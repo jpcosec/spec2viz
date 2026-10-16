@@ -97,6 +97,19 @@ nodes without `atoms` fall back to the fuzzy matcher (exact title/alias, contain
 An unknown id is a build warning; `--strict-atoms` makes it an error. When every element of a view declares
 atoms, the other atoms are not embedded for that view. `--atoms-tag <tag>` (repeatable) limits the fuzzy pool by tag.
 
+Elements may also point at any sldb document with `refs: [Model:name, ...]` (`alias:Model:name` for a
+document of a linked store), for example a task or a code symbol:
+
+```yaml
+    renderers:
+      label: Renderer Dispatch
+      refs: [TaskDoc:task-sync-golden-plantuml-files, PythonSymbolDoc:python-spec2viz-renderers]
+```
+
+`catalog build` resolves each ref against the sldb store discovered for the view (public `sldb.api`) and
+lists them in the element panel with model, title, path and a short summary. An unknown ref is a warning,
+or an error with `--strict-atoms`. A ref without the `Model:` part is rejected at validation time.
+
 Hierarchical stores can aggregate other stores and legacy `vistas.yml` leaves, then expose one filtered HTML catalog by category, type, project, and tags.
 
 Minimal `project.yml` / diagram-store shape:

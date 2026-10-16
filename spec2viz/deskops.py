@@ -37,6 +37,7 @@ class SldbAtomResolver:
     pythonpath: str | None = None
     warnings: list[AtomBuildWarning] = field(default_factory=list)
     _store_payload_cache: dict[str, dict[str, dict]] = field(default_factory=dict)
+    _store_docs_cache: dict[str, list[dict]] = field(default_factory=dict)
     _view_store_cache: dict[str, Path | None] = field(default_factory=dict)
 
     def build_atoms_by_view(self, items: list[CatalogItem]) -> dict[str, dict[str, dict]]:
@@ -59,8 +60,7 @@ class SldbAtomResolver:
             return self._view_store_cache[view_key]
 
         try:
-            from sldb.store.layout import store_exists
-            from sldb.store.resolver import find_local_store
+            import sldb.api  # noqa: F401 - solo la superficie publica
         except Exception as exc:  # pragma: no cover - exercised through fallback path
             self._warn("sldb", f"SLDB unavailable while resolving stores: {exc}")
             self._view_store_cache[view_key] = None
@@ -76,9 +76,9 @@ class SldbAtomResolver:
         store_path = None
         for candidate in candidates:
             if boundary is not None:
-                store_path = self._find_local_store_with_boundary(candidate, boundary, store_exists)
+                store_path = self._find_local_store_with_boundary(candidate, boundary)
             else:
-                store_path = find_local_store(candidate)
+                store_path = self._find_local_store(candidate)
             if store_path is not None:
                 break
 
@@ -111,18 +111,39 @@ class SldbAtomResolver:
                 return directory
         return None
 
-    def _find_local_store_with_boundary(self, start: Path, boundary: Path, store_exists) -> Path | None:
+    def _find_local_store_with_boundary(self, start: Path, boundary: Path) -> Path | None:
         current = start.resolve()
         boundary = boundary.resolve()
         for directory in [current, *current.parents]:
             if not self._is_relative_to(directory, boundary):
                 break
             candidate = directory / ".sldb"
-            if store_exists(candidate):
+            if self._store_exists(candidate):
                 return candidate.resolve()
             if directory == boundary:
                 break
         return None
+
+    def _find_local_store(self, start: Path) -> Path | None:
+        current = start.resolve()
+        for directory in [current, *current.parents]:
+            candidate = directory / ".sldb"
+            if self._store_exists(candidate):
+                return candidate.resolve()
+        return None
+
+    @staticmethod
+    def _store_exists(path: Path) -> bool:
+        """Un `.sldb` es store si sldb puede leer su indice (API publica; sin tocar internos)."""
+        if not path.is_dir():
+            return False
+        try:
+            from sldb.api import store_links
+
+            store_links(path)
+            return True
+        except Exception:
+            return False
 
     def _is_relative_to(self, path: Path, other: Path) -> bool:
         try:
@@ -145,54 +166,61 @@ class SldbAtomResolver:
         self._store_payload_cache[cache_key] = payload
         return payload
 
-    def _load_store_payload_uncached(self, store_path: Path) -> dict[str, dict]:
+    def _load_store_documents(self, store_path: Path) -> list[dict]:
+        """Documentos del store y de sus stores enlazados, via la API publica de sldb.
+
+        Cada entrada trae `ref` (`Model:name`, o `alias:Model:name` si viene de un store
+        enlazado), `store`, `model`, `name`, `title`, `path` absoluto y `payload`.
+        """
+        cache_key = str(store_path.resolve())
+        if cache_key in self._store_docs_cache:
+            return self._store_docs_cache[cache_key]
         try:
-            from sldb.cli.model_utils import resolve_model_ref
-            from sldb.runtime.validation import extract_model_data
-            from sldb.store.io import load_documents_index, load_models_index, load_store_index
-            from sldb.store.layout import project_root, store_exists
+            from sldb.api import load_runtime_documents, open_store
         except Exception as exc:  # pragma: no cover - exercised through fallback path
             raise RuntimeError(f"SLDB import failed: {exc}") from exc
 
+        roots: dict[str, Path] = {}
+        docs: list[dict] = []
+        for doc in load_runtime_documents(store_path.resolve(), self.pythonpath, include_linked=True):
+            doc_store = str(doc.store_path)
+            if doc_store not in roots:
+                roots[doc_store] = Path(open_store(Path(doc_store)).project_root)
+            store_name = str(getattr(doc, "store_name", "") or "local")
+            ref = f"{doc.model_name}:{doc.name}" if store_name == "local" else f"{store_name}:{doc.model_name}:{doc.name}"
+            payload = dict(doc.payload or {})
+            docs.append(
+                {
+                    "ref": ref,
+                    "store": doc_store,
+                    "store_name": store_name,
+                    "model": str(doc.model_name),
+                    "name": str(doc.name),
+                    "title": str(payload.get("title") or doc.name),
+                    "path": str(roots[doc_store] / doc.path),
+                    "payload": payload,
+                }
+            )
+        self._store_docs_cache[cache_key] = docs
+        return docs
+
+    def _load_store_payload_uncached(self, store_path: Path) -> dict[str, dict]:
         payload: dict[str, dict] = {}
-        visited: set[str] = set()
-
-        def visit(current_store: Path):
-            current_key = str(current_store.resolve())
-            if current_key in visited:
-                return
-            visited.add(current_key)
-
-            root = project_root(current_store)
-            store_index = load_store_index(current_store)
-            atom_entry = next((entry for entry in store_index.models if entry.name == "AtomDoc"), None)
-            if atom_entry is not None:
-                model_type = resolve_model_ref(atom_entry.model_ref, self.pythonpath)
-                model_index = load_models_index(root / atom_entry.models_index)
-                documents_index = load_documents_index(root / model_index.documents_index)
-                for document in documents_index.documents:
-                    doc_path = root / document.path
-                    if not doc_path.exists():
-                        self._warn(current_key, f"Missing tracked atom doc: {doc_path}")
-                        continue
-                    try:
-                        atom = extract_model_data(model_type, doc_path.read_text(encoding="utf-8"))
-                    except Exception as exc:
-                        self._warn(current_key, f"Skipped invalid atom doc {doc_path}: {exc}")
-                        continue
-                    self._merge_atom(payload, atom, doc_path, current_store)
-
-            for linked in store_index.stores:
-                linked_store = Path(linked.path)
-                linked_store = linked_store if linked_store.is_absolute() else (root / linked_store)
-                linked_store = linked_store.resolve()
-                if not store_exists(linked_store):
-                    self._warn(current_key, f"Linked store missing: {linked.name} -> {linked_store}")
-                    continue
-                visit(linked_store)
-
-        visit(store_path)
+        for doc in self._load_store_documents(store_path):
+            if doc["model"] != "AtomDoc":
+                continue
+            self._merge_atom(payload, doc["payload"], Path(doc["path"]), Path(doc["store"]))
         return payload
+
+    def resolve_ref(self, store_path: Path, ref: str) -> dict | None:
+        """El documento `Model:name` (o `alias:Model:name`) del store de la vista, o None."""
+        try:
+            docs = self._load_store_documents(store_path)
+        except Exception as exc:
+            self._warn(str(store_path), f"Failed to load documents through SLDB: {exc}")
+            self._store_docs_cache[str(store_path.resolve())] = []
+            return None
+        return next((doc for doc in docs if doc["ref"] == ref), None)
 
     def _merge_atom(self, payload: dict[str, dict], atom: dict, doc_path: Path, store_path: Path) -> None:
         title = str(atom.get("title") or "").strip()
@@ -325,9 +353,9 @@ def build_atoms_by_view(
 
 
 def _raw_atoms_by_view(
-    items: list[CatalogItem], atoms_dir: Path | None = None
+    items: list[CatalogItem], atoms_dir: Path | None = None, resolver: SldbAtomResolver | None = None
 ) -> tuple[dict[str, dict[str, dict]], list[AtomBuildWarning]]:
-    resolver = SldbAtomResolver()
+    resolver = resolver or SldbAtomResolver()
     atoms_by_view = resolver.build_atoms_by_view(items)
 
     if atoms_dir:
@@ -359,10 +387,10 @@ def label_key(value: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"[^\w\s]+", " ", (value or "").strip().lower())).strip()
 
 
-def _spec_elements(spec: dict) -> list[tuple[str, str, list[str]]]:
-    """(id, label, atoms) de cada elemento del spec que el catalogo puede mostrar."""
+def _spec_elements(spec: dict) -> list[tuple[str, str, list[str], list[str]]]:
+    """(id, label, atoms, refs) de cada elemento del spec que el catalogo puede mostrar."""
     data = spec.get("data") or {}
-    out: list[tuple[str, str, list[str]]] = []
+    out: list[tuple[str, str, list[str], list[str]]] = []
     for collection in _ELEMENT_COLLECTIONS.get(str(spec.get("type")), ()):
         raw = data.get(collection) or {}
         pairs = raw.items() if isinstance(raw, dict) else [(e.get("id"), e) for e in raw if isinstance(e, dict)]
@@ -371,22 +399,17 @@ def _spec_elements(spec: dict) -> list[tuple[str, str, list[str]]]:
                 continue
             el = el if isinstance(el, dict) else {}
             atoms = [str(a) for a in (el.get("atoms") or [])]
-            out.append((str(eid), str(el.get("label") or eid), atoms))
+            refs = [str(r) for r in (el.get("refs") or [])]
+            out.append((str(eid), str(el.get("label") or eid), atoms, refs))
     return out
 
 
-def collect_explicit_atoms(item: CatalogItem) -> tuple[dict[str, list[str]], int, int]:
-    """Mapa `clave de etiqueta -> [atom-id]` de los specs de la vista, total de elementos y cuantos traen `atoms`.
-
-    Se indexa por etiqueta e id normalizados porque el template solo ve el texto del nodo
-    renderizado (en Mermaid no hay forma robusta de poner `data-atoms` en el SVG).
-    """
+def _item_specs(item: CatalogItem) -> list[dict]:
+    """Los specs YAML de una vista que se pudieron leer, como dicts."""
     from spec2viz.orchestrator import CatalogLoader
 
     loader = CatalogLoader()
-    explicit: dict[str, list[str]] = {}
-    total = 0
-    with_atoms = 0
+    specs: list[dict] = []
     for spec_ref in item.specs:
         spec_path = loader._resolve_spec_path(spec_ref, Path(item.source_base_dir))
         if spec_path is None:
@@ -395,9 +418,22 @@ def collect_explicit_atoms(item: CatalogItem) -> tuple[dict[str, list[str]], int
             spec = yaml.safe_load(spec_path.read_text(encoding="utf-8")) or {}
         except Exception:
             continue
-        if not isinstance(spec, dict):
-            continue
-        for eid, label, atoms in _spec_elements(spec):
+        if isinstance(spec, dict):
+            specs.append(spec)
+    return specs
+
+
+def collect_explicit_atoms(item: CatalogItem) -> tuple[dict[str, list[str]], int, int]:
+    """Mapa `clave de etiqueta -> [atom-id]` de los specs de la vista, total de elementos y cuantos traen `atoms`.
+
+    Se indexa por etiqueta e id normalizados porque el template solo ve el texto del nodo
+    renderizado (en Mermaid no hay forma robusta de poner `data-atoms` en el SVG).
+    """
+    explicit: dict[str, list[str]] = {}
+    total = 0
+    with_atoms = 0
+    for spec in _item_specs(item):
+        for eid, label, atoms, _refs in _spec_elements(spec):
             total += 1
             if not atoms:
                 continue
@@ -472,6 +508,65 @@ def build_explicit_atoms(
     if strict and warnings:
         raise UnknownAtomError("; ".join(w.message for w in warnings))
     return result, complete, warnings, linked
+
+
+def collect_explicit_refs(item: CatalogItem) -> dict[str, list[str]]:
+    """Mapa `clave de etiqueta -> [ref]` de los `refs:` de los elementos de la vista."""
+    explicit: dict[str, list[str]] = {}
+    for spec in _item_specs(item):
+        for eid, label, _atoms, refs in _spec_elements(spec):
+            if not refs:
+                continue
+            for key in {label_key(label), label_key(eid)}:
+                bucket = explicit.setdefault(key, [])
+                bucket.extend(r for r in refs if r not in bucket)
+    return explicit
+
+
+_SUMMARY_FIELDS = ("summary", "answer", "content", "purpose", "docstring", "goal", "description")
+
+
+def _ref_payload(doc: dict) -> dict:
+    payload = doc.get("payload") or {}
+    summary = next((str(payload[f]).strip() for f in _SUMMARY_FIELDS if payload.get(f)), "")
+    return {key: doc.get(key, "") for key in ("ref", "model", "name", "title", "path", "store")} | {"summary": summary[:300]}
+
+
+def build_explicit_refs(
+    items: list[CatalogItem], resolver: SldbAtomResolver | None = None, strict: bool = False
+) -> tuple[dict[str, dict[str, list[dict]]], list[AtomBuildWarning]]:
+    """Resuelve los `refs: [Model:name]` de los specs contra el store sldb de cada vista.
+
+    Devuelve `view -> clave de etiqueta -> [{ref, model, name, title, path, store, summary}]`
+    y los warnings; con `strict` una ref que no existe aborta el build.
+    """
+    resolver = resolver or SldbAtomResolver()
+    result: dict[str, dict[str, list[dict]]] = {}
+    warnings: list[AtomBuildWarning] = []
+    for item in items:
+        explicit = collect_explicit_refs(item)
+        if not explicit:
+            continue
+        store_path = resolver._discover_store_for_item(item)
+        resolved: dict[str, list[dict]] = {}
+        for key, refs in explicit.items():
+            found = []
+            for ref in refs:
+                doc = resolver.resolve_ref(store_path, ref) if store_path is not None else None
+                if doc is None:
+                    where = "sin store sldb para la vista" if store_path is None else "no existe en el store sldb de la vista"
+                    msg = f"{item.id}: ref '{ref}' (nodo '{key}') {where}"
+                    warnings.append(AtomBuildWarning(scope=item.anchor_id, message=msg))
+                    print(f"[spec2viz][refs] {msg}", file=sys.stderr)
+                    continue
+                found.append(_ref_payload(doc))
+            if found:
+                resolved[key] = found
+        if resolved:
+            result[item.anchor_id] = resolved
+    if strict and warnings:
+        raise UnknownAtomError("; ".join(w.message for w in warnings))
+    return result, warnings
 
 
 def split_shared_atoms(atoms_by_view: dict[str, dict[str, dict]]) -> tuple[dict[str, dict], dict[str, dict[str, dict]]]:
@@ -736,11 +831,13 @@ def render_deskops(
     if "{{FILTERS}}" not in tpl and "{{SECTIONS}}" in tpl:
         html = html.replace(sections, filters + sections, 1)
 
-    raw_atoms_by_view, warnings = _raw_atoms_by_view(catalog.items, atoms_dir)
+    resolver = SldbAtomResolver()
+    raw_atoms_by_view, warnings = _raw_atoms_by_view(catalog.items, atoms_dir, resolver)
     explicit_atoms, complete_views, explicit_warnings, linked_atoms = build_explicit_atoms(
         catalog.items, raw_atoms_by_view, strict=strict_atoms
     )
-    warnings = [*warnings, *explicit_warnings]
+    explicit_refs, ref_warnings = build_explicit_refs(catalog.items, resolver, strict=strict_atoms)
+    warnings = [*warnings, *explicit_warnings, *ref_warnings]
     atoms_by_view = {
         view: filter_atoms_payload(payload, atoms_tags) if atoms_tags else payload
         for view, payload in raw_atoms_by_view.items()
@@ -754,6 +851,7 @@ def render_deskops(
     shared_atoms_json = json.dumps(shared_atoms)
     explicit_atoms_json = json.dumps(explicit_atoms)
     linked_atoms_json = json.dumps(linked_atoms)
+    explicit_refs_json = json.dumps(explicit_refs)
     coverage_by_view_json = json.dumps(coverage_by_view)
     warnings_json = json.dumps([warning.__dict__ for warning in warnings])
     coverage_warnings_json = json.dumps([warning.__dict__ for warning in coverage_warnings])
@@ -768,6 +866,7 @@ def render_deskops(
         f"window.ATOMS_BY_VIEW = {atoms_by_view_json}; "
         f"window.ATOMS_EXPLICIT = {explicit_atoms_json}; "
         f"window.ATOMS_LINKED = {linked_atoms_json}; "
+        f"window.REFS_EXPLICIT = {explicit_refs_json}; "
         f"window.COVERAGE_BY_VIEW = {coverage_by_view_json}; "
         f"window.SPEC2VIZ_ATOM_WARNINGS = {warnings_json}; "
         f"window.SPEC2VIZ_COVERAGE_WARNINGS = {coverage_warnings_json}; "
