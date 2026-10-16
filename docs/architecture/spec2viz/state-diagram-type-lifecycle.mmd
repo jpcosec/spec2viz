@@ -1,4 +1,11 @@
 stateDiagram-v2
+    state "Raw YAML File" as raw_yaml
+    state "Python Dict" as parsed_dict
+    state "Pydantic DiagramModel" as validated_model
+    state "Semantically Valid Model" as semantically_valid
+    state "IR Dataclass" as compiled_ir
+    state "Rendered Output" as rendered_output
+    state "Error State" as error
     [*] --> raw_yaml
     raw_yaml --> parsed_dict : yaml.safe_load() [valid YAML syntax]
     raw_yaml --> error : yaml.safe_load() [malformed YAML]

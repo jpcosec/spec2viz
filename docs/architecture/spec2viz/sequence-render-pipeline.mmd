@@ -20,4 +20,4 @@ sequenceDiagram
     Renderer->>Facade: returns string
     Facade->>Disk: output_path.write_text(result)
     Facade->>CLI: returns output_path
-    CLI->>User: Rendered spec.yml -> output.mmd
+    CLI->>User: Rendered spec.yml -#gt; output.mmd

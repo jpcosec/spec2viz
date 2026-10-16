@@ -10,15 +10,15 @@ graph TD
     schema_mod["Schema Export"]
     deskops["Deskops Builder"]
     exceptions["Exception Hierarchy"]
-    cli -->|render / validate commands| facade
-    cli -->|build command| deskops
-    cli -->|schema command| schema_mod
-    facade -->|load(path)| loader
-    facade -->|validate(diagram)| validator
-    facade -->|compile_ir(diagram)| compilers
-    facade -->|render(ir, name)| renderers
-    loader -->|TypeAdapter(AnyDiagram).validate_python()| models
-    validator -->|inspect references| models
-    compilers -->|read model fields| models
-    compilers -->|emit IR dataclasses| ir
-    renderers -->|consume IR dataclasses| ir
+    cli -->|"render / validate commands"| facade
+    cli -->|"build command"| deskops
+    cli -->|"schema command"| schema_mod
+    facade -->|"load(path)"| loader
+    facade -->|"validate(diagram)"| validator
+    facade -->|"compile_ir(diagram)"| compilers
+    facade -->|"render(ir, name)"| renderers
+    loader -->|"TypeAdapter(AnyDiagram).validate_python()"| models
+    validator -->|"inspect references"| models
+    compilers -->|"read model fields"| models
+    compilers -->|"emit IR dataclasses"| ir
+    renderers -->|"consume IR dataclasses"| ir
