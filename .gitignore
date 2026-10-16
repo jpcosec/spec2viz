@@ -11,3 +11,4 @@ build/
 .coverage
 *.egg
 .sldb/runtime/
+.sldb/core/documents/

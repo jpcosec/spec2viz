@@ -72,6 +72,102 @@ models:
   canonical: false
   family: null
   semantics: []
+- name: RoleDoc
+  model_ref: deskops.models:RoleDoc
+  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/role.py
+  models_index: .sldb/core/models/RoleDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - representation.markdown
+  - source.document.markdown
+  - type.workflow.role
+  - workspace.desk.roles
+- name: ProtoAtomDoc
+  model_ref: deskops.models:ProtoAtomDoc
+  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/protoatom.py
+  models_index: .sldb/core/models/ProtoAtomDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - representation.markdown
+  - source.document.markdown
+  - type.knowledge.protoatom
+  - workspace.desk.atoms
+- name: CrossroadDoc
+  model_ref: deskops.models:CrossroadDoc
+  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/crossroad.py
+  models_index: .sldb/core/models/CrossroadDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - representation.markdown
+  - source.document.markdown
+  - type.knowledge.crossroad
+  - workspace.desk.atoms
+- name: RoutineDoc
+  model_ref: deskops.models:RoutineDoc
+  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/routine.py
+  models_index: .sldb/core/models/RoutineDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - representation.markdown
+  - source.document.markdown
+  - type.workflow.routine
+  - workspace.desk.routines
+- name: ConditionDoc
+  model_ref: deskops.models:ConditionDoc
+  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/condition.py
+  models_index: .sldb/core/models/ConditionDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - representation.markdown
+  - source.document.markdown
+  - type.workflow.condition
+  - workspace.desk.primitives
+- name: ChecklistDoc
+  model_ref: deskops.models:ChecklistDoc
+  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/checklist.py
+  models_index: .sldb/core/models/ChecklistDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - representation.markdown
+  - source.document.markdown
+  - type.workflow.checklist
+  - workspace.desk.primitives
+- name: OperatorDoc
+  model_ref: deskops.models:OperatorDoc
+  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/operator.py
+  models_index: .sldb/core/models/OperatorDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - representation.markdown
+  - source.document.markdown
+  - type.workflow.operator
+  - workspace.desk.primitives
+- name: EdgeDoc
+  model_ref: deskops.models:EdgeDoc
+  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/edge.py
+  models_index: .sldb/core/models/EdgeDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - representation.markdown
+  - source.document.markdown
+  - type.workflow.edge
+  - workspace.desk.primitives
 predicates:
 - name: is_solved_by
   axis: HOW
@@ -94,4 +190,4 @@ predicates:
 - name: defines
   axis: WHAT
   description: Defines the target concept.
-hash_a: 32d51aa9d4b231b895a71301c47215fbfb55dec5daa1bf8b421e96601a4e8ea7
+store_hash: 83d94dffc64238ef811b7f0feb558c07163831ba12ac5f869a49dcff26b52b22

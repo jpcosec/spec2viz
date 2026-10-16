@@ -1,0 +1,19 @@
+name: RoutineDoc
+model_ref: deskops.models:RoutineDoc
+path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/routine.py
+documents_index: .sldb/core/documents/RoutineDoc.yaml
+sections_index: .sldb/runtime/sections/RoutineDoc.yaml
+model_hash: 90d31aea8a09094d051019878ec116ed2697a7d2b51d6654a2c4ea90733800cc
+roster_hash: 9c6cb3b5cefac98dbdd5fe318e3fbef5d373f77338509bcb218e0da1272c6964
+contract_hash: 255b29d95c29d14ce3f5a5bc9ceb1f210aa69512ac4dc567177bf726a049772e
+documents_count: 3
+version: 1
+canonical: false
+family: null
+semantics:
+- representation.markdown
+- source.document.markdown
+- type.workflow.routine
+- workspace.desk.routines
+base_models:
+- PrimitiveDoc
