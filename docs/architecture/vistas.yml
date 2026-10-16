@@ -1,4 +1,3 @@
-template: template.html
 vistas:
   - id: component-architecture
     category: Arquitectura de Módulos

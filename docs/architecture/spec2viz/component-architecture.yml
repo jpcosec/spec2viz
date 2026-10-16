@@ -36,6 +36,9 @@ data:
     renderers:
       label: Renderer Dispatch
       kind: core
+      refs:
+        - TaskDoc:task-sync-golden-plantuml-files
+        - TaskDoc:task-add-render-antonia-html-command
 
     schema_mod:
       label: Schema Export
