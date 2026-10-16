@@ -37,8 +37,8 @@ data:
       label: Renderer Dispatch
       kind: core
       refs:
-        - TaskDoc:task-sync-golden-plantuml-files
-        - TaskDoc:task-add-render-antonia-html-command
+        - AtomDoc:atom-multi-backend-renderers-what
+        - AtomDoc:atom-multi-backend-renderers-how_not
 
     schema_mod:
       label: Schema Export
