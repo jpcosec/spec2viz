@@ -37,16 +37,22 @@ class PlantUMLRenderer:
         for p in ir.participants:
             lines.append(f"{_PARTICIPANT_KW.get(p.kind, 'participant')} {p.id}")
         lines.append("")
+        # Consecutive messages sharing a group render as one group block.
+        current = None
         for msg in ir.messages:
+            if msg.group != current:
+                if current is not None:
+                    lines.append("end")
+                if msg.group is not None:
+                    lines.append(f"group {msg.group}")
+                current = msg.group
             arrow = _ARROW.get(msg.kind, "->")
             line = f"{msg.from_} {arrow} {msg.to}: {msg.message}"
             if msg.condition:
                 line += f"  [{msg.condition}]"
-            if msg.group:
-                lines.append(f"group {msg.group}")
             lines.append(line)
-            if msg.group:
-                lines.append("end")
+        if current is not None:
+            lines.append("end")
         lines.append("@enduml")
         return "\n".join(lines)
 

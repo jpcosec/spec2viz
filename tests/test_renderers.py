@@ -422,3 +422,80 @@ def test_render_dispatch_without_default_renderer():
 
     with pytest.raises(RenderError):
         render(UnknownIR())
+
+
+def test_antonia_html_escapes_mermaid_source():
+    """Stereotypes like <<record>> must survive the HTML parser.
+
+    Unescaped, the browser reads `<<record>>` as a bogus tag and drops it,
+    so mermaid receives `<>` from the DOM and renders a syntax error.
+    """
+    ir = compile_ir(load(Path("examples/class/runtime.yml")))
+    raw = MermaidRenderer().render(ir)
+    assert "<<record>>" in raw
+
+    html_out = AntoniaHtmlRenderer().render(ir)
+    assert "&lt;&lt;record&gt;&gt;" in html_out
+    assert "<<record>>" not in html_out
+
+
+def test_antonia_html_source_survives_the_dom():
+    """What the browser exposes as textContent must equal the mermaid source."""
+    from html.parser import HTMLParser
+
+    class PreText(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.inside = False
+            self.text = []
+
+        def handle_starttag(self, tag, attrs):
+            if tag == "pre" and dict(attrs).get("class") == "mermaid":
+                self.inside = True
+
+        def handle_endtag(self, tag):
+            if tag == "pre":
+                self.inside = False
+
+        def handle_data(self, data):
+            if self.inside:
+                self.text.append(data)
+
+    ir = compile_ir(load(Path("examples/class/runtime.yml")))
+    expected = MermaidRenderer().render(ir)
+
+    parser = PreText()
+    parser.feed(AntoniaHtmlRenderer().render(ir))
+    assert "".join(parser.text).strip() == expected.strip()
+
+
+def test_sequence_consecutive_group_renders_as_one_block():
+    from spec2viz.ir import Participant, Message
+    ir = SequenceIR(
+        title="Test",
+        participants=[Participant(id="A"), Participant(id="B"), Participant(id="C")],
+        messages=[
+            Message(from_="A", to="B", message="one", group="g"),
+            Message(from_="A", to="C", message="two", group="g"),
+            Message(from_="B", to="C", message="three", condition="c"),
+        ],
+    )
+    puml = PlantUMLRenderer().render(ir)
+    assert puml.count("group g") == 1
+    assert puml.count("\nend") == 1
+    mmd = MermaidRenderer().render(ir)
+    assert mmd.count("rect ") == 1
+    assert "Note over A,B: g" in mmd
+    assert mmd.count("    end") == 1
+    assert "three [c]" in mmd
+
+
+def test_mermaid_sequence_escapes_semicolon():
+    from spec2viz.ir import Participant, Message
+    ir = SequenceIR(
+        title="Test",
+        participants=[Participant(id="A"), Participant(id="B")],
+        messages=[Message(from_="A", to="B", message="uno; dos")],
+    )
+    out = MermaidRenderer().render(ir)
+    assert "uno#59; dos" in out

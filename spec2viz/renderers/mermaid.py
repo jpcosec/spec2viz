@@ -32,9 +32,15 @@ def _esc_message(text: object) -> str:
 
     Sequence messages are not quoted, so only the HTML-significant angle
     brackets and ampersand must be neutralised; parentheses are safe here.
+    ';' ends a statement in mermaid, so it must be escaped as an entity too.
     """
     s = "" if text is None else str(text)
-    return s.replace("&", "#amp;").replace("<", "#lt;").replace(">", "#gt;")
+    return (
+        s.replace(";", "#59;")
+        .replace("&", "#amp;")
+        .replace("<", "#lt;")
+        .replace(">", "#gt;")
+    )
 
 
 class MermaidRenderer:
@@ -53,9 +59,21 @@ class MermaidRenderer:
         for p in ir.participants:
             kw = _PARTICIPANT_KW.get(p.kind, "participant")
             lines.append(f"    {kw} {p.id}")
+        # Consecutive messages sharing a group render as one labeled block.
+        current = None
         for msg in ir.messages:
+            if msg.group != current:
+                if current is not None:
+                    lines.append("    end")
+                if msg.group is not None:
+                    lines.append("    rect rgba(127, 127, 127, 0.1)")
+                    lines.append(f"    Note over {msg.from_},{msg.to}: {_esc_message(msg.group)}")
+                current = msg.group
             arrow = _SEQ_ARROW.get(msg.kind, "->>")
-            lines.append(f"    {msg.from_}{arrow}{msg.to}: {_esc_message(msg.message)}")
+            text = msg.message if not msg.condition else f"{msg.message} [{msg.condition}]"
+            lines.append(f"    {msg.from_}{arrow}{msg.to}: {_esc_message(text)}")
+        if current is not None:
+            lines.append("    end")
         return "\n".join(lines)
 
     def _state(self, ir: StateIR) -> str:

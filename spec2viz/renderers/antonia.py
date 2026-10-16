@@ -1,4 +1,7 @@
 from __future__ import annotations
+
+import html
+
 from spec2viz.renderers.mermaid import MermaidRenderer
 
 TEMPLATE = """<!DOCTYPE html>
@@ -67,4 +70,9 @@ TEMPLATE = """<!DOCTYPE html>
 class AntoniaHtmlRenderer:
     def render(self, ir) -> str:
         mermaid_content = MermaidRenderer().render(ir)
-        return TEMPLATE.format(MERMAID_CONTENT=mermaid_content)
+        # The mermaid source goes inside <pre>, so it must be HTML-escaped.
+        # Class/sequence diagrams use stereotypes like <<record>>, which the
+        # HTML parser would otherwise drop as a bogus tag, leaving mermaid to
+        # read a mutilated "<>" from the DOM and fail to render.
+        safe_content = html.escape(mermaid_content)
+        return TEMPLATE.format(MERMAID_CONTENT=safe_content)
