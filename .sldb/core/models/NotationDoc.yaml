@@ -1,0 +1,19 @@
+name: NotationDoc
+model_ref: spec2viz.sldb_models:NotationDoc
+path: spec2viz/sldb_models.py
+documents_index: .sldb/core/documents/NotationDoc.yaml
+sections_index: .sldb/runtime/sections/NotationDoc.yaml
+model_hash: 06480dfb87a32ccd18a305db1f5a7701e21cd464a03e610905bd136d08930ded
+roster_hash: e3517b70619c17e1ae06e5fc1a6c26408e17568cd0cefde1ef5d7a0899a8e0b6
+contract_hash: 7eaf5cb0e96d270c56043bb9b084b88dcd5164ed85f9b726ba6529f2e9b51949
+documents_count: 2
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.vocabulary
+base_models: []

@@ -1,0 +1,110 @@
+# Notacion builtin de spec2viz: diagrama de clases UML sobre un spec `type: class`.
+#
+# Los elementos sincronizados son SpecNodeDoc con `kind` (class, interface, abstract, record,
+# protocol, enum) y `data.attributes` / `data.methods`; las relaciones son los RelationDoc
+# con el `relation` del spec. El primer glifo cuyo `where` casa gana; el ultimo, sin `where`,
+# es el glifo por defecto.
+name: uml-class
+title: UML class diagram
+diagram_type: class
+level: types
+projection: all
+layout: {kind: graph, direction: TB}
+
+glyphs:
+  - id: interface
+    title: Interface
+    model: SpecNodeDoc
+    where: kind = "interface"
+    shape: class-box
+    keyword: "«interface»"
+    label: "{title}"
+    compartments: [data.attributes, data.methods]
+    function: interface
+  - id: protocol
+    title: Protocol
+    model: SpecNodeDoc
+    where: kind = "protocol"
+    shape: class-box
+    keyword: "«protocol»"
+    label: "{title}"
+    compartments: [data.attributes, data.methods]
+    function: interface
+  - id: abstract
+    title: Abstract class
+    model: SpecNodeDoc
+    where: kind = "abstract"
+    shape: class-box
+    label: "{title}"
+    label_style: italic
+    compartments: [data.attributes, data.methods]
+    function: class
+  - id: enum
+    title: Enumeration
+    model: SpecNodeDoc
+    where: kind = "enum"
+    shape: class-box
+    keyword: "«enumeration»"
+    label: "{title}"
+    compartments: [data.attributes]
+    function: enum
+  - id: record
+    title: Record
+    model: SpecNodeDoc
+    where: kind = "record"
+    shape: class-box
+    keyword: "«record»"
+    label: "{title}"
+    compartments: [data.attributes, data.methods]
+    function: class
+  - id: class
+    title: Class
+    model: SpecNodeDoc
+    shape: class-box
+    label: "{title}"
+    compartments: [data.attributes, data.methods]
+    function: class
+
+links:
+  - id: inheritance
+    title: Generalization
+    relation: inheritance
+    draw: line
+    line: solid
+    target_end: hollow-triangle
+  - id: realization
+    title: Realization
+    relation: realization
+    draw: line
+    line: dashed
+    target_end: hollow-triangle
+  - id: composition
+    title: Composition
+    relation: composition
+    draw: line
+    line: solid
+    source_end: filled-diamond
+    target_end: none
+    label: "{notes}"
+  - id: aggregation
+    title: Aggregation
+    relation: aggregation
+    draw: line
+    line: solid
+    source_end: hollow-diamond
+    target_end: none
+    label: "{notes}"
+  - id: association
+    title: Association
+    relation: association
+    draw: line
+    line: solid
+    target_end: open-arrow
+    label: "{notes}"
+  - id: dependency
+    title: Dependency
+    relation: dependency
+    draw: line
+    line: dashed
+    target_end: open-arrow
+    label: "{notes}"

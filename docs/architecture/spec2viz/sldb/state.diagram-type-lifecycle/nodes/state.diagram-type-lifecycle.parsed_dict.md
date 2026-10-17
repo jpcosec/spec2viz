@@ -6,6 +6,7 @@ kind: ''
 refs: []
 atom_refs: []
 contains: []
+data: {}
 ---
 
 # Python Dict

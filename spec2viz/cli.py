@@ -131,6 +131,67 @@ def diagram():
     pass
 
 
+@main.group(help="Declarative visual vocabularies: NotationDoc, GlyphDoc and LinkDoc as store documents.")
+def notation():
+    pass
+
+
+@notation.command("list", short_help="List the builtin notations.")
+def notation_list():
+    """One line per builtin notation: name, diagram type, glyph and link counts."""
+    from spec2viz.notation import builtin_notations, load_notation
+
+    for name in builtin_notations():
+        spec = load_notation(name)
+        click.echo(f"{name}: {spec.diagram_type} ({spec.level}), {len(spec.glyphs)} glyphs, {len(spec.links)} links, layout {spec.layout.get('kind')}")
+
+
+@notation.command("validate", short_help="Validate notation YAML files (or builtin names).")
+@click.argument("names", nargs=-1, required=True, metavar="NAME_OR_PATH ...")
+def notation_validate(names: tuple[str, ...]):
+    """Check each notation's grammar: ids, enumerations, default glyphs, relations the diagram
+    type emits and `where` predicates in the `sldb find --where` grammar."""
+    from spec2viz.exceptions import ValidationError
+    from spec2viz.notation import load_notation
+
+    failed = False
+    for name in names:
+        try:
+            spec = load_notation(name)
+        except ValidationError as exc:
+            click.echo(f"Invalid: {exc}", err=True)
+            failed = True
+            continue
+        click.echo(f"Valid: {spec.name} ({spec.diagram_type}; glyphs: {', '.join(g.id for g in spec.glyphs)}; links: {', '.join(l.id for l in spec.links)})")
+    if failed:
+        sys.exit(1)
+
+
+@notation.command("sync", short_help="Write notations into an sldb store.")
+@click.argument("names", nargs=-1, required=True, metavar="NAME_OR_PATH ...")
+@click.option("--store", required=True, type=click.Path(exists=True, path_type=Path), help="The `.sldb` store to write into.")
+@click.option("--pythonpath", help="Project path the store's models import from.")
+@click.option("--strict", is_flag=True, help="Exit 1 when the notation names a model the store does not register or the edge index reports errors.")
+def notation_sync(names: tuple[str, ...], store: Path, pythonpath: str | None, strict: bool):
+    """Write each notation as `NotationDoc:<name>`, one `GlyphDoc:<name>.<glyph>` and one
+    `LinkDoc:<name>.<link>` under `<root>/sldb/notations/<name>/`, creating the
+    RelationTypeDocs it names, then rebuild and check the edge index."""
+    from spec2viz.sldb_sync import NotationSync, format_notation_report
+
+    sync = NotationSync(Path(store), pythonpath=pythonpath)
+    failed = False
+    for name in names:
+        try:
+            report = sync.sync(name)
+        except Exception as exc:
+            click.echo(f"Error syncing notation {name}: {exc}", err=True)
+            sys.exit(1)
+        click.echo(format_notation_report(report))
+        failed = failed or bool(report.problems)
+    if strict and failed:
+        sys.exit(1)
+
+
 @main.group(help="Work with diagram catalogs, vistas registries, and hierarchical stores.")
 def catalog():
     pass
@@ -260,13 +321,17 @@ def diagram_from_graph(
 @click.option("--out", type=click.Path(path_type=Path), help="Directory for the generated markdown. Defaults to `<spec dir>/sldb/<spec id>`.")
 @click.option("--pythonpath", help="Project path the store's models import from.")
 @click.option("--strict", is_flag=True, help="Exit 1 when a `refs:`/`atoms:` target does not exist or the edge index reports errors.")
-def diagram_sync(paths: list[Path], store: Path | None, out: Path | None, pythonpath: str | None, strict: bool):
+@click.option("--notation", default=None, help="Notation to draw the spec with: a builtin name, a YAML path, or `none`. Defaults to the diagram type's builtin (uml-class, statechart) if it has one.")
+def diagram_sync(paths: list[Path], store: Path | None, out: Path | None, pythonpath: str | None, strict: bool, notation: str | None):
     """Write each spec into an sldb store: `SpecDoc:<id>`, one `SpecNodeDoc:<id>.<element>` per
     element and one `RelationDoc` per edge, then rebuild and check the edge index.
 
     `refs:` and `atoms:` of the elements become `references` edges and `contains:` becomes
     `contains`, so the store's documents hang from the diagram and the catalog shows the
     relations back on each node. Documents of a previous sync that left the spec are deleted.
+
+    The spec's notation (NotationDoc, GlyphDoc, LinkDoc) is synced with it and referenced
+    from `SpecDoc.notation`, so a surface such as graph_ui can draw the spec from the store.
     """
     from spec2viz.sldb_sync import SpecSync, find_store, format_report
 
@@ -278,7 +343,7 @@ def diagram_sync(paths: list[Path], store: Path | None, out: Path | None, python
     failed = False
     for path in paths:
         try:
-            report = sync.sync(path)
+            report = sync.sync(path, notation=notation)
         except Exception as exc:
             click.echo(f"Error syncing {path}: {exc}", err=True)
             sys.exit(1)

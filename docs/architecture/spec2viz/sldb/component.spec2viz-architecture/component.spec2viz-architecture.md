@@ -4,6 +4,7 @@ diagram_type: component
 version: '0.1'
 spec_path: docs/architecture/spec2viz/component-architecture.yml
 sha256: 0d08eaf4620a524195b0b4b9d9df9ccfb1f84b5c0bd3cce1063ec46a42a4c972
+notation: ''
 nodes:
 - SpecNodeDoc:component.spec2viz-architecture.cli
 - SpecNodeDoc:component.spec2viz-architecture.facade

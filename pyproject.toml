@@ -41,6 +41,6 @@ testpaths = ["tests"]
 include = ["spec2viz*"]
 
 [tool.setuptools.package-data]
-spec2viz = ["templates/*.html"]
+spec2viz = ["templates/*.html", "notations/*.yml"]
 
 

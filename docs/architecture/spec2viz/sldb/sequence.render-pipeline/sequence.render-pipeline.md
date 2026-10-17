@@ -4,6 +4,7 @@ diagram_type: sequence
 version: '0.1'
 spec_path: docs/architecture/spec2viz/sequence-render-pipeline.yml
 sha256: c40e669f30daccc49eee59d8bf31ec3a28ba7e8c7cdfef70dc9f934717736773
+notation: ''
 nodes:
 - SpecNodeDoc:sequence.render-pipeline.User
 - SpecNodeDoc:sequence.render-pipeline.CLI

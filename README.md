@@ -137,6 +137,31 @@ it compiles an sldb edge index (a `sldb graph snapshot save` JSON or the store i
 spec, filtering by node type, model and relation (`--node-type`, `--model`, `--relation`,
 `--exclude-relation`, `--drop-isolated`); `contains` edges become nesting.
 
+### The notation as data: how a spec is drawn
+
+How a diagram type is drawn is not a table inside a renderer but three kinds of store document, the
+declarative visual vocabulary a surface such as graph_ui reads to draw the spec live:
+
+- `NotationDoc:<name>`: diagram type, level (`types`, `instances`, `both`), layout (`kind`, `direction`),
+  markers (the initial pseudostate) and the ordered list of its glyphs and links.
+- `GlyphDoc:<name>.<glyph>`: how a document looks. A `model` plus a `where` predicate in the
+  `sldb find --where` grammar (`kind = "interface"`, `nonempty(contains)`), then `shape`, `label`
+  template (`{title}`), `keyword` (`«interface»`), `compartments` (`data.attributes`) and `function`.
+  The first glyph whose predicate holds wins; the last one has no predicate and is the default.
+- `LinkDoc:<name>.<link>`: how a relation looks. `relation` (and `relation_type`, a reference to its
+  `RelationTypeDoc`), `draw` (`line`, `nest`, `lane`, `cell`, `axis`), `line` (`solid`, `dashed`,
+  `dotted`), `source_end`/`target_end` terminals (`hollow-triangle`, `filled-diamond`, `open-arrow`...)
+  and a `label` template over the RelationDoc (`{notes}`).
+
+spec2viz ships `uml-class` and `statechart` in `spec2viz/notations/`; `spec2viz notation list` shows
+them, `spec2viz notation validate <name|path>` checks a notation's grammar (ids, enumerations, a default
+glyph per model, relations the diagram type emits, `where` predicates) and `spec2viz notation sync
+<name|path> --store .sldb` writes it under `sldb/notations/<name>/`. `diagram sync` syncs the diagram
+type's builtin notation together with the spec (`--notation NAME|PATH|none` to override) and
+`SpecDoc.notation` references it. `SpecNodeDoc.data` carries the rest of each element (attributes,
+methods, guards, `initial: true` on the initial state), which is where compartments and predicates read
+from. The read contract for surfaces is in `docs/notation-contract.md`.
+
 Hierarchical stores can aggregate other stores and legacy `vistas.yml` leaves, then expose one filtered HTML catalog by category, type, project, and tags.
 
 Minimal `project.yml` / diagram-store shape:

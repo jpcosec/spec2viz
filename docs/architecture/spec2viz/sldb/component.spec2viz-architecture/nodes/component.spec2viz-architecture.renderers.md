@@ -8,6 +8,7 @@ refs:
 - AtomDoc:atom-multi-backend-renderers-how_not
 atom_refs: []
 contains: []
+data: {}
 ---
 
 # Renderer Dispatch

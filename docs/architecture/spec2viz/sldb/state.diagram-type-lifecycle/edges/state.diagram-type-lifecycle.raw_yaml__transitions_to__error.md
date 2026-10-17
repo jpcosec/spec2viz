@@ -9,4 +9,4 @@ condition: ''
 
 ## Notes
 
-yaml.safe_load()
+yaml.safe_load() [malformed YAML]

@@ -9,4 +9,4 @@ condition: ''
 
 ## Notes
 
-TypeAdapter.validate_python()
+TypeAdapter.validate_python() [schema mismatch]

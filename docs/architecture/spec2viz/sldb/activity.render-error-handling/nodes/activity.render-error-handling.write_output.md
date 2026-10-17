@@ -6,6 +6,8 @@ kind: ''
 refs: []
 atom_refs: []
 contains: []
+data:
+  next: echo_success
 ---
 
 # Write result to disk

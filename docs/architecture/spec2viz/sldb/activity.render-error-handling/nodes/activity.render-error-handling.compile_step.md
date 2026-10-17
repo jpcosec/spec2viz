@@ -6,6 +6,10 @@ kind: decision
 refs: []
 atom_refs: []
 contains: []
+data:
+  branches:
+    ok: render_step
+    CompileError: catch_error
 ---
 
 # compile_ir(diagram): pattern-match compiler

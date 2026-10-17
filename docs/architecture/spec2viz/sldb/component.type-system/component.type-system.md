@@ -4,6 +4,7 @@ diagram_type: component
 version: '0.1'
 spec_path: docs/architecture/spec2viz/component-type-system.yml
 sha256: ecc228f714663ca063ea5c1e941972a2c6f67caf25442dc980cd13609b8d7a17
+notation: ''
 nodes:
 - SpecNodeDoc:component.type-system.base_diagram
 - SpecNodeDoc:component.type-system.sequence_d

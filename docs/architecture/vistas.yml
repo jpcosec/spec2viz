@@ -53,6 +53,15 @@ vistas:
     specs:
       - docs/architecture/spec2viz/state-diagram-type-lifecycle.yml
 
+  - id: class-sldb-models
+    category: Modelos de Estado
+    title: Documentos de spec2viz en el store sldb
+    nav: Store
+    desc: "Clases de los documentos que spec2viz escribe en el store: el spec como namespace (SpecDoc, SpecNodeDoc, RelationDoc) y la notación declarativa (NotationDoc, GlyphDoc, LinkDoc). Sincronizado con la notación uml-class."
+    src: spec2viz/class-sldb-models.mmd
+    specs:
+      - docs/architecture/spec2viz/class-sldb-models.yml
+
   - id: activity-render-error-handling
     category: Flujos de Actividad
     title: Manejo de Errores en Render

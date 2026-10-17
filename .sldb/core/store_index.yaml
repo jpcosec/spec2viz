@@ -218,6 +218,45 @@ models:
   - source.document.markdown
   - system.spec2viz
   - type.architecture.spec.node
+- name: NotationDoc
+  model_ref: spec2viz.sldb_models:NotationDoc
+  path: spec2viz/sldb_models.py
+  models_index: .sldb/core/models/NotationDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.presentation
+  - representation.markdown
+  - source.document.markdown
+  - system.spec2viz
+  - type.notation.vocabulary
+- name: GlyphDoc
+  model_ref: spec2viz.sldb_models:GlyphDoc
+  path: spec2viz/sldb_models.py
+  models_index: .sldb/core/models/GlyphDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.presentation
+  - representation.markdown
+  - source.document.markdown
+  - system.spec2viz
+  - type.notation.glyph
+- name: LinkDoc
+  model_ref: spec2viz.sldb_models:LinkDoc
+  path: spec2viz/sldb_models.py
+  models_index: .sldb/core/models/LinkDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.presentation
+  - representation.markdown
+  - source.document.markdown
+  - system.spec2viz
+  - type.notation.link
 predicates:
 - name: is_solved_by
   axis: HOW
@@ -291,4 +330,4 @@ predicates:
   description: A composed field of the source (`__compositions__`) renders this document's
     payload into the source's text; the edge carries the composed field, the field
     holding the refs and the ref as authored.
-store_hash: cdb4996f184e010e25fb5cf269104cdf6a26012cc781ac02a2de590919369ab0
+store_hash: 4783fd8fcd162a7daf7f9b19c4c63315172cc1ec056cd0fe5b255e247f72e108

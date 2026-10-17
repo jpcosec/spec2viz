@@ -6,6 +6,8 @@ kind: ''
 refs: []
 atom_refs: []
 contains: []
+data:
+  next: iterate_path
 ---
 
 # echo 'Rendered X -> Y'

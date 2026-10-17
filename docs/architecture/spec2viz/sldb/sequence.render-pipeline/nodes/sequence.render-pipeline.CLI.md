@@ -6,6 +6,7 @@ kind: component
 refs: []
 atom_refs: []
 contains: []
+data: {}
 ---
 
 # CLI

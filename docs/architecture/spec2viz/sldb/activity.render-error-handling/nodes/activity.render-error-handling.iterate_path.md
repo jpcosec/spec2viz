@@ -6,6 +6,10 @@ kind: decision
 refs: []
 atom_refs: []
 contains: []
+data:
+  branches:
+    has_next: try_render
+    empty: done
 ---
 
 # For each path

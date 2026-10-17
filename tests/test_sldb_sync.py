@@ -83,9 +83,10 @@ def test_sync_writes_spec_nodes_and_edges(project):
     assert sldb_api.doc_exists(store, "SpecNodeDoc/arq.renderers") and sldb_api.doc_exists(store, "RelationTypeDoc/reltype-uses")
 
     node = yaml.safe_load((out / "nodes" / "arq.cli.md").read_text(encoding="utf-8").split("---")[1])
-    assert node == {"id": "arq.cli", "spec": "SpecDoc:arq", "element": "cli", "kind": "entry", "refs": [], "atom_refs": [], "contains": ["SpecNodeDoc:arq.core"]}
+    assert node == {"id": "arq.cli", "spec": "SpecDoc:arq", "element": "cli", "kind": "entry", "refs": [], "atom_refs": [], "contains": ["SpecNodeDoc:arq.core"], "data": {}}
     spec_doc = yaml.safe_load((out / "arq.md").read_text(encoding="utf-8").split("---")[1])
     assert spec_doc["spec_path"] == "docs/arq.yml" and len(spec_doc["sha256"]) == 64
+    assert spec_doc["notation"] == ""  # component no tiene notacion builtin
     assert spec_doc["nodes"] == ["SpecNodeDoc:arq.cli", "SpecNodeDoc:arq.core", "SpecNodeDoc:arq.renderers"]
 
     assert _rels(sldb_api.edges_from(store, "SpecNodeDoc:arq.cli"), "target") == [
@@ -100,6 +101,15 @@ def test_refs_across_specs_show_up_as_edges_the_catalog_reads(project):
     sync.sync(project / "docs" / "arq.yml")
     report = sync.sync(project / "docs" / "flow.yml")
     assert report.unresolved == [] and report.edge_errors == []
+    assert report.notation == "NotationDoc:statechart" and "NotationDoc:statechart" in report.created
+    assert "GlyphDoc:statechart.state" in report.created and "LinkDoc:statechart.transition" in report.created
+    flow_doc = yaml.safe_load((project / "docs" / "sldb" / "flow" / "flow.md").read_text(encoding="utf-8").split("---")[1])
+    assert flow_doc["notation"] == "NotationDoc:statechart"
+    assert ("references", "NotationDoc:statechart") in _rels(sldb_api.edges_from(store, "SpecDoc:flow"), "target")
+    state_a = yaml.safe_load((project / "docs" / "sldb" / "flow" / "nodes" / "flow.a.md").read_text(encoding="utf-8").split("---")[1])
+    assert state_a["data"] == {"initial": True}
+    transition = (project / "docs" / "sldb" / "flow" / "edges" / "flow.a__transitions_to__b.md").read_text(encoding="utf-8")
+    assert "go" in transition  # el evento viaja en `notes` del RelationDoc
 
     assert ("references", "SpecNodeDoc:flow.a") in _rels(sldb_api.edges_to(store, "SpecNodeDoc:arq.core"), "source")
     edges = SldbAtomResolver().edges_of(store, "SpecNodeDoc:arq.core")
@@ -134,6 +144,24 @@ def test_invalid_spec_touches_nothing(project):
 
 def test_find_store_walks_up(project):
     assert find_store(project / "docs") == (project / ".sldb").resolve()
+
+
+def test_notation_override_and_mismatch(project):
+    store = project / ".sldb"
+    sync = SpecSync(store)
+    report = sync.sync(project / "docs" / "flow.yml", notation="none")
+    assert report.notation == "" and not any(d.startswith("NotationDoc") for d in report.created)
+    with pytest.raises(ValueError, match="draws `class` specs"):
+        sync.sync(project / "docs" / "flow.yml", notation="uml-class")
+
+
+def test_spec_elements_keep_the_rest_of_the_element_in_data():
+    spec = {"type": "class", "data": {"classes": {"a": {"label": "A", "kind": "interface", "attributes": [{"name": "x", "type": "int"}], "methods": []}}}}
+    (el,) = spec_elements(spec)
+    assert el["kind"] == "interface" and el["data"] == {"attributes": [{"name": "x", "type": "int"}], "methods": []}
+    guarded = {"type": "state", "data": {"initial": "a", "states": [{"id": "a", "label": "A"}], "transitions": [{"from": "a", "to": "a", "on": "tick", "guard": "x > 1"}]}}
+    assert spec_elements(guarded)[0]["data"] == {"initial": True}
+    assert spec_edges(guarded)[0]["label"] == "tick [x > 1]"
 
 
 # --- CLI ----------------------------------------------------------------------------

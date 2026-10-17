@@ -6,6 +6,8 @@ kind: ''
 refs: []
 atom_refs: []
 contains: []
+data:
+  next: done
 ---
 
 # echo error to stderr + sys.exit(1)

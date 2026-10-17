@@ -6,6 +6,7 @@ kind: actor
 refs: []
 atom_refs: []
 contains: []
+data: {}
 ---
 
 # User

@@ -1,0 +1,82 @@
+classDiagram
+    direction TB
+    class StructuredNLDoc["StructuredNLDoc"]
+    class StructuredNLDoc {
+        <<abstract>>
+        +render() str
+    }
+    class SpecDoc["SpecDoc"]
+    class SpecDoc {
+        +str id
+        +str diagram_type
+        +str spec_path
+        +str sha256
+        +NotationDoc notation
+        +list[SpecNodeDoc] nodes
+    }
+    class SpecNodeDoc["SpecNodeDoc"]
+    class SpecNodeDoc {
+        +str id
+        +str element
+        +str kind
+        +list[str] refs
+        +list[AtomDoc] atom_refs
+        +list[SpecNodeDoc] contains
+        +dict data
+    }
+    class RelationDoc["RelationDoc"]
+    class RelationDoc {
+        +SpecNodeDoc source_id
+        +SpecNodeDoc target_id
+        +str relation_type
+        +str notes
+    }
+    class NotationDoc["NotationDoc"]
+    class NotationDoc {
+        +str name
+        +str diagram_type
+        +str level
+        +dict layout
+        +list[dict] markers
+        +list[GlyphDoc] glyphs
+        +list[LinkDoc] links
+    }
+    class GlyphDoc["GlyphDoc"]
+    class GlyphDoc {
+        +str model
+        +str where
+        +str shape
+        +str label
+        +str keyword
+        +list[str] compartments
+        +str function
+    }
+    class LinkDoc["LinkDoc"]
+    class LinkDoc {
+        +str relation
+        +RelationTypeDoc relation_type
+        +str draw
+        +str line
+        +str source_end
+        +str target_end
+        +str label
+    }
+    class RelationTypeDoc["RelationTypeDoc"]
+    class RelationTypeDoc {
+        +str name
+        +str direction
+        +str cardinality
+    }
+    SpecDoc --|> StructuredNLDoc
+    SpecNodeDoc --|> StructuredNLDoc
+    NotationDoc --|> StructuredNLDoc
+    GlyphDoc --|> StructuredNLDoc
+    LinkDoc --|> StructuredNLDoc
+    SpecDoc "1" o-- "*" SpecNodeDoc : nodes
+    SpecNodeDoc *-- SpecNodeDoc : contains
+    RelationDoc --> "2" SpecNodeDoc : source_id / target_id
+    RelationDoc ..> RelationTypeDoc : relation_type
+    SpecDoc --> "0..1" NotationDoc : notation
+    NotationDoc *-- "1..*" GlyphDoc : glyphs
+    NotationDoc *-- "*" LinkDoc : links
+    LinkDoc ..> RelationTypeDoc : relation_type

@@ -6,6 +6,10 @@ kind: decision
 refs: []
 atom_refs: []
 contains: []
+data:
+  branches:
+    ok: write_output
+    RenderError: catch_error
 ---
 
 # render(ir, renderer): dispatch to backend

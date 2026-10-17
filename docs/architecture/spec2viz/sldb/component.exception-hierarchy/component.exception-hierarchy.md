@@ -4,6 +4,7 @@ diagram_type: component
 version: '0.1'
 spec_path: docs/architecture/spec2viz/component-exception-hierarchy.yml
 sha256: 799c6b48b7fa942f951150a403c8a409b3575a3308951ca46b90052ba87f8fa2
+notation: ''
 nodes:
 - SpecNodeDoc:component.exception-hierarchy.spec2viz_error
 - SpecNodeDoc:component.exception-hierarchy.parse_error

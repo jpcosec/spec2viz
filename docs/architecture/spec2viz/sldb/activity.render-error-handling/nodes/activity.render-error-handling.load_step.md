@@ -6,6 +6,10 @@ kind: decision
 refs: []
 atom_refs: []
 contains: []
+data:
+  branches:
+    ok: validate_step
+    ParseError: catch_error
 ---
 
 # load(path): YAML parse + Pydantic validate

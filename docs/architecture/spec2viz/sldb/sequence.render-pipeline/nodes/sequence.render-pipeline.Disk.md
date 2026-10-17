@@ -6,6 +6,7 @@ kind: boundary
 refs: []
 atom_refs: []
 contains: []
+data: {}
 ---
 
 # Disk

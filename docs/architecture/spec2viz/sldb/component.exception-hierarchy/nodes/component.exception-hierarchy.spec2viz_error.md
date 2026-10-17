@@ -6,6 +6,7 @@ kind: core
 refs: []
 atom_refs: []
 contains: []
+data: {}
 ---
 
 # Spec2VizError
