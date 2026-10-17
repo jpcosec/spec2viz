@@ -183,6 +183,77 @@ def diagram_generate(src_dir: Path, out: Path, project_id: str | None, title: st
     click.echo(f"Generated {out} ({len(spec['data']['nodes'])} nodes, {len(spec['data']['edges'])} edges)")
 
 
+@diagram.command("from-graph", short_help="Compile an sldb graph (snapshot JSON or store index) into a component spec.")
+@click.argument("graph_json", required=False, type=click.Path(exists=True, dir_okay=False, path_type=Path), metavar="[GRAPH_JSON]")
+@click.option("--store", type=click.Path(exists=True, file_okay=False, path_type=Path), help="Read the edge index of this .sldb (or project) dir via sldb.api instead of a JSON file.")
+@click.option("--node-type", "node_types", multiple=True, help="Node type to keep (document, model, semantic_tag, ...); repeatable. Default: document, model.")
+@click.option("--model", "models", multiple=True, help="Keep only documents of this model (e.g. AtomDoc); repeatable.")
+@click.option("--relation", "relations", multiple=True, help="Keep only these relations; repeatable. Overrides the default exclusions.")
+@click.option("--exclude-relation", "exclude_relations", multiple=True, help="Drop this relation; repeatable. Default: structural relations (has_section, tagged_as, ...).")
+@click.option("--drop-isolated", is_flag=True, help="Drop nodes left without edges after filtering.")
+@click.option("--id", "spec_id", default=None, help="Spec id. Defaults to the file stem or 'sldb-graph'.")
+@click.option("--title", default=None, help="Spec title. Defaults to '<id> graph'.")
+@click.option("--out", type=click.Path(path_type=Path), help="Write the YAML spec here instead of stdout.")
+def diagram_from_graph(
+    graph_json: Path | None,
+    store: Path | None,
+    node_types: tuple[str, ...],
+    models: tuple[str, ...],
+    relations: tuple[str, ...],
+    exclude_relations: tuple[str, ...],
+    drop_isolated: bool,
+    spec_id: str | None,
+    title: str | None,
+    out: Path | None,
+):
+    """Compile an sldb graph into a spec2viz component diagram spec.
+
+    GRAPH_JSON is a node-link file from `sldb graph snapshot save`; `--store`
+    reads the store's edge index instead. `contains` relations nest nodes,
+    every other relation becomes an edge.
+    """
+    import yaml
+
+    from spec2viz.graph_import import component_spec_from_graph, load_node_link, load_store_index
+
+    if (graph_json is None) == (store is None):
+        raise click.UsageError("Pass exactly one of GRAPH_JSON or --store.")
+    try:
+        if store is not None:
+            nodes, edges = load_store_index(store)
+            source, default_id = f"store {store}", "sldb-graph"
+        else:
+            nodes, edges = load_node_link(graph_json)
+            source, default_id = f"file {graph_json}", graph_json.stem
+    except ImportError as exc:
+        click.echo(f"Error: --store needs the sldb package ({exc})", err=True)
+        sys.exit(1)
+    except Exception as exc:
+        click.echo(f"Error reading graph: {exc}", err=True)
+        sys.exit(1)
+
+    sid = spec_id or default_id
+    spec = component_spec_from_graph(
+        nodes,
+        edges,
+        node_types=node_types,
+        models=models,
+        relations=relations,
+        exclude_relations=exclude_relations or None,
+        drop_isolated=drop_isolated,
+        spec_id=sid,
+        title=title or f"{sid} graph",
+        source=source,
+    )
+    text = yaml.safe_dump(spec, sort_keys=False, allow_unicode=True)
+    if out:
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(text, encoding="utf-8")
+        click.echo(f"Generated {out} ({len(spec['data']['nodes'])} nodes, {len(spec['data']['edges'])} edges)")
+    else:
+        click.echo(text, nl=False)
+
+
 @diagram.command("validate", short_help="Validate semantic diagram spec files.")
 @click.argument("paths", nargs=-1, type=click.Path(exists=True, path_type=Path), metavar="SPEC ...")
 def diagram_validate(paths: list[Path]):
