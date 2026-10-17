@@ -24,13 +24,19 @@ Status: draft
 
 ## Rationale
 
+_Explain why this task exists or the business driver behind it._
+
 Actualmente `spec2viz` genera diagramas Mermaid que rompen silenciosamente en el navegador cuando las etiquetas de los bordes contienen caracteres especiales (como paréntesis `()`), debido a que no están envueltas en comillas (`-->|label|`). Además, la CLI genera PlantUML por defecto mientras que el `template.html` base asume Mermaid, causando un desajuste que requiere banderas explícitas para evitar fallos. Por último, no existe una validación linteo fail-fast antes de compilar el HTML.
 
 ## Goal
 
+_Describe the concrete result this task must produce._
+
 Garantizar que el compilador de Mermaid genere etiquetas bien formadas con comillas automáticas, alinear el backend por defecto de la CLI a Mermaid, y añadir un paso de linteo estático fail-fast para detectar sintaxis Mermaid inválida antes del build final.
 
 ## Scope
+
+_State what is in scope and what is out of scope._
 
 - Modificar el compilador Mermaid en `spec2viz/` para envolver los labels de los bordes entre comillas automáticas (`-->|"label"|`).
 - Cambiar el backend por defecto de `spec2viz render` a `mermaid`.
@@ -44,6 +50,8 @@ Garantizar que el compilador de Mermaid genere etiquetas bien formadas con comil
 
 ## Implementation Path
 
+_Outline the expected implementation route or affected surface._
+
 1. Editar `spec2viz/compilers/mermaid.py` (o módulo equivalente) para envolver `edge.label` en comillas dobles si está presente.
 2. Modificar `spec2viz/cli.py` estableciendo `--backend` por defecto en `"mermaid"`.
 3. Implementar la función de linteo/validación en el pipeline de renderizado.
@@ -51,11 +59,16 @@ Garantizar que el compilador de Mermaid genere etiquetas bien formadas con comil
 
 ## Validation
 
+_List the checks required before this task can close._
+
 - `pytest tests/test_mermaid_compiler.py`
 - `pytest`
 
 ## Done When
 
+_Name the observable condition that makes the task complete._
+
 - Los diagramas con etiquetas como `Intención Operativa (F0)` se renderizan como `-->|"Intención Operativa (F0)"|` sin romper el parser de Mermaid.
 - `spec2viz render` sin banderas genera Mermaid por defecto.
 - El build falla con un mensaje de error claro si se intenta inyectar sintaxis Mermaid corrupta.
+

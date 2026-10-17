@@ -27,13 +27,19 @@ Status: draft
 
 ## Rationale
 
+_Explain why this task exists or the business driver behind it._
+
 La arquitectura actual requiere scripts locales "pegamento" y archivos estáticos generados en disco para construir vistas HTML. Además, el `template.html` tiene valores de branding harcodeados ("Overclock Architecture"), lo que ensucia la generación de arquitectura cuando se recicla en otros proyectos.
 
 ## Goal
 
+_Describe the concrete result this task must produce._
+
 Evolucionar `spec2viz` para soportar un manifiesto orquestador `project.yml`, un Registro de Plugins dinámico para modelos Pydantic/compiladores locales, y la inyección parametrizada de branding (`project_name`, `brand_name`) en las plantillas HTML.
 
 ## Scope
+
+_State what is in scope and what is out of scope._
 
 - Implementar la lectura de `project.yml` como archivo de configuración de proyecto.
 - Crear el sistema de registro `spec2viz/registry.py` con decoradores `register_diagram_type`.
@@ -47,6 +53,8 @@ Evolucionar `spec2viz` para soportar un manifiesto orquestador `project.yml`, un
 
 ## Implementation Path
 
+_Outline the expected implementation route or affected surface._
+
 1. Crear `spec2viz/registry.py` definiendo `MODEL_REGISTRY` y `COMPILER_REGISTRY`.
 2. Crear `spec2viz/orchestrator.py` para procesar `project.yml` y resolver las dependencias e inyecciones.
 3. Actualizar la lógica de renderizado de HTML para reemplazar variables de plantilla como `{{ project_name }}` o `{{ brand_name }}`.
@@ -54,10 +62,15 @@ Evolucionar `spec2viz` para soportar un manifiesto orquestador `project.yml`, un
 
 ## Validation
 
+_List the checks required before this task can close._
+
 - `pytest tests/test_v2_orchestrator.py`
 - `pytest`
 
 ## Done When
 
+_Name the observable condition that makes the task complete._
+
 - Al ejecutar `spec2viz build --config project.yml`, se cargan dinámicamente plugins locales, se validan los modelos Pydantic y se inyecta el branding correcto en el HTML resultante.
 - No se requiere crear scripts de pegamento locales para compilar diagramas de arquitectura personalizables.
+

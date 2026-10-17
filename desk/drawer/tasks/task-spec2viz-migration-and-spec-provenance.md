@@ -24,13 +24,19 @@ Status: draft
 
 ## Rationale
 
+_Explain why this task exists or the business driver behind it._
+
 Existen diagramas Mermaid legados hechos a mano bajo `docs/diagrams/`. La filosofía de `spec2viz` exige que la fuente sea la especificación estructurada YAML y que el Mermaid sea una proyección generada. Se requiere un mecanismo para migrar diagramas existentes a YAML y asegurar que las proyecciones mantengan metadatos de trazabilidad (*provenance*).
 
 ## Goal
 
+_Describe the concrete result this task must produce._
+
 Proveer el comando `spec2viz import mermaid <file.mmd>` para andamiar una fuente YAML a partir de Mermaid existente, e integrar cabeceras de trazabilidad en las proyecciones Mermaid generadas.
 
 ## Scope
+
+_State what is in scope and what is out of scope._
 
 - Implementar `spec2viz import mermaid <path.mmd>` para crear una especificación YAML borrador.
 - Inyectar comentarios de metadatos de proveniencia en el encabezado del código Mermaid proyectado (referenciando la fuente YAML y el comando de validación).
@@ -42,16 +48,23 @@ Proveer el comando `spec2viz import mermaid <file.mmd>` para andamiar una fuente
 
 ## Implementation Path
 
+_Outline the expected implementation route or affected surface._
+
 1. Implementar `spec2viz/importer.py` para parsear nodos/bordes de Mermaid básico hacia modelos de `spec2viz`.
 2. Modificar los generadores para incluir comentarios `# Generated from: <spec.yml>` en los diagramas producidos.
 3. Probar la migración en diagramas de ejemplo.
 
 ## Validation
 
+_List the checks required before this task can close._
+
 - `pytest tests/test_importer.py`
 - `pytest`
 
 ## Done When
 
+_Name the observable condition that makes the task complete._
+
 - `spec2viz import mermaid docs/diagrams/example.mmd` genera una especificación YAML válida.
 - Las proyecciones Mermaid generadas contienen comentarios de encabezado con su trazabilidad y comando de validación.
+
