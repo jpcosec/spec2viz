@@ -160,7 +160,10 @@ glyph per model, relations the diagram type emits, `where` predicates) and `spec
 type's builtin notation together with the spec (`--notation NAME|PATH|none` to override) and
 `SpecDoc.notation` references it. `SpecNodeDoc.data` carries the rest of each element (attributes,
 methods, guards, `initial: true` on the initial state), which is where compartments and predicates read
-from. The read contract for surfaces is in `docs/notation-contract.md`.
+from. The read contract for surfaces is in `docs/notation-contract.md`, and its one interpreter is
+`spec2viz notation view <spec id> --store .sldb` (`spec2viz.notation_view.resolve_view`): the JSON view of
+a spec with the glyph, markers, label and compartments of every node and the link of every relation,
+which a surface such as graph_ui serves and draws without re-implementing the rules.
 
 Hierarchical stores can aggregate other stores and legacy `vistas.yml` leaves, then expose one filtered HTML catalog by category, type, project, and tags.
 

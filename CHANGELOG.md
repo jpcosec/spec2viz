@@ -8,7 +8,8 @@
   `spec2viz/notations/`; `spec2viz notation list|validate|sync`; `diagram sync` syncs the diagram type's
   notation with the spec (`--notation NAME|PATH|none`) and `SpecDoc.notation` references it; `SpecNodeDoc.data`
   carries the rest of the element (attributes, methods, guards, `initial`) for compartments; the read
-  contract for surfaces such as graph_ui is in `docs/notation-contract.md`
+  contract for surfaces such as graph_ui is in `docs/notation-contract.md`; `spec2viz notation view`
+  (`notation_view.resolve_view`) is its one interpreter and returns the drawable view of a spec as JSON
 - `spec2viz diagram sync`: a spec becomes a namespace over the sldb store (`SpecDoc`, one `SpecNodeDoc`
   per element, one `RelationDoc` per edge, missing `RelationTypeDoc`s created); stale documents of a
   previous sync are deleted and the edge index rebuilt and checked; `--strict` fails on unresolved

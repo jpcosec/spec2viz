@@ -192,6 +192,32 @@ def notation_sync(names: tuple[str, ...], store: Path, pythonpath: str | None, s
         sys.exit(1)
 
 
+@notation.command("view", short_help="Resolve a spec's view (glyph per node, link per relation) as JSON.")
+@click.argument("spec_ref", metavar="SPEC_REF")
+@click.option("--store", required=True, type=click.Path(exists=True, path_type=Path), help="The `.sldb` store to read.")
+@click.option("--pythonpath", help="Project path the store's models import from.")
+@click.option("--out", type=click.Path(path_type=Path), help="Write the JSON here instead of stdout.")
+def notation_view(spec_ref: str, store: Path, pythonpath: str | None, out: Path | None):
+    """Apply docs/notation-contract.md to `SpecDoc:<id>` (or `<id>`): which glyph, markers, label
+    and compartments each node gets and which link each relation gets. This is the one
+    interpreter of the contract; a surface serves this and draws."""
+    import json
+
+    from spec2viz.notation_view import ViewError, resolve_view
+
+    try:
+        view = resolve_view(Path(store), spec_ref, pythonpath)
+    except ViewError as exc:
+        click.echo(f"Error: {exc}", err=True)
+        sys.exit(1)
+    text = json.dumps(view, ensure_ascii=False, indent=2)
+    if out:
+        out.write_text(text + "\n", encoding="utf-8")
+        click.echo(f"Wrote {out}")
+    else:
+        click.echo(text)
+
+
 @main.group(help="Work with diagram catalogs, vistas registries, and hierarchical stores.")
 def catalog():
     pass
