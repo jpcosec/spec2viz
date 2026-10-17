@@ -61,9 +61,16 @@ FAKE_DOCS = [
 ]
 
 
+FAKE_EDGES = {
+    "AtomDoc:atom-y": [{"relation": "references", "direction": "in", "node": "sldb://document/SpecNodeDoc:arq.cli",
+                        "ref": "SpecNodeDoc:arq.cli", "title": "CLI"}],
+}
+
+
 def _fake_store(monkeypatch):
     monkeypatch.setattr(SldbAtomResolver, "_discover_store_for_item", lambda self, item: Path("/s/.sldb"))
     monkeypatch.setattr(SldbAtomResolver, "_load_store_documents", lambda self, store: list(FAKE_DOCS))
+    monkeypatch.setattr(SldbAtomResolver, "edges_of", lambda self, store, ref: list(FAKE_EDGES.get(ref, [])))
 
 
 def test_collect_explicit_refs_indexes_by_label_and_id(tmp_path):
@@ -81,9 +88,10 @@ def test_build_resolves_refs_with_title_path_and_summary(monkeypatch, tmp_path):
     assert [r["ref"] for r in refs] == ["TaskDoc:task-x", "AtomDoc:atom-y"]
     assert refs[0] == {
         "ref": "TaskDoc:task-x", "model": "TaskDoc", "name": "task-x", "title": "Tarea X",
-        "path": "/s/desk/tasks/task-x.md", "store": "/s/.sldb", "summary": "Resumen de X",
+        "path": "/s/desk/tasks/task-x.md", "store": "/s/.sldb", "summary": "Resumen de X", "edges": [],
     }
     assert refs[1]["summary"] == "Respuesta Y"
+    assert refs[1]["edges"] == FAKE_EDGES["AtomDoc:atom-y"]
 
 
 def test_unknown_ref_is_warning_unless_strict(monkeypatch, tmp_path, capsys):
@@ -106,6 +114,93 @@ def test_view_without_store_warns_per_ref(monkeypatch, tmp_path):
     result, warnings = build_explicit_refs(items)
     assert result == {}
     assert len(warnings) == 1 and "sin store" in warnings[0].message
+
+
+# --- aristas sldb -----------------------------------------------------------------
+
+def _edge(source, target, relation):
+    return SimpleNamespace(source=source, target=target, relation=relation, metadata={"origin": "schema"})
+
+
+def test_edges_of_keeps_declared_edges_both_ways_and_drops_structural(monkeypatch, tmp_path):
+    import sldb.api
+
+    store = tmp_path / ".sldb"
+    me = "sldb://document/AtomDoc:atom-y"
+    monkeypatch.setattr(SldbAtomResolver, "_load_store_documents", lambda self, s: list(FAKE_DOCS))
+    monkeypatch.setattr(sldb.api, "edges_from", lambda s, ref: [
+        _edge(me, "sldb://section/AtomDoc:atom-y#answer", "has_section"),
+        _edge(me, "sldb://semantic_tag/system:x", "tagged_as"),
+        _edge(me, "sldb://document/TaskDoc:task-x", "composes"),
+    ])
+    monkeypatch.setattr(sldb.api, "edges_to", lambda s, ref: [
+        _edge("sldb://model/AtomDoc", me, "has_document"),
+        _edge("sldb://document/SpecNodeDoc:arq.cli", me, "references"),
+        _edge("sldb://relation_type/custom", me, "custom_rel"),
+    ])
+
+    resolver = SldbAtomResolver()
+    edges = resolver.edges_of(store, "AtomDoc:atom-y")
+    assert edges == [
+        {"relation": "composes", "direction": "out", "node": "sldb://document/TaskDoc:task-x", "ref": "TaskDoc:task-x", "title": "Tarea X"},
+        {"relation": "references", "direction": "in", "node": "sldb://document/SpecNodeDoc:arq.cli", "ref": "SpecNodeDoc:arq.cli", "title": "SpecNodeDoc:arq.cli"},
+        {"relation": "custom_rel", "direction": "in", "node": "sldb://relation_type/custom", "ref": "", "title": "sldb://relation_type/custom"},
+    ]
+    assert resolver.edges_of(store, "AtomDoc:atom-y") is edges  # cache
+    assert resolver.warnings == []
+
+
+def test_edges_of_without_edge_index_warns_once_and_is_empty(monkeypatch, tmp_path, capsys):
+    import sldb.api
+
+    monkeypatch.setattr(SldbAtomResolver, "_load_store_documents", lambda self, s: [])
+
+    def boom(store, ref):
+        raise RuntimeError("no edge index")
+
+    monkeypatch.setattr(sldb.api, "edges_from", boom)
+    resolver = SldbAtomResolver()
+    assert resolver.edges_of(tmp_path / ".sldb", "AtomDoc:a") == []
+    assert resolver.edges_of(tmp_path / ".sldb", "AtomDoc:b") == []
+    assert len(resolver.warnings) == 1 and "no edge index" in resolver.warnings[0].message
+
+
+def test_edges_of_against_a_real_store(tmp_path):
+    import sldb.api
+
+    project = tmp_path / "proj"
+    project.mkdir()
+    sldb.api.init_store(project)
+    sldb.api.init_relations(project / ".sldb")
+    sldb.api.rebuild_edges(project / ".sldb")
+    resolver = SldbAtomResolver()
+    # la relacion builtin `references` existe como documento, sin aristas declaradas: lista vacia, sin warnings
+    assert resolver.edges_of(project / ".sldb", "RelationTypeDoc:references") == []
+    assert resolver.warnings == []
+
+
+def test_build_attaches_edges_to_explicit_atoms(monkeypatch, tmp_path):
+    spec = {
+        "id": "arq", "title": "Arq", "type": "component", "version": "1.0",
+        "data": {"nodes": {"cli": {"label": "CLI", "atoms": ["atom-y"]}}, "edges": []},
+    }
+    (tmp_path / "arq.yml").write_text(yaml.safe_dump(spec), encoding="utf-8")
+    (tmp_path / "f.mmd").write_text("graph TD\n  cli\n", encoding="utf-8")
+    (tmp_path / "vistas.yml").write_text(
+        "vistas:\n  - id: v1\n    title: V1\n    src: f.mmd\n    type: component\n    specs: [arq.yml]\n", encoding="utf-8"
+    )
+    (tmp_path / "template.html").write_text("<html><body>{{SECTIONS}}</body></html>", encoding="utf-8")
+    atom_docs = [{"ref": "AtomDoc:atom-y", "store": "/s/.sldb", "store_name": "local", "model": "AtomDoc", "name": "atom-y",
+                  "title": "Atomo Y", "path": "/s/desk/atoms/atom-y.md",
+                  "payload": {"id": "atom-y", "title": "Atomo Y", "five_wh_one_plus": "what", "answer": "Respuesta Y"}}]
+    monkeypatch.setattr(SldbAtomResolver, "_discover_store_for_item", lambda self, item: Path("/s/.sldb"))
+    monkeypatch.setattr(SldbAtomResolver, "_load_store_documents", lambda self, store: list(atom_docs))
+    monkeypatch.setattr(SldbAtomResolver, "edges_of", lambda self, store, ref: list(FAKE_EDGES.get(ref, [])))
+
+    html = render_deskops(tmp_path / "vistas.yml")
+    explicit = json.loads(html.split("window.ATOMS_EXPLICIT = ")[1].split("; window.")[0])
+    atom = list(explicit.values())[0]["cli"]["list"][0]
+    assert atom["id"] == "atom-y" and atom["edges"] == FAKE_EDGES["AtomDoc:atom-y"]
 
 
 # --- resolver over the public sldb API ------------------------------------------

@@ -20,6 +20,17 @@ from spec2viz.orchestrator import (
 )
 
 
+# Relaciones que el indice de aristas de sldb fabrica solo a partir de la estructura
+# (secciones, tags, campos, modelos). No las declaro nadie: en el bundle no dicen nada.
+_STRUCTURAL_RELATIONS = frozenset(
+    {
+        "has_section", "tagged_as", "has_document", "has_field", "has_model", "names",
+        "semantic_parent", "semantic_equivalent", "applies_to_source", "applies_to_target",
+    }
+)
+_DOC_NODE_PREFIX = "sldb://document/"
+
+
 @dataclass
 class AtomBuildWarning:
     scope: str
@@ -39,6 +50,8 @@ class SldbAtomResolver:
     _store_payload_cache: dict[str, dict[str, dict]] = field(default_factory=dict)
     _store_docs_cache: dict[str, list[dict]] = field(default_factory=dict)
     _view_store_cache: dict[str, Path | None] = field(default_factory=dict)
+    _edges_cache: dict[tuple[str, str], list[dict]] = field(default_factory=dict)
+    _edges_unavailable: set[str] = field(default_factory=set)
 
     def build_atoms_by_view(self, items: list[CatalogItem]) -> dict[str, dict[str, dict]]:
         atoms_by_view: dict[str, dict[str, dict]] = {}
@@ -221,6 +234,46 @@ class SldbAtomResolver:
             self._store_docs_cache[str(store_path.resolve())] = []
             return None
         return next((doc for doc in docs if doc["ref"] == ref), None)
+
+    def edges_of(self, store_path: Path, ref: str) -> list[dict]:
+        """Las aristas del grafo sldb que tocan el documento `ref`, en ambos sentidos.
+
+        Solo las que alguien declaro (RelationDoc, `__references__`, `__containment__`...);
+        las estructurales que el indice fabrica solo (secciones, tags, campos) no aportan
+        nada en el bundle. Cada entrada: `relation`, `direction` (`out`/`in`), `node` (id
+        del otro extremo), `ref` (`Model:name` si es documento, vacio si no), `title`.
+        Si el store no tiene indice de aristas se avisa una vez y se devuelve vacio.
+        """
+        store_key = str(store_path.resolve())
+        cache_key = (store_key, ref)
+        if cache_key in self._edges_cache:
+            return self._edges_cache[cache_key]
+        edges: list[dict] = []
+        if store_key not in self._edges_unavailable:
+            try:
+                from sldb.api import edges_from, edges_to
+
+                titles = {doc["ref"]: doc["title"] for doc in self._load_store_documents(store_path)}
+                for direction, records in (("out", edges_from(store_path, ref)), ("in", edges_to(store_path, ref))):
+                    for record in records:
+                        if record.relation in _STRUCTURAL_RELATIONS:
+                            continue
+                        other = str(record.target if direction == "out" else record.source)
+                        other_ref = other[len(_DOC_NODE_PREFIX):] if other.startswith(_DOC_NODE_PREFIX) else ""
+                        edges.append(
+                            {
+                                "relation": str(record.relation),
+                                "direction": direction,
+                                "node": other,
+                                "ref": other_ref,
+                                "title": titles.get(other_ref, other_ref or other),
+                            }
+                        )
+            except Exception as exc:
+                self._edges_unavailable.add(store_key)
+                self._warn(str(store_path), f"Edge index unavailable through SLDB, relations left out: {exc}")
+        self._edges_cache[cache_key] = edges
+        return edges
 
     def _merge_atom(self, payload: dict[str, dict], atom: dict, doc_path: Path, store_path: Path) -> None:
         title = str(atom.get("title") or "").strip()
@@ -559,7 +612,7 @@ def build_explicit_refs(
                     warnings.append(AtomBuildWarning(scope=item.anchor_id, message=msg))
                     print(f"[spec2viz][refs] {msg}", file=sys.stderr)
                     continue
-                found.append(_ref_payload(doc))
+                found.append(_ref_payload(doc) | {"edges": resolver.edges_of(store_path, ref)})
             if found:
                 resolved[key] = found
         if resolved:
@@ -567,6 +620,26 @@ def build_explicit_refs(
     if strict and warnings:
         raise UnknownAtomError("; ".join(w.message for w in warnings))
     return result, warnings
+
+
+def attach_atom_edges(
+    items: list[CatalogItem],
+    explicit_atoms: dict[str, dict[str, dict]],
+    linked_atoms: dict[str, dict],
+    resolver: SldbAtomResolver,
+    atoms_by_view: dict[str, dict[str, dict]] | None = None,
+) -> None:
+    """Cuelga `edges` (las aristas sldb de `AtomDoc:<id>`) de cada atomo explicito, enlazado o difuso."""
+    atoms_by_view = atoms_by_view or {}
+    for item in items:
+        store_path = resolver._discover_store_for_item(item)
+        if store_path is None:
+            continue
+        explicit = [a for entry in (explicit_atoms.get(item.anchor_id) or {}).values() for a in entry.get("list") or []]
+        fuzzy = [a for entry in (atoms_by_view.get(item.anchor_id) or {}).values() for a in (entry.get("atoms") or {}).values()]
+        for atom in [*explicit, *linked_atoms.values(), *fuzzy]:
+            if atom.get("id") and "edges" not in atom:
+                atom["edges"] = resolver.edges_of(store_path, f"AtomDoc:{atom['id']}")
 
 
 def split_shared_atoms(atoms_by_view: dict[str, dict[str, dict]]) -> tuple[dict[str, dict], dict[str, dict[str, dict]]]:
@@ -837,6 +910,7 @@ def render_deskops(
         catalog.items, raw_atoms_by_view, strict=strict_atoms
     )
     explicit_refs, ref_warnings = build_explicit_refs(catalog.items, resolver, strict=strict_atoms)
+    attach_atom_edges(catalog.items, explicit_atoms, linked_atoms, resolver, raw_atoms_by_view)
     warnings = [*warnings, *explicit_warnings, *ref_warnings]
     atoms_by_view = {
         view: filter_atoms_payload(payload, atoms_tags) if atoms_tags else payload

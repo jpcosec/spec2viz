@@ -321,6 +321,10 @@
     .atom-refs li{margin:0 0 8px}
     .atom-refs code{font-size:11px;opacity:.75}
     .atom-refs .ref-summary{font-size:12px;opacity:.8;margin-top:2px}
+    .atom-edges{list-style:none;padding:0;margin:6px 0 0 10px;font-size:12px}
+    .atom-edges li{margin:2px 0}
+    .atom-edges .edge-dir{opacity:.6;margin-right:4px}
+    .atom-edges code{font-size:11px;opacity:.75}
     .mermaid svg,
     .puml-board svg,
     .diagram-canvas svg{display:block;max-width:none;height:auto;margin:0 auto;overflow:visible}
@@ -803,12 +807,23 @@
       return (map && map[normKey(nodeText)]) || [];
     }
 
+    // Aristas sldb de un documento (refs o atomos): [{relation, direction, node, ref, title}].
+    function edgesHtml(edges) {
+      if (!edges || !edges.length) return '';
+      const items = edges.map(e => {
+        const arrow = e.direction === 'in' ? '&larr;' : '&rarr;';
+        const title = escapeHtml(e.title || e.ref || e.node);
+        return `<li><span class="edge-dir">${arrow}</span><span class="meta-badge">${escapeHtml(e.relation)}</span> <strong>${title}</strong> <code>${escapeHtml(e.ref || e.node)}</code></li>`;
+      }).join('');
+      return `<ul class="atom-edges">${items}</ul>`;
+    }
+
     function refsHtml(refs) {
       if (!refs || !refs.length) return '';
       const items = refs.map(r => {
         const title = escapeHtml(r.title || r.name || r.ref);
         const summary = r.summary ? `<div class="ref-summary">${escapeHtml(String(r.summary).slice(0, 160))}</div>` : '';
-        return `<li><span class="meta-badge">${escapeHtml(r.model || '')}</span> <strong>${title}</strong> <code title="${escapeHtml(r.path || '')}">${escapeHtml(r.ref)}</code>${summary}</li>`;
+        return `<li><span class="meta-badge">${escapeHtml(r.model || '')}</span> <strong>${title}</strong> <code title="${escapeHtml(r.path || '')}">${escapeHtml(r.ref)}</code>${summary}${edgesHtml(r.edges)}</li>`;
       }).join('');
       return `<div class="atom-refs"><h4>Referencias sldb</h4><ul>${items}</ul></div>`;
     }
@@ -819,7 +834,7 @@
       if (data.explicit) return data.list || [];
       const questions = ['what', 'why', 'how', 'how_not', 'when', 'where', 'for_whom'];
       return questions.filter(q => data.atoms && data.atoms[q]).map(q => ({
-        id: data.atoms[q].id, title: data.title, question: q, body: data.atoms[q].body,
+        id: data.atoms[q].id, title: data.title, question: q, body: data.atoms[q].body, edges: data.atoms[q].edges || [],
       }));
     }
 
@@ -1116,7 +1131,7 @@
           btn.onclick = () => {
             document.querySelectorAll('.atom-tab').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            contentEl.innerHTML = `<h4>5WH1+: ${escapeHtml(a.question.toUpperCase())} (${escapeHtml(a.id)})</h4>${renderAtomBody(a.body, lookup)}${refs}`;
+            contentEl.innerHTML = `<h4>5WH1+: ${escapeHtml(a.question.toUpperCase())} (${escapeHtml(a.id)})</h4>${renderAtomBody(a.body, lookup)}${edgesHtml(a.edges)}${refs}`;
           };
           tabsEl.appendChild(btn);
           if (!firstActive) firstActive = btn;
