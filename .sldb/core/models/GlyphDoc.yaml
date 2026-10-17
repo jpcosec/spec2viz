@@ -3,10 +3,10 @@ model_ref: spec2viz.sldb_models:GlyphDoc
 path: spec2viz/sldb_models.py
 documents_index: .sldb/core/documents/GlyphDoc.yaml
 sections_index: .sldb/runtime/sections/GlyphDoc.yaml
-model_hash: 7220613ceffd07a84940ba446d5feaa51b3de4285eaf246a2a01b74cb4655980
-roster_hash: 0a981fd2d6479b126ae3c3da813be22f87c5c6c3ce47efdf41cf765db5436bfe
+model_hash: 5e36e9e43d50760668cf3044b296978d622f837e7124f4c643343c35dd9e0229
+roster_hash: 611b311636c0dd8de34994c941a0ca4e1112d4e0a5f8ce5b3ee555673416a44b
 contract_hash: 1cc6c7606e61e33cc7599a13ed27e18dbc6e10c779111bebc847ba3b3e9e2155
-documents_count: 8
+documents_count: 25
 version: 1
 canonical: false
 family: null

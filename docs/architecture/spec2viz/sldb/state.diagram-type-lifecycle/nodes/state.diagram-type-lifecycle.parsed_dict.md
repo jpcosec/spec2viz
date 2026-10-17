@@ -3,6 +3,7 @@ id: state.diagram-type-lifecycle.parsed_dict
 spec: SpecDoc:state.diagram-type-lifecycle
 element: parsed_dict
 kind: ''
+collection: states
 refs: []
 atom_refs: []
 contains: []

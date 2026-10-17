@@ -1,5 +1,9 @@
 # Contrato de lectura de la notación
 
+spec2viz completo se muestra sobre graph_ui: cada tipo de diagrama tiene una notación builtin, cada
+spec del catálogo se sincroniza al store con ella y con sus metadatos de catálogo, y graph_ui lista
+y dibuja desde el store. El bundle HTML (`catalog build`) es un export estático de lo mismo.
+
 Cómo una superficie (graph_ui, o cualquier otra) dibuja un spec de spec2viz leyendo solo el store
 sldb. spec2viz escribe estos documentos con `spec2viz diagram sync` y `spec2viz notation sync`;
 nunca escribe posiciones ni estado de vista. Lo que diga este documento manda sobre lo que
@@ -15,9 +19,9 @@ glifos. Las secciones §2 a §7 describen lo que hace el resolver, para leerlo y
 
 | Documento | Nombre | Lo escribe | Dice |
 |---|---|---|---|
-| `SpecDoc:<spec>` | `id:` del YAML | `diagram sync` | el spec: `diagram_type`, `notation`, `nodes`, `spec_path`, `sha256` |
-| `SpecNodeDoc:<spec>.<elemento>` | id del elemento | `diagram sync` | un elemento: `title`, `kind`, `refs`, `atom_refs`, `contains`, `data`, `description` |
-| `RelationDoc:<spec>.<from>__<rel>__<to>` | | `diagram sync` | una arista del spec: `source_id`, `target_id`, `relation_type` (nombre), `notes` |
+| `SpecDoc:<spec>` | `id:` del YAML | `diagram sync` / `catalog sync` | el spec: `diagram_type`, `notation`, `nodes`, `spec_path`, `sha256`, y del catálogo `category`, `nav`, `summary` |
+| `SpecNodeDoc:<spec>.<elemento>` | id del elemento | `diagram sync` | un elemento: `title`, `kind`, `collection`, `refs`, `atom_refs`, `contains`, `data`, `description` |
+| `RelationDoc:<spec>.<nn>-<from>__<rel>__<to>` | | `diagram sync` | una arista del spec, con su posición `nn`: `source_id`, `target_id`, `relation_type` (nombre), `condition`, `notes` |
 | `RelationTypeDoc:reltype-<rel>` | `reltype-<rel>` | ambos | el tipo de relación: `name`, `direction`, `cardinality` |
 | `NotationDoc:<name>` | nombre de la notación | `notation sync` | nivel, tipo de diagrama, `layout`, `markers`, `glyphs`, `links` |
 | `GlyphDoc:<name>.<glyph>` | | `notation sync` | cómo se ve un documento |
@@ -40,6 +44,14 @@ instalado donde se lea el store.
 En el índice de aristas todo esto son aristas `references` (`SpecDoc -> NotationDoc`,
 `NotationDoc -> GlyphDoc|LinkDoc`, `GlyphDoc|LinkDoc -> NotationDoc`, `LinkDoc ->
 sldb://relation_type/<rel>`), así que `sldb graph neighborhood NotationDoc:uml-class` lo recorre.
+
+## 2b. El catálogo
+
+`spec2viz catalog sync --config vistas.yml --store .sldb` sincroniza cada spec del registro con la
+notación de su tipo y escribe en el `SpecDoc` la `category`, el `nav` y el `desc` del registro
+(`summary`). El catálogo en graph_ui es la lista de `SpecDoc` agrupada por `category`, con `nav`
+como rótulo corto y `summary` como descripción; abrir uno es resolver su vista. No hay otro
+documento de catálogo.
 
 ## 3. Qué documentos entran en la vista
 
@@ -94,7 +106,11 @@ se lista línea a línea.
 ## 5. Casar un link con una relación
 
 Para cada `RelationDoc` de la vista, el `LinkDoc` de la notación con `relation ==
-RelationDoc.relation_type`. Una relación sin link no se dibuja y el resolver la lista en `skipped`.
+RelationDoc.relation_type`; si no lo hay, el link comodín (`relation: "*"`), que dibuja cualquier
+relación y suele rotularla con `{relation_type}`. Una relación sin link ni comodín no se dibuja y
+el resolver la lista en `skipped`. Los links salen en el orden del spec (`order`, de la posición
+`nn` del nombre del `RelationDoc`; 0 para las contenciones); en una secuencia ese orden es el
+tiempo.
 Además, cada id de `SpecNodeDoc.contains` que esté en la vista casa con el link cuya `relation` es
 `contains`. La fuente canónica de la contención es ese campo del payload; las aristas `contains`
 del índice de sldb se derivan de él y dicen lo mismo. Un link de contención no tiene `RelationDoc`
@@ -140,8 +156,25 @@ ni en el YAML del spec.
 - Añadir una notación es un YAML (`spec2viz notation validate` lo comprueba) y `notation sync`; no
   hace falta tocar código en ninguno de los dos lados.
 - Lo que hoy no viaja: las multiplicidades y roles de una relación de clases (solo `notes` lleva la
-  etiqueta), las acciones de una transición (solo evento y guarda en `notes`). Cuando haga falta, la
-  salida es un `RelationDoc` con más campos o una relación reificada, no un parseo de `notes`.
+  etiqueta), las acciones de una transición (solo evento y guarda en `notes`), el `group` de los
+  mensajes de una secuencia (los fragmentos). Cuando haga falta, la salida es un `RelationDoc` con
+  más campos o una relación reificada, no un parseo de `notes`.
+
+## 8b. Las notaciones builtin, por tipo de diagrama
+
+| Tipo | Notación | Layout | Glifos (por `where`) | Links |
+|---|---|---|---|---|
+| class | `uml-class` | graph TB | interface, protocol, abstract, enum, record por `kind`; class por defecto; compartimentos `data.attributes`, `data.methods` | inheritance, realization, composition, aggregation, association, dependency (line) |
+| state | `statechart` | graph LR | composite si `nonempty(contains)`; state; marca initial `has(initial)` | contains (nest), transitions_to (line, `{notes}` = evento [guarda]) |
+| component | `component` | graph TB | boundary, entry por `kind`; component | contains (nest), `*` (line, `{relation_type} {notes}`) |
+| deployment | `deployment` | graph LR | artifact si `collection = "artifacts"`; node; keyword `«{kind}»` | contains (nest), `*` (line sin puntas, `{relation_type}` = protocolo) |
+| sequence | `uml-sequence` | lanes LR | actor, boundary por `kind`; participant | sends (filled-arrow), sends_async (open-arrow), returns (dashed); `order` es el tiempo; `condition` del mensaje |
+| activity | `activity` | graph TB | start `has(initial)`, end `has(final)`, decision por `kind`; action | next (line), branch (line, `[{notes}]`) |
+| component_view_matrix | `component-view-matrix` | grid | stage si `collection = "stages"` (columna, `data.view`, `data.order`); boundary; component (fila) | contains (nest = jerarquía de filas), occupies (cell, `{notes}` = vista) |
+| reflection | `reflection` | graph LR | boundary por `kind`; node con keyword `«{kind}»` | `*` (line, `{relation_type} {notes}`) |
+
+Cada nodo de la vista trae además `collection` y `data` (el resto del elemento), para lo que un
+glifo no cubre (el `view` y `order` de una etapa, los `branches` de una decisión).
 
 ## 9. Alcance de la primera vista de graph_ui
 
@@ -189,6 +222,6 @@ SLDB_STORE=/home/jp/proyectos/SLDB_1/spec2viz/.sldb python3 frontends/mindmap/se
 }
 ```
 
-`nodes` sigue el orden de `SpecDoc.nodes`; `links` lista primero las contenciones y después los
-`RelationDoc`. `skipped` son relaciones del spec sin link en la notación. Un spec sin notación, una
+`nodes` sigue el orden de `SpecDoc.nodes` y cada uno trae `element`, `collection` y `data`; `links`
+lista primero las contenciones (`order` 0) y después los `RelationDoc` por `order`, con `condition`. `skipped` son relaciones del spec sin link en la notación. Un spec sin notación, una
 notación de otro tipo de diagrama o un nodo sin glifo son errores (`ViewError`), no vistas a medias.

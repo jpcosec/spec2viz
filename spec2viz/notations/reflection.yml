@@ -1,0 +1,33 @@
+# Notacion builtin de spec2viz: grafo semantico sobre un spec `type: reflection`.
+# Nodos con `kind` y aristas con relacion libre; el link comodin dibuja todas las relaciones.
+name: reflection
+title: Reflection graph
+diagram_type: reflection
+level: types
+projection: all
+layout: {kind: graph, direction: LR}
+
+glyphs:
+  - id: boundary
+    title: Boundary
+    model: SpecNodeDoc
+    where: kind = "boundary"
+    shape: boundary-box
+    label: "{title}"
+    function: boundary
+  - id: node
+    title: Node
+    model: SpecNodeDoc
+    shape: box
+    label: "{title}"
+    keyword: "«{kind}»"
+    function: node
+
+links:
+  - id: relation
+    title: Relation
+    relation: "*"
+    draw: line
+    line: solid
+    target_end: open-arrow
+    label: "{relation_type} {notes}"

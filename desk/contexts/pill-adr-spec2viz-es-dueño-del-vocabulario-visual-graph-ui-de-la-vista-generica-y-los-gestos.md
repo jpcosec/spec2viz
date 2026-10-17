@@ -2,9 +2,9 @@
 # pill-xxx
 id: pill-adr-spec2viz-es-dueño-del-vocabulario-visual-graph-ui-de-la-vista-generica-y-los-gestos
 status: active
-summary: La notacion (NotationDoc, GlyphDoc, LinkDoc) se declara en spec2viz y vive
-  en el store sldb; graph_ui la interpreta en vivo. El bundle HTML pasa a ser export
-  estatico.
+summary: spec2viz completo se muestra sobre graph_ui. Toda notacion (un NotationDoc
+  por tipo de diagrama) y el catalogo (SpecDoc por categoria) viven en el store sldb
+  y graph_ui los dibuja; el bundle HTML queda como export deprecado.
 # e.g., language:python, library:pydantic
 tags:
 - system:spec2viz
@@ -19,7 +19,7 @@ tags:
 
 _Define the context or guardrail this pill carries._
 
-Reparto entre spec2viz y graph_ui para que los specs corran sobre graph_ui: spec2viz define los modelos Pydantic NotationDoc (nivel, tipo de diagrama, layout), GlyphDoc (modelo + predicado where -> forma, rotulo, compartimentos) y LinkDoc (relacion -> trazo line|nest|lane|cell|axis, linea, terminales) en spec2viz.sldb_models, los valida y los escribe al store con 'spec2viz diagram sync' y 'spec2viz notation sync'. graph_ui es dueño de la vista generica que lee SpecDoc.notation -> NotationDoc -> glyphs/links y dibuja, y de GestureDoc y la edicion de vuelta. Pilotos: UML de clases y statechart.
+spec2viz completo corre sobre graph_ui, no solo dos pilotos: cada tipo de diagrama (class, state, component, deployment, sequence, activity, component_view_matrix, reflection) tiene su NotationDoc builtin con GlyphDoc/LinkDoc; cada spec se sincroniza al store con su notacion y sus metadatos de catalogo (category, nav, summary de vistas.yml); 'spec2viz notation view' es el unico interprete del contrato y graph_ui lo sirve y dibuja. El catalogo es la lista de SpecDoc por categoria en graph_ui. El bundle HTML (catalog build) pasa a export estatico deprecado, no es el producto.
 
 ## Why
 
@@ -43,7 +43,7 @@ spec2viz/sldb_models.py, spec2viz/notation.py, spec2viz/notations/*.yml, spec2vi
 
 _Describe the correct way to apply this guidance._
 
-Toda regla de dibujo nueva va en un YAML de notacion (GlyphDoc/LinkDoc), nunca en un if por notacion dentro de un renderer ni en graph_ui. Los campos ref son planos (model, where, relation) mas un 'form' opcional con la forma pron; LinkDoc lleva relation_type como referencia RelationTypeDoc:reltype-<rel> para que el indice de aristas vea que relacion nombra; el modelo se valida en sync porque el indice no resuelve refs a modelos. Las posiciones de vista no entran al YAML del spec ni al store de spec2viz.
+Toda regla de dibujo nueva va en un YAML de notacion (GlyphDoc/LinkDoc), nunca en un if por notacion dentro de un renderer ni en graph_ui. Un tipo de diagrama nuevo = modelo Pydantic + extraccion en sldb_sync + notacion YAML + test de vista; nada en graph_ui. Los campos ref son planos (model, where, relation) mas form opcional; LinkDoc lleva relation_type como referencia RelationTypeDoc:reltype-<rel>; '*' es el link comodin para relaciones libres. Las posiciones de vista no entran al YAML del spec ni al store de spec2viz.
 
 ## How Not
 

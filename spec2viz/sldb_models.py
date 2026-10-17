@@ -35,6 +35,9 @@ version: ⸢rev•version⸥
 spec_path: ⸢rev•spec_path⸥
 sha256: ⸢rev•sha256⸥
 notation: ⸢optrev•notation⸥
+category: ⸢optrev•category⸥
+nav: ⸢optrev•nav⸥
+summary: ⸢optrev•summary⸥
 nodes: ⸢rev,list•nodes⸥
 ---
 
@@ -59,11 +62,14 @@ nodes: ⸢rev,list•nodes⸥
         default="",
         description="Id `NotationDoc:<name>` de la notacion con la que se dibuja el spec; vacio si no se asigno ninguna.",
     )
+    category: str = Field(default="", description="Categoria del catalogo (`category` de vistas.yml); graph_ui agrupa los specs por ella.")
+    nav: str = Field(default="", description="Rotulo corto de navegacion del catalogo (`nav` de vistas.yml).")
+    summary: str = Field(default="", description="Resumen del catalogo (`desc` de vistas.yml).")
     description: str = Field(default="", description="Descripcion del spec (`metadata.description` del YAML).")
 
-    @field_validator("notation", mode="before")
+    @field_validator("notation", "category", "nav", "summary", mode="before")
     @classmethod
-    def _absent_notation(cls, value):
+    def _absent_text(cls, value):
         # un documento escrito antes de que el campo existiera se extrae como None
         return "" if value is None else value
 
@@ -83,6 +89,7 @@ id: ⸢rev•id⸥
 spec: ⸢rev•spec⸥
 element: ⸢rev•element⸥
 kind: ⸢rev•kind⸥
+collection: ⸢optrev•collection⸥
 refs: ⸢rev,list•refs⸥
 atom_refs: ⸢rev,list•atom_refs⸥
 contains: ⸢rev,list•contains⸥
@@ -101,6 +108,7 @@ data: ⸢optrev•data⸥
     spec: str = Field(description="Id `SpecDoc:<spec id>` del spec al que pertenece el elemento.")
     element: str = Field(description="Id del elemento dentro del spec.")
     kind: str = Field(default="", description="`kind` del elemento en el spec, si lo declara.")
+    collection: str = Field(default="", description="Coleccion del spec de la que sale el elemento (nodes, artifacts, states, steps, participants, classes, components, stages).")
     refs: list[str] = Field(
         default_factory=list,
         description="`refs:` del elemento: ids `Model:name` (o `store:Model:name`) de documentos que el nodo apunta.",
@@ -123,6 +131,11 @@ data: ⸢optrev•data⸥
     @classmethod
     def _absent_data(cls, value):
         return {} if value is None else value
+
+    @field_validator("collection", mode="before")
+    @classmethod
+    def _absent_collection(cls, value):
+        return "" if value is None else value
 
 
 # --- vocabulario visual -------------------------------------------------------------------

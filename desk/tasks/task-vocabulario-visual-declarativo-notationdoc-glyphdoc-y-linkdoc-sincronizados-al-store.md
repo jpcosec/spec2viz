@@ -36,7 +36,7 @@ spec2viz define NotationDoc/GlyphDoc/LinkDoc como modelos sldb, trae notaciones 
 
 _State what is in scope and what is out of scope._
 
-IN: spec2viz/sldb_models.py (3 modelos + SpecDoc.notation + SpecNodeDoc.data), spec2viz/notation.py (carga y validacion del YAML de notacion), spec2viz/notations/uml-class.yml y statechart.yml, spec2viz/sldb_sync.py (NotationSync, diagram sync elige notacion por tipo de diagrama y --notation), CLI 'spec2viz notation list|validate|sync', tests, README y CHANGELOG. Paso previo: dejar el store .sldb sin modelos deskops huerfanos (ChecklistDoc, ConditionDoc, EdgeDoc, OperatorDoc, RoutineDoc) con el comando que indique deskops. OUT: vista generica, gestos y edicion de vuelta (graph_ui); hacer que los renderers Mermaid/PlantUML lean la notacion (siguiente iteracion); notaciones para component, sequence, deployment, activity, matrix.
+IN: spec2viz/sldb_models.py (NotationDoc/GlyphDoc/LinkDoc, SpecDoc.notation+catalogo, SpecNodeDoc.data+collection), spec2viz/notation.py, una notacion builtin por tipo de diagrama en spec2viz/notations/ (uml-class, statechart, component, deployment, uml-sequence, activity, component-view-matrix, reflection), spec2viz/sldb_sync.py (NotationSync; extraccion de aristas para activity, matrix, reflection; aristas ordenadas; relaciones de mensaje por kind), spec2viz/notation_view.py (resolve_view, link comodin, orden), CLI notation list|validate|sync|view, diagram sync --notation, catalog sync, tests por tipo, README, CHANGELOG, docs/notation-contract.md. OUT: vista generica, gestos y edicion de vuelta (graph_ui); hacer que los renderers Mermaid/PlantUML lean la notacion.
 
 ## Implementation Path
 
@@ -56,4 +56,4 @@ _List the checks required before this task can close._
 
 _Name the observable condition that makes the task complete._
 
-tests/test_notation.py y tests/test_sldb_sync.py en verde; 'spec2viz notation sync uml-class --store .sldb' y 'spec2viz diagram sync docs/architecture/spec2viz/*.yml --strict' sin errores; sldb edges check OK; edges_from(store, 'SpecDoc:<id>') muestra references -> NotationDoc; graph_ui /api/graph lista NotationDoc/GlyphDoc/LinkDoc.
+tests en verde; 'spec2viz catalog sync --config docs/architecture/vistas.yml --store .sldb --strict' sincroniza los 9 specs con notacion; 'spec2viz notation view <id> --store .sldb' resuelve cada spec del catalogo sin skipped inesperados; sldb edges check OK; graph_ui /api/graph lista NotationDoc/GlyphDoc/LinkDoc y SpecDoc con category.

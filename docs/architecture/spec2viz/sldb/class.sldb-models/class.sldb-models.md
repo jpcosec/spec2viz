@@ -2,9 +2,14 @@
 id: class.sldb-models
 diagram_type: class
 version: '0.1'
-spec_path: docs/architecture/spec2viz/class-sldb-models.yml
+spec_path: /home/jp/proyectos/SLDB_1/spec2viz/docs/architecture/spec2viz/class-sldb-models.yml
 sha256: a2f5a48cac111910ae7f77822e901b32d168337625c236b1b5ccc2dc8b6a4990
 notation: NotationDoc:uml-class
+category: Modelos de Estado
+nav: Store
+summary: 'Clases de los documentos que spec2viz escribe en el store: el spec como
+  namespace (SpecDoc, SpecNodeDoc, RelationDoc) y la notación declarativa (NotationDoc,
+  GlyphDoc, LinkDoc). Sincronizado con la notación uml-class.'
 nodes:
 - SpecNodeDoc:class.sldb-models.StructuredNLDoc
 - SpecNodeDoc:class.sldb-models.SpecDoc

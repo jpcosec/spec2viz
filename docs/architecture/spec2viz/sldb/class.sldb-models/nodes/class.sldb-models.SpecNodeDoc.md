@@ -3,6 +3,7 @@ id: class.sldb-models.SpecNodeDoc
 spec: SpecDoc:class.sldb-models
 element: SpecNodeDoc
 kind: ''
+collection: classes
 refs: []
 atom_refs: []
 contains: []

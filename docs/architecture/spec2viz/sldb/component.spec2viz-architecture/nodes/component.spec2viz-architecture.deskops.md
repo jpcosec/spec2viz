@@ -3,6 +3,7 @@ id: component.spec2viz-architecture.deskops
 spec: SpecDoc:component.spec2viz-architecture
 element: deskops
 kind: boundary
+collection: nodes
 refs: []
 atom_refs: []
 contains: []

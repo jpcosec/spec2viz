@@ -433,6 +433,36 @@ def schema(diagram_type: str | None, out: Path | None):
     _write_schema(diagram_type, out)
 
 
+@catalog.command("sync", short_help="Sync every spec of a vistas.yml into an sldb store, with notation and catalog metadata.")
+@click.option("--config", required=True, type=click.Path(exists=True, path_type=Path), help="The vistas.yml registry whose specs are synced.")
+@click.option("--store", type=click.Path(exists=True, path_type=Path), help="The `.sldb` store to write into. Defaults to the nearest `.sldb` above the config.")
+@click.option("--pythonpath", help="Project path the store's models import from.")
+@click.option("--strict", is_flag=True, help="Exit 1 when a `refs:`/`atoms:` target does not exist or the edge index reports errors.")
+def catalog_sync(config: Path, store: Path | None, pythonpath: str | None, strict: bool):
+    """The catalog on graph_ui: each spec listed in the registry is synced like `diagram sync`
+    (nodes, edges, its diagram type's notation) and its `SpecDoc` carries the registry's
+    `category`, `nav` and `desc`, so a surface lists the specs by category and draws each one
+    with `notation view`. The HTML bundle (`catalog build`) is the static export of the same data.
+    """
+    from spec2viz.sldb_sync import SpecSync, find_store, format_report, sync_catalog
+
+    store_path = store or find_store(config.resolve().parent)
+    if store_path is None:
+        click.echo("Error: no `.sldb` store found above the config; pass --store.", err=True)
+        sys.exit(1)
+    try:
+        reports = sync_catalog(SpecSync(Path(store_path), pythonpath=pythonpath), config)
+    except Exception as exc:
+        click.echo(f"Error syncing catalog: {exc}", err=True)
+        sys.exit(1)
+    failed = False
+    for report in reports:
+        click.echo(format_report(report))
+        failed = failed or bool(report.problems)
+    if strict and failed:
+        sys.exit(1)
+
+
 @catalog.command("schema", short_help="Export JSON Schema for hierarchical diagram stores.")
 @click.option("--out", type=click.Path(path_type=Path), help="Write the schema to this file instead of stdout.")
 def catalog_schema(out: Path | None):

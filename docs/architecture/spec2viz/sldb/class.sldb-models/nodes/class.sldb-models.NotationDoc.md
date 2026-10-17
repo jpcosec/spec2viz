@@ -3,6 +3,7 @@ id: class.sldb-models.NotationDoc
 spec: SpecDoc:class.sldb-models
 element: NotationDoc
 kind: ''
+collection: classes
 refs: []
 atom_refs: []
 contains: []

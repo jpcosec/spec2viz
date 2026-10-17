@@ -7,7 +7,7 @@ from click.testing import CliRunner
 
 from spec2viz.cli import main
 from spec2viz.deskops import SldbAtomResolver
-from spec2viz.sldb_sync import SpecSync, find_store, relation_token, spec_edges, spec_elements, to_slash_ref
+from spec2viz.sldb_sync import SpecSync, catalog_entries, edge_name, find_store, relation_token, spec_edges, spec_elements, to_slash_ref
 
 sldb_api = pytest.importorskip("sldb.api")
 
@@ -55,10 +55,11 @@ def test_pure_extraction_and_tokens():
     assert [e["id"] for e in spec_elements(ARQ)] == ["cli", "core", "renderers"]
     assert spec_elements(ARQ)[0]["contains"] == ["core"] and spec_elements(ARQ)[2]["atoms"] == ["atom-nope"]
     assert spec_edges(ARQ) == [
-        {"from": "cli", "to": "core", "relation": "uses", "label": ""},
-        {"from": "core", "to": "renderers", "relation": "loads_path", "label": "x"},
+        {"from": "cli", "to": "core", "relation": "uses", "label": "", "condition": ""},
+        {"from": "core", "to": "renderers", "relation": "loads_path", "label": "x", "condition": ""},
     ]
-    assert spec_edges(FLOW) == [{"from": "a", "to": "b", "relation": "transitions_to", "label": "go"}]
+    assert spec_edges(FLOW) == [{"from": "a", "to": "b", "relation": "transitions_to", "label": "go", "condition": ""}]
+    assert edge_name("arq", 1, 2, spec_edges(ARQ)[0]) == "arq.01-cli__uses__core" and edge_name("x", 7, 123, {"from": "a", "relation": "r", "to": "b"}) == "x.007-a__r__b"
     assert relation_token(" Depends-On ", "x") == "depends_on" and relation_token("", "uses") == "uses"
     assert to_slash_ref("AtomDoc:atom-a") == "AtomDoc/atom-a" and to_slash_ref("desk:TaskDoc:t") == "desk:TaskDoc/t"
 
@@ -71,22 +72,24 @@ def test_sync_writes_spec_nodes_and_edges(project):
 
     assert sorted(report.created) == sorted([
         "SpecDoc:arq", "SpecNodeDoc:arq.cli", "SpecNodeDoc:arq.core", "SpecNodeDoc:arq.renderers",
-        "RelationDoc:arq.cli__uses__core", "RelationDoc:arq.core__loads_path__renderers",
+        "RelationDoc:arq.01-cli__uses__core", "RelationDoc:arq.02-core__loads_path__renderers",
+        "NotationDoc:component", "GlyphDoc:component.boundary", "GlyphDoc:component.entry", "GlyphDoc:component.component",
+        "LinkDoc:component.contains", "LinkDoc:component.relation",
     ])
     assert report.relation_types_added == ["loads_path", "uses"]
     assert report.unresolved == ["arq.renderers: 'AtomDoc:atom-nope' no existe en el store"]
     assert report.edge_errors == []
 
     out = project / "docs" / "sldb" / "arq"
-    assert (out / "arq.md").exists() and (out / "nodes" / "arq.cli.md").exists() and (out / "edges" / "arq.cli__uses__core.md").exists()
+    assert (out / "arq.md").exists() and (out / "nodes" / "arq.cli.md").exists() and (out / "edges" / "arq.01-cli__uses__core.md").exists()
     assert (project / "sldb" / "relation_types" / "loads_path.md").exists()
     assert sldb_api.doc_exists(store, "SpecNodeDoc/arq.renderers") and sldb_api.doc_exists(store, "RelationTypeDoc/reltype-uses")
 
     node = yaml.safe_load((out / "nodes" / "arq.cli.md").read_text(encoding="utf-8").split("---")[1])
-    assert node == {"id": "arq.cli", "spec": "SpecDoc:arq", "element": "cli", "kind": "entry", "refs": [], "atom_refs": [], "contains": ["SpecNodeDoc:arq.core"], "data": {}}
+    assert node == {"id": "arq.cli", "spec": "SpecDoc:arq", "element": "cli", "kind": "entry", "collection": "nodes", "refs": [], "atom_refs": [], "contains": ["SpecNodeDoc:arq.core"], "data": {}}
     spec_doc = yaml.safe_load((out / "arq.md").read_text(encoding="utf-8").split("---")[1])
     assert spec_doc["spec_path"] == "docs/arq.yml" and len(spec_doc["sha256"]) == 64
-    assert spec_doc["notation"] == ""  # component no tiene notacion builtin
+    assert spec_doc["notation"] == "NotationDoc:component" and spec_doc["category"] == ""
     assert spec_doc["nodes"] == ["SpecNodeDoc:arq.cli", "SpecNodeDoc:arq.core", "SpecNodeDoc:arq.renderers"]
 
     assert _rels(sldb_api.edges_from(store, "SpecNodeDoc:arq.cli"), "target") == [
@@ -108,7 +111,7 @@ def test_refs_across_specs_show_up_as_edges_the_catalog_reads(project):
     assert ("references", "NotationDoc:statechart") in _rels(sldb_api.edges_from(store, "SpecDoc:flow"), "target")
     state_a = yaml.safe_load((project / "docs" / "sldb" / "flow" / "nodes" / "flow.a.md").read_text(encoding="utf-8").split("---")[1])
     assert state_a["data"] == {"initial": True}
-    transition = (project / "docs" / "sldb" / "flow" / "edges" / "flow.a__transitions_to__b.md").read_text(encoding="utf-8")
+    transition = (project / "docs" / "sldb" / "flow" / "edges" / "flow.01-a__transitions_to__b.md").read_text(encoding="utf-8")
     assert "go" in transition  # el evento viaja en `notes` del RelationDoc
 
     assert ("references", "SpecNodeDoc:flow.a") in _rels(sldb_api.edges_to(store, "SpecNodeDoc:arq.core"), "source")
@@ -122,14 +125,14 @@ def test_resync_is_idempotent_and_deletes_what_left_the_spec(project):
     sync = SpecSync(store)
     sync.sync(project / "docs" / "arq.yml")
     again = sync.sync(project / "docs" / "arq.yml")
-    assert again.created == [] and len(again.updated) == 6 and again.deleted == [] and again.relation_types_added == []
+    assert again.created == [] and len(again.updated) == 12 and again.deleted == [] and again.relation_types_added == []
 
     smaller = yaml.safe_load(yaml.safe_dump(ARQ))
     smaller["data"]["nodes"].pop("renderers")
     smaller["data"]["edges"].pop()
     (project / "docs" / "arq.yml").write_text(yaml.safe_dump(smaller), encoding="utf-8")
     report = SpecSync(store).sync(project / "docs" / "arq.yml")
-    assert sorted(report.deleted) == ["RelationDoc:arq.core__loads_path__renderers", "SpecNodeDoc:arq.renderers"]
+    assert sorted(report.deleted) == ["RelationDoc:arq.02-core__loads_path__renderers", "SpecNodeDoc:arq.renderers"]
     assert not sldb_api.doc_exists(store, "SpecNodeDoc/arq.renderers")
     assert not (project / "docs" / "sldb" / "arq" / "nodes" / "arq.renderers.md").exists()
     assert report.edge_errors == [] and report.unresolved == []
@@ -155,6 +158,40 @@ def test_notation_override_and_mismatch(project):
         sync.sync(project / "docs" / "flow.yml", notation="uml-class")
 
 
+def test_other_diagram_types_extract_their_own_edges():
+    activity = {"type": "activity", "data": {"start": "a", "end": "z", "steps": {
+        "a": {"label": "A", "next": "d"}, "d": {"label": "D?", "kind": "decision", "branches": {"yes": "z", "no": "a"}}, "z": {"label": "Z"}}}}
+    els = {e["id"]: e for e in spec_elements(activity)}
+    assert els["a"]["data"] == {"initial": True, "next": "d"} and els["z"]["data"] == {"final": True} and els["d"]["collection"] == "steps" and "branches" in els["d"]["data"]
+    assert [(e["from"], e["to"], e["relation"], e["label"]) for e in spec_edges(activity)] == [("a", "d", "next", ""), ("d", "z", "branch", "yes"), ("d", "a", "branch", "no")]
+
+    sequence = {"type": "sequence", "data": {"participants": [{"id": "u", "kind": "actor"}, {"id": "s"}], "messages": [
+        {"from": "u", "to": "s", "message": "hi"}, {"from": "s", "to": "u", "message": "ok", "kind": "return", "condition": "if alive"}, {"from": "u", "to": "s", "message": "bye", "kind": "async"}]}}
+    assert [(e["relation"], e["label"], e["condition"]) for e in spec_edges(sequence)] == [("sends", "hi", ""), ("returns", "ok", "if alive"), ("sends_async", "bye", "")]
+
+    matrix = {"type": "component_view_matrix", "data": {
+        "views": [{"id": "v", "label": "View", "stages": [{"id": "s1", "label": "One"}, {"id": "s2", "label": "Two"}]}],
+        "components": [{"name": "Root", "kind": "core", "stages": {"v": ["s1", "s2"]}, "children": [{"name": "Kid", "kind": "boundary", "stages": {"v": ["s2"]}}]}]}}
+    els = {e["id"]: e for e in spec_elements(matrix)}
+    assert els["v__s1"]["collection"] == "stages" and els["v__s1"]["data"] == {"view": "v", "view_label": "View", "order": 1}
+    assert els["Root"]["contains"] == ["Kid"] and els["Kid"]["kind"] == "boundary" and els["Root"]["data"]["stages"] == {"v": ["s1", "s2"]}
+    assert [(e["from"], e["to"], e["relation"]) for e in spec_edges(matrix)] == [("Root", "v__s1", "occupies"), ("Root", "v__s2", "occupies"), ("Kid", "v__s2", "occupies")]
+
+    reflection = {"type": "reflection", "data": {"nodes": {"a": {"label": "A", "kind": "internal"}}, "edges": [{"from": "a", "to": "a", "relation": "uses"}]}}
+    assert spec_elements(reflection)[0]["collection"] == "nodes" and spec_edges(reflection)[0]["relation"] == "uses"
+
+
+def test_catalog_entries_read_vistas(tmp_path):
+    (tmp_path / "specs").mkdir()
+    (tmp_path / "specs" / "a.yml").write_text("id: a\n", encoding="utf-8")
+    (tmp_path / "vistas.yml").write_text(yaml.safe_dump({"vistas": [
+        {"id": "va", "category": "Cat", "nav": "A", "desc": "About a", "specs": ["specs/a.yml"]},
+        {"id": "vb", "category": "Cat", "title": "B", "specs": []},
+    ]}), encoding="utf-8")
+    entries = catalog_entries(tmp_path / "vistas.yml")
+    assert entries == [{"spec": (tmp_path / "specs" / "a.yml").resolve(), "vista": "va", "catalog": {"category": "Cat", "nav": "A", "summary": "About a"}}]
+
+
 def test_spec_elements_keep_the_rest_of_the_element_in_data():
     spec = {"type": "class", "data": {"classes": {"a": {"label": "A", "kind": "interface", "attributes": [{"name": "x", "type": "int"}], "methods": []}}}}
     (el,) = spec_elements(spec)
@@ -170,7 +207,7 @@ def test_cli_sync_discovers_store_and_strict_fails_on_unresolved(project):
     runner = CliRunner()
     result = runner.invoke(main, ["diagram", "sync", str(project / "docs" / "arq.yml")])
     assert result.exit_code == 0, result.output
-    assert "Synced arq: 3 nodes, 2 edges (6 created" in result.output and "atom-nope" in result.output
+    assert "Synced arq: 3 nodes, 2 edges (12 created" in result.output and "atom-nope" in result.output
 
     result = runner.invoke(main, ["diagram", "sync", str(project / "docs" / "arq.yml"), "--strict"])
     assert result.exit_code == 1

@@ -3,6 +3,7 @@ id: class.sldb-models.LinkDoc
 spec: SpecDoc:class.sldb-models
 element: LinkDoc
 kind: ''
+collection: classes
 refs: []
 atom_refs: []
 contains: []

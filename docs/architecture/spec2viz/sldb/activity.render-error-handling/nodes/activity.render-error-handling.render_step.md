@@ -3,6 +3,7 @@ id: activity.render-error-handling.render_step
 spec: SpecDoc:activity.render-error-handling
 element: render_step
 kind: decision
+collection: steps
 refs: []
 atom_refs: []
 contains: []

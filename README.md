@@ -153,7 +153,10 @@ declarative visual vocabulary a surface such as graph_ui reads to draw the spec 
   `dotted`), `source_end`/`target_end` terminals (`hollow-triangle`, `filled-diamond`, `open-arrow`...)
   and a `label` template over the RelationDoc (`{notes}`).
 
-spec2viz ships `uml-class` and `statechart` in `spec2viz/notations/`; `spec2viz notation list` shows
+spec2viz ships one notation per diagram type in `spec2viz/notations/` (`uml-class`, `statechart`,
+`component`, `deployment`, `uml-sequence`, `activity`, `component-view-matrix`, `reflection`; a
+`relation: "*"` link draws the free relations of component, deployment and reflection specs);
+`spec2viz notation list` shows
 them, `spec2viz notation validate <name|path>` checks a notation's grammar (ids, enumerations, a default
 glyph per model, relations the diagram type emits, `where` predicates) and `spec2viz notation sync
 <name|path> --store .sldb` writes it under `sldb/notations/<name>/`. `diagram sync` syncs the diagram
@@ -164,6 +167,11 @@ from. The read contract for surfaces is in `docs/notation-contract.md`, and its 
 `spec2viz notation view <spec id> --store .sldb` (`spec2viz.notation_view.resolve_view`): the JSON view of
 a spec with the glyph, markers, label and compartments of every node and the link of every relation,
 which a surface such as graph_ui serves and draws without re-implementing the rules.
+
+**The catalog runs on graph_ui.** `spec2viz catalog sync --config docs/architecture/vistas.yml --store .sldb`
+syncs every spec of the registry with its notation and writes the registry's `category`, `nav` and
+`desc` into each `SpecDoc`; graph_ui lists the specs by category and draws each one from `notation view`.
+`catalog build` still produces the HTML bundle, now as the static export of the same data.
 
 Hierarchical stores can aggregate other stores and legacy `vistas.yml` leaves, then expose one filtered HTML catalog by category, type, project, and tags.
 

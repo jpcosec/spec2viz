@@ -3,6 +3,7 @@ id: state.diagram-sync-lifecycle.syncing
 spec: SpecDoc:state.diagram-sync-lifecycle
 element: syncing
 kind: ''
+collection: states
 refs: []
 atom_refs: []
 contains:

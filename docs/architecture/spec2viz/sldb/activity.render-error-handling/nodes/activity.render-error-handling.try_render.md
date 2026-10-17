@@ -3,6 +3,7 @@ id: activity.render-error-handling.try_render
 spec: SpecDoc:activity.render-error-handling
 element: try_render
 kind: ''
+collection: steps
 refs: []
 atom_refs: []
 contains: []

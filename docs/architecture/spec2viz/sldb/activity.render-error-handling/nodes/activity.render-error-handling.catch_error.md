@@ -3,6 +3,7 @@ id: activity.render-error-handling.catch_error
 spec: SpecDoc:activity.render-error-handling
 element: catch_error
 kind: ''
+collection: steps
 refs: []
 atom_refs: []
 contains: []

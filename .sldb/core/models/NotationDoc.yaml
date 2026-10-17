@@ -3,10 +3,10 @@ model_ref: spec2viz.sldb_models:NotationDoc
 path: spec2viz/sldb_models.py
 documents_index: .sldb/core/documents/NotationDoc.yaml
 sections_index: .sldb/runtime/sections/NotationDoc.yaml
-model_hash: 06480dfb87a32ccd18a305db1f5a7701e21cd464a03e610905bd136d08930ded
-roster_hash: e3517b70619c17e1ae06e5fc1a6c26408e17568cd0cefde1ef5d7a0899a8e0b6
+model_hash: 250f82d2bf54f14202c937aa7bc044ec20c3ccca47c827517bfcb48e2adcfd9f
+roster_hash: de03399a7e3daae0b8e245ff4e180368e185dc0313c4835915dc3138eee78061
 contract_hash: 7eaf5cb0e96d270c56043bb9b084b88dcd5164ed85f9b726ba6529f2e9b51949
-documents_count: 2
+documents_count: 8
 version: 1
 canonical: false
 family: null

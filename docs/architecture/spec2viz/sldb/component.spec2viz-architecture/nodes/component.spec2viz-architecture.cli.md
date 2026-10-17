@@ -3,6 +3,7 @@ id: component.spec2viz-architecture.cli
 spec: SpecDoc:component.spec2viz-architecture
 element: cli
 kind: boundary
+collection: nodes
 refs: []
 atom_refs: []
 contains: []

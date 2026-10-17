@@ -3,6 +3,7 @@ id: class.sldb-models.RelationTypeDoc
 spec: SpecDoc:class.sldb-models
 element: RelationTypeDoc
 kind: ''
+collection: classes
 refs: []
 atom_refs: []
 contains: []

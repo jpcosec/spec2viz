@@ -2,6 +2,15 @@
 
 ## Unreleased - 2026-10-17
 
+- spec2viz runs on graph_ui: one builtin notation per diagram type (`component`, `deployment`,
+  `uml-sequence`, `activity`, `component-view-matrix`, `reflection` join `uml-class` and `statechart`),
+  a `relation: "*"` wildcard link for free relations, `spec2viz catalog sync` syncs every spec of a
+  `vistas.yml` with its notation and writes `category`/`nav`/`summary` into the `SpecDoc` (the catalog
+  is the list of SpecDocs by category); `SpecNodeDoc.collection`; activity (`next`, `branch`),
+  component_view_matrix (`occupies` cells, stages as elements) and reflection edges are synced;
+  sequence message kinds become `sends`/`sends_async`/`returns` with their `condition`; RelationDoc
+  names carry the edge position (`<spec>.<nn>-...`) and the view lists links in spec order; the HTML
+  bundle is now the static export
 - declarative visual vocabulary: `NotationDoc`, `GlyphDoc` and `LinkDoc` (`spec2viz.sldb_models`) say how a
   diagram type is drawn (glyph per model + `where` predicate, link per relation with `draw`
   line|nest|lane|cell|axis, line and terminals); builtin notations `uml-class` and `statechart` in

@@ -25,12 +25,23 @@ def _with(**changes) -> dict:
 
 # --- gramatica ------------------------------------------------------------------------
 
-def test_builtins_load_and_cover_the_default_notations():
+def test_builtins_load_and_cover_every_diagram_type():
+    from spec2viz.models.base import DiagramType
+
     names = set(builtin_notations())
-    assert set(DEFAULT_NOTATIONS.values()) <= names
+    assert set(DEFAULT_NOTATIONS.values()) == names and set(DEFAULT_NOTATIONS) == {t.value for t in DiagramType}
     for name in names:
         spec = load_notation(name)
         assert spec.name == name and spec.glyphs and DEFAULT_NOTATIONS[spec.diagram_type] == name
+
+
+def test_wildcard_link_and_free_relations():
+    spec = NotationSpec.model_validate(_with(diagram_type="component", links=[{"id": "any", "relation": "*"}, {"id": "c", "relation": "contains", "draw": "nest"}]))
+    assert spec.relations == ["contains"]
+    with pytest.raises(Exception, match="never emits"):
+        NotationSpec.model_validate(_with(links=[{"id": "l", "relation": "uses"}]))
+    with pytest.raises(Exception, match="vocabulary token"):
+        NotationSpec.model_validate(_with(links=[{"id": "l", "relation": "Uses It"}]))
 
 
 def test_uml_class_notation_matches_the_class_spec_vocabulary():

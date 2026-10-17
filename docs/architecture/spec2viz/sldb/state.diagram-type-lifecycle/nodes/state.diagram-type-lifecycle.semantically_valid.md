@@ -3,6 +3,7 @@ id: state.diagram-type-lifecycle.semantically_valid
 spec: SpecDoc:state.diagram-type-lifecycle
 element: semantically_valid
 kind: ''
+collection: states
 refs: []
 atom_refs: []
 contains: []

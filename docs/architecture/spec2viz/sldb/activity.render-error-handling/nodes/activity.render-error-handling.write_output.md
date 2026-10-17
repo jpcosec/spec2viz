@@ -3,6 +3,7 @@ id: activity.render-error-handling.write_output
 spec: SpecDoc:activity.render-error-handling
 element: write_output
 kind: ''
+collection: steps
 refs: []
 atom_refs: []
 contains: []

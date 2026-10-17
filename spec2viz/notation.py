@@ -29,7 +29,16 @@ NOTATIONS_DIR = Path(__file__).parent / "notations"
 DEFAULT_NOTATIONS: dict[str, str] = {
     "class": "uml-class",
     "state": "statechart",
+    "component": "component",
+    "deployment": "deployment",
+    "sequence": "uml-sequence",
+    "activity": "activity",
+    "component_view_matrix": "component-view-matrix",
+    "reflection": "reflection",
 }
+
+# el link comodin: dibuja toda relacion que ningun otro link de la notacion nombre
+ANY_RELATION = "*"
 
 DRAW_KINDS = ("line", "nest", "lane", "cell", "axis")
 LINE_KINDS = ("solid", "dashed", "dotted")
@@ -45,11 +54,11 @@ LAYOUT_KINDS = ("graph", "tree", "lanes", "grid", "axis", "manual")
 KNOWN_RELATIONS: dict[str, frozenset[str] | None] = {
     "class": frozenset({"inheritance", "realization", "composition", "aggregation", "association", "dependency", "contains"}),
     "state": frozenset({"transitions_to", "contains"}),
-    "sequence": frozenset({"sends", "contains"}),
+    "sequence": frozenset({"sends", "sends_async", "returns", "contains"}),
+    "activity": frozenset({"next", "branch", "contains"}),
+    "component_view_matrix": frozenset({"occupies", "contains"}),
     "component": None,
     "deployment": None,
-    "activity": None,
-    "component_view_matrix": None,
     "reflection": None,
 }
 
@@ -121,8 +130,8 @@ class LinkSpec(BaseModel):
     @field_validator("relation")
     @classmethod
     def _relation(cls, v: str) -> str:
-        if not _ID.match(v):
-            raise ValueError(f"relation {v!r} must be a vocabulary token ({_ID.pattern})")
+        if v != ANY_RELATION and not _ID.match(v):
+            raise ValueError(f"relation {v!r} must be a vocabulary token ({_ID.pattern}) or '*'")
         return v
 
     @field_validator("source_end", "target_end")
@@ -208,7 +217,7 @@ class NotationSpec(BaseModel):
         known = KNOWN_RELATIONS.get(self.diagram_type)
         if known is not None:
             for link in self.links:
-                if link.relation not in known:
+                if link.relation != ANY_RELATION and link.relation not in known:
                     problems.append(
                         f"link {link.id!r} draws relation {link.relation!r}, which a `{self.diagram_type}` spec never emits "
                         f"(known: {', '.join(sorted(known))})"
@@ -228,7 +237,7 @@ class NotationSpec(BaseModel):
         out: list[str] = []
         for link in self.links:
             for rel in [link.relation, *(e.relation for e in link.ends.values() if e.relation)]:
-                if rel and rel not in out:
+                if rel and rel != ANY_RELATION and rel not in out:
                     out.append(rel)
         return out
 
@@ -304,7 +313,7 @@ def link_ref(notation: str, link_id: str) -> str:
 
 
 __all__ = [
-    "DEFAULT_NOTATIONS", "KNOWN_RELATIONS", "TERMINALS", "DRAW_KINDS", "LINE_KINDS",
+    "DEFAULT_NOTATIONS", "KNOWN_RELATIONS", "ANY_RELATION", "TERMINALS", "DRAW_KINDS", "LINE_KINDS",
     "NotationSpec", "GlyphSpec", "LinkSpec", "MarkerSpec",
     "builtin_notations", "resolve_notation", "load_notation",
     "notation_ref", "glyph_ref", "link_ref",

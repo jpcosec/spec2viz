@@ -1,0 +1,53 @@
+# Notacion builtin de spec2viz: diagrama de actividad sobre un spec `type: activity`.
+# `diagram sync` marca el paso inicial con `data.initial` y el final con `data.final`; `next`
+# es el flujo por defecto y `branch` una rama con su etiqueta en `notes`.
+name: activity
+title: Activity diagram
+diagram_type: activity
+level: types
+projection: all
+layout: {kind: graph, direction: TB}
+
+glyphs:
+  - id: start
+    title: Start
+    model: SpecNodeDoc
+    where: has(initial)
+    shape: filled-circle
+    label: ""
+    function: start
+  - id: end
+    title: End
+    model: SpecNodeDoc
+    where: has(final)
+    shape: bullseye
+    label: ""
+    function: end
+  - id: decision
+    title: Decision
+    model: SpecNodeDoc
+    where: kind = "decision"
+    shape: diamond
+    label: "{title}"
+    function: decision
+  - id: action
+    title: Action
+    model: SpecNodeDoc
+    shape: rounded-box
+    label: "{title}"
+    function: action
+
+links:
+  - id: next
+    title: Flow
+    relation: next
+    draw: line
+    line: solid
+    target_end: open-arrow
+  - id: branch
+    title: Branch
+    relation: branch
+    draw: line
+    line: solid
+    target_end: open-arrow
+    label: "[{notes}]"

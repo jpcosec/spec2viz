@@ -14,9 +14,10 @@ Reglas que aplica, numeradas como en el contrato:
   se cumple sobre el payload aplanado: el payload con las claves de `data` copiadas encima.
   Gana el primero en el orden de `NotationDoc.glyphs`. `compartments` son rutas con punto
   sobre el payload crudo (`data.attributes`). Un `{campo}` ausente en un rotulo queda vacio.
-- §5 un `RelationDoc` casa con el link cuya `relation` es su `relation_type`; una relacion sin
-  link no entra. `SpecNodeDoc.contains` (la fuente canonica, de la que el indice deriva las
-  aristas `contains`) casa con el link `contains`.
+- §5 un `RelationDoc` casa con el link cuya `relation` es su `relation_type`, o con el link
+  comodin `*` si lo hay; una relacion sin link no entra. `SpecNodeDoc.contains` (la fuente
+  canonica, de la que el indice deriva las aristas `contains`) casa con el link `contains`.
+  Los links salen en el orden del spec (`order`), que el nombre del `RelationDoc` conserva.
 - §6 una marca casa como un glifo y se lista en el nodo.
 """
 
@@ -25,6 +26,8 @@ from __future__ import annotations
 import re
 from pathlib import Path
 from typing import Any
+
+from spec2viz.notation import ANY_RELATION
 
 _PLACEHOLDER = re.compile(r"\{([A-Za-z0-9_.]+)\}")
 _DOC_FIELDS = ("id", "title", "kind", "refs", "atom_refs", "contains", "description", "spec", "element")
@@ -97,8 +100,11 @@ def _node_view(ref: str, payload: dict[str, Any], glyphs: list[dict], markers: l
         compartments.append({"path": path, "items": value if isinstance(value, list) else [value]})
     return {
         "doc": ref,
+        "element": payload.get("element", ""),
         "title": payload.get("title", ""),
         "kind": payload.get("kind", ""),
+        "collection": payload.get("collection", ""),
+        "data": dict(payload.get("data") or {}),
         "glyph": glyph["ref"],
         "shape": gp.get("shape", ""),
         "function": gp.get("function", ""),
@@ -111,14 +117,26 @@ def _node_view(ref: str, payload: dict[str, Any], glyphs: list[dict], markers: l
     }
 
 
+_ORDER = re.compile(r"\.(\d+)-")
+
+
+def link_order(relation_doc: str | None) -> int:
+    """La posicion de la arista en el spec, del nombre `<spec>.<nn>-...`; 0 si no la lleva."""
+    match = _ORDER.search(relation_doc or "")
+    return int(match.group(1)) if match else 0
+
+
 def _link_view(source: str, target: str, link: dict, relation_payload: dict[str, Any] | None, relation_doc: str | None) -> dict[str, Any]:
     lp = link["payload"]
+    relation = lp["relation"] if lp["relation"] != ANY_RELATION else str((relation_payload or {}).get("relation_type") or "")
     return {
         "source": source,
         "target": target,
-        "relation": lp["relation"],
+        "relation": relation,
         "link": link["ref"],
         "doc": relation_doc,
+        "order": link_order(relation_doc),
+        "condition": str((relation_payload or {}).get("condition") or ""),
         "draw": lp.get("draw", "line"),
         "line": lp.get("line", "solid"),
         "source_end": lp.get("source_end", "none"),
@@ -155,7 +173,8 @@ def resolve_view(store: Path, spec_ref: str, pythonpath: str | None = None) -> d
     links = [{"ref": r, "payload": docs[r]["payload"]} for r in np_.get("links") or [] if r in docs]
     if not glyphs:
         raise ViewError(f"{notation_ref} lists no glyph that is in the store")
-    by_relation = {l["payload"]["relation"]: l for l in links}
+    by_relation = {l["payload"]["relation"]: l for l in links if l["payload"]["relation"] != ANY_RELATION}
+    wildcard = next((l for l in links if l["payload"]["relation"] == ANY_RELATION), None)
     markers = list(np_.get("markers") or [])
 
     node_refs = [r for r in sp.get("nodes") or [] if r in docs]
@@ -172,6 +191,7 @@ def resolve_view(store: Path, spec_ref: str, pythonpath: str | None = None) -> d
                     skipped.append(f"{ref} contains {child}")
                 else:
                     out_links.append(_link_view(ref, child, contains_link, None, None))
+    relation_links: list[dict[str, Any]] = []
     for ref, doc in docs.items():
         if doc["model"] != "RelationDoc":
             continue
@@ -179,11 +199,12 @@ def resolve_view(store: Path, spec_ref: str, pythonpath: str | None = None) -> d
         source, target = rp.get("source_id"), rp.get("target_id")
         if source not in in_view or target not in in_view:
             continue
-        link = by_relation.get(rp.get("relation_type"))
+        link = by_relation.get(rp.get("relation_type")) or wildcard
         if link is None:
             skipped.append(f"{ref}: relation '{rp.get('relation_type')}' has no link in {notation_ref}")
             continue
-        out_links.append(_link_view(source, target, link, rp, ref))
+        relation_links.append(_link_view(source, target, link, rp, ref))
+    out_links.extend(sorted(relation_links, key=lambda l: (l["order"], l["doc"] or "")))
 
     return {
         "spec": spec_ref,
@@ -198,4 +219,4 @@ def resolve_view(store: Path, spec_ref: str, pythonpath: str | None = None) -> d
     }
 
 
-__all__ = ["resolve_view", "ViewError", "flatten", "lookup", "render_template", "matches"]
+__all__ = ["resolve_view", "ViewError", "flatten", "lookup", "render_template", "matches", "link_order"]

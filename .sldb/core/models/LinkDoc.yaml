@@ -3,10 +3,10 @@ model_ref: spec2viz.sldb_models:LinkDoc
 path: spec2viz/sldb_models.py
 documents_index: .sldb/core/documents/LinkDoc.yaml
 sections_index: .sldb/runtime/sections/LinkDoc.yaml
-model_hash: f25ca87377a23f7368a3534cb2ed67c79c00b93edfbe312d2d2651122540c657
-roster_hash: f8bcc41488bd40f256409504cf4fc8e3898dddff955a93396658192f4d7bf9bb
+model_hash: 4fb56b91c90e96f5a51a05df3d9f14069f61d246ebf5954e27797a24fefe1f3b
+roster_hash: 1bf7db818b5d35deca60eece9bc437ba2e547a8302f2157335e35faa264ece88
 contract_hash: 91a3429249d6671eddd1cb60099dd18671eaca2f8b0b58185406e766288661a7
-documents_count: 8
+documents_count: 20
 version: 1
 canonical: false
 family: null

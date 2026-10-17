@@ -3,6 +3,7 @@ id: class.sldb-models.GlyphDoc
 spec: SpecDoc:class.sldb-models
 element: GlyphDoc
 kind: ''
+collection: classes
 refs: []
 atom_refs: []
 contains: []

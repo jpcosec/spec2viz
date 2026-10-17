@@ -3,6 +3,7 @@ id: activity.render-error-handling.iterate_path
 spec: SpecDoc:activity.render-error-handling
 element: iterate_path
 kind: decision
+collection: steps
 refs: []
 atom_refs: []
 contains: []

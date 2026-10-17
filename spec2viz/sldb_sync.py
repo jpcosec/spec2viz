@@ -42,13 +42,26 @@ _MANAGED_MODELS = ("SpecDoc", "SpecNodeDoc", "RelationDoc", "RelationTypeDoc", "
 
 # coleccion de aristas por tipo de diagrama: (coleccion, campo con la relacion o None,
 # relacion por defecto). Con campo None todas las aristas llevan la relacion por defecto.
+# activity y component_view_matrix no tienen coleccion de aristas: salen de los elementos.
 _EDGE_COLLECTIONS: dict[str, tuple[str, str | None, str]] = {
     "component": ("edges", "relation", "uses"),
     "deployment": ("connections", "protocol", "connects"),
     "state": ("transitions", None, "transitions_to"),
-    "sequence": ("messages", None, "sends"),
+    "sequence": ("messages", "kind", "sends"),
     "class": ("relations", "relation", "association"),
+    "reflection": ("edges", "relation", "relates_to"),
 }
+
+# el `kind` de un mensaje de secuencia como relacion (los renderers tratan todo lo que no es
+# async/return como sincrono; aqui los sinonimos que aparecen en los specs)
+_MESSAGE_RELATIONS = {
+    "sync": "sends", "call": "sends", "": "sends",
+    "async": "sends_async", "signal": "sends_async",
+    "return": "returns", "reply": "returns", "response": "returns",
+}
+
+# colecciones de elementos por tipo de diagrama (las de deskops mas reflection)
+_ELEMENT_COLLECTIONS_SYNC: dict[str, tuple[str, ...]] = {**_ELEMENT_COLLECTIONS, "reflection": ("nodes",)}
 
 # campo que mejor describe una arista, para las notas del RelationDoc
 _EDGE_LABEL_FIELDS = ("label", "on", "message", "protocol")
@@ -101,34 +114,78 @@ def _plain(value: Any) -> Any:
     return value
 
 
+def _element(eid: Any, el: Any, collection: str, extra_flags: dict[str, Any] | None = None) -> dict:
+    el = el if isinstance(el, dict) else {}
+    extra = {str(k): _plain(v) for k, v in el.items() if k not in _ELEMENT_OWN_FIELDS and v is not None}
+    extra.update(extra_flags or {})
+    return {
+        "id": str(eid),
+        "label": str(el.get("label") or el.get("name") or eid),
+        "kind": str(el.get("kind") or el.get("type") or ""),
+        "collection": collection,
+        "contains": [str(c) for c in (el.get("contains") or [])],
+        "atoms": [str(a) for a in (el.get("atoms") or [])],
+        "refs": [str(r) for r in (el.get("refs") or [])],
+        "description": str(el.get("description") or el.get("docstring") or ""),
+        "data": extra,
+    }
+
+
+def stage_id(view_id: str, stage: str) -> str:
+    """Id de elemento de una etapa de una vista de matriz: `<vista>__<etapa>`."""
+    return f"{view_id}__{stage}"
+
+
+def _matrix_elements(data: dict) -> list[dict]:
+    """Componentes (anidados por `children` -> contains) y etapas por vista (`collection: stages`)."""
+    out: list[dict] = []
+    for view in data.get("views") or []:
+        if not isinstance(view, dict) or not view.get("id"):
+            continue
+        for order, stage in enumerate(view.get("stages") or [], start=1):
+            if isinstance(stage, dict) and stage.get("id"):
+                out.append(_element(stage_id(str(view["id"]), str(stage["id"])), {"label": stage.get("label") or stage["id"]}, "stages",
+                                    {"view": str(view["id"]), "view_label": str(view.get("label") or view["id"]), "order": order}))
+
+    def walk(components: Any) -> None:
+        for comp in components or []:
+            if not isinstance(comp, dict) or not comp.get("name"):
+                continue
+            children = [c for c in comp.get("children") or [] if isinstance(c, dict) and c.get("name")]
+            el = _element(comp["name"], {k: v for k, v in comp.items() if k != "children"}, "components")
+            el["contains"] = [str(c["name"]) for c in children]
+            out.append(el)
+            walk(children)
+
+    walk(data.get("components"))
+    return out
+
+
 def spec_elements(spec: dict) -> list[dict]:
-    """Los elementos del spec: id, label, kind, contains, atoms, refs, description y data."""
+    """Los elementos del spec: id, label, kind, collection, contains, atoms, refs, description y data.
+
+    `data` es el resto del elemento; ademas `initial`/`final` marcan el estado o paso inicial y
+    final (state, activity) y las etapas de una matriz llevan `view` y `order`.
+    """
     data = spec.get("data") or {}
     diagram_type = str(spec.get("type"))
-    initial = str(data.get("initial") or "") if diagram_type == "state" else ""
+    if diagram_type == "component_view_matrix":
+        return _matrix_elements(data)
+    flags: dict[str, dict[str, Any]] = {}
+    if diagram_type == "state" and data.get("initial"):
+        flags[str(data["initial"])] = {"initial": True}
+    if diagram_type == "activity":
+        if data.get("start"):
+            flags[str(data["start"])] = {"initial": True}
+        if data.get("end"):
+            flags.setdefault(str(data["end"]), {})["final"] = True
     out: list[dict] = []
-    for collection in _ELEMENT_COLLECTIONS.get(diagram_type, ()):
+    for collection in _ELEMENT_COLLECTIONS_SYNC.get(diagram_type, ()):
         raw = data.get(collection) or {}
         pairs = raw.items() if isinstance(raw, dict) else [(e.get("id"), e) for e in raw if isinstance(e, dict)]
         for eid, el in pairs:
-            if not eid:
-                continue
-            el = el if isinstance(el, dict) else {}
-            extra = {str(k): _plain(v) for k, v in el.items() if k not in _ELEMENT_OWN_FIELDS and v is not None}
-            if initial and str(eid) == initial:
-                extra["initial"] = True
-            out.append(
-                {
-                    "id": str(eid),
-                    "label": str(el.get("label") or el.get("name") or eid),
-                    "kind": str(el.get("kind") or el.get("type") or ""),
-                    "contains": [str(c) for c in (el.get("contains") or [])],
-                    "atoms": [str(a) for a in (el.get("atoms") or [])],
-                    "refs": [str(r) for r in (el.get("refs") or [])],
-                    "description": str(el.get("description") or el.get("docstring") or ""),
-                    "data": extra,
-                }
-            )
+            if eid:
+                out.append(_element(eid, el, collection, flags.get(str(eid))))
     return out
 
 
@@ -139,19 +196,66 @@ def _edge_label(raw: dict) -> str:
     return label
 
 
+def _activity_edges(data: dict) -> list[dict]:
+    """`next` -> relacion `next`; cada rama de `branches` -> relacion `branch` con su etiqueta."""
+    out: list[dict] = []
+    for sid, step in (data.get("steps") or {}).items():
+        if not isinstance(step, dict):
+            continue
+        if step.get("next"):
+            out.append({"from": str(sid), "to": str(step["next"]), "relation": "next", "label": "", "condition": ""})
+        for label, target in (step.get("branches") or {}).items():
+            out.append({"from": str(sid), "to": str(target), "relation": "branch", "label": str(label), "condition": ""})
+    return out
+
+
+def _matrix_edges(data: dict) -> list[dict]:
+    """Un `occupies` por componente y etapa de cada vista; la vista va en la etiqueta."""
+    out: list[dict] = []
+
+    def walk(components: Any) -> None:
+        for comp in components or []:
+            if not isinstance(comp, dict) or not comp.get("name"):
+                continue
+            for view_id, stages in (comp.get("stages") or {}).items():
+                for stage in stages or []:
+                    out.append({"from": str(comp["name"]), "to": stage_id(str(view_id), str(stage)), "relation": "occupies", "label": str(view_id), "condition": ""})
+            walk(comp.get("children"))
+
+    walk(data.get("components"))
+    return out
+
+
 def spec_edges(spec: dict) -> list[dict]:
-    """Las aristas del spec: from, to, relation (token) y label (con la guarda, si hay)."""
-    entry = _EDGE_COLLECTIONS.get(str(spec.get("type")))
+    """Las aristas del spec en orden: from, to, relation (token), label (con la guarda) y condition."""
+    data = spec.get("data") or {}
+    diagram_type = str(spec.get("type"))
+    if diagram_type == "activity":
+        return _activity_edges(data)
+    if diagram_type == "component_view_matrix":
+        return _matrix_edges(data)
+    entry = _EDGE_COLLECTIONS.get(diagram_type)
     if entry is None:
         return []
     collection, relation_field, default = entry
     out: list[dict] = []
-    for raw in (spec.get("data") or {}).get(collection) or []:
+    for raw in data.get(collection) or []:
         if not isinstance(raw, dict) or not raw.get("from") or not raw.get("to"):
             continue
-        relation = relation_token(raw.get(relation_field) if relation_field else None, default)
-        out.append({"from": str(raw["from"]), "to": str(raw["to"]), "relation": relation, "label": _edge_label(raw)})
+        value = raw.get(relation_field) if relation_field else None
+        if diagram_type == "sequence":
+            relation = _MESSAGE_RELATIONS.get(str(value or "").strip().lower(), relation_token(value, default))
+        else:
+            relation = relation_token(value, default)
+        condition = str(raw.get("condition") or "") if diagram_type == "sequence" else ""
+        out.append({"from": str(raw["from"]), "to": str(raw["to"]), "relation": relation, "label": _edge_label(raw), "condition": condition})
     return out
+
+
+def edge_name(spec_id: str, index: int, count: int, edge: dict) -> str:
+    """`<spec>.<nn>-<from>__<rel>__<to>`: el prefijo ordena las aristas y evita duplicados."""
+    width = max(2, len(str(count)))
+    return f"{spec_id}.{index:0{width}d}-{edge['from']}__{edge['relation']}__{edge['to']}"
 
 
 def find_store(start: Path) -> Path | None:
@@ -348,9 +452,10 @@ class SpecSync(_StoreWriter):
         super().__init__(store_path, pythonpath, actor)
         self.out_dir = out_dir
 
-    def sync(self, spec_path: Path, notation: str | Path | None = None) -> SyncReport:
+    def sync(self, spec_path: Path, notation: str | Path | None = None, catalog: dict[str, str] | None = None) -> SyncReport:
         """Sincroniza el spec. `notation`: nombre builtin o ruta; None = la del tipo de
-        diagrama (si tiene); `"none"` = sin notacion."""
+        diagrama (si tiene); `"none"` = sin notacion. `catalog`: `category`, `nav`, `summary`
+        del catalogo (vistas.yml) que graph_ui usa para listar el spec."""
         import sldb.api as api
         from spec2viz.loader import load as load_spec
 
@@ -399,6 +504,7 @@ class SpecSync(_StoreWriter):
                 "spec": f"SpecDoc:{spec_id}",
                 "element": el["id"],
                 "kind": el["kind"],
+                "collection": el["collection"],
                 "refs": el["refs"],
                 "atom_refs": [f"AtomDoc:{a}" for a in el["atoms"]],
                 "contains": [node_ref(spec_id, c) for c in el["contains"]],
@@ -421,23 +527,23 @@ class SpecSync(_StoreWriter):
             "spec_path": rel_spec_path,
             "sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
             "notation": report.notation,
+            "category": str((catalog or {}).get("category") or ""),
+            "nav": str((catalog or {}).get("nav") or ""),
+            "summary": str((catalog or {}).get("summary") or ""),
             "nodes": [node_ref(spec_id, el["id"]) for el in elements],
             "description": str((spec.get("metadata") or {}).get("description") or ""),
         }
         self.upsert(existing, report, "SpecDoc", spec_id, out / f"{spec_id}.md", spec_payload)
 
         # aristas
-        seen: dict[str, int] = {}
-        for edge in edges:
-            base = f"{spec_id}.{edge['from']}__{edge['relation']}__{edge['to']}"
-            seen[base] = seen.get(base, 0) + 1
-            name = base if seen[base] == 1 else f"{base}__{seen[base]}"
+        for index, edge in enumerate(edges, start=1):
+            name = edge_name(spec_id, index, len(edges), edge)
             payload = {
                 "title": f"{edge['from']} {edge['relation']} {edge['to']}",
                 "source_id": node_ref(spec_id, edge["from"]),
                 "target_id": node_ref(spec_id, edge["to"]),
                 "relation_type": edge["relation"],
-                "condition": "",
+                "condition": edge.get("condition", ""),
                 "notes": edge["label"],
             }
             self.upsert(existing, report, "RelationDoc", name, out / "edges" / f"{name}.md", payload)
@@ -456,6 +562,36 @@ class SpecSync(_StoreWriter):
                     report.unresolved.append(f"{spec_id}.{el['id']}: '{ref}' no existe en el store")
 
         return self.finish(report)
+
+
+def catalog_entries(config: Path) -> list[dict[str, Any]]:
+    """Las entradas de un `vistas.yml`: por cada spec listado, su ruta y sus metadatos de catalogo."""
+    config = Path(config).resolve()
+    raw = yaml.safe_load(config.read_text(encoding="utf-8")) or {}
+    base = config.parent
+    out: list[dict[str, Any]] = []
+    for vista in raw.get("vistas") or []:
+        if not isinstance(vista, dict):
+            continue
+        for spec in vista.get("specs") or []:
+            path = Path(str(spec))
+            if not path.is_absolute():
+                path = (base / path).resolve() if (base / path).exists() else (base.parent.parent / path).resolve()
+            out.append({
+                "spec": path,
+                "vista": str(vista.get("id") or ""),
+                "catalog": {
+                    "category": str(vista.get("category") or ""),
+                    "nav": str(vista.get("nav") or ""),
+                    "summary": str(vista.get("desc") or vista.get("title") or ""),
+                },
+            })
+    return out
+
+
+def sync_catalog(sync: "SpecSync", config: Path) -> list[SyncReport]:
+    """Sincroniza cada spec de un `vistas.yml` con su notacion y sus metadatos de catalogo."""
+    return [sync.sync(entry["spec"], catalog=entry["catalog"]) for entry in catalog_entries(config)]
 
 
 def format_report(report: SyncReport) -> str:
@@ -494,7 +630,8 @@ def format_notation_report(report: SyncReport) -> str:
 
 __all__ = [
     "SpecSync", "NotationSync", "SyncReport", "find_store", "format_report", "format_notation_report",
-    "spec_edges", "spec_elements", "relation_token", "node_ref", "to_slash_ref",
+    "spec_edges", "spec_elements", "edge_name", "stage_id", "relation_token", "node_ref", "to_slash_ref",
+    "catalog_entries", "sync_catalog",
 ]
 
 

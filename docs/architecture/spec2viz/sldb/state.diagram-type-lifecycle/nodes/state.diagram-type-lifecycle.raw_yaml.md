@@ -3,6 +3,7 @@ id: state.diagram-type-lifecycle.raw_yaml
 spec: SpecDoc:state.diagram-type-lifecycle
 element: raw_yaml
 kind: ''
+collection: states
 refs: []
 atom_refs: []
 contains: []

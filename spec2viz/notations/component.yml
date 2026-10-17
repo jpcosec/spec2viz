@@ -1,0 +1,44 @@
+# Notacion builtin de spec2viz: grafo de componentes sobre un spec `type: component`.
+# Las relaciones de las aristas son libres (`uses`, `loads_path`...), asi que el link comodin `*`
+# las dibuja todas con la relacion como rotulo; `contains` anida.
+name: component
+title: Component graph
+diagram_type: component
+level: types
+projection: all
+layout: {kind: graph, direction: TB}
+
+glyphs:
+  - id: boundary
+    title: Boundary component
+    model: SpecNodeDoc
+    where: kind = "boundary"
+    shape: boundary-box
+    label: "{title}"
+    function: boundary
+  - id: entry
+    title: Entry point
+    model: SpecNodeDoc
+    where: kind = "entry"
+    shape: rounded-box
+    label: "{title}"
+    function: entry
+  - id: component
+    title: Component
+    model: SpecNodeDoc
+    shape: box
+    label: "{title}"
+    function: component
+
+links:
+  - id: contains
+    title: Contains
+    relation: contains
+    draw: nest
+  - id: relation
+    title: Relation
+    relation: "*"
+    draw: line
+    line: solid
+    target_end: open-arrow
+    label: "{relation_type} {notes}"

@@ -3,6 +3,7 @@ id: state.diagram-type-lifecycle.validated_model
 spec: SpecDoc:state.diagram-type-lifecycle
 element: validated_model
 kind: ''
+collection: states
 refs: []
 atom_refs: []
 contains: []

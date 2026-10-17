@@ -3,6 +3,7 @@ id: component.spec2viz-architecture.renderers
 spec: SpecDoc:component.spec2viz-architecture
 element: renderers
 kind: core
+collection: nodes
 refs:
 - AtomDoc:atom-multi-backend-renderers-what
 - AtomDoc:atom-multi-backend-renderers-how_not
