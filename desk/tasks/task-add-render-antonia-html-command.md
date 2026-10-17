@@ -1,29 +1,13 @@
 ---
-# task-xxx, unique task identifier
 id: task-add-render-antonia-html-command
-# draft | active | blocked | closed
 status: active
-# Relevant file or doc paths
 references:
 - desk/drawer/tasks/task-add-render-antonia-html-command.md
-# Task identifiers that must complete first
 depends_on: []
-# Pill identifiers required
 pills: []
-# Files expected to change
 files: []
-# Routine identifier for operations
-routine: routine-task-add-render-antonia-html-command
-# Checklist identifiers for verification
-checklists:
-- checklist-task-add-render-antonia-html-command-execution-ready
-- checklist-task-add-render-antonia-html-command-testing-ready
-- checklist-task-add-render-antonia-html-command-closeout-ready
-# Active routine node
-current_node: checklist-task-add-render-antonia-html-command-execution-ready
-# Execution history references
+current_node: ritual-execution
 history: []
-# e.g., system:deskops, topic:cli
 tags:
 - workspace:desk
 - artifact:task

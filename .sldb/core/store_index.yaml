@@ -108,66 +108,6 @@ models:
   - source.document.markdown
   - type.knowledge.crossroad
   - workspace.desk.atoms
-- name: RoutineDoc
-  model_ref: deskops.models:RoutineDoc
-  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/routine.py
-  models_index: .sldb/core/models/RoutineDoc.yaml
-  version: 1
-  canonical: false
-  family: null
-  semantics:
-  - representation.markdown
-  - source.document.markdown
-  - type.workflow.routine
-  - workspace.desk.routines
-- name: ConditionDoc
-  model_ref: deskops.models:ConditionDoc
-  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/condition.py
-  models_index: .sldb/core/models/ConditionDoc.yaml
-  version: 1
-  canonical: false
-  family: null
-  semantics:
-  - representation.markdown
-  - source.document.markdown
-  - type.workflow.condition
-  - workspace.desk.primitives
-- name: ChecklistDoc
-  model_ref: deskops.models:ChecklistDoc
-  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/checklist.py
-  models_index: .sldb/core/models/ChecklistDoc.yaml
-  version: 1
-  canonical: false
-  family: null
-  semantics:
-  - representation.markdown
-  - source.document.markdown
-  - type.workflow.checklist
-  - workspace.desk.primitives
-- name: OperatorDoc
-  model_ref: deskops.models:OperatorDoc
-  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/operator.py
-  models_index: .sldb/core/models/OperatorDoc.yaml
-  version: 1
-  canonical: false
-  family: null
-  semantics:
-  - representation.markdown
-  - source.document.markdown
-  - type.workflow.operator
-  - workspace.desk.primitives
-- name: EdgeDoc
-  model_ref: deskops.models:EdgeDoc
-  path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/edge.py
-  models_index: .sldb/core/models/EdgeDoc.yaml
-  version: 1
-  canonical: false
-  family: null
-  semantics:
-  - representation.markdown
-  - source.document.markdown
-  - type.workflow.edge
-  - workspace.desk.primitives
 - name: RelationTypeDoc
   model_ref: sldb.models.relation_type_doc:RelationTypeDoc
   path: /home/jp/proyectos/SLDB_1/sldb/src/sldb/models/relation_type_doc.py
@@ -330,4 +270,4 @@ predicates:
   description: A composed field of the source (`__compositions__`) renders this document's
     payload into the source's text; the edge carries the composed field, the field
     holding the refs and the ref as authored.
-store_hash: 4783fd8fcd162a7daf7f9b19c4c63315172cc1ec056cd0fe5b255e247f72e108
+store_hash: 13a5b0e4e35afb7ae10ab120c83ed4e6b5dc29678352fe0a7e571112579f5c1b

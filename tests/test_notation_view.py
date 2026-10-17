@@ -1,5 +1,6 @@
 """`resolve_view`: el unico interprete del contrato de notacion, contra un store real."""
 import json
+from pathlib import Path
 
 import pytest
 import yaml
@@ -38,6 +39,7 @@ MACHINE = {
         "transitions": [
             {"from": "closed", "to": "open", "on": "push", "guard": "unlocked"},
             {"from": "open", "to": "closed", "on": "pull"},
+            {"from": "wide", "to": "closed", "on": "slam"},  # cruza el borde del compuesto
         ],
     },
 }
@@ -93,7 +95,23 @@ def test_state_view_nests_contains_and_marks_initial(project):
     nests = sorted((l["source"].split(".")[-1], l["target"].split(".")[-1]) for l in view["links"] if l["draw"] == "nest")
     assert nests == [("open", "ajar"), ("open", "wide")] and all(l["doc"] is None for l in view["links"] if l["draw"] == "nest")
     lines = {(l["source"].split(".")[-1], l["target"].split(".")[-1]): l["label"] for l in view["links"] if l["draw"] == "line"}
-    assert lines == {("closed", "open"): "push [unlocked]", ("open", "closed"): "pull"}
+    assert lines == {("closed", "open"): "push [unlocked]", ("open", "closed"): "pull", ("wide", "closed"): "slam"}
+
+
+def test_repo_pilot_with_a_composite_state_resolves_nest_and_a_crossing_transition(tmp_path):
+    """El piloto del repo que graph_ui usa para dibujar `nest`: un compuesto y una transicion que sale de el."""
+    from spec2viz.sldb_sync import SpecSync
+
+    sldb_api.init_store(tmp_path)
+    SpecSync(tmp_path / ".sldb").sync(Path(__file__).parent.parent / "docs" / "architecture" / "spec2viz" / "state-diagram-sync-lifecycle.yml")
+    view = resolve_view(tmp_path / ".sldb", "state.diagram-sync-lifecycle")
+    nests = sorted((l["source"].split(".")[-1], l["target"].split(".")[-1]) for l in view["links"] if l["draw"] == "nest")
+    assert nests == [("syncing", "indexing"), ("syncing", "validating"), ("syncing", "writing")]
+    crossing = [l for l in view["links"] if l["draw"] == "line" and l["source"].endswith(".validating") and l["target"].endswith(".failed")]
+    assert len(crossing) == 1 and crossing[0]["label"] == "load() raises [spec invalid]"
+    nodes = {n["doc"].split(".")[-1]: n for n in view["nodes"]}
+    assert nodes["syncing"]["glyph"] == "GlyphDoc:statechart.composite" and nodes["idle"]["markers"][0]["id"] == "initial"
+    assert view["skipped"] == []
 
 
 def test_view_errors(project):

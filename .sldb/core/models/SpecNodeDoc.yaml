@@ -3,10 +3,10 @@ model_ref: spec2viz.sldb_models:SpecNodeDoc
 path: spec2viz/sldb_models.py
 documents_index: .sldb/core/documents/SpecNodeDoc.yaml
 sections_index: .sldb/runtime/sections/SpecNodeDoc.yaml
-model_hash: 833feb9c62be08d8788b3207a258afad2b68b8b194d19c824f6ff9f136e4e1c8
-roster_hash: 106a22276e196c85c42d5613772c01d7d6016fbb3ae948cfd10f83d82969ce59
+model_hash: d427e5c2856b4526a419fd64ee767a6531390fa7ae31825cb25dd92e7e1c3fb9
+roster_hash: 28204f629692a7c8b00bd0e5666f694fcee772fd72c72ad7d2359c08ce927163
 contract_hash: fbce62c87f713009c082760a36d55cf028f43b763fac03079c06999e057b5390
-documents_count: 83
+documents_count: 90
 version: 1
 canonical: false
 family: null

@@ -153,8 +153,10 @@ modelos registrados (en spec2viz: migrar el desk con `deskops desk update --appl
 
 ## 10. Pilotos
 
-`docs/architecture/spec2viz/class-sldb-models.yml` (notación `uml-class`) y
-`docs/architecture/spec2viz/state-diagram-type-lifecycle.yml` (notación `statechart`), sincronizados
+`docs/architecture/spec2viz/class-sldb-models.yml` (notación `uml-class`),
+`docs/architecture/spec2viz/state-diagram-type-lifecycle.yml` (notación `statechart`, sin compuestos) y
+`docs/architecture/spec2viz/state-diagram-sync-lifecycle.yml` (`statechart` con un estado compuesto, tres
+`nest` y una transición que cruza el borde del contenedor; `tests/test_notation_view.py` fija su vista), sincronizados
 en el store del repo (`.sldb`). Con graph_ui:
 
 ```

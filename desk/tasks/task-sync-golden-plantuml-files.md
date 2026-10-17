@@ -1,29 +1,13 @@
 ---
-# task-xxx, unique task identifier
 id: task-sync-golden-plantuml-files
-# draft | active | blocked | closed
 status: active
-# Relevant file or doc paths
 references: []
-# Task identifiers that must complete first
 depends_on: []
-# Pill identifiers required
 pills: []
-# Files expected to change
 files: []
-# Routine identifier for operations
-routine: routine-task-sync-golden-plantuml-files
-# Checklist identifiers for verification
-checklists:
-- checklist-task-sync-golden-plantuml-files-execution-ready
-- checklist-task-sync-golden-plantuml-files-testing-ready
-- checklist-task-sync-golden-plantuml-files-closeout-ready
-# Active routine node
-current_node: checklist-task-sync-golden-plantuml-files-testing-ready
-# Execution history references
+current_node: ritual-testing
 history:
 - operator-task-sync-golden-plantuml-files-activate
-# e.g., system:deskops, topic:cli
 tags:
 - workspace:desk
 - artifact:task

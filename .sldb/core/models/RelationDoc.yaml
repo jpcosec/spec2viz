@@ -3,10 +3,10 @@ model_ref: sldb.models.relation_doc:RelationDoc
 path: /home/jp/proyectos/SLDB_1/sldb/src/sldb/models/relation_doc.py
 documents_index: .sldb/core/documents/RelationDoc.yaml
 sections_index: .sldb/runtime/sections/RelationDoc.yaml
-model_hash: 19d2380c0d61e7b374f94a5f584611851b50d131cd86e5627bb20aeb0347dcf0
-roster_hash: 45bb17284fcdc3116d17be3624d7901a5e9184c8b16ee925849a9464869d6c5a
+model_hash: 6e067cb37b78fd5f34f55438aaf10fafac00446fc1c242e1be517ee4d12ce772
+roster_hash: ba183bb5e768d9e1aeabfe01d266e8b45b4c6a07908e959fc99fed0d4e5f8200
 contract_hash: b9797de59b07c6b0ab23b0fcf200d556dfe525d9728afd84aed2d0354cdea279
-documents_count: 101
+documents_count: 112
 version: 1
 canonical: false
 family: relation

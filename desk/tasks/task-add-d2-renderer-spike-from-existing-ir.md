@@ -1,28 +1,12 @@
 ---
-# task-xxx, unique task identifier
 id: task-add-d2-renderer-spike-from-existing-ir
-# draft | active | blocked | closed
 status: draft
-# Relevant file or doc paths
 references: []
-# Task identifiers that must complete first
 depends_on: []
-# Pill identifiers required
 pills: []
-# Files expected to change
 files: []
-# Routine identifier for operations
-routine: routine-task-add-d2-renderer-spike-from-existing-ir
-# Checklist identifiers for verification
-checklists:
-- checklist-task-add-d2-renderer-spike-from-existing-ir-execution-ready
-- checklist-task-add-d2-renderer-spike-from-existing-ir-testing-ready
-- checklist-task-add-d2-renderer-spike-from-existing-ir-closeout-ready
-# Active routine node
-current_node: checklist-task-add-d2-renderer-spike-from-existing-ir-execution-ready
-# Execution history references
+current_node: ritual-execution
 history: []
-# e.g., system:deskops, topic:cli
 tags:
 - workspace:desk
 - artifact:task

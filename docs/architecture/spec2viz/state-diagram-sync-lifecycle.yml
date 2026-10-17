@@ -1,0 +1,61 @@
+id: state.diagram-sync-lifecycle
+title: "Ciclo de un `diagram sync`"
+type: state
+version: "0.1"
+
+metadata:
+  description: >-
+    Estados por los que pasa `spec2viz diagram sync` sobre un spec: el trabajo contra el store
+    es un estado compuesto (validar, escribir, indexar) y un fallo de validación sale de él
+    directamente. Piloto de la notación `statechart` con `nest` y una transición que cruza el
+    borde del contenedor.
+
+data:
+  entity: Spec sync
+  initial: idle
+
+  states:
+    - id: idle
+      label: Idle
+    - id: syncing
+      label: Syncing against the store
+      contains: [validating, writing, indexing]
+    - id: validating
+      label: Validating the spec
+    - id: writing
+      label: Writing documents
+    - id: indexing
+      label: Rebuilding the edge index
+    - id: synced
+      label: Synced
+    - id: failed
+      label: Failed
+
+  transitions:
+    - from: idle
+      to: validating
+      "on": "diagram sync <spec>"
+    - from: validating
+      to: writing
+      "on": "load() ok"
+    - from: validating
+      to: failed
+      "on": "load() raises"
+      guard: "spec invalid"
+    - from: writing
+      to: indexing
+      "on": "documents upserted"
+    - from: indexing
+      to: synced
+      "on": "check_edges"
+      guard: "no errors"
+    - from: indexing
+      to: failed
+      "on": "check_edges"
+      guard: "--strict and errors"
+    - from: synced
+      to: idle
+      "on": "next spec"
+    - from: failed
+      to: idle
+      "on": "fix the spec"

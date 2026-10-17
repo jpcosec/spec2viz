@@ -62,6 +62,15 @@ vistas:
     specs:
       - docs/architecture/spec2viz/class-sldb-models.yml
 
+  - id: state-diagram-sync-lifecycle
+    category: Modelos de Estado
+    title: Ciclo de un diagram sync
+    nav: Sync
+    desc: "Estados de `spec2viz diagram sync`: el trabajo contra el store es un estado compuesto (validar, escribir, indexar) y un fallo sale de él. Piloto de la notación statechart con nest."
+    src: spec2viz/state-diagram-sync-lifecycle.mmd
+    specs:
+      - docs/architecture/spec2viz/state-diagram-sync-lifecycle.yml
+
   - id: activity-render-error-handling
     category: Flujos de Actividad
     title: Manejo de Errores en Render
