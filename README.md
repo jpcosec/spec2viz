@@ -110,6 +110,33 @@ document of a linked store), for example a task or a code symbol:
 lists them in the element panel with model, title, path and a short summary. An unknown ref is a warning,
 or an error with `--strict-atoms`. A ref without the `Model:` part is rejected at validation time.
 
+Every ref and atom in the panel also lists its sldb relations (`edges_from`/`edges_to` through
+`sldb.api`): the authored and declared edges in both directions, without the structural ones the index
+derives from sections, tags and fields. A store without an edge index gets one warning and no relations.
+
+### The spec as a namespace over the sldb store
+
+`spec2viz diagram sync <spec.yml> [--store .sldb] [--out DIR] [--strict]` writes a spec into the store so
+its elements are addressable documents:
+
+- `SpecDoc:<spec id>` carries the YAML path and SHA-256 and references its nodes.
+- `SpecNodeDoc:<spec id>.<element>` per element (node, state, step, class, participant), with its
+  `refs:`, `atoms:` and `contains:`; the index turns those into `references` and `contains` edges.
+- One `RelationDoc` per spec edge, typed with the spec relation (`uses`, `loads(path)` -> `loads_path`);
+  a relation the store does not know gets its `RelationTypeDoc` in `sldb/relation_types/`.
+
+Documents of a previous sync that left the spec are deleted; the edge index is rebuilt and checked.
+Any document can then point at a diagram element (`refs: [SpecNodeDoc:arq.core]`, a RelationDoc, a
+`__references__` field) and `sldb graph neighborhood SpecNodeDoc:arq.core` walks the whole thing. The
+catalog shows those edges back on the element. `--strict` fails when a `refs:`/`atoms:` target does not
+exist or the index reports an error. The models live in `spec2viz.sldb_models`, so spec2viz must be
+installed where the store is read.
+
+The reverse direction is `spec2viz diagram from-graph <snapshot.json> | --store .sldb [--out spec.yml]`:
+it compiles an sldb edge index (a `sldb graph snapshot save` JSON or the store itself) into a component
+spec, filtering by node type, model and relation (`--node-type`, `--model`, `--relation`,
+`--exclude-relation`, `--drop-isolated`); `contains` edges become nesting.
+
 Hierarchical stores can aggregate other stores and legacy `vistas.yml` leaves, then expose one filtered HTML catalog by category, type, project, and tags.
 
 Minimal `project.yml` / diagram-store shape:

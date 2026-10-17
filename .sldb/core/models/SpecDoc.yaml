@@ -1,0 +1,19 @@
+name: SpecDoc
+model_ref: spec2viz.sldb_models:SpecDoc
+path: spec2viz/sldb_models.py
+documents_index: .sldb/core/documents/SpecDoc.yaml
+sections_index: .sldb/runtime/sections/SpecDoc.yaml
+model_hash: a90369e3ddbfc1a163a686a7b3928aac959b419937195fe89d1a10b17e616f86
+roster_hash: 4233f1cb66d0d0344a772584c989f9a7a24492ef97cf8d5be433ee6e083ac42a
+contract_hash: 76455b823ce138020f0349455bd54596b3bd73e23dc23229254def898101efa0
+documents_count: 7
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec
+base_models: []

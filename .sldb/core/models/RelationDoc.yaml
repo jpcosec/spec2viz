@@ -2,11 +2,11 @@ name: RelationDoc
 model_ref: sldb.models.relation_doc:RelationDoc
 path: /home/jp/proyectos/SLDB_1/sldb/src/sldb/models/relation_doc.py
 documents_index: .sldb/core/documents/RelationDoc.yaml
-sections_index: ''
-model_hash: 458ddd886ec88cf0374576594bf3febfd27ba20be6f3e9d249315df6a822035e
-roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+sections_index: .sldb/runtime/sections/RelationDoc.yaml
+model_hash: d83191005f0e71c88d6271c2508a4a40874d5179cd6affaed711cc588088a63e
+roster_hash: b3013e0dca263da927f61161c64af55f1e2562e38846878d3fdd15ec213ae843
 contract_hash: b9797de59b07c6b0ab23b0fcf200d556dfe525d9728afd84aed2d0354cdea279
-documents_count: 0
+documents_count: 88
 version: 1
 canonical: false
 family: relation

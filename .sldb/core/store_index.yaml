@@ -192,6 +192,32 @@ models:
   - representation.markdown
   - source.document.markdown
   - type.relation.instance
+- name: SpecDoc
+  model_ref: spec2viz.sldb_models:SpecDoc
+  path: spec2viz/sldb_models.py
+  models_index: .sldb/core/models/SpecDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.topology
+  - representation.markdown
+  - source.document.markdown
+  - system.spec2viz
+  - type.architecture.spec
+- name: SpecNodeDoc
+  model_ref: spec2viz.sldb_models:SpecNodeDoc
+  path: spec2viz/sldb_models.py
+  models_index: .sldb/core/models/SpecNodeDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.topology
+  - representation.markdown
+  - source.document.markdown
+  - system.spec2viz
+  - type.architecture.spec.node
 predicates:
 - name: is_solved_by
   axis: HOW
@@ -265,4 +291,4 @@ predicates:
   description: A composed field of the source (`__compositions__`) renders this document's
     payload into the source's text; the edge carries the composed field, the field
     holding the refs and the ref as authored.
-store_hash: 7dc7e71c3553bf4d64d2415396ef9ecbe68dd0d2b9246d82c34613daeca0e98d
+store_hash: a401978d549adaaeca2fbeca0846c76e71e8de6db2874b192a20856a73f5def0

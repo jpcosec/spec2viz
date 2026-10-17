@@ -254,6 +254,40 @@ def diagram_from_graph(
         click.echo(text, nl=False)
 
 
+@diagram.command("sync", short_help="Materialize spec nodes and edges as sldb documents.")
+@click.argument("paths", nargs=-1, required=True, type=click.Path(exists=True, path_type=Path), metavar="SPEC ...")
+@click.option("--store", type=click.Path(exists=True, path_type=Path), help="The `.sldb` store to write into. Defaults to the nearest `.sldb` above the first spec.")
+@click.option("--out", type=click.Path(path_type=Path), help="Directory for the generated markdown. Defaults to `<spec dir>/sldb/<spec id>`.")
+@click.option("--pythonpath", help="Project path the store's models import from.")
+@click.option("--strict", is_flag=True, help="Exit 1 when a `refs:`/`atoms:` target does not exist or the edge index reports errors.")
+def diagram_sync(paths: list[Path], store: Path | None, out: Path | None, pythonpath: str | None, strict: bool):
+    """Write each spec into an sldb store: `SpecDoc:<id>`, one `SpecNodeDoc:<id>.<element>` per
+    element and one `RelationDoc` per edge, then rebuild and check the edge index.
+
+    `refs:` and `atoms:` of the elements become `references` edges and `contains:` becomes
+    `contains`, so the store's documents hang from the diagram and the catalog shows the
+    relations back on each node. Documents of a previous sync that left the spec are deleted.
+    """
+    from spec2viz.sldb_sync import SpecSync, find_store, format_report
+
+    store_path = store or find_store(paths[0].resolve().parent)
+    if store_path is None:
+        click.echo("Error: no `.sldb` store found above the spec; pass --store.", err=True)
+        sys.exit(1)
+    sync = SpecSync(Path(store_path), pythonpath=pythonpath, out_dir=out)
+    failed = False
+    for path in paths:
+        try:
+            report = sync.sync(path)
+        except Exception as exc:
+            click.echo(f"Error syncing {path}: {exc}", err=True)
+            sys.exit(1)
+        click.echo(format_report(report))
+        failed = failed or bool(report.problems)
+    if strict and failed:
+        sys.exit(1)
+
+
 @diagram.command("validate", short_help="Validate semantic diagram spec files.")
 @click.argument("paths", nargs=-1, type=click.Path(exists=True, path_type=Path), metavar="SPEC ...")
 def diagram_validate(paths: list[Path]):

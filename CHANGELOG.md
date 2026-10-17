@@ -1,7 +1,15 @@
 # Changelog
 
-## Unreleased - 2026-10-16
+## Unreleased - 2026-10-17
 
+- `spec2viz diagram sync`: a spec becomes a namespace over the sldb store (`SpecDoc`, one `SpecNodeDoc`
+  per element, one `RelationDoc` per edge, missing `RelationTypeDoc`s created); stale documents of a
+  previous sync are deleted and the edge index rebuilt and checked; `--strict` fails on unresolved
+  `refs:`/`atoms:` or index errors
+- `spec2viz diagram from-graph`: compiles an sldb graph (node-link snapshot or `--store`) into a
+  component spec with node-type/model/relation filters; `contains` becomes nesting
+- the catalog panel lists the sldb relations of every ref and atom (`edges_from`/`edges_to` through
+  `sldb.api`, structural edges left out); `structuredLanguageDB>=0.1.6`
 - added `refs: [Model:name]` to every spec element (component, deployment, class, activity, state,
   sequence): references to sldb documents, resolved at `catalog build` and listed in the element panel
 - the catalog atom resolver uses only the public `sldb.api` surface (`load_runtime_documents`,
