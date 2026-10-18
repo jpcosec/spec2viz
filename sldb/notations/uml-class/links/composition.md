@@ -9,6 +9,8 @@ line: solid
 source_end: filled-diamond
 target_end: none
 label: '{notes}'
+source_label: '{from_multiplicity}'
+target_label: '{to_multiplicity}'
 ends: {}
 form: (relation composition)
 ---

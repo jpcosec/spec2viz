@@ -155,10 +155,9 @@ ni en el YAML del spec.
   la superficie.
 - Añadir una notación es un YAML (`spec2viz notation validate` lo comprueba) y `notation sync`; no
   hace falta tocar código en ninguno de los dos lados.
-- Lo que hoy no viaja: las multiplicidades y roles de una relación de clases (solo `notes` lleva la
-  etiqueta), las acciones de una transición (solo evento y guarda en `notes`), el `group` de los
-  mensajes de una secuencia (los fragmentos). Cuando haga falta, la salida es un `RelationDoc` con
-  más campos o una relación reificada, no un parseo de `notes`.
+- Lo que viaja en `RelationDoc.attributes` (§8d) y lo que no: los roles de una asociación de clases
+  no existen en el spec de spec2viz; cuando hagan falta, la salida es una relación reificada, no un
+  parseo de `notes`.
 
 ## 8b. Las notaciones builtin, por tipo de diagrama
 
@@ -175,6 +174,36 @@ ni en el YAML del spec.
 
 Cada nodo de la vista trae además `collection` y `data` (el resto del elemento), para lo que un
 glifo no cubre (el `view` y `order` de una etapa, los `branches` de una decisión).
+
+## 8c. Carriles y grilla: cómo se ordenan
+
+Acordado con graph_ui el 2026-10-18.
+
+**Carriles** (`layout.kind: lanes`, `uml-sequence`): un carril por nodo de la vista, en el orden de
+`nodes` (el de `participants` del spec); todos son `collection = "participants"`. Cada mensaje es un
+link `draw: line` con `order` 1..n, y ese `order` es su fila en el tiempo. Un retorno es `relation:
+returns` con `line: dashed`; una autollamada tiene `source == target` y se dibuja como bucle sobre
+su carril, ocupando su fila. `fragments` (§11) son los marcos alt/loop/opt: rachas de mensajes
+consecutivos con el mismo `group`. `draw: lane` no lo usa ninguna notación builtin: queda para
+"el destino se coloca en el carril del origen" (calles), no para secuencias.
+
+**Grilla** (`layout.kind: grid`, `component-view-matrix`): columnas = nodos `collection = "stages"`,
+con `data.view` (id de la vista), `data.view_label` y `data.order` 1..n dentro de la vista; una
+grilla por vista. Filas = nodos `collection = "components"` en el orden de `nodes`, jerarquía por los
+links `draw: nest` (el hijo indentado bajo el padre). Cada `draw: cell` es source = fila, target =
+columna, y `label` es el contenido de la celda. Una fila sin celdas en una vista queda vacía, no se
+omite.
+
+## 8d. Atributos de arista
+
+`RelationDoc.attributes` (sldb >= 0.1.11; `diagram sync` lo escribe solo si el modelo instalado tiene
+el campo) guarda lo que un `RelationDoc` no tiene dónde poner: en clases `from_multiplicity`,
+`to_multiplicity`, `label`; en statecharts `on`, `guard`, `action`; en secuencias `kind`, `group`,
+`message`; en despliegue `protocol`; en actividad `branch`; en matrices `view`, `stage`. La vista lo
+expone como `data` de cada link. Las plantillas de un `LinkDoc` (`label`, `source_label`,
+`target_label`) leen el `RelationDoc` con sus `attributes` encima, igual que un glifo lee `data`:
+`uml-class` rotula los extremos de composición, agregación y asociación con `{from_multiplicity}` y
+`{to_multiplicity}`. La acción de una transición va además en `notes` como `evento [guarda] / acción`.
 
 ## 9. Alcance de la primera vista de graph_ui
 
@@ -216,12 +245,16 @@ SLDB_STORE=/home/jp/proyectos/SLDB_1/spec2viz/.sldb python3 frontends/mindmap/se
     {"source": "SpecNodeDoc:...SpecDoc", "target": "SpecNodeDoc:...StructuredNLDoc",
      "relation": "inheritance", "link": "LinkDoc:uml-class.inheritance",
      "doc": "RelationDoc:class.sldb-models.SpecDoc__inheritance__StructuredNLDoc",
-     "draw": "line", "line": "solid", "source_end": "none", "target_end": "hollow-triangle", "label": ""}
+     "draw": "line", "line": "solid", "source_end": "none", "target_end": "hollow-triangle", "label": "",
+     "order": 1, "condition": "", "data": {}, "source_label": "", "target_label": ""}
   ],
+  "fragments": [{"label": "loop", "kind": "group", "orders": [3, 4]}],
   "skipped": []
 }
 ```
 
 `nodes` sigue el orden de `SpecDoc.nodes` y cada uno trae `element`, `collection` y `data`; `links`
-lista primero las contenciones (`order` 0) y después los `RelationDoc` por `order`, con `condition`. `skipped` son relaciones del spec sin link en la notación. Un spec sin notación, una
+lista primero las contenciones (`order` 0) y después los `RelationDoc` por `order`, con `condition`,
+`data` (los `attributes` del RelationDoc) y los rótulos de extremo. `fragments` son las rachas de
+links consecutivos con el mismo `data.group` (vacío si no hay grupos). `skipped` son relaciones del spec sin link en la notación. Un spec sin notación, una
 notación de otro tipo de diagrama o un nodo sin glifo son errores (`ViewError`), no vistas a medias.

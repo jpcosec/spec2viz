@@ -83,6 +83,8 @@ links:
     relation: composition
     draw: line
     line: solid
+    source_label: "{from_multiplicity}"
+    target_label: "{to_multiplicity}"
     source_end: filled-diamond
     target_end: none
     label: "{notes}"
@@ -91,6 +93,8 @@ links:
     relation: aggregation
     draw: line
     line: solid
+    source_label: "{from_multiplicity}"
+    target_label: "{to_multiplicity}"
     source_end: hollow-diamond
     target_end: none
     label: "{notes}"
@@ -99,6 +103,8 @@ links:
     relation: association
     draw: line
     line: solid
+    source_label: "{from_multiplicity}"
+    target_label: "{to_multiplicity}"
     target_end: open-arrow
     label: "{notes}"
   - id: dependency

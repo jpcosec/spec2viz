@@ -55,10 +55,10 @@ def test_pure_extraction_and_tokens():
     assert [e["id"] for e in spec_elements(ARQ)] == ["cli", "core", "renderers"]
     assert spec_elements(ARQ)[0]["contains"] == ["core"] and spec_elements(ARQ)[2]["atoms"] == ["atom-nope"]
     assert spec_edges(ARQ) == [
-        {"from": "cli", "to": "core", "relation": "uses", "label": "", "condition": ""},
-        {"from": "core", "to": "renderers", "relation": "loads_path", "label": "x", "condition": ""},
+        {"from": "cli", "to": "core", "relation": "uses", "label": "", "condition": "", "attributes": {}},
+        {"from": "core", "to": "renderers", "relation": "loads_path", "label": "x", "condition": "", "attributes": {}},
     ]
-    assert spec_edges(FLOW) == [{"from": "a", "to": "b", "relation": "transitions_to", "label": "go", "condition": ""}]
+    assert spec_edges(FLOW) == [{"from": "a", "to": "b", "relation": "transitions_to", "label": "go", "condition": "", "attributes": {"on": "go"}}]
     assert edge_name("arq", 1, 2, spec_edges(ARQ)[0]) == "arq.01-cli__uses__core" and edge_name("x", 7, 123, {"from": "a", "relation": "r", "to": "b"}) == "x.007-a__r__b"
     assert relation_token(" Depends-On ", "x") == "depends_on" and relation_token("", "uses") == "uses"
     assert to_slash_ref("AtomDoc:atom-a") == "AtomDoc/atom-a" and to_slash_ref("desk:TaskDoc:t") == "desk:TaskDoc/t"
@@ -168,6 +168,7 @@ def test_other_diagram_types_extract_their_own_edges():
     sequence = {"type": "sequence", "data": {"participants": [{"id": "u", "kind": "actor"}, {"id": "s"}], "messages": [
         {"from": "u", "to": "s", "message": "hi"}, {"from": "s", "to": "u", "message": "ok", "kind": "return", "condition": "if alive"}, {"from": "u", "to": "s", "message": "bye", "kind": "async"}]}}
     assert [(e["relation"], e["label"], e["condition"]) for e in spec_edges(sequence)] == [("sends", "hi", ""), ("returns", "ok", "if alive"), ("sends_async", "bye", "")]
+    assert spec_edges(sequence)[1]["attributes"] == {"kind": "return", "message": "ok"}
 
     matrix = {"type": "component_view_matrix", "data": {
         "views": [{"id": "v", "label": "View", "stages": [{"id": "s1", "label": "One"}, {"id": "s2", "label": "Two"}]}],
@@ -199,6 +200,10 @@ def test_spec_elements_keep_the_rest_of_the_element_in_data():
     guarded = {"type": "state", "data": {"initial": "a", "states": [{"id": "a", "label": "A"}], "transitions": [{"from": "a", "to": "a", "on": "tick", "guard": "x > 1"}]}}
     assert spec_elements(guarded)[0]["data"] == {"initial": True}
     assert spec_edges(guarded)[0]["label"] == "tick [x > 1]"
+    acted = {"type": "state", "data": {"initial": "a", "states": [{"id": "a", "label": "A"}], "transitions": [{"from": "a", "to": "a", "on": "tick", "action": "log()"}]}}
+    assert spec_edges(acted)[0]["label"] == "tick / log()" and spec_edges(acted)[0]["attributes"] == {"on": "tick", "action": "log()"}
+    classes = {"type": "class", "data": {"classes": {"A": {}, "B": {}}, "relations": [{"from": "A", "to": "B", "relation": "composition", "from_multiplicity": "1", "to_multiplicity": "0..*", "label": "parts"}]}}
+    assert spec_edges(classes)[0]["attributes"] == {"from_multiplicity": "1", "to_multiplicity": "0..*", "label": "parts"}
 
 
 # --- CLI ----------------------------------------------------------------------------

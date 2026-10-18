@@ -9,6 +9,8 @@ line: solid
 source_end: none
 target_end: filled-arrow
 label: '{notes}'
+source_label: ''
+target_label: ''
 ends: {}
 form: (relation sends)
 ---

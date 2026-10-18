@@ -116,6 +116,8 @@ class LinkSpec(BaseModel):
     source_end: str = "none"
     target_end: str = "open-arrow"
     label: str = ""
+    source_label: str = ""
+    target_label: str = ""
     ends: dict[str, LinkEndSpec] = Field(default_factory=dict)
     form: str = ""
     description: str = ""

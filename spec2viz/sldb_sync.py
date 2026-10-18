@@ -190,10 +190,26 @@ def spec_elements(spec: dict) -> list[dict]:
 
 
 def _edge_label(raw: dict) -> str:
+    """`notes` del RelationDoc: etiqueta, `[guarda]` y `/ accion` como en un statechart."""
     label = next((str(raw[f]) for f in _EDGE_LABEL_FIELDS if raw.get(f)), "")
     if raw.get("guard"):
         label = f"{label} [{raw['guard']}]".strip()
+    if raw.get("action"):
+        label = f"{label} / {raw['action']}".strip(" /")
     return label
+
+
+# campos de una arista que viajan en `RelationDoc.attributes` (sldb >= 0.1.11), por tipo
+_EDGE_ATTRIBUTE_FIELDS: dict[str, tuple[str, ...]] = {
+    "class": ("from_multiplicity", "to_multiplicity", "label"),
+    "state": ("on", "guard", "action"),
+    "sequence": ("kind", "group", "message"),
+    "deployment": ("protocol",),
+}
+
+
+def _edge_attributes(diagram_type: str, raw: dict) -> dict[str, Any]:
+    return {f: _plain(raw[f]) for f in _EDGE_ATTRIBUTE_FIELDS.get(diagram_type, ()) if raw.get(f) not in (None, "")}
 
 
 def _activity_edges(data: dict) -> list[dict]:
@@ -203,9 +219,9 @@ def _activity_edges(data: dict) -> list[dict]:
         if not isinstance(step, dict):
             continue
         if step.get("next"):
-            out.append({"from": str(sid), "to": str(step["next"]), "relation": "next", "label": "", "condition": ""})
+            out.append({"from": str(sid), "to": str(step["next"]), "relation": "next", "label": "", "condition": "", "attributes": {}})
         for label, target in (step.get("branches") or {}).items():
-            out.append({"from": str(sid), "to": str(target), "relation": "branch", "label": str(label), "condition": ""})
+            out.append({"from": str(sid), "to": str(target), "relation": "branch", "label": str(label), "condition": "", "attributes": {"branch": str(label)}})
     return out
 
 
@@ -219,7 +235,7 @@ def _matrix_edges(data: dict) -> list[dict]:
                 continue
             for view_id, stages in (comp.get("stages") or {}).items():
                 for stage in stages or []:
-                    out.append({"from": str(comp["name"]), "to": stage_id(str(view_id), str(stage)), "relation": "occupies", "label": str(view_id), "condition": ""})
+                    out.append({"from": str(comp["name"]), "to": stage_id(str(view_id), str(stage)), "relation": "occupies", "label": str(view_id), "condition": "", "attributes": {"view": str(view_id), "stage": str(stage)}})
             walk(comp.get("children"))
 
     walk(data.get("components"))
@@ -227,7 +243,7 @@ def _matrix_edges(data: dict) -> list[dict]:
 
 
 def spec_edges(spec: dict) -> list[dict]:
-    """Las aristas del spec en orden: from, to, relation (token), label (con la guarda) y condition."""
+    """Las aristas del spec en orden: from, to, relation (token), label (con guarda y accion), condition y attributes."""
     data = spec.get("data") or {}
     diagram_type = str(spec.get("type"))
     if diagram_type == "activity":
@@ -248,8 +264,18 @@ def spec_edges(spec: dict) -> list[dict]:
         else:
             relation = relation_token(value, default)
         condition = str(raw.get("condition") or "") if diagram_type == "sequence" else ""
-        out.append({"from": str(raw["from"]), "to": str(raw["to"]), "relation": relation, "label": _edge_label(raw), "condition": condition})
+        out.append({"from": str(raw["from"]), "to": str(raw["to"]), "relation": relation, "label": _edge_label(raw), "condition": condition,
+                    "attributes": _edge_attributes(diagram_type, raw)})
     return out
+
+
+def relation_doc_has_attributes() -> bool:
+    """Si el `RelationDoc` instalado tiene el campo libre `attributes` (sldb >= 0.1.11)."""
+    try:
+        from sldb.models.relation_doc import RelationDoc
+    except Exception:  # pragma: no cover
+        return False
+    return "attributes" in getattr(RelationDoc, "model_fields", {})
 
 
 def edge_name(spec_id: str, index: int, count: int, edge: dict) -> str:
@@ -415,6 +441,8 @@ class NotationSync(_StoreWriter):
                 "source_end": link.source_end,
                 "target_end": link.target_end,
                 "label": link.label,
+                "source_label": link.source_label,
+                "target_label": link.target_label,
                 "ends": {k: e.model_dump() for k, e in link.ends.items()},
                 "form": link.form or default_form,
                 "description": link.description,
@@ -536,6 +564,7 @@ class SpecSync(_StoreWriter):
         self.upsert(existing, report, "SpecDoc", spec_id, out / f"{spec_id}.md", spec_payload)
 
         # aristas
+        with_attributes = relation_doc_has_attributes()
         for index, edge in enumerate(edges, start=1):
             name = edge_name(spec_id, index, len(edges), edge)
             payload = {
@@ -546,6 +575,8 @@ class SpecSync(_StoreWriter):
                 "condition": edge.get("condition", ""),
                 "notes": edge["label"],
             }
+            if with_attributes:
+                payload["attributes"] = dict(edge.get("attributes") or {})
             self.upsert(existing, report, "RelationDoc", name, out / "edges" / f"{name}.md", payload)
             current.add(("RelationDoc", name))
 
@@ -630,7 +661,7 @@ def format_notation_report(report: SyncReport) -> str:
 
 __all__ = [
     "SpecSync", "NotationSync", "SyncReport", "find_store", "format_report", "format_notation_report",
-    "spec_edges", "spec_elements", "edge_name", "stage_id", "relation_token", "node_ref", "to_slash_ref",
+    "spec_edges", "spec_elements", "edge_name", "stage_id", "relation_token", "node_ref", "to_slash_ref", "relation_doc_has_attributes",
     "catalog_entries", "sync_catalog",
 ]
 

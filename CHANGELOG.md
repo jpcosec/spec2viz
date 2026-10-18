@@ -2,6 +2,13 @@
 
 ## Unreleased - 2026-10-17
 
+- edge attributes: `diagram sync` keeps what a RelationDoc had no field for (class multiplicities and
+  label, transition `on`/`guard`/`action`, message `kind`/`group`/`message`, deployment `protocol`,
+  activity `branch`, matrix `view`/`stage`) in `RelationDoc.attributes` when the installed sldb has it
+  (>= 0.1.11); `notes` of a transition reads `event [guard] / action`; `LinkDoc.source_label` and
+  `target_label` templates (uml-class rotulates multiplicities); `notation view` exposes `data`,
+  `source_label`/`target_label` per link and `fragments` (runs of messages sharing a `group`); the
+  contract fixes how lanes and grids are ordered (§8c) and adds the `matrix.pipeline-coverage` pilot
 - packaging: version aligned with this changelog (0.2.0), `structuredLanguageDB>=0.1.10` as the one
   declared range, `mmdc` (mermaid-cli) documented as the optional external engine of `diagram lint`
 - spec2viz runs on graph_ui: one builtin notation per diagram type (`component`, `deployment`,

@@ -7,7 +7,7 @@ import yaml
 from click.testing import CliRunner
 
 from spec2viz.cli import main
-from spec2viz.notation_view import ViewError, flatten, lookup, render_template, resolve_view
+from spec2viz.notation_view import ViewError, flatten, fragments_of, lookup, render_template, resolve_view
 
 sldb_api = pytest.importorskip("sldb.api")
 
@@ -22,7 +22,7 @@ CLASSES = {
         "relations": [
             {"from": "Circle", "to": "Base", "relation": "inheritance"},
             {"from": "Base", "to": "Shape", "relation": "realization"},
-            {"from": "Circle", "to": "Shape", "relation": "composition", "label": "parts"},
+            {"from": "Circle", "to": "Shape", "relation": "composition", "label": "parts", "from_multiplicity": "1", "to_multiplicity": "1..*"},
         ],
     },
 }
@@ -80,7 +80,14 @@ def test_class_view_picks_glyphs_by_where_and_links_by_relation(project):
     assert links[("Base", "Shape")]["line"] == "dashed"
     assert links[("Circle", "Shape")]["source_end"] == "filled-diamond" and links[("Circle", "Shape")]["label"] == "parts"
     assert all(l["draw"] == "line" and l["doc"].startswith("RelationDoc:shapes.") for l in view["links"])
-    assert view["skipped"] == []
+    assert view["skipped"] == [] and view["fragments"] == []
+    from spec2viz.sldb_sync import relation_doc_has_attributes
+    composition = links[("Circle", "Shape")]
+    if relation_doc_has_attributes():  # sldb >= 0.1.11
+        assert composition["data"] == {"from_multiplicity": "1", "to_multiplicity": "1..*", "label": "parts"}
+        assert (composition["source_label"], composition["target_label"]) == ("1", "1..*")
+    else:
+        assert composition["data"] == {} and composition["source_label"] == "" and composition["target_label"] == ""
 
 
 def test_state_view_nests_contains_and_marks_initial(project):
@@ -112,6 +119,18 @@ def test_repo_pilot_with_a_composite_state_resolves_nest_and_a_crossing_transiti
     nodes = {n["doc"].split(".")[-1]: n for n in view["nodes"]}
     assert nodes["syncing"]["glyph"] == "GlyphDoc:statechart.composite" and nodes["idle"]["markers"][0]["id"] == "initial"
     assert view["skipped"] == []
+
+
+def test_fragments_group_consecutive_messages():
+    links = [
+        {"order": 1, "data": {}}, {"order": 2, "data": {"group": "loop"}}, {"order": 3, "data": {"group": "loop"}},
+        {"order": 4, "data": {"group": "alt"}}, {"order": 5, "data": {}}, {"order": 6, "data": {"group": "alt"}}, {"order": 0, "data": {"group": "x"}},
+    ]
+    assert fragments_of(links) == [
+        {"label": "loop", "kind": "group", "orders": [2, 3]},
+        {"label": "alt", "kind": "group", "orders": [4]},
+        {"label": "alt", "kind": "group", "orders": [6]},
+    ]
 
 
 def test_view_errors(project):
@@ -156,7 +175,7 @@ def test_every_catalog_spec_resolves_under_its_builtin_notation(tmp_path):
         seen_types.add(view["diagram_type"])
         assert view["skipped"] == [], (report.spec_id, view["skipped"])
         assert view["nodes"] and all(n["glyph"] for n in view["nodes"])
-    assert {"component", "sequence", "state", "activity", "class"} <= seen_types
+    assert {"component", "sequence", "state", "activity", "class", "component_view_matrix"} <= seen_types
     spec_doc = next(d for d in sldb_api.load_runtime_documents(store, None, include_linked=False) if str(d.model_name) == "SpecDoc" and d.name == "component.spec2viz-architecture")
     assert spec_doc.payload["category"] == "Arquitectura de Módulos" and spec_doc.payload["nav"] == "Módulos"
 

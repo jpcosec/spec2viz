@@ -128,7 +128,11 @@ def link_order(relation_doc: str | None) -> int:
 
 def _link_view(source: str, target: str, link: dict, relation_payload: dict[str, Any] | None, relation_doc: str | None) -> dict[str, Any]:
     lp = link["payload"]
-    relation = lp["relation"] if lp["relation"] != ANY_RELATION else str((relation_payload or {}).get("relation_type") or "")
+    rp = relation_payload or {}
+    attributes = dict(rp.get("attributes") or {})
+    # las plantillas de un link leen el RelationDoc con sus `attributes` encima (como `data` en un nodo)
+    templated = {**rp, "data": attributes}
+    relation = lp["relation"] if lp["relation"] != ANY_RELATION else str(rp.get("relation_type") or "")
     return {
         "source": source,
         "target": target,
@@ -136,13 +140,31 @@ def _link_view(source: str, target: str, link: dict, relation_payload: dict[str,
         "link": link["ref"],
         "doc": relation_doc,
         "order": link_order(relation_doc),
-        "condition": str((relation_payload or {}).get("condition") or ""),
+        "condition": str(rp.get("condition") or ""),
+        "data": attributes,
+        "source_label": render_template(lp.get("source_label") or "", templated),
+        "target_label": render_template(lp.get("target_label") or "", templated),
         "draw": lp.get("draw", "line"),
         "line": lp.get("line", "solid"),
         "source_end": lp.get("source_end", "none"),
         "target_end": lp.get("target_end", "open-arrow"),
-        "label": render_template(lp.get("label") or "", relation_payload or {}),
+        "label": render_template(lp.get("label") or "", templated),
     }
+
+
+def fragments_of(links: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Un fragmento por racha de links consecutivos (por `order`) con el mismo `data.group`."""
+    out: list[dict[str, Any]] = []
+    current: dict[str, Any] | None = None
+    for link in sorted((l for l in links if l.get("order")), key=lambda l: l["order"]):
+        group = str(link.get("data", {}).get("group") or "")
+        if group and current is not None and current["label"] == group:
+            current["orders"].append(link["order"])
+            continue
+        current = {"label": group, "kind": "group", "orders": [link["order"]]} if group else None
+        if current is not None:
+            out.append(current)
+    return out
 
 
 def resolve_view(store: Path, spec_ref: str, pythonpath: str | None = None) -> dict[str, Any]:
@@ -215,8 +237,9 @@ def resolve_view(store: Path, spec_ref: str, pythonpath: str | None = None) -> d
         "layout": dict(np_.get("layout") or {"kind": "graph"}),
         "nodes": nodes,
         "links": out_links,
+        "fragments": fragments_of(out_links),
         "skipped": skipped,
     }
 
 
-__all__ = ["resolve_view", "ViewError", "flatten", "lookup", "render_template", "matches", "link_order"]
+__all__ = ["resolve_view", "ViewError", "flatten", "lookup", "render_template", "matches", "link_order", "fragments_of"]

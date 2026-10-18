@@ -9,6 +9,8 @@ line: solid
 source_end: none
 target_end: open-arrow
 label: '{notes}'
+source_label: '{from_multiplicity}'
+target_label: '{to_multiplicity}'
 ends: {}
 form: (relation association)
 ---

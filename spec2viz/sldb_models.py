@@ -256,6 +256,8 @@ line: ⸢rev•line⸥
 source_end: ⸢rev•source_end⸥
 target_end: ⸢rev•target_end⸥
 label: ⸢rev•label⸥
+source_label: ⸢optrev•source_label⸥
+target_label: ⸢optrev•target_label⸥
 ends: ⸢rev•ends⸥
 form: ⸢rev•form⸥
 ---
@@ -278,9 +280,16 @@ form: ⸢rev•form⸥
     source_end: str = Field(default="none", description="Terminal en el origen (none, open-arrow, filled-arrow, hollow-triangle, hollow-diamond, filled-diamond, filled-circle, bar).")
     target_end: str = Field(default="open-arrow", description="Terminal en el destino.")
     label: str = Field(default="", description="Plantilla del rotulo sobre el payload del RelationDoc (`{notes}`).")
+    source_label: str = Field(default="", description="Plantilla del rotulo junto al origen (`{from_multiplicity}`), sobre el payload y los `attributes` del RelationDoc.")
+    target_label: str = Field(default="", description="Plantilla del rotulo junto al destino (`{to_multiplicity}`).")
     ends: dict = Field(default_factory=dict, description="Extremos de una relacion reificada: nombre -> {relation, label, terminal}.")
     form: str = Field(default="", description="Forma pron equivalente (`(relation R)`), si alguien la interpreta; spec2viz no.")
     description: str = Field(default="", description="Texto libre.")
+
+    @field_validator("source_label", "target_label", mode="before")
+    @classmethod
+    def _absent_label(cls, value):
+        return "" if value is None else value
 
 
 __all__ = ["SpecDoc", "SpecNodeDoc", "NotationDoc", "GlyphDoc", "LinkDoc"]
