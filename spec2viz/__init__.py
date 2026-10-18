@@ -57,6 +57,7 @@ def render_to_file(
     if isinstance(result, dict):
         output_path.write_text(json.dumps(result, indent=2))
     else:
+        result = provenance_header(renderer_name, path) + result
         if renderer_name == "mermaid":
             from spec2viz.linters.mermaid import assert_mermaid_ok
 
@@ -64,3 +65,21 @@ def render_to_file(
         output_path.write_text(result)
 
     return output_path
+
+
+# sintaxis de comentario de linea de cada salida de texto
+_COMMENT_PREFIX = {"mermaid": "%%", "plantuml": "'", "d2": "#"}
+
+
+def provenance_header(renderer_name: str, spec_path: str | Path) -> str:
+    """La cabecera de trazabilidad de una proyeccion de texto: de que spec sale y como se
+    valida, para que nadie la edite a mano. Vacia para las salidas sin sintaxis de comentario."""
+    prefix = _COMMENT_PREFIX.get(renderer_name)
+    if prefix is None:
+        return ""
+    spec = Path(spec_path)
+    try:
+        shown = spec.resolve().relative_to(Path.cwd().resolve())
+    except ValueError:
+        shown = spec
+    return f"{prefix} spec2viz: generated from {shown.as_posix()}; do not edit, run `spec2viz diagram validate {shown.as_posix()}` and re-render\n"

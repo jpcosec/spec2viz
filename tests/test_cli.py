@@ -536,3 +536,18 @@ def test_build_command_reports_errors(tmp_path):
     r = runner.invoke(main, ["build", "--config", str(config), "--out", str(out)])
     assert r.exit_code != 0
     assert "Error building deskops" in r.output
+
+
+
+def test_rendered_text_projections_carry_a_provenance_header(tmp_path):
+    """Una proyeccion generada dice de que spec sale y como se valida; el JSON no lleva cabecera."""
+    from spec2viz import provenance_header, render_to_file
+
+    spec = Path("examples/component/example.yml")
+    for renderer, prefix in (("mermaid", "%%"), ("plantuml", "'"), ("d2", "#")):
+        text = render_to_file(spec, out=tmp_path, renderer=renderer).read_text(encoding="utf-8")
+        first = text.splitlines()[0]
+        assert first.startswith(f"{prefix} spec2viz: generated from examples/component/example.yml;") and "diagram validate" in first
+    assert provenance_header("vega", spec) == "" and provenance_header("json", spec) == ""
+    matrix = render_to_file(Path("tests/fixtures/matrix.quotation-view.yml"), out=tmp_path, renderer="vega").read_text(encoding="utf-8")
+    assert matrix.lstrip().startswith("{")

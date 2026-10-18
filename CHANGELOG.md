@@ -2,6 +2,9 @@
 
 ## Unreleased - 2026-10-17
 
+- provenance header: every rendered text projection (`.mmd`, `.puml`, `.d2`) starts with a comment
+  naming the spec it was generated from and the validate command to run before re-rendering; goldens
+  and the architecture projections regenerated (`spec2viz.provenance_header`)
 - sequence fragments: `notation view` derives each fragment's `kind` from the operator that opens the
   message `group` (`alt`, `loop`, `opt`, `par`, `break`, `critical`, `neg`, `ref`, `seq`, `strict`) and
   keeps the rest as `label`; pilot `sequence.sync-pipeline` (loop and alt over three participants)

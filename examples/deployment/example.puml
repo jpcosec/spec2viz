@@ -1,3 +1,4 @@
+' spec2viz: generated from examples/deployment/example.yml; do not edit, run `spec2viz diagram validate examples/deployment/example.yml` and re-render
 @startuml
 node "Browser" as browser {
   artifact "Quotation UI" as quotation_ui

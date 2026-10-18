@@ -1,3 +1,4 @@
+' spec2viz: generated from examples/component/example.yml; do not edit, run `spec2viz diagram validate examples/component/example.yml` and re-render
 @startuml
 skinparam component<<boundary>> BackgroundColor #FCECC9
 skinparam component<<boundary>> BorderColor #D4A73C

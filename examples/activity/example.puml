@@ -1,3 +1,4 @@
+' spec2viz: generated from examples/activity/example.yml; do not edit, run `spec2viz diagram validate examples/activity/example.yml` and re-render
 @startuml
 start
 :Validate input;
