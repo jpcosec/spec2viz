@@ -2,6 +2,11 @@
 
 ## Unreleased - 2026-10-17
 
+- `diagram from-graph` projects sldb's Python source graph (`sldb selfdoc python-sync`): Python nodes take
+  their label from the code (`ast.name` / `ast.module`) and their kind from the declared `semantics.kind`
+  or the AST class (module, class, function, variable, external); `--module-prefix` (repeatable) scopes
+  the projection to a module and what hangs from it without leaving a dangling edge or nesting; relation
+  names are copied as they come (`load_node_link_graph` returns the declared node attributes)
 - `tools/suite-check.sh`: integrated check of the SLDB_1 suite without deploying: a clean venv with
   sldb, pron, deskops, spec2viz and graph_ui installed editable from their checkouts (no kgdb), every
   repo's pytest, and an end-to-end flow (deskops init -> task -> closeout commit; spec2viz diagram sync,

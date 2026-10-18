@@ -22,6 +22,17 @@ from typing import Iterable
 GraphNodes = dict[str, str]
 # Aristas del grafo: (source, target, relation).
 GraphEdges = list[tuple[str, str, str]]
+# Atributos por nodo que la fuente declara (grafo de fuente Python de sldb): label, kind, module.
+GraphAttrs = dict[str, dict[str, str]]
+
+# `ast.node_kind` de un simbolo Python -> kind del nodo cuando no hay `semantics.kind`.
+_AST_KINDS = {
+    "ClassDef": "class",
+    "FunctionDef": "function",
+    "AsyncFunctionDef": "function",
+    "Assign": "variable",
+    "AnnAssign": "variable",
+}
 
 SLDB_SCHEME = "sldb://"
 
@@ -60,19 +71,58 @@ def _node_identity(node: dict) -> tuple[str | None, str | None]:
     return node_id, node_type
 
 
-def load_node_link(path: str | Path) -> tuple[GraphNodes, GraphEdges]:
-    """Lee un JSON node-link (`sldb graph snapshot save --output x.json`)."""
+def _node_attrs(node_id: str, node_type: str, node: dict) -> dict[str, str] | None:
+    """Lo que un nodo del grafo de fuente Python de sldb declara sobre si mismo.
+
+    `label` sale del nombre en el codigo (`ast.name`, o `ast.module` para un modulo), `kind`
+    de `semantics.kind` cuando esta declarado y si no de la clase AST (module, class,
+    function...), y `module` es el modulo Python al que pertenece, para filtrar por alcance.
+    None para nodos sin `schema.ast` ni `schema.semantics` (los de un store index).
+    """
+    schema = node.get("schema") or {}
+    ast = schema.get("ast") or {}
+    semantics = schema.get("semantics") or {}
+    if not ast and not semantics and not node_type.startswith("python_"):
+        return None
+    tail = node_id[len("python:"):] if node_id.startswith("python:") else node_id
+    module = str(ast.get("module") or (tail.split(":", 1)[0] if node_type != "python_external" else ""))
+    if node_type == "python_module":
+        label, fallback = str(ast.get("module") or tail), "module"
+    elif node_type == "python_external":
+        label, fallback = tail[len("external:"):] if tail.startswith("external:") else tail, "external"
+    else:
+        label = str(ast.get("name") or tail.rsplit(":", 1)[-1])
+        node_kind_ast = str(ast.get("node_kind") or "")
+        fallback = _AST_KINDS.get(node_kind_ast, node_kind_ast.lower() or "symbol")
+    kind = str(semantics.get("kind") or fallback)
+    return {"label": label, "kind": kind, "module": module}
+
+
+def load_node_link_graph(path: str | Path) -> tuple[GraphNodes, GraphEdges, GraphAttrs]:
+    """Lee un JSON node-link y ademas los atributos que cada nodo declara (`schema.ast`,
+    `schema.semantics`), como los escribe `sldb selfdoc python-sync`."""
     raw = json.loads(Path(path).read_text(encoding="utf-8"))
     nodes: GraphNodes = {}
+    attrs: GraphAttrs = {}
     for node in raw.get("nodes") or []:
         node_id, node_type = _node_identity(node)
-        if node_id:
-            nodes[str(node_id)] = str(node_type or "")
+        if not node_id:
+            continue
+        nodes[str(node_id)] = str(node_type or "")
+        found = _node_attrs(str(node_id), str(node_type or ""), node)
+        if found:
+            attrs[str(node_id)] = found
     edges: GraphEdges = [
         (str(link["source"]), str(link["target"]), str(link.get("relation") or ""))
         for link in raw.get("links") or []
         if link.get("source") and link.get("target")
     ]
+    return nodes, edges, attrs
+
+
+def load_node_link(path: str | Path) -> tuple[GraphNodes, GraphEdges]:
+    """Lee un JSON node-link (`sldb graph snapshot save --output x.json`)."""
+    nodes, edges, _ = load_node_link_graph(path)
     return nodes, edges
 
 
@@ -175,10 +225,12 @@ def _label_and_kind(node_id: str, node_type: str) -> tuple[str, str]:
 # ── Compilacion ──────────────────────────────────────────────────────────────
 
 
-def _describe(source: str, node_types, models, relations, exclude_relations, drop_isolated) -> str:
+def _describe(source: str, node_types, models, relations, exclude_relations, drop_isolated, module_prefixes=()) -> str:
     parts = [f"Generado desde {source}", f"node_types={','.join(node_types)}"]
     if models:
         parts.append(f"models={','.join(models)}")
+    if module_prefixes:
+        parts.append(f"module_prefix={','.join(module_prefixes)}")
     if relations:
         parts.append(f"relations={','.join(relations)}")
     else:
@@ -200,6 +252,8 @@ def component_spec_from_graph(
     spec_id: str = "sldb-graph",
     title: str = "sldb graph",
     source: str = "graph",
+    attrs: GraphAttrs | None = None,
+    module_prefixes: Iterable[str] | None = None,
 ) -> dict:
     """Compila `(nodes, edges)` en un dict de spec `component` listo para serializar.
 
@@ -209,8 +263,22 @@ def component_spec_from_graph(
     - `relations`: lista blanca de relaciones; si se da, anula `exclude_relations`.
     - `exclude_relations`: relaciones a omitir; `None` -> `DEFAULT_EXCLUDED_RELATIONS`.
     - `drop_isolated`: descarta nodos sin aristas ni anidamiento tras filtrar.
-    - La relacion `contains` se vuelve `contains: [...]` en el nodo origen.
+    - `attrs`: lo que la fuente declara por nodo (`load_node_link_graph`): label, kind y module
+      mandan sobre lo que se deduce del id.
+    - `module_prefixes`: alcance por modulo Python (`sldb.selfdoc`); un nodo entra si su
+      `module` (o su id) es ese modulo o cuelga de el. Toda arista o `contains` con un
+      extremo fuera del alcance se descarta, nada queda colgando.
+    - La relacion `contains` se vuelve `contains: [...]` en el nodo origen; las demas se
+      copian tal cual.
     """
+    attrs = attrs or {}
+    prefixes = tuple(p.rstrip(".") for p in (module_prefixes or ()) if p)
+
+    def in_scope(node_id: str) -> bool:
+        if not prefixes:
+            return True
+        module = attrs.get(node_id, {}).get("module") or (node_id[len("python:"):] if node_id.startswith("python:") else node_id)
+        return any(module == p or module.startswith(p + ".") for p in prefixes)
     wanted_types = tuple(_normalize_type(t) for t in (node_types or ())) or DEFAULT_NODE_TYPES
     wanted_models = tuple(models or ())
     include = tuple(relations or ())
@@ -226,6 +294,8 @@ def component_spec_from_graph(
             model, _ = document_ref(node_id, node_type)
             if model not in wanted_models:
                 continue
+        if not in_scope(node_id):
+            continue
         kept[node_id] = node_type
 
     # 2. Aristas con ambos extremos vivos y relacion admitida.
@@ -253,6 +323,9 @@ def component_spec_from_graph(
     spec_nodes: dict[str, dict] = {}
     for node_id, node_type in kept.items():
         label, kind = _label_and_kind(node_id, node_type)
+        declared = attrs.get(node_id)
+        if declared:
+            label, kind = declared.get("label") or label, declared.get("kind") or kind
         spec_nodes[ids[node_id]] = {"label": label, "kind": kind}
 
     # 5. `contains` anida; el resto son aristas.
@@ -271,7 +344,7 @@ def component_spec_from_graph(
         "type": "component",
         "version": "1.0",
         "metadata": {
-            "description": _describe(source, wanted_types, wanted_models, include, exclude, drop_isolated),
+            "description": _describe(source, wanted_types, wanted_models, include, exclude, drop_isolated, prefixes),
         },
         "data": {"nodes": spec_nodes, "edges": spec_edges},
     }
@@ -282,6 +355,7 @@ __all__ = [
     "DEFAULT_EXCLUDED_RELATIONS",
     "CONTAINS_RELATION",
     "load_node_link",
+    "load_node_link_graph",
     "load_store_index",
     "node_kind",
     "document_ref",

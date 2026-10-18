@@ -278,6 +278,7 @@ def diagram_generate(src_dir: Path, out: Path, project_id: str | None, title: st
 @click.option("--relation", "relations", multiple=True, help="Keep only these relations; repeatable. Overrides the default exclusions.")
 @click.option("--exclude-relation", "exclude_relations", multiple=True, help="Drop this relation; repeatable. Default: structural relations (has_section, tagged_as, ...).")
 @click.option("--drop-isolated", is_flag=True, help="Drop nodes left without edges after filtering.")
+@click.option("--module-prefix", "module_prefixes", multiple=True, help="Keep only Python nodes of this module or below (sldb's python-source graph: `sldb.selfdoc`); repeatable. Edges and nesting with an end outside the scope are dropped.")
 @click.option("--id", "spec_id", default=None, help="Spec id. Defaults to the file stem or 'sldb-graph'.")
 @click.option("--title", default=None, help="Spec title. Defaults to '<id> graph'.")
 @click.option("--out", type=click.Path(path_type=Path), help="Write the YAML spec here instead of stdout.")
@@ -289,28 +290,34 @@ def diagram_from_graph(
     relations: tuple[str, ...],
     exclude_relations: tuple[str, ...],
     drop_isolated: bool,
+    module_prefixes: tuple[str, ...],
     spec_id: str | None,
     title: str | None,
     out: Path | None,
 ):
     """Compile an sldb graph into a spec2viz component diagram spec.
 
-    GRAPH_JSON is a node-link file from `sldb graph snapshot save`; `--store`
-    reads the store's edge index instead. `contains` relations nest nodes,
-    every other relation becomes an edge.
+    GRAPH_JSON is a node-link file from `sldb graph snapshot save` or sldb's Python
+    source graph (`sldb selfdoc python-sync`, `.sldb/runtime/graphs/python-source.graph.json`);
+    `--store` reads the store's edge index instead. `contains` relations nest nodes, every
+    other relation becomes an edge with its name as it comes. Python nodes take their label
+    from the code (`ast.name` / `ast.module`) and their kind from the declared
+    `semantics.kind` or the AST class; `--module-prefix` scopes them without leaving any
+    dangling edge or nesting.
     """
     import yaml
 
-    from spec2viz.graph_import import component_spec_from_graph, load_node_link, load_store_index
+    from spec2viz.graph_import import component_spec_from_graph, load_node_link_graph, load_store_index
 
     if (graph_json is None) == (store is None):
         raise click.UsageError("Pass exactly one of GRAPH_JSON or --store.")
+    attrs = None
     try:
         if store is not None:
             nodes, edges = load_store_index(store)
             source, default_id = f"store {store}", "sldb-graph"
         else:
-            nodes, edges = load_node_link(graph_json)
+            nodes, edges, attrs = load_node_link_graph(graph_json)
             source, default_id = f"file {graph_json}", graph_json.stem
     except ImportError as exc:
         click.echo(f"Error: --store needs the sldb package ({exc})", err=True)
@@ -331,6 +338,8 @@ def diagram_from_graph(
         spec_id=sid,
         title=title or f"{sid} graph",
         source=source,
+        attrs=attrs,
+        module_prefixes=module_prefixes,
     )
     text = yaml.safe_dump(spec, sort_keys=False, allow_unicode=True)
     if out:

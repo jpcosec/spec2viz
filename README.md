@@ -141,7 +141,16 @@ installed where the store is read.
 The reverse direction is `spec2viz diagram from-graph <snapshot.json> | --store .sldb [--out spec.yml]`:
 it compiles an sldb edge index (a `sldb graph snapshot save` JSON or the store itself) into a component
 spec, filtering by node type, model and relation (`--node-type`, `--model`, `--relation`,
-`--exclude-relation`, `--drop-isolated`); `contains` edges become nesting.
+`--exclude-relation`, `--drop-isolated`); `contains` edges become nesting. It also projects sldb's Python
+source graph (`.sldb/runtime/graphs/python-source.graph.json`, written by `sldb selfdoc python-sync`): nodes
+are labelled from the code and typed from their declared `semantics.kind` or AST class, and
+`--module-prefix sldb.selfdoc` keeps one module and what hangs from it, with no dangling edge or nesting:
+
+```bash
+spec2viz diagram from-graph .sldb/runtime/graphs/python-source.graph.json \
+  --node-type python_module --node-type python_symbol --module-prefix sldb.selfdoc --out selfdoc.yml
+spec2viz diagram validate selfdoc.yml
+```
 
 ### The notation as data: how a spec is drawn
 

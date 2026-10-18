@@ -254,3 +254,72 @@ def test_cli_from_graph_store_goes_through_loader(monkeypatch, tmp_path):
     assert spec["id"] == "sldb-graph"
     assert f"store {tmp_path}" in spec["metadata"]["description"]
     assert spec["data"]["edges"] == [{"from": "model_AtomDoc", "to": "document_AtomDoc_atom_x", "relation": "has_document"}]
+
+
+# --- grafo de fuente Python de sldb (schema.identity / semantics / ast) -------------------------
+
+def _py_node(node_id, node_type, ast=None, semantics=None):
+    return {"id": node_id, "schema": {"identity": {"node_id": node_id, "node_type": node_type}, "ast": ast or {}, "semantics": semantics or {}}}
+
+
+PY_GRAPH = {
+    "directed": True,
+    "nodes": [
+        _py_node("python:sldb", "python_module", {"module": "sldb", "kind": "python_module"}),
+        _py_node("python:sldb.selfdoc", "python_module", {"module": "sldb.selfdoc", "kind": "python_module"}, {"kind": "core"}),
+        _py_node("python:sldb.selfdoc.parser", "python_module", {"module": "sldb.selfdoc.parser"}),
+        _py_node("python:sldb.selfdoc.parser:Parser", "python_symbol", {"module": "sldb.selfdoc.parser", "name": "Parser", "node_kind": "ClassDef"}),
+        _py_node("python:sldb.selfdoc.parser:parse", "python_symbol", {"module": "sldb.selfdoc.parser", "name": "parse", "node_kind": "FunctionDef"}, {"kind": "interface"}),
+        _py_node("python:sldb.selfdocs_other", "python_module", {"module": "sldb.selfdocs_other"}),
+        _py_node("python:sldb.api", "python_module", {"module": "sldb.api"}),
+        _py_node("python:external:yaml:safe_load", "python_external"),
+    ],
+    "links": [
+        {"source": "python:sldb", "target": "python:sldb.selfdoc", "relation": "contains"},
+        {"source": "python:sldb.selfdoc", "target": "python:sldb.selfdoc.parser", "relation": "contains"},
+        {"source": "python:sldb.selfdoc.parser", "target": "python:sldb.selfdoc.parser:Parser", "relation": "contains"},
+        {"source": "python:sldb.selfdoc.parser", "target": "python:sldb.selfdoc.parser:parse", "relation": "contains"},
+        {"source": "python:sldb.selfdoc.parser", "target": "python:sldb.api", "relation": "imports"},
+        {"source": "python:sldb.selfdoc.parser", "target": "python:external:yaml:safe_load", "relation": "imports"},
+        {"source": "python:sldb.selfdoc.parser:parse", "target": "python:sldb.selfdoc.parser:Parser", "relation": "references"},
+    ],
+}
+
+
+def test_python_source_graph_labels_kinds_and_scope(tmp_path):
+    from spec2viz.graph_import import load_node_link_graph
+
+    path = tmp_path / "python-source.graph.json"
+    path.write_text(json.dumps(PY_GRAPH), encoding="utf-8")
+    nodes, edges, attrs = load_node_link_graph(path)
+    assert attrs["python:sldb.selfdoc.parser:Parser"] == {"label": "Parser", "kind": "class", "module": "sldb.selfdoc.parser"}
+    assert attrs["python:sldb.selfdoc.parser:parse"]["kind"] == "interface"  # semantics.kind declarado manda
+    assert attrs["python:sldb.selfdoc"] == {"label": "sldb.selfdoc", "kind": "core", "module": "sldb.selfdoc"}
+    assert attrs["python:sldb.selfdoc.parser"]["kind"] == "module"
+    assert attrs["python:external:yaml:safe_load"] == {"label": "yaml:safe_load", "kind": "external", "module": ""}
+
+    spec = component_spec_from_graph(
+        nodes, edges, node_types=("python_module", "python_symbol", "python_external"), attrs=attrs,
+        module_prefixes=("sldb.selfdoc",), spec_id="selfdoc", title="selfdoc",
+    )
+    ids = set(spec["data"]["nodes"])
+    labels = {n["label"]: n["kind"] for n in spec["data"]["nodes"].values()}
+    # alcance: sldb.selfdoc y lo que cuelga; ni sldb, ni sldb.api, ni sldb.selfdocs_other, ni externos
+    assert labels == {"sldb.selfdoc": "core", "sldb.selfdoc.parser": "module", "Parser": "class", "parse": "interface"}
+    # nada colgando: todo contains y toda arista apunta a un nodo del spec, y las relaciones van tal cual
+    for node in spec["data"]["nodes"].values():
+        assert set(node.get("contains", [])) <= ids
+    assert all(e["from"] in ids and e["to"] in ids for e in spec["data"]["edges"])
+    assert sorted(e["relation"] for e in spec["data"]["edges"]) == ["references"]  # el import a sldb.api quedo fuera del alcance
+    assert "module_prefix=sldb.selfdoc" in spec["metadata"]["description"]
+    _validated(spec)
+
+
+def test_cli_from_graph_module_prefix(tmp_path):
+    path = tmp_path / "python-source.graph.json"
+    path.write_text(json.dumps(PY_GRAPH), encoding="utf-8")
+    out = tmp_path / "selfdoc.yml"
+    result = CliRunner().invoke(main, ["diagram", "from-graph", str(path), "--node-type", "python_module", "--node-type", "python_symbol", "--module-prefix", "sldb.selfdoc", "--out", str(out)])
+    assert result.exit_code == 0, result.output
+    assert "4 nodes, 1 edges" in result.output
+    assert CliRunner().invoke(main, ["diagram", "validate", str(out)]).exit_code == 0
