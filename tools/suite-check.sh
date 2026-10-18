@@ -133,7 +133,7 @@ if [ -n "$PYTHONS" ]; then
       case "$key" in clone:*|local:*|"") continue ;; esac
       MATRIX["$key,$v"]="$ok"; [ "$ok" = ok ] || FAILED=1
       printf '%s\n' "${KEYS[@]}" | grep -qx -- "$key" || KEYS+=("$key")
-    done < <(sed -n '/^== resultado/,/^logs:/p' "$child_report/run.log" | grep -E '^[a-z0-9:_.-]+ +(ok|FAIL)')
+    done < <(sed -n '/^== resultado/,/^logs:/p' "$child_report/run.log" | grep -E '^[a-z0-9:_.-]+ +(ok|FAIL)( |$)')
   done
   say "resultado (paso x python)"
   printf '%-22s' "paso"; for v in "${VERSIONS[@]}"; do printf ' %-8s' "py$v"; done; echo
