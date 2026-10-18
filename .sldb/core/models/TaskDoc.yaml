@@ -3,10 +3,10 @@ model_ref: deskops.models:TaskDoc
 path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/task.py
 documents_index: .sldb/core/documents/TaskDoc.yaml
 sections_index: .sldb/runtime/sections/TaskDoc.yaml
-model_hash: 68ed86040ac9ce3820bfa32ea19d9ca06f8b4274ef9d4450fb81049905308012
-roster_hash: 70f580c094fb87199b254f79923d7c16f09e880bb3767495f95544d0700b4695
+model_hash: e339d3b719fe1c5160f85f8d3690f274b56456bd826eae9915e07cc040ba62db
+roster_hash: c0b0effea19ec2bbf2a5e73ab0addca015146dd5513bbdfbe2d7e0518b511e07
 contract_hash: f4ea849267cabaad40507cd101ae9f46f7826b9ebf63e4c7ab60eb571bce6aa8
-documents_count: 8
+documents_count: 7
 version: 1
 canonical: false
 family: null
