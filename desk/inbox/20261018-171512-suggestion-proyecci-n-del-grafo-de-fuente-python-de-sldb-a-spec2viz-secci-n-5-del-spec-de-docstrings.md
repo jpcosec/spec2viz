@@ -8,9 +8,11 @@ target_project: spec2viz
 # ISO 8601 timestamp
 created_at: '2026-10-18T17:15:12'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: spec2viz
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-10-18T17:19:37'
 ---
 
 # Proyección del grafo de fuente Python de sldb a spec2viz (sección 5 del spec de docstrings)

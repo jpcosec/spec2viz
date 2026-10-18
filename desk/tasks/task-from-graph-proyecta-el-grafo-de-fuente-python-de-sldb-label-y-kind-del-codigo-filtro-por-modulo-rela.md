@@ -1,13 +1,18 @@
 ---
 id: task-from-graph-proyecta-el-grafo-de-fuente-python-de-sldb-label-y-kind-del-codigo-filtro-por-modulo-rela
-status: draft
+status: ready_for_testing
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-closeout
+history:
+- task_activates
+- task_hands_to_closeout
+references:
+- 8207dfe
+- tests/test_graph_import.py
+- desk/atoms/atom-proyeccion-del-grafo-de-fuente-python-de-sldb.md
 depends_on: []
 pills: []
 files: []
