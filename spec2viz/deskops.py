@@ -668,18 +668,21 @@ def split_shared_atoms(atoms_by_view: dict[str, dict[str, dict]]) -> tuple[dict[
 
 
 def build_coverage_by_view(
-    items: list[CatalogItem], kgdb_snapshot_path: Path | None = None
+    items: list[CatalogItem], snapshot_path: Path | None = None, kgdb_snapshot_path: Path | None = None
 ) -> tuple[dict[str, dict], list[CoverageBuildWarning]]:
+    """Cobertura por vista a partir de un snapshot de grafo con nodos `view` (el
+    `knowledge_graph.kg.json` de la epoca de kgdb; `kgdb_snapshot_path` se acepta como alias).
+    Sin snapshot la proyeccion queda vacia y se avisa; nada mas depende de el."""
     warnings: list[CoverageBuildWarning] = []
-    snapshot_path = kgdb_snapshot_path or _discover_snapshot_path(items)
+    snapshot_path = snapshot_path or kgdb_snapshot_path or _discover_snapshot_path(items)
     if snapshot_path is None or not snapshot_path.exists():
-        warnings.append(CoverageBuildWarning(scope="kgdb", message="KGDB snapshot not found; coverage projection is empty."))
+        warnings.append(CoverageBuildWarning(scope="snapshot", message="Graph snapshot not found; coverage projection is empty."))
         return {item.anchor_id: _empty_coverage_payload(item) for item in items}, warnings
 
     try:
         snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
     except Exception as exc:
-        warnings.append(CoverageBuildWarning(scope=str(snapshot_path), message=f"Failed to read KGDB snapshot: {exc}"))
+        warnings.append(CoverageBuildWarning(scope=str(snapshot_path), message=f"Failed to read graph snapshot: {exc}"))
         return {item.anchor_id: _empty_coverage_payload(item) for item in items}, warnings
 
     nodes = {node.get("identity", {}).get("node_id"): node for node in snapshot.get("nodes", []) if node.get("identity", {}).get("node_id")}

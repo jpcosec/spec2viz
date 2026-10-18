@@ -2,6 +2,9 @@
 
 ## Unreleased - 2026-10-17
 
+- the catalog's coverage-by-view projection drops its kgdb wording: `build_coverage_by_view(items,
+  snapshot_path=...)` (`kgdb_snapshot_path` stays as an alias), warning scope `snapshot`; sldb no longer
+  writes the `knowledge_graph.kg.json` it reads, so without one the projection is empty with a warning
 - fix: the wildcard link (`relation: "*"`) no longer writes a `relation_type` reference to a
   `RelationTypeDoc` that does not exist (`sldb edges unresolved --local` reported 3 dangling refs)
 - `diagram from-graph` projects sldb's Python source graph (`sldb selfdoc python-sync`): Python nodes take

@@ -128,7 +128,7 @@ vistas:
     assert html.count("</body>") == 1
 
 
-def test_build_coverage_by_view_projects_kgdb_payload(tmp_path):
+def test_build_coverage_by_view_projects_snapshot_payload(tmp_path):
     item = type(
         "Item",
         (),
@@ -202,7 +202,7 @@ def test_build_coverage_by_view_projects_kgdb_payload(tmp_path):
         encoding="utf-8",
     )
 
-    payload, warnings = build_coverage_by_view([item], kgdb_snapshot_path=snapshot_path)
+    payload, warnings = build_coverage_by_view([item], snapshot_path=snapshot_path)
 
     assert warnings == []
     assert payload["view-1"]["summary"]["elements_fully_covered"] == 1
