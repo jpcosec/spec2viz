@@ -8,7 +8,6 @@ tasks:
 - desk/tasks/task-add-d2-renderer-spike-from-existing-ir.md
 - desk/tasks/task-sync-golden-plantuml-files.md
 - desk/tasks/task-add-render-antonia-html-command.md
-- desk/tasks/task-atributos-de-arista-en-la-vista-multiplicidades-acciones-de-transicion-y-fragmentos-de-secuencia-car.md
 - desk/tasks/task-cabecera-de-trazabilidad-en-las-proyecciones-generadas-mermaid-plantuml-d2.md
 # List of pill-xxx paths
 pills:
@@ -45,5 +44,4 @@ _Generated from the task references above._
 - Add D2 renderer spike from existing IR [ready_for_testing] - Prove that spec2viz can target D2 as an additional outward renderer without changing semantic models or compiler behavior.
 - Sync golden PlantUML files [ready_for_testing] - Regenerate each stale golden .puml file by running the current render pipeline against the corresponding YAML fixture.
 - Generate styled HTML diagrams with antonIA aesthetic [ready_for_testing] - Triage and resolve the inbox message: allow spec2viz to generate standalone HTML diagrams that share the premium aesthetic from the reference antonIA HTML file.
-- Atributos de arista en la vista: multiplicidades, acciones de transicion y fragmentos de secuencia; carriles y grilla con graph_ui [ready_for_testing] - Cada arista del spec conserva sus atributos en el store (campo libre de RelationDoc pedido a sldb-04, o alternativa acordada), resolve_view los expone (link.data, source_label/target_label en LinkDoc, fragments de secuencia por group) y el contrato fija como se ordenan carriles (participantes) y grilla (etapas por data.order, filas por nest). graph_ui los consume.
 - Cabecera de trazabilidad en las proyecciones generadas (Mermaid, PlantUML, D2) [ready_for_testing] - diagram render antepone a cada salida de texto una linea de comentario con la ruta del spec y el comando de validacion, en la sintaxis de comentario del renderer (%% en Mermaid, ' en PlantUML, # en D2); los goldens y el lint de Mermaid siguen en verde.
