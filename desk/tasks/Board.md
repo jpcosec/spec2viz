@@ -4,8 +4,7 @@ id: board-001
 # Affected workspace or domain
 scope: desk
 # List of task-xxx paths
-tasks:
-- desk/tasks/task-cabecera-de-trazabilidad-en-las-proyecciones-generadas-mermaid-plantuml-d2.md
+tasks: []
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -37,5 +36,3 @@ _Add short operational notes about the current routed set._
 ## Task Details
 
 _Generated from the task references above._
-
-- Cabecera de trazabilidad en las proyecciones generadas (Mermaid, PlantUML, D2) [ready_for_testing] - diagram render antepone a cada salida de texto una linea de comentario con la ruta del spec y el comando de validacion, en la sintaxis de comentario del renderer (%% en Mermaid, ' en PlantUML, # en D2); los goldens y el lint de Mermaid siguen en verde.
