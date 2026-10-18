@@ -2,7 +2,7 @@
 id: component.relation
 notation: NotationDoc:component
 relation: '*'
-relation_type: RelationTypeDoc:reltype-*
+relation_type: ''
 model: ''
 draw: line
 line: solid

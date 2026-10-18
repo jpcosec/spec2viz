@@ -2,13 +2,15 @@
 id: deployment.connection
 notation: NotationDoc:deployment
 relation: '*'
-relation_type: RelationTypeDoc:reltype-*
+relation_type: ''
 model: ''
 draw: line
 line: solid
 source_end: none
 target_end: none
 label: '{relation_type}'
+source_label: ''
+target_label: ''
 ends: {}
 form: (relation *)
 ---

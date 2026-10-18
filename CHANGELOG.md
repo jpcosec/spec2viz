@@ -2,6 +2,8 @@
 
 ## Unreleased - 2026-10-17
 
+- fix: the wildcard link (`relation: "*"`) no longer writes a `relation_type` reference to a
+  `RelationTypeDoc` that does not exist (`sldb edges unresolved --local` reported 3 dangling refs)
 - `diagram from-graph` projects sldb's Python source graph (`sldb selfdoc python-sync`): Python nodes take
   their label from the code (`ast.name` / `ast.module`) and their kind from the declared `semantics.kind`
   or the AST class (module, class, function, variable, external); `--module-prefix` (repeatable) scopes

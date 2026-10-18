@@ -195,3 +195,14 @@ def test_cli_notation_sync(store):
     assert "Synced notation uml-class: 6 glyphs, 6 links (13 created" in result.output
     result = runner.invoke(main, ["notation", "sync", "nope", "--store", str(store)])
     assert result.exit_code == 1 and "unknown notation" in result.output
+
+
+def test_wildcard_link_leaves_no_dangling_relation_type(store):
+    from spec2viz.sldb_sync import NotationSync
+
+    report = NotationSync(store).sync("component")
+    assert report.unresolved == [] and report.edge_errors == []
+    link = yaml.safe_load((store.parent / "sldb" / "notations" / "component" / "links" / "relation.md").read_text(encoding="utf-8").split("---")[1])
+    assert link["relation"] == "*" and link["relation_type"] == ""
+    targets = {r.target for r in sldb_api.edges_from(store, "LinkDoc:component.relation") if r.relation == "references"}
+    assert targets == {"sldb://document/NotationDoc:component"}

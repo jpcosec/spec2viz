@@ -28,7 +28,7 @@ from typing import Any
 import yaml
 
 from spec2viz.deskops import _ELEMENT_COLLECTIONS
-from spec2viz.notation import DEFAULT_NOTATIONS, NotationSpec, glyph_ref, link_ref, load_notation, notation_ref
+from spec2viz.notation import ANY_RELATION, DEFAULT_NOTATIONS, NotationSpec, glyph_ref, link_ref, load_notation, notation_ref
 
 MODEL_REFS = {
     "SpecDoc": "spec2viz.sldb_models:SpecDoc",
@@ -434,7 +434,8 @@ class NotationSync(_StoreWriter):
                 "title": link.title or link.id,
                 "notation": notation_ref(notation.name),
                 "relation": link.relation,
-                "relation_type": f"RelationTypeDoc:reltype-{link.relation}",
+                # el comodin no nombra ningun tipo de relacion: sin referencia, nada queda colgando
+                "relation_type": "" if link.relation == ANY_RELATION else f"RelationTypeDoc:reltype-{link.relation}",
                 "model": link.model,
                 "draw": link.draw,
                 "line": link.line,

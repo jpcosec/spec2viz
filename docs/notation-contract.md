@@ -107,7 +107,8 @@ se lista línea a línea.
 
 Para cada `RelationDoc` de la vista, el `LinkDoc` de la notación con `relation ==
 RelationDoc.relation_type`; si no lo hay, el link comodín (`relation: "*"`), que dibuja cualquier
-relación y suele rotularla con `{relation_type}`. Una relación sin link ni comodín no se dibuja y
+relación y suele rotularla con `{relation_type}`; su campo `relation_type` va vacío, porque no nombra
+ningún tipo de relación. Una relación sin link ni comodín no se dibuja y
 el resolver la lista en `skipped`. Los links salen en el orden del spec (`order`, de la posición
 `nn` del nombre del `RelationDoc`; 0 para las contenciones); en una secuencia ese orden es el
 tiempo.
