@@ -9,8 +9,8 @@
   `target_label` templates (uml-class rotulates multiplicities); `notation view` exposes `data`,
   `source_label`/`target_label` per link and `fragments` (runs of messages sharing a `group`); the
   contract fixes how lanes and grids are ordered (§8c) and adds the `matrix.pipeline-coverage` pilot
-- packaging: version aligned with this changelog (0.2.0), `structuredLanguageDB>=0.1.10` as the one
-  declared range, `mmdc` (mermaid-cli) documented as the optional external engine of `diagram lint`
+- packaging: version aligned with this changelog (0.2.0), `structuredLanguageDB>=0.1.11` as the one
+  declared range (`StructuredNLDoc` imported from `sldb.api`, `RelationDoc.attributes` written), `mmdc` (mermaid-cli) documented as the optional external engine of `diagram lint`
 - spec2viz runs on graph_ui: one builtin notation per diagram type (`component`, `deployment`,
   `uml-sequence`, `activity`, `component-view-matrix`, `reflection` join `uml-class` and `statechart`),
   a `relation: "*"` wildcard link for free relations, `spec2viz catalog sync` syncs every spec of a
@@ -39,7 +39,7 @@
 - added `refs: [Model:name]` to every spec element (component, deployment, class, activity, state,
   sequence): references to sldb documents, resolved at `catalog build` and listed in the element panel
 - the catalog atom resolver uses only the public `sldb.api` surface (`load_runtime_documents`,
-  `open_store`, `store_links`); `structuredLanguageDB` is a declared dependency (now `>=0.1.10`)
+  `open_store`, `store_links`); `structuredLanguageDB` is a declared dependency (now `>=0.1.11`)
 - the architecture bundle uses the built-in template; the stale `docs/architecture/template.html`
   override is gone and the Mermaid projections are regenerated from their specs
 - sequence renderers emit one block per run of consecutive messages sharing a `group`; `;` is escaped

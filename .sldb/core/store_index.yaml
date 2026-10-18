@@ -270,4 +270,8 @@ predicates:
   description: A composed field of the source (`__compositions__`) renders this document's
     payload into the source's text; the edge carries the composed field, the field
     holding the refs and the ref as authored.
-store_hash: 63f07b585485a868789372984dfb1c867a6fa111298224215c450d78bc2db3f0
+- name: links_to
+  axis: WHERE
+  description: 'The store links that store under an alias (`stores add`): it reads
+    its documents and inherits its models.'
+store_hash: dd3f046d5e3c1ebdb413f1dfeddbda8ccd767db4240da42b3473450b7fc4aae7

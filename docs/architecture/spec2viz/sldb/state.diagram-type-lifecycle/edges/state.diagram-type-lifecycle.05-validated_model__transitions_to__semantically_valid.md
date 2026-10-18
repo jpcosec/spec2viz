@@ -3,6 +3,9 @@ source_id: SpecNodeDoc:state.diagram-type-lifecycle.validated_model
 target_id: SpecNodeDoc:state.diagram-type-lifecycle.semantically_valid
 relation_type: transitions_to
 condition: ''
+attributes:
+  'on': validate()
+  guard: references resolve
 ---
 
 # validated_model transitions_to semantically_valid

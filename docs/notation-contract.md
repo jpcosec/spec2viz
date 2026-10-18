@@ -196,8 +196,7 @@ omite.
 
 ## 8d. Atributos de arista
 
-`RelationDoc.attributes` (sldb >= 0.1.11; `diagram sync` lo escribe solo si el modelo instalado tiene
-el campo) guarda lo que un `RelationDoc` no tiene dónde poner: en clases `from_multiplicity`,
+`RelationDoc.attributes` (sldb >= 0.1.11, la dependencia declarada; `diagram sync` lo escribe siempre) guarda lo que un `RelationDoc` no tiene dónde poner: en clases `from_multiplicity`,
 `to_multiplicity`, `label`; en statecharts `on`, `guard`, `action`; en secuencias `kind`, `group`,
 `message`; en despliegue `protocol`; en actividad `branch`; en matrices `view`, `stage`. La vista lo
 expone como `data` de cada link. Las plantillas de un `LinkDoc` (`label`, `source_label`,

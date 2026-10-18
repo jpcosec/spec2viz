@@ -3,6 +3,7 @@ source_id: SpecNodeDoc:component.spec2viz-architecture.facade
 target_id: SpecNodeDoc:component.spec2viz-architecture.compilers
 relation_type: uses
 condition: ''
+attributes: {}
 ---
 
 # facade uses compilers

@@ -14,7 +14,7 @@ spec2viz tiene que estar instalado donde viva el store.
 from __future__ import annotations
 
 from pydantic import Field, field_validator
-from sldb.models.structured_doc import StructuredNLDoc
+from sldb.api import StructuredNLDoc
 
 
 class SpecDoc(StructuredNLDoc):

@@ -29,7 +29,7 @@ External, optional: `mmdc` (the [mermaid-cli](https://github.com/mermaid-js/merm
 `npm install -g @mermaid-js/mermaid-cli`). `spec2viz diagram lint` uses it as the real Mermaid engine
 when it is on `PATH` and falls back to the regex pass when it is not; rendering never needs it.
 Reading or writing an sldb store (`diagram sync`, `catalog sync`, `notation ...`, the catalog's atom
-and edge panels) needs `structuredLanguageDB>=0.1.10`, which is a declared dependency.
+and edge panels) needs `structuredLanguageDB>=0.1.11`, which is a declared dependency.
 
 ## CLI
 

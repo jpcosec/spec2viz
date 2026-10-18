@@ -3,6 +3,7 @@ source_id: SpecNodeDoc:component.exception-hierarchy.render_error
 target_id: SpecNodeDoc:component.exception-hierarchy.spec2viz_error
 relation_type: inherits
 condition: ''
+attributes: {}
 ---
 
 # render_error inherits spec2viz_error

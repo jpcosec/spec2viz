@@ -1,12 +1,13 @@
 ---
 id: task-auditoria-de-empaquetado-version-rango-de-sldb-metadata-editable-mmdc-import-de-structurednldoc
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
+current_node: ritual-testing
+history:
+- task_activates
 references: []
 depends_on: []
 pills: []

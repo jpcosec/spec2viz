@@ -1,12 +1,13 @@
 ---
 id: task-atributos-de-arista-en-la-vista-multiplicidades-acciones-de-transicion-y-fragmentos-de-secuencia-car
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
+current_node: ritual-testing
+history:
+- task_activates
 references: []
 depends_on:
 - task-vocabulario-visual-declarativo-notationdoc-glyphdoc-y-linkdoc-sincronizados-al-store
