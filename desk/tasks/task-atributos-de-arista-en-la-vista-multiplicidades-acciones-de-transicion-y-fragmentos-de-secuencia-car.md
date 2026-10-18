@@ -9,7 +9,11 @@ current_node: ritual-closeout
 history:
 - task_activates
 - task_hands_to_closeout
-references: []
+references:
+- 327bf94
+- 6278fa8
+- tests/test_notation_view.py
+- desk/atoms/atom-vocabulario-visual-declarativo-donde-vive.md
 depends_on:
 - task-vocabulario-visual-declarativo-notationdoc-glyphdoc-y-linkdoc-sincronizados-al-store
 pills:

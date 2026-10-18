@@ -8,9 +8,11 @@ target_project: spec2viz
 # ISO 8601 timestamp
 created_at: '2026-10-17T12:29:18'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: spec2viz
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-10-18T12:42:30'
 ---
 
 # Store de spec2viz con modelos deskops eliminados: rompe /api/schema en graph_ui

@@ -1,17 +1,25 @@
 ---
 id: task-add-render-antonia-html-command
 status: active
-references:
-- desk/drawer/tasks/task-add-render-antonia-html-command.md
-depends_on: []
-pills: []
-files: []
-current_node: ritual-execution
-history: []
+summary: ''
 tags:
 - workspace:desk
 - artifact:task
 - source:drawer
+current_node: ritual-execution
+history: []
+references:
+- b50c339
+- tests/test_renderers.py
+- desk/atoms/atom-multi-backend-renderers-how.md
+- docs/reference/antonIA_Arquitectura_V4.2_Vistas_UML.html
+depends_on: []
+pills: []
+files: []
+task_type: ''
+inherits_from: []
+inherit_acceptance_context: false
+atoms: []
 ---
 
 # Generate styled HTML diagrams with antonIA aesthetic

@@ -9,7 +9,11 @@ current_node: ritual-closeout
 history:
 - task_activates
 - task_hands_to_closeout
-references: []
+references:
+- 220cda4
+- a45d04a
+- tests/test_notation_view.py
+- desk/atoms/atom-vocabulario-visual-declarativo-como-se-resuelve-una-vista.md
 depends_on:
 - task-vocabulario-visual-declarativo-notationdoc-glyphdoc-y-linkdoc-sincronizados-al-store
 pills:

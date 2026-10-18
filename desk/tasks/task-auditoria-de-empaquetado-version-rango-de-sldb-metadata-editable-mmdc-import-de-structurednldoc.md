@@ -9,7 +9,11 @@ current_node: ritual-closeout
 history:
 - task_activates
 - task_hands_to_closeout
-references: []
+references:
+- b396349
+- 03b4727
+- tests/test_cli.py
+- desk/atoms/atom-empaquetado-y-ci-de-spec2viz.md
 depends_on: []
 pills: []
 files: []

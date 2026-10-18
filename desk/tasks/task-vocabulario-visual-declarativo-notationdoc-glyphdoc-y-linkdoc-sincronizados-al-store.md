@@ -9,7 +9,12 @@ current_node: ritual-closeout
 history:
 - task_activates
 - task_hands_to_closeout
-references: []
+references:
+- fd29a04
+- 82c0dd0
+- tests/test_notation.py
+- tests/test_sldb_sync.py
+- desk/atoms/atom-vocabulario-visual-declarativo.md
 depends_on: []
 pills:
 - desk/contexts/pill-adr-spec2viz-es-dueño-del-vocabulario-visual-graph-ui-de-la-vista-generica-y-los-gestos.md

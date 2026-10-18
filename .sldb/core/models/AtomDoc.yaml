@@ -3,10 +3,10 @@ model_ref: deskops.models:AtomDoc
 path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/atom.py
 documents_index: .sldb/core/documents/AtomDoc.yaml
 sections_index: .sldb/runtime/sections/AtomDoc.yaml
-model_hash: 73a73b55549a5131b759de63c5b09ecb11a96cb3eee31a9a5108d83680b600b8
-roster_hash: fcb97c99c4428c937a6bea9cb2826cbeb14974ea538842e9c7d422bf525493b6
+model_hash: 0e425c74c5d39bd8c4f95b4c1bb261c06388670b7f90de4afea7b8c6727ec950
+roster_hash: 736a00487dd7f05ac305cede7cb2406b3434dd192aad244b9eca003eadef06c8
 contract_hash: ee1a85c1da9ee8ba88d3094404d7771d03e738aad81a0995067fd55369e8b939
-documents_count: 59
+documents_count: 64
 version: 1
 canonical: false
 family: null

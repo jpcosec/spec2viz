@@ -1,15 +1,23 @@
 ---
 id: task-add-d2-renderer-spike-from-existing-ir
 status: draft
-references: []
-depends_on: []
-pills: []
-files: []
-current_node: ritual-execution
-history: []
+summary: ''
 tags:
 - workspace:desk
 - artifact:task
+current_node: ritual-execution
+history: []
+references:
+- a8e5c24
+- tests/test_renderers.py
+- desk/atoms/atom-multi-backend-renderers-what.md
+depends_on: []
+pills: []
+files: []
+task_type: ''
+inherits_from: []
+inherit_acceptance_context: false
+atoms: []
 ---
 
 # Add D2 renderer spike from existing IR

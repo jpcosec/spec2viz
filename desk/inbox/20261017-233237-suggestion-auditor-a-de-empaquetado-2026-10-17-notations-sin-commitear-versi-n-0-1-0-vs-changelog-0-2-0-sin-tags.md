@@ -8,9 +8,11 @@ target_project: spec2viz
 # ISO 8601 timestamp
 created_at: '2026-10-17T23:32:37'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: spec2viz
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-10-18T12:42:31'
 ---
 
 # Auditoría de empaquetado 2026-10-17: notations sin commitear, versión 0.1.0 vs CHANGELOG 0.2.0, sin tags

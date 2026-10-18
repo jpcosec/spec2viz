@@ -8,9 +8,11 @@ target_project: spec2viz
 # ISO 8601 timestamp
 created_at: '2026-10-18T12:27:59'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: spec2viz
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-10-18T12:42:32'
 ---
 
 # Tag v0.2.0 retirado de origin el 2026-10-18 por regla del dueño: sin tag

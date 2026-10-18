@@ -1,16 +1,24 @@
 ---
 id: task-sync-golden-plantuml-files
 status: active
-references: []
-depends_on: []
-pills: []
-files: []
-current_node: ritual-testing
-history:
-- operator-task-sync-golden-plantuml-files-activate
+summary: ''
 tags:
 - workspace:desk
 - artifact:task
+current_node: ritual-testing
+history:
+- operator-task-sync-golden-plantuml-files-activate
+references:
+- 6594d8e
+- tests/test_api.py
+- desk/atoms/atom-multi-backend-renderers-where.md
+depends_on: []
+pills: []
+files: []
+task_type: ''
+inherits_from: []
+inherit_acceptance_context: false
+atoms: []
 ---
 
 # Sync golden PlantUML files
