@@ -2,7 +2,7 @@
 id: state.diagram-sync-lifecycle
 diagram_type: state
 version: '0.1'
-spec_path: /home/jp/proyectos/SLDB_1/spec2viz/docs/architecture/spec2viz/state-diagram-sync-lifecycle.yml
+spec_path: docs/architecture/spec2viz/state-diagram-sync-lifecycle.yml
 sha256: 0ea759e01651a2bfde16765db45b2fab97b3b6e834cedbfd52906c9e8cf70abf
 notation: NotationDoc:statechart
 category: Modelos de Estado

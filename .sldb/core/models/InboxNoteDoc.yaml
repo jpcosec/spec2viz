@@ -2,11 +2,11 @@ name: InboxNoteDoc
 model_ref: deskops.models:InboxNoteDoc
 path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/inbox.py
 documents_index: .sldb/core/documents/InboxNoteDoc.yaml
-sections_index: ''
-model_hash: 02b1e5f3a3514cd6dda041d25246b1e16d820f54d3969097583a2a144fd7256b
-roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+sections_index: .sldb/runtime/sections/InboxNoteDoc.yaml
+model_hash: c1224ee09ee6228834b3aa7ba0b3921d3d42597b1aaf22e611321411d10e4636
+roster_hash: 37198b7cbae84dc5485642a4cf27db2e361c30888eee41313ab2c8008137da1e
 contract_hash: b163632f56cd2bc835d2d3726b1b3034d6329017760cce551c6aa7f8f3f8380a
-documents_count: 0
+documents_count: 1
 version: 1
 canonical: false
 family: null
