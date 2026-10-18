@@ -8,9 +8,11 @@ target_project: spec2viz
 # ISO 8601 timestamp
 created_at: '2026-10-18T17:56:09'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: spec2viz
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-10-18T18:04:49'
 ---
 
 # [graph_ui] 4 tests de test_sldb_end_to_end fallan en clon limpio (runtime gitignored)
