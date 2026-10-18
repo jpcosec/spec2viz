@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "spec2viz"
-version = "0.1.0"
+version = "0.2.0"
 description = "Diagram-as-Data: YAML semantic diagrams rendered to PlantUML, Mermaid, and Vega."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -13,7 +13,7 @@ dependencies = [
     "pydantic>=2.0",
     "pyyaml>=6.0",
     "click>=8.0",
-    "structuredLanguageDB>=0.1.6",
+    "structuredLanguageDB>=0.1.10",
 ]
 keywords = ["yaml", "specification", "diagram", "chart", "visualization", "cli"]
 classifiers = [
