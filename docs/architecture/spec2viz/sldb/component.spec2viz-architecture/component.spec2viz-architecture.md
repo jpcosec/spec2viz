@@ -2,7 +2,7 @@
 id: component.spec2viz-architecture
 diagram_type: component
 version: '0.1'
-spec_path: docs/architecture/spec2viz/component-architecture.yml
+spec_path: /home/jp/proyectos/SLDB_1/spec2viz/docs/architecture/spec2viz/component-architecture.yml
 sha256: 0d08eaf4620a524195b0b4b9d9df9ccfb1f84b5c0bd3cce1063ec46a42a4c972
 notation: NotationDoc:component
 category: Arquitectura de Módulos

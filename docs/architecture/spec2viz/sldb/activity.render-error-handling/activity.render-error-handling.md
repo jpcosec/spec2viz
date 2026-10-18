@@ -2,13 +2,12 @@
 id: activity.render-error-handling
 diagram_type: activity
 version: '0.1'
-spec_path: docs/architecture/spec2viz/activity-render-error-handling.yml
+spec_path: /home/jp/proyectos/SLDB_1/spec2viz/docs/architecture/spec2viz/activity-render-error-handling.yml
 sha256: 3b1b7e0a73bda86f0ecb1c64a2527b560100b5c9113d7d4da751ba55f407ec01
 notation: NotationDoc:activity
-category: Flujos de Actividad
-nav: Errores
-summary: 'Flujo de decisiones del CLI render: para cada path, intenta load → validate
-  → compile → render, con catch de excepciones por etapa.'
+category: ''
+nav: ''
+summary: ''
 nodes:
 - SpecNodeDoc:activity.render-error-handling.receive_paths
 - SpecNodeDoc:activity.render-error-handling.iterate_path

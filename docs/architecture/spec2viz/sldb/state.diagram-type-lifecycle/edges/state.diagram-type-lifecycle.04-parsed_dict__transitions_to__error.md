@@ -9,4 +9,4 @@ condition: ''
 
 ## Notes
 
-TypeAdapter.validate_python() [schema mismatch]
+TypeAdapter.validate_python() [schema mismatch] / raise ParseError

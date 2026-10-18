@@ -71,6 +71,14 @@ vistas:
     specs:
       - docs/architecture/spec2viz/state-diagram-sync-lifecycle.yml
 
+  - id: matrix-pipeline-coverage
+    category: Arquitectura de Módulos
+    title: Cobertura de módulos por etapa
+    nav: Matriz
+    desc: "Qué módulos participan en cada etapa del pipeline de render y del sync al store. Piloto de la notación component-view-matrix (grilla) para graph_ui."
+    specs:
+      - docs/architecture/spec2viz/matrix-pipeline-coverage.yml
+
   - id: activity-render-error-handling
     category: Flujos de Actividad
     title: Manejo de Errores en Render

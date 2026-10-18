@@ -9,4 +9,4 @@ condition: ''
 
 ## Notes
 
-validate() [broken refs]
+validate() [broken refs] / raise ValidationError

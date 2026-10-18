@@ -1,0 +1,85 @@
+id: matrix.pipeline-coverage
+title: "Module coverage across the render pipeline"
+type: component_view_matrix
+version: "0.1"
+
+metadata:
+  description: >-
+    Which spec2viz modules take part in each stage of the two pipelines: rendering a spec to a
+    file and syncing it into the sldb store. Rows are modules (nested by package), columns are
+    the stages of each view; a cell is `occupies`. Piloto de la notación `component-view-matrix`
+    (layout grid) para graph_ui.
+
+data:
+  views:
+    - id: render
+      label: Render pipeline
+      stages:
+        - {id: load, label: load}
+        - {id: validate, label: validate}
+        - {id: compile, label: compile}
+        - {id: render, label: render}
+        - {id: lint, label: lint}
+    - id: sync
+      label: Store sync
+      stages:
+        - {id: extract, label: extract}
+        - {id: notation, label: notation}
+        - {id: write, label: write}
+        - {id: index, label: index}
+        - {id: view, label: view}
+  components:
+    - name: cli
+      kind: boundary
+      label: cli.py
+      stages:
+        render: [load, validate, compile, render, lint]
+        sync: [extract, notation, write, index, view]
+    - name: core
+      kind: core
+      label: core
+      stages:
+        render: [load, validate, compile, render]
+      children:
+        - name: loader
+          kind: core
+          label: loader.py
+          stages: {render: [load]}
+        - name: validator
+          kind: core
+          label: validator.py
+          stages: {render: [validate]}
+        - name: compilers
+          kind: core
+          label: compilers/
+          stages: {render: [compile]}
+        - name: renderers
+          kind: core
+          label: renderers/
+          stages: {render: [render]}
+        - name: linters
+          kind: core
+          label: linters/mermaid.py
+          stages: {render: [lint]}
+    - name: store
+      kind: core
+      label: store layer
+      stages:
+        sync: [extract, notation, write, index, view]
+      children:
+        - name: sldb_sync
+          kind: core
+          label: sldb_sync.py
+          stages: {sync: [extract, write, index]}
+        - name: notation
+          kind: core
+          label: notation.py
+          stages: {sync: [notation]}
+        - name: notation_view
+          kind: core
+          label: notation_view.py
+          stages: {sync: [view]}
+        - name: sldb_models
+          kind: boundary
+          label: sldb_models.py
+          stages: {sync: [write]}
