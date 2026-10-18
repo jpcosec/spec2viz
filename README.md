@@ -315,7 +315,10 @@ graph_ui editable from their checkouts, runs each repo's tests (`SUITE_REPOS` na
 end-to-end flow across deskops, spec2viz and graph_ui, and prints a step x result table. Logs land in
 `SUITE_REPORT` (default `/tmp/suite-check`). `--from-origin` clones each repo's main branch from its origin
 (shallow, into `SUITE_CLONES`) and tests those clones instead of the working checkouts: that is the run that
-decides a deploy. It never tags or publishes anything.
+decides a deploy. `--pythons 3.10,3.12,3.13` repeats install, suites and e2e once per interpreter (found or
+installed with `uv python`, else `pythonX.Y`) and prints a step x Python table; the node toolchain of
+graph_ui's review-workbench (`npm ci`, vitest, tsc, architecture lint) runs once per run (`--skip-node`
+to leave it out). It never tags or publishes anything.
 
 Run the full suite:
 

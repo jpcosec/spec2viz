@@ -14,7 +14,9 @@
   repo's pytest, and an end-to-end flow (deskops init -> task -> closeout commit; spec2viz diagram sync,
   notation sync and notation view against that store; graph_ui serving it with /api/schema, /api/graph
   and /api/notation/view at 200 and parity with spec2viz's view); prints a step x result table;
-  `--from-origin` clones every repo's main branch from origin and tests the clones, reporting each HEAD
+  `--from-origin` clones every repo's main branch from origin and tests the clones, reporting each HEAD;
+  `--pythons A,B,C` runs the whole check once per interpreter (uv or PATH) and prints a step x Python
+  matrix; the review-workbench node toolchain of graph_ui (npm ci, vitest, tsc, lint) is part of the run
 - provenance header: every rendered text projection (`.mmd`, `.puml`, `.d2`) starts with a comment
   naming the spec it was generated from and the validate command to run before re-rendering; goldens
   and the architecture projections regenerated (`spec2viz.provenance_header`)
