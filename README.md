@@ -299,6 +299,13 @@ spec2viz schema --type sequence --out examples/schema/sequence.schema.json
 
 ## Validation and Tests
 
+`tools/suite-check.sh [--fresh] [--skip-install] [--skip-suites] [--skip-e2e]` runs the integrated check of
+the whole SLDB_1 suite from a clean venv (`SUITE_VENV`, default `/tmp/suite-venv`; `SUITE_PYTHON`,
+default `/usr/bin/python3`; checkouts under `SLDB1_ROOT`): installs sldb, pron, deskops, spec2viz and
+graph_ui editable from their checkouts, runs each repo's tests (`SUITE_REPOS` narrows the list), then an
+end-to-end flow across deskops, spec2viz and graph_ui, and prints a step x result table. Logs land in
+`SUITE_REPORT` (default `/tmp/suite-check`). It never tags or publishes anything.
+
 Run the full suite:
 
 ```bash

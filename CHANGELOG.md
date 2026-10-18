@@ -2,6 +2,11 @@
 
 ## Unreleased - 2026-10-17
 
+- `tools/suite-check.sh`: integrated check of the SLDB_1 suite without deploying: a clean venv with
+  sldb, pron, deskops, spec2viz and graph_ui installed editable from their checkouts (no kgdb), every
+  repo's pytest, and an end-to-end flow (deskops init -> task -> closeout commit; spec2viz diagram sync,
+  notation sync and notation view against that store; graph_ui serving it with /api/schema, /api/graph
+  and /api/notation/view at 200 and parity with spec2viz's view); prints a step x result table
 - provenance header: every rendered text projection (`.mmd`, `.puml`, `.d2`) starts with a comment
   naming the spec it was generated from and the validate command to run before re-rendering; goldens
   and the architecture projections regenerated (`spec2viz.provenance_header`)
