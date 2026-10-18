@@ -74,15 +74,6 @@ models:
   family: null
   semantics: []
   origin: deskops
-- name: FAQDoc
-  model_ref: deskops.models:FAQDoc
-  path: ''
-  models_index: .sldb/core/models/FAQDoc.yaml
-  version: 1
-  canonical: false
-  family: null
-  semantics: []
-  origin: deskops
 - name: RoleDoc
   model_ref: deskops.models:RoleDoc
   path: ''
@@ -238,6 +229,19 @@ models:
   family: null
   semantics: []
   origin: deskops
+- name: DeskFAQDoc
+  model_ref: deskops.models:DeskFAQDoc
+  path: ''
+  models_index: .sldb/core/models/DeskFAQDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - representation.markdown
+  - source.document.markdown
+  - type.documentation.faq
+  - workspace.docs.faq
+  origin: deskops
 predicates:
 - name: is_solved_by
   axis: HOW
@@ -315,4 +319,4 @@ predicates:
   axis: WHERE
   description: 'The store links that store under an alias (`stores add`): it reads
     its documents and inherits its models.'
-store_hash: 19ee15012906b21aacfa3d0ea315549c5fe6f7404dc9d1c95342d45d9c64622b
+store_hash: dbe710ebb9b6f53bc53e19171af19d765d3b078cd028be828a10eccb40fe99b0

@@ -1,7 +1,7 @@
-name: FAQDoc
-model_ref: deskops.models:FAQDoc
+name: DeskFAQDoc
+model_ref: deskops.models:DeskFAQDoc
 path: ''
-documents_index: .sldb/core/documents/FAQDoc.yaml
+documents_index: .sldb/core/documents/DeskFAQDoc.yaml
 sections_index: ''
 model_hash: 5bf7fd4278b5d0f1820ac62901e18a0e4baff09a60dcd504951d8a56c3fdf3e9
 roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
@@ -11,6 +11,8 @@ version: 1
 canonical: false
 family: null
 semantics:
+- representation.markdown
+- source.document.markdown
 - type.documentation.faq
 - workspace.docs.faq
 base_models: []
