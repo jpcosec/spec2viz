@@ -6,7 +6,6 @@ scope: desk
 # List of task-xxx paths
 tasks:
 - desk/tasks/task-sync-golden-plantuml-files.md
-- desk/tasks/task-add-render-antonia-html-command.md
 - desk/tasks/task-cabecera-de-trazabilidad-en-las-proyecciones-generadas-mermaid-plantuml-d2.md
 # List of pill-xxx paths
 pills:
@@ -41,5 +40,4 @@ _Add short operational notes about the current routed set._
 _Generated from the task references above._
 
 - Sync golden PlantUML files [ready_for_testing] - Regenerate each stale golden .puml file by running the current render pipeline against the corresponding YAML fixture.
-- Generate styled HTML diagrams with antonIA aesthetic [ready_for_testing] - Triage and resolve the inbox message: allow spec2viz to generate standalone HTML diagrams that share the premium aesthetic from the reference antonIA HTML file.
 - Cabecera de trazabilidad en las proyecciones generadas (Mermaid, PlantUML, D2) [ready_for_testing] - diagram render antepone a cada salida de texto una linea de comentario con la ruta del spec y el comando de validacion, en la sintaxis de comentario del renderer (%% en Mermaid, ' en PlantUML, # en D2); los goldens y el lint de Mermaid siguen en verde.
