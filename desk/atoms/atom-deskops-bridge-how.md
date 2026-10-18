@@ -10,27 +10,8 @@ tags:
 provenance: spec2viz/deskops.py
 ---
 
-# Deskops Integration Bridge Architecture - HOW
+# Deskops Integration Bridge Architecture
 
 ## Answer
 
-El mecanismo de integración entre `spec2viz` y `deskops` opera a través de los siguientes pasos técnicos en `spec2viz/deskops.py`:
-
-1. **Extracción y Parseo de Átomos (`parse_atoms`):**
-   - Escanea el directorio de conocimiento `desk/atoms/*.md`.
-   - Utiliza una expresión regular (`^---\s*$`) para separar el frontmatter YAML del cuerpo del Markdown.
-   - Extrae la clave `title` (normalizada a minúsculas) y la dimensión 5WH1+ (`five_wh_one_plus`: `what`, `why`, `how`, `how_not`, `when`, `where`, `for_whom`).
-   - Indexa en una estructura jerárquica JSON: `window.ATOMS_DB[title_norm]["atoms"][question] = { "id": fm.id, "body": body }`.
-
-2. **Resolución de Vistas y Plantilla (`render_deskops`):**
-   - Carga el registro `vistas.yml` y agrupa las vistas por la propiedad `category`.
-   - Para cada vista, lee la fuente especificada (`.mmd`, `.svg`, o `.html`) desde `base_dir`.
-   - Construye la barra de navegación lateral (`{{NAV}}`) y la estructura de secciones (`{{SECTIONS}}`).
-
-3. **Inyección en Tiempo de Compilación:**
-   - Reemplaza los marcadores `{{NAV}}` y `{{SECTIONS}}` en `template.html`.
-   - Inyecta `window.ATOMS_DB = JSON.stringify(atoms_db)` en el script final del documento HTML.
-
-4. **Vinculación Interactiva en el Navegador:**
-   - En el cliente web, al hacer clic en un nodo de diagrama Mermaid o SVG, se normaliza el título del nodo y se busca en `window.ATOMS_DB`.
-   - Se despliega el panel interactivo (*Atom Drawer*) permitiendo navegar por las pestañas 5WH1+ registradas para ese componente de arquitectura.
+El puente entre spec2viz y deskops vive en spec2viz/deskops.py y opera en cuatro pasos. Primero, parse_atoms escanea desk/atoms/*.md, separa el frontmatter YAML del cuerpo Markdown, toma el title normalizado a minusculas y la dimension five_wh_one_plus (what, why, how, how_not, when, where, for_whom) y lo indexa en window.ATOMS_DB[titulo][atoms][pregunta] con id y body. Segundo, render_deskops carga el registro vistas.yml, agrupa las vistas por category, lee la fuente de cada una (.mmd, .svg o .html) desde base_dir y construye la navegacion () y las secciones (). Tercero, en tiempo de compilacion reemplaza esos marcadores en la plantilla e inyecta window.ATOMS_DB como JSON en el script final del HTML. Cuarto, en el navegador, al hacer clic en un nodo de un diagrama Mermaid o SVG se normaliza su titulo, se busca en window.ATOMS_DB y se despliega el panel (Atom Drawer) con las pestañas 5WH1+ de ese componente. Desde 2026-10 el bundle es el export estatico; la superficie viva es graph_ui sobre el store sldb.

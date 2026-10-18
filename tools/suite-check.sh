@@ -53,6 +53,7 @@ if [ "$DO_INSTALL" = 1 ]; then
     case "$name" in
       sldb) extras="[click,graph]" ;;
       deskops|spec2viz) extras="[dev]" ;;
+      pron) extras="[mcp,dev]" ;;  # tests/mcp_* importan mcp/anyio
       graph_ui) extras="[test,notation]" ;;
     esac
     if "$VPY" -m pip install -q -e "$ROOT/$repo$extras" >> "$REPORT/pip.log" 2>&1; then
