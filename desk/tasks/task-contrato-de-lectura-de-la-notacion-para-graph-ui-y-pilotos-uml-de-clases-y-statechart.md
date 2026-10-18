@@ -1,12 +1,14 @@
 ---
 id: task-contrato-de-lectura-de-la-notacion-para-graph-ui-y-pilotos-uml-de-clases-y-statechart
-status: draft
+status: ready_for_testing
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
+current_node: ritual-closeout
+history:
+- task_activates
+- task_hands_to_closeout
 references: []
 depends_on:
 - task-vocabulario-visual-declarativo-notationdoc-glyphdoc-y-linkdoc-sincronizados-al-store
