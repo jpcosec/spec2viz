@@ -152,16 +152,32 @@ def _link_view(source: str, target: str, link: dict, relation_payload: dict[str,
     }
 
 
+# operadores de fragmento UML; un `group` que empieza por uno de ellos lo declara como `kind`
+FRAGMENT_KINDS = ("alt", "loop", "opt", "par", "break", "critical", "neg", "ref", "seq", "strict")
+
+
+def fragment_kind(group: str) -> tuple[str, str]:
+    """`(kind, label)` de un `group`: `"loop for each spec"` -> `("loop", "for each spec")`;
+    sin operador delante, `("group", <el grupo entero>)`."""
+    head, _, rest = group.strip().partition(" ")
+    if head.lower() in FRAGMENT_KINDS:
+        return head.lower(), rest.strip()
+    return "group", group.strip()
+
+
 def fragments_of(links: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Un fragmento por racha de links consecutivos (por `order`) con el mismo `data.group`."""
     out: list[dict[str, Any]] = []
     current: dict[str, Any] | None = None
+    current_group = ""
     for link in sorted((l for l in links if l.get("order")), key=lambda l: l["order"]):
         group = str(link.get("data", {}).get("group") or "")
-        if group and current is not None and current["label"] == group:
+        if group and current is not None and current_group == group:
             current["orders"].append(link["order"])
             continue
-        current = {"label": group, "kind": "group", "orders": [link["order"]]} if group else None
+        current_group = group
+        kind, label = fragment_kind(group)
+        current = {"label": label, "kind": kind, "group": group, "orders": [link["order"]]} if group else None
         if current is not None:
             out.append(current)
     return out
@@ -242,4 +258,4 @@ def resolve_view(store: Path, spec_ref: str, pythonpath: str | None = None) -> d
     }
 
 
-__all__ = ["resolve_view", "ViewError", "flatten", "lookup", "render_template", "matches", "link_order", "fragments_of"]
+__all__ = ["resolve_view", "ViewError", "flatten", "lookup", "render_template", "matches", "link_order", "fragments_of", "fragment_kind", "FRAGMENT_KINDS"]

@@ -44,6 +44,15 @@ vistas:
     specs:
       - docs/architecture/spec2viz/sequence-build-pipeline.yml
 
+  - id: sequence-sync-pipeline
+    category: Pipelines de Ejecución
+    title: Cadena de llamadas de diagram sync
+    nav: Sync
+    desc: "Qué llama a qué cuando `spec2viz diagram sync` escribe un spec al store: un loop por spec y un alt según el tipo de diagrama tenga notación. Piloto de fragmentos de secuencia para graph_ui."
+    src: spec2viz/sequence-sync-pipeline.mmd
+    specs:
+      - docs/architecture/spec2viz/sequence-sync-pipeline.yml
+
   - id: state-diagram-type-lifecycle
     category: Modelos de Estado
     title: Ciclo de Vida de una Spec

@@ -1,0 +1,82 @@
+id: sequence.sync-pipeline
+title: "diagram sync call chain"
+type: sequence
+version: "0.1"
+
+metadata:
+  description: >-
+    What calls what when `spec2viz diagram sync` writes a spec into the sldb store: one loop per
+    spec, and inside it an alt depending on whether the diagram type has a builtin notation.
+    Piloto de fragmentos de secuencia (`group` con operador loop/alt) para graph_ui.
+
+data:
+  participants:
+    - id: User
+      kind: actor
+    - id: CLI
+      kind: component
+    - id: SpecSync
+      kind: component
+    - id: Loader
+      kind: component
+    - id: NotationSync
+      kind: component
+    - id: StoreAPI
+      kind: boundary
+
+  messages:
+    - from: User
+      to: CLI
+      message: "spec2viz diagram sync a.yml b.yml --strict"
+
+    - from: CLI
+      to: SpecSync
+      message: "sync(path, notation)"
+      group: "loop for each spec"
+    - from: SpecSync
+      to: Loader
+      message: "load(path)"
+      group: "loop for each spec"
+    - from: Loader
+      to: SpecSync
+      message: "BaseDiagram or ParseError"
+      kind: reply
+      group: "loop for each spec"
+
+    - from: SpecSync
+      to: NotationSync
+      message: "sync(name, finish=False)"
+      group: "alt the diagram type has a notation"
+    - from: NotationSync
+      to: StoreAPI
+      message: "create_document / save_document_payload (NotationDoc, GlyphDoc, LinkDoc)"
+      group: "alt the diagram type has a notation"
+    - from: StoreAPI
+      to: NotationSync
+      message: "documents"
+      kind: reply
+      group: "alt the diagram type has a notation"
+
+    - from: SpecSync
+      to: StoreAPI
+      message: "upsert SpecNodeDoc, SpecDoc, RelationDoc (attributes)"
+      group: "loop for each spec"
+    - from: SpecSync
+      to: StoreAPI
+      message: "rebuild_edges() / check_edges()"
+      group: "loop for each spec"
+    - from: StoreAPI
+      to: SpecSync
+      message: "edge errors"
+      kind: reply
+      group: "loop for each spec"
+    - from: SpecSync
+      to: CLI
+      message: "SyncReport"
+      kind: reply
+      group: "loop for each spec"
+
+    - from: CLI
+      to: User
+      message: "one line per spec; exit 1 if --strict and problems"
+      kind: reply

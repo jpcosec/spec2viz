@@ -1,0 +1,28 @@
+sequenceDiagram
+    actor User
+    participant CLI
+    participant SpecSync
+    participant Loader
+    participant NotationSync
+    participant StoreAPI
+    User->>CLI: spec2viz diagram sync a.yml b.yml --strict
+    rect rgba(127, 127, 127, 0.1)
+    Note over CLI,SpecSync: loop for each spec
+    CLI->>SpecSync: sync(path, notation)
+    SpecSync->>Loader: load(path)
+    Loader->>SpecSync: BaseDiagram or ParseError
+    end
+    rect rgba(127, 127, 127, 0.1)
+    Note over SpecSync,NotationSync: alt the diagram type has a notation
+    SpecSync->>NotationSync: sync(name, finish=False)
+    NotationSync->>StoreAPI: create_document / save_document_payload (NotationDoc, GlyphDoc, LinkDoc)
+    StoreAPI->>NotationSync: documents
+    end
+    rect rgba(127, 127, 127, 0.1)
+    Note over SpecSync,StoreAPI: loop for each spec
+    SpecSync->>StoreAPI: upsert SpecNodeDoc, SpecDoc, RelationDoc (attributes)
+    SpecSync->>StoreAPI: rebuild_edges() / check_edges()
+    StoreAPI->>SpecSync: edge errors
+    SpecSync->>CLI: SyncReport
+    end
+    CLI->>User: one line per spec#59; exit 1 if --strict and problems

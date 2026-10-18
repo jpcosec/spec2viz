@@ -2,6 +2,9 @@
 
 ## Unreleased - 2026-10-17
 
+- sequence fragments: `notation view` derives each fragment's `kind` from the operator that opens the
+  message `group` (`alt`, `loop`, `opt`, `par`, `break`, `critical`, `neg`, `ref`, `seq`, `strict`) and
+  keeps the rest as `label`; pilot `sequence.sync-pipeline` (loop and alt over three participants)
 - edge attributes: `diagram sync` keeps what a RelationDoc had no field for (class multiplicities and
   label, transition `on`/`guard`/`action`, message `kind`/`group`/`message`, deployment `protocol`,
   activity `branch`, matrix `view`/`stage`) in `RelationDoc.attributes` when the installed sldb has it

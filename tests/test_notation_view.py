@@ -127,10 +127,28 @@ def test_fragments_group_consecutive_messages():
         {"order": 4, "data": {"group": "alt"}}, {"order": 5, "data": {}}, {"order": 6, "data": {"group": "alt"}}, {"order": 0, "data": {"group": "x"}},
     ]
     assert fragments_of(links) == [
-        {"label": "loop", "kind": "group", "orders": [2, 3]},
-        {"label": "alt", "kind": "group", "orders": [4]},
-        {"label": "alt", "kind": "group", "orders": [6]},
+        {"label": "", "kind": "loop", "group": "loop", "orders": [2, 3]},
+        {"label": "", "kind": "alt", "group": "alt", "orders": [4]},
+        {"label": "", "kind": "alt", "group": "alt", "orders": [6]},
     ]
+    assert fragments_of([{"order": 1, "data": {"group": "Loop for each spec"}}, {"order": 2, "data": {"group": "retries"}}]) == [
+        {"label": "for each spec", "kind": "loop", "group": "Loop for each spec", "orders": [1]},
+        {"label": "retries", "kind": "group", "group": "retries", "orders": [2]},
+    ]
+
+
+def test_repo_sequence_pilot_has_loop_and_alt_fragments(tmp_path):
+    from spec2viz.sldb_sync import SpecSync
+
+    sldb_api.init_store(tmp_path)
+    SpecSync(tmp_path / ".sldb").sync(REPO / "docs" / "architecture" / "spec2viz" / "sequence-sync-pipeline.yml")
+    view = resolve_view(tmp_path / ".sldb", "sequence.sync-pipeline")
+    kinds = [(f["kind"], f["label"]) for f in view["fragments"]]
+    assert kinds == [("loop", "for each spec"), ("alt", "the diagram type has a notation"), ("loop", "for each spec")]
+    loop = view["fragments"][0]
+    by_order = {l["order"]: l for l in view["links"]}
+    participants = {by_order[o][end].split(".")[-1] for o in loop["orders"] for end in ("source", "target")}
+    assert len(participants) >= 3 and view["skipped"] == []
 
 
 def test_view_errors(project):

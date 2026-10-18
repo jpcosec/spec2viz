@@ -183,8 +183,14 @@ Acordado con graph_ui el 2026-10-18.
 `nodes` (el de `participants` del spec); todos son `collection = "participants"`. Cada mensaje es un
 link `draw: line` con `order` 1..n, y ese `order` es su fila en el tiempo. Un retorno es `relation:
 returns` con `line: dashed`; una autollamada tiene `source == target` y se dibuja como bucle sobre
-su carril, ocupando su fila. `fragments` (§11) son los marcos alt/loop/opt: rachas de mensajes
-consecutivos con el mismo `group`. `draw: lane` no lo usa ninguna notación builtin: queda para
+su carril, ocupando su fila. `fragments` (§11) son los marcos: rachas de mensajes
+consecutivos con el mismo `group` del spec. `kind` sale de la primera palabra del `group` si es un
+operador UML (`alt`, `loop`, `opt`, `par`, `break`, `critical`, `neg`, `ref`, `seq`, `strict`) y
+`label` es el resto (`"loop for each spec"` → kind `loop`, label `for each spec`); sin operador, kind
+`group` y label el grupo entero. El marco va de la primera a la última fila de `orders` y de la
+línea de vida más a la izquierda a la más a la derecha entre los mensajes que contiene, con la
+pestaña del operador arriba a la izquierda y `label` junto a ella. Dos rachas del mismo `group`
+separadas por otro mensaje son dos marcos. `draw: lane` no lo usa ninguna notación builtin: queda para
 "el destino se coloca en el carril del origen" (calles), no para secuencias.
 
 **Grilla** (`layout.kind: grid`, `component-view-matrix`): columnas = nodos `collection = "stages"`,
@@ -247,7 +253,7 @@ SLDB_STORE=/home/jp/proyectos/SLDB_1/spec2viz/.sldb python3 frontends/mindmap/se
      "draw": "line", "line": "solid", "source_end": "none", "target_end": "hollow-triangle", "label": "",
      "order": 1, "condition": "", "data": {}, "source_label": "", "target_label": ""}
   ],
-  "fragments": [{"label": "loop", "kind": "group", "orders": [3, 4]}],
+  "fragments": [{"label": "for each spec", "kind": "loop", "group": "loop for each spec", "orders": [3, 4]}],
   "skipped": []
 }
 ```
