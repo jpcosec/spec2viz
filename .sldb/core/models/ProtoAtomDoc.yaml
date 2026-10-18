@@ -1,6 +1,6 @@
 name: ProtoAtomDoc
 model_ref: deskops.models:ProtoAtomDoc
-path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/protoatom.py
+path: ''
 documents_index: .sldb/core/documents/ProtoAtomDoc.yaml
 sections_index: ''
 model_hash: 73c1388c2e7515d9b6f342794d83eeee4589e4409b24d0714d8519db38f142ca

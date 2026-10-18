@@ -1,6 +1,6 @@
 name: CrossroadDoc
 model_ref: deskops.models:CrossroadDoc
-path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/crossroad.py
+path: ''
 documents_index: .sldb/core/documents/CrossroadDoc.yaml
 sections_index: ''
 model_hash: 821d5cc4718f94346f68a11b73a3c7b4daf73ef9ea0087149ce48cb1edaea5af

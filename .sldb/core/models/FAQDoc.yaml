@@ -1,6 +1,6 @@
 name: FAQDoc
 model_ref: deskops.models:FAQDoc
-path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/faq.py
+path: ''
 documents_index: .sldb/core/documents/FAQDoc.yaml
 sections_index: ''
 model_hash: 5bf7fd4278b5d0f1820ac62901e18a0e4baff09a60dcd504951d8a56c3fdf3e9

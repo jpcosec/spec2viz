@@ -1,6 +1,6 @@
 name: RoleDoc
 model_ref: deskops.models:RoleDoc
-path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/role.py
+path: ''
 documents_index: .sldb/core/documents/RoleDoc.yaml
 sections_index: ''
 model_hash: a236f70351f39050ff47246e8611f644fe7e121953ce186239b119dee2768640

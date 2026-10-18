@@ -1,6 +1,6 @@
 name: InboxNoteDoc
 model_ref: deskops.models:InboxNoteDoc
-path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/inbox.py
+path: ''
 documents_index: .sldb/core/documents/InboxNoteDoc.yaml
 sections_index: .sldb/runtime/sections/InboxNoteDoc.yaml
 model_hash: bcb8c09e027812a58f4f8d81f9cf99c5c220ce84aa3c1ba8c5e365926c9ee14c

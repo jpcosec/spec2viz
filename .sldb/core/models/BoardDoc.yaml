@@ -1,6 +1,6 @@
 name: BoardDoc
 model_ref: deskops.models:BoardDoc
-path: /home/jp/proyectos/hum-ecosystem/tools/deskops/deskops/models/board.py
+path: ''
 documents_index: .sldb/core/documents/BoardDoc.yaml
 sections_index: ''
 model_hash: e571d298dd62faf15aa332b8dde9e25d5388ec3c8d71cd6330957e926ebda9fd
