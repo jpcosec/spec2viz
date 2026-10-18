@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 # Prueba integrada de la suite SLDB_1 (sldb, pron, deskops, spec2viz, graph_ui), sin deploy.
 #
-#   tools/suite-check.sh [--fresh] [--skip-install] [--skip-suites] [--skip-e2e]
+#   tools/suite-check.sh [--fresh] [--from-origin] [--skip-install] [--skip-suites] [--skip-e2e]
+#
+# --from-origin: clona cada repo desde su origin (git clone --depth 1, rama principal) en
+#    SUITE_CLONES (por defecto <SUITE_REPORT>/origin) y usa esos clones como ROOT, sin tocar
+#    los checkouts de trabajo; es la corrida que vale para decidir un deploy. Los origin se
+#    leen de los checkouts bajo SLDB1_ROOT (o de SUITE_ORIGIN_<name> si se exporta).
 #
 # 1. Crea un venv limpio (SUITE_VENV, por defecto /tmp/suite-venv) con SUITE_PYTHON (por
 #    defecto /usr/bin/python3) e instala los cinco repos desde sus checkouts (SLDB1_ROOT,
@@ -19,10 +24,11 @@ VENV=${SUITE_VENV:-/tmp/suite-venv}
 PY=${SUITE_PYTHON:-/usr/bin/python3}
 REPORT=${SUITE_REPORT:-/tmp/suite-check}
 PORT=${SUITE_PORT:-8123}
-FRESH=0; DO_INSTALL=1; DO_SUITES=1; DO_E2E=1
+FRESH=0; DO_INSTALL=1; DO_SUITES=1; DO_E2E=1; FROM_ORIGIN=0
 for arg in "$@"; do
   case "$arg" in
     --fresh) FRESH=1 ;;
+    --from-origin) FROM_ORIGIN=1 ;;
     --skip-install) DO_INSTALL=0 ;;
     --skip-suites) DO_SUITES=0 ;;
     --skip-e2e) DO_E2E=0 ;;
@@ -38,8 +44,31 @@ say() { printf '\n== %s\n' "$*"; }
 record() { RESULT[$1]=$2; NOTE[$1]=${3:-}; [ "$2" = ok ] || FAILED=1; }
 last_line() { tail -n 1 "$1" 2>/dev/null | cut -c1-110; }
 
-# --- 1. venv e instalacion ------------------------------------------------------------------
 REPOS=(sldb pron deskops spec2viz UIs/graph_ui)
+
+# --- 0. clones desde origin (--from-origin) -----------------------------------------------------
+declare -A HASH
+if [ "$FROM_ORIGIN" = 1 ]; then
+  CLONES=${SUITE_CLONES:-$REPORT/origin}
+  say "clones desde origin en $CLONES"
+  rm -rf "$CLONES"; mkdir -p "$CLONES"
+  for repo in "${REPOS[@]}"; do
+    name=$(basename "$repo")
+    var="SUITE_ORIGIN_$name"
+    url=${!var:-$(git -C "$ROOT/$repo" remote get-url origin 2>/dev/null)}
+    branch=$(git ls-remote --symref "$url" HEAD 2>/dev/null | sed -n 's|^ref: refs/heads/\(.*\)\tHEAD|\1|p')
+    if [ -z "$url" ] || [ -z "$branch" ]; then record "clone:$name" FAIL "sin origin o sin rama principal ($url)"; continue; fi
+    if git clone -q --depth 1 --branch "$branch" "$url" "$CLONES/$repo" > "$REPORT/clone-$name.log" 2>&1; then
+      HASH[$name]=$(git -C "$CLONES/$repo" rev-parse --short HEAD)
+      record "clone:$name" ok "$branch@${HASH[$name]} $url"
+    else
+      record "clone:$name" FAIL "$(last_line "$REPORT/clone-$name.log")"
+    fi
+  done
+  ROOT=$CLONES
+fi
+
+# --- 1. venv e instalacion ------------------------------------------------------------------
 # SUITE_REPOS="deskops UIs/graph_ui" limita las suites del paso 2 (la instalacion siempre es completa)
 read -r -a SUITE_REPOS_ARR <<< "${SUITE_REPOS:-${REPOS[*]}}"
 if [ "$DO_INSTALL" = 1 ]; then
@@ -200,5 +229,9 @@ printf '%-22s %-5s %s\n' "paso" "ok?" "nota"
 for key in $(printf '%s\n' "${!RESULT[@]}" | sort); do
   printf '%-22s %-5s %s\n' "$key" "${RESULT[$key]}" "${NOTE[$key]}"
 done
+if [ "$FROM_ORIGIN" = 1 ]; then
+  echo; echo "origin HEAD por repo:"
+  for repo in "${REPOS[@]}"; do name=$(basename "$repo"); printf '  %-10s %s\n' "$name" "${HASH[$name]:-?}"; done
+fi
 echo "logs: $REPORT"
 exit $FAILED

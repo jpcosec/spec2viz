@@ -304,7 +304,9 @@ the whole SLDB_1 suite from a clean venv (`SUITE_VENV`, default `/tmp/suite-venv
 default `/usr/bin/python3`; checkouts under `SLDB1_ROOT`): installs sldb, pron, deskops, spec2viz and
 graph_ui editable from their checkouts, runs each repo's tests (`SUITE_REPOS` narrows the list), then an
 end-to-end flow across deskops, spec2viz and graph_ui, and prints a step x result table. Logs land in
-`SUITE_REPORT` (default `/tmp/suite-check`). It never tags or publishes anything.
+`SUITE_REPORT` (default `/tmp/suite-check`). `--from-origin` clones each repo's main branch from its origin
+(shallow, into `SUITE_CLONES`) and tests those clones instead of the working checkouts: that is the run that
+decides a deploy. It never tags or publishes anything.
 
 Run the full suite:
 
