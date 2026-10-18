@@ -5,7 +5,6 @@ id: board-001
 scope: desk
 # List of task-xxx paths
 tasks:
-- desk/tasks/task-add-d2-renderer-spike-from-existing-ir.md
 - desk/tasks/task-sync-golden-plantuml-files.md
 - desk/tasks/task-add-render-antonia-html-command.md
 - desk/tasks/task-cabecera-de-trazabilidad-en-las-proyecciones-generadas-mermaid-plantuml-d2.md
@@ -41,7 +40,6 @@ _Add short operational notes about the current routed set._
 
 _Generated from the task references above._
 
-- Add D2 renderer spike from existing IR [ready_for_testing] - Prove that spec2viz can target D2 as an additional outward renderer without changing semantic models or compiler behavior.
 - Sync golden PlantUML files [ready_for_testing] - Regenerate each stale golden .puml file by running the current render pipeline against the corresponding YAML fixture.
 - Generate styled HTML diagrams with antonIA aesthetic [ready_for_testing] - Triage and resolve the inbox message: allow spec2viz to generate standalone HTML diagrams that share the premium aesthetic from the reference antonIA HTML file.
 - Cabecera de trazabilidad en las proyecciones generadas (Mermaid, PlantUML, D2) [ready_for_testing] - diagram render antepone a cada salida de texto una linea de comentario con la ruta del spec y el comando de validacion, en la sintaxis de comentario del renderer (%% en Mermaid, ' en PlantUML, # en D2); los goldens y el lint de Mermaid siguen en verde.
