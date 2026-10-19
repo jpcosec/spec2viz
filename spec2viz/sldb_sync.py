@@ -46,7 +46,9 @@ _MANAGED_MODELS = ("SpecDoc", "SpecNodeDoc", "RelationDoc", "RelationTypeDoc", "
 # activity y component_view_matrix no tienen coleccion de aristas: salen de los elementos.
 _EDGE_COLLECTIONS: dict[str, tuple[str, str | None, str]] = {
     "component": ("edges", "relation", "uses"),
-    "deployment": ("connections", "protocol", "connects"),
+    # el protocolo es un atributo y el rotulo de la conexion, no un tipo de relacion: ":5432" y
+    # "Postgres :5432" son la misma relacion `connects`
+    "deployment": ("connections", None, "connects"),
     "state": ("transitions", None, "transitions_to"),
     "sequence": ("messages", "kind", "sends"),
     "class": ("relations", "relation", "association"),
@@ -187,6 +189,14 @@ def spec_elements(spec: dict) -> list[dict]:
         for eid, el in pairs:
             if eid:
                 out.append(_element(eid, el, collection, flags.get(str(eid))))
+    if diagram_type == "activity":
+        # `start`/`end` pueden nombrar un nodo terminal que no es un paso (`end: end`, como en los
+        # renderers): se materializa para que las aristas `next: end` tengan destino
+        present = {e["id"] for e in out}
+        for field, kind in (("start", "start"), ("end", "end")):
+            terminal = data.get(field)
+            if terminal and str(terminal) not in present:
+                out.append(_element(terminal, {"label": "", "kind": kind}, "steps", flags.get(str(terminal))))
     return out
 
 

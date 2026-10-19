@@ -8,7 +8,7 @@ draw: line
 line: solid
 source_end: none
 target_end: none
-label: '{relation_type}'
+label: '{data.protocol}'
 source_label: ''
 target_label: ''
 ends: {}

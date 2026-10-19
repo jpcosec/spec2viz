@@ -2,6 +2,12 @@
 
 ## Unreleased - 2026-10-17
 
+- Sync: an activity `start`/`end` that names a terminal node rather than a step (`end: end`, as in
+  `examples/activity`) is materialized as a `SpecNodeDoc`, so `next: end` edges resolve and draw with `activity.end`;
+  deployment connections are always the `connects` relation, with the protocol in `attributes` and as the
+  label (`{data.protocol}` in the deployment notation), instead of one relation type per protocol string.
+  Re-syncing a deployment spec replaces its old per-protocol RelationDocs; the old RelationTypeDocs stay.
+  Reported by chatbot-68 from Governance
 - `tools/suite-check.sh`: before the suites, builds each derived store from its `.sldb/store.yaml` (`sldb stores build`
   + `stores check`, in dependency order; pron with `make world` on clones) and records `store:<repo>`; the
   default report goes to `~/.cache/suite-check/run-<date>` so it survives a reboot

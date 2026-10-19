@@ -225,3 +225,29 @@ def test_cli_sync_without_store(tmp_path):
     (tmp_path / "arq.yml").write_text(yaml.safe_dump(ARQ), encoding="utf-8")
     result = CliRunner().invoke(main, ["diagram", "sync", str(tmp_path / "arq.yml")])
     assert result.exit_code == 1 and "no `.sldb` store" in result.output
+
+
+def test_activity_terminal_end_that_is_not_a_step_is_materialized():
+    """`end: end` (como en examples/activity) nombra un nodo terminal: las aristas `next: end` tienen destino."""
+    spec = {"id": "activity.t", "type": "activity", "data": {"start": "a", "end": "end", "steps": {
+        "a": {"label": "A", "next": "b"}, "b": {"label": "B", "next": "end"}}}}
+    elements = {e["id"]: e for e in spec_elements(spec)}
+    assert elements["end"]["kind"] == "end" and elements["end"]["data"]["final"] is True and elements["end"]["collection"] == "steps"
+    assert elements["a"]["data"]["initial"] is True and "start" not in elements
+    assert {e["to"] for e in spec_edges(spec)} <= set(elements)
+
+
+def test_activity_end_that_is_a_step_is_not_duplicated():
+    spec = {"id": "activity.t", "type": "activity", "data": {"start": "a", "end": "done", "steps": {"a": {"next": "done"}, "done": {"label": "Done"}}}}
+    ids = [e["id"] for e in spec_elements(spec)]
+    assert ids.count("done") == 1
+
+
+def test_deployment_protocol_is_an_attribute_not_a_relation_type():
+    """`:5432` y `Postgres :5432` son la misma relacion `connects`; el protocolo va en attributes y rotulo."""
+    spec = {"id": "deployment.t", "type": "deployment", "data": {"connections": [
+        {"from": "api", "to": "db", "protocol": ":5432"}, {"from": "ui", "to": "db", "protocol": "Postgres :5432"}, {"from": "ui", "to": "api"}]}}
+    edges = spec_edges(spec)
+    assert {e["relation"] for e in edges} == {"connects"}
+    assert [e["attributes"].get("protocol") for e in edges] == [":5432", "Postgres :5432", None]
+    assert [e["label"] for e in edges] == [":5432", "Postgres :5432", ""]
