@@ -8,7 +8,16 @@ class StepModel(BaseModel):
     model_config = ConfigDict(extra="ignore")
     label: str = Field(description="Display label rendered for the activity step.")
     kind: str = Field(
-        default="action", description="Semantic step type, such as action or decision."
+        default="action",
+        description="Semantic step type: action (default), decision (branches) or merge (joins branches back into one flow; drawn as a diamond like decision).",
+    )
+    partition: str | None = Field(
+        default=None,
+        description="Optional swimlane (UML activity partition) the step belongs to, such as Dev, Approver or AWS; renderers draw one lane per partition.",
+    )
+    notes: str | None = Field(
+        default=None,
+        description="Optional UML note attached to the step, drawn as a note with a folded corner joined to it.",
     )
     next: str | None = Field(
         default=None, description="Identifier of the next step in the default path."

@@ -134,12 +134,31 @@ class MermaidRenderer:
 
     def _activity(self, ir: ActivityIR) -> str:
         lines = ["flowchart TD", "    __start([Start])"]
-        step_map = {s.id: s for s in ir.steps}
-        for step in ir.steps:
-            if step.kind == "decision":
-                lines.append(f"    {step.id}{{\"{_esc_label(step.label)}\"}}")
+
+        def node_lines(step, indent: str) -> list[str]:
+            # decision y merge son rombos; una nota es un nodo aparte unido por una linea punteada
+            if step.kind in ("decision", "merge"):
+                # mermaid no acepta un rombo con rotulo vacio (el merge UML no lleva rotulo)
+                out = [f"{indent}{step.id}{{\"{_esc_label(step.label) or ' '}\"}}"]
             else:
-                lines.append(f"    {step.id}[\"{_esc_label(step.label)}\"]")
+                out = [f"{indent}{step.id}[\"{_esc_label(step.label)}\"]"]
+            if step.notes:
+                out.append(f"{indent}{step.id}__note[\"{_esc_label(step.notes)}\"]:::note")
+            return out
+
+        # particiones (swimlanes): un subgraph por particion, en orden de aparicion
+        lanes: dict[str, list] = {}
+        for step in ir.steps:
+            if step.partition:
+                lanes.setdefault(step.partition, []).append(step)
+        for step in ir.steps:
+            if not step.partition:
+                lines.extend(node_lines(step, "    "))
+        for index, (lane, steps) in enumerate(lanes.items()):
+            lines.append(f'    subgraph __lane{index} ["{_esc_label(lane)}"]')
+            for step in steps:
+                lines.extend(node_lines(step, "        "))
+            lines.append("    end")
         lines.append(f"    __end([End])")
         lines.append(f"    __start --> {ir.start}")
         for step in ir.steps:
@@ -150,6 +169,11 @@ class MermaidRenderer:
             elif step.next:
                 dest = "__end" if step.next == ir.end else step.next
                 lines.append(f"    {step.id} --> {dest}")
+        for step in ir.steps:
+            if step.notes:
+                lines.append(f"    {step.id} -.- {step.id}__note")
+        if any(step.notes for step in ir.steps):
+            lines.append("    classDef note fill:#fff8c5,stroke:#9a6700,color:#1f2328")
         return "\n".join(lines)
 
     def _deployment(self, ir: DeploymentIR) -> str:

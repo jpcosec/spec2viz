@@ -1,6 +1,8 @@
 # Notacion builtin de spec2viz: diagrama de actividad sobre un spec `type: activity`.
 # `diagram sync` marca el paso inicial con `data.initial` y el final con `data.final`; `next`
-# es el flujo por defecto y `branch` una rama con su etiqueta en `notes`.
+# es el flujo por defecto y `branch` una rama con su etiqueta en `notes`. `merge` es un rombo sin
+# rotulo; la particion (`data.partition`) y la nota UML (`data.notes`) de cada paso viajan en el
+# SpecNodeDoc y la superficie las dibuja como carriles y como nota unida al paso.
 name: activity
 title: Activity diagram
 diagram_type: activity
@@ -30,6 +32,13 @@ glyphs:
     shape: diamond
     label: "{title}"
     function: decision
+  - id: merge
+    title: Merge
+    model: SpecNodeDoc
+    where: kind = "merge"
+    shape: diamond
+    label: ""
+    function: merge
   - id: action
     title: Action
     model: SpecNodeDoc

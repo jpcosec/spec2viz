@@ -1,5 +1,5 @@
 from __future__ import annotations
-from spec2viz.exceptions import ValidationError
+from spec2viz.exceptions import EndpointKindError, StructureError, UnknownReferenceError, ValidationError
 from spec2viz.models.base import BaseDiagram
 from spec2viz.models.sequence   import SequenceDiagram
 from spec2viz.models.state      import StateDiagram
@@ -104,13 +104,17 @@ def _validate_state(d: StateDiagram) -> None:
 def _validate_activity(d: ActivityDiagram) -> None:
     valid = set(d.data.steps) | {d.data.end}
     if d.data.start not in d.data.steps:
-        raise ValidationError(f"Start step '{d.data.start}' not found in {d.id}")
+        raise UnknownReferenceError(f"Start step '{d.data.start}' not found in {d.id}")
     for sid, step in d.data.steps.items():
         if step.next and step.next not in valid:
-            raise ValidationError(f"Step '{sid}' next '{step.next}' unknown in {d.id}")
+            raise UnknownReferenceError(f"Step '{sid}' next '{step.next}' unknown in {d.id}")
         for branch, target in step.branches.items():
             if target not in valid:
-                raise ValidationError(f"Step '{sid}' branch '{branch}' target '{target}' unknown in {d.id}")
+                raise UnknownReferenceError(f"Step '{sid}' branch '{branch}' target '{target}' unknown in {d.id}")
+        if step.kind == "merge" and step.branches:
+            raise StructureError(f"Step '{sid}' is a merge: it joins flows into one `next` and takes no branches in {d.id}")
+        if step.partition is not None and not step.partition.strip():
+            raise StructureError(f"Step '{sid}' has an empty partition in {d.id}")
 
 
 def _validate_deployment(d: DeploymentDiagram) -> None:

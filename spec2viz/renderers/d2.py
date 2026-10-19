@@ -43,22 +43,35 @@ class D2Renderer:
 
     def _activity(self, ir: ActivityIR) -> str:
         lines = ["direction: down", "__start: Start"]
+        # con particiones, cada carril es un contenedor y los pasos se nombran `carril.paso`
+        lanes = list(dict.fromkeys(s.partition for s in ir.steps if s.partition))
+        lane_key = {lane: f"__lane{i}" for i, lane in enumerate(lanes)}
+        path = {s.id: f"{lane_key[s.partition]}.{s.id}" if s.partition else s.id for s in ir.steps}
+        for lane in lanes:
+            lines.append(f'{lane_key[lane]}: "{lane}"')
         for step in ir.steps:
-            if step.kind == "decision":
-                lines.append(f"{step.id}: \"{step.label}\"")
-                lines.append(f"{step.id}.shape: diamond")
+            ref = path[step.id]
+            if step.kind in ("decision", "merge"):
+                lines.append(f"{ref}: \"{step.label}\"")
+                lines.append(f"{ref}.shape: diamond")
             else:
-                lines.append(f"{step.id}: \"{step.label}\"")
+                lines.append(f"{ref}: \"{step.label}\"")
+            if step.notes:
+                lines.append(f'{ref}__note: "{step.notes}"')
+                lines.append(f"{ref}__note.shape: page")
         lines.append(f"__end: End")
-        lines.append(f"__start -> {ir.start}")
+        lines.append(f"__start -> {path.get(ir.start, ir.start)}")
         for step in ir.steps:
+            ref = path[step.id]
             if step.kind == "decision":
                 for branch, target in step.branches.items():
-                    dest = "__end" if target == ir.end else target
-                    lines.append(f"{step.id} -> {dest}: \"{branch}\"")
+                    dest = "__end" if target == ir.end else path.get(target, target)
+                    lines.append(f"{ref} -> {dest}: \"{branch}\"")
             elif step.next:
-                dest = "__end" if step.next == ir.end else step.next
-                lines.append(f"{step.id} -> {dest}")
+                dest = "__end" if step.next == ir.end else path.get(step.next, step.next)
+                lines.append(f"{ref} -> {dest}")
+            if step.notes:
+                lines.append(f"{ref} -- {ref}__note: {{style.stroke-dash: 3}}")
         return "\n".join(lines)
 
     def _deployment(self, ir: DeploymentIR) -> str:

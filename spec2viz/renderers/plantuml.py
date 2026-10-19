@@ -163,29 +163,45 @@ class PlantUMLRenderer:
         return lines
 
     def _activity(self, ir: ActivityIR) -> str:
-        lines = ["@startuml", "start"]
+        lines = ["@startuml"]
         step_map = {s.id: s for s in ir.steps}
-        self._emit_steps(lines, step_map, ir.start, ir.end, set())
+        # con particiones, PlantUML necesita el primer carril antes de `start`
+        first = step_map.get(ir.start)
+        lane = [first.partition if first is not None and any(s.partition for s in ir.steps) else None]
+        if lane[0]:
+            lines.append(f"|{lane[0]}|")
+        lines.append("start")
+        self._emit_steps(lines, step_map, ir.start, ir.end, set(), lane)
         lines.extend(["stop", "@enduml"])
         return "\n".join(lines)
 
-    def _emit_steps(self, lines, step_map, current, end, visited):
+    def _emit_steps(self, lines, step_map, current, end, visited, lane=None):
+        lane = lane if lane is not None else [None]
         while current and current != end and current not in visited:
             visited.add(current)
             step = step_map.get(current)
             if step is None:
                 break
+            if step.partition and step.partition != lane[0]:
+                lines.append(f"|{step.partition}|")
+                lane[0] = step.partition
+            if step.kind == "merge":
+                # el `endif` de PlantUML ya une las ramas: el merge no dibuja nada propio
+                current = step.next
+                continue
             if step.kind == "decision":
                 lines.append(f"if ({step.label}?) then (yes)")
                 yes = step.branches.get("yes")
-                self._emit_steps(lines, step_map, yes, end, set(visited))
+                self._emit_steps(lines, step_map, yes, end, set(visited), lane)
                 lines.append("else (no)")
                 no = step.branches.get("no")
-                self._emit_steps(lines, step_map, no, end, set(visited))
+                self._emit_steps(lines, step_map, no, end, set(visited), lane)
                 lines.append("endif")
                 return
             else:
                 lines.append(f":{step.label};")
+                if step.notes:
+                    lines.append(f"note right: {step.notes}")
                 current = step.next
 
     def _deployment(self, ir: DeploymentIR) -> str:

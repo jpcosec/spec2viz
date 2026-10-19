@@ -156,6 +156,8 @@ include:
     name: activity.end
   - path: sldb/notations/activity/glyphs/start.md
     name: activity.start
+  - path: sldb/notations/activity/glyphs/merge.md
+    name: activity.merge
 - model: GlyphDoc
   paths:
   - path: sldb/notations/component-view-matrix/glyphs/boundary.md

@@ -1756,9 +1756,35 @@
         },
         "kind": {
           "default": "action",
-          "description": "Semantic step type, such as action or decision.",
+          "description": "Semantic step type: action (default), decision (branches) or merge (joins branches back into one flow; drawn as a diamond like decision).",
           "title": "Kind",
           "type": "string"
+        },
+        "partition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional swimlane (UML activity partition) the step belongs to, such as Dev, Approver or AWS; renderers draw one lane per partition.",
+          "title": "Partition"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional UML note attached to the step, drawn as a note with a folded corner joined to it.",
+          "title": "Notes"
         },
         "next": {
           "anyOf": [

@@ -188,6 +188,8 @@ class ActivityStep:
     kind: str = "action"
     next: str | None = None
     branches: dict[str, str] = field(default_factory=dict)
+    partition: str | None = None
+    notes: str | None = None
 
 
 @dataclass

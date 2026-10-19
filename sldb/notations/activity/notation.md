@@ -12,6 +12,7 @@ glyphs:
 - GlyphDoc:activity.start
 - GlyphDoc:activity.end
 - GlyphDoc:activity.decision
+- GlyphDoc:activity.merge
 - GlyphDoc:activity.action
 links:
 - LinkDoc:activity.next
