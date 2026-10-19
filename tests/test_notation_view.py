@@ -11,6 +11,22 @@ from spec2viz.notation_view import ViewError, flatten, fragments_of, lookup, ren
 
 sldb_api = pytest.importorskip("sldb.api")
 
+
+def _in_project(tmp_path: Path, rel: str) -> Path:
+    """Copia de un spec del repo (o de vistas.yml con todos los specs que lista) dentro del proyecto
+    temporal, con la misma ruta relativa: la sincronizacion escribe los nodos junto al spec, y deben
+    quedar bajo la raiz del store, no en el repo."""
+    import shutil
+
+    source = REPO / rel
+    if source.name == "vistas.yml":
+        shutil.copytree(source.parent, tmp_path / rel.rsplit("/", 1)[0], dirs_exist_ok=True,
+                        ignore=shutil.ignore_patterns("sldb", "*.md", "*.html", "*.svg", "*.puml", "*.mmd"))
+    else:
+        (tmp_path / rel).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, tmp_path / rel)
+    return tmp_path / rel
+
 CLASSES = {
     "id": "shapes", "title": "Shapes", "type": "class", "version": "1",
     "data": {
@@ -110,7 +126,7 @@ def test_repo_pilot_with_a_composite_state_resolves_nest_and_a_crossing_transiti
     from spec2viz.sldb_sync import SpecSync
 
     sldb_api.init_store(tmp_path)
-    SpecSync(tmp_path / ".sldb").sync(Path(__file__).parent.parent / "docs" / "architecture" / "spec2viz" / "state-diagram-sync-lifecycle.yml")
+    SpecSync(tmp_path / ".sldb").sync(_in_project(tmp_path, "docs/architecture/spec2viz/state-diagram-sync-lifecycle.yml"))
     view = resolve_view(tmp_path / ".sldb", "state.diagram-sync-lifecycle")
     nests = sorted((l["source"].split(".")[-1], l["target"].split(".")[-1]) for l in view["links"] if l["draw"] == "nest")
     assert nests == [("syncing", "indexing"), ("syncing", "validating"), ("syncing", "writing")]
@@ -141,7 +157,7 @@ def test_repo_sequence_pilot_has_loop_and_alt_fragments(tmp_path):
     from spec2viz.sldb_sync import SpecSync
 
     sldb_api.init_store(tmp_path)
-    SpecSync(tmp_path / ".sldb").sync(REPO / "docs" / "architecture" / "spec2viz" / "sequence-sync-pipeline.yml")
+    SpecSync(tmp_path / ".sldb").sync(_in_project(tmp_path, "docs/architecture/spec2viz/sequence-sync-pipeline.yml"))
     view = resolve_view(tmp_path / ".sldb", "sequence.sync-pipeline")
     kinds = [(f["kind"], f["label"]) for f in view["fragments"]]
     assert kinds == [("loop", "for each spec"), ("alt", "the diagram type has a notation"), ("loop", "for each spec")]
@@ -185,7 +201,7 @@ def test_every_catalog_spec_resolves_under_its_builtin_notation(tmp_path):
 
     sldb_api.init_store(tmp_path)
     store = tmp_path / ".sldb"
-    reports = sync_catalog(SpecSync(store), REPO / "docs" / "architecture" / "vistas.yml")
+    reports = sync_catalog(SpecSync(store), _in_project(tmp_path, "docs/architecture/vistas.yml"))
     assert len(reports) >= 9 and all(r.edge_errors == [] for r in reports)
     seen_types = set()
     for report in reports:
@@ -235,8 +251,8 @@ def test_activity_and_matrix_views(tmp_path):
     sldb_api.init_store(tmp_path)
     store = tmp_path / ".sldb"
     sync = SpecSync(store)
-    sync.sync(REPO / "docs" / "architecture" / "spec2viz" / "activity-render-error-handling.yml")
-    sync.sync(REPO / "tests" / "fixtures" / "matrix.quotation-view.yml")
+    sync.sync(_in_project(tmp_path, "docs/architecture/spec2viz/activity-render-error-handling.yml"))
+    sync.sync(_in_project(tmp_path, "tests/fixtures/matrix.quotation-view.yml"))
 
     act = resolve_view(store, "activity.render-error-handling")
     glyphs = {n["element"]: n["glyph"].split(".")[-1] for n in act["nodes"]}
