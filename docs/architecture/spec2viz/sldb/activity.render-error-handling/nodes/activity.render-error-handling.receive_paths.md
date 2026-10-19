@@ -9,7 +9,6 @@ atom_refs: []
 contains: []
 data:
   next: iterate_path
-  initial: true
 ---
 
 # Receive SPEC paths from CLI args

@@ -162,8 +162,11 @@ def test_other_diagram_types_extract_their_own_edges():
     activity = {"type": "activity", "data": {"start": "a", "end": "z", "steps": {
         "a": {"label": "A", "next": "d"}, "d": {"label": "D?", "kind": "decision", "branches": {"yes": "z", "no": "a"}}, "z": {"label": "Z"}}}}
     els = {e["id"]: e for e in spec_elements(activity)}
-    assert els["a"]["data"] == {"initial": True, "next": "d"} and els["z"]["data"] == {"final": True} and els["d"]["collection"] == "steps" and "branches" in els["d"]["data"]
-    assert [(e["from"], e["to"], e["relation"], e["label"]) for e in spec_edges(activity)] == [("a", "d", "next", ""), ("d", "z", "branch", "yes"), ("d", "a", "branch", "no")]
+    # los pasos de start y end conservan su forma; los pseudonodos inicial y final son propios
+    assert els["a"]["data"] == {"next": "d"} and els["z"]["data"] == {} and els["d"]["collection"] == "steps" and "branches" in els["d"]["data"]
+    assert els["__initial"]["data"] == {"initial": True} and els["__final"]["data"] == {"final": True}
+    assert [(e["from"], e["to"], e["relation"], e["label"]) for e in spec_edges(activity)] == [
+        ("__initial", "a", "next", ""), ("a", "d", "next", ""), ("d", "z", "branch", "yes"), ("d", "a", "branch", "no"), ("z", "__final", "next", "")]
 
     sequence = {"type": "sequence", "data": {"participants": [{"id": "u", "kind": "actor"}, {"id": "s"}], "messages": [
         {"from": "u", "to": "s", "message": "hi"}, {"from": "s", "to": "u", "message": "ok", "kind": "return", "condition": "if alive"}, {"from": "u", "to": "s", "message": "bye", "kind": "async"}]}}
@@ -233,14 +236,25 @@ def test_activity_terminal_end_that_is_not_a_step_is_materialized():
         "a": {"label": "A", "next": "b"}, "b": {"label": "B", "next": "end"}}}}
     elements = {e["id"]: e for e in spec_elements(spec)}
     assert elements["end"]["kind"] == "end" and elements["end"]["data"]["final"] is True and elements["end"]["collection"] == "steps"
-    assert elements["a"]["data"]["initial"] is True and "start" not in elements
-    assert {e["to"] for e in spec_edges(spec)} <= set(elements)
+    assert "initial" not in elements["a"]["data"] and elements["__initial"]["data"]["initial"] is True and "__final" not in elements
+    assert {e["to"] for e in spec_edges(spec)} <= set(elements) and {e["from"] for e in spec_edges(spec)} <= set(elements)
+
+
+def test_activity_start_on_a_decision_keeps_its_diamond():
+    """El paso de `start` no se vuelve el nodo inicial: el inicial es propio y fluye a el."""
+    spec = {"id": "activity.t", "type": "activity", "data": {"start": "d", "end": "end", "steps": {
+        "d": {"label": "Go?", "kind": "decision", "branches": {"yes": "end", "no": "d"}}}}}
+    elements = {e["id"]: e for e in spec_elements(spec)}
+    assert elements["d"]["kind"] == "decision" and "initial" not in elements["d"]["data"]
+    assert ("__initial", "d", "next") in [(e["from"], e["to"], e["relation"]) for e in spec_edges(spec)]
 
 
 def test_activity_end_that_is_a_step_is_not_duplicated():
     spec = {"id": "activity.t", "type": "activity", "data": {"start": "a", "end": "done", "steps": {"a": {"next": "done"}, "done": {"label": "Done"}}}}
-    ids = [e["id"] for e in spec_elements(spec)]
-    assert ids.count("done") == 1
+    elements = spec_elements(spec)
+    ids = [e["id"] for e in elements]
+    assert ids.count("done") == 1 and "__final" in ids
+    assert next(e for e in elements if e["id"] == "done")["data"] == {}
 
 
 def test_deployment_protocol_is_an_attribute_not_a_relation_type():

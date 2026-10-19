@@ -7,8 +7,7 @@ collection: steps
 refs: []
 atom_refs: []
 contains: []
-data:
-  final: true
+data: {}
 ---
 
 # Exit

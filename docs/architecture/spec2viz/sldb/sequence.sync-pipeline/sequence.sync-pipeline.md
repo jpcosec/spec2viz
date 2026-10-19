@@ -2,7 +2,7 @@
 id: sequence.sync-pipeline
 diagram_type: sequence
 version: '0.1'
-spec_path: /home/jp/proyectos/SLDB_1/spec2viz/docs/architecture/spec2viz/sequence-sync-pipeline.yml
+spec_path: docs/architecture/spec2viz/sequence-sync-pipeline.yml
 sha256: 2b8cb82c31c1c66d7068413e368fda143efe4b000fad92d3cdbee42cfd985dc0
 notation: NotationDoc:uml-sequence
 category: Pipelines de Ejecución

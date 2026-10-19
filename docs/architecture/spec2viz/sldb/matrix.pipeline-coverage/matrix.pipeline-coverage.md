@@ -2,7 +2,7 @@
 id: matrix.pipeline-coverage
 diagram_type: component_view_matrix
 version: '0.1'
-spec_path: /home/jp/proyectos/SLDB_1/spec2viz/docs/architecture/spec2viz/matrix-pipeline-coverage.yml
+spec_path: docs/architecture/spec2viz/matrix-pipeline-coverage.yml
 sha256: 567459cbdb716573e763dfc941437ec2d708cef4cf4657a644a36aa70155815b
 notation: NotationDoc:component-view-matrix
 category: Arquitectura de Módulos

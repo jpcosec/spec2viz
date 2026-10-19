@@ -2,6 +2,12 @@
 
 ## Unreleased - 2026-10-17
 
+- Activity sync: the step named in `start:` no longer becomes the initial node. Every activity gets its own
+  initial pseudonode (`__initial`, drawn with the `start` glyph) that flows by `next` to the start step, which
+  keeps its own glyph (an action box, or a decision diamond). Likewise, when `end:` names a real step, that
+  step keeps its glyph and flows to a final pseudonode (`__final`); `end: end` stays the final node itself.
+  `resolve_view` honours an explicit `label: ""` on a glyph (initial, final, merge) instead of falling back
+  to `{title}`, so those glyphs no longer show a stray "start"/"end" label
 - Deployment specs: nodes nest (a node `contains` nodes and artifacts at any depth, one parent per node,
   no cycles, unique ids across nodes and artifacts); a connection takes `kind: communication` (default;
   node -> node, or artifact -> artifact as before), `deploy` («deploy», artifact -> node) or `manifest`

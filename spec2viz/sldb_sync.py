@@ -177,11 +177,6 @@ def spec_elements(spec: dict) -> list[dict]:
     flags: dict[str, dict[str, Any]] = {}
     if diagram_type == "state" and data.get("initial"):
         flags[str(data["initial"])] = {"initial": True}
-    if diagram_type == "activity":
-        if data.get("start"):
-            flags[str(data["start"])] = {"initial": True}
-        if data.get("end"):
-            flags.setdefault(str(data["end"]), {})["final"] = True
     out: list[dict] = []
     for collection in _ELEMENT_COLLECTIONS_SYNC.get(diagram_type, ()):
         raw = data.get(collection) or {}
@@ -190,14 +185,30 @@ def spec_elements(spec: dict) -> list[dict]:
             if eid:
                 out.append(_element(eid, el, collection, flags.get(str(eid))))
     if diagram_type == "activity":
-        # `start`/`end` pueden nombrar un nodo terminal que no es un paso (`end: end`, como en los
-        # renderers): se materializa para que las aristas `next: end` tengan destino
-        present = {e["id"] for e in out}
-        for field, kind in (("start", "start"), ("end", "end")):
-            terminal = data.get(field)
-            if terminal and str(terminal) not in present:
-                out.append(_element(terminal, {"label": "", "kind": kind}, "steps", flags.get(str(terminal))))
+        out.extend(_activity_pseudonodes(data, {e["id"] for e in out}))
     return out
+
+
+# pseudonodos UML de una actividad: el inicial siempre es propio y fluye al paso de `start`, que
+# conserva su glifo (accion o decision); el final es el propio `end` cuando no es un paso
+# (`end: end`) y, si `end` nombra un paso, un final aparte al que ese paso fluye
+ACTIVITY_INITIAL = "__initial"
+ACTIVITY_FINAL = "__final"
+
+
+def _activity_pseudonodes(data: dict, steps: set[str]) -> list[dict]:
+    out: list[dict] = []
+    if data.get("start"):
+        out.append(_pseudonode(ACTIVITY_INITIAL, "start", {"initial": True}))
+    end = str(data.get("end") or "")
+    if end:
+        out.append(_pseudonode(ACTIVITY_FINAL if end in steps else end, "end", {"final": True}))
+    return out
+
+
+def _pseudonode(eid: str, kind: str, flags: dict[str, Any]) -> dict:
+    # el titulo es `start`/`end` (SpecNodeDoc lo exige); los glifos start y end no lo muestran
+    return _element(eid, {"kind": kind, "label": kind}, "steps", flags)
 
 
 def _edge_label(raw: dict) -> str:
@@ -224,8 +235,14 @@ def _edge_attributes(diagram_type: str, raw: dict) -> dict[str, Any]:
 
 
 def _activity_edges(data: dict) -> list[dict]:
-    """`next` -> relacion `next`; cada rama de `branches` -> relacion `branch` con su etiqueta."""
+    """`next` -> relacion `next`; cada rama de `branches` -> relacion `branch` con su etiqueta.
+
+    Mas las aristas de los pseudonodos: el inicial al paso de `start` y, cuando `end` es un paso,
+    ese paso al final."""
     out: list[dict] = []
+    steps = data.get("steps") or {}
+    if data.get("start"):
+        out.append({"from": ACTIVITY_INITIAL, "to": str(data["start"]), "relation": "next", "label": "", "condition": "", "attributes": {}})
     for sid, step in (data.get("steps") or {}).items():
         if not isinstance(step, dict):
             continue
@@ -233,6 +250,9 @@ def _activity_edges(data: dict) -> list[dict]:
             out.append({"from": str(sid), "to": str(step["next"]), "relation": "next", "label": "", "condition": "", "attributes": {}})
         for label, target in (step.get("branches") or {}).items():
             out.append({"from": str(sid), "to": str(target), "relation": "branch", "label": str(label), "condition": "", "attributes": {"branch": str(label)}})
+    end = str(data.get("end") or "")
+    if end and end in steps:
+        out.append({"from": end, "to": ACTIVITY_FINAL, "relation": "next", "label": "", "condition": "", "attributes": {}})
     return out
 
 

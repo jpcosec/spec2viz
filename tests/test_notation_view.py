@@ -256,7 +256,10 @@ def test_activity_and_matrix_views(tmp_path):
 
     act = resolve_view(store, "activity.render-error-handling")
     glyphs = {n["element"]: n["glyph"].split(".")[-1] for n in act["nodes"]}
-    assert glyphs["receive_paths"] == "start" and glyphs["iterate_path"] == "decision" and glyphs["try_render"] == "action" and "end" in glyphs.values()
+    assert glyphs["__initial"] == "start" and glyphs["receive_paths"] == "action" and glyphs["iterate_path"] == "decision"
+    assert glyphs["try_render"] == "action" and glyphs["__final"] == "end" and glyphs["done"] == "action"
+    start = next(n for n in act["nodes"] if n["element"] == "__initial")
+    assert start["label"] == ""  # label: "" explicito en el glifo: sin rotulo
     branch = next(l for l in act["links"] if l["relation"] == "branch" and l["source"].endswith(".iterate_path") and l["target"].endswith(".try_render"))
     assert branch["label"] == "[has_next]" and act["skipped"] == []
 

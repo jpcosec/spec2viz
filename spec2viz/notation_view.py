@@ -108,7 +108,8 @@ def _node_view(ref: str, payload: dict[str, Any], glyphs: list[dict], markers: l
         "glyph": glyph["ref"],
         "shape": gp.get("shape", ""),
         "function": gp.get("function", ""),
-        "label": render_template(gp.get("label") or "{title}", payload),
+        # un `label: ""` explicito es un glifo sin rotulo (inicial, final, merge); solo la ausencia cae a {title}
+        "label": render_template("{title}" if gp.get("label") is None else gp["label"], payload),
         "label_style": gp.get("label_style", ""),
         "keyword": gp.get("keyword", ""),
         "compartments": compartments,
