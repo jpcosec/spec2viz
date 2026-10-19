@@ -2,6 +2,9 @@
 
 ## Unreleased - 2026-10-17
 
+- The store is derived and out of git (sldb `derived-store-boundary.md`): `.sldb/store.yaml` declares it,
+  `.sldb/core/` is ignored and rebuilt with `sldb stores build`; CI's `store` job checks out deskops as a
+  sibling and runs `sldb stores build --check`
 - `ViewDoc` (`spec2viz.sldb_models`): the portable projection-grammar view (nodes as `{model, where}`,
   relations, direction, optional notation and layout override), registered in the store with the other
   spec2viz models; graph_ui evaluates and writes it; `layout.style` (`layered`, `rings`) and `ring_field`

@@ -25,3 +25,32 @@ jobs:
       # mmdc (mermaid-cli) is optional: the mermaid lint tests that need it skip when it is absent.
       - name: Run the test suite
         run: python -m pytest tests/ -q
+
+  store:
+    # The store is derived (sldb docs/architecture/derived-store-boundary.md): .sldb/store.yaml
+    # declares it and .sldb/core/ is rebuilt from the tracked sources. spec2viz links deskops'
+    # store at ../deskops/.sldb, so deskops is checked out as a sibling and its store built first.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: spec2viz
+      - uses: actions/checkout@v4
+        with:
+          repository: jpcosec/opsys
+          path: deskops
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install sldb from main, deskops and spec2viz
+        # stores build is not on PyPI yet
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "git+https://github.com/jpcosec/sldb.git@main"
+          python -m pip install -e ./deskops -e ./spec2viz
+      - name: Build deskops' store
+        working-directory: deskops
+        run: sldb stores build --store .sldb
+      - name: Check spec2viz's store rebuilds from its sources
+        working-directory: spec2viz
+        run: sldb stores build --check --store .sldb

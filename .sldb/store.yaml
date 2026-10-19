@@ -1,0 +1,495 @@
+version: 1
+links:
+- name: deskops
+  path: ../deskops/.sldb
+models:
+- name: BoardDoc
+  model_ref: deskops.models:BoardDoc
+  origin: deskops
+- name: TaskDoc
+  model_ref: deskops.models:TaskDoc
+  origin: deskops
+- name: PillDoc
+  model_ref: deskops.models:PillDoc
+  origin: deskops
+- name: RitualDoc
+  model_ref: deskops.models:RitualDoc
+  origin: deskops
+- name: InboxNoteDoc
+  model_ref: deskops.models:InboxNoteDoc
+  origin: deskops
+- name: RepositoryDoc
+  model_ref: deskops.models:RepositoryDoc
+  origin: deskops
+- name: StepDoc
+  model_ref: deskops.models:StepDoc
+  origin: deskops
+- name: AtomDoc
+  model_ref: deskops.models:AtomDoc
+  origin: deskops
+- name: RoleDoc
+  model_ref: deskops.models:RoleDoc
+  origin: deskops
+- name: ProtoAtomDoc
+  model_ref: deskops.models:ProtoAtomDoc
+  origin: deskops
+- name: CrossroadDoc
+  model_ref: deskops.models:CrossroadDoc
+  origin: deskops
+- name: RelationTypeDoc
+  model_ref: sldb.models.relation_type_doc:RelationTypeDoc
+- name: RelationDoc
+  model_ref: sldb.models.relation_doc:RelationDoc
+- name: SpecDoc
+  model_ref: spec2viz.sldb_models:SpecDoc
+  path: spec2viz/sldb_models.py
+- name: SpecNodeDoc
+  model_ref: spec2viz.sldb_models:SpecNodeDoc
+  path: spec2viz/sldb_models.py
+- name: NotationDoc
+  model_ref: spec2viz.sldb_models:NotationDoc
+  path: spec2viz/sldb_models.py
+- name: GlyphDoc
+  model_ref: spec2viz.sldb_models:GlyphDoc
+  path: spec2viz/sldb_models.py
+- name: LinkDoc
+  model_ref: spec2viz.sldb_models:LinkDoc
+  path: spec2viz/sldb_models.py
+- name: MaterializationContractDoc
+  model_ref: deskops.models:MaterializationContractDoc
+  origin: deskops
+- name: RunDoc
+  model_ref: deskops.models:RunDoc
+  origin: deskops
+- name: RuntimeProfileDoc
+  model_ref: deskops.models:RuntimeProfileDoc
+  origin: deskops
+- name: DeskFAQDoc
+  model_ref: deskops.models:DeskFAQDoc
+  origin: deskops
+predicates:
+  applies_to_source:
+    axis: WHAT
+    description: 'Instances of this model may be the source of edges of this relation type: the verbs
+      a class can be subject of.'
+  applies_to_target:
+    axis: WHAT
+    description: Instances of this model may be the target of edges of this relation type.
+  composes:
+    axis: WHAT
+    description: A composed field of the source (`__compositions__`) renders this document's payload into
+      the source's text; the edge carries the composed field, the field holding the refs and the ref as
+      authored.
+  contains:
+    axis: WHERE
+    description: A field the model declared in `__containment__` holds this document as a child; the edge
+      carries the field name and the models the declaration allows.
+  defines:
+    axis: WHAT
+    description: Defines the target concept.
+  explains_failure_of:
+    axis: WHY
+    description: Explains why the target fails.
+  extends:
+    axis: WHAT
+    description: The model inherits from that model (base_models); instances of the source are instances
+      of the target.
+  grounded_by:
+    axis: PROVENANCE
+    description: Identifies supporting provenance.
+  has_document:
+    axis: WHAT
+    description: The model has this document as an instance.
+  has_field:
+    axis: WHAT
+    description: The model declares this field; the field node carries its type and description.
+  has_model:
+    axis: WHAT
+    description: The store registers this model.
+  has_section:
+    axis: WHERE
+    description: The document contains this section.
+  implements:
+    axis: HOW
+    description: Identifies what the source implements.
+  is_solved_by:
+    axis: HOW
+    description: Identifies how the source is solved.
+  links_to:
+    axis: WHERE
+    description: 'The store links that store under an alias (`stores add`): it reads its documents and
+      inherits its models.'
+  mathematically_proves:
+    axis: WHY
+    description: Provides a mathematical proof.
+  names:
+    axis: WHAT
+    description: The anchor (an alias word) names this model, field, relation type or document.
+  references:
+    axis: WHAT
+    description: A field the model declared in `__references__` holds this document's id; the edge carries
+      the field name.
+  restricts:
+    axis: WHEN_WHERE
+    description: Restricts the target context.
+  semantic_equivalent:
+    axis: WHAT
+    description: This local tag maps to that global tag across linked stores.
+  semantic_parent:
+    axis: WHAT
+    description: This tag is a child of that tag in the semantic DAG.
+  tagged_as:
+    axis: WHAT
+    description: The model, document or section carries this semantic tag.
+generate: []
+derived: []
+include:
+- model: AtomDoc
+  glob: desk/atoms/*.md
+- model: GlyphDoc
+  paths:
+  - path: sldb/notations/activity/glyphs/action.md
+    name: activity.action
+  - path: sldb/notations/activity/glyphs/decision.md
+    name: activity.decision
+  - path: sldb/notations/activity/glyphs/end.md
+    name: activity.end
+  - path: sldb/notations/activity/glyphs/start.md
+    name: activity.start
+- model: GlyphDoc
+  paths:
+  - path: sldb/notations/component-view-matrix/glyphs/boundary.md
+    name: component-view-matrix.boundary
+  - path: sldb/notations/component-view-matrix/glyphs/component.md
+    name: component-view-matrix.component
+  - path: sldb/notations/component-view-matrix/glyphs/stage.md
+    name: component-view-matrix.stage
+- model: GlyphDoc
+  paths:
+  - path: sldb/notations/component/glyphs/boundary.md
+    name: component.boundary
+  - path: sldb/notations/component/glyphs/component.md
+    name: component.component
+  - path: sldb/notations/component/glyphs/entry.md
+    name: component.entry
+- model: GlyphDoc
+  paths:
+  - path: sldb/notations/deployment/glyphs/artifact.md
+    name: deployment.artifact
+  - path: sldb/notations/deployment/glyphs/node.md
+    name: deployment.node
+- model: GlyphDoc
+  paths:
+  - path: sldb/notations/reflection/glyphs/boundary.md
+    name: reflection.boundary
+  - path: sldb/notations/reflection/glyphs/node.md
+    name: reflection.node
+- model: GlyphDoc
+  paths:
+  - path: sldb/notations/statechart/glyphs/composite.md
+    name: statechart.composite
+  - path: sldb/notations/statechart/glyphs/state.md
+    name: statechart.state
+- model: GlyphDoc
+  paths:
+  - path: sldb/notations/uml-class/glyphs/abstract.md
+    name: uml-class.abstract
+  - path: sldb/notations/uml-class/glyphs/class.md
+    name: uml-class.class
+  - path: sldb/notations/uml-class/glyphs/enum.md
+    name: uml-class.enum
+  - path: sldb/notations/uml-class/glyphs/interface.md
+    name: uml-class.interface
+  - path: sldb/notations/uml-class/glyphs/protocol.md
+    name: uml-class.protocol
+  - path: sldb/notations/uml-class/glyphs/record.md
+    name: uml-class.record
+- model: GlyphDoc
+  paths:
+  - path: sldb/notations/uml-sequence/glyphs/actor.md
+    name: uml-sequence.actor
+  - path: sldb/notations/uml-sequence/glyphs/boundary.md
+    name: uml-sequence.boundary
+  - path: sldb/notations/uml-sequence/glyphs/participant.md
+    name: uml-sequence.participant
+- model: InboxNoteDoc
+  glob: desk/inbox/*.md
+- model: LinkDoc
+  paths:
+  - path: sldb/notations/activity/links/branch.md
+    name: activity.branch
+  - path: sldb/notations/activity/links/next.md
+    name: activity.next
+- model: LinkDoc
+  paths:
+  - path: sldb/notations/component-view-matrix/links/contains.md
+    name: component-view-matrix.contains
+  - path: sldb/notations/component-view-matrix/links/occupies.md
+    name: component-view-matrix.occupies
+- model: LinkDoc
+  paths:
+  - path: sldb/notations/component/links/contains.md
+    name: component.contains
+  - path: sldb/notations/component/links/relation.md
+    name: component.relation
+- model: LinkDoc
+  paths:
+  - path: sldb/notations/deployment/links/connection.md
+    name: deployment.connection
+  - path: sldb/notations/deployment/links/contains.md
+    name: deployment.contains
+- model: LinkDoc
+  paths:
+  - path: sldb/notations/reflection/links/relation.md
+    name: reflection.relation
+- model: LinkDoc
+  paths:
+  - path: sldb/notations/statechart/links/substate.md
+    name: statechart.substate
+  - path: sldb/notations/statechart/links/transition.md
+    name: statechart.transition
+- model: LinkDoc
+  paths:
+  - path: sldb/notations/uml-class/links/aggregation.md
+    name: uml-class.aggregation
+  - path: sldb/notations/uml-class/links/association.md
+    name: uml-class.association
+  - path: sldb/notations/uml-class/links/composition.md
+    name: uml-class.composition
+  - path: sldb/notations/uml-class/links/dependency.md
+    name: uml-class.dependency
+  - path: sldb/notations/uml-class/links/inheritance.md
+    name: uml-class.inheritance
+  - path: sldb/notations/uml-class/links/realization.md
+    name: uml-class.realization
+- model: LinkDoc
+  paths:
+  - path: sldb/notations/uml-sequence/links/async.md
+    name: uml-sequence.async
+  - path: sldb/notations/uml-sequence/links/return.md
+    name: uml-sequence.return
+  - path: sldb/notations/uml-sequence/links/sync.md
+    name: uml-sequence.sync
+- model: NotationDoc
+  paths:
+  - path: sldb/notations/activity/notation.md
+    name: activity
+- model: NotationDoc
+  paths:
+  - path: sldb/notations/component/notation.md
+    name: component
+- model: NotationDoc
+  paths:
+  - path: sldb/notations/component-view-matrix/notation.md
+    name: component-view-matrix
+- model: NotationDoc
+  paths:
+  - path: sldb/notations/deployment/notation.md
+    name: deployment
+- model: NotationDoc
+  paths:
+  - path: sldb/notations/reflection/notation.md
+    name: reflection
+- model: NotationDoc
+  paths:
+  - path: sldb/notations/statechart/notation.md
+    name: statechart
+- model: NotationDoc
+  paths:
+  - path: sldb/notations/uml-class/notation.md
+    name: uml-class
+- model: NotationDoc
+  paths:
+  - path: sldb/notations/uml-sequence/notation.md
+    name: uml-sequence
+- model: PillDoc
+  paths:
+  - desk/contexts/pill-adr-spec2viz-es-dueño-del-vocabulario-visual-graph-ui-de-la-vista-generica-y-los-gestos.md
+  - desk/contexts/pill-pattern-preserve-spec2viz-contracts-while-fixing-cli-behavior.md
+  - desk/contexts/pill-test-fixture-spec2viz-fixtures-and-golden-outputs.md
+- model: RelationDoc
+  paths:
+  - desk/lifecycle/closeout-task_completes.md
+  - desk/lifecycle/execution-task_activates.md
+  - desk/lifecycle/testing-task_hands_to_closeout.md
+- model: RelationDoc
+  glob: docs/architecture/spec2viz/sldb/activity.render-error-handling/edges/*.md
+- model: RelationDoc
+  glob: docs/architecture/spec2viz/sldb/class.sldb-models/edges/*.md
+- model: RelationDoc
+  glob: docs/architecture/spec2viz/sldb/component.exception-hierarchy/edges/*.md
+- model: RelationDoc
+  glob: docs/architecture/spec2viz/sldb/component.spec2viz-architecture/edges/*.md
+- model: RelationDoc
+  glob: docs/architecture/spec2viz/sldb/component.type-system/edges/*.md
+- model: RelationDoc
+  glob: docs/architecture/spec2viz/sldb/matrix.pipeline-coverage/edges/*.md
+- model: RelationDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.01-User__sends__CLI.md
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.02-CLI__sends__Deskops.md
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.03-Deskops__sends__VistasYML.md
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.04-Deskops__sends__Template.md
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.05-Deskops__sends__AtomParser.md
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.06-AtomParser__sends__AtomsDir.md
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.07-AtomParser__sends__AtomParser.md
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.08-AtomParser__returns__Deskops.md
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.09-Deskops__sends__Deskops.md
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.10-Deskops__sends__Deskops.md
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.11-Deskops__sends__Disk.md
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.12-Deskops__returns__CLI.md
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.13-CLI__returns__User.md
+- model: RelationDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.01-User__sends__CLI.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.02-CLI__sends__Facade.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.03-Facade__sends__Loader.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.04-Loader__sends__Loader.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.05-Loader__returns__Facade.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.06-Facade__sends__Validator.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.07-Validator__returns__Facade.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.08-Facade__sends__Compiler.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.09-Compiler__returns__Facade.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.10-Facade__sends__Renderer.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.11-Renderer__returns__Facade.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.12-Facade__sends__Disk.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.13-Facade__returns__CLI.md
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.14-CLI__returns__User.md
+- model: RelationDoc
+  glob: docs/architecture/spec2viz/sldb/sequence.sync-pipeline/edges/*.md
+- model: RelationDoc
+  glob: docs/architecture/spec2viz/sldb/state.diagram-sync-lifecycle/edges/*.md
+- model: RelationDoc
+  glob: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/edges/*.md
+- model: RelationTypeDoc
+  paths:
+  - desk/lifecycle/type-task_activates.md
+  - desk/lifecycle/type-task_completes.md
+  - desk/lifecycle/type-task_hands_to_closeout.md
+- model: RelationTypeDoc
+  paths:
+  - path: sldb/relation_types/aggregation.md
+    name: reltype-aggregation
+  - path: sldb/relation_types/applies_to_source.md
+    name: reltype-applies_to_source
+  - path: sldb/relation_types/applies_to_target.md
+    name: reltype-applies_to_target
+  - path: sldb/relation_types/association.md
+    name: reltype-association
+  - path: sldb/relation_types/branch.md
+    name: reltype-branch
+  - path: sldb/relation_types/composes.md
+    name: reltype-composes
+  - path: sldb/relation_types/composition.md
+    name: reltype-composition
+  - path: sldb/relation_types/contains.md
+    name: reltype-contains
+  - path: sldb/relation_types/dependency.md
+    name: reltype-dependency
+  - path: sldb/relation_types/extends.md
+    name: reltype-extends
+  - path: sldb/relation_types/has_document.md
+    name: reltype-has_document
+  - path: sldb/relation_types/has_field.md
+    name: reltype-has_field
+  - path: sldb/relation_types/has_model.md
+    name: reltype-has_model
+  - path: sldb/relation_types/has_section.md
+    name: reltype-has_section
+  - path: sldb/relation_types/inheritance.md
+    name: reltype-inheritance
+  - path: sldb/relation_types/inherits.md
+    name: reltype-inherits
+  - path: sldb/relation_types/links_to.md
+    name: reltype-links_to
+  - path: sldb/relation_types/names.md
+    name: reltype-names
+  - path: sldb/relation_types/next.md
+    name: reltype-next
+  - path: sldb/relation_types/occupies.md
+    name: reltype-occupies
+  - path: sldb/relation_types/reads.md
+    name: reltype-reads
+  - path: sldb/relation_types/realization.md
+    name: reltype-realization
+  - path: sldb/relation_types/references.md
+    name: reltype-references
+  - path: sldb/relation_types/returns.md
+    name: reltype-returns
+  - path: sldb/relation_types/semantic_equivalent.md
+    name: reltype-semantic_equivalent
+  - path: sldb/relation_types/semantic_parent.md
+    name: reltype-semantic_parent
+  - path: sldb/relation_types/sends.md
+    name: reltype-sends
+  - path: sldb/relation_types/sends_async.md
+    name: reltype-sends_async
+  - path: sldb/relation_types/tagged_as.md
+    name: reltype-tagged_as
+  - path: sldb/relation_types/transitions_to.md
+    name: reltype-transitions_to
+  - path: sldb/relation_types/uses.md
+    name: reltype-uses
+- model: RitualDoc
+  paths:
+  - path: desk/rituals/closeout.md
+    name: ritual-closeout
+  - path: desk/rituals/execution.md
+    name: ritual-execution
+  - path: desk/rituals/testing.md
+    name: ritual-testing
+- model: SpecDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/activity.render-error-handling/activity.render-error-handling.md
+- model: SpecDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/class.sldb-models/class.sldb-models.md
+- model: SpecDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/component.exception-hierarchy/component.exception-hierarchy.md
+- model: SpecDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/component.spec2viz-architecture/component.spec2viz-architecture.md
+- model: SpecDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/component.type-system/component.type-system.md
+- model: SpecDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/matrix.pipeline-coverage/matrix.pipeline-coverage.md
+- model: SpecDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/sequence.build-pipeline/sequence.build-pipeline.md
+- model: SpecDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/sequence.render-pipeline/sequence.render-pipeline.md
+- model: SpecDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/sequence.sync-pipeline/sequence.sync-pipeline.md
+- model: SpecDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/state.diagram-sync-lifecycle/state.diagram-sync-lifecycle.md
+- model: SpecDoc
+  paths:
+  - docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/state.diagram-type-lifecycle.md
+- model: SpecNodeDoc
+  glob: docs/architecture/spec2viz/sldb/activity.render-error-handling/nodes/*.md
+- model: SpecNodeDoc
+  glob: docs/architecture/spec2viz/sldb/class.sldb-models/nodes/*.md
+- model: SpecNodeDoc
+  glob: docs/architecture/spec2viz/sldb/component.exception-hierarchy/nodes/*.md
+- model: SpecNodeDoc
+  glob: docs/architecture/spec2viz/sldb/component.spec2viz-architecture/nodes/*.md
+- model: SpecNodeDoc
+  glob: docs/architecture/spec2viz/sldb/component.type-system/nodes/*.md
+- model: SpecNodeDoc
+  glob: docs/architecture/spec2viz/sldb/matrix.pipeline-coverage/nodes/*.md
+- model: SpecNodeDoc
+  glob: docs/architecture/spec2viz/sldb/sequence.build-pipeline/nodes/*.md
+- model: SpecNodeDoc
+  glob: docs/architecture/spec2viz/sldb/sequence.render-pipeline/nodes/*.md
+- model: SpecNodeDoc
+  glob: docs/architecture/spec2viz/sldb/sequence.sync-pipeline/nodes/*.md
+- model: SpecNodeDoc
+  glob: docs/architecture/spec2viz/sldb/state.diagram-sync-lifecycle/nodes/*.md
+- model: SpecNodeDoc
+  glob: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/nodes/*.md
