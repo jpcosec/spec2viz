@@ -5,7 +5,6 @@ id: board-001
 scope: desk
 # List of task-xxx paths
 tasks:
-- desk/tasks/task-activity-el-paso-de-start-no-puede-volverse-el-nodo-inicial.md
 - desk/tasks/task-diagram-sync-notation-borra-la-categoria-y-la-nav-del-catalogo-notation-por-vista-en-vistas-yml.md
 # List of pill-xxx paths
 pills:
@@ -38,5 +37,4 @@ Las tasks de 2026-05 (spike D2, goldens PlantUML, renderer antonIA) y las de 202
 
 _Generated from the task references above._
 
-- Activity: el paso de start no puede volverse el nodo inicial [draft] - diagram sync crea un nodo inicial propio que fluye por next al paso de start, como el nodo final; el paso de start conserva su glifo (accion o decision).
-- diagram sync --notation borra la categoria y la nav del catalogo; notation por vista en vistas.yml [draft] - diagram sync conserva category, nav y desc del catalogo cuando no se le pasan; vistas.yml acepta notation: <nombre|ruta> por vista (ruta relativa al vistas.yml, nombre contra las notaciones del store) y catalog sync lo respeta; notacion inexistente o de otro tipo da error tipado en catalog validate y catalog sync.
+- diagram sync --notation borra la categoria y la nav del catalogo; notation por vista en vistas.yml [ready_for_testing] - diagram sync conserva category, nav y desc del catalogo cuando no se le pasan; vistas.yml acepta notation: <nombre|ruta> por vista (ruta relativa al vistas.yml, nombre contra las notaciones del store) y catalog sync lo respeta; notacion inexistente o de otro tipo da error tipado en catalog validate y catalog sync.

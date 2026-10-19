@@ -505,5 +505,4 @@ include:
   glob: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/nodes/*.md
 - model: TaskDoc
   paths:
-  - desk/tasks/task-activity-el-paso-de-start-no-puede-volverse-el-nodo-inicial.md
   - desk/tasks/task-diagram-sync-notation-borra-la-categoria-y-la-nav-del-catalogo-notation-por-vista-en-vistas-yml.md
