@@ -221,6 +221,17 @@ fi
 # construye cada store desde su .sldb/store.yaml, en orden de dependencia (deskops no enlaza a nadie;
 # sldb enlaza deskops y pron; spec2viz y graph_ui enlazan deskops). pron no tiene store.yaml: su store
 # lo arma `make world`, que ademas regenera su README, asi que solo corre sobre clones (--from-origin).
+# `built:` cuenta solo lo que ese build cambio; la columna de la matriz que reusa los clones encuentra
+# el store ya construido y reporta 0. La nota lleva el total que da `stores check` y si hubo trabajo.
+store_note() {
+  local built total m t g
+  built=$(grep -m1 '^built:' "$1")
+  total=$(grep -m1 -o 'PASS: store integrity — [0-9]* documents in [0-9]* models' "$1" | sed 's/PASS: store integrity — \([0-9]*\) documents in \([0-9]*\) models/\1 documentos, \2 modelos/')
+  m=$(printf '%s' "$built" | sed -n 's/.*models: \([0-9]*\).*/\1/p'); t=$(printf '%s' "$built" | sed -n 's/.*tracked: \([0-9]*\).*/\1/p')
+  g=$(printf '%s' "$built" | sed -n 's/.*generated: \([0-9]*\).*/\1/p')
+  if [ "${m:-0}" = 0 ] && [ "${t:-0}" = 0 ]; then echo "sin cambios: ${total:-?} ya construidos${g:+$([ "$g" != 0 ] && echo "; generadores: $g")}"
+  else echo "${total:-?}; construido: $m modelos, $t trackeados${g:+$([ "$g" != 0 ] && echo ", generadores: $g")}"; fi
+}
 build_stores() {
   local repo name log
   for repo in deskops pron sldb spec2viz UIs/graph_ui; do
@@ -231,7 +242,7 @@ build_stores() {
     if [ -f "$ROOT/$repo/.sldb/store.yaml" ]; then
       say "store $name"
       if ( cd "$ROOT/$repo" && PATH="$(dirname "$VPY"):$PATH" sldb stores build --store .sldb && PATH="$(dirname "$VPY"):$PATH" sldb stores check --store .sldb ) > "$log" 2>&1
-      then record "store:$name" ok "$(grep -m1 '^built:' "$log" | cut -c1-90)"
+      then record "store:$name" ok "$(store_note "$log")"
       else record "store:$name" FAIL "$(last_line "$log")"; fi
     elif [ "$name" = pron ] && { [ "$FROM_ORIGIN" = 1 ] || [ "$REUSE_CLONES" = 1 ]; }; then
       say "store $name (make world)"
