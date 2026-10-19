@@ -24,14 +24,13 @@ tags:
 
 _Explain what this board routes and why it exists._
 
-
+Enruta el trabajo de spec2viz (specs de diagrama, notacion declarativa, sync al store sldb, catalogo) por los rituales execution, testing y closeout del ciclo de vida de deskops.
 
 ## Notes
 
 _Add short operational notes about the current routed set._
 
-- Add D2 renderer spike from existing IR [draft] - Prove that spec2viz can target D2 as an additional outward renderer without changing semantic models or compiler behavior.
-- Sync golden PlantUML files [draft] - Regenerate each stale golden .puml file by running the current render pipeline against the corresponding YAML fixture.
+Las tasks de 2026-05 (spike D2, goldens PlantUML, renderer antonIA) y las de 2026-10 (vocabulario visual, contrato con graph_ui, atributos de arista, empaquetado, trazabilidad, grafo Python) estan cerradas por closeout commit. No hay tasks abiertas. El catalogo vivo es graph_ui sobre el store sldb; el bundle HTML es el export estatico.
 
 ## Task Details
 
