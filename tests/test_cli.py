@@ -308,7 +308,7 @@ vistas:
     r = runner.invoke(main, ["build", "--config", str(config), "--out", str(out)])
     assert r.exit_code == 0
     assert out.exists()
-    assert "Rendered deskops architecture" in r.output
+    assert "Rendered catalog" in r.output
     html = out.read_text(encoding="utf-8")
     assert "catalog-search" in html
 
@@ -535,7 +535,7 @@ def test_build_command_reports_errors(tmp_path):
     out = tmp_path / "out.html"
     r = runner.invoke(main, ["build", "--config", str(config), "--out", str(out)])
     assert r.exit_code != 0
-    assert "Error building deskops" in r.output
+    assert "Error building catalog" in r.output
 
 
 
