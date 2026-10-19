@@ -193,7 +193,7 @@ def test_catalog_entries_read_vistas(tmp_path):
         {"id": "vb", "category": "Cat", "title": "B", "specs": []},
     ]}), encoding="utf-8")
     entries = catalog_entries(tmp_path / "vistas.yml")
-    assert entries == [{"spec": (tmp_path / "specs" / "a.yml").resolve(), "vista": "va", "catalog": {"category": "Cat", "nav": "A", "summary": "About a"}}]
+    assert entries == [{"spec": (tmp_path / "specs" / "a.yml").resolve(), "vista": "va", "notation": None, "catalog": {"category": "Cat", "nav": "A", "summary": "About a"}}]
 
 
 def test_spec_elements_keep_the_rest_of_the_element_in_data():

@@ -453,11 +453,17 @@ def catalog_sync(config: Path, store: Path | None, pythonpath: str | None, stric
     `category`, `nav` and `desc`, so a surface lists the specs by category and draws each one
     with `notation view`. The HTML bundle (`catalog build`) is the static export of the same data.
     """
-    from spec2viz.sldb_sync import SpecSync, find_store, format_report, sync_catalog
+    from spec2viz.sldb_sync import SpecSync, check_catalog, find_store, format_report, sync_catalog
 
     store_path = store or find_store(config.resolve().parent)
     if store_path is None:
         click.echo("Error: no `.sldb` store found above the config; pass --store.", err=True)
+        sys.exit(1)
+    # todo o nada: una notacion inexistente o de otro tipo frena el sync antes de escribir
+    problems = [(entry, exc) for entry, exc in check_catalog(config, Path(store_path), pythonpath) if exc is not None]
+    for entry, exc in problems:
+        click.echo(f"Invalid: {entry['vista'] or entry['spec']}: {type(exc).__name__}: {exc}", err=True)
+    if problems:
         sys.exit(1)
     try:
         reports = sync_catalog(SpecSync(Path(store_path), pythonpath=pythonpath), config)
@@ -469,6 +475,30 @@ def catalog_sync(config: Path, store: Path | None, pythonpath: str | None, stric
         click.echo(format_report(report))
         failed = failed or bool(report.problems)
     if strict and failed:
+        sys.exit(1)
+
+
+@catalog.command("validate", short_help="Validate a vistas.yml: specs exist and validate, notations resolve to the right type.")
+@click.option("--config", required=True, type=click.Path(exists=True, path_type=Path), help="The vistas.yml registry to check.")
+@click.option("--store", type=click.Path(exists=True, path_type=Path), help="The `.sldb` store a notation name resolves against. Defaults to the nearest `.sldb` above the config, if any.")
+@click.option("--pythonpath", help="Project path the store's models import from.")
+def catalog_validate(config: Path, store: Path | None, pythonpath: str | None):
+    """Check every view of the registry without writing: each listed spec exists and validates,
+    and its `notation:` (a path relative to the vistas.yml, a builtin name or a NotationDoc of the
+    store; absent = the builtin of the spec's type) resolves and draws that spec's diagram type.
+    Errors name their type (UnknownNotationError, NotationMismatchError, UnknownReferenceError...)."""
+    from spec2viz.sldb_sync import check_catalog, find_store
+
+    store_path = store or find_store(config.resolve().parent)
+    failed = False
+    for entry, exc in check_catalog(config, Path(store_path) if store_path else None, pythonpath):
+        name = entry["vista"] or str(entry["spec"])
+        if exc is None:
+            click.echo(f"Valid: {name}: {Path(entry['spec']).name}" + (f" (notation {entry['notation']})" if entry["notation"] else ""))
+        else:
+            click.echo(f"Invalid: {name}: {type(exc).__name__}: {exc}", err=True)
+            failed = True
+    if failed:
         sys.exit(1)
 
 

@@ -49,6 +49,15 @@ class UnknownShapeError(ValidationError):
     """A glyph or marker shape that is not a builtin shape."""
 
 
+class UnknownNotationError(ValidationError):
+    """A notation name or path that resolves to nothing: not a file, not a builtin, not in the store."""
+
+
+class NotationMismatchError(ValidationError, ValueError):
+    """The notation exists but draws another diagram type than the spec's (also a ValueError, as
+    the sync raised before it was typed)."""
+
+
 class CompileError(Spec2VizError):
     pass
 
@@ -68,6 +77,8 @@ __all__ = [
     "InvalidColorError",
     "UnknownIconError",
     "UnknownShapeError",
+    "UnknownNotationError",
+    "NotationMismatchError",
     "CompileError",
     "RenderError",
 ]

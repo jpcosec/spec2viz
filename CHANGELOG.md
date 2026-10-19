@@ -2,6 +2,12 @@
 
 ## Unreleased - 2026-10-17
 
+- `vistas.yml`: optional `notation:` per view (a path relative to the `vistas.yml`, a builtin name or a
+  `NotationDoc` in the store); `catalog sync` uses it, without it the builtin of the type as before. New
+  `catalog validate`; both report `UnknownNotationError` / `NotationMismatchError` (typed
+  `ValidationError`s), and `catalog sync` writes nothing when a view fails
+- `diagram sync` (with or without `--notation`) no longer wipes the `category`, `nav` and `summary` that
+  `catalog sync` gave a spec: without catalog metadata the existing values are kept
 - Activity sync: the step named in `start:` no longer becomes the initial node. Every activity gets its own
   initial pseudonode (`__initial`, drawn with the `start` glyph) that flows by `next` to the start step, which
   keeps its own glyph (an action box, or a decision diamond). Likewise, when `end:` names a real step, that

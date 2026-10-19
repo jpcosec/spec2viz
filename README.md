@@ -191,6 +191,14 @@ syncs every spec of the registry with its notation and writes the registry's `ca
 `desc` into each `SpecDoc`; graph_ui lists the specs by category and draws each one from `notation view`.
 `catalog build` still produces the HTML bundle, now as the static export of the same data.
 
+A view may pick its notation with `notation:` in `vistas.yml`: a path (relative to the `vistas.yml`), a
+builtin name, or the name of a `NotationDoc` already in the store; without the field the view uses its
+diagram type's builtin. `spec2viz catalog validate --config docs/architecture/vistas.yml` checks every view
+without writing (the spec exists and validates, the notation resolves and draws that diagram type) and
+reports typed errors (`UnknownNotationError`, `NotationMismatchError`, `UnknownReferenceError`); `catalog
+sync` runs the same check first and writes nothing if any view fails. `diagram sync` keeps the `category`,
+`nav` and `summary` a previous `catalog sync` gave the spec.
+
 Hierarchical stores can aggregate other stores and legacy `vistas.yml` leaves, then expose one filtered HTML catalog by category, type, project, and tags.
 
 Minimal `project.yml` / diagram-store shape:

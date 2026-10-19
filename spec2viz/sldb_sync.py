@@ -531,24 +531,25 @@ class SpecSync(_StoreWriter):
         report = SyncReport(spec_id=spec_id)
 
         chosen = DEFAULT_NOTATIONS.get(diagram_type) if notation is None else notation
-        notation_spec: NotationSpec | None = None
-        if chosen and str(chosen) != "none":
-            notation_spec = load_notation(chosen)
-            if notation_spec.diagram_type != diagram_type:
-                raise ValueError(
-                    f"notation '{notation_spec.name}' draws `{notation_spec.diagram_type}` specs, and `{spec_id}` is a `{diagram_type}` spec"
-                )
+        resolved = resolve_spec_notation(chosen, diagram_type, spec_id, self.store_path, self.pythonpath)
 
         self.prepare()
-        if notation_spec is not None:
+        if isinstance(resolved, NotationSpec):
             sub = NotationSync(self.store_path, self.pythonpath, self.actor).sync(chosen, finish=False)
             for attr in ("created", "updated", "deleted", "relation_types_added", "unresolved"):
                 getattr(report, attr).extend(getattr(sub, attr))
             report.notation = sub.notation
+        elif resolved:
+            report.notation = resolved  # una notacion que ya esta en el store: no se reescribe
 
         root = self.root
         out = (self.out_dir or spec_path.parent / "sldb" / spec_id).resolve()
         existing = self.existing_documents()
+        if catalog is None and ("SpecDoc", spec_id) in existing:
+            # sin catalogo (diagram sync), el SpecDoc conserva la categoria, la nav y el resumen
+            # que le dio catalog sync en vez de borrarlos
+            previous = existing[("SpecDoc", spec_id)].payload
+            catalog = {k: previous.get(k) or "" for k in ("category", "nav", "summary")}
 
         elements = spec_elements(spec)
         edges = spec_edges(spec)
@@ -630,8 +631,61 @@ class SpecSync(_StoreWriter):
         return self.finish(report)
 
 
+def _looks_like_path(value: str) -> bool:
+    return "/" in value or "\\" in value or value.endswith((".yml", ".yaml"))
+
+
+def resolve_spec_notation(chosen: str | Path | None, diagram_type: str, spec_id: str, store_path: Path | None = None,
+                          pythonpath: str | None = None) -> NotationSpec | str | None:
+    """La notacion con que se sincroniza un spec.
+
+    Una ruta (un archivo) o un nombre builtin se cargan y validan (`NotationSpec`); un nombre que
+    no es builtin resuelve contra los `NotationDoc` del store y devuelve su ref. `None`/`none` no
+    lleva notacion. `UnknownNotationError` si no resuelve; `NotationMismatchError` si dibuja otro
+    tipo de diagrama.
+    """
+    from spec2viz.exceptions import NotationMismatchError, UnknownNotationError, ValidationError as SpecValidationError
+    from spec2viz.notation import builtin_notations
+
+    if not chosen or str(chosen) == "none":
+        return None
+    text = str(chosen)
+    if isinstance(chosen, Path) or _looks_like_path(text) or text in builtin_notations():
+        if not (text in builtin_notations() or Path(text).is_file()):
+            raise UnknownNotationError(f"notation {text!r} for `{spec_id}`: no such file")
+        try:
+            spec = load_notation(chosen)
+        except SpecValidationError as exc:
+            raise SpecValidationError(f"notation {text!r} for `{spec_id}` is not valid: {exc}") from exc
+        drawn = spec.diagram_type
+        result: NotationSpec | str = spec
+    else:
+        doc = _store_notation(store_path, text, pythonpath)
+        if doc is None:
+            where = f"the store {store_path}" if store_path else "any store (none given)"
+            raise UnknownNotationError(f"notation {text!r} for `{spec_id}` is not a builtin ({', '.join(builtin_notations())}) nor a NotationDoc in {where}")
+        drawn = str(doc.get("diagram_type") or "")
+        result = notation_ref(text)
+    if drawn != diagram_type:
+        raise NotationMismatchError(f"notation {text!r} draws `{drawn}` specs, and `{spec_id}` is a `{diagram_type}` spec")
+    return result
+
+
+def _store_notation(store_path: Path | None, name: str, pythonpath: str | None) -> dict | None:
+    if store_path is None:
+        return None
+    import sldb.api as api
+
+    for doc in api.load_runtime_documents(store_path, pythonpath, include_linked=True):
+        if str(doc.model_name) == "NotationDoc" and doc.name == name:
+            return dict(doc.payload)
+    return None
+
+
 def catalog_entries(config: Path) -> list[dict[str, Any]]:
-    """Las entradas de un `vistas.yml`: por cada spec listado, su ruta y sus metadatos de catalogo."""
+    """Las entradas de un `vistas.yml`: por cada spec listado, su ruta, sus metadatos de catalogo y
+    la notacion de la vista (`notation:` opcional; una ruta es relativa al vistas.yml, un nombre
+    resuelve contra las builtin y las notaciones del store; sin campo, la builtin del tipo)."""
     config = Path(config).resolve()
     raw = yaml.safe_load(config.read_text(encoding="utf-8")) or {}
     base = config.parent
@@ -639,6 +693,10 @@ def catalog_entries(config: Path) -> list[dict[str, Any]]:
     for vista in raw.get("vistas") or []:
         if not isinstance(vista, dict):
             continue
+        notation: str | Path | None = None
+        if vista.get("notation"):
+            text = str(vista["notation"])
+            notation = (base / text).resolve() if _looks_like_path(text) and not Path(text).is_absolute() else (Path(text) if _looks_like_path(text) else text)
         for spec in vista.get("specs") or []:
             path = Path(str(spec))
             if not path.is_absolute():
@@ -646,6 +704,7 @@ def catalog_entries(config: Path) -> list[dict[str, Any]]:
             out.append({
                 "spec": path,
                 "vista": str(vista.get("id") or ""),
+                "notation": notation,
                 "catalog": {
                     "category": str(vista.get("category") or ""),
                     "nav": str(vista.get("nav") or ""),
@@ -655,9 +714,31 @@ def catalog_entries(config: Path) -> list[dict[str, Any]]:
     return out
 
 
+def check_catalog(config: Path, store_path: Path | None = None, pythonpath: str | None = None) -> list[tuple[dict[str, Any], Exception | None]]:
+    """Valida cada entrada de un `vistas.yml` sin escribir nada: el spec existe y valida, y su
+    notacion resuelve y dibuja su tipo de diagrama. Una tupla (entrada, error o None) por spec."""
+    from spec2viz.exceptions import UnknownReferenceError
+    from spec2viz.loader import load as load_spec
+    from spec2viz.validator import validate
+
+    results: list[tuple[dict[str, Any], Exception | None]] = []
+    for entry in catalog_entries(config):
+        try:
+            if not Path(entry["spec"]).is_file():
+                raise UnknownReferenceError(f"vista `{entry['vista']}` lists {entry['spec']}, which does not exist")
+            diagram = load_spec(entry["spec"])
+            validate(diagram)
+            chosen = DEFAULT_NOTATIONS.get(diagram.type.value) if entry["notation"] is None else entry["notation"]
+            resolve_spec_notation(chosen, diagram.type.value, diagram.id, store_path, pythonpath)
+            results.append((entry, None))
+        except Exception as exc:  # cada entrada informa su propio error tipado
+            results.append((entry, exc))
+    return results
+
+
 def sync_catalog(sync: "SpecSync", config: Path) -> list[SyncReport]:
     """Sincroniza cada spec de un `vistas.yml` con su notacion y sus metadatos de catalogo."""
-    return [sync.sync(entry["spec"], catalog=entry["catalog"]) for entry in catalog_entries(config)]
+    return [sync.sync(entry["spec"], notation=entry["notation"], catalog=entry["catalog"]) for entry in catalog_entries(config)]
 
 
 def format_report(report: SyncReport) -> str:
@@ -697,7 +778,7 @@ def format_notation_report(report: SyncReport) -> str:
 __all__ = [
     "SpecSync", "NotationSync", "SyncReport", "find_store", "format_report", "format_notation_report",
     "spec_edges", "spec_elements", "edge_name", "stage_id", "relation_token", "node_ref", "to_slash_ref", "relation_doc_has_attributes",
-    "catalog_entries", "sync_catalog",
+    "catalog_entries", "check_catalog", "resolve_spec_notation", "sync_catalog",
 ]
 
 
