@@ -8,10 +8,13 @@
 #    SUITE_CLONES (por defecto <SUITE_REPORT>/origin) y usa esos clones como ROOT, sin tocar
 #    los checkouts de trabajo; es la corrida que vale para decidir un deploy. Los origin se
 #    leen de los checkouts bajo SLDB1_ROOT (o de SUITE_ORIGIN_<name> si se exporta).
-# --pythons A,B,C: matriz de interpretes. Clona (si --from-origin) y corre node una sola vez,
+# --pythons [A,B,C]: matriz de interpretes (sin lista, la matriz por defecto 3.12,3.13). Clona
+#    (si --from-origin) y corre node una sola vez,
 #    y despues repite instalacion, suites y e2e con cada Python (uv python find/install, o
-#    pythonX.Y del PATH) en su propio venv; imprime la tabla paso x Python. Con
-#    SUITE_PRUNE_VENVS=1 cada venv se borra al terminar su columna (espacio en disco).
+#    pythonX.Y del PATH) en su propio venv; imprime la tabla paso x Python. Cada venv se
+#    borra al terminar su columna (SUITE_PRUNE_VENVS=0 para conservarlos).
+# Temporales: cada pytest corre con --basetemp en un mktemp propio y lo borra; el repo del e2e y
+#    los clones de --from-origin se borran al salir (SUITE_KEEP=1 los conserva para inspeccion).
 #
 # 1. Crea un venv limpio (SUITE_VENV, por defecto /tmp/suite-venv) con SUITE_PYTHON (por
 #    defecto /usr/bin/python3) e instala los cinco repos desde sus checkouts (SLDB1_ROOT,
@@ -43,7 +46,7 @@ while [ $# -gt 0 ]; do
     --skip-suites) DO_SUITES=0 ;;
     --skip-e2e) DO_E2E=0 ;;
     --skip-node) DO_NODE=0 ;;
-    --pythons) shift; PYTHONS=${1:-} ;;
+    --pythons) if [ -n "${2:-}" ] && [ "${2#--}" = "$2" ]; then shift; PYTHONS=$1; else PYTHONS=3.12,3.13; fi ;;
     --pythons=*) PYTHONS=${1#--pythons=} ;;
     *) echo "unknown option: $1" >&2; exit 2 ;;
   esac
@@ -51,6 +54,9 @@ while [ $# -gt 0 ]; do
 done
 mkdir -p "$REPORT"
 VPY="$VENV/bin/python"
+CLEANUP=()   # rutas temporales que se borran al salir (salvo SUITE_KEEP=1)
+cleanup() { [ "${SUITE_KEEP:-0}" = 1 ] && return; for d in "${CLEANUP[@]:-}"; do [ -n "$d" ] && rm -rf "$d"; done; }
+trap cleanup EXIT
 declare -A RESULT NOTE HASH
 FAILED=0
 
@@ -71,6 +77,7 @@ clone_from_origin() {
   fi
   say "clones desde origin en $CLONES"
   rm -rf "$CLONES"; mkdir -p "$CLONES"
+  CLEANUP+=("$CLONES")
   for repo in "${REPOS[@]}"; do
     name=$(basename "$repo")
     var="SUITE_ORIGIN_$name"
@@ -136,8 +143,8 @@ if [ -n "$PYTHONS" ]; then
       MATRIX["$key,$v"]="$ok"; case "$ok" in ok|SKIP) ;; *) FAILED=1 ;; esac
       printf '%s\n' "${KEYS[@]}" | grep -qx -- "$key" || KEYS+=("$key")
     done < <(sed -n '/^== resultado/,/^logs:/p' "$child_report/run.log" | grep -E '^[a-z0-9:_.-]+ +(ok|FAIL|SKIP)( |$)')
-    # SUITE_PRUNE_VENVS=1 borra el venv de cada interprete al terminar (cada uno pesa ~500 MB)
-    [ "${SUITE_PRUNE_VENVS:-0}" = 1 ] && rm -rf "$VENV-py$v"
+    # cada venv (~500 MB) se borra al terminar su columna, salvo SUITE_PRUNE_VENVS=0
+    [ "${SUITE_PRUNE_VENVS:-1}" = 1 ] && rm -rf "$VENV-py$v"
   done
   say "resultado (paso x python)"
   printf '%-22s' "paso"; for v in "${VERSIONS[@]}"; do printf ' %-8s' "py$v"; done; echo
@@ -214,8 +221,10 @@ if [ "$DO_SUITES" = 1 ]; then
     if [ -n "${SKIPPED[$name]:-}" ]; then record "suite:$name" SKIP "requires-python"; continue; fi
     say "suite $name"
     log="$REPORT/suite-$name.log"
-    ( cd "$ROOT/$repo" && "$VPY" -m pytest tests -q -p no:cacheprovider --ignore=tests/e2e > "$log" 2>&1 )
+    basetemp=$(mktemp -d "${TMPDIR:-/tmp}/suite-pytest-$name.XXXXXX")
+    ( cd "$ROOT/$repo" && "$VPY" -m pytest tests -q -p no:cacheprovider --basetemp "$basetemp" --ignore=tests/e2e > "$log" 2>&1 )
     rc=$?
+    rm -rf "$basetemp"
     summary=$(grep -E "passed|failed|error" "$log" | tail -n 1 | cut -c1-110)
     if [ $rc -eq 0 ]; then record "suite:$name" ok "$summary"; else record "suite:$name" FAIL "${summary:-$(last_line "$log")}"; fi
   done
@@ -230,7 +239,8 @@ if [ "$DO_E2E" = 1 ] && { [ -n "${SKIPPED[deskops]:-}" ] || [ -n "${SKIPPED[spec
 fi
 if [ "$DO_E2E" = 1 ]; then
   say "e2e en repo temporal"
-  TMP=$(mktemp -d /tmp/suite-e2e.XXXXXX)
+  TMP=$(mktemp -d "${TMPDIR:-/tmp}/suite-e2e.XXXXXX")
+  CLEANUP+=("$TMP")
   E2E="$REPORT/e2e.log"; : > "$E2E"
   run() { echo "\$ $*" >> "$E2E"; "$@" >> "$E2E" 2>&1; }
   export PATH="$VENV/bin:$PATH"
@@ -329,7 +339,7 @@ print("graph_ui view parity ok")
 PYV
   )
   rc=$?; [ $rc -eq 0 ] && record "e2e:graph_ui" ok || record "e2e:graph_ui" FAIL "exit $rc: $(last_line "$E2E")"
-  echo "e2e tmp repo: $TMP" >> "$E2E"
+  echo "e2e tmp repo: $TMP (se borra al salir salvo SUITE_KEEP=1)" >> "$E2E"
 fi
 
 # --- 4. tabla -------------------------------------------------------------------------------------

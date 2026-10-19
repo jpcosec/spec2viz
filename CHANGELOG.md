@@ -2,6 +2,8 @@
 
 ## Unreleased - 2026-10-17
 
+- `tools/suite-check.sh`: default matrix 3.12,3.13 (`--pythons` without a list), each pytest in its own
+  `mktemp` `--basetemp`, venvs pruned per column, e2e repo and origin clones removed on exit (`SUITE_KEEP=1`)
 - Python floor raised to 3.12 (`requires-python >=3.12`, classifiers 3.12 and 3.13, CI matrix 3.12/3.13),
   shared by the whole SLDB_1 suite; no 3.10/3.11 compatibility shims existed in the code
 - `tools/suite-check.sh`: a repo whose `requires-python` does not cover the interpreter is marked SKIP
