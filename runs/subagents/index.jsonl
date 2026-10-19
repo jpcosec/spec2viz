@@ -7,3 +7,4 @@
 {"task_id": "task-sync-golden-plantuml-files", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": "a9857fa9b4bbca3a5010aea4a2ff357f0b3fed19"}
 {"task_id": "task-cabecera-de-trazabilidad-en-las-proyecciones-generadas-mermaid-plantuml-d2", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": "4e6bcfe5a135e5a4757129cfa40df95e5119bbd0"}
 {"task_id": "task-from-graph-proyecta-el-grafo-de-fuente-python-de-sldb-label-y-kind-del-codigo-filtro-por-modulo-rela", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
+{"task_id": "task-viewdoc-modelo-de-vista-de-la-gramatica-de-proyeccion-junto-a-notationdoc", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
