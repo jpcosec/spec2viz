@@ -54,7 +54,8 @@ declare -A RESULT NOTE HASH
 FAILED=0
 
 say() { printf '\n== %s\n' "$*"; }
-record() { RESULT[$1]=$2; NOTE[$1]=${3:-}; [ "$2" = ok ] || FAILED=1; }
+record() { RESULT[$1]=$2; NOTE[$1]=${3:-}; case "$2" in ok|SKIP) ;; *) FAILED=1 ;; esac; }
+declare -A SKIPPED   # repos fuera de la ventana requires-python del interprete
 last_line() { tail -n 1 "$1" 2>/dev/null | cut -c1-110; }
 
 REPOS=(sldb pron deskops spec2viz UIs/graph_ui)
@@ -131,9 +132,9 @@ if [ -n "$PYTHONS" ]; then
       "$SELF" "${CHILD_ARGS[@]}" --fresh --skip-node > "$child_report/run.log" 2>&1
     while read -r key ok note; do
       case "$key" in clone:*|local:*|"") continue ;; esac
-      MATRIX["$key,$v"]="$ok"; [ "$ok" = ok ] || FAILED=1
+      MATRIX["$key,$v"]="$ok"; case "$ok" in ok|SKIP) ;; *) FAILED=1 ;; esac
       printf '%s\n' "${KEYS[@]}" | grep -qx -- "$key" || KEYS+=("$key")
-    done < <(sed -n '/^== resultado/,/^logs:/p' "$child_report/run.log" | grep -E '^[a-z0-9:_.-]+ +(ok|FAIL)( |$)')
+    done < <(sed -n '/^== resultado/,/^logs:/p' "$child_report/run.log" | grep -E '^[a-z0-9:_.-]+ +(ok|FAIL|SKIP)( |$)')
   done
   say "resultado (paso x python)"
   printf '%-22s' "paso"; for v in "${VERSIONS[@]}"; do printf ' %-8s' "py$v"; done; echo
@@ -154,8 +155,25 @@ if [ "$DO_INSTALL" = 1 ]; then
   [ "$FRESH" = 1 ] && rm -rf "$VENV"
   if [ ! -x "$VPY" ]; then "$PY" -m venv "$VENV" || { echo "no pude crear el venv"; exit 1; }; fi
   "$VPY" -m pip install -q --upgrade pip > "$REPORT/pip.log" 2>&1
+  "$VPY" -m pip install -q packaging >> "$REPORT/pip.log" 2>&1 || true
   for repo in "${REPOS[@]}"; do
     name=$(basename "$repo")
+    # requires-python del repo frente al interprete del venv: fuera de ventana es SKIP, no FAIL
+    spec=$(sed -n 's/^requires-python *= *"\([^"]*\)".*/\1/p' "$ROOT/$repo/pyproject.toml" | head -n 1)
+    req=$("$VPY" - "$spec" <<'PYREQ'
+import sys
+from packaging.specifiers import SpecifierSet
+from packaging.version import Version
+spec = sys.argv[1]
+ok = not spec or Version("%d.%d.%d" % sys.version_info[:3]) in SpecifierSet(spec)
+print(("ok " if ok else "skip ") + spec)
+PYREQ
+)
+    if [ "${req%% *}" = skip ]; then
+      SKIPPED[$name]=1
+      record "install:$name" SKIP "requires-python ${req#skip } (interprete $("$VPY" -c 'import sys; print("%d.%d.%d" % sys.version_info[:3])'))"
+      continue
+    fi
     extras=""
     case "$name" in
       sldb) extras="[click,graph]" ;;
@@ -174,11 +192,14 @@ if [ "$DO_INSTALL" = 1 ]; then
   "$VPY" -m pip install -q --no-deps -e "$ROOT/sldb[click,graph]" >> "$REPORT/pip.log" 2>&1 || true
   "$VPY" -m pip install -q pytest playwright >> "$REPORT/pip.log" 2>&1 || true
   for pkg in structuredLanguageDB pron deskops spec2viz graph-ui; do
+    case "$pkg" in structuredLanguageDB) rn=sldb ;; graph-ui) rn=graph_ui ;; *) rn=$pkg ;; esac
+    [ -n "${SKIPPED[$rn]:-}" ] && continue
     loc=$("$VPY" -m pip show "$pkg" 2>/dev/null | sed -n 's/^Editable project location: //p')
     case "$loc" in "$ROOT"/*) record "local:$pkg" ok "$loc" ;; *) record "local:$pkg" FAIL "no es el checkout: ${loc:-no editable} ($("$VPY" -m pip show "$pkg" 2>/dev/null | sed -n 's/^Version: //p'))" ;; esac
   done
   # los e2e de graph_ui lanzan chromium con playwright; sin navegador fallan los 16
-  if "$VPY" -m playwright install chromium >> "$REPORT/pip.log" 2>&1; then record "install:chromium" ok; else record "install:chromium" FAIL "playwright install chromium fallo"; fi
+  if [ -n "${SKIPPED[graph_ui]:-}" ]; then record "install:chromium" SKIP "graph_ui fuera de ventana"
+  elif "$VPY" -m playwright install chromium >> "$REPORT/pip.log" 2>&1; then record "install:chromium" ok; else record "install:chromium" FAIL "playwright install chromium fallo"; fi
   "$VPY" -m pip freeze > "$REPORT/freeze.txt" 2>/dev/null
   if grep -qi "^kgdb" "$REPORT/freeze.txt"; then record "install:no-kgdb" FAIL "kgdb quedo instalado"; else record "install:no-kgdb" ok; fi
 fi
@@ -187,6 +208,7 @@ fi
 if [ "$DO_SUITES" = 1 ]; then
   for repo in "${SUITE_REPOS_ARR[@]}"; do
     name=$(basename "$repo")
+    if [ -n "${SKIPPED[$name]:-}" ]; then record "suite:$name" SKIP "requires-python"; continue; fi
     say "suite $name"
     log="$REPORT/suite-$name.log"
     ( cd "$ROOT/$repo" && "$VPY" -m pytest tests -q -p no:cacheprovider --ignore=tests/e2e > "$log" 2>&1 )
@@ -199,6 +221,10 @@ fi
 [ "$DO_NODE" = 1 ] && run_node_workbench
 
 # --- 3. punta a punta ---------------------------------------------------------------------------
+if [ "$DO_E2E" = 1 ] && { [ -n "${SKIPPED[deskops]:-}" ] || [ -n "${SKIPPED[spec2viz]:-}" ] || [ -n "${SKIPPED[graph_ui]:-}" ] || [ -n "${SKIPPED[sldb]:-}" ]; }; then
+  for step in deskops spec2viz graph_ui; do record "e2e:$step" SKIP "requires-python de algun repo del flujo"; done
+  DO_E2E=0
+fi
 if [ "$DO_E2E" = 1 ]; then
   say "e2e en repo temporal"
   TMP=$(mktemp -d /tmp/suite-e2e.XXXXXX)

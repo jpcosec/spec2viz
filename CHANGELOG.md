@@ -2,6 +2,8 @@
 
 ## Unreleased - 2026-10-17
 
+- `tools/suite-check.sh`: a repo whose `requires-python` does not cover the interpreter is marked SKIP
+  (with the declared range) instead of FAIL, together with its suite and the e2e steps that need it
 - fix(catalog build): a vista whose `src` is a Vega JSON (`diagram render --renderer vega`) is embedded as a
   Vega board (the bundle loads vega-embed on demand) instead of being linted as Mermaid and failing the
   build; `.puml`, `.d2` and other text sources are shown as they are; only `.mmd` is linted. Messages
