@@ -8,9 +8,11 @@ target_project: spec2viz
 # ISO 8601 timestamp
 created_at: '2026-10-19T19:44:12'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: spec2viz
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-10-19T20:56:40'
 ---
 
 # graph_ui: para el contrato de estilo, resolver público para ViewDoc y leyenda resuelta
