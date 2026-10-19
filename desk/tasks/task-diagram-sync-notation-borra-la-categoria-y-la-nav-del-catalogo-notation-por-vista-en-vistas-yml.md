@@ -1,13 +1,18 @@
 ---
 id: task-diagram-sync-notation-borra-la-categoria-y-la-nav-del-catalogo-notation-por-vista-en-vistas-yml
-status: draft
+status: ready_for_testing
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-closeout
+history:
+- task_activates
+- task_hands_to_closeout
+references:
+- 8a16775
+- tests/test_catalog_notation.py
+- 'verificado en graph_ui: los seis specs bajo sus categorias tras diagram sync --notation'
 depends_on: []
 pills: []
 files: []

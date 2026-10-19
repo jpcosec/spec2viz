@@ -1,13 +1,18 @@
 ---
 id: task-activity-el-paso-de-start-no-puede-volverse-el-nodo-inicial
-status: draft
+status: ready_for_testing
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-closeout
+history:
+- task_activates
+- task_hands_to_closeout
+references:
+- d256c48
+- tests/test_sldb_sync.py::test_activity_start_on_a_decision_keeps_its_diamond
+- 'verificado en graph_ui a 1800x1200: capturas en ~/.cache/spec2viz-issues/20261019-visual/verified-fbb37ea'
 depends_on: []
 pills: []
 files: []
