@@ -2,6 +2,9 @@
 
 ## Unreleased - 2026-10-17
 
+- `resolve_view` interpolates a glyph's `keyword` like its label (`«{kind}»` -> `«database»`) and drops it
+  when nothing is left (`«»`); before, the template reached the render contract literally. A test walks the
+  resolved view of every diagram type and fails on any unresolved `{placeholder}`
 - `vistas.yml`: optional `notation:` per view (a path relative to the `vistas.yml`, a builtin name or a
   `NotationDoc` in the store); `catalog sync` uses it, without it the builtin of the type as before. New
   `catalog validate`; both report `UnknownNotationError` / `NotationMismatchError` (typed

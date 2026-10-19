@@ -70,6 +70,13 @@ def render_template(template: str, payload: dict[str, Any]) -> str:
     return re.sub(r"[ \t]{2,}", " ", _PLACEHOLDER.sub(sub, template)).strip()
 
 
+def render_keyword(template: str, payload: dict[str, Any]) -> str:
+    """El estereotipo de un glifo (`«{kind}»`) interpolado como un rotulo; si no queda texto
+    (el elemento no tiene `kind`), se omite en vez de dibujar `«»`."""
+    text = render_template(template or "", payload)
+    return text if text.strip("«»<> \t") else ""
+
+
 def matches(expression: str, payload: dict[str, Any]) -> bool:
     if not expression:
         return True
@@ -111,7 +118,7 @@ def _node_view(ref: str, payload: dict[str, Any], glyphs: list[dict], markers: l
         # un `label: ""` explicito es un glifo sin rotulo (inicial, final, merge); solo la ausencia cae a {title}
         "label": render_template("{title}" if gp.get("label") is None else gp["label"], payload),
         "label_style": gp.get("label_style", ""),
-        "keyword": gp.get("keyword", ""),
+        "keyword": render_keyword(gp.get("keyword", ""), payload),
         "compartments": compartments,
         "markers": [{"id": m["id"], "shape": m["shape"]} for m in markers if m.get("model", "SpecNodeDoc") == "SpecNodeDoc" and matches(m.get("where", ""), payload)],
         "refs": list(payload.get("refs") or []) + list(payload.get("atom_refs") or []),
