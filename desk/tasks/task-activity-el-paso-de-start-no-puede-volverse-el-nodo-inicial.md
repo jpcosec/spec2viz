@@ -12,6 +12,7 @@ history:
 references:
 - d256c48
 - tests/test_sldb_sync.py::test_activity_start_on_a_decision_keeps_its_diamond
+- desk/atoms/atom-activity-pseudonodos-inicial-y-final-propios.md
 - 'verificado en graph_ui a 1800x1200: capturas en ~/.cache/spec2viz-issues/20261019-visual/verified-fbb37ea'
 depends_on: []
 pills: []

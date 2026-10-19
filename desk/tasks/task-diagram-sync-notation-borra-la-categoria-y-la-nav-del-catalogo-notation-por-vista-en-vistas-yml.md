@@ -12,6 +12,7 @@ history:
 references:
 - 8a16775
 - tests/test_catalog_notation.py
+- desk/atoms/atom-catalogo-notacion-por-vista-y-metadatos-que-sobreviven-a-diagram-sync.md
 - 'verificado en graph_ui: los seis specs bajo sus categorias tras diagram sync --notation'
 depends_on: []
 pills: []
