@@ -10,7 +10,8 @@
 #    leen de los checkouts bajo SLDB1_ROOT (o de SUITE_ORIGIN_<name> si se exporta).
 # --pythons A,B,C: matriz de interpretes. Clona (si --from-origin) y corre node una sola vez,
 #    y despues repite instalacion, suites y e2e con cada Python (uv python find/install, o
-#    pythonX.Y del PATH) en su propio venv; imprime la tabla paso x Python.
+#    pythonX.Y del PATH) en su propio venv; imprime la tabla paso x Python. Con
+#    SUITE_PRUNE_VENVS=1 cada venv se borra al terminar su columna (espacio en disco).
 #
 # 1. Crea un venv limpio (SUITE_VENV, por defecto /tmp/suite-venv) con SUITE_PYTHON (por
 #    defecto /usr/bin/python3) e instala los cinco repos desde sus checkouts (SLDB1_ROOT,
@@ -135,6 +136,8 @@ if [ -n "$PYTHONS" ]; then
       MATRIX["$key,$v"]="$ok"; case "$ok" in ok|SKIP) ;; *) FAILED=1 ;; esac
       printf '%s\n' "${KEYS[@]}" | grep -qx -- "$key" || KEYS+=("$key")
     done < <(sed -n '/^== resultado/,/^logs:/p' "$child_report/run.log" | grep -E '^[a-z0-9:_.-]+ +(ok|FAIL|SKIP)( |$)')
+    # SUITE_PRUNE_VENVS=1 borra el venv de cada interprete al terminar (cada uno pesa ~500 MB)
+    [ "${SUITE_PRUNE_VENVS:-0}" = 1 ] && rm -rf "$VENV-py$v"
   done
   say "resultado (paso x python)"
   printf '%-22s' "paso"; for v in "${VERSIONS[@]}"; do printf ' %-8s' "py$v"; done; echo
