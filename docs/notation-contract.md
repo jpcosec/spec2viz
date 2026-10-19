@@ -264,3 +264,17 @@ lista primero las contenciones (`order` 0) y después los `RelationDoc` por `ord
 `data` (los `attributes` del RelationDoc) y los rótulos de extremo. `fragments` son las rachas de
 links consecutivos con el mismo `data.group` (vacío si no hay grupos). `skipped` son relaciones del spec sin link en la notación. Un spec sin notación, una
 notación de otro tipo de diagrama o un nodo sin glifo son errores (`ViewError`), no vistas a medias.
+
+## 12. Vistas de la gramática de proyección: `ViewDoc`
+
+Decisión del coordinador SLDB_1 (2026-10-19): las vistas son documentos del store y su modelo vive en
+spec2viz junto a `NotationDoc` (`spec2viz.sldb_models.ViewDoc`). Campos: `id`/`name`, `title`, `nodes`
+(unión de `{model, where}`; `where` en la gramática de `sldb find --where`; vacío = todos los documentos),
+`relations` (tipos de relación; vacío = todos), `direction` (`both`, `outgoing`, `incoming`, como
+`sldb.api.graph.RelationFilter`), `notation` (opcional, `NotationDoc:<name>`; su `layout` da el estilo),
+`layout` (override de la misma forma) y `description`. Una vista es portable: nunca nombra ids de nodo ni
+rutas de store. graph_ui la evalúa y la crea y guarda por sldb; spec2viz solo define y valida el modelo.
+
+`layout` de `kind: graph` reconoce `direction` (TB, LR, BT, RL), `style` (`layered` o `rings`) y
+`ring_field` (el campo del payload que asigna el anillo cuando `style: rings`).
+

@@ -203,6 +203,9 @@ class NotationSpec(BaseModel):
             raise ValueError(f"layout.kind {kind!r} is not one of {', '.join(LAYOUT_KINDS)}")
         if "direction" in v and v["direction"] not in ("TB", "LR", "BT", "RL"):
             raise ValueError(f"layout.direction {v['direction']!r} must be TB, LR, BT or RL")
+        # parametros reconocidos de kind graph: style layered|rings, ring_field para rings
+        if v.get("style") not in (None, "layered", "rings"):
+            raise ValueError(f"layout.style {v['style']!r} must be layered or rings")
         return {"kind": kind, **{k: val for k, val in v.items() if k != "kind"}}
 
     @model_validator(mode="after")

@@ -36,6 +36,7 @@ MODEL_REFS = {
     "NotationDoc": "spec2viz.sldb_models:NotationDoc",
     "GlyphDoc": "spec2viz.sldb_models:GlyphDoc",
     "LinkDoc": "spec2viz.sldb_models:LinkDoc",
+    "ViewDoc": "spec2viz.sldb_models:ViewDoc",
 }
 
 _MANAGED_MODELS = ("SpecDoc", "SpecNodeDoc", "RelationDoc", "RelationTypeDoc", "NotationDoc", "GlyphDoc", "LinkDoc")

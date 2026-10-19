@@ -2,6 +2,10 @@
 
 ## Unreleased - 2026-10-17
 
+- `ViewDoc` (`spec2viz.sldb_models`): the portable projection-grammar view (nodes as `{model, where}`,
+  relations, direction, optional notation and layout override), registered in the store with the other
+  spec2viz models; graph_ui evaluates and writes it; `layout.style` (`layered`, `rings`) and `ring_field`
+  are recognized layout parameters (contract §12)
 - `tools/suite-check.sh`: default matrix 3.12,3.13 (`--pythons` without a list), each pytest in its own
   `mktemp` `--basetemp`, venvs pruned per column, e2e repo and origin clones removed on exit (`SUITE_KEEP=1`)
 - Python floor raised to 3.12 (`requires-python >=3.12`, classifiers 3.12 and 3.13, CI matrix 3.12/3.13),

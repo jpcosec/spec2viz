@@ -4,7 +4,8 @@ id: board-001
 # Affected workspace or domain
 scope: desk
 # List of task-xxx paths
-tasks: []
+tasks:
+- desk/tasks/task-viewdoc-modelo-de-vista-de-la-gramatica-de-proyeccion-junto-a-notationdoc.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -35,3 +36,5 @@ Las tasks de 2026-05 (spike D2, goldens PlantUML, renderer antonIA) y las de 202
 ## Task Details
 
 _Generated from the task references above._
+
+- ViewDoc: modelo de vista de la gramatica de proyeccion junto a NotationDoc [draft] - spec2viz.sldb_models.ViewDoc con nodes {model, where}, relations, direction, notation opcional, layout override y description; portable; registrado con los demas modelos de spec2viz; layout.style y ring_field reconocidos.

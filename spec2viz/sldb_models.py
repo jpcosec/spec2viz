@@ -292,4 +292,89 @@ form: ⸢rev•form⸥
         return "" if value is None else value
 
 
-__all__ = ["SpecDoc", "SpecNodeDoc", "NotationDoc", "GlyphDoc", "LinkDoc"]
+class ViewDoc(StructuredNLDoc):
+    """Una vista de la gramatica de proyeccion: que documentos y relaciones del store entran,
+    en que direccion, y con que notacion y layout se dibujan.
+
+    Es portable: solo nombra modelos, tipos de relacion y una notacion, nunca ids de nodo ni
+    rutas de store, asi que la misma vista se evalua contra cualquier store que tenga esos
+    modelos y relaciones. graph_ui la evalua (sldb.api.graph) y la crea y guarda por sldb.
+    """
+
+    __semantics__ = {
+        "type": ["view"],
+        "layer": ["presentation"],
+        "system": ["spec2viz"],
+    }
+    __references__ = ["notation"]
+    __template__ = """---
+id: ⸢rev•id⸥
+name: ⸢rev•name⸥
+nodes: ⸢rev•nodes⸥
+relations: ⸢rev,list•relations⸥
+direction: ⸢rev•direction⸥
+notation: ⸢optrev•notation⸥
+layout: ⸢rev•layout⸥
+---
+
+# ⸢rev•title⸥
+
+## Description
+
+⸢rev,markdown•description⸥
+""".strip()
+
+    id: str = Field(description="Nombre de la vista; nombre del documento (`ViewDoc:<name>`).")
+    name: str = Field(description="Nombre de la vista, igual al id.")
+    title: str = Field(description="Rotulo legible de la vista.")
+    nodes: list[dict] = Field(
+        default_factory=list,
+        description="Union de entradas `{model, where}`: documentos de ese modelo que cumplen `where` (gramatica de `sldb find --where`; vacio = todos los del modelo). Lista vacia = todos los documentos.",
+    )
+    relations: list[str] = Field(default_factory=list, description="Nombres de tipos de relacion que se conservan entre esos nodos; vacio = todos.")
+    direction: str = Field(default="both", description="`both`, `outgoing` o `incoming`, como `sldb.api.graph.RelationFilter.direction`.")
+    notation: str = Field(default="", description="`NotationDoc:<name>` opcional; su `layout` da el estilo de la vista.")
+    layout: dict = Field(
+        default_factory=dict,
+        description="Override del `layout` de la notacion, misma forma (`kind: graph`, `style: layered|rings`, `ring_field` para rings).",
+    )
+    description: str = Field(default="", description="Para que sirve la vista.")
+
+    @field_validator("nodes", mode="before")
+    @classmethod
+    def _nodes(cls, value):
+        if value is None:
+            return []
+        out = []
+        for entry in value:
+            if not isinstance(entry, dict) or not entry.get("model"):
+                raise ValueError(f"each view node entry needs a model: {entry!r}")
+            unknown = set(entry) - {"model", "where"}
+            if unknown:
+                raise ValueError(f"view node entries only take model and where, got {sorted(unknown)}")
+            out.append({"model": str(entry["model"]), "where": str(entry.get("where") or "")})
+        return out
+
+    @field_validator("direction")
+    @classmethod
+    def _direction(cls, value: str) -> str:
+        if value not in ("both", "outgoing", "incoming"):
+            raise ValueError(f"direction {value!r} must be both, outgoing or incoming")
+        return value
+
+    @field_validator("layout", mode="before")
+    @classmethod
+    def _layout(cls, value):
+        value = {} if value is None else value
+        style = value.get("style") if isinstance(value, dict) else None
+        if style not in (None, "", "layered", "rings"):
+            raise ValueError(f"layout.style {style!r} must be layered or rings")
+        return value
+
+    @field_validator("notation", mode="before")
+    @classmethod
+    def _absent_notation(cls, value):
+        return "" if value is None else value
+
+
+__all__ = ["SpecDoc", "SpecNodeDoc", "NotationDoc", "GlyphDoc", "LinkDoc", "ViewDoc"]
