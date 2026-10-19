@@ -2,6 +2,25 @@
 
 ## Unreleased - 2026-10-17
 
+- Style, all optional and backward compatible (unstyled notations sync and resolve exactly as before):
+  - builtin shapes are now a closed list (`SHAPES`) with new `cylinder`, `queue`, `cloud`, `package` and
+    `note`; glyphs take optional `kind` (a palette kind), `fill`, `stroke` and `icon`, links an optional
+    `color`; colors are a palette token or a `#rrggbb` hex, icons come from the palette's declared set
+    (Lucide names as exported by lucide-react 0.577.0, never URLs)
+  - an accessible default palette (`spec2viz/palettes/default.yml`, a `PaletteDoc` in the store) for
+    database, queue, storage, gateway, auth, backend, frontend, client and external: strokes >= 3:1
+    against the light and dark backgrounds, text >= 4.5:1 on every fill, and a distinct (shape, icon) per
+    kind so hue is never the only cue; `spec2viz palette list|validate|sync`
+  - `style.kinds` of a spec is wired: neutral `fill`/`stroke`/`icon` keys are validated, stored in the
+    `SpecDoc` and drawn by mermaid as `classDef` (component, activity, deployment); renderer blocks such as
+    `plantuml:` keep working as before
+  - one precedence, in `spec2viz.styling.resolve_style`: notation glyph > spec `style.kinds` > notation
+    palette, per property; `resolve_view` returns each node's resolved `style`, each link's `color`, the
+    view's `palette` and a resolved `legend` (glyphs, links, kinds)
+  - `resolve_documents(store, notation, doc_refs, relation_refs=..., spec_style=...)`: the same output for
+    documents of any model, public (for `ViewDoc` evaluation)
+  - `notation validate` reports `UnknownShapeError`, `UnknownKindError`, `InvalidColorError` and
+    `UnknownIconError`; contract §13 and §14 in `docs/notation-contract.md`
 - `resolve_view` interpolates a glyph's `keyword` like its label (`«{kind}»` -> `«database»`) and drops it
   when nothing is left (`«»`); before, the template reached the render contract literally. A test walks the
   resolved view of every diagram type and fails on any unresolved `{placeholder}`

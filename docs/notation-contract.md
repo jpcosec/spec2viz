@@ -278,3 +278,98 @@ rutas de store. graph_ui la evalúa y la crea y guarda por sldb; spec2viz solo d
 `layout` de `kind: graph` reconoce `direction` (TB, LR, BT, RL), `style` (`layered` o `rings`) y
 `ring_field` (el campo del payload que asigna el anillo cuando `style: rings`).
 
+## 13. Estilo: formas, paleta, colores e íconos (2026-10-19)
+
+Todo es opcional: una notación que no usa estilo se escribe y se resuelve igual que antes (sin
+`palette` en el NotationDoc, `style: {}` en cada nodo, `color: null` en cada link). Lo que spec2viz
+resuelve llega aplicado en `resolve_view`; la superficie no recalcula precedencias ni contrastes.
+
+**Formas builtin** (`spec2viz.notation.SHAPES`; `notation validate` rechaza cualquier otra con
+`UnknownShapeError`): `artifact`, `boundary-box`, `boundary-lifeline`, `box`, `bullseye`,
+`class-box`, `column-header`, `diamond`, `filled-circle`, `lifeline`, `node-box`, `rounded-box`,
+`rounded-container`, `row-header`, `stick-figure` y las nuevas `cylinder` (bases y almacenamiento,
+vertical), `queue` (cola: cilindro horizontal), `cloud` (servicio externo), `package` (la carpeta con
+pestaña de UML) y `note` (nota UML con la esquina doblada).
+
+**Campos opcionales.** `GlyphDoc`: `kind` (un kind de la paleta: aporta su ícono y sus colores),
+`fill`, `stroke` (token de la paleta o `#rrggbb`) e `icon` (nombre del set declarado). `LinkDoc`:
+`color` (token o `#rrggbb`). `NotationDoc`: `palette` (`PaletteDoc:<name>`), presente solo si la
+notación usa estilo; si usa estilo sin nombrar paleta, es `default`. `SpecDoc`: `style`, el
+`style.kinds` neutral del spec (kind -> `fill`, `stroke`, `icon`).
+
+**Paleta** (`PaletteDoc:<name>`, builtin `default` en `spec2viz/palettes/default.yml`, escrita por
+`spec2viz palette sync` o por `notation sync` de una notación con estilo): `backgrounds` e `ink` por
+tema (`{light, dark}`), `icon_set` (`{name: lucide, version: "0.577.0", icons: [...]}`: nombres de
+[Lucide](https://lucide.dev) en kebab-case tal como los exporta `lucide-react` 0.577.0; nunca una
+URL), `colors` (token -> `{light, dark}`) y `kinds` (kind -> `{shape, icon, fill, stroke}`). La
+`default` cubre `database`, `queue`, `storage`, `gateway`, `auth`, `backend`, `frontend`, `client` y
+`external`; `palette validate` exige trazo >= 3:1 contra el fondo de cada tema (WCAG 1.4.11), texto
+(`ink`) >= 4.5:1 sobre cada relleno (AA) y un par (forma, ícono) distinto por kind, para que el tono
+nunca sea la única señal.
+
+**Precedencia, una sola fuente** (`spec2viz.styling.resolve_style`, la usan `resolve_view` y el
+renderer de mermaid). Por propiedad (`fill`, `stroke`, `icon`) gana la primera capa que la define:
+
+1. el glifo de la notación: sus `fill`/`stroke`/`icon` y, detrás, el kind de la paleta que nombra;
+2. `style.kinds` del spec para el `kind` del elemento;
+3. la paleta de la notación para el `kind` del elemento (solo si la notación usa paleta).
+
+Un token sin paleta en la notación resuelve contra `default`. La forma del nodo es siempre la del
+glifo; la de la paleta es la forma de referencia del kind (la leyenda la muestra).
+
+**En la salida del resolver**: cada nodo trae `style`: `{fill: {light, dark}, stroke: {light, dark},
+icon, source: {fill: "glyph"|"spec"|"palette", ...}}` con solo las propiedades que alguna capa
+define (`{}` si ninguna); cada link trae `color` (`{light, dark}` o `null`); la vista trae `palette`
+y `legend`:
+
+```json
+"legend": {
+  "glyphs": [{"glyph": "GlyphDoc:infra.db", "title": "db", "shape": "cylinder", "function": "",
+              "style": {"fill": {"light": "#dbebf4", "dark": "#092c42"}, "stroke": {...}, "icon": "database", "source": {...}}}],
+  "links":  [{"link": "LinkDoc:infra.any", "title": "any", "relation": "*", "draw": "line", "line": "solid",
+              "source_end": "none", "target_end": "open-arrow", "color": {"light": "#0072b2", "dark": "#0072b2"}}],
+  "kinds":  [{"kind": "frontend", "shape": "box", "icon": "app-window", "fill": {...}, "stroke": {...}, "source": {...}}]
+}
+```
+
+`legend.kinds` lista los kinds de la vista que reciben estilo del spec o de la paleta. El texto sobre
+un relleno usa el `ink` del tema de la paleta.
+
+**Resolver público para documentos de cualquier modelo**:
+`spec2viz.notation_view.resolve_documents(store, notation_ref, doc_refs, *, relation_refs=None,
+spec_style=None)` devuelve lo mismo que `resolve_view` sin los campos del spec (`notation`,
+`palette`, `level`, `layout`, `nodes`, `links`, `fragments`, `skipped`, `legend`). Cada documento se
+dibuja con el primer glifo de su modelo cuyo `where` casa; los links son los `contains` entre ellos y
+los `RelationDoc` con los dos extremos en la vista (solo `relation_refs`, si se da). Para una
+`ViewDoc`, graph_ui elige documentos y aristas y esta función aplica la notación.
+
+**Los specs.** `style.kinds` de un spec acepta claves neutrales `fill`, `stroke` (token de `default`
+o `#rrggbb`) e `icon`; el validador las comprueba (`InvalidColorError`, `UnknownIconError`). Mermaid
+las dibuja como `classDef` + `class` en component, activity y deployment; un bloque por renderer
+(`plantuml: {background, border, font}`) sigue siendo solo de ese renderer.
+
+## 14. Activity y deployment (2026-10-19)
+
+**Activity.** Cada paso puede llevar `partition` (carril UML; viaja como `data.partition` del
+SpecNodeDoc: la superficie dibuja un carril por partición, en orden de aparición) y `notes` (nota
+UML, `data.notes`: una forma `note` unida a su paso por una línea punteada). `kind: merge` se dibuja
+como rombo sin rótulo (glifo `activity.merge`). El paso de `start:` conserva su glifo (acción o
+decisión): el nodo inicial es el pseudonodo propio `<spec>.__initial` (glifo `activity.start`) con un
+`next` hacia él. El final es `end` mismo cuando no es un paso (`end: end`) o, si `end` nombra un
+paso, el pseudonodo `<spec>.__final`, al que ese paso fluye. Un glifo con `label: ""` explícito no
+lleva rótulo (antes caía a `{title}`).
+
+**Deployment.** Un nodo `contains` nodos y artefactos a cualquier profundidad (un padre por nodo,
+sin ciclos): la superficie anida con el link `contains` (`draw: nest`), así que un `contains` de nodo
+a nodo es un subgrafo dentro de otro. Las conexiones son `connects` (communication path; nodo a nodo,
+o artefacto a artefacto como antes), con `data.label` y `data.protocol`; `deploy` («deploy»,
+artefacto -> nodo) y `manifest` («manifest», artefacto -> nodo o artefacto) son relaciones propias,
+dibujadas punteadas con su estereotipo en el rótulo. El `keyword` de un glifo se interpola como un
+rótulo (`«{kind}»` -> `«database»`) y se omite si queda vacío: ningún `{campo}` sin resolver llega a
+la salida del resolver (lo comprueba un test).
+
+**Catálogo.** Una vista de `vistas.yml` puede fijar `notation:` (ruta relativa al `vistas.yml`,
+nombre builtin o `NotationDoc` del store); `catalog sync` la usa y `catalog validate` la comprueba
+(`UnknownNotationError`, `NotationMismatchError`). `diagram sync` conserva `category`, `nav` y
+`summary` del SpecDoc.
+

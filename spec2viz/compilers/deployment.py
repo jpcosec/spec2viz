@@ -17,4 +17,5 @@ class DeploymentCompiler:
             DeploymentConnection(from_=c.from_, to=c.to, protocol=c.protocol, kind=c.kind, label=c.label)
             for c in diagram.data.connections
         ]
-        return DeploymentIR(title=diagram.title, nodes=nodes, artifacts=artifacts, connections=connections)
+        style_kinds = dict(diagram.style.kinds) if diagram.style else {}
+        return DeploymentIR(title=diagram.title, nodes=nodes, artifacts=artifacts, connections=connections, style_kinds=style_kinds)

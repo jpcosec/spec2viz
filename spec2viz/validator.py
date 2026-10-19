@@ -11,6 +11,7 @@ from spec2viz.models.class_diagram import ClassDiagram
 
 
 def validate(diagram: BaseDiagram) -> None:
+    _validate_style(diagram)
     match diagram:
         case ClassDiagram():      _validate_class(diagram)
         case ComponentDiagram():  _validate_component(diagram)
@@ -19,6 +20,27 @@ def validate(diagram: BaseDiagram) -> None:
         case ActivityDiagram():   _validate_activity(diagram)
         case DeploymentDiagram(): _validate_deployment(diagram)
         case MatrixDiagram():     _validate_matrix(diagram)
+
+
+def _validate_style(d: BaseDiagram) -> None:
+    """`style.kinds` neutral (fill, stroke, icon): colores token de la paleta default o `#rrggbb`
+    (`InvalidColorError`), iconos del set declarado (`UnknownIconError`). Las claves de un
+    renderer (como `plantuml`) no se validan aqui."""
+    if d.style is None or not d.style.kinds:
+        return
+    from spec2viz.exceptions import UnknownIconError
+    from spec2viz.palette import resolve_color
+    from spec2viz.styling import _builtin_default
+
+    default = _builtin_default()
+    for kind, entry in d.style.kinds.items():
+        if not isinstance(entry, dict):
+            continue
+        for prop in ("fill", "stroke"):
+            if entry.get(prop):
+                resolve_color(str(entry[prop]), default["colors"], f"{d.id} style.kinds.{kind}.{prop}")
+        if entry.get("icon") and str(entry["icon"]) not in default["icon_set"]["icons"]:
+            raise UnknownIconError(f"{d.id} style.kinds.{kind}.icon {entry['icon']!r} is not in the {default['icon_set']['name']} icon set")
 
 
 def _validate_class(d: ClassDiagram) -> None:

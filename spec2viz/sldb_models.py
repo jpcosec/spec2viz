@@ -38,6 +38,7 @@ notation: ⸢optrev•notation⸥
 category: ⸢optrev•category⸥
 nav: ⸢optrev•nav⸥
 summary: ⸢optrev•summary⸥
+style: ⸢optrev•style⸥
 nodes: ⸢rev,list•nodes⸥
 ---
 
@@ -65,6 +66,10 @@ nodes: ⸢rev,list•nodes⸥
     category: str = Field(default="", description="Categoria del catalogo (`category` de vistas.yml); graph_ui agrupa los specs por ella.")
     nav: str = Field(default="", description="Rotulo corto de navegacion del catalogo (`nav` de vistas.yml).")
     summary: str = Field(default="", description="Resumen del catalogo (`desc` de vistas.yml).")
+    style: dict | None = Field(
+        default=None,
+        description="`style.kinds` neutral del spec (kind -> fill, stroke, icon): segundo nivel de la precedencia de estilo (glifo > spec > paleta); ausente si el spec no lo declara.",
+    )
     description: str = Field(default="", description="Descripcion del spec (`metadata.description` del YAML).")
 
     @field_validator("notation", "category", "nav", "summary", mode="before")
@@ -155,7 +160,7 @@ class NotationDoc(StructuredNLDoc):
         "layer": ["presentation"],
         "system": ["spec2viz"],
     }
-    __references__ = ["glyphs", "links"]
+    __references__ = ["glyphs", "links", "palette"]
     __template__ = """---
 id: ⸢rev•id⸥
 name: ⸢rev•name⸥
@@ -166,6 +171,7 @@ layout: ⸢rev•layout⸥
 markers: ⸢rev•markers⸥
 glyphs: ⸢rev,list•glyphs⸥
 links: ⸢rev,list•links⸥
+palette: ⸢optrev•palette⸥
 ---
 
 # ⸢rev•title⸥
@@ -188,6 +194,7 @@ links: ⸢rev,list•links⸥
     )
     glyphs: list[str] = Field(default_factory=list, description="Ids `GlyphDoc:<notation>.<glyph>` en orden de prioridad: el primero que casa gana.")
     links: list[str] = Field(default_factory=list, description="Ids `LinkDoc:<notation>.<link>`.")
+    palette: str | None = Field(default=None, description="Id `PaletteDoc:<name>` de la paleta que usa; ausente si la notacion no usa estilo.")
     description: str = Field(default="", description="Que dibuja la notacion y sobre que mundo.")
 
 
@@ -212,6 +219,10 @@ keyword: ⸢rev•keyword⸥
 compartments: ⸢rev,list•compartments⸥
 function: ⸢rev•function⸥
 form: ⸢rev•form⸥
+kind: ⸢optrev•kind⸥
+fill: ⸢optrev•fill⸥
+stroke: ⸢optrev•stroke⸥
+icon: ⸢optrev•icon⸥
 ---
 
 # ⸢rev•title⸥
@@ -233,6 +244,10 @@ form: ⸢rev•form⸥
     compartments: list[str] = Field(default_factory=list, description="Campos del payload que se muestran como compartimentos, en orden (`data.attributes`).")
     function: str = Field(default="", description="Papel semantico del glifo en la notacion (class, interface, state, terminal).")
     form: str = Field(default="", description="Forma pron equivalente al par model/where, si alguien la interpreta; spec2viz no.")
+    kind: str | None = Field(default=None, description="Kind de la paleta cuya forma de referencia, icono y colores toma el glifo.")
+    fill: str | None = Field(default=None, description="Relleno: token de la paleta o `#rrggbb`.")
+    stroke: str | None = Field(default=None, description="Trazo: token de la paleta o `#rrggbb`.")
+    icon: str | None = Field(default=None, description="Icono del set declarado por la paleta (Lucide, kebab-case).")
     description: str = Field(default="", description="Texto libre.")
 
 
@@ -260,6 +275,7 @@ source_label: ⸢optrev•source_label⸥
 target_label: ⸢optrev•target_label⸥
 ends: ⸢rev•ends⸥
 form: ⸢rev•form⸥
+color: ⸢optrev•color⸥
 ---
 
 # ⸢rev•title⸥
@@ -284,12 +300,49 @@ form: ⸢rev•form⸥
     target_label: str = Field(default="", description="Plantilla del rotulo junto al destino (`{to_multiplicity}`).")
     ends: dict = Field(default_factory=dict, description="Extremos de una relacion reificada: nombre -> {relation, label, terminal}.")
     form: str = Field(default="", description="Forma pron equivalente (`(relation R)`), si alguien la interpreta; spec2viz no.")
+    color: str | None = Field(default=None, description="Color de la linea: token de la paleta o `#rrggbb`; ausente = el de la superficie.")
     description: str = Field(default="", description="Texto libre.")
 
     @field_validator("source_label", "target_label", mode="before")
     @classmethod
     def _absent_label(cls, value):
         return "" if value is None else value
+
+
+class PaletteDoc(StructuredNLDoc):
+    """Una paleta: fondos e ink por tema, set de iconos, tokens de color y estilo por kind."""
+
+    __semantics__ = {
+        "type": ["palette", "vocabulary"],
+        "layer": ["presentation"],
+        "system": ["spec2viz"],
+    }
+    __template__ = """---
+id: ⸢rev•id⸥
+name: ⸢rev•name⸥
+backgrounds: ⸢rev•backgrounds⸥
+ink: ⸢rev•ink⸥
+icon_set: ⸢rev•icon_set⸥
+colors: ⸢rev•colors⸥
+kinds: ⸢rev•kinds⸥
+---
+
+# ⸢rev•title⸥
+
+## Description
+
+⸢rev,markdown•description⸥
+""".strip()
+
+    id: str = Field(description="Nombre de la paleta; nombre del documento (`PaletteDoc:<name>`).")
+    name: str = Field(description="Nombre de la paleta, igual al id.")
+    title: str = Field(description="Titulo legible.")
+    backgrounds: dict = Field(description="Fondo de cada tema: `{light, dark}` en `#rrggbb`.")
+    ink: dict = Field(description="Color del texto en cada tema: `{light, dark}`.")
+    icon_set: dict = Field(description="Set de iconos declarado: `{name, version, icons}`; solo esos nombres son validos.")
+    colors: dict = Field(default_factory=dict, description="Tokens de color: nombre -> `{light, dark}`.")
+    kinds: dict = Field(default_factory=dict, description="Estilo por kind: `{shape, icon, fill, stroke}` con colores como tokens.")
+    description: str = Field(default="", description="Texto libre.")
 
 
 class ViewDoc(StructuredNLDoc):
@@ -377,4 +430,4 @@ layout: ⸢rev•layout⸥
         return "" if value is None else value
 
 
-__all__ = ["SpecDoc", "SpecNodeDoc", "NotationDoc", "GlyphDoc", "LinkDoc", "ViewDoc"]
+__all__ = ["SpecDoc", "SpecNodeDoc", "NotationDoc", "GlyphDoc", "LinkDoc", "PaletteDoc", "ViewDoc"]

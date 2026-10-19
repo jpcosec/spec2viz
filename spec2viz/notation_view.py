@@ -29,6 +29,8 @@ from typing import Any
 
 from spec2viz.notation import ANY_RELATION
 
+from spec2viz.styling import resolve_line_color, resolve_style
+
 _PLACEHOLDER = re.compile(r"\{([A-Za-z0-9_.]+)\}")
 _DOC_FIELDS = ("id", "title", "kind", "refs", "atom_refs", "contains", "description", "spec", "element")
 
@@ -94,8 +96,9 @@ def _docs(store: Path, pythonpath: str | None) -> dict[str, dict[str, Any]]:
     }
 
 
-def _node_view(ref: str, payload: dict[str, Any], glyphs: list[dict], markers: list[dict]) -> dict[str, Any]:
-    glyph = next((g for g in glyphs if g["payload"]["model"] == "SpecNodeDoc" and matches(g["payload"].get("where", ""), payload)), None)
+def _node_view(ref: str, payload: dict[str, Any], glyphs: list[dict], markers: list[dict], model: str = "SpecNodeDoc",
+               spec_kinds: dict | None = None, palette: dict | None = None) -> dict[str, Any]:
+    glyph = next((g for g in glyphs if g["payload"]["model"] == model and matches(g["payload"].get("where", ""), payload)), None)
     if glyph is None:
         raise ViewError(f"no glyph of the notation matches {ref} (the last glyph of a model must have no `where`)")
     gp = glyph["payload"]
@@ -120,8 +123,10 @@ def _node_view(ref: str, payload: dict[str, Any], glyphs: list[dict], markers: l
         "label_style": gp.get("label_style", ""),
         "keyword": render_keyword(gp.get("keyword", ""), payload),
         "compartments": compartments,
-        "markers": [{"id": m["id"], "shape": m["shape"]} for m in markers if m.get("model", "SpecNodeDoc") == "SpecNodeDoc" and matches(m.get("where", ""), payload)],
+        "markers": [{"id": m["id"], "shape": m["shape"]} for m in markers if m.get("model", "SpecNodeDoc") == model and matches(m.get("where", ""), payload)],
         "refs": list(payload.get("refs") or []) + list(payload.get("atom_refs") or []),
+        # estilo ya resuelto (glifo > style.kinds del spec > paleta); {} si ninguna capa lo define
+        "style": resolve_style(gp, str(payload.get("kind") or ""), spec_kinds, palette),
     }
 
 
@@ -134,7 +139,8 @@ def link_order(relation_doc: str | None) -> int:
     return int(match.group(1)) if match else 0
 
 
-def _link_view(source: str, target: str, link: dict, relation_payload: dict[str, Any] | None, relation_doc: str | None) -> dict[str, Any]:
+def _link_view(source: str, target: str, link: dict, relation_payload: dict[str, Any] | None, relation_doc: str | None,
+               palette: dict | None = None) -> dict[str, Any]:
     lp = link["payload"]
     rp = relation_payload or {}
     attributes = dict(rp.get("attributes") or {})
@@ -157,6 +163,7 @@ def _link_view(source: str, target: str, link: dict, relation_payload: dict[str,
         "source_end": lp.get("source_end", "none"),
         "target_end": lp.get("target_end", "open-arrow"),
         "label": render_template(lp.get("label") or "", templated),
+        "color": resolve_line_color(lp, palette),
     }
 
 
@@ -194,9 +201,10 @@ def fragments_of(links: list[dict[str, Any]]) -> list[dict[str, Any]]:
 def resolve_view(store: Path, spec_ref: str, pythonpath: str | None = None) -> dict[str, Any]:
     """La vista de un spec segun su notacion, lista para dibujar.
 
-    Devuelve `{spec, notation, layout, level, nodes, links, skipped}`; `skipped` lista las
-    relaciones del spec que la notacion no dibuja. `ViewError` si el spec no existe, no tiene
-    notacion, o la notacion no casa con el tipo de diagrama.
+    Devuelve `{spec, title, diagram_type, notation, palette, level, layout, nodes, links,
+    fragments, skipped, legend}`; `skipped` lista las relaciones del spec que la notacion no
+    dibuja. `ViewError` si el spec no existe, no tiene notacion, o la notacion no casa con el tipo
+    de diagrama.
     """
     if not spec_ref.startswith("SpecDoc:"):
         spec_ref = f"SpecDoc:{spec_ref}"
@@ -211,9 +219,34 @@ def resolve_view(store: Path, spec_ref: str, pythonpath: str | None = None) -> d
     notation = docs.get(notation_ref)
     if notation is None:
         raise ViewError(f"{spec_ref} points at {notation_ref}, which is not in the store")
+    if notation["payload"].get("diagram_type") != sp.get("diagram_type"):
+        raise ViewError(f"{notation_ref} draws `{notation['payload'].get('diagram_type')}` specs and {spec_ref} is a `{sp.get('diagram_type')}` spec")
+    view = resolve_documents(store, notation_ref, list(sp.get("nodes") or []), spec_style=sp.get("style"), docs=docs)
+    return {"spec": spec_ref, "title": sp.get("title", ""), "diagram_type": sp.get("diagram_type", ""), **view}
+
+
+def resolve_documents(store: Path, notation_ref: str, doc_refs: list[str], *, relation_refs: list[str] | None = None,
+                      spec_style: dict | None = None, pythonpath: str | None = None,
+                      docs: dict[str, dict[str, Any]] | None = None) -> dict[str, Any]:
+    """Documentos de cualquier modelo dibujados con una notacion: la misma salida que
+    `resolve_view` (nodos, links, fragmentos, `skipped` y la leyenda), sin spec.
+
+    `doc_refs` son ids `Model:name` del store; cada uno se dibuja con el primer glifo de su modelo
+    cuyo `where` casa. Los links son los `contains` entre esos documentos y los `RelationDoc`
+    cuyos dos extremos estan en la vista (solo los de `relation_refs`, si se da). `spec_style` es
+    un `style.kinds` neutral (kind -> fill, stroke, icon) para la segunda capa de la precedencia.
+    Sirve, por ejemplo, para evaluar una `ViewDoc`: la superficie elige los documentos y las
+    aristas y esta funcion aplica la notacion.
+    """
+    docs = docs if docs is not None else _docs(store, pythonpath)
+    if not notation_ref.startswith("NotationDoc:"):
+        notation_ref = f"NotationDoc:{notation_ref}"
+    notation = docs.get(notation_ref)
+    if notation is None:
+        raise ViewError(f"{notation_ref} is not in the store")
     np_ = notation["payload"]
-    if np_.get("diagram_type") != sp.get("diagram_type"):
-        raise ViewError(f"{notation_ref} draws `{np_.get('diagram_type')}` specs and {spec_ref} is a `{sp.get('diagram_type')}` spec")
+    palette_doc = docs.get(np_.get("palette") or "")
+    palette = palette_doc["payload"] if palette_doc else None
 
     glyphs = [{"ref": r, "payload": docs[r]["payload"]} for r in np_.get("glyphs") or [] if r in docs]
     links = [{"ref": r, "payload": docs[r]["payload"]} for r in np_.get("links") or [] if r in docs]
@@ -223,8 +256,8 @@ def resolve_view(store: Path, spec_ref: str, pythonpath: str | None = None) -> d
     wildcard = next((l for l in links if l["payload"]["relation"] == ANY_RELATION), None)
     markers = list(np_.get("markers") or [])
 
-    node_refs = [r for r in sp.get("nodes") or [] if r in docs]
-    nodes = [_node_view(r, docs[r]["payload"], glyphs, markers) for r in node_refs]
+    node_refs = [r for r in doc_refs if r in docs]
+    nodes = [_node_view(r, docs[r]["payload"], glyphs, markers, docs[r]["model"], spec_style, palette) for r in node_refs]
     in_view = set(node_refs)
 
     out_links: list[dict[str, Any]] = []
@@ -236,10 +269,11 @@ def resolve_view(store: Path, spec_ref: str, pythonpath: str | None = None) -> d
                 if contains_link is None:
                     skipped.append(f"{ref} contains {child}")
                 else:
-                    out_links.append(_link_view(ref, child, contains_link, None, None))
+                    out_links.append(_link_view(ref, child, contains_link, None, None, palette))
+    wanted = set(relation_refs) if relation_refs is not None else None
     relation_links: list[dict[str, Any]] = []
     for ref, doc in docs.items():
-        if doc["model"] != "RelationDoc":
+        if doc["model"] != "RelationDoc" or (wanted is not None and ref not in wanted):
             continue
         rp = doc["payload"]
         source, target = rp.get("source_id"), rp.get("target_id")
@@ -249,21 +283,47 @@ def resolve_view(store: Path, spec_ref: str, pythonpath: str | None = None) -> d
         if link is None:
             skipped.append(f"{ref}: relation '{rp.get('relation_type')}' has no link in {notation_ref}")
             continue
-        relation_links.append(_link_view(source, target, link, rp, ref))
+        relation_links.append(_link_view(source, target, link, rp, ref, palette))
     out_links.extend(sorted(relation_links, key=lambda l: (l["order"], l["doc"] or "")))
 
     return {
-        "spec": spec_ref,
-        "title": sp.get("title", ""),
-        "diagram_type": sp.get("diagram_type", ""),
         "notation": notation_ref,
+        "palette": np_.get("palette") or "",
         "level": np_.get("level", "types"),
         "layout": dict(np_.get("layout") or {"kind": "graph"}),
         "nodes": nodes,
         "links": out_links,
         "fragments": fragments_of(out_links),
         "skipped": skipped,
+        "legend": _legend(glyphs, links, nodes, palette),
     }
 
 
-__all__ = ["resolve_view", "ViewError", "flatten", "lookup", "render_template", "matches", "link_order", "fragments_of", "fragment_kind", "FRAGMENT_KINDS"]
+def _legend(glyphs: list[dict], links: list[dict], nodes: list[dict], palette: dict | None) -> dict[str, Any]:
+    """La leyenda de la notacion ya resuelta: cada glifo con su forma y estilo, cada link con su
+    trazo y color, y cada kind de la vista que recibe estilo del spec o de la paleta."""
+    kinds: dict[str, dict[str, Any]] = {}
+    for node in nodes:
+        style = node.get("style") or {}
+        if node.get("kind") and set((style.get("source") or {}).values()) & {"spec", "palette"} and node["kind"] not in kinds:
+            entry = dict(style)
+            reference = ((palette or {}).get("kinds") or {}).get(node["kind"]) or {}
+            if reference.get("shape"):
+                entry["shape"] = reference["shape"]
+            kinds[node["kind"]] = entry
+    return {
+        "glyphs": [{
+            "glyph": g["ref"], "title": g["payload"].get("title", ""), "shape": g["payload"].get("shape", ""),
+            "function": g["payload"].get("function", ""), "style": resolve_style(g["payload"], "", None, palette),
+        } for g in glyphs],
+        "links": [{
+            "link": l["ref"], "title": l["payload"].get("title", ""), "relation": l["payload"].get("relation", ""),
+            "draw": l["payload"].get("draw", "line"), "line": l["payload"].get("line", "solid"),
+            "source_end": l["payload"].get("source_end", "none"), "target_end": l["payload"].get("target_end", "open-arrow"),
+            "color": resolve_line_color(l["payload"], palette),
+        } for l in links],
+        "kinds": [{"kind": k, **v} for k, v in kinds.items()],
+    }
+
+
+__all__ = ["resolve_view", "resolve_documents", "render_keyword", "ViewError", "flatten", "lookup", "render_template", "matches", "link_order", "fragments_of", "fragment_kind", "FRAGMENT_KINDS"]

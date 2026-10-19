@@ -28,7 +28,7 @@ from typing import Any
 import yaml
 
 from spec2viz.deskops import _ELEMENT_COLLECTIONS
-from spec2viz.notation import ANY_RELATION, DEFAULT_NOTATIONS, NotationSpec, glyph_ref, link_ref, load_notation, notation_ref
+from spec2viz.notation import ANY_RELATION, DEFAULT_NOTATIONS, NotationSpec, glyph_ref, link_ref, load_notation, notation_palette, notation_ref, resolve_notation
 
 MODEL_REFS = {
     "SpecDoc": "spec2viz.sldb_models:SpecDoc",
@@ -37,9 +37,25 @@ MODEL_REFS = {
     "GlyphDoc": "spec2viz.sldb_models:GlyphDoc",
     "LinkDoc": "spec2viz.sldb_models:LinkDoc",
     "ViewDoc": "spec2viz.sldb_models:ViewDoc",
+    "PaletteDoc": "spec2viz.sldb_models:PaletteDoc",
 }
 
-_MANAGED_MODELS = ("SpecDoc", "SpecNodeDoc", "RelationDoc", "RelationTypeDoc", "NotationDoc", "GlyphDoc", "LinkDoc")
+_MANAGED_MODELS = ("SpecDoc", "SpecNodeDoc", "RelationDoc", "RelationTypeDoc", "NotationDoc", "GlyphDoc", "LinkDoc", "PaletteDoc")
+
+# claves neutrales de `style.kinds` de un spec (las de un renderer, como `plantuml`, quedan para el)
+STYLE_KEYS = ("fill", "stroke", "icon")
+
+
+def spec_style_kinds(spec: dict) -> dict[str, dict[str, str]]:
+    """`style.kinds` del spec reducido a las claves neutrales: kind -> {fill, stroke, icon}."""
+    kinds = ((spec.get("style") or {}).get("kinds") or {}) if isinstance(spec.get("style"), dict) else {}
+    out: dict[str, dict[str, str]] = {}
+    for kind, entry in kinds.items():
+        if isinstance(entry, dict):
+            neutral = {k: str(entry[k]) for k in STYLE_KEYS if entry.get(k)}
+            if neutral:
+                out[str(kind)] = neutral
+    return out
 
 # coleccion de aristas por tipo de diagrama: (coleccion, campo con la relacion o None,
 # relacion por defecto). Con campo None todas las aristas llevan la relacion por defecto.
@@ -74,6 +90,7 @@ _ELEMENT_OWN_FIELDS = frozenset({"id", "label", "name", "kind", "type", "contain
 
 RELATION_TYPES_DIR = Path("sldb") / "relation_types"
 NOTATIONS_DIR = Path("sldb") / "notations"
+PALETTES_DIR = Path("sldb") / "palettes"
 
 
 @dataclass
@@ -415,15 +432,48 @@ class _StoreWriter:
         return report
 
 
+class PaletteSync(_StoreWriter):
+    """Escribe una paleta (PaletteDoc) en un store."""
+
+    def sync(self, name_or_path: str | Path = "default", *, base: Path | None = None, finish: bool = True) -> SyncReport:
+        from spec2viz.palette import load_palette, palette_ref
+
+        palette = load_palette(name_or_path, base)
+        report = SyncReport(spec_id=palette.name)
+        self.prepare()
+        existing = self.existing_documents()
+        payload = {
+            "id": palette.name,
+            "name": palette.name,
+            "title": palette.title or palette.name,
+            "backgrounds": palette.backgrounds.model_dump(),
+            "ink": palette.ink.model_dump(),
+            "icon_set": palette.icon_set.model_dump(),
+            "colors": {k: v.model_dump() for k, v in palette.colors.items()},
+            "kinds": {k: v.model_dump() for k, v in palette.kinds.items()},
+            "description": palette.description,
+        }
+        self.upsert(existing, report, "PaletteDoc", palette.name, self.root / PALETTES_DIR / f"{palette.name}.md", payload)
+        report.notation = palette_ref(palette.name)
+        return self.finish(report) if finish else report
+
+
 class NotationSync(_StoreWriter):
-    """Escribe una notacion (NotationDoc, GlyphDoc, LinkDoc) en un store."""
+    """Escribe una notacion (NotationDoc, GlyphDoc, LinkDoc y su PaletteDoc, si usa estilo) en un store."""
 
     def sync(self, name_or_path: str | Path, *, finish: bool = True) -> SyncReport:
         import sldb.api as api
+        from spec2viz.palette import palette_ref
 
         notation = load_notation(name_or_path)
         report = SyncReport(spec_id=notation.name, notation=notation_ref(notation.name))
         self.prepare()
+        palette = notation_palette(notation, resolve_notation(name_or_path).parent)
+        if palette is not None:
+            sub = PaletteSync(self.store_path, self.pythonpath, self.actor).sync(
+                notation.palette or palette.name, base=resolve_notation(name_or_path).parent, finish=False)
+            for attr in ("created", "updated"):
+                getattr(report, attr).extend(getattr(sub, attr))
         existing = self.existing_documents()
         out = self.root / NOTATIONS_DIR / notation.name
 
@@ -456,6 +506,11 @@ class NotationSync(_StoreWriter):
                 "function": glyph.function,
                 "form": glyph.form or default_form,
                 "description": glyph.description,
+                # estilo opcional: None (no "") para que optrev no escriba la linea
+                "kind": glyph.kind or None,
+                "fill": glyph.fill or None,
+                "stroke": glyph.stroke or None,
+                "icon": glyph.icon or None,
             }
             self.upsert(existing, report, "GlyphDoc", name, out / "glyphs" / f"{glyph.id}.md", payload)
             current.add(("GlyphDoc", name))
@@ -481,6 +536,7 @@ class NotationSync(_StoreWriter):
                 "ends": {k: e.model_dump() for k, e in link.ends.items()},
                 "form": link.form or default_form,
                 "description": link.description,
+                "color": link.color or None,
             }
             self.upsert(existing, report, "LinkDoc", name, out / "links" / f"{link.id}.md", payload)
             current.add(("LinkDoc", name))
@@ -496,6 +552,7 @@ class NotationSync(_StoreWriter):
             "markers": [m.model_dump() for m in notation.markers],
             "glyphs": [glyph_ref(notation.name, g.id) for g in notation.glyphs],
             "links": [link_ref(notation.name, l.id) for l in notation.links],
+            "palette": palette_ref(palette.name) if palette is not None else None,
             "description": notation.description,
         }
         self.upsert(existing, report, "NotationDoc", notation.name, out / "notation.md", payload)
@@ -594,6 +651,7 @@ class SpecSync(_StoreWriter):
             "category": str((catalog or {}).get("category") or ""),
             "nav": str((catalog or {}).get("nav") or ""),
             "summary": str((catalog or {}).get("summary") or ""),
+            "style": spec_style_kinds(spec) or None,
             "nodes": [node_ref(spec_id, el["id"]) for el in elements],
             "description": str((spec.get("metadata") or {}).get("description") or ""),
         }
@@ -776,7 +834,7 @@ def format_notation_report(report: SyncReport) -> str:
 
 
 __all__ = [
-    "SpecSync", "NotationSync", "SyncReport", "find_store", "format_report", "format_notation_report",
+    "SpecSync", "NotationSync", "PaletteSync", "SyncReport", "spec_style_kinds", "find_store", "format_report", "format_notation_report",
     "spec_edges", "spec_elements", "edge_name", "stage_id", "relation_token", "node_ref", "to_slash_ref", "relation_doc_has_attributes",
     "catalog_entries", "check_catalog", "resolve_spec_notation", "sync_catalog",
 ]

@@ -150,7 +150,10 @@ def notation_list():
 @click.argument("names", nargs=-1, required=True, metavar="NAME_OR_PATH ...")
 def notation_validate(names: tuple[str, ...]):
     """Check each notation's grammar: ids, enumerations, default glyphs, relations the diagram
-    type emits and `where` predicates in the `sldb find --where` grammar."""
+    type emits, `where` predicates in the `sldb find --where` grammar, builtin shapes, and the
+    optional style against its palette: palette kinds, colors (token or `#rrggbb`) and icons of
+    the declared set. Errors name their type (UnknownShapeError, UnknownKindError,
+    InvalidColorError, UnknownIconError)."""
     from spec2viz.exceptions import ValidationError
     from spec2viz.notation import load_notation
 
@@ -159,12 +162,67 @@ def notation_validate(names: tuple[str, ...]):
         try:
             spec = load_notation(name)
         except ValidationError as exc:
-            click.echo(f"Invalid: {exc}", err=True)
+            click.echo(f"Invalid: {type(exc).__name__}: {exc}", err=True)
             failed = True
             continue
         click.echo(f"Valid: {spec.name} ({spec.diagram_type}; glyphs: {', '.join(g.id for g in spec.glyphs)}; links: {', '.join(l.id for l in spec.links)})")
     if failed:
         sys.exit(1)
+
+
+@main.group(short_help="List, validate and sync palettes (colors, icons and reference shapes per kind).")
+def palette():
+    """Palettes: per-kind fill, stroke, icon and reference shape, as data. `default` is builtin."""
+
+
+@palette.command("list", short_help="List the builtin palettes.")
+def palette_list():
+    """One line per builtin palette: name, kinds and icon set."""
+    from spec2viz.palette import builtin_palettes, load_palette
+
+    for name in builtin_palettes():
+        spec = load_palette(name)
+        click.echo(f"{name}: {len(spec.kinds)} kinds ({', '.join(spec.kinds)}), icons {spec.icon_set.name} {spec.icon_set.version} ({len(spec.icon_set.icons)})")
+
+
+@palette.command("validate", short_help="Validate palette YAML files (or builtin names): colors, icons, shapes and WCAG contrast.")
+@click.argument("names", nargs=-1, required=True, metavar="NAME_OR_PATH ...")
+def palette_validate(names: tuple[str, ...]):
+    """Check each palette: `#rrggbb` colors and tokens, icons of the declared set, builtin shapes,
+    strokes >= 3:1 against each theme background, text >= 4.5:1 on each fill, and a distinct
+    (shape, icon) per kind so colour is never the only cue. Errors name their type."""
+    from spec2viz.exceptions import ValidationError
+    from spec2viz.palette import load_palette
+
+    failed = False
+    for name in names:
+        try:
+            spec = load_palette(name)
+        except ValidationError as exc:
+            click.echo(f"Invalid: {type(exc).__name__}: {exc}", err=True)
+            failed = True
+            continue
+        click.echo(f"Valid: {spec.name} ({len(spec.kinds)} kinds, {len(spec.colors)} color tokens, {len(spec.icon_set.icons)} icons)")
+    if failed:
+        sys.exit(1)
+
+
+@palette.command("sync", short_help="Write palettes into an sldb store as PaletteDoc.")
+@click.argument("names", nargs=-1, required=True, metavar="NAME_OR_PATH ...")
+@click.option("--store", required=True, type=click.Path(exists=True, path_type=Path), help="The `.sldb` store to write into.")
+@click.option("--pythonpath", help="Project path the store's models import from.")
+def palette_sync(names: tuple[str, ...], store: Path, pythonpath: str | None):
+    """Write each palette as `PaletteDoc:<name>` under `sldb/palettes/`. `notation sync` already
+    writes the palette a styled notation uses; this is for a palette on its own."""
+    from spec2viz.sldb_sync import PaletteSync
+
+    for name in names:
+        try:
+            report = PaletteSync(store, pythonpath).sync(name)
+        except Exception as exc:
+            click.echo(f"Error syncing palette {name}: {type(exc).__name__}: {exc}", err=True)
+            sys.exit(1)
+        click.echo(f"Synced palette {report.spec_id} ({len(report.created)} created, {len(report.updated)} updated)")
 
 
 @notation.command("sync", short_help="Write notations into an sldb store.")

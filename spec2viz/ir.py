@@ -198,6 +198,7 @@ class ActivityIR:
     start: str
     steps: list[ActivityStep]
     end: str
+    style_kinds: dict[str, dict] = field(default_factory=dict)
 
 
 # ── Deployment ────────────────────────────────────────────────────────────────
@@ -242,6 +243,7 @@ class DeploymentIR:
     nodes: list[DeploymentNode]
     artifacts: list[DeploymentArtifact]
     connections: list[DeploymentConnection]
+    style_kinds: dict[str, dict] = field(default_factory=dict)
 
 
 __all__ = [

@@ -20,7 +20,7 @@ from typing import Any, Literal
 import yaml
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
-from spec2viz.exceptions import ValidationError
+from spec2viz.exceptions import InvalidColorError, UnknownIconError, UnknownKindError, UnknownShapeError, ValidationError
 from spec2viz.models.base import DiagramType
 
 NOTATIONS_DIR = Path(__file__).parent / "notations"
@@ -47,6 +47,15 @@ TERMINALS = (
     "hollow-diamond", "filled-diamond", "filled-circle", "hollow-circle", "bar", "crowfoot",
 )
 LEVELS = ("types", "instances", "both")
+
+# formas primitivas que una superficie sabe dibujar: las de las notaciones builtin, mas cylinder
+# (bases de datos y almacenamiento), queue (cola: cilindro horizontal), cloud (servicio externo),
+# package (la carpeta con pestana de UML) y note (nota UML con esquina doblada)
+SHAPES = (
+    "artifact", "boundary-box", "boundary-lifeline", "box", "bullseye", "class-box", "column-header",
+    "diamond", "filled-circle", "lifeline", "node-box", "rounded-box", "rounded-container", "row-header",
+    "stick-figure", "cylinder", "queue", "cloud", "package", "note",
+)
 LAYOUT_KINDS = ("graph", "tree", "lanes", "grid", "axis", "manual")
 
 # relaciones que cada tipo de diagrama emite al sincronizar (`sldb_sync.spec_edges` mas
@@ -81,6 +90,12 @@ class GlyphSpec(BaseModel):
     function: str = ""
     form: str = ""
     description: str = ""
+    # estilo opcional (precedencia: glifo > Style.kinds del spec > paleta); un color es un token
+    # de la paleta o `#rrggbb`, `kind` toma forma de referencia, icono y colores de la paleta
+    kind: str = ""
+    fill: str = ""
+    stroke: str = ""
+    icon: str = ""
 
     @field_validator("id")
     @classmethod
@@ -121,6 +136,7 @@ class LinkSpec(BaseModel):
     ends: dict[str, LinkEndSpec] = Field(default_factory=dict)
     form: str = ""
     description: str = ""
+    color: str = ""  # color de la linea: token de la paleta o `#rrggbb`; vacio = el de la superficie
 
     @field_validator("id")
     @classmethod
@@ -180,6 +196,9 @@ class NotationSpec(BaseModel):
     glyphs: list[GlyphSpec] = Field(min_length=1)
     links: list[LinkSpec] = Field(default_factory=list)
     description: str = ""
+    # paleta de la notacion (nombre builtin o ruta relativa al YAML); vacia = `default` si algun
+    # glifo o link usa estilo, ninguna si no
+    palette: str = ""
 
     @field_validator("name")
     @classmethod
@@ -247,6 +266,11 @@ class NotationSpec(BaseModel):
         return out
 
     @property
+    def styled(self) -> bool:
+        """Si la notacion usa estilo (paleta, kind, colores o iconos)."""
+        return bool(self.palette or any(g.kind or g.fill or g.stroke or g.icon for g in self.glyphs) or any(l.color for l in self.links))
+
+    @property
     def models(self) -> list[str]:
         """Modelos que la notacion nombra (glifos, marcas y relaciones reificadas)."""
         out: list[str] = []
@@ -291,7 +315,7 @@ def resolve_notation(name_or_path: str | Path) -> Path:
 
 
 def load_notation(name_or_path: str | Path) -> NotationSpec:
-    """Carga y valida una notacion; `ValidationError` si no es valida."""
+    """Carga y valida una notacion; `ValidationError` (o una subclase tipada) si no es valida."""
     path = resolve_notation(name_or_path)
     try:
         raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
@@ -300,9 +324,47 @@ def load_notation(name_or_path: str | Path) -> NotationSpec:
     if not isinstance(raw, dict):
         raise ValidationError(f"{path}: a notation is a mapping")
     try:
-        return NotationSpec.model_validate(raw)
+        notation = NotationSpec.model_validate(raw)
     except ValueError as exc:
         raise ValidationError(f"{path}: {exc}") from exc
+    try:
+        check_notation_style(notation, path.parent)
+    except ValidationError as exc:
+        raise type(exc)(f"{path}: {exc}") from exc
+    return notation
+
+
+def notation_palette(notation: NotationSpec, base: Path | None = None):
+    """La paleta que usa una notacion (`PaletteSpec`), o None si no usa estilo."""
+    from spec2viz.palette import DEFAULT_PALETTE, load_palette
+
+    if not notation.styled:
+        return None
+    return load_palette(notation.palette or DEFAULT_PALETTE, base)
+
+
+def check_notation_style(notation: NotationSpec, base: Path | None = None) -> None:
+    """Formas, kinds, colores e iconos de una notacion, con errores tipados:
+    `UnknownShapeError`, `UnknownKindError`, `InvalidColorError`, `UnknownIconError`."""
+    for item in [*notation.glyphs, *notation.markers]:
+        if item.shape not in SHAPES:
+            what = "glyph" if isinstance(item, GlyphSpec) else "marker"
+            raise UnknownShapeError(f"{what} {item.id!r}: shape {item.shape!r} is not one of {', '.join(SHAPES)}")
+    palette = notation_palette(notation, base)
+    if palette is None:
+        return
+    for glyph in notation.glyphs:
+        where = f"glyph {glyph.id!r}"
+        if glyph.kind and glyph.kind not in palette.kinds:
+            raise UnknownKindError(f"{where}: kind {glyph.kind!r} is not in palette {palette.name} ({', '.join(palette.kinds)})")
+        for field in ("fill", "stroke"):
+            if getattr(glyph, field):
+                palette.color(getattr(glyph, field), f"{where} {field}")
+        if glyph.icon and glyph.icon not in palette.icon_set.icons:
+            raise UnknownIconError(f"{where}: icon {glyph.icon!r} is not in the {palette.icon_set.name} icon set of palette {palette.name}")
+    for link in notation.links:
+        if link.color:
+            palette.color(link.color, f"link {link.id!r} color")
 
 
 def notation_ref(name: str) -> str:
@@ -318,8 +380,8 @@ def link_ref(notation: str, link_id: str) -> str:
 
 
 __all__ = [
-    "DEFAULT_NOTATIONS", "KNOWN_RELATIONS", "ANY_RELATION", "TERMINALS", "DRAW_KINDS", "LINE_KINDS",
+    "DEFAULT_NOTATIONS", "KNOWN_RELATIONS", "ANY_RELATION", "TERMINALS", "DRAW_KINDS", "LINE_KINDS", "SHAPES",
     "NotationSpec", "GlyphSpec", "LinkSpec", "MarkerSpec",
-    "builtin_notations", "resolve_notation", "load_notation",
+    "builtin_notations", "resolve_notation", "load_notation", "check_notation_style", "notation_palette",
     "notation_ref", "glyph_ref", "link_ref",
 ]

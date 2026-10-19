@@ -43,6 +43,27 @@ def _esc_message(text: object) -> str:
     )
 
 
+def _kind_classes(style_kinds: dict[str, dict], kind_of: dict[str, str]) -> list[str]:
+    """`classDef` y `class` de mermaid desde `style.kinds` del spec (claves neutrales fill,
+    stroke), resueltas con la misma precedencia que `resolve_view` (tema claro). Solo los kinds que
+    algun elemento usa; sin `style.kinds` neutral no emite nada."""
+    from spec2viz.styling import _builtin_default, resolve_style
+
+    neutral = {k: {p: str(v[p]) for p in ("fill", "stroke") if isinstance(v, dict) and v.get(p)} for k, v in style_kinds.items()}
+    lines: list[str] = []
+    for index, (kind, values) in enumerate((k, v) for k, v in neutral.items() if v):
+        members = [eid for eid, ekind in kind_of.items() if ekind == kind]
+        if not members:
+            continue
+        style = resolve_style(None, kind, {kind: values}, None)
+        parts = [f"{prop}:{style[prop]['light']}" for prop in ("fill", "stroke") if prop in style]
+        parts.append(f"color:{_builtin_default()['ink']['light']}")
+        name = f"kind{index}"
+        lines.append(f"    classDef {name} {','.join(parts)}")
+        lines.append(f"    class {','.join(members)} {name}")
+    return lines
+
+
 class MermaidRenderer:
     def render(self, ir) -> str:
         match ir:
@@ -130,6 +151,7 @@ class MermaidRenderer:
                 lines.append(f'    {edge.from_} -->|"{_esc_label(label)}"| {edge.to}')
             else:
                 lines.append(f"    {edge.from_} --> {edge.to}")
+        lines.extend(_kind_classes(ir.style_kinds, {n.id: n.kind for n in ir.nodes}))
         return "\n".join(lines)
 
     def _activity(self, ir: ActivityIR) -> str:
@@ -174,6 +196,7 @@ class MermaidRenderer:
                 lines.append(f"    {step.id} -.- {step.id}__note")
         if any(step.notes for step in ir.steps):
             lines.append("    classDef note fill:#fff8c5,stroke:#9a6700,color:#1f2328")
+        lines.extend(_kind_classes(ir.style_kinds, {st.id: st.kind for st in ir.steps}))
         return "\n".join(lines)
 
     def _deployment(self, ir: DeploymentIR) -> str:
@@ -202,4 +225,5 @@ class MermaidRenderer:
                 lines.append(f'    {conn.from_} {arrow}|"{_esc_label(label)}"| {conn.to}')
             else:
                 lines.append(f"    {conn.from_} {arrow} {conn.to}")
+        lines.extend(_kind_classes(ir.style_kinds, {**{a.id: a.kind for a in ir.artifacts}, **{n.id: n.kind for n in ir.nodes}}))
         return "\n".join(lines)
