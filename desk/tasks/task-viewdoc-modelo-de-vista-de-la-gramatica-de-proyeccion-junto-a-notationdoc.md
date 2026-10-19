@@ -1,13 +1,18 @@
 ---
 id: task-viewdoc-modelo-de-vista-de-la-gramatica-de-proyeccion-junto-a-notationdoc
-status: draft
+status: ready_for_testing
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-closeout
+history:
+- task_activates
+- task_hands_to_closeout
+references:
+- 218676d
+- tests/test_view_doc.py
+- desk/atoms/atom-viewdoc-vista-portable-de-la-gramatica-de-proyeccion.md
 depends_on: []
 pills: []
 files: []
