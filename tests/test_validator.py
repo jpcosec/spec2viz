@@ -180,7 +180,7 @@ def test_deployment_unknown_connection_target_raises():
             connections=[ConnectionModel(**{"from": "api", "to": "ghost"})],
         ),
     )
-    with pytest.raises(ValidationError, match="unknown artifact 'ghost'"):
+    with pytest.raises(ValidationError, match="unknown node or artifact 'ghost'"):
         validate(diagram)
 
     bad_source = DeploymentDiagram(
@@ -194,7 +194,7 @@ def test_deployment_unknown_connection_target_raises():
             connections=[ConnectionModel(**{"from": "ghost", "to": "api"})],
         ),
     )
-    with pytest.raises(ValidationError, match="unknown artifact 'ghost'"):
+    with pytest.raises(ValidationError, match="unknown node or artifact 'ghost'"):
         validate(bad_source)
 
 

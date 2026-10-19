@@ -206,19 +206,29 @@ class PlantUMLRenderer:
 
     def _deployment(self, ir: DeploymentIR) -> str:
         art_map = {a.id: a for a in ir.artifacts}
+        node_map = {n.id: n for n in ir.nodes}
+        nested = {ref for n in ir.nodes for ref in n.contains if ref in node_map}
         lines = ["@startuml"]
-        for node in ir.nodes:
+
+        def emit(node, indent: str) -> None:
             kw = _NODE_KW.get(node.kind, "node")
-            lines.append(f'{kw} "{node.label}" as {node.id} {{')
-            for aid in node.contains:
-                if aid in art_map:
-                    lines.append(f'  artifact "{art_map[aid].label}" as {aid}')
-            lines.append("}")
+            lines.append(f'{indent}{kw} "{node.label}" as {node.id} {{')
+            for ref in node.contains:
+                if ref in art_map:
+                    lines.append(f'{indent}  artifact "{art_map[ref].label}" as {ref}')
+                elif ref in node_map:
+                    emit(node_map[ref], indent + "  ")
+            lines.append(f"{indent}}}")
+
+        for node in ir.nodes:
+            if node.id not in nested:
+                emit(node, "")
         lines.append("")
         for conn in ir.connections:
-            line = f"{conn.from_} --> {conn.to}"
-            if conn.protocol:
-                line += f" : {conn.protocol}"
+            arrow = "..>" if conn.kind in ("deploy", "manifest") else "-->"
+            line = f"{conn.from_} {arrow} {conn.to}"
+            if conn.text:
+                line += f" : {conn.text}"
             lines.append(line)
         lines.append("@enduml")
         return "\n".join(lines)

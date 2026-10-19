@@ -223,6 +223,17 @@ class DeploymentConnection:
     from_: str
     to: str
     protocol: str | None = None
+    kind: str = "communication"
+    label: str | None = None
+
+    @property
+    def text(self) -> str:
+        """Rotulo de la conexion: label y protocolo; con «deploy»/«manifest» el estereotipo delante."""
+        parts = [p for p in (self.label, self.protocol) if p]
+        text = " · ".join(parts)
+        if self.kind in ("deploy", "manifest"):
+            text = f"«{self.kind}» {text}".strip()
+        return text
 
 
 @dataclass

@@ -178,17 +178,28 @@ class MermaidRenderer:
 
     def _deployment(self, ir: DeploymentIR) -> str:
         art_map = {a.id: a for a in ir.artifacts}
+        node_map = {n.id: n for n in ir.nodes}
+        nested = {ref for n in ir.nodes for ref in n.contains if ref in node_map}
         lines = ["graph TD"]
+
+        def emit(node, indent: str) -> None:
+            # un nodo es un subgraph; dentro, sus artefactos y sus nodos hijos (anidados)
+            lines.append(f'{indent}subgraph {node.id} ["{_esc_label(node.label)}"]')
+            for ref in node.contains:
+                if ref in art_map:
+                    lines.append(f'{indent}    {ref}["{_esc_label(art_map[ref].label)}"]')
+                elif ref in node_map:
+                    emit(node_map[ref], indent + "    ")
+            lines.append(f"{indent}end")
+
         for node in ir.nodes:
-            lines.append(f'    subgraph {node.id} ["{_esc_label(node.label)}"]')
-            for aid in node.contains:
-                if aid in art_map:
-                    lines.append(f'        {aid}["{_esc_label(art_map[aid].label)}"]')
-            lines.append("    end")
+            if node.id not in nested:
+                emit(node, "    ")
         for conn in ir.connections:
-            label = conn.protocol or ""
+            label = conn.text
+            arrow = "-.->" if conn.kind in ("deploy", "manifest") else "-->"
             if label:
-                lines.append(f'    {conn.from_} -->|"{_esc_label(label)}"| {conn.to}')
+                lines.append(f'    {conn.from_} {arrow}|"{_esc_label(label)}"| {conn.to}')
             else:
-                lines.append(f"    {conn.from_} --> {conn.to}")
+                lines.append(f"    {conn.from_} {arrow} {conn.to}")
         return "\n".join(lines)

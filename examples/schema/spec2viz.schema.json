@@ -571,8 +571,19 @@
           "type": "string"
         },
         "to": {
-          "description": "Destination node identifier for the connection.",
+          "description": "Destination node or artifact identifier for the connection.",
           "title": "To",
+          "type": "string"
+        },
+        "kind": {
+          "default": "communication",
+          "description": "communication (default): a communication path between two nodes, or between two artifacts as before; deploy: «deploy» from an artifact to the node it is deployed on; manifest: «manifest» from an artifact to the node or artifact it manifests.",
+          "enum": [
+            "communication",
+            "deploy",
+            "manifest"
+          ],
+          "title": "Kind",
           "type": "string"
         },
         "protocol": {
@@ -587,6 +598,19 @@
           "default": null,
           "description": "Optional protocol or transport label for the connection.",
           "title": "Protocol"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional label for the connection; shown with the protocol when both are set.",
+          "title": "Label"
         }
       },
       "required": [
@@ -615,7 +639,7 @@
           "type": "object"
         },
         "connections": {
-          "description": "Network or runtime connections between deployment nodes.",
+          "description": "Communication paths between nodes (or artifacts) and «deploy»/«manifest» relations from artifacts.",
           "items": {
             "$ref": "#/$defs/ConnectionModel"
           },
@@ -713,7 +737,7 @@
           "type": "string"
         },
         "contains": {
-          "description": "Artifact or node identifiers hosted within this deployment node.",
+          "description": "Artifact or node identifiers hosted within this deployment node. Nodes nest (VPC > subnet > cluster > service): a node has at most one parent and containment has no cycles.",
           "items": {
             "type": "string"
           },

@@ -13,6 +13,8 @@ glyphs:
 - GlyphDoc:deployment.node
 links:
 - LinkDoc:deployment.contains
+- LinkDoc:deployment.deploy
+- LinkDoc:deployment.manifest
 - LinkDoc:deployment.connection
 ---
 

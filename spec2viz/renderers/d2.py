@@ -77,15 +77,34 @@ class D2Renderer:
     def _deployment(self, ir: DeploymentIR) -> str:
         lines = ["direction: right"]
         art_map = {a.id: a for a in ir.artifacts}
+        node_map = {n.id: n for n in ir.nodes}
+        nested = {ref for n in ir.nodes for ref in n.contains if ref in node_map}
+        # cada elemento se nombra por su ruta de contenedores (`vpc.subnet.cluster`): las aristas
+        # tienen que usar esa ruta, si no d2 crea un elemento suelto con el mismo id
+        path: dict[str, str] = {}
+
+        def emit(node, prefix: str) -> None:
+            ref_path = f"{prefix}{node.id}"
+            path[node.id] = ref_path
+            lines.append(f"{ref_path}: \"{node.label}\"")
+            for ref in node.contains:
+                if ref in art_map:
+                    path.setdefault(ref, f"{ref_path}.{ref}")
+                    lines.append(f"{ref_path}.{ref}: \"{art_map[ref].label}\"")
+                elif ref in node_map:
+                    emit(node_map[ref], f"{ref_path}.")
+
         for node in ir.nodes:
-            lines.append(f"{node.id}: \"{node.label}\"")
-            for aid in node.contains:
-                if aid in art_map:
-                    lines.append(f"{node.id}.{aid}: \"{art_map[aid].label}\"")
+            if node.id not in nested:
+                emit(node, "")
         for conn in ir.connections:
-            label = conn.protocol or ""
+            src, dst = path.get(conn.from_, conn.from_), path.get(conn.to, conn.to)
+            dashed = " {style.stroke-dash: 3}" if conn.kind in ("deploy", "manifest") else ""
+            label = conn.text
             if label:
-                lines.append(f"{conn.from_} -> {conn.to}: \"{label}\"")
+                lines.append(f"{src} -> {dst}: \"{label}\"{dashed}")
+            elif dashed:
+                lines.append(f"{src} -> {dst}:{dashed}")
             else:
-                lines.append(f"{conn.from_} -> {conn.to}")
+                lines.append(f"{src} -> {dst}")
         return "\n".join(lines)

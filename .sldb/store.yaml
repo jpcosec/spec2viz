@@ -222,6 +222,10 @@ include:
     name: activity.branch
   - path: sldb/notations/activity/links/next.md
     name: activity.next
+  - path: sldb/notations/deployment/links/deploy.md
+    name: deployment.deploy
+  - path: sldb/notations/deployment/links/manifest.md
+    name: deployment.manifest
 - model: LinkDoc
   paths:
   - path: sldb/notations/component-view-matrix/links/contains.md
@@ -368,6 +372,10 @@ include:
   - desk/lifecycle/type-task_activates.md
   - desk/lifecycle/type-task_completes.md
   - desk/lifecycle/type-task_hands_to_closeout.md
+  - path: sldb/relation_types/deploy.md
+    name: reltype-deploy
+  - path: sldb/relation_types/manifest.md
+    name: reltype-manifest
 - model: RelationTypeDoc
   paths:
   - path: sldb/relation_types/aggregation.md

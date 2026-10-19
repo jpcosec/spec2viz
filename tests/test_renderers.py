@@ -232,7 +232,8 @@ def test_d2_activity():
 def test_d2_deployment():
     out = D2Renderer().render(_ir("deployment.runtime.yml"))
     assert 'browser.quotation_ui: "Quotation UI"' in out
-    assert 'quotation_ui -> quotation_api: "HTTPS"' in out
+    # las aristas usan la ruta del contenedor; un id suelto haria que d2 creara otro elemento
+    assert 'browser.quotation_ui -> app_server.quotation_api: "HTTPS"' in out
 
 
 def test_d2_and_mermaid_deployment_without_protocol():

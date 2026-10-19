@@ -15,7 +15,7 @@ class DeploymentNodeModel(BaseModel):
     )
     contains: list[str] = Field(
         default_factory=list,
-        description="Artifact or node identifiers hosted within this deployment node.",
+        description="Artifact or node identifiers hosted within this deployment node. Nodes nest (VPC > subnet > cluster > service): a node has at most one parent and containment has no cycles.",
     )
     atoms: list[str] = Field(
         default_factory=list,
@@ -50,10 +50,22 @@ class ConnectionModel(BaseModel):
     from_: str = Field(
         alias="from", description="Source node identifier for the connection."
     )
-    to: str = Field(description="Destination node identifier for the connection.")
+    to: str = Field(description="Destination node or artifact identifier for the connection.")
+    kind: Literal["communication", "deploy", "manifest"] = Field(
+        default="communication",
+        description=(
+            "communication (default): a communication path between two nodes, or between two artifacts as before; "
+            "deploy: «deploy» from an artifact to the node it is deployed on; "
+            "manifest: «manifest» from an artifact to the node or artifact it manifests."
+        ),
+    )
     protocol: str | None = Field(
         default=None,
         description="Optional protocol or transport label for the connection.",
+    )
+    label: str | None = Field(
+        default=None,
+        description="Optional label for the connection; shown with the protocol when both are set.",
     )
 
 
@@ -67,7 +79,7 @@ class DeploymentData(BaseModel):
     )
     connections: list[ConnectionModel] = Field(
         default_factory=list,
-        description="Network or runtime connections between deployment nodes.",
+        description="Communication paths between nodes (or artifacts) and «deploy»/«manifest» relations from artifacts.",
     )
 
 

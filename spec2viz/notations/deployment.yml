@@ -1,6 +1,7 @@
 # Notacion builtin de spec2viz: despliegue sobre un spec `type: deployment`.
-# Nodos y artefactos son SpecNodeDoc; `collection` los distingue. Un artefacto dentro de un nodo
-# es `contains` (anidamiento); una conexion es una arista con el protocolo como relacion.
+# Nodos y artefactos son SpecNodeDoc; `collection` los distingue. Un nodo contiene artefactos y otros
+# nodos (`contains`, anidamiento a cualquier profundidad). Una conexion es `connects` (communication
+# path) con su rotulo y protocolo en `data`; «deploy» y «manifest» son relaciones propias, punteadas.
 name: deployment
 title: Deployment
 diagram_type: deployment
@@ -30,6 +31,22 @@ links:
     title: Deployed in
     relation: contains
     draw: nest
+  - id: deploy
+    title: Deploy
+    relation: deploy
+    draw: line
+    line: dashed
+    source_end: none
+    target_end: open-arrow
+    label: "«deploy» {data.label}"
+  - id: manifest
+    title: Manifest
+    relation: manifest
+    draw: line
+    line: dashed
+    source_end: none
+    target_end: open-arrow
+    label: "«manifest» {data.label}"
   - id: connection
     title: Connection
     relation: "*"
@@ -37,4 +54,4 @@ links:
     line: solid
     source_end: none
     target_end: none
-    label: "{data.protocol}"
+    label: "{data.label} {data.protocol}"

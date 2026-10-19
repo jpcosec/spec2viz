@@ -215,7 +215,7 @@ _EDGE_ATTRIBUTE_FIELDS: dict[str, tuple[str, ...]] = {
     "class": ("from_multiplicity", "to_multiplicity", "label"),
     "state": ("on", "guard", "action"),
     "sequence": ("kind", "group", "message"),
-    "deployment": ("protocol",),
+    "deployment": ("protocol", "label", "kind"),
 }
 
 
@@ -272,6 +272,9 @@ def spec_edges(spec: dict) -> list[dict]:
         value = raw.get(relation_field) if relation_field else None
         if diagram_type == "sequence":
             relation = _MESSAGE_RELATIONS.get(str(value or "").strip().lower(), relation_token(value, default))
+        elif diagram_type == "deployment":
+            # communication (por defecto) es `connects`; «deploy» y «manifest» son su propia relacion
+            relation = {"deploy": "deploy", "manifest": "manifest"}.get(str(raw.get("kind") or ""), default)
         else:
             relation = relation_token(value, default)
         condition = str(raw.get("condition") or "") if diagram_type == "sequence" else ""

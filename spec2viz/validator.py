@@ -117,17 +117,50 @@ def _validate_activity(d: ActivityDiagram) -> None:
             raise StructureError(f"Step '{sid}' has an empty partition in {d.id}")
 
 
+# extremos que admite cada tipo de conexion de despliegue (origen, destino); communication entre
+# artefactos se mantiene por compatibilidad, UML la define entre nodos
+_DEPLOYMENT_ENDS = {
+    "communication": {("node", "node"), ("artifact", "artifact")},
+    "deploy": {("artifact", "node")},
+    "manifest": {("artifact", "node"), ("artifact", "artifact")},
+}
+
+
 def _validate_deployment(d: DeploymentDiagram) -> None:
-    art_ids = set(d.data.artifacts)
-    for node in d.data.nodes.values():
+    nodes, artifacts = d.data.nodes, d.data.artifacts
+    for both in sorted(set(nodes) & set(artifacts)):
+        raise StructureError(f"Id '{both}' is both a node and an artifact in {d.id}")
+    kind_of = {**{a: "artifact" for a in artifacts}, **{n: "node" for n in nodes}}
+    parent: dict[str, str] = {}
+    for nid, node in nodes.items():
         for ref in node.contains:
-            if ref not in art_ids:
-                raise ValidationError(f"Node contains unknown artifact '{ref}' in {d.id}")
+            if ref not in kind_of:
+                raise UnknownReferenceError(f"Node '{nid}' contains unknown node or artifact '{ref}' in {d.id}")
+            if kind_of[ref] == "node":
+                if ref == nid:
+                    raise StructureError(f"Node '{nid}' contains itself in {d.id}")
+                if ref in parent:
+                    raise StructureError(f"Node '{ref}' is contained by both '{parent[ref]}' and '{nid}' in {d.id}")
+                parent[ref] = nid
+    for nid in nodes:
+        seen, current = [nid], parent.get(nid)
+        while current is not None:
+            if current in seen:
+                cycle = " > ".join([*reversed(seen[seen.index(current):]), current])
+                raise StructureError(f"Node containment has a cycle ({cycle}) in {d.id}")
+            seen.append(current)
+            current = parent.get(current)
     for conn in d.data.connections:
-        if conn.from_ not in art_ids:
-            raise ValidationError(f"Connection 'from' references unknown artifact '{conn.from_}' in {d.id}")
-        if conn.to not in art_ids:
-            raise ValidationError(f"Connection 'to' references unknown artifact '{conn.to}' in {d.id}")
+        for end, ref in (("from", conn.from_), ("to", conn.to)):
+            if ref not in kind_of:
+                raise UnknownReferenceError(f"Connection '{end}' references unknown node or artifact '{ref}' in {d.id}")
+        ends = (kind_of[conn.from_], kind_of[conn.to])
+        if ends not in _DEPLOYMENT_ENDS[conn.kind]:
+            allowed = ", ".join(f"{a} -> {b}" for a, b in sorted(_DEPLOYMENT_ENDS[conn.kind]))
+            raise EndpointKindError(
+                f"Connection '{conn.from_}' -> '{conn.to}' ({conn.kind}) goes {ends[0]} -> {ends[1]}; "
+                f"a {conn.kind} connection goes {allowed} in {d.id}"
+            )
 
 
 def _validate_matrix(d: MatrixDiagram) -> None:

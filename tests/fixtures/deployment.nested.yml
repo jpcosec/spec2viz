@@ -1,0 +1,45 @@
+id: deployment.nested
+title: Nested cloud deployment
+type: deployment
+version: "0.1"
+data:
+  nodes:
+    vpc:
+      label: VPC
+      kind: network
+      contains: [subnet]
+    subnet:
+      label: Private subnet
+      kind: subnet
+      contains: [cluster, db]
+    cluster:
+      label: ECS cluster
+      kind: cluster
+      contains: [api_service]
+    db:
+      label: Postgres
+      kind: database
+    edge:
+      label: CDN
+      kind: external
+  artifacts:
+    api_service:
+      label: api service
+      kind: container
+    api_image:
+      label: api image
+      kind: image
+  connections:
+    - from: edge
+      to: cluster
+      protocol: HTTPS
+    - from: cluster
+      to: db
+      label: queries
+      protocol: ":5432"
+    - from: api_image
+      to: cluster
+      kind: deploy
+    - from: api_image
+      to: api_service
+      kind: manifest

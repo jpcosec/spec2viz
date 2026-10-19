@@ -2,6 +2,14 @@
 
 ## Unreleased - 2026-10-17
 
+- Deployment specs: nodes nest (a node `contains` nodes and artifacts at any depth, one parent per node,
+  no cycles, unique ids across nodes and artifacts); a connection takes `kind: communication` (default;
+  node -> node, or artifact -> artifact as before), `deploy` («deploy», artifact -> node) or `manifest`
+  («manifest», artifact -> node or artifact), plus an optional `label`. Unknown ids raise
+  `UnknownReferenceError`, a disallowed end raises `EndpointKindError`, cycles and duplicates raise
+  `StructureError`. Mermaid, PlantUML and d2 draw nested subgraphs/containers and dashed «deploy» and
+  «manifest»; the sync emits `deploy` and `manifest` relations and the `deployment` notation draws them.
+  d2 now addresses contained elements by their container path (edges used to create stray duplicates)
 - Activity specs: optional `partition` per step (UML swimlanes: one lane per partition in mermaid
   subgraphs, PlantUML `|lane|` and d2 containers), `kind: merge` (a diamond like `decision`, with no
   branches) and optional `notes` per step (a UML note joined to its step). The builtin `activity`
