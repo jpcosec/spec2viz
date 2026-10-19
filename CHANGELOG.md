@@ -2,6 +2,9 @@
 
 ## Unreleased - 2026-10-17
 
+- `tools/suite-check.sh`: before the suites, builds each derived store from its `.sldb/store.yaml` (`sldb stores build`
+  + `stores check`, in dependency order; pron with `make world` on clones) and records `store:<repo>`; the
+  default report goes to `~/.cache/suite-check/run-<date>` so it survives a reboot
 - The store is derived and out of git (sldb `derived-store-boundary.md`): `.sldb/store.yaml` declares it,
   `.sldb/core/` is ignored and rebuilt with `sldb stores build`; CI's `store` job checks out deskops as a
   sibling and runs `sldb stores build --check`

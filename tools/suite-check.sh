@@ -19,7 +19,9 @@
 # 1. Crea un venv limpio (SUITE_VENV, por defecto /tmp/suite-venv) con SUITE_PYTHON (por
 #    defecto /usr/bin/python3) e instala los cinco repos desde sus checkouts (SLDB1_ROOT,
 #    por defecto el padre del checkout de spec2viz). kgdb no se instala: ya no existe.
-# 2. Corre la suite de cada repo en ese venv (logs en SUITE_REPORT, por defecto /tmp/suite-check)
+# 2. Construye cada store desde su .sldb/store.yaml (stores build + check; pron con make world sobre
+#    clones) y corre la suite de cada repo en ese venv (logs en SUITE_REPORT, por defecto
+#    ~/.cache/suite-check/run-<fecha>, fuera de /tmp para que sobrevivan a un reinicio)
 #    y la toolchain de node del review-workbench de graph_ui (npm ci, vitest, tsc, lint de
 #    arquitectura), con los mismos comandos que tests/test_review_workbench.py de graph_ui.
 # 3. Corre un flujo de punta a punta en un repo temporal: deskops init -> add task -> advance
@@ -33,7 +35,7 @@ SELF=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}
 ROOT=${SLDB1_ROOT:-$(cd "$HERE/.." && pwd)}
 VENV=${SUITE_VENV:-/tmp/suite-venv}
 PY=${SUITE_PYTHON:-/usr/bin/python3}
-REPORT=${SUITE_REPORT:-/tmp/suite-check}
+REPORT=${SUITE_REPORT:-$HOME/.cache/suite-check/run-$(date +%Y%m%d-%H%M%S)}
 PORT=${SUITE_PORT:-8123}
 FRESH=0; DO_INSTALL=1; DO_SUITES=1; DO_E2E=1; DO_NODE=1; FROM_ORIGIN=0; REUSE_CLONES=0; PYTHONS=""
 ARGS=("$@")
@@ -213,6 +215,35 @@ PYREQ
   "$VPY" -m pip freeze > "$REPORT/freeze.txt" 2>/dev/null
   if grep -qi "^kgdb" "$REPORT/freeze.txt"; then record "install:no-kgdb" FAIL "kgdb quedo instalado"; else record "install:no-kgdb" ok; fi
 fi
+
+# --- 1b. stores derivados -------------------------------------------------------------------
+# .sldb/core/ no esta en git (sldb docs/architecture/derived-store-boundary.md): antes de las suites se
+# construye cada store desde su .sldb/store.yaml, en orden de dependencia (deskops no enlaza a nadie;
+# sldb enlaza deskops y pron; spec2viz y graph_ui enlazan deskops). pron no tiene store.yaml: su store
+# lo arma `make world`, que ademas regenera su README, asi que solo corre sobre clones (--from-origin).
+build_stores() {
+  local repo name log
+  for repo in deskops pron sldb spec2viz UIs/graph_ui; do
+    name=$(basename "$repo")
+    [ -d "$ROOT/$repo" ] || continue
+    if [ -n "${SKIPPED[$name]:-}" ]; then record "store:$name" SKIP "requires-python"; continue; fi
+    log="$REPORT/store-$name.log"
+    if [ -f "$ROOT/$repo/.sldb/store.yaml" ]; then
+      say "store $name"
+      if ( cd "$ROOT/$repo" && PATH="$(dirname "$VPY"):$PATH" sldb stores build --store .sldb && PATH="$(dirname "$VPY"):$PATH" sldb stores check --store .sldb ) > "$log" 2>&1
+      then record "store:$name" ok "$(grep -m1 '^built:' "$log" | cut -c1-90)"
+      else record "store:$name" FAIL "$(last_line "$log")"; fi
+    elif [ "$name" = pron ] && { [ "$FROM_ORIGIN" = 1 ] || [ "$REUSE_CLONES" = 1 ]; }; then
+      say "store $name (make world)"
+      if ( cd "$ROOT/$repo" && PATH="$(dirname "$VPY"):$PATH" make world PYTHON="$VPY" ) > "$log" 2>&1
+      then record "store:$name" ok "make world"
+      else record "store:$name" FAIL "$(last_line "$log")"; fi
+    else
+      record "store:$name" SKIP "sin .sldb/store.yaml"
+    fi
+  done
+}
+[ "$DO_SUITES" = 1 ] && build_stores
 
 # --- 2. suites ------------------------------------------------------------------------------
 if [ "$DO_SUITES" = 1 ]; then
