@@ -8,8 +8,8 @@ tags:
 provenance: spec2viz/models/
 ---
 
-# Pydantic Schema Models - HOW_NOT
+# Pydantic Schema Models
 
 ## Answer
 
-No deben permitir campos adicionales arbitrarios sin tipar ni relajar la validación usando `extra="ignore"` en modelos de producción.
+No deben declarar campos sin tipo ni aflojar los requeridos para que un spec roto cargue. Cambiar extra='ignore' por 'forbid' en los modelos de spec rompe YAML existentes y no se hace sin decision; cambiar 'forbid' por 'ignore' en clases, secuencia o catalogo oculta errores de autor. La validacion semantica (referencias huerfanas) no va aqui sino en spec2viz.validator.

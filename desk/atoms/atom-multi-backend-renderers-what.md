@@ -8,8 +8,8 @@ tags:
 provenance: spec2viz/renderers/
 ---
 
-# Multi-Backend Renderers - WHAT
+# Multi-Backend Renderers
 
 ## Answer
 
-Los Multi-Backend Renderers son los generadores finales que traducen un objeto `DiagramIR` en código fuente específico (`Mermaid`, `PlantUML`, `D2`, `Vega`, `HTML`).
+Los Multi-Backend Renderers traducen un objeto IR en una salida concreta. Mermaid, PlantUML, D2, Vega, JSON, y HTML (antonia-html, tree, graph). Son la ruta de export estatico; la superficie viva es graph_ui, que no usa estos renderers sino la notacion declarada (NotationDoc, GlyphDoc, LinkDoc) y la vista de spec2viz notation view.

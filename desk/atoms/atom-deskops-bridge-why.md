@@ -8,8 +8,8 @@ tags:
 provenance: spec2viz/deskops.py
 ---
 
-# Deskops Integration Bridge - WHY
+# Deskops Integration Bridge
 
 ## Answer
 
-Existe para permitir la construcción de vistas HTML interactivas de arquitectura que vinculan nodos gráficos con la base de datos de átomos (`ATOMS_DB`).
+Existe para que el catalogo de arquitectura exista tambien como un HTML autocontenido que vincula los nodos de cada diagrama con los atomos 5WH1+, las referencias y las aristas del store, sin servidor. Dejo de ser el producto cuando spec2viz paso a mostrarse sobre graph_ui; se conserva como export.

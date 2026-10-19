@@ -8,8 +8,8 @@ tags:
 provenance: spec2viz/renderers/
 ---
 
-# Multi-Backend Renderers - WHERE
+# Multi-Backend Renderers
 
 ## Answer
 
-Se ubican bajo `spec2viz/renderers/` (`mermaid.py`, `plantuml.py`, `d2.py`, `vega.py`).
+Bajo spec2viz/renderers/. mermaid.py y plantuml.py (secuencia, estado, componentes, actividad, despliegue), class_diagram.py (clases, para ambos), d2.py, vega.py (matriz), antonia.py (HTML autocontenido con estetica antonIA), tree.py y graph_html.py (vistas HTML de arbol y grafo). renderers/__init__.py tiene RENDERER_MAP, EXT_MAP y DEFAULT_RENDERER por tipo de IR; render_to_file antepone la cabecera de trazabilidad a las salidas de texto.

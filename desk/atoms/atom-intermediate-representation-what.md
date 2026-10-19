@@ -8,8 +8,8 @@ tags:
 provenance: spec2viz/ir.py
 ---
 
-# Intermediate Representation - WHAT
+# Intermediate Representation
 
 ## Answer
 
-La Representación Intermedia (IR) es una colección de dataclasses puras de Python (`SequenceIR`, `ComponentIR`, `StateIR`) que representan diagramas listos para dibujar.
+La Representacion Intermedia (IR) es la coleccion de dataclasses puras de spec2viz/ir.py (SequenceIR, StateIR, ComponentIR, ActivityIR, DeploymentIR, ClassIR, MatrixIR) que representan un diagrama listo para dibujar, mas el EnforcementArtifact de reflection. Los compiladores la producen y los renderers la consumen.

@@ -8,8 +8,8 @@ tags:
 provenance: spec2viz/deskops.py
 ---
 
-# Deskops Integration Bridge - WHEN
+# Deskops Integration Bridge
 
 ## Answer
 
-Se ejecuta al invocar `spec2viz build --config vistas.yml --out arquitectura.html --atoms-dir desk/atoms/`.
+Se ejecuta con 'spec2viz catalog build --config docs/architecture/vistas.yml --out <bundle>.html' (alias legado 'spec2viz build'), normalmente despues de 'spec2viz catalog sync' al store. Es el export estatico para docs y lectura sin servidor; la vista interactiva es graph_ui.

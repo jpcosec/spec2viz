@@ -8,8 +8,8 @@ tags:
 provenance: spec2viz/deskops.py
 ---
 
-# Deskops Integration Bridge - WHAT
+# Deskops Integration Bridge
 
 ## Answer
 
-El Deskops Integration Bridge es la capa de integración de `spec2viz` con la base de conocimiento y espacios de trabajo de `deskops`.
+El Deskops Integration Bridge (spec2viz/deskops.py) es la capa que construye el bundle HTML estatico del catalogo a partir de vistas.yml, los atomos de desk/atoms y las referencias y aristas del store sldb (SldbAtomResolver). Desde 2026-10 el catalogo vivo es graph_ui leyendo el store (catalog sync); el bundle es el export.

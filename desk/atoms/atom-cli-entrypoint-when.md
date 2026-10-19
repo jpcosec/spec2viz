@@ -8,8 +8,8 @@ tags:
 provenance: spec2viz/cli.py
 ---
 
-# CLI Entrypoint - WHEN
+# CLI Entrypoint
 
 ## Answer
 
-Se utiliza al compilar esquemas YAML desde la terminal, al ejecutar builds automáticos o al verificar la validez de un diagrama en git hooks.
+Al validar o renderizar un spec YAML desde la terminal o un hook de git, al sincronizar specs y notaciones al store (diagram sync, notation sync, catalog sync) para que graph_ui los dibuje, y al exportar el bundle HTML (catalog build). La CI del repo (.github/workflows/tests.yml) ejercita la CLI por los tests.

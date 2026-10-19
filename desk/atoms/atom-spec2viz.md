@@ -1,13 +1,8 @@
 ---
-# atom-xxx, unique identifier
 id: atom-spec2viz
-# Short, descriptive title
 title: spec2viz
-# what | why | how | how_not | when | where | for_whom
 five_wh_one_plus: what
-# e.g., system:deskops, topic:templates
 tags: []
-# Optional URL or path to the authoritative source of this knowledge
 provenance: README.md
 ---
 
@@ -15,4 +10,4 @@ provenance: README.md
 
 ## Answer
 
-spec2viz is a Python tool that compiles semantic YAML diagram specs into renderer-agnostic intermediate representations and outputs PlantUML, Mermaid, or SVG for sequence, state, component, activity, deployment, and matrix diagrams. It lets teams author structured diagram specs as YAML (semantic truth) and render them into multiple visual backends, ensuring that diagram artifacts are versionable, LLM-editable, and reproducible — without manual PUML/Mermaid editing.
+spec2viz compila specs YAML semanticas de diagramas (secuencia, estado, componentes, actividad, despliegue, clases, matriz, reflection) en una IR agnostica y las proyecta a Mermaid, PlantUML, D2, Vega y HTML. Ademas materializa cada spec como namespace del store sldb (SpecDoc, SpecNodeDoc, RelationDoc) y declara el vocabulario visual (NotationDoc, GlyphDoc, LinkDoc) con el que graph_ui dibuja los specs en vivo; notation view es el unico interprete de ese contrato. El YAML es la verdad, versionable y editable por LLM; todo lo demas es proyeccion.
