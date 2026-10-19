@@ -1,6 +1,9 @@
 ---
 # pill-xxx
 id: pill-test-fixture-spec2viz-fixtures-and-golden-outputs
+status: graduated
+summary: Graduada el 2026-10-18 al atomo atom-fixtures-y-goldens-de-spec2viz (how);
+  sus tasks de 2026-05 estan cerradas.
 # e.g., language:python, library:pydantic
 tags: []
 ---

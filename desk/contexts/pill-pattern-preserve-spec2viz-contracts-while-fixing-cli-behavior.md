@@ -1,6 +1,9 @@
 ---
 # pill-xxx
 id: pill-pattern-preserve-spec2viz-contracts-while-fixing-cli-behavior
+status: graduated
+summary: Graduada el 2026-10-18 al atomo atom-contratos-de-spec2viz-al-arreglar-la-cli
+  (how_not); sus tasks de 2026-05 estan cerradas.
 # e.g., language:python, library:pydantic
 tags: []
 ---
