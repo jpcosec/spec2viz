@@ -503,6 +503,3 @@ include:
   glob: docs/architecture/spec2viz/sldb/state.diagram-sync-lifecycle/nodes/*.md
 - model: SpecNodeDoc
   glob: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/nodes/*.md
-- model: TaskDoc
-  paths:
-  - desk/tasks/task-diagram-sync-notation-borra-la-categoria-y-la-nav-del-catalogo-notation-por-vista-en-vistas-yml.md
