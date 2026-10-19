@@ -584,6 +584,22 @@ def _read_item_source(item: CatalogItem) -> str:
         style = "" if is_markup else ' style="font-family:\'JetBrains Mono\',monospace; font-size:12px; white-space:pre-wrap; color:var(--bone-dim);"'
         indented = "\n".join(indent + line for line in content.splitlines())
         return f'  <div class="board"{style}>\n{indented}\n  </div>'
+    if str(src_value).endswith(".json"):
+        # A Vega (or Vega-Lite) spec, as `diagram render --renderer vega` writes it: the
+        # template embeds it with vega-embed. Validate that it is JSON here, never Mermaid.
+        try:
+            json.loads(content)
+        except ValueError as exc:
+            raise ValueError(f"{src_value}: not valid JSON for a Vega board ({exc})") from exc
+        return (
+            '  <div class="board vega-board">\n    <script type="application/json" class="vega-spec">\n'
+            f"{content.replace('</', '<\\/')}\n    </script>\n  </div>"
+        )
+    if not str(src_value).endswith((".mmd", ".mermaid")):
+        # Any other text projection (.puml, .d2, .txt) is shown as it is; only Mermaid is
+        # rendered in the browser, so only Mermaid is linted.
+        safe_content = html.escape(content)
+        return f'  <div class="board"><pre class="source-board">{safe_content}</pre></div>'
     # Lint the raw mermaid before it is embedded, so a broken .mmd fails the
     # build loudly instead of rendering a blank diagram in the browser.
     from spec2viz.linters.mermaid import assert_mermaid_ok

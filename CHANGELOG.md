@@ -2,6 +2,10 @@
 
 ## Unreleased - 2026-10-17
 
+- fix(catalog build): a vista whose `src` is a Vega JSON (`diagram render --renderer vega`) is embedded as a
+  Vega board (the bundle loads vega-embed on demand) instead of being linted as Mermaid and failing the
+  build; `.puml`, `.d2` and other text sources are shown as they are; only `.mmd` is linted. Messages
+  say "catalog", not "deskops"
 - the catalog's coverage-by-view projection drops its kgdb wording: `build_coverage_by_view(items,
   snapshot_path=...)` (`kgdb_snapshot_path` stays as an alias), warning scope `snapshot`; sldb no longer
   writes the `knowledge_graph.kg.json` it reads, so without one the projection is empty with a warning

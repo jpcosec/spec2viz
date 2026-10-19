@@ -85,6 +85,7 @@ vistas:
     title: Cobertura de módulos por etapa
     nav: Matriz
     desc: "Qué módulos participan en cada etapa del pipeline de render y del sync al store. Piloto de la notación component-view-matrix (grilla) para graph_ui."
+    src: spec2viz/matrix-pipeline-coverage.vega.json
     specs:
       - docs/architecture/spec2viz/matrix-pipeline-coverage.yml
 

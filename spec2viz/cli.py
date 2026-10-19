@@ -77,9 +77,9 @@ def _build_catalog(config: Path, out: Path, base_dir: Path | None, atoms_dir: Pa
 
     try:
         build_deskops(config, out, base_dir, atoms_dir, list(atoms_tags) or None, strict_atoms)
-        click.echo(f"Rendered deskops architecture -> {out}")
+        click.echo(f"Rendered catalog -> {out}")
     except Exception as exc:
-        click.echo(f"Error building deskops: {exc}", err=True)
+        click.echo(f"Error building catalog: {exc}", err=True)
         sys.exit(1)
 
 

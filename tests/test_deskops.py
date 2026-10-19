@@ -51,6 +51,8 @@ def test_render_deskops_renders_mermaid_svg_html_and_notes(tmp_path):
     (base / "flow.mmd").write_text("graph TD\nA-->B\n", encoding="utf-8")
     (base / "diagram.svg").write_text("<svg><text>Diagram</text></svg>", encoding="utf-8")
     (base / "snippet.html").write_text("plain html snippet", encoding="utf-8")
+    (base / "matrix.vega.json").write_text('{"$schema": "https://vega.github.io/schema/vega/v5.json", "marks": []}', encoding="utf-8")
+    (base / "deploy.puml").write_text("@startuml\nnode A\n@enduml\n", encoding="utf-8")
 
     atoms_dir = base / "atoms"
     atoms_dir.mkdir()
@@ -85,6 +87,14 @@ vistas:
     category: Extras
     title: Html View
     src: snippet.html
+  - id: matrix
+    category: Extras
+    title: Matrix
+    src: matrix.vega.json
+  - id: deploy
+    category: Extras
+    title: Deploy
+    src: deploy.puml
 """,
         encoding="utf-8",
     )
@@ -98,6 +108,10 @@ vistas:
     assert '<pre class="mermaid">' in html
     assert '<div class="board puml-board">' in html
     assert "plain html snippet" in html
+    # a Vega source is embedded as JSON for vega-embed, never linted as Mermaid
+    assert '<div class="board vega-board">' in html and 'class="vega-spec"' in html and "vega.github.io/schema/vega/v5.json" in html
+    # any other text projection is shown as it is
+    assert '<pre class="source-board">@startuml' in html
     assert "Gaps de implementación" in html
     assert "window.ATOMS_DB = {}" in html
     assert "window.ATOMS_BY_VIEW" in html
