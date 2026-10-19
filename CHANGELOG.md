@@ -2,6 +2,8 @@
 
 ## Unreleased - 2026-10-17
 
+- Python floor raised to 3.12 (`requires-python >=3.12`, classifiers 3.12 and 3.13, CI matrix 3.12/3.13),
+  shared by the whole SLDB_1 suite; no 3.10/3.11 compatibility shims existed in the code
 - `tools/suite-check.sh`: a repo whose `requires-python` does not cover the interpreter is marked SKIP
   (with the declared range) instead of FAIL, together with its suite and the e2e steps that need it
 - fix(catalog build): a vista whose `src` is a Vega JSON (`diagram render --renderer vega`) is embedded as a
