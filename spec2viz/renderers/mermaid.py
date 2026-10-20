@@ -49,7 +49,8 @@ def _kind_classes(style_kinds: dict[str, dict], kind_of: dict[str, str]) -> list
     algun elemento usa; sin `style.kinds` neutral no emite nada."""
     from spec2viz.styling import _builtin_default, resolve_style
 
-    neutral = {k: {p: str(v[p]) for p in ("fill", "stroke") if isinstance(v, dict) and v.get(p)} for k, v in style_kinds.items()}
+    neutral = {k: {p: (v[p] if isinstance(v[p], dict) else str(v[p])) for p in ("fill", "stroke") if isinstance(v, dict) and v.get(p)}
+               for k, v in style_kinds.items()}
     lines: list[str] = []
     for index, (kind, values) in enumerate((k, v) for k, v in neutral.items() if v):
         members = [eid for eid, ekind in kind_of.items() if ekind == kind]

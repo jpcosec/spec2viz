@@ -93,8 +93,8 @@ class GlyphSpec(BaseModel):
     # estilo opcional (precedencia: glifo > Style.kinds del spec > paleta); un color es un token
     # de la paleta o `#rrggbb`, `kind` toma forma de referencia, icono y colores de la paleta
     kind: str = ""
-    fill: str = ""
-    stroke: str = ""
+    fill: str | dict[str, str] = ""    # token, `#rrggbb` (ambos temas) o `{light, dark}`
+    stroke: str | dict[str, str] = ""
     icon: str = ""
 
     @field_validator("id")
@@ -136,7 +136,7 @@ class LinkSpec(BaseModel):
     ends: dict[str, LinkEndSpec] = Field(default_factory=dict)
     form: str = ""
     description: str = ""
-    color: str = ""  # color de la linea: token de la paleta o `#rrggbb`; vacio = el de la superficie
+    color: str | dict[str, str] = ""  # color de la linea: token, `#rrggbb` o `{light, dark}`; vacio = el de la superficie
 
     @field_validator("id")
     @classmethod

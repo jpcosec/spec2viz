@@ -52,7 +52,7 @@ def spec_style_kinds(spec: dict) -> dict[str, dict[str, str]]:
     out: dict[str, dict[str, str]] = {}
     for kind, entry in kinds.items():
         if isinstance(entry, dict):
-            neutral = {k: str(entry[k]) for k in STYLE_KEYS if entry.get(k)}
+            neutral = {k: (dict(entry[k]) if isinstance(entry[k], dict) else str(entry[k])) for k in STYLE_KEYS if entry.get(k)}
             if neutral:
                 out[str(kind)] = neutral
     return out

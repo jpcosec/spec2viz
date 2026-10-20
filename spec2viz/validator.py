@@ -38,7 +38,8 @@ def _validate_style(d: BaseDiagram) -> None:
             continue
         for prop in ("fill", "stroke"):
             if entry.get(prop):
-                resolve_color(str(entry[prop]), default["colors"], f"{d.id} style.kinds.{kind}.{prop}")
+                value = entry[prop] if isinstance(entry[prop], dict) else str(entry[prop])
+                resolve_color(value, default["colors"], f"{d.id} style.kinds.{kind}.{prop}")
         if entry.get("icon") and str(entry["icon"]) not in default["icon_set"]["icons"]:
             raise UnknownIconError(f"{d.id} style.kinds.{kind}.icon {entry['icon']!r} is not in the {default['icon_set']['name']} icon set")
 

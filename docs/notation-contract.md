@@ -292,8 +292,19 @@ vertical), `queue` (cola: cilindro horizontal), `cloud` (servicio externo), `pac
 pestaña de UML) y `note` (nota UML con la esquina doblada).
 
 **Campos opcionales.** `GlyphDoc`: `kind` (un kind de la paleta: aporta su ícono y sus colores),
-`fill`, `stroke` (token de la paleta o `#rrggbb`) e `icon` (nombre del set declarado). `LinkDoc`:
-`color` (token o `#rrggbb`). `NotationDoc`: `palette` (`PaletteDoc:<name>`), presente solo si la
+`fill`, `stroke` e `icon` (nombre del set declarado). `LinkDoc`: `color`.
+
+**Un color** (en `fill`, `stroke`, `color` y en `style.kinds` del spec) es una de tres formas:
+
+- un token de la paleta (`database-fill`): ya trae un valor por tema;
+- un hex `#rrggbb`: **el mismo valor en los dos temas** (útil para trazos que contrastan con ambos
+  fondos; un relleno claro así queda ilegible en el tema oscuro);
+- un par `{light: ..., dark: ...}`, cuyos lados son un hex o un token (del token se toma el valor
+  de ese tema). Es la forma de dar un color propio que se lea en los dos temas.
+
+El GlyphDoc y el LinkDoc guardan el valor tal como se escribió (texto o par); el resolver siempre
+entrega `{light, dark}`. Un par con otras claves, o con un lado que no es hex ni token, es
+`InvalidColorError`. `NotationDoc`: `palette` (`PaletteDoc:<name>`), presente solo si la
 notación usa estilo; si usa estilo sin nombrar paleta, es `default`. `SpecDoc`: `style`, el
 `style.kinds` neutral del spec (kind -> `fill`, `stroke`, `icon`).
 

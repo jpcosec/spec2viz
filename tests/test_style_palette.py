@@ -230,3 +230,66 @@ def test_palette_cli_sync_writes_the_store_document(tmp_path):
     assert result.exit_code == 0 and "Synced palette default" in result.output
     doc = next(d.payload for d in sldb_api.load_runtime_documents(store, None, include_linked=False) if str(d.model_name) == "PaletteDoc")
     assert doc["kinds"]["queue"]["shape"] == "queue" and doc["icon_set"]["name"] == "lucide"
+
+
+# --- un color propio para cada tema: el par {light, dark} --------------------------------------
+
+PAIR = {"light": "#fff1c2", "dark": "#3d3200"}
+
+
+@pytest.mark.parametrize("value, error", [
+    ({"light": "#fff1c2"}, "exactly `light` and `dark`"),
+    ({"light": "#fff1c2", "dark": "#3d3200", "hc": "#000000"}, "exactly `light` and `dark`"),
+    ({"light": "#fff1c2", "dark": "dark-yellow"}, "dark"),
+    ({"light": "fff1c2", "dark": "#3d3200"}, "light"),
+])
+def test_color_pair_is_validated_typed(tmp_path, value, error):
+    notation = copy.deepcopy(STYLED)
+    notation["glyphs"][1]["fill"] = value
+    with pytest.raises(InvalidColorError, match=error):
+        load_notation(_write(tmp_path, notation))
+
+
+def test_single_hex_is_the_same_in_both_themes_and_a_pair_is_not():
+    from spec2viz.palette import resolve_color
+
+    assert resolve_color("#FFF1C2", {}) == {"light": "#fff1c2", "dark": "#fff1c2"}
+    tokens = {k: v.model_dump() for k, v in load_palette().colors.items()}
+    assert resolve_color(PAIR, tokens) == PAIR
+    # cada lado puede ser un token: se toma el valor de ese tema
+    assert resolve_color({"light": "#fff1c2", "dark": "queue-fill"}, tokens) == {"light": "#fff1c2", "dark": "#4a3911"}
+
+
+def test_pair_reaches_the_view_per_theme_for_glyph_link_and_spec(tmp_path):
+    from spec2viz.notation_view import resolve_view
+    from spec2viz.sldb_sync import SpecSync
+
+    store = _store(tmp_path)
+    notation = copy.deepcopy(STYLED)
+    notation["glyphs"][1]["fill"] = PAIR
+    notation["glyphs"][1]["stroke"] = {"light": "#7a5c00", "dark": "#e6c34a"}
+    notation["links"][0]["color"] = {"light": "#0072b2", "dark": "#56b4e9"}
+    spec = yaml.safe_load((FIXTURES / "component.kinds.yml").read_text(encoding="utf-8"))
+    spec["style"]["kinds"]["frontend"] = {"fill": {"light": "#eef6ff", "dark": "#10233a"}}
+    (tmp_path / "docs" / "kinds.yml").write_text(yaml.safe_dump(spec, allow_unicode=True), encoding="utf-8")
+    SpecSync(store).sync(tmp_path / "docs" / "kinds.yml", notation=_write(tmp_path / "docs", notation))
+
+    glyph = next(d.payload for d in sldb_api.load_runtime_documents(store, None, include_linked=False) if d.name == "infra.api")
+    assert glyph["fill"] == PAIR  # el GlyphDoc guarda el par tal cual
+    nodes = {n["element"]: n for n in resolve_view(store, "component.kinds")["nodes"]}
+    assert nodes["api"]["style"]["fill"] == PAIR and nodes["api"]["style"]["stroke"] == {"light": "#7a5c00", "dark": "#e6c34a"}
+    assert nodes["web"]["style"]["fill"] == {"light": "#eef6ff", "dark": "#10233a"} and nodes["web"]["style"]["source"]["fill"] == "spec"
+    view = resolve_view(store, "component.kinds")
+    assert {l["color"]["dark"] for l in view["links"]} == {"#56b4e9"}
+
+
+def test_mermaid_takes_the_light_side_of_a_spec_pair():
+    from spec2viz.compilers import compile_ir
+    from spec2viz.loader import load
+    from spec2viz.renderers.mermaid import MermaidRenderer
+    from spec2viz.validator import validate
+
+    diagram = load(FIXTURES / "component.kinds.yml")
+    diagram.style.kinds["database"] = {"fill": PAIR}
+    validate(diagram)
+    assert "classDef kind0 fill:#fff1c2,color:#1f2328" in MermaidRenderer().render(compile_ir(diagram))

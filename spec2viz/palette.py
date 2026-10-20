@@ -80,8 +80,18 @@ class PaletteSpec(BaseModel):
 # --- colores ------------------------------------------------------------------------
 
 
-def resolve_color(value: str, tokens: dict[str, Any], where: str = "") -> dict[str, str]:
-    """Un color (`#rrggbb` o un token de la paleta) como `{light, dark}`."""
+def resolve_color(value: "str | dict[str, str]", tokens: dict[str, Any], where: str = "") -> dict[str, str]:
+    """Un color como `{light, dark}`.
+
+    Acepta un token de la paleta (un valor por tema), un hex `#rrggbb` (el mismo en los dos temas)
+    o un par `{light, dark}` cuyos lados son cada uno un hex o un token (de un token se toma el
+    valor de ese tema). El par es la forma de dar un color propio que se lea en los dos temas.
+    """
+    if isinstance(value, dict):
+        at = f"{where}: " if where else ""
+        if set(value) != {"light", "dark"}:
+            raise InvalidColorError(f"{at}a color pair takes exactly `light` and `dark`, got {sorted(value)}")
+        return {theme: resolve_color(value[theme], tokens, f"{where} {theme}".strip())[theme] for theme in ("light", "dark")}
     text = str(value or "").strip()
     if HEX.match(text):
         return {"light": text.lower(), "dark": text.lower()}

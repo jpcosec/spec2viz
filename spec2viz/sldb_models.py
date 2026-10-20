@@ -245,8 +245,8 @@ icon: ⸢optrev•icon⸥
     function: str = Field(default="", description="Papel semantico del glifo en la notacion (class, interface, state, terminal).")
     form: str = Field(default="", description="Forma pron equivalente al par model/where, si alguien la interpreta; spec2viz no.")
     kind: str | None = Field(default=None, description="Kind de la paleta cuya forma de referencia, icono y colores toma el glifo.")
-    fill: str | None = Field(default=None, description="Relleno: token de la paleta o `#rrggbb`.")
-    stroke: str | None = Field(default=None, description="Trazo: token de la paleta o `#rrggbb`.")
+    fill: str | dict | None = Field(default=None, description="Relleno: token de la paleta, `#rrggbb` (el mismo en los dos temas) o `{light, dark}`.")
+    stroke: str | dict | None = Field(default=None, description="Trazo: token de la paleta, `#rrggbb` o `{light, dark}`.")
     icon: str | None = Field(default=None, description="Icono del set declarado por la paleta (Lucide, kebab-case).")
     description: str = Field(default="", description="Texto libre.")
 
@@ -300,7 +300,7 @@ color: ⸢optrev•color⸥
     target_label: str = Field(default="", description="Plantilla del rotulo junto al destino (`{to_multiplicity}`).")
     ends: dict = Field(default_factory=dict, description="Extremos de una relacion reificada: nombre -> {relation, label, terminal}.")
     form: str = Field(default="", description="Forma pron equivalente (`(relation R)`), si alguien la interpreta; spec2viz no.")
-    color: str | None = Field(default=None, description="Color de la linea: token de la paleta o `#rrggbb`; ausente = el de la superficie.")
+    color: str | dict | None = Field(default=None, description="Color de la linea: token de la paleta, `#rrggbb` o `{light, dark}`; ausente = el de la superficie.")
     description: str = Field(default="", description="Texto libre.")
 
     @field_validator("source_label", "target_label", mode="before")

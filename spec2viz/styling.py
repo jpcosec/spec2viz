@@ -67,7 +67,8 @@ def resolve_style(glyph: dict[str, Any] | None, kind: str, spec_kinds: dict[str,
     for prop in PROPERTIES:
         for layer, values in layers:
             if values.get(prop):
-                out[prop] = _value(prop, str(values[prop]), tokens, f"{layer} {prop}")
+                raw = values[prop] if isinstance(values[prop], dict) else str(values[prop])
+                out[prop] = _value(prop, raw, tokens, f"{layer} {prop}")
                 source[prop] = layer
                 break
     if out:
@@ -82,7 +83,7 @@ def resolve_line_color(link: dict[str, Any] | None, palette: dict[str, Any] | No
     color = (link or {}).get("color")
     if not color:
         return None
-    return resolve_color(str(color), dict((palette or _builtin_default()).get("colors") or {}), "link color")
+    return resolve_color(color if isinstance(color, dict) else str(color), dict((palette or _builtin_default()).get("colors") or {}), "link color")
 
 
 __all__ = ["PROPERTIES", "resolve_style", "resolve_line_color"]

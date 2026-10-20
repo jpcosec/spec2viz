@@ -2,6 +2,10 @@
 
 ## Unreleased - 2026-10-17
 
+- Colors per theme: `fill`/`stroke` of a glyph, `color` of a link and the neutral `style.kinds` of a spec
+  accept a `{light, dark}` pair (each side a `#rrggbb` hex or a palette token), so a custom color can be
+  readable in both themes; a single hex still means the same value in both themes. A malformed pair is an
+  `InvalidColorError`. The store documents keep the value as written; the resolver returns `{light, dark}`
 - Catalog paths: `src`/`mmd`, `specs` and `notation` of a `vistas.yml` (and of diagram-store items) now share
   one rule (`spec2viz.catalog_paths`): next to the `vistas.yml` first, then from the repo root (nearest `.git`,
   else `.sldb`). Two different files -> `AmbiguousPathError`; none -> the error lists the paths tried
