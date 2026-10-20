@@ -5,7 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{CATALOG_TITLE}}</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,400&family=Manrope:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.12.1/mermaid.min.js"></script>
+  <!-- mermaid con el layout ELK (aristas ortogonales, mejor con nodos anidados): modulos ES; se
+       ejecutan antes de DOMContentLoaded, donde se inicializa y se dibuja -->
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs';
+    import elkLayouts from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.2.3/dist/mermaid-layout-elk.esm.min.mjs';
+    mermaid.registerLayoutLoaders(elkLayouts);
+    window.mermaid = mermaid;
+  </script>
   <style>
     :root{--bg:#0a0a0f;--amber:#d4a574;--bone:#f5f0e8;--bone-dim:rgba(245,240,232,.62);--line:rgba(212,165,116,.22);--card:#12121a;--card-2:#161621;--panel-shadow:0 18px 48px rgba(0,0,0,.45);--sidebar-w:360px;--drawer-w:420px;}
     *{box-sizing:border-box;margin:0;padding:0}
@@ -530,8 +537,10 @@
   </div>
 
   <script>
+    function initMermaid() {
     mermaid.initialize({
       startOnLoad: false,
+      layout: 'elk',
       securityLevel: 'loose',
       theme: 'dark',
       themeVariables: {
@@ -541,8 +550,9 @@
         actorBkg: '#12121a', actorBorder: '#d4a574', actorTextColor: '#f5f0e8', signalColor: '#d4a574', signalTextColor: '#f5f0e8',
         noteBkgColor: 'rgba(212,165,116,0.12)', noteBorderColor: '#d4a574', noteTextColor: '#f5f0e8'
       },
-      flowchart: { htmlLabels: true, curve: 'basis', subGraphTitleMargin: { top: 0, bottom: 32 } }
+      flowchart: { htmlLabels: true, curve: 'linear', subGraphTitleMargin: { top: 0, bottom: 32 } }
     });
+    }
     window.SPEC2VIZ_CATALOG = {{CATALOG_METADATA}};
 
     const popover = document.getElementById('hover-popover');
@@ -1326,6 +1336,7 @@
         });
       });
       await renderVegaBoards();
+      initMermaid();
       await mermaid.run({ querySelector: '.mermaid' });
       bindBoards();
       bindMermaidNodes();

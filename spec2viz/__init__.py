@@ -57,7 +57,7 @@ def render_to_file(
     if isinstance(result, dict):
         output_path.write_text(json.dumps(result, indent=2))
     else:
-        result = provenance_header(renderer_name, path) + result
+        result = with_provenance(renderer_name, path, result)
         if renderer_name == "mermaid":
             from spec2viz.linters.mermaid import assert_mermaid_ok
 
@@ -69,6 +69,18 @@ def render_to_file(
 
 # sintaxis de comentario de linea de cada salida de texto
 _COMMENT_PREFIX = {"mermaid": "%%", "plantuml": "'", "d2": "#"}
+
+
+def with_provenance(renderer_name: str, spec_path: str | Path, text: str) -> str:
+    """El texto con su cabecera de trazabilidad. En mermaid, un frontmatter de config (`---`) tiene
+    que ser la primera linea, asi que la cabecera va justo despues de el."""
+    header = provenance_header(renderer_name, spec_path)
+    if header and text.startswith("---\n"):
+        end = text.find("\n---\n", 3)
+        if end != -1:
+            cut = end + len("\n---\n")
+            return text[:cut] + header + text[cut:]
+    return header + text
 
 
 def provenance_header(renderer_name: str, spec_path: str | Path) -> str:

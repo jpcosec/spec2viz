@@ -25,6 +25,6 @@ data:
     output_path = render_to_file(fixture_path, out=out_dir, renderer="mermaid")
     
     assert output_path.exists()
-    assert "graph TD" in output_path.read_text()
+    assert "flowchart TD" in output_path.read_text()
     assert "core" in output_path.read_text()
     assert "api" in output_path.read_text()

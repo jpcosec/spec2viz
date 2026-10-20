@@ -546,7 +546,9 @@ def test_rendered_text_projections_carry_a_provenance_header(tmp_path):
     spec = Path("examples/component/example.yml")
     for renderer, prefix in (("mermaid", "%%"), ("plantuml", "'"), ("d2", "#")):
         text = render_to_file(spec, out=tmp_path, renderer=renderer).read_text(encoding="utf-8")
-        first = text.splitlines()[0]
+        lines = text.splitlines()
+        # en mermaid el frontmatter de config (ELK) va primero; la cabecera, justo despues
+        first = lines[lines.index("---", 1) + 1] if renderer == "mermaid" else lines[0]
         assert first.startswith(f"{prefix} spec2viz: generated from examples/component/example.yml;") and "diagram validate" in first
     assert provenance_header("vega", spec) == "" and provenance_header("json", spec) == ""
     matrix = render_to_file(Path("tests/fixtures/matrix.quotation-view.yml"), out=tmp_path, renderer="vega").read_text(encoding="utf-8")

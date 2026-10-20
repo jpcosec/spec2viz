@@ -185,7 +185,7 @@ def test_mermaid_state():
 
 def test_mermaid_component():
     out = MermaidRenderer().render(_ir("component.quotation.yml"))
-    assert "graph TD" in out
+    assert "flowchart TD" in out and "layout: elk" in out
     assert "QuotationFlow" in out
 
 
@@ -197,7 +197,7 @@ def test_mermaid_activity():
 
 def test_mermaid_deployment():
     out = MermaidRenderer().render(_ir("deployment.runtime.yml"))
-    assert "graph TD" in out
+    assert "flowchart TD" in out and "layout: elk" in out
     assert "Browser" in out
     assert "HTTPS" in out
 
@@ -500,3 +500,18 @@ def test_mermaid_sequence_escapes_semicolon():
     )
     out = MermaidRenderer().render(ir)
     assert "uno#59; dos" in out
+
+
+def test_mermaid_flowcharts_select_elk_with_orthogonal_curves():
+    out = MermaidRenderer().render(_ir("deployment.runtime.yml"))
+    assert out.startswith("---\nconfig:\n  layout: elk\n  flowchart:\n    curve: linear\n---\nflowchart TD\n")
+
+
+def test_catalog_template_registers_the_elk_layout():
+    from pathlib import Path
+
+    html = (Path(__file__).parent.parent / "spec2viz" / "templates" / "default.html").read_text(encoding="utf-8")
+    assert "mermaid.registerLayoutLoaders(elkLayouts)" in html and "layout-elk@0.2.3" in html
+    assert "layout: 'elk'" in html and "curve: 'linear'" in html and "curve: 'basis'" not in html
+    # el inicializador corre en DOMContentLoaded, despues de los modulos que cargan mermaid
+    assert html.index("function initMermaid()") < html.index("initMermaid();\n      await mermaid.run")

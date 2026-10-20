@@ -2,6 +2,12 @@
 
 ## Unreleased - 2026-10-17
 
+- Mermaid layout: the renderer emits `flowchart` (component, activity, deployment) with a config frontmatter
+  that selects the ELK layout and `curve: linear` over ELK's orthogonal bends, instead of `graph TD` with dagre
+  and `basis` curves; the catalog bundle loads mermaid 11.12.1 as an ES module with `@mermaid-js/layout-elk`
+  0.2.3 registered and initializes with `layout: 'elk'`, so every flowchart in it (including prebuilt `.mmd`
+  sources) is laid out by ELK. The provenance comment of a rendered `.mmd` now goes right after the
+  frontmatter, which has to be the first line
 - Colors per theme: `fill`/`stroke` of a glyph, `color` of a link and the neutral `style.kinds` of a spec
   accept a `{light, dark}` pair (each side a `#rrggbb` hex or a palette token), so a custom color can be
   readable in both themes; a single hex still means the same value in both themes. A malformed pair is an

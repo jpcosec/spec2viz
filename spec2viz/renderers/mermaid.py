@@ -65,6 +65,16 @@ def _kind_classes(style_kinds: dict[str, dict], kind_of: dict[str, str]) -> list
     return lines
 
 
+# flowcharts con el layout ELK y aristas ortogonales (curva linear sobre los codos que calcula ELK):
+# con nodos anidados o un nodo central, dagre cruza y curva las flechas largas y pisa los rotulos
+FLOWCHART_CONFIG = "---\nconfig:\n  layout: elk\n  flowchart:\n    curve: linear\n---"
+
+
+def _flowchart(direction: str = "TD") -> list[str]:
+    """Cabecera de un flowchart: frontmatter de config (ELK, curva linear) y `flowchart <dir>`."""
+    return [*FLOWCHART_CONFIG.split("\n"), f"flowchart {direction}"]
+
+
 class MermaidRenderer:
     def render(self, ir) -> str:
         match ir:
@@ -125,7 +135,7 @@ class MermaidRenderer:
         return "\n".join(lines)
 
     def _component(self, ir: ComponentIR) -> str:
-        lines = ["graph TD"]
+        lines = _flowchart("TD")
         child_ids = {child for node in ir.nodes for child in node.contains}
 
         def render_node(node_id, indent="    "):
@@ -156,7 +166,7 @@ class MermaidRenderer:
         return "\n".join(lines)
 
     def _activity(self, ir: ActivityIR) -> str:
-        lines = ["flowchart TD", "    __start([Start])"]
+        lines = [*_flowchart("TD"), "    __start([Start])"]
 
         def node_lines(step, indent: str) -> list[str]:
             # decision y merge son rombos; una nota es un nodo aparte unido por una linea punteada
@@ -204,7 +214,7 @@ class MermaidRenderer:
         art_map = {a.id: a for a in ir.artifacts}
         node_map = {n.id: n for n in ir.nodes}
         nested = {ref for n in ir.nodes for ref in n.contains if ref in node_map}
-        lines = ["graph TD"]
+        lines = _flowchart("TD")
 
         def emit(node, indent: str) -> None:
             # un nodo es un subgraph; dentro, sus artefactos y sus nodos hijos (anidados)

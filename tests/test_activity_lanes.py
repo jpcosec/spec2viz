@@ -39,7 +39,7 @@ def test_mermaid_draws_one_lane_per_partition_merge_as_diamond_and_notes():
 def test_mermaid_without_the_new_fields_is_unchanged():
     out = MermaidRenderer().render(_ir(FIXTURES / "activity.validation.yml"))
     assert "subgraph" not in out and "note" not in out
-    assert out.splitlines()[:2] == ["flowchart TD", "    __start([Start])"]
+    assert out.splitlines()[:8] == ["---", "config:", "  layout: elk", "  flowchart:", "    curve: linear", "---", "flowchart TD", "    __start([Start])"]
 
 
 def test_plantuml_swimlanes_and_note():
