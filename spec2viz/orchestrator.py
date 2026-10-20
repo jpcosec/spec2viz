@@ -157,6 +157,7 @@ class CatalogItem:
     tags: list[str] = field(default_factory=list)
     store_path: str = ""
     source_base_dir: str = ""
+    notation: str | None = None  # `notation:` de la vista (ruta, nombre builtin o del store)
 
 
 @dataclass
@@ -298,6 +299,7 @@ class CatalogLoader:
             tags=tags,
             store_path=str(store_path),
             source_base_dir=str(base_dir),
+            notation=item.get("notation"),
         )
 
     def _normalize_store_entry(self, store_entry, base_dir: Path) -> tuple[Path, dict]:
@@ -335,6 +337,7 @@ class CatalogLoader:
             tags=tags,
             store_path=item.store_path,
             source_base_dir=item.source_base_dir,
+            notation=item.notation,
         )
 
     def _infer_diagram_type(self, specs: list[str], base_dir: Path) -> str:
@@ -487,7 +490,7 @@ def render_sections(items: list[CatalogItem], base_dir: Path | None = None) -> s
     for category, cat_items in categories.items():
         sections: list[str] = []
         for item in cat_items:
-            content = _read_item_source(item)
+            content = _resolved_item_board(item) or _read_item_source(item)
             attrs = []
             for spec in item.specs:
                 attrs.append(f'data-spec="{html.escape(spec)}"')
@@ -587,6 +590,29 @@ def resolve_item_path(value: str, base_dir: Path, field: str) -> Path:
         return resolve_catalog_path(value, base_dir, field)
     except UnknownReferenceError:
         return Path(base_dir) / value
+
+
+def _resolved_item_board(item: CatalogItem) -> str | None:
+    """El tablero de una vista desde su vista resuelta (`catalog_views`), con la notacion de la
+    vista: la misma fuente de glifos y estilo que graph_ui. None si la vista no tiene specs que
+    se puedan resolver o su layout no es un grafo; entonces se usa su `src`."""
+    if not item.specs:
+        return None
+    from spec2viz.catalog_paths import resolve_catalog_path
+    from spec2viz.catalog_views import resolved_board
+    from spec2viz.exceptions import UnknownNotationError
+
+    base = Path(item.source_base_dir)
+    loader = CatalogLoader()
+    spec_paths = [p for p in (loader._resolve_spec_path(spec, base) for spec in item.specs) if p is not None]
+    if not spec_paths:
+        return None
+    notation: str | Path | None = None
+    if item.notation:
+        text = str(item.notation)
+        looks_like_path = "/" in text or text.endswith((".yml", ".yaml"))
+        notation = resolve_catalog_path(text, base, "notation", UnknownNotationError) if looks_like_path else text
+    return resolved_board(spec_paths, notation, base)
 
 
 def _read_item_source(item: CatalogItem) -> str:

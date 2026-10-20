@@ -2,6 +2,12 @@
 
 ## Unreleased - 2026-10-17
 
+- `catalog build` draws every `graph`-layout view from its resolved view (`resolve_view`) with the view's
+  `notation:` (or the builtin of the type): glyph shapes, keywords, compartments, resolved style and links
+  are the same source graph_ui uses. The view comes from the project store when the spec is synced there
+  with the same content and notation, else from a temporary store that is removed afterwards. New
+  `spec2viz.renderers.view_mermaid.view_to_mermaid` (ELK flowchart). Sequence and matrix views, views without
+  specs and builds without sldb keep their `src`. Contract §16
 - UML packages in class diagrams: optional `data.packages` (`label`, `kind`, `contains` classes and packages,
   nesting at any depth). With packages, every class belongs to exactly one; unknown ids, self-containment,
   two parents, cycles, class/package id clashes and orphan classes are typed errors. PlantUML nests `package`

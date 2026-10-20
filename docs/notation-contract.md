@@ -405,3 +405,16 @@ el color del paquete en la vista (el contenedor ya lo muestra); en mermaid sí, 
 (`Core.Billing`), y las clases toman, con `classDef` + `cssClass`, el estilo del paquete más interno
 que lo tenga.
 
+## 16. El catálogo HTML desde la vista resuelta (2026-10-20)
+
+`catalog build` dibuja cada vista de layout `graph` (component, deployment, activity, clase,
+estado, reflection) desde su vista resuelta (`resolve_view`), con la notación de la vista
+(`notation:` de vistas.yml, o la builtin del tipo): la misma fuente de glifos, keyword, forma,
+compartimentos, estilo (con su precedencia, lado `dark` porque el bundle usa el tema oscuro) y
+links que graph_ui. La vista sale del store del proyecto si el spec ya está sincronizado ahí con el
+mismo sha256 y la misma notación; si no, de un store temporal que se borra al terminar.
+`spec2viz.renderers.view_mermaid.view_to_mermaid` la traduce a un `flowchart` ELK. Secuencia
+(`lanes`) y matriz (`grid`) siguen con su `src`, igual que una vista sin specs, sin sldb instalado o
+con una notación que solo existe en el store sin el spec sincronizado. Aproximaciones de mermaid:
+`package` es `notch-rect`, `note` es `doc`, sin íconos.
+
