@@ -2,6 +2,13 @@
 
 ## Unreleased - 2026-10-17
 
+- Catalog paths: `src`/`mmd`, `specs` and `notation` of a `vistas.yml` (and of diagram-store items) now share
+  one rule (`spec2viz.catalog_paths`): next to the `vistas.yml` first, then from the repo root (nearest `.git`,
+  else `.sldb`). Two different files -> `AmbiguousPathError`; none -> the error lists the paths tried
+  (`UnknownReferenceError`, or `UnknownNotationError` for `notation`). Fixes a root-relative `notation:` being
+  joined to the `vistas.yml` folder (`docs/architecture/docs/architecture/...`). `catalog validate` checks the
+  three fields; `catalog sync` writes nothing on an unresolved spec or notation or any ambiguity. Documented in
+  the README and in the catalog item JSON schema (which also gains `notation`)
 - Style, all optional and backward compatible (unstyled notations sync and resolve exactly as before):
   - builtin shapes are now a closed list (`SHAPES`) with new `cylinder`, `queue`, `cloud`, `package` and
     `note`; glyphs take optional `kind` (a palette kind), `fill`, `stroke` and `icon`, links an optional

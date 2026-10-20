@@ -372,10 +372,20 @@ class CatalogLoader:
         return ""
 
     def _resolve_spec_path(self, spec: str, base_dir: Path) -> Path | None:
+        """Un spec con extension sigue la regla del catalogo (junto al config, luego la raiz del
+        repo; `AmbiguousPathError` si existen las dos); un id sin extension conserva la busqueda
+        heredada (`<id>.yml` o `specs/<id>.yml` en el config o sus ancestros)."""
         candidates: list[Path] = []
         spec_path = Path(spec)
         search_roots = [base_dir, *base_dir.parents[:6]]
         if spec_path.suffix:
+            from spec2viz.catalog_paths import resolve_catalog_path
+            from spec2viz.exceptions import UnknownReferenceError
+
+            try:
+                return resolve_catalog_path(spec, base_dir, "spec")
+            except UnknownReferenceError:
+                pass  # la carpeta `specs/` heredada, abajo
             for root in search_roots:
                 candidates.append(root / spec_path)
                 candidates.append(root / "specs" / spec_path)
@@ -567,11 +577,23 @@ def _extract_html_fragment(content: str, fragment: str) -> str:
     return board_html or element_html
 
 
+def resolve_item_path(value: str, base_dir: Path, field: str) -> Path:
+    """`src` de un item con la regla del catalogo; si no existe en ningun lado, la ruta junto al
+    config (el error de archivo faltante es el de siempre). Ambigua -> `AmbiguousPathError`."""
+    from spec2viz.catalog_paths import resolve_catalog_path
+    from spec2viz.exceptions import UnknownReferenceError
+
+    try:
+        return resolve_catalog_path(value, base_dir, field)
+    except UnknownReferenceError:
+        return Path(base_dir) / value
+
+
 def _read_item_source(item: CatalogItem) -> str:
     if not item.src:
         return '  <div class="board"><div style="color:#94a3b8">Sin fuente renderizada configurada.</div></div>'
     src_value, fragment = _split_src_fragment(item.src)
-    src = Path(item.source_base_dir) / src_value
+    src = resolve_item_path(src_value, Path(item.source_base_dir), "src")
     content = src.read_text(encoding="utf-8").strip()
     if fragment:
         content = _extract_html_fragment(content, fragment)

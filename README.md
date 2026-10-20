@@ -199,6 +199,16 @@ reports typed errors (`UnknownNotationError`, `NotationMismatchError`, `UnknownR
 sync` runs the same check first and writes nothing if any view fails. `diagram sync` keeps the `category`,
 `nav` and `summary` a previous `catalog sync` gave the spec.
 
+Every path in `vistas.yml` (`src`/`mmd`, `specs` and `notation`) and in the items of a diagram store
+follows one rule: a relative path is looked up first next to the `vistas.yml` and, if it is not there,
+from the repo root (the nearest ancestor with `.git`, else with `.sldb`). If it exists in both places as
+different files, it is ambiguous (`AmbiguousPathError`); if it exists in neither, the error lists the
+paths it tried. Absolute paths are used as given; a spec id without extension keeps the legacy lookup
+(`<id>.yml` or `specs/<id>.yml`). `catalog validate` checks all three fields; `catalog sync` stops on a
+spec or notation that does not resolve and on any ambiguity, and leaves a missing `src` (the rendered
+source `catalog build` reads) to `catalog validate`. The JSON schema of a catalog item
+(`spec2viz catalog schema`) states the same rule.
+
 Hierarchical stores can aggregate other stores and legacy `vistas.yml` leaves, then expose one filtered HTML catalog by category, type, project, and tags.
 
 Minimal `project.yml` / diagram-store shape:

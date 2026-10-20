@@ -49,6 +49,10 @@ class UnknownShapeError(ValidationError):
     """A glyph or marker shape that is not a builtin shape."""
 
 
+class AmbiguousPathError(ValidationError):
+    """A catalog path exists both next to the config and from the repo root, as different files."""
+
+
 class UnknownNotationError(ValidationError):
     """A notation name or path that resolves to nothing: not a file, not a builtin, not in the store."""
 
@@ -77,6 +81,7 @@ __all__ = [
     "InvalidColorError",
     "UnknownIconError",
     "UnknownShapeError",
+    "AmbiguousPathError",
     "UnknownNotationError",
     "NotationMismatchError",
     "CompileError",

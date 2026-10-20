@@ -518,7 +518,8 @@ def catalog_sync(config: Path, store: Path | None, pythonpath: str | None, stric
         click.echo("Error: no `.sldb` store found above the config; pass --store.", err=True)
         sys.exit(1)
     # todo o nada: una notacion inexistente o de otro tipo frena el sync antes de escribir
-    problems = [(entry, exc) for entry, exc in check_catalog(config, Path(store_path), pythonpath) if exc is not None]
+    # el sync no lee `src` (es la fuente de `catalog build`): un src que falta no lo frena
+    problems = [(entry, exc) for entry, exc in check_catalog(config, Path(store_path), pythonpath, include_src=False) if exc is not None]
     for entry, exc in problems:
         click.echo(f"Invalid: {entry['vista'] or entry['spec']}: {type(exc).__name__}: {exc}", err=True)
     if problems:

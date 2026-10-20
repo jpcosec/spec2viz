@@ -104,8 +104,10 @@ class SldbAtomResolver:
     def _resolve_item_src_path(self, item: CatalogItem) -> Path | None:
         if not item.src:
             return None
+        from spec2viz.orchestrator import resolve_item_path
+
         src_value = item.src.split("#", 1)[0]
-        return (Path(item.source_base_dir) / src_value).resolve()
+        return resolve_item_path(src_value, Path(item.source_base_dir), "src").resolve()
 
     def _project_boundary(self, item: CatalogItem, src_path: Path | None) -> Path | None:
         if not item.project:

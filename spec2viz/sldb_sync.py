@@ -741,28 +741,62 @@ def _store_notation(store_path: Path | None, name: str, pythonpath: str | None) 
 
 
 def catalog_entries(config: Path) -> list[dict[str, Any]]:
-    """Las entradas de un `vistas.yml`: por cada spec listado, su ruta, sus metadatos de catalogo y
-    la notacion de la vista (`notation:` opcional; una ruta es relativa al vistas.yml, un nombre
-    resuelve contra las builtin y las notaciones del store; sin campo, la builtin del tipo)."""
+    """Las entradas de un `vistas.yml`: por cada spec listado, su ruta, sus metadatos de catalogo,
+    la notacion de la vista y su `src`.
+
+    Todas las rutas (`specs`, `notation`, `src`/`mmd`) siguen la regla de `catalog_paths`: junto al
+    `vistas.yml` y, si no existe, desde la raiz del repo; ambigua si existen las dos. Un `notation`
+    que no parece ruta es un nombre (builtin o `NotationDoc` del store); sin campo, la builtin del
+    tipo. Los errores de ruta no se lanzan aqui: quedan en `errors` de la entrada, para que
+    `check_catalog` los informe todos y `sync_catalog` no escriba nada.
+    """
+    from spec2viz.catalog_paths import resolve_catalog_path, split_fragment
+    from spec2viz.exceptions import AmbiguousPathError, UnknownNotationError
+
     config = Path(config).resolve()
     raw = yaml.safe_load(config.read_text(encoding="utf-8")) or {}
     base = config.parent
     out: list[dict[str, Any]] = []
+
+    def resolve(value: str, field: str, missing=None) -> tuple[Path | None, Exception | None]:
+        try:
+            if missing is None:
+                return resolve_catalog_path(value, base, field), None
+            return resolve_catalog_path(value, base, field, missing), None
+        except Exception as exc:  # AmbiguousPathError, UnknownReferenceError, UnknownNotationError
+            return None, exc
+
     for vista in raw.get("vistas") or []:
         if not isinstance(vista, dict):
             continue
+        view_errors: list[Exception] = []
         notation: str | Path | None = None
         if vista.get("notation"):
             text = str(vista["notation"])
-            notation = (base / text).resolve() if _looks_like_path(text) and not Path(text).is_absolute() else (Path(text) if _looks_like_path(text) else text)
+            if _looks_like_path(text):
+                notation, error = resolve(text, "notation", UnknownNotationError)
+                if error:
+                    view_errors.append(error)
+            else:
+                notation = text
+        src: Path | None = None
+        src_error: Exception | None = None
+        if vista.get("src") or vista.get("mmd"):
+            src, src_error = resolve(split_fragment(str(vista.get("src") or vista.get("mmd")))[0], "src")
+            # el sync no lee `src` (es la fuente de `catalog build`): un src que falta lo informa
+            # `catalog validate`; uno ambiguo bloquea igual que spec y notation
+            if isinstance(src_error, AmbiguousPathError):
+                view_errors.append(src_error)
+                src_error = None
         for spec in vista.get("specs") or []:
-            path = Path(str(spec))
-            if not path.is_absolute():
-                path = (base / path).resolve() if (base / path).exists() else (base.parent.parent / path).resolve()
+            path, error = resolve(str(spec), "spec")
             out.append({
-                "spec": path,
+                "spec": path if path is not None else Path(str(spec)),
                 "vista": str(vista.get("id") or ""),
                 "notation": notation,
+                "src": src,
+                "src_error": src_error,
+                "errors": [*view_errors, *([error] if error else [])],
                 "catalog": {
                     "category": str(vista.get("category") or ""),
                     "nav": str(vista.get("nav") or ""),
@@ -772,18 +806,21 @@ def catalog_entries(config: Path) -> list[dict[str, Any]]:
     return out
 
 
-def check_catalog(config: Path, store_path: Path | None = None, pythonpath: str | None = None) -> list[tuple[dict[str, Any], Exception | None]]:
-    """Valida cada entrada de un `vistas.yml` sin escribir nada: el spec existe y valida, y su
-    notacion resuelve y dibuja su tipo de diagrama. Una tupla (entrada, error o None) por spec."""
-    from spec2viz.exceptions import UnknownReferenceError
+def check_catalog(config: Path, store_path: Path | None = None, pythonpath: str | None = None,
+                  include_src: bool = True) -> list[tuple[dict[str, Any], Exception | None]]:
+    """Valida cada entrada de un `vistas.yml` sin escribir nada: sus rutas resuelven sin
+    ambiguedad, el spec valida y su notacion resuelve y dibuja su tipo de diagrama. Una tupla
+    (entrada, primer error o None) por spec."""
     from spec2viz.loader import load as load_spec
     from spec2viz.validator import validate
 
     results: list[tuple[dict[str, Any], Exception | None]] = []
     for entry in catalog_entries(config):
         try:
-            if not Path(entry["spec"]).is_file():
-                raise UnknownReferenceError(f"vista `{entry['vista']}` lists {entry['spec']}, which does not exist")
+            if entry["errors"]:
+                raise entry["errors"][0]
+            if include_src and entry["src_error"] is not None:
+                raise entry["src_error"]
             diagram = load_spec(entry["spec"])
             validate(diagram)
             chosen = DEFAULT_NOTATIONS.get(diagram.type.value) if entry["notation"] is None else entry["notation"]
@@ -795,8 +832,13 @@ def check_catalog(config: Path, store_path: Path | None = None, pythonpath: str 
 
 
 def sync_catalog(sync: "SpecSync", config: Path) -> list[SyncReport]:
-    """Sincroniza cada spec de un `vistas.yml` con su notacion y sus metadatos de catalogo."""
-    return [sync.sync(entry["spec"], notation=entry["notation"], catalog=entry["catalog"]) for entry in catalog_entries(config)]
+    """Sincroniza cada spec de un `vistas.yml` con su notacion y sus metadatos de catalogo; si una
+    ruta del registro no resuelve o es ambigua, no escribe nada y lanza ese error tipado."""
+    entries = catalog_entries(config)
+    for entry in entries:
+        if entry["errors"]:
+            raise entry["errors"][0]
+    return [sync.sync(entry["spec"], notation=entry["notation"], catalog=entry["catalog"]) for entry in entries]
 
 
 def format_report(report: SyncReport) -> str:
