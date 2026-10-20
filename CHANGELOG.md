@@ -2,6 +2,13 @@
 
 ## Unreleased - 2026-10-17
 
+- UML packages in class diagrams: optional `data.packages` (`label`, `kind`, `contains` classes and packages,
+  nesting at any depth). With packages, every class belongs to exactly one; unknown ids, self-containment,
+  two parents, cycles, class/package id clashes and orphan classes are typed errors. PlantUML nests `package`
+  blocks with their kind's fill; mermaid, which cannot nest namespaces, draws one `namespace` per package path
+  (`Core.Billing`) and colors classes by their innermost styled package (`classDef` + `cssClass`). The sync
+  writes packages as `SpecNodeDoc`s of the `packages` collection; `uml-class` gains a `package` glyph and a
+  `contains` link (`draw: nest`); package style follows the usual precedence by the package `kind`. Contract §15
 - Mermaid layout: the renderer emits `flowchart` (component, activity, deployment) with a config frontmatter
   that selects the ELK layout and `curve: linear` over ELK's orthogonal bends, instead of `graph TD` with dagre
   and `basis` curves; the catalog bundle loads mermaid 11.12.1 as an ES module with `@mermaid-js/layout-elk`

@@ -3,7 +3,9 @@
 # Los elementos sincronizados son SpecNodeDoc con `kind` (class, interface, abstract, record,
 # protocol, enum) y `data.attributes` / `data.methods`; las relaciones son los RelationDoc
 # con el `relation` del spec. El primer glifo cuyo `where` casa gana; el ultimo, sin `where`,
-# es el glifo por defecto.
+# es el glifo por defecto. Los paquetes UML (`data.packages` del spec) son SpecNodeDoc de la
+# coleccion `packages`: se dibujan con la forma `package` y anidan sus clases y subpaquetes con
+# `contains` (draw: nest); su estilo sale de `style.kinds` por el `kind` del paquete.
 name: uml-class
 title: UML class diagram
 diagram_type: class
@@ -12,6 +14,13 @@ projection: all
 layout: {kind: graph, direction: TB}
 
 glyphs:
+  - id: package
+    title: Package
+    model: SpecNodeDoc
+    where: collection = "packages"
+    shape: package
+    label: "{title}"
+    function: package
   - id: interface
     title: Interface
     model: SpecNodeDoc
@@ -66,6 +75,10 @@ glyphs:
     function: class
 
 links:
+  - id: contains
+    title: Contains
+    relation: contains
+    draw: nest
   - id: inheritance
     title: Generalization
     relation: inheritance

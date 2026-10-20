@@ -80,7 +80,7 @@ _MESSAGE_RELATIONS = {
 }
 
 # colecciones de elementos por tipo de diagrama (las de deskops mas reflection)
-_ELEMENT_COLLECTIONS_SYNC: dict[str, tuple[str, ...]] = {**_ELEMENT_COLLECTIONS, "reflection": ("nodes",)}
+_ELEMENT_COLLECTIONS_SYNC: dict[str, tuple[str, ...]] = {**_ELEMENT_COLLECTIONS, "reflection": ("nodes",), "class": ("classes", "packages")}
 
 # campo que mejor describe una arista, para las notas del RelationDoc
 _EDGE_LABEL_FIELDS = ("label", "on", "message", "protocol")

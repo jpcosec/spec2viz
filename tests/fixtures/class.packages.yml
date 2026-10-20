@@ -1,0 +1,48 @@
+id: class.packages
+title: Tables by domain
+type: class
+version: "0.1"
+style:
+  kinds:
+    billing:
+      fill: {light: "#fff1c2", dark: "#3d3200"}
+      stroke: "#7a5c00"
+    identity:
+      fill: database-fill
+      stroke: database-stroke
+data:
+  direction: LR
+  packages:
+    core:
+      label: Core
+      kind: domain
+      contains: [billing, identity]
+    billing:
+      label: Billing
+      kind: billing
+      contains: [Invoice, Payment]
+    identity:
+      label: Identity
+      kind: identity
+      contains: [User]
+    shared:
+      label: Shared
+      contains: [AuditLog]
+  classes:
+    Invoice:
+      attributes:
+        - {name: id, type: int}
+        - {name: total, type: Decimal}
+    Payment:
+      attributes:
+        - {name: invoice_id, type: int}
+    User:
+      attributes:
+        - {name: email, type: str}
+    AuditLog:
+      attributes:
+        - {name: event, type: str}
+  relations:
+    - {from: Payment, to: Invoice, relation: association, label: pays}
+    - {from: Invoice, to: User, relation: association, label: billed to}
+    - {from: AuditLog, to: User, relation: dependency}

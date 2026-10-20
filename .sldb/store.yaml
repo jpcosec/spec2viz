@@ -158,6 +158,8 @@ include:
     name: activity.start
   - path: sldb/notations/activity/glyphs/merge.md
     name: activity.merge
+  - path: sldb/notations/uml-class/glyphs/package.md
+    name: uml-class.package
 - model: GlyphDoc
   paths:
   - path: sldb/notations/component-view-matrix/glyphs/boundary.md
@@ -226,6 +228,8 @@ include:
     name: deployment.deploy
   - path: sldb/notations/deployment/links/manifest.md
     name: deployment.manifest
+  - path: sldb/notations/uml-class/links/contains.md
+    name: uml-class.contains
 - model: LinkDoc
   paths:
   - path: sldb/notations/component-view-matrix/links/contains.md

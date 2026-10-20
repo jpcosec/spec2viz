@@ -198,6 +198,16 @@
           },
           "title": "Relations",
           "type": "array"
+        },
+        "packages": {
+          "description": "Optional UML packages. When a spec declares packages, every class belongs to exactly one package (an orphan class is an error); packages nest through `contains`.",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_]*$": {
+              "$ref": "#/$defs/ClassPackage"
+            }
+          },
+          "title": "Packages",
+          "type": "object"
         }
       },
       "required": [
@@ -379,6 +389,72 @@
         "name"
       ],
       "title": "ClassMethod",
+      "type": "object"
+    },
+    "ClassPackage": {
+      "additionalProperties": false,
+      "description": "A UML package: groups classes and other packages (nesting at any depth).",
+      "properties": {
+        "label": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[^\\r\\n{}\\\\\"]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "kind": {
+          "default": "package",
+          "description": "Semantic kind of the package (a domain, a layer...); `style.kinds` styles it by this kind, with the same precedence as any element.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "contains": {
+          "description": "Class and package identifiers inside this package. Each class and each package has at most one parent package, without cycles.",
+          "items": {
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+            "type": "string"
+          },
+          "title": "Contains",
+          "type": "array"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "atoms": {
+          "description": "Optional atom ids that explain this package.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs this package points at.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
+        }
+      },
+      "title": "ClassPackage",
       "type": "object"
     },
     "ClassParameter": {

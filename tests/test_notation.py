@@ -46,9 +46,12 @@ def test_wildcard_link_and_free_relations():
 
 def test_uml_class_notation_matches_the_class_spec_vocabulary():
     spec = load_notation("uml-class")
-    assert spec.relations == ["inheritance", "realization", "composition", "aggregation", "association", "dependency"]
+    # `contains` anida los paquetes UML (glifo `package`, coleccion `packages`)
+    assert spec.relations == ["contains", "inheritance", "realization", "composition", "aggregation", "association", "dependency"]
     assert [g.id for g in spec.glyphs][-1] == "class" and spec.glyphs[-1].where == ""
-    assert spec.glyphs[0].where == 'kind = "interface"' and spec.glyphs[0].keyword == "«interface»"
+    assert spec.glyphs[0].id == "package" and spec.glyphs[0].shape == "package" and spec.glyphs[0].where == 'collection = "packages"'
+    assert spec.glyphs[1].where == 'kind = "interface"' and spec.glyphs[1].keyword == "«interface»"
+    assert {l.id: l.draw for l in spec.links}["contains"] == "nest"
     assert {l.id: (l.draw, l.line, l.source_end, l.target_end) for l in spec.links}["composition"] == ("line", "solid", "filled-diamond", "none")
 
 
@@ -192,7 +195,7 @@ def test_cli_notation_sync(store):
     runner = CliRunner()
     result = runner.invoke(main, ["notation", "sync", "uml-class", "--store", str(store), "--strict"])
     assert result.exit_code == 0, result.output
-    assert "Synced notation uml-class: 6 glyphs, 6 links (13 created" in result.output
+    assert "Synced notation uml-class: 7 glyphs, 7 links (15 created" in result.output
     result = runner.invoke(main, ["notation", "sync", "nope", "--store", str(store)])
     assert result.exit_code == 1 and "unknown notation" in result.output
 

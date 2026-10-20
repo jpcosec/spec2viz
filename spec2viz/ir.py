@@ -53,11 +53,32 @@ class ClassRelationIR:
 
 
 @dataclass
+class ClassPackageIR:
+    id: str
+    label: str
+    kind: str
+    contains: list[str] = field(default_factory=list)
+
+
+@dataclass
 class ClassIR:
     title: str
     direction: str
     classes: list[ClassNodeIR]
     relations: list[ClassRelationIR]
+    packages: list[ClassPackageIR] = field(default_factory=list)
+    style_kinds: dict[str, dict] = field(default_factory=dict)
+
+    def package_path(self, package_id: str) -> list[str]:
+        """Los paquetes desde la raiz hasta `package_id` (incluido)."""
+        parent = {child: p.id for p in self.packages for child in p.contains}
+        path = [package_id]
+        while path[0] in parent:
+            path.insert(0, parent[path[0]])
+        return path
+
+    def package_of(self, class_id: str) -> str | None:
+        return next((p.id for p in self.packages if class_id in p.contains), None)
 
 
 # ── Matrix ────────────────────────────────────────────────────────────────────
@@ -248,7 +269,7 @@ class DeploymentIR:
 
 __all__ = [
     "ClassParameterIR", "ClassAttributeIR", "ClassMethodIR", "ClassNodeIR",
-    "ClassRelationIR", "ClassIR",
+    "ClassRelationIR", "ClassIR", "ClassPackageIR",
     "Stage",
     "Row",
     "Span",

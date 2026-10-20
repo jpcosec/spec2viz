@@ -9,6 +9,7 @@ layout:
   direction: TB
 markers: []
 glyphs:
+- GlyphDoc:uml-class.package
 - GlyphDoc:uml-class.interface
 - GlyphDoc:uml-class.protocol
 - GlyphDoc:uml-class.abstract
@@ -16,6 +17,7 @@ glyphs:
 - GlyphDoc:uml-class.record
 - GlyphDoc:uml-class.class
 links:
+- LinkDoc:uml-class.contains
 - LinkDoc:uml-class.inheritance
 - LinkDoc:uml-class.realization
 - LinkDoc:uml-class.composition

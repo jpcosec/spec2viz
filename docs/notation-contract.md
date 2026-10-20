@@ -384,3 +384,24 @@ nombre builtin o `NotationDoc` del store); `catalog sync` la usa y `catalog vali
 (`UnknownNotationError`, `NotationMismatchError`). `diagram sync` conserva `category`, `nav` y
 `summary` del SpecDoc.
 
+## 15. Paquetes UML en diagramas de clase (2026-10-20)
+
+Un spec `type: class` puede declarar `data.packages`: id -> `{label, kind, contains, description}`.
+`contains` lista clases y otros paquetes (anidado a cualquier profundidad). Si hay paquetes, cada
+clase pertenece a exactamente uno; una clase huérfana, un id desconocido, un paquete que se contiene,
+un elemento con dos padres, un ciclo o un id compartido entre clase y paquete son errores tipados
+(`StructureError`, `UnknownReferenceError`).
+
+**En el store y en la vista.** Cada paquete es un SpecNodeDoc de la colección `packages` (con su
+`kind`); `contains` del paquete apunta a sus clases y subpaquetes. La notación `uml-class` lo dibuja
+con el glifo `uml-class.package` (forma `package`) y anida con el link `uml-class.contains`
+(`draw: nest`): la superficie dibuja cada paquete como contenedor de sus hijos, como los nodos
+anidados de deployment. El estilo de un paquete sale de la misma precedencia (§13), por su `kind`:
+`style.kinds.<kind>` del spec o la paleta; llega en `node.style` del paquete. Las clases no heredan
+el color del paquete en la vista (el contenedor ya lo muestra); en mermaid sí, ver abajo.
+
+**Renderers.** PlantUML anida `package` con el relleno (tema claro) de su kind. Mermaid no anida
+`namespace`: cada paquete con clases propias es un `namespace` con el nombre de su ruta
+(`Core.Billing`), y las clases toman, con `classDef` + `cssClass`, el estilo del paquete más interno
+que lo tenga.
+
