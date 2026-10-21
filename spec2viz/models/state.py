@@ -5,7 +5,7 @@ from spec2viz.models.base import DocRef, BaseDiagram, DiagramType
 
 
 class StateModel(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(extra="forbid")
     id: str = Field(description="Stable state identifier referenced by transitions.")
     label: str = Field(description="Display label rendered for the state.")
     contains: list[str] | None = Field(default=None, description="Optional child states for composite (nested) states.")
@@ -20,7 +20,7 @@ class StateModel(BaseModel):
 
 
 class TransitionModel(BaseModel):
-    model_config = ConfigDict(populate_by_name=True, extra="ignore")
+    model_config = ConfigDict(populate_by_name=True, extra="forbid")
     from_: str = Field(
         alias="from", description="Source state identifier for the transition."
     )
@@ -36,7 +36,7 @@ class TransitionModel(BaseModel):
 
 
 class StateData(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(extra="forbid")
     entity: str = Field(
         description="Name of the entity whose lifecycle is being modeled."
     )

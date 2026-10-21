@@ -5,7 +5,7 @@ from spec2viz.models.base import DocRef, BaseDiagram, DiagramType
 
 
 class DeploymentNodeModel(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(extra="forbid")
     label: str | None = Field(
         default=None, description="Optional display name for the deployment node."
     )
@@ -28,7 +28,7 @@ class DeploymentNodeModel(BaseModel):
 
 
 class ArtifactModel(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(extra="forbid")
     label: str | None = Field(
         default=None, description="Optional display name for the deployed artifact."
     )
@@ -46,7 +46,7 @@ class ArtifactModel(BaseModel):
 
 
 class ConnectionModel(BaseModel):
-    model_config = ConfigDict(populate_by_name=True, extra="ignore")
+    model_config = ConfigDict(populate_by_name=True, extra="forbid")
     from_: str = Field(
         alias="from", description="Source node identifier for the connection."
     )
@@ -70,7 +70,7 @@ class ConnectionModel(BaseModel):
 
 
 class DeploymentData(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(extra="forbid")
     nodes: dict[str, DeploymentNodeModel] = Field(
         description="Deployment nodes keyed by identifier."
     )

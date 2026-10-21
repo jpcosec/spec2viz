@@ -1,6 +1,7 @@
 {
   "$defs": {
     "ActivityData": {
+      "additionalProperties": false,
       "properties": {
         "start": {
           "description": "Identifier of the first step in the activity flow.",
@@ -30,6 +31,7 @@
       "type": "object"
     },
     "ActivityDiagram": {
+      "additionalProperties": false,
       "properties": {
         "id": {
           "description": "Stable identifier for the diagram specification.",
@@ -92,6 +94,7 @@
       "type": "object"
     },
     "ArtifactModel": {
+      "additionalProperties": false,
       "properties": {
         "label": {
           "anyOf": [
@@ -553,6 +556,7 @@
       "type": "object"
     },
     "ComponentData": {
+      "additionalProperties": false,
       "properties": {
         "nodes": {
           "additionalProperties": {
@@ -578,6 +582,7 @@
       "type": "object"
     },
     "ComponentDiagram": {
+      "additionalProperties": false,
       "properties": {
         "id": {
           "description": "Stable identifier for the diagram specification.",
@@ -640,6 +645,7 @@
       "type": "object"
     },
     "ConnectionModel": {
+      "additionalProperties": false,
       "properties": {
         "from": {
           "description": "Source node identifier for the connection.",
@@ -653,7 +659,7 @@
         },
         "kind": {
           "default": "communication",
-          "description": "communication (default): a communication path between two nodes, or between two artifacts as before; deploy: «deploy» from an artifact to the node it is deployed on; manifest: «manifest» from an artifact to the node or artifact it manifests.",
+          "description": "communication (default): a communication path between two nodes, or between two artifacts as before; deploy: \u00abdeploy\u00bb from an artifact to the node it is deployed on; manifest: \u00abmanifest\u00bb from an artifact to the node or artifact it manifests.",
           "enum": [
             "communication",
             "deploy",
@@ -697,6 +703,7 @@
       "type": "object"
     },
     "DeploymentData": {
+      "additionalProperties": false,
       "properties": {
         "nodes": {
           "additionalProperties": {
@@ -715,7 +722,7 @@
           "type": "object"
         },
         "connections": {
-          "description": "Communication paths between nodes (or artifacts) and «deploy»/«manifest» relations from artifacts.",
+          "description": "Communication paths between nodes (or artifacts) and \u00abdeploy\u00bb/\u00abmanifest\u00bb relations from artifacts.",
           "items": {
             "$ref": "#/$defs/ConnectionModel"
           },
@@ -730,6 +737,7 @@
       "type": "object"
     },
     "DeploymentDiagram": {
+      "additionalProperties": false,
       "properties": {
         "id": {
           "description": "Stable identifier for the diagram specification.",
@@ -792,6 +800,7 @@
       "type": "object"
     },
     "DeploymentNodeModel": {
+      "additionalProperties": false,
       "properties": {
         "label": {
           "anyOf": [
@@ -842,6 +851,7 @@
       "type": "object"
     },
     "EdgeModel": {
+      "additionalProperties": false,
       "properties": {
         "from": {
           "description": "Source component identifier.",
@@ -881,6 +891,7 @@
       "type": "object"
     },
     "EnforcementArtifact": {
+      "additionalProperties": false,
       "description": "Condensed version of the IR for consumption by linters, auditors, and gates.",
       "properties": {
         "fingerprint": {
@@ -938,6 +949,7 @@
       "type": "object"
     },
     "MatrixComponentModel": {
+      "additionalProperties": false,
       "properties": {
         "name": {
           "description": "Stable component identifier used within the matrix hierarchy.",
@@ -990,6 +1002,7 @@
       "type": "object"
     },
     "MatrixData": {
+      "additionalProperties": false,
       "properties": {
         "views": {
           "description": "Matrix views that define the column layout.",
@@ -1016,6 +1029,7 @@
       "type": "object"
     },
     "MatrixDiagram": {
+      "additionalProperties": false,
       "properties": {
         "id": {
           "description": "Stable identifier for the diagram specification.",
@@ -1078,6 +1092,7 @@
       "type": "object"
     },
     "MatrixStageModel": {
+      "additionalProperties": false,
       "properties": {
         "id": {
           "description": "Stable stage identifier used inside matrix views.",
@@ -1098,6 +1113,7 @@
       "type": "object"
     },
     "MatrixViewModel": {
+      "additionalProperties": false,
       "properties": {
         "id": {
           "description": "Stable identifier for the matrix view.",
@@ -1186,6 +1202,8 @@
       "type": "object"
     },
     "Metadata": {
+      "additionalProperties": false,
+      "description": "Authorship and description, plus the project's own annotations as ``x-*`` keys.\n\n``metadata`` is the only place a project may add keys of its own, and only with the ``x-`` prefix\n(``x-fuentes``, ``x-estado``): they are kept as written under ``extensions``. Any other unknown key is\nan error with its path, like everywhere else in a spec (a typo there is caught, not silently kept).",
       "properties": {
         "author": {
           "anyOf": [
@@ -1212,12 +1230,19 @@
           "default": null,
           "description": "Free-form summary that explains the intent of the diagram.",
           "title": "Description"
+        },
+        "extensions": {
+          "additionalProperties": true,
+          "description": "Project annotations: every `metadata` key that starts with `x-`, kept as written (renderers ignore them). Any other unknown key under `metadata` is an error.",
+          "title": "Extensions",
+          "type": "object"
         }
       },
       "title": "Metadata",
       "type": "object"
     },
     "NodeModel": {
+      "additionalProperties": false,
       "properties": {
         "label": {
           "anyOf": [
@@ -1306,6 +1331,7 @@
       "type": "object"
     },
     "ReflectionDiagram": {
+      "additionalProperties": false,
       "description": "Diagram type specifically for architectural reflection and enforcement.",
       "properties": {
         "id": {
@@ -1381,6 +1407,7 @@
       "type": "object"
     },
     "ReflectionEdge": {
+      "additionalProperties": false,
       "properties": {
         "from": {
           "description": "Source node identifier.",
@@ -1432,6 +1459,7 @@
       "type": "object"
     },
     "ReflectionIR": {
+      "additionalProperties": false,
       "description": "Semantic Intermediate Representation for reflection and enforcement.",
       "properties": {
         "nodes": {
@@ -1458,6 +1486,7 @@
       "type": "object"
     },
     "ReflectionNode": {
+      "additionalProperties": false,
       "properties": {
         "kind": {
           "default": "core",
@@ -1495,6 +1524,7 @@
       "type": "object"
     },
     "SemanticMetadata": {
+      "additionalProperties": false,
       "description": "Metadata supporting the 6D model for cross-ecosystem alignment.",
       "properties": {
         "author": {
@@ -1522,6 +1552,12 @@
           "default": null,
           "description": "Free-form summary that explains the intent of the diagram.",
           "title": "Description"
+        },
+        "extensions": {
+          "additionalProperties": true,
+          "description": "Project annotations: every `metadata` key that starts with `x-`, kept as written (renderers ignore them). Any other unknown key under `metadata` is an error.",
+          "title": "Extensions",
+          "type": "object"
         },
         "who": {
           "anyOf": [
@@ -1633,6 +1669,7 @@
       "type": "object"
     },
     "SequenceDiagram": {
+      "additionalProperties": false,
       "properties": {
         "id": {
           "description": "Stable identifier for the diagram specification.",
@@ -1695,6 +1732,7 @@
       "type": "object"
     },
     "StateData": {
+      "additionalProperties": false,
       "properties": {
         "entity": {
           "description": "Name of the entity whose lifecycle is being modeled.",
@@ -1733,6 +1771,7 @@
       "type": "object"
     },
     "StateDiagram": {
+      "additionalProperties": false,
       "properties": {
         "id": {
           "description": "Stable identifier for the diagram specification.",
@@ -1795,6 +1834,7 @@
       "type": "object"
     },
     "StateModel": {
+      "additionalProperties": false,
       "properties": {
         "id": {
           "description": "Stable state identifier referenced by transitions.",
@@ -1848,6 +1888,7 @@
       "type": "object"
     },
     "StepModel": {
+      "additionalProperties": false,
       "properties": {
         "label": {
           "description": "Display label rendered for the activity step.",
@@ -1932,6 +1973,7 @@
       "type": "object"
     },
     "Style": {
+      "additionalProperties": false,
       "properties": {
         "theme": {
           "default": "default",
@@ -1953,6 +1995,7 @@
       "type": "object"
     },
     "TransitionModel": {
+      "additionalProperties": false,
       "properties": {
         "from": {
           "description": "Source state identifier for the transition.",

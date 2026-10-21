@@ -2,6 +2,15 @@
 
 ## Unreleased - 2026-10-17
 
+- Unknown keys are errors at every level of a diagram spec (every model is `extra="forbid"`; they were
+  ignored). `diagram validate`, `render` and every loader report each one with its path, without the type tag:
+  `unknown key 'data.edges'`, `unknown key 'data.nodes.vpc.colour'`, `unknown key 'data.connections.0.via'`.
+  Reported from MEPU: a deployment with `edges` (the type's arrows are `connections`) validated OK and rendered
+  0 arrows in every renderer, which looked like an antonia-html bug. A test now pins that antonia-html hands
+  the browser the same mermaid source, one arrow per deployment connection; every shipped example and
+  fixture is checked for unknown keys. The one place a project may add keys of its own is `metadata`, with
+  the OpenAPI-style `x-` prefix (`x-fuentes`, `x-estado`): they are kept under `metadata.extensions`; any
+  other unknown key there is an error too
 - `catalog build` draws every `graph`-layout view from its resolved view (`resolve_view`) with the view's
   `notation:` (or the builtin of the type): glyph shapes, keywords, compartments, resolved style and links
   are the same source graph_ui uses. The view comes from the project store when the spec is synced there

@@ -60,6 +60,8 @@
       "type": "object"
     },
     "Metadata": {
+      "additionalProperties": false,
+      "description": "Authorship and description, plus the project's own annotations as ``x-*`` keys.\n\n``metadata`` is the only place a project may add keys of its own, and only with the ``x-`` prefix\n(``x-fuentes``, ``x-estado``): they are kept as written under ``extensions``. Any other unknown key is\nan error with its path, like everywhere else in a spec (a typo there is caught, not silently kept).",
       "properties": {
         "author": {
           "anyOf": [
@@ -86,6 +88,12 @@
           "default": null,
           "description": "Free-form summary that explains the intent of the diagram.",
           "title": "Description"
+        },
+        "extensions": {
+          "additionalProperties": true,
+          "description": "Project annotations: every `metadata` key that starts with `x-`, kept as written (renderers ignore them). Any other unknown key under `metadata` is an error.",
+          "title": "Extensions",
+          "type": "object"
         }
       },
       "title": "Metadata",
@@ -157,6 +165,7 @@
       "type": "object"
     },
     "Style": {
+      "additionalProperties": false,
       "properties": {
         "theme": {
           "default": "default",
@@ -178,6 +187,7 @@
       "type": "object"
     }
   },
+  "additionalProperties": false,
   "properties": {
     "id": {
       "description": "Stable identifier for the diagram specification.",

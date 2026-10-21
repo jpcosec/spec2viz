@@ -86,3 +86,24 @@ def test_sync_nests_nodes_and_draws_deploy_and_manifest(tmp_path):
     assert ("deploy", "«deploy»") in links and ("manifest", "«manifest»") in links
     nest = {(l["source"].rsplit(".", 1)[-1], l["target"].rsplit(".", 1)[-1]) for l in view["links"] if l["relation"] == "contains"}
     assert {("vpc", "subnet"), ("subnet", "cluster"), ("cluster", "api_service")} <= nest
+
+
+def test_antonia_html_draws_every_connection_of_a_deployment():
+    """Reported from MEPU: antonia-html showed 0 arrows for a deployment. The cause was the spec (`edges`,
+    which the type ignored, instead of `connections`; now a load error). This fixes the html side: the
+    source the browser hands to mermaid carries one arrow per connection, the same lines mermaid has."""
+    import html as _html
+    import re
+
+    import yaml
+
+    from spec2viz.renderers.antonia import AntoniaHtmlRenderer
+
+    ir = _ir()
+    page = AntoniaHtmlRenderer().render(ir)
+    source = _html.unescape(re.search(r'<pre class="mermaid">(.*?)</pre>', page, re.S).group(1))
+    expected = MermaidRenderer().render(ir)
+    assert source.strip() == expected.strip()
+    arrows = [l for l in source.splitlines() if re.search(r"\s(-->|-\.->)", l)]
+    connections = yaml.safe_load(NESTED.read_text(encoding="utf-8"))["data"]["connections"]
+    assert len(arrows) == len(connections) > 0

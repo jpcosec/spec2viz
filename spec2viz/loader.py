@@ -46,4 +46,24 @@ def load(path: str | Path) -> BaseDiagram:
     try:
         return _adapter.validate_python(raw)
     except PydanticValidationError as exc:
+        desconocidas = unknown_keys(exc)
+        if desconocidas:
+            listado = "; ".join(f"unknown key '{k}'" for k in desconocidas)
+            raise ParseError(f"Invalid diagram schema in {path} (type {diagram_type}): {listado}. "
+                             "Every key must be part of the schema of its type "
+                             "(`spec2viz diagram schema` exports them).") from exc
         raise ParseError(f"Invalid diagram schema in {path}: {exc}") from exc
+
+
+def unknown_keys(exc: PydanticValidationError) -> list[str]:
+    """The dotted path of every key the schema does not declare (``extra_forbidden``), without the
+    tag of the diagram union: ``data.edges``, ``data.nodes.ec2.estado``, ``data.connections.0.via``."""
+    out = []
+    for err in exc.errors():
+        if err.get("type") != "extra_forbidden":
+            continue
+        loc = [str(p) for p in err.get("loc", ())]
+        if loc and loc[0] in _valid_types:   # the discriminated union puts the type first
+            loc = loc[1:]
+        out.append(".".join(loc))
+    return out
