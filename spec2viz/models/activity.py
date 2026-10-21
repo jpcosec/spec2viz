@@ -8,7 +8,7 @@ StepTone = Literal["success", "warning", "danger", "info", "neutral", "rule1", "
 
 
 class StepModel(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(extra="forbid")
     label: str = Field(description="Display label rendered for the activity step.")
     kind: str = Field(
         default="action",
@@ -74,7 +74,7 @@ class GroupModel(BaseModel):
 
 
 class ActivityData(BaseModel):
-    model_config = ConfigDict(extra="ignore")
+    model_config = ConfigDict(extra="forbid")
     start: str = Field(description="Identifier of the first step in the activity flow.")
     steps: dict[str, StepModel] = Field(
         description="All activity steps keyed by identifier."
