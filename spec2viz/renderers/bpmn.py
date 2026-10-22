@@ -33,17 +33,50 @@ BPMN_NS = "http://www.omg.org/spec/BPMN/20100524/MODEL"
 BPMNDI_NS = "http://www.omg.org/spec/BPMN/20100524/DI"
 DC_NS = "http://www.omg.org/spec/DD/20100524/DC"
 DI_NS = "http://www.omg.org/spec/DD/20100524/DI"
-NAMESPACES = {"bpmn": BPMN_NS, "bpmndi": BPMNDI_NS, "dc": DC_NS, "di": DI_NS}
+COLOR_NS = "http://www.omg.org/spec/BPMN/non-normative/color/1.0"
+NAMESPACES = {"bpmn": BPMN_NS, "bpmndi": BPMNDI_NS, "dc": DC_NS, "di": DI_NS, "color": COLOR_NS}
 
 VENDOR_DIR = Path(__file__).resolve().parent.parent / "templates" / "vendor" / "bpmn-js"
 
 GATEWAY_KINDS = {"decision", "merge"}
 
+# BPMN in Color (non-normative color namespace): (background, border) per tone. Soft fills with
+# dark borders, chosen to keep the 12px dark text and the 2px outline readable.
+TONE_PALETTE: dict[str, tuple[str, str]] = {
+    "success": ("#E3F4E6", "#2E7D32"),
+    "warning": ("#FFEFC7", "#B26A00"),
+    "danger": ("#FBE3E3", "#B42318"),
+    "info": ("#E1EEFB", "#1D4ED8"),
+    "neutral": ("#EEF0F3", "#6B7280"),
+    "rule1": ("#EDE9FE", "#6D4AFF"),
+    "rule2": ("#FDE7D9", "#C2410C"),
+    "rule3": ("#DCF5EE", "#0F766E"),
+    "rule4": ("#FDE7F1", "#BE185D"),
+    "rule5": ("#EAF0D8", "#4D7C0F"),
+}
+GATEWAY_TONE = ("#F4F0FB", "#7E57C2")
+START_TONE = ("#E3F4E6", "#2E7D32")
+END_TONE = ("#FBE3E3", "#8B1A1A")
+TONE_LABELS = {
+    "success": "success · resultado favorable",
+    "warning": "warning · atención",
+    "danger": "danger · rechazo",
+    "info": "info · informativo",
+    "neutral": "neutral · sin marca",
+    "rule1": "rule1 · regla 1",
+    "rule2": "rule2 · regla 2",
+    "rule3": "rule3 · regla 3",
+    "rule4": "rule4 · regla 4",
+    "rule5": "rule5 · regla 5",
+}
+
 # geometry (px); bpmn-js draws text in 12px Arial, ~6.5px per character on average
 CHAR_W = 6.6
 LINE_H = 15
-TASK_W = 200
-TASK_MIN_H = 80
+TASK_MAX_W = 220
+TASK_MIN_W = 120
+TASK_PAD = 16      # text padding inside a task (bpmn-js wraps at width - 12)
+TASK_MIN_H = 60
 GATEWAY = 50
 EVENT = 36
 GATEWAY_LABEL_W = 190
@@ -66,6 +99,15 @@ def _ncname(raw: str) -> str:
     if not s or not re.match(r"[A-Za-z_]", s[0]):
         s = "_" + s
     return s
+
+
+def _task_box(label: str) -> tuple[int, int]:
+    """A task box sized to its label: wrapped at most at TASK_MAX_W, at least TASK_MIN_W wide."""
+    longest = max((len(word) for word in label.split()), default=1)
+    natural = longest * CHAR_W + TASK_PAD
+    w = int(min(TASK_MAX_W, max(TASK_MIN_W, natural)))
+    lines = _wrap(label, w - TASK_PAD + 4)
+    return w, max(TASK_MIN_H, lines * LINE_H + 24)
 
 
 def _wrap(text: str, width_px: float) -> int:
@@ -95,6 +137,7 @@ class _Node:
     name: str = ""
     step: str | None = None
     doc: str | None = None
+    tone: str | None = None
     w: int = 0
     h: int = 0
     label_h: int = 0   # external label above (gateways)
@@ -154,11 +197,12 @@ class BpmnRenderer:
             label = step.label or step.id
             if step.kind in GATEWAY_KINDS:
                 node = _Node(uid(f"Gateway_{_ncname(step.id)}"), "gateway", label, step.id, step.notes,
-                             GATEWAY, GATEWAY, label_h=_wrap(label, GATEWAY_LABEL_W) * LINE_H)
+                             tone=step.tone, w=GATEWAY, h=GATEWAY,
+                             label_h=_wrap(label, GATEWAY_LABEL_W) * LINE_H)
             else:
-                lines = _wrap(label, TASK_W - 12)
+                w, h = _task_box(label)
                 node = _Node(uid(f"Task_{_ncname(step.id)}"), "task", label, step.id, step.notes,
-                             TASK_W, max(TASK_MIN_H, lines * LINE_H + 24))
+                             tone=step.tone, w=w, h=h)
             nodes[node.id] = node
             by_step[step.id] = node.id
         end = _Node(uid(f"EndEvent_{_ncname(ir.end)}"), "end", w=EVENT, h=EVENT)
@@ -513,10 +557,16 @@ class BpmnRenderer:
 
         diagram = ET.SubElement(defs, _q("bpmndi", "BPMNDiagram"), {"id": "BPMNDiagram_1"})
         plane = ET.SubElement(diagram, _q("bpmndi", "BPMNPlane"), {"id": "BPMNPlane_1", "bpmnElement": pid})
+        gateway_border = {n.id: _tone_colors(n)[1] for n in nodes.values() if n.kind == "gateway"}
         for n in nodes.values():
             attrs = {"id": f"{n.id}_di", "bpmnElement": n.id}
             if n.kind == "gateway":
                 attrs["isMarkerVisible"] = "true"
+            colors = _tone_colors(n)
+            if colors[0]:
+                attrs[_q("color", "background-color")] = colors[0]
+            if colors[1]:
+                attrs[_q("color", "border-color")] = colors[1]
             shape = ET.SubElement(plane, _q("bpmndi", "BPMNShape"), attrs)
             _bounds(shape, n.x, n.y, n.w, n.h)
             if n.kind == "gateway":
@@ -524,7 +574,11 @@ class BpmnRenderer:
                 label = ET.SubElement(shape, _q("bpmndi", "BPMNLabel"))
                 _bounds(label, n.x + n.w // 2 - lw // 2, n.y - n.label_h - 6, lw, n.label_h)
         for e in edges:
-            edge = ET.SubElement(plane, _q("bpmndi", "BPMNEdge"), {"id": f"{e.id}_di", "bpmnElement": e.id})
+            attrs = {"id": f"{e.id}_di", "bpmnElement": e.id}
+            border = gateway_border.get(e.src)
+            if border:
+                attrs[_q("color", "border-color")] = border
+            edge = ET.SubElement(plane, _q("bpmndi", "BPMNEdge"), attrs)
             for x, y in e.points:
                 ET.SubElement(edge, _q("di", "waypoint"), {"x": str(x), "y": str(y)})
             if e.label:
@@ -534,6 +588,19 @@ class BpmnRenderer:
         ET.indent(defs, space="  ")
         body = ET.tostring(defs, encoding="unicode")
         return '<?xml version="1.0" encoding="UTF-8"?>\n' + body + "\n"
+
+
+def _tone_colors(node: "_Node") -> tuple[str | None, str | None]:
+    """The BPMN in Color (background, border) of a node; plain tasks without tone stay default."""
+    if node.kind == "start":
+        return START_TONE
+    if node.kind == "end":
+        return END_TONE
+    if node.kind == "gateway":
+        return TONE_PALETTE.get(node.tone or "", GATEWAY_TONE)
+    if node.kind == "task" and node.tone in TONE_PALETTE:
+        return TONE_PALETTE[node.tone]
+    return None, None
 
 
 def _bounds(parent: ET.Element, x: int, y: int, w: int, h: int) -> None:
@@ -590,6 +657,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   header p { margin: 4px 0; font-size: 14px; line-height: 1.45; max-width: 120ch; }
   header h2 { font-size: 14px; margin: 10px 0 4px; }
   header ul { margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.45; max-width: 120ch; }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 8px 0 2px; font-size: 13px; align-items: center; }
+  .legend .item { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .swatch { width: 16px; height: 14px; border-radius: 3px; border: 2px solid #555; box-sizing: border-box; }
+  .legend .title { font-weight: 600; margin-right: 2px; }
   .toolbar { display: flex; gap: 6px; margin-top: 8px; }
   .toolbar button { font: inherit; font-size: 13px; padding: 3px 10px; border: 1px solid #d0d7de; background: #f6f8fa; border-radius: 5px; cursor: pointer; }
   #canvas { flex: 1 1 auto; min-height: 360px; position: relative; }
@@ -600,6 +671,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <header>
   <h1>@@TITLE@@</h1>
 @@META@@
+@@LEGEND@@
   <div class="toolbar">
     <button type="button" id="fit">Fit</button>
     <button type="button" id="zoom-in">Zoom +</button>
@@ -616,7 +688,24 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   var xml = @@XML_JSON@@;
   var viewer = new BpmnJS({ container: '#canvas' });
   window.bpmnViewer = viewer;
-  function fit() { viewer.get('canvas').zoom('fit-viewport', 'auto'); }
+  var MIN_ZOOM = 0.6;  // fit, then never show the diagram smaller than this
+  function fit() {
+    var canvas = viewer.get('canvas');
+    canvas.zoom('fit-viewport', 'auto');
+    if (canvas.zoom() < MIN_ZOOM) {
+      // too big to fit legibly: zoom in and start at the diagram's left edge,
+      // with the start event in view, instead of in the middle of the flow
+      canvas.zoom(MIN_ZOOM);
+      var start = viewer.get('elementRegistry').filter(function (el) {
+        return el.type === 'bpmn:StartEvent';
+      })[0];
+      if (start) {
+        var box = canvas.getAbsoluteBBox(start);
+        var outer = canvas.viewbox().outer;
+        canvas.scroll({ dx: 40 - box.x, dy: Math.round(outer.height * 0.4) - box.y });
+      }
+    }
+  }
   viewer.importXML(xml).then(function (result) {
     if (result.warnings && result.warnings.length) { console.warn('bpmn-js import warnings', result.warnings); }
     fit();
@@ -634,6 +723,26 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 </body>
 </html>
 """
+
+
+def _legend_html() -> str:
+    items = []
+    for tone, (background, border) in TONE_PALETTE.items():
+        label = TONE_LABELS.get(tone, tone)
+        items.append(
+            f'    <span class="item"><i class="swatch" style="background:{background};border-color:{border}"></i>'
+            f"{html.escape(label)}</span>"
+        )
+    for label, (background, border) in (
+        ("Gateway por defecto", GATEWAY_TONE),
+        ("Inicio", START_TONE),
+        ("Fin", END_TONE),
+    ):
+        items.append(
+            f'    <span class="item"><i class="swatch" style="background:{background};border-color:{border}"></i>'
+            f"{html.escape(label)}</span>"
+        )
+    return '  <div class="legend" aria-label="Leyenda de colores">\n    <span class="title">Colores:</span>\n' + "\n".join(items) + "\n  </div>"
 
 
 def _meta_html(metadata: dict | None) -> str:
@@ -662,6 +771,7 @@ def render_bpmn_html(xml: str, title: str, metadata: dict | None = None) -> str:
         "@@VIEWER_JS@@": _script_safe(_vendor("bpmn-navigated-viewer.production.min.js")),
         "@@XML_JSON@@": xml_json,
         "@@META@@": _meta_html(metadata),
+        "@@LEGEND@@": _legend_html(),
         "@@TITLE@@": html.escape(title),
     }
     return re.sub("|".join(re.escape(k) for k in values), lambda m: values[m.group(0)], HTML_TEMPLATE)

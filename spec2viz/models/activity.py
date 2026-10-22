@@ -4,12 +4,22 @@ from pydantic import BaseModel, ConfigDict, Field
 from spec2viz.models.base import DocRef, BaseDiagram, DiagramType
 
 
+StepTone = Literal["success", "warning", "danger", "info", "neutral", "rule1", "rule2", "rule3", "rule4", "rule5"]
+
+
 class StepModel(BaseModel):
     model_config = ConfigDict(extra="ignore")
     label: str = Field(description="Display label rendered for the activity step.")
     kind: str = Field(
         default="action",
         description="Semantic step type: action (default), decision (branches) or merge (joins branches back into one flow; drawn as a diamond like decision).",
+    )
+    tone: StepTone | None = Field(
+        default=None,
+        description=(
+            "Optional color tone for the BPMN renderer: success, warning, danger, info, neutral, or rule1..rule5 "
+            "to tint each decision group. A gateway's outgoing flows take its border color."
+        ),
     )
     partition: str | None = Field(
         default=None,
@@ -55,4 +65,4 @@ class ActivityDiagram(BaseDiagram):
     data: ActivityData = Field(description="Activity-specific steps and control flow.")
 
 
-__all__ = ["StepModel", "ActivityData", "ActivityDiagram"]
+__all__ = ["StepModel", "StepTone", "ActivityData", "ActivityDiagram"]

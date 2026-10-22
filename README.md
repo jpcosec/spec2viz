@@ -89,9 +89,17 @@ Supported renderers:
   path, long flows in their own lanes, orthogonal waypoints), so it opens laid out in bpmn.io, Camunda
   Modeler or bpmn-js.
 - `<stem>.bpmn.html`: a self-contained viewer (bpmn-js NavigatedViewer: pan, zoom, fit) with the spec title,
-  `metadata.description` and `metadata.preguntas_abiertas` above the diagram. bpmn-js is vendored in
-  `spec2viz/templates/vendor/bpmn-js/` (version, source and the bpmn.io license there) and inlined, so the
-  page works offline from `file://`.
+  `metadata.description`, a color legend and `metadata.preguntas_abiertas` above the diagram. It opens fitted,
+  and when fitting would shrink the diagram below 60% it zooms to that minimum and starts at the flow's first
+  step. bpmn-js is vendored in `spec2viz/templates/vendor/bpmn-js/` (version, source and the bpmn.io license
+  there) and inlined, so the page works offline from `file://`.
+
+Steps accept an optional `tone` (`success`, `warning`, `danger`, `info`, `neutral` or `rule1`..`rule5`, to
+tint each decision group) that the renderer writes as BPMN in Color (`color:background-color` on
+`BPMNShape`, `color:border-color` on `BPMNShape` and `BPMNEdge`, namespace
+`http://www.omg.org/spec/BPMN/non-normative/color/1.0`), which bpmn-js and Camunda Modeler honor. Gateways
+without a tone get a soft violet, the start event green, the end event dark red, and the flows leaving a
+gateway take its border color. Task boxes wrap their label at no more than 220px wide and grow in height.
 
 Layout limits: partitions (swimlanes) are not drawn as BPMN lanes yet; crossings are reduced with a few
 barycenter sweeps, not minimized; back edges (loops) are routed below the whole diagram.

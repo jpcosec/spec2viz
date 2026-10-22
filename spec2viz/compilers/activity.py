@@ -6,7 +6,7 @@ from spec2viz.ir import ActivityIR, ActivityStep
 class ActivityCompiler:
     def compile(self, diagram: ActivityDiagram) -> ActivityIR:
         steps = [
-            ActivityStep(id=sid, label=s.label, kind=s.kind, next=s.next, branches=dict(s.branches), partition=s.partition, notes=s.notes)
+            ActivityStep(id=sid, label=s.label, kind=s.kind, next=s.next, branches=dict(s.branches), partition=s.partition, notes=s.notes, tone=s.tone)
             for sid, s in diagram.data.steps.items()
         ]
         style_kinds = dict(diagram.style.kinds) if diagram.style else {}

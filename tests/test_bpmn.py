@@ -187,3 +187,110 @@ def test_render_to_file_returns_the_bpmn_path(tmp_path):
     out = render_to_file(FIXTURES / "activity.complex.yml", out=tmp_path, renderer="bpmn")
     assert out.name == "activity.complex.bpmn"
     assert (tmp_path / "activity.complex.bpmn.html").exists()
+
+
+COLOR_NS = "http://www.omg.org/spec/BPMN/non-normative/color/1.0"
+COLOR = {"color": COLOR_NS}
+
+
+def _shapes(xml: str) -> dict[str, ET.Element]:
+    plane = _parse(xml).find("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)
+    return {s.get("bpmnElement"): s for s in plane.findall("bpmndi:BPMNShape", NS)}
+
+
+def _edges(xml: str) -> dict[str, ET.Element]:
+    plane = _parse(xml).find("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)
+    return {e.get("bpmnElement"): e for e in plane.findall("bpmndi:BPMNEdge", NS)}
+
+
+def test_tones_emit_bpmn_in_color_attributes_and_namespace():
+    steps = [
+        ActivityStep(id="a", label="Prepare", tone="info", next="ok"),
+        ActivityStep(id="ok", label="Accepted", tone="success", next="gate"),
+        ActivityStep(id="gate", label="Decide", kind="decision", tone="rule2",
+                     branches={"yes": "warn", "no": "bad"}),
+        ActivityStep(id="warn", label="Review", tone="warning", next="end"),
+        ActivityStep(id="bad", label="Rejected", tone="danger"),
+        ActivityStep(id="plain", label="Neutral task", tone="neutral", next="end"),
+    ]
+    xml = BpmnRenderer().render(_ir(steps, start="a", end="end"))
+    assert f'xmlns:color="{COLOR_NS}"' in xml
+    shapes = _shapes(xml)
+    assert shapes["Task_a"].get(f"{{{COLOR_NS}}}background-color") == "#E1EEFB"
+    assert shapes["Task_a"].get(f"{{{COLOR_NS}}}border-color") == "#1D4ED8"
+    assert shapes["Task_ok"].get(f"{{{COLOR_NS}}}background-color") == "#E3F4E6"
+    assert shapes["Task_warn"].get(f"{{{COLOR_NS}}}border-color") == "#B26A00"
+    assert shapes["Task_bad"].get(f"{{{COLOR_NS}}}border-color") == "#B42318"
+    assert shapes["Task_plain"].get(f"{{{COLOR_NS}}}border-color") == "#6B7280"
+    # the gateway carries its own tone; its outgoing flows take that border colour
+    assert shapes["Gateway_gate"].get(f"{{{COLOR_NS}}}border-color") == "#C2410C"
+    edges = _edges(xml)
+    gw_flows = [e for name, e in edges.items() if name.startswith("Flow_gate__")]
+    assert len(gw_flows) == 2
+    assert all(e.get(f"{{{COLOR_NS}}}border-color") == "#C2410C" for e in gw_flows)
+    # flows that do not leave a gateway stay unstyled
+    assert edges["Flow_start__a"].get(f"{{{COLOR_NS}}}border-color") is None
+
+
+def test_events_and_untinted_gateway_get_default_colors():
+    xml = BpmnRenderer().render(_ir([
+        ActivityStep(id="a", label="A", next="d"),
+        ActivityStep(id="d", label="Decide", kind="decision", branches={"x": "end"}),
+    ], start="a"))
+    shapes = _shapes(xml)
+    start = next(v for k, v in shapes.items() if k.startswith("StartEvent_"))
+    end = next(v for k, v in shapes.items() if k.startswith("EndEvent_"))
+    assert start.get(f"{{{COLOR_NS}}}background-color") == "#E3F4E6"
+    assert end.get(f"{{{COLOR_NS}}}border-color") == "#8B1A1A"
+    assert shapes["Gateway_d"].get(f"{{{COLOR_NS}}}background-color") == "#F4F0FB"
+    # a task without tone stays at the default BPMN white, no colour attributes
+    assert shapes["Task_a"].get(f"{{{COLOR_NS}}}background-color") is None
+
+
+def test_rule_tones_are_five_distinct_soft_colors():
+    from spec2viz.renderers.bpmn import TONE_PALETTE
+
+    rules = [TONE_PALETTE[f"rule{i}"] for i in range(1, 6)]
+    assert len(set(rules)) == 5
+    assert len({bg for bg, _ in TONE_PALETTE.values()}) == len(TONE_PALETTE)
+
+
+def test_tasks_are_wrapped_and_sized_to_their_text():
+    long_label = "Una línea de una OC abierta de Laboratorio Chile con un texto bastante largo que debe envolverse"
+    xml = BpmnRenderer().render(_ir([
+        ActivityStep(id="short", label="Do it", next="long"),
+        ActivityStep(id="long", label=long_label, next="end"),
+    ], start="short"))
+    shapes = _shapes(xml)
+
+    def bounds(nid):
+        b = shapes[nid].find("dc:Bounds", NS)
+        return int(b.get("width")), int(b.get("height"))
+
+    w_short, h_short = bounds("Task_short")
+    w_long, h_long = bounds("Task_long")
+    assert w_long <= 220 and w_long >= 120
+    assert h_long > h_short, "a long label grows the box in height instead of overflowing"
+    assert w_short <= w_long
+    assert h_short >= 60
+
+
+def test_tone_field_is_validated_by_the_model():
+    from pydantic import ValidationError
+    from spec2viz.models.activity import StepModel
+
+    assert StepModel(label="x", tone="rule5").tone == "rule5"
+    assert StepModel(label="x").tone is None
+    with pytest.raises(ValidationError):
+        StepModel(label="x", tone="chartreuse")
+
+
+def test_viewer_legend_and_min_zoom():
+    xml = render(compile_ir(load(FIXTURES / "activity.validation.yml")), "bpmn")
+    page = render_bpmn_html(xml, "T", None)
+    assert 'class="legend"' in page and "Gateway por defecto" in page
+    for tone in ("success", "warning", "danger", "info", "neutral", "rule1", "rule5"):
+        assert f">{tone} ·" in page
+    assert "#E3F4E6" in page and "#8B1A1A" in page  # start / end swatches
+    assert "MIN_ZOOM" in page and "canvas.zoom(MIN_ZOOM)" in page
+    assert "canvas.zoom('fit-viewport', 'auto')" in page
