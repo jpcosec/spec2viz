@@ -54,6 +54,8 @@ def render_to_file(
     output_path = out_dir / (path.stem + ext)
 
     result = render(ir, renderer_name)
+    if renderer_name == "bpmn":
+        return _write_bpmn(path, output_path, result, diagram)
     if isinstance(result, dict):
         output_path.write_text(json.dumps(result, indent=2))
     else:
@@ -64,6 +66,25 @@ def render_to_file(
             assert_mermaid_ok(result, source=path.name)
         output_path.write_text(result)
 
+    return output_path
+
+
+def _write_bpmn(spec_path: Path, output_path: Path, xml: str, diagram: BaseDiagram) -> Path:
+    """`<stem>.bpmn` (the XML) and `<stem>.bpmn.html` (the offline bpmn-js viewer)."""
+    import yaml
+    from spec2viz.renderers.bpmn import render_bpmn_html, with_xml_provenance
+
+    output_path.write_text(with_xml_provenance(xml, provenance_text(spec_path)), encoding="utf-8")
+    # the metadata model keeps only author/description; the page also shows preguntas_abiertas
+    try:
+        raw = yaml.safe_load(spec_path.read_text(encoding="utf-8")) or {}
+    except yaml.YAMLError:
+        raw = {}
+    metadata = raw.get("metadata") if isinstance(raw, dict) else None
+    if not isinstance(metadata, dict):
+        metadata = diagram.metadata.model_dump() if diagram.metadata else None
+    page = render_bpmn_html(xml, diagram.title, metadata)
+    output_path.with_name(output_path.name + ".html").write_text(page, encoding="utf-8")
     return output_path
 
 
@@ -89,9 +110,14 @@ def provenance_header(renderer_name: str, spec_path: str | Path) -> str:
     prefix = _COMMENT_PREFIX.get(renderer_name)
     if prefix is None:
         return ""
+    return f"{prefix} {provenance_text(spec_path)}\n"
+
+
+def provenance_text(spec_path: str | Path) -> str:
+    """El texto de la cabecera de trazabilidad, sin sintaxis de comentario."""
     spec = Path(spec_path)
     try:
         shown = spec.resolve().relative_to(Path.cwd().resolve())
     except ValueError:
         shown = spec
-    return f"{prefix} spec2viz: generated from {shown.as_posix()}; do not edit, run `spec2viz diagram validate {shown.as_posix()}` and re-render\n"
+    return f"spec2viz: generated from {shown.as_posix()}; do not edit, run `spec2viz diagram validate {shown.as_posix()}` and re-render"

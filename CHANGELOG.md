@@ -2,6 +2,12 @@
 
 ## Unreleased - 2026-10-17
 
+- New `bpmn` renderer for activity specs (`--renderer bpmn`): `<stem>.bpmn` is BPMN 2.0 XML (start event,
+  a task per step, an exclusive gateway per decision/merge step, a sequence flow per `next`/branch with the
+  branch label as its name, end event) with BPMN DI from a deterministic layered layout; `<stem>.bpmn.html`
+  is an offline viewer that inlines bpmn-js 18.31.1 (NavigatedViewer, vendored in
+  `spec2viz/templates/vendor/bpmn-js/` with its bpmn.io license) and shows the title, description and
+  `preguntas_abiertas`
 - `catalog build` draws every `graph`-layout view from its resolved view (`resolve_view`) with the view's
   `notation:` (or the builtin of the type): glyph shapes, keywords, compartments, resolved style and links
   are the same source graph_ui uses. The view comes from the project store when the spec is synced there

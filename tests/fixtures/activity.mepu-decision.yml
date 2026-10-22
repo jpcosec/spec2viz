@@ -1,0 +1,48 @@
+id: negocio-decision
+title: "MEPU · Cómo se decide una línea (R1–R5) y la OC"
+type: activity
+version: "1.1"
+metadata:
+  author: "SPEC-1 (2026-10-21), desde specs/negocio/README.md §2–§3"
+  description: >-
+    Todas las reglas se aplican a cada línea y la línea toma el peor resultado (No aceptar > Revisar > Aceptar con
+    marcas > Aceptar); la OC toma el peor veredicto de sus líneas. Revisar dice a quién le toca (comprador, Customer
+    Service, Comercial). Las alertas (fuera de plazo, varias direcciones, información mixta) no cambian el veredicto.
+    Lo «por definir» de la fuente está resuelto hoy en el código con un valor provisional (marcado aquí).
+  fuentes:
+    - "specs/negocio/README.md §3 (R1–R5, combinación, casos puntuales)"
+    - "src/mepu/evaluacion/evaluacion.py (SIN_STOCK = REJECTED y PRECIO_NO_CALZA = HUMAN_REVIEW, provisionales; MESES_VENCIMIENTO)"
+    - "specs/negocio/README.md §3 R5 «Cómo se compara» (REV-3, 2026-10-21: misma unidad, sin redondear)"
+    - "docs/MANUAL_DE_REVISION.md §7 (hallazgos 1–5 de negocio)"
+    - "specs/negocio/acuerdos.md (estado y fuente de cada regla; respuestas del usuario del 2026-10-22)"
+  preguntas_abiertas:
+    - "R2 parcial = Aceptar y avisar: pendiente de confirmación de Karina (README §6.1)."
+    - "R2 con varias líneas de la misma OC y el mismo SKU: cada línea se compara contra toda la foto; repartir el stock (en orden o acumulado) está por definir (README §3, REV-3)."
+    - "R2 pendiente de stock (DEC-128): el plazo de «a tiempo» (días desde el corte) y la confiabilidad y cadencia del informe PEND se confirman con Giuseppe (acuerdos.md fila 9)."
+    - "R4: si Giuseppe puede liberar reservas de otro cliente (README §6.3); la lista completa de cautelas de Lab Chile (ANT-14)."
+    - "R5 precio que no calza: por definir; el código usa Revisar (Comercial). Sin negocio vigente no aplica: el archivo no cubre a las OCs abiertas (docs/analisis/2026-10-21-r5-sin-cruces-collective.md)."
+  decididas_2026_10_22: >-
+    Lote vencido no cuenta; lote sin fecha manda a Revisar; 12 meses calendario; 48 h desde el envío al proveedor con una
+    sola cuenta; la cautela institucional cuenta pero la línea queda en Revisar con la marca RESERVA_INSTITUCIONAL; sin stock
+    con ingreso confirmado a tiempo = Aceptar + PENDIENTE_STOCK (DEC-128). Estado y fuente de cada regla: specs/negocio/acuerdos.md.
+data:
+  start: linea
+  steps:
+    linea: {label: "Una línea de una OC abierta (4 o 5) de Laboratorio Chile", next: r1}
+    r1: {label: "R1 · ¿Producto identificado? (SKU del maestro 70.12 o lectura de la línea)", kind: decision, branches: {"sí": r2, "no": revisar_r1}}
+    revisar_r1: {label: "Revisar: problema de homologación (decisión del CTO 2026-10-13)", next: oc}
+    r2: {label: "R2 · Stock libre del SKU (sumando lotes; un lote vencido no cuenta)", kind: decision, branches: {"suficiente": r3, "parcial": parcial, "sin stock, ingreso confirmado a tiempo": pendiente_stock, "sin stock": no_aceptar_r2}}
+    parcial: {label: "Aceptar + PARTIAL_STOCK: se acepta y se avisa qué falta (pendiente Karina)", next: r3}
+    pendiente_stock: {label: "Aceptar + PENDIENTE_STOCK: sin stock hoy, ingreso confirmado a tiempo en el informe PEND (DEC-128, REG-4)", next: r3}
+    no_aceptar_r2: {label: "No aceptar (todavía): sin stock y sin ingreso confirmado a tiempo (decisión del 2026-10-22)", next: oc}
+    r3: {label: "R3 · ¿Vence en más de 12 meses calendario? (sin fecha de vencimiento → Revisar)", kind: decision, branches: {"sí": r4, "no": revisar_r3}}
+    revisar_r3: {label: "Revisar (Comercial): negociar con el cliente, sin descuento automático", next: r4}
+    r4: {label: "R4 · ¿El stock que cubre está reservado (cautela)?", kind: decision, branches: {"sin reserva": r5, "del mismo cliente": misma, "institucional": revisar_insti, "de otro cliente": revisar_r4}}
+    misma: {label: "Aceptar + CAUTELA_SAME_CLIENT", next: r5}
+    revisar_insti: {label: "Revisar (Customer Service) + RESERVA_INSTITUCIONAL: usa reserva institucional, requiere autorización (REG-3)", next: r5}
+    revisar_r4: {label: "Revisar (Customer Service): nunca No aceptar por una reserva ajena", next: r5}
+    r5: {label: "R5 · ¿El precio calza con el collective number del cliente? En la misma unidad (por caja o por unidad mínima) y sin redondear", kind: decision, branches: {"sí": peor, "no": revisar_r5, "sin collective o sin precio": peor}}
+    revisar_r5: {label: "Revisar (Comercial) (PROVISIONAL: la fuente dice por definir)", next: peor}
+    peor: {label: "La línea toma el peor resultado de sus reglas", next: oc}
+    oc: {label: "La OC toma el peor veredicto de sus líneas: Aceptar · Revisar (a quién) · No aceptar; más sus alertas", next: end}
+  end: end

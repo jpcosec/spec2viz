@@ -73,7 +73,28 @@ Supported renderers:
 - `vega`
 - `d2`
 - `antonia-html`
+- `bpmn` (activity specs only; see below)
 - `json`
+
+### BPMN for activity specs
+
+`spec2viz diagram render <spec.yml> --out <dir> --renderer bpmn` writes two files next to each other:
+
+- `<stem>.bpmn`: BPMN 2.0 XML (`http://www.omg.org/spec/BPMN/20100524/MODEL`) with one process: a
+  `startEvent`, a `task` per step, an `exclusiveGateway` per `kind: decision` (or `merge`) step named with its
+  label, a `sequenceFlow` per `next` and per branch (the branch label is the flow name) and one `endEvent`.
+  A step without `next` or branches ends the process (it flows to the end event); `notes` become
+  `documentation`. Ids are stable and derived from the step ids (`Task_<step>`, `Gateway_<step>`,
+  `Flow_<from>__<to>`). It carries BPMN DI from a deterministic layered layout (left to right by longest
+  path, long flows in their own lanes, orthogonal waypoints), so it opens laid out in bpmn.io, Camunda
+  Modeler or bpmn-js.
+- `<stem>.bpmn.html`: a self-contained viewer (bpmn-js NavigatedViewer: pan, zoom, fit) with the spec title,
+  `metadata.description` and `metadata.preguntas_abiertas` above the diagram. bpmn-js is vendored in
+  `spec2viz/templates/vendor/bpmn-js/` (version, source and the bpmn.io license there) and inlined, so the
+  page works offline from `file://`.
+
+Layout limits: partitions (swimlanes) are not drawn as BPMN lanes yet; crossings are reduced with a few
+barycenter sweeps, not minimized; back edges (loops) are routed below the whole diagram.
 
 Catalog commands build a deskops architecture HTML bundle from a legacy `vistas.yml` registry or a hierarchical diagram store:
 
