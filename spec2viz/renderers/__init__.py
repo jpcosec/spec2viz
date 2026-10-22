@@ -9,6 +9,7 @@ from spec2viz.renderers.d2       import D2Renderer
 from spec2viz.renderers.antonia  import AntoniaHtmlRenderer
 from spec2viz.renderers.tree     import TreeRenderer
 from spec2viz.renderers.graph_html import GraphRenderer
+from spec2viz.renderers.bpmn import BpmnRenderer
 from spec2viz.exceptions import RenderError
 from spec2viz.ir import ClassIR
 
@@ -26,6 +27,7 @@ RENDERER_MAP = {
     "antonia-html": AntoniaHtmlRenderer,
     "tree":     TreeRenderer,
     "graph":    GraphRenderer,
+    "bpmn":     BpmnRenderer,
     "json":     JsonRenderer,
 }
 
@@ -37,6 +39,7 @@ EXT_MAP = {
     "antonia-html": ".html",
     "tree":     ".tree.html",
     "graph":    ".graph.html",
+    "bpmn":     ".bpmn",
     "json":     ".artifact.json",
 }
 

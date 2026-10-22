@@ -211,6 +211,7 @@ class ActivityStep:
     branches: dict[str, str] = field(default_factory=dict)
     partition: str | None = None
     notes: str | None = None
+    tone: str | None = None
 
 
 @dataclass

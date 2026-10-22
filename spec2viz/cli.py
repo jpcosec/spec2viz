@@ -10,7 +10,7 @@ from spec2viz import json_schema, load, render_to_file, validate, write_json_sch
 from spec2viz.exceptions import Spec2VizError
 
 
-DIAGRAM_RENDERERS = ["plantuml", "mermaid", "vega", "d2", "antonia-html", "tree", "graph", "json"]
+DIAGRAM_RENDERERS = ["plantuml", "mermaid", "vega", "d2", "antonia-html", "tree", "graph", "bpmn", "json"]
 
 
 def _render_paths(paths: list[Path], out: Path, renderer: str | None):
@@ -18,6 +18,8 @@ def _render_paths(paths: list[Path], out: Path, renderer: str | None):
         try:
             output = render_to_file(path, out=out, renderer=renderer)
             click.echo(f"Rendered {path.name} -> {output}")
+            if renderer == "bpmn":
+                click.echo(f"Rendered {path.name} -> {output.with_name(output.name + '.html')}")
         except Spec2VizError as exc:
             click.echo(f"Error: {exc}", err=True)
             sys.exit(1)

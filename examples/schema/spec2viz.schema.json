@@ -653,7 +653,7 @@
         },
         "kind": {
           "default": "communication",
-          "description": "communication (default): a communication path between two nodes, or between two artifacts as before; deploy: «deploy» from an artifact to the node it is deployed on; manifest: «manifest» from an artifact to the node or artifact it manifests.",
+          "description": "communication (default): a communication path between two nodes, or between two artifacts as before; deploy: \u00abdeploy\u00bb from an artifact to the node it is deployed on; manifest: \u00abmanifest\u00bb from an artifact to the node or artifact it manifests.",
           "enum": [
             "communication",
             "deploy",
@@ -715,7 +715,7 @@
           "type": "object"
         },
         "connections": {
-          "description": "Communication paths between nodes (or artifacts) and «deploy»/«manifest» relations from artifacts.",
+          "description": "Communication paths between nodes (or artifacts) and \u00abdeploy\u00bb/\u00abmanifest\u00bb relations from artifacts.",
           "items": {
             "$ref": "#/$defs/ConnectionModel"
           },
@@ -1859,6 +1859,31 @@
           "description": "Semantic step type: action (default), decision (branches) or merge (joins branches back into one flow; drawn as a diamond like decision).",
           "title": "Kind",
           "type": "string"
+        },
+        "tone": {
+          "anyOf": [
+            {
+              "enum": [
+                "success",
+                "warning",
+                "danger",
+                "info",
+                "neutral",
+                "rule1",
+                "rule2",
+                "rule3",
+                "rule4",
+                "rule5"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional color tone for the BPMN renderer: success, warning, danger, info, neutral, or rule1..rule5 to tint each decision group. A gateway's outgoing flows take its border color.",
+          "title": "Tone"
         },
         "partition": {
           "anyOf": [

@@ -2,6 +2,21 @@
 
 ## Unreleased - 2026-10-17
 
+- BPMN color and legibility: activity steps take an optional `tone` (`success`, `warning`, `danger`, `info`,
+  `neutral`, `rule1`..`rule5`) that the `bpmn` renderer writes as BPMN in Color (non-normative color
+  namespace) on shapes and on the flows leaving a gateway; gateways default to a soft violet, start events
+  green and end events dark red. Task boxes wrap their label to at most 220px and grow in height; render text
+  is 14px (bpmn-js `textRenderer`); the HTML viewer keeps a compact bar (title, buttons, one-line legend),
+  collapses the description and open questions into a `<details>`, lets the canvas fill the rest of the
+  window, shows only the tones the diagram uses (labels from `metadata.legend` or generic Spanish) and, after
+  fitting, keeps a 0.9 minimum zoom anchored on the start of the flow
+
+- New `bpmn` renderer for activity specs (`--renderer bpmn`): `<stem>.bpmn` is BPMN 2.0 XML (start event,
+  a task per step, an exclusive gateway per decision/merge step, a sequence flow per `next`/branch with the
+  branch label as its name, end event) with BPMN DI from a deterministic layered layout; `<stem>.bpmn.html`
+  is an offline viewer that inlines bpmn-js 18.31.1 (NavigatedViewer, vendored in
+  `spec2viz/templates/vendor/bpmn-js/` with its bpmn.io license) and shows the title, description and
+  `preguntas_abiertas`
 - `catalog build` draws every `graph`-layout view from its resolved view (`resolve_view`) with the view's
   `notation:` (or the builtin of the type): glyph shapes, keywords, compartments, resolved style and links
   are the same source graph_ui uses. The view comes from the project store when the spec is synced there
