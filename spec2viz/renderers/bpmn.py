@@ -57,26 +57,30 @@ TONE_PALETTE: dict[str, tuple[str, str]] = {
 GATEWAY_TONE = ("#F4F0FB", "#7E57C2")
 START_TONE = ("#E3F4E6", "#2E7D32")
 END_TONE = ("#FBE3E3", "#8B1A1A")
-TONE_LABELS = {
-    "success": "success · resultado favorable",
-    "warning": "warning · atención",
-    "danger": "danger · rechazo",
-    "info": "info · informativo",
-    "neutral": "neutral · sin marca",
-    "rule1": "rule1 · regla 1",
-    "rule2": "rule2 · regla 2",
-    "rule3": "rule3 · regla 3",
-    "rule4": "rule4 · regla 4",
-    "rule5": "rule5 · regla 5",
+DEFAULT_LEGEND_LABELS = {
+    "success": "favorable",
+    "warning": "atención",
+    "danger": "rechazo",
+    "info": "informativo",
+    "neutral": "neutro",
+    "rule1": "regla 1",
+    "rule2": "regla 2",
+    "rule3": "regla 3",
+    "rule4": "regla 4",
+    "rule5": "regla 5",
+    "gateway": "gateway por defecto",
+    "start": "inicio",
+    "end": "fin",
 }
 
-# geometry (px); bpmn-js draws text in 12px Arial, ~6.5px per character on average
-CHAR_W = 6.6
-LINE_H = 15
+# geometry (px); the viewer draws text at TEXT_FONT_SIZE, ~0.55em per character on average
+TEXT_FONT_SIZE = 14
+CHAR_W = 7.7
+LINE_H = 17
 TASK_MAX_W = 220
 TASK_MIN_W = 120
 TASK_PAD = 16      # text padding inside a task (bpmn-js wraps at width - 12)
-TASK_MIN_H = 60
+TASK_MIN_H = 64
 GATEWAY = 50
 EVENT = 36
 GATEWAY_LABEL_W = 190
@@ -503,7 +507,7 @@ class BpmnRenderer:
             if e.name and label_seg:
                 x0, x1, y = label_seg
                 w = max(40, min(EDGE_LABEL_W, x1 - x0 - 12))
-                h = _wrap(e.name, w) * 14
+                h = _wrap(e.name, w) * LINE_H
                 e.label = (x0 + 6, y - h - 3, w, h)
 
         # back edges loop below everything
@@ -517,7 +521,7 @@ class BpmnRenderer:
             ])
             if e.name:
                 w = EDGE_LABEL_W
-                h = _wrap(e.name, w) * 14
+                h = _wrap(e.name, w) * LINE_H
                 e.label = (min(src.x, tgt.x) + src.w // 2 + 6, yl + 3, w, h)
 
     # ── xml ──────────────────────────────────────────────────────────────────
@@ -651,31 +655,40 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 </style>
 <style>
   html, body { margin: 0; height: 100%; font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif; color: #1f2328; background: #fff; }
-  body { display: flex; flex-direction: column; }
-  header { padding: 14px 22px 10px; border-bottom: 1px solid #d0d7de; flex: 0 0 auto; max-height: 38vh; overflow: auto; }
-  header h1 { font-size: 20px; margin: 0 0 6px; }
-  header p { margin: 4px 0; font-size: 14px; line-height: 1.45; max-width: 120ch; }
-  header h2 { font-size: 14px; margin: 10px 0 4px; }
-  header ul { margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.45; max-width: 120ch; }
-  .legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 8px 0 2px; font-size: 13px; align-items: center; }
-  .legend .item { display: inline-flex; align-items: center; gap: 6px; }
-  .legend .swatch { width: 16px; height: 14px; border-radius: 3px; border: 2px solid #555; box-sizing: border-box; }
-  .legend .title { font-weight: 600; margin-right: 2px; }
-  .toolbar { display: flex; gap: 6px; margin-top: 8px; }
-  .toolbar button { font: inherit; font-size: 13px; padding: 3px 10px; border: 1px solid #d0d7de; background: #f6f8fa; border-radius: 5px; cursor: pointer; }
-  #canvas { flex: 1 1 auto; min-height: 360px; position: relative; }
-  #error { color: #b42318; font-size: 13px; white-space: pre-wrap; }
+  body { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+  header { flex: 0 0 auto; padding: 6px 14px 4px; border-bottom: 1px solid #d0d7de; background: #fff; position: relative; z-index: 5; }
+  .row { display: flex; align-items: center; gap: 12px; justify-content: space-between; }
+  .row.second { justify-content: flex-start; gap: 16px; margin-top: 2px; }
+  h1 { font-size: 16px; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .toolbar { display: flex; gap: 6px; flex: 0 0 auto; }
+  .toolbar button { font: inherit; font-size: 12px; padding: 2px 9px; border: 1px solid #d0d7de; background: #f6f8fa; border-radius: 5px; cursor: pointer; }
+  details.meta { flex: 0 0 auto; font-size: 12px; line-height: 1.4; }
+  details.meta summary { cursor: pointer; padding: 2px 0; white-space: nowrap; }
+  details.meta .meta-body { position: absolute; left: 0; right: 0; top: 100%; max-height: 60vh; overflow: auto; padding: 10px 14px 12px; background: #fff; border-bottom: 1px solid #d0d7de; box-shadow: 0 6px 16px rgba(0, 0, 0, .12); z-index: 20; }
+  .meta-body p { margin: 3px 0; font-size: 13px; line-height: 1.45; max-width: 120ch; }
+  .meta-body h2 { font-size: 13px; margin: 8px 0 3px; }
+  .meta-body ul { margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.45; max-width: 120ch; }
+  .legend { flex: 1 1 auto; display: flex; flex-wrap: nowrap; gap: 4px 14px; overflow-x: auto; white-space: nowrap; font-size: 12px; align-items: center; }
+  .legend .item { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 5px; }
+  .legend .swatch { width: 16px; height: 13px; border-radius: 3px; border: 2px solid #555; box-sizing: border-box; }
+  .legend .title { flex: 0 0 auto; font-weight: 600; }
+  #canvas { flex: 1 1 auto; min-height: 0; position: relative; }
+  #error { color: #b42318; font-size: 12px; white-space: pre-wrap; position: absolute; right: 14px; top: 6px; }
 </style>
 </head>
 <body>
 <header>
-  <h1>@@TITLE@@</h1>
+  <div class="row">
+    <h1>@@TITLE@@</h1>
+    <div class="toolbar">
+      <button type="button" id="fit">Fit</button>
+      <button type="button" id="zoom-in">Zoom +</button>
+      <button type="button" id="zoom-out">Zoom &minus;</button>
+    </div>
+  </div>
+  <div class="row second">
 @@META@@
 @@LEGEND@@
-  <div class="toolbar">
-    <button type="button" id="fit">Fit</button>
-    <button type="button" id="zoom-in">Zoom +</button>
-    <button type="button" id="zoom-out">Zoom &minus;</button>
   </div>
   <div id="error"></div>
 </header>
@@ -686,12 +699,21 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <script>
 (function () {
   var xml = @@XML_JSON@@;
-  var viewer = new BpmnJS({ container: '#canvas' });
+  var viewer = new BpmnJS({
+    container: '#canvas',
+    textRenderer: {
+      defaultStyle: { fontFamily: 'Arial, sans-serif', fontSize: @@FONT@@, lineHeight: 1.2 },
+      externalStyle: { fontFamily: 'Arial, sans-serif', fontSize: @@FONT@@, lineHeight: 1.2 }
+    }
+  });
   window.bpmnViewer = viewer;
-  var MIN_ZOOM = 0.6;  // fit, then never show the diagram smaller than this
-  function fit() {
+  var MIN_ZOOM = 0.9;  // the initial view never shows the diagram smaller than this
+  function fitViewport() {
+    viewer.get('canvas').zoom('fit-viewport', 'auto');
+  }
+  function initialView() {
+    fitViewport();
     var canvas = viewer.get('canvas');
-    canvas.zoom('fit-viewport', 'auto');
     if (canvas.zoom() < MIN_ZOOM) {
       // too big to fit legibly: zoom in and start at the diagram's left edge,
       // with the start event in view, instead of in the middle of the flow
@@ -708,13 +730,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   }
   viewer.importXML(xml).then(function (result) {
     if (result.warnings && result.warnings.length) { console.warn('bpmn-js import warnings', result.warnings); }
-    fit();
+    initialView();
     window.bpmnReady = true;
   }).catch(function (err) {
     document.getElementById('error').textContent = 'Could not render the BPMN diagram: ' + err.message;
     console.error(err);
   });
-  document.getElementById('fit').addEventListener('click', fit);
+  document.getElementById('fit').addEventListener('click', fitViewport);
   document.getElementById('zoom-in').addEventListener('click', function () { viewer.get('zoomScroll').stepZoom(1); });
   document.getElementById('zoom-out').addEventListener('click', function () { viewer.get('zoomScroll').stepZoom(-1); });
   window.addEventListener('resize', function () { viewer.get('canvas').resized(); });
@@ -725,40 +747,72 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 """
 
 
-def _legend_html() -> str:
+def _used_legend_keys(xml: str) -> list[str]:
+    """Legend entries that the diagram really uses, in palette order."""
+    keys: set[str] = set()
+    try:
+        root = ET.fromstring(xml)
+    except ET.ParseError:
+        return [*TONE_PALETTE, "gateway", "start", "end"]
+    by_background = {background: tone for tone, (background, _) in TONE_PALETTE.items()}
+    for el in root.iter():
+        if not el.tag.endswith("BPMNShape"):
+            continue
+        element_id = el.get("bpmnElement") or ""
+        background = el.get(f"{{{COLOR_NS}}}background-color")
+        if element_id.startswith("StartEvent_"):
+            keys.add("start")
+        elif element_id.startswith("EndEvent_"):
+            keys.add("end")
+        elif background == GATEWAY_TONE[0]:
+            keys.add("gateway")
+        elif background in by_background:
+            keys.add(by_background[background])
+    order = [*TONE_PALETTE, "gateway", "start", "end"]
+    return [key for key in order if key in keys]
+
+
+def _legend_html(xml: str, metadata: dict | None = None) -> str:
+    custom = metadata.get("legend") if isinstance(metadata, dict) else None
+    custom = custom if isinstance(custom, dict) else {}
     items = []
-    for tone, (background, border) in TONE_PALETTE.items():
-        label = TONE_LABELS.get(tone, tone)
+    for key in _used_legend_keys(xml):
+        if key in TONE_PALETTE:
+            background, border = TONE_PALETTE[key]
+            default = DEFAULT_LEGEND_LABELS[key]
+        else:
+            background, border = {"gateway": GATEWAY_TONE, "start": START_TONE, "end": END_TONE}[key]
+            default = DEFAULT_LEGEND_LABELS[key]
+        label = custom.get(key) if isinstance(custom.get(key), str) else default
         items.append(
             f'    <span class="item"><i class="swatch" style="background:{background};border-color:{border}"></i>'
             f"{html.escape(label)}</span>"
         )
-    for label, (background, border) in (
-        ("Gateway por defecto", GATEWAY_TONE),
-        ("Inicio", START_TONE),
-        ("Fin", END_TONE),
-    ):
-        items.append(
-            f'    <span class="item"><i class="swatch" style="background:{background};border-color:{border}"></i>'
-            f"{html.escape(label)}</span>"
-        )
-    return '  <div class="legend" aria-label="Leyenda de colores">\n    <span class="title">Colores:</span>\n' + "\n".join(items) + "\n  </div>"
+    return ('  <div class="legend" aria-label="Leyenda de colores">\n'
+            '    <span class="title">Colores:</span>\n' + "\n".join(items) + "\n  </div>")
 
 
 def _meta_html(metadata: dict | None) -> str:
+    """Description and open questions, collapsed into a <details> so they do not take the screen."""
     if not isinstance(metadata, dict):
         return ""
-    parts = []
     desc = metadata.get("description")
-    if desc:
-        parts.append(f"  <p class=\"description\">{html.escape(str(desc).strip())}</p>")
     questions = metadata.get("preguntas_abiertas")
     if isinstance(questions, str):
         questions = [questions]
+    body: list[str] = []
+    if desc:
+        body.append(f'      <p class="description">{html.escape(str(desc).strip())}</p>')
     if questions:
-        items = "\n".join(f"    <li>{html.escape(str(q))}</li>" for q in questions)
-        parts.append(f"  <h2>Preguntas abiertas</h2>\n  <ul class=\"preguntas-abiertas\">\n{items}\n  </ul>")
-    return "\n".join(parts)
+        items = "\n".join(f"        <li>{html.escape(str(q))}</li>" for q in questions)
+        body.append('      <h2>Preguntas abiertas</h2>\n      <ul class="preguntas-abiertas">\n'
+                    + items + "\n      </ul>")
+    if not body:
+        return ""
+    return ('    <details class="meta">\n'
+            '      <summary>Descripción y preguntas abiertas</summary>\n'
+            '      <div class="meta-body">\n' + "\n".join(body) + "\n      </div>\n"
+            "    </details>")
 
 
 def render_bpmn_html(xml: str, title: str, metadata: dict | None = None) -> str:
@@ -771,7 +825,8 @@ def render_bpmn_html(xml: str, title: str, metadata: dict | None = None) -> str:
         "@@VIEWER_JS@@": _script_safe(_vendor("bpmn-navigated-viewer.production.min.js")),
         "@@XML_JSON@@": xml_json,
         "@@META@@": _meta_html(metadata),
-        "@@LEGEND@@": _legend_html(),
+        "@@LEGEND@@": _legend_html(xml, metadata),
+        "@@FONT@@": str(TEXT_FONT_SIZE),
         "@@TITLE@@": html.escape(title),
     }
     return re.sub("|".join(re.escape(k) for k in values), lambda m: values[m.group(0)], HTML_TEMPLATE)

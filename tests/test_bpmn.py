@@ -285,12 +285,51 @@ def test_tone_field_is_validated_by_the_model():
         StepModel(label="x", tone="chartreuse")
 
 
-def test_viewer_legend_and_min_zoom():
+def test_viewer_has_a_compact_header_full_height_canvas_and_collapsed_meta():
+    xml = render(compile_ir(load(FIXTURES / "activity.validation.yml")), "bpmn")
+    page = render_bpmn_html(xml, "T", {"description": "Desc", "preguntas_abiertas": ["¿Q?"]})
+    # title, buttons and legend stay in the bar; description and questions are collapsed
+    assert "<details class=\"meta\">" in page and "<summary>Descripción y preguntas abiertas</summary>" in page
+    assert " open" not in page.split("<details")[1].split(">")[0]
+    assert 'class="legend"' in page and "white-space: nowrap" in page
+    # the canvas takes whatever the bar leaves, on a full-viewport flex column
+    assert "height: 100vh" in page and "flex-direction: column" in page
+    assert "#canvas { flex: 1 1 auto" in page
+    assert "<header>" in page
+
+
+def test_viewer_font_size_and_initial_zoom():
     xml = render(compile_ir(load(FIXTURES / "activity.validation.yml")), "bpmn")
     page = render_bpmn_html(xml, "T", None)
-    assert 'class="legend"' in page and "Gateway por defecto" in page
-    for tone in ("success", "warning", "danger", "info", "neutral", "rule1", "rule5"):
-        assert f">{tone} ·" in page
-    assert "#E3F4E6" in page and "#8B1A1A" in page  # start / end swatches
-    assert "MIN_ZOOM" in page and "canvas.zoom(MIN_ZOOM)" in page
-    assert "canvas.zoom('fit-viewport', 'auto')" in page
+    assert "textRenderer" in page and "defaultStyle" in page and "externalStyle" in page
+    assert "fontSize: 14" in page
+    assert "MIN_ZOOM = 0.9" in page and "canvas.zoom(MIN_ZOOM)" in page
+    # Fit really fits, it does not re-apply the minimum-zoom initial view
+    assert "function fitViewport()" in page
+    assert "document.getElementById('fit').addEventListener('click', fitViewport)" in page
+    assert ".zoom('fit-viewport', 'auto')" in page
+    assert "getAbsoluteBBox(start)" in page  # the initial view is anchored on the start event
+
+
+def test_legend_shows_only_used_tones_with_generic_spanish_labels():
+    xml = BpmnRenderer().render(_ir([
+        ActivityStep(id="a", label="A", tone="success", next="bad"),
+        ActivityStep(id="bad", label="Bad", tone="danger", next="d"),
+        ActivityStep(id="d", label="Decide", kind="decision", branches={"x": "end"}),
+    ], start="a"))
+    page = render_bpmn_html(xml, "T", None)
+    assert ">favorable</span>" in page and ">rechazo</span>" in page
+    assert ">gateway por defecto</span>" in page and ">inicio</span>" in page and ">fin</span>" in page
+    # unused tones are not in the legend
+    for unused in ("atención", "informativo", "neutro", "regla 1", "regla 5"):
+        assert f">{unused}</span>" not in page
+
+
+def test_legend_reads_custom_labels_from_metadata():
+    xml = BpmnRenderer().render(_ir([
+        ActivityStep(id="a", label="A", tone="rule2", next="ok"),
+        ActivityStep(id="ok", label="OK", tone="success", next="end"),
+    ], start="a"))
+    page = render_bpmn_html(xml, "T", {"legend": {"rule2": "R2 · Stock", "success": "Aceptar"}})
+    assert ">R2 · Stock</span>" in page and ">Aceptar</span>" in page
+    assert ">regla 2</span>" not in page

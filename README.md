@@ -88,11 +88,14 @@ Supported renderers:
   `Flow_<from>__<to>`). It carries BPMN DI from a deterministic layered layout (left to right by longest
   path, long flows in their own lanes, orthogonal waypoints), so it opens laid out in bpmn.io, Camunda
   Modeler or bpmn-js.
-- `<stem>.bpmn.html`: a self-contained viewer (bpmn-js NavigatedViewer: pan, zoom, fit) with the spec title,
-  `metadata.description`, a color legend and `metadata.preguntas_abiertas` above the diagram. It opens fitted,
-  and when fitting would shrink the diagram below 60% it zooms to that minimum and starts at the flow's first
-  step. bpmn-js is vendored in `spec2viz/templates/vendor/bpmn-js/` (version, source and the bpmn.io license
-  there) and inlined, so the page works offline from `file://`.
+- `<stem>.bpmn.html`: a self-contained viewer (bpmn-js NavigatedViewer: pan, zoom, fit). The title, the
+  Fit/Zoom buttons and a one-line color legend sit in a compact bar; `metadata.description` and
+  `metadata.preguntas_abiertas` are collapsed in a `<details>` and the diagram fills the rest of the window.
+  Text renders at 14px; the page opens fitted, and when fitting would shrink the diagram below 90% it zooms to
+  that minimum and starts at the flow's first step. The legend names each color: generic Spanish labels by
+  default, overridable per tone with `metadata.legend` (`{success: Aceptar, rule2: R2 · Stock, ...}`); only the
+  tones the diagram uses are listed. bpmn-js is vendored in `spec2viz/templates/vendor/bpmn-js/` (version,
+  source and the bpmn.io license there) and inlined, so the page works offline from `file://`.
 
 Steps accept an optional `tone` (`success`, `warning`, `danger`, `info`, `neutral` or `rule1`..`rule5`, to
 tint each decision group) that the renderer writes as BPMN in Color (`color:background-color` on
