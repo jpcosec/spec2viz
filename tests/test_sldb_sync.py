@@ -86,6 +86,7 @@ def test_sync_writes_spec_nodes_and_edges(project):
     assert sldb_api.doc_exists(store, "SpecNodeDoc/arq.renderers") and sldb_api.doc_exists(store, "RelationTypeDoc/reltype-uses")
 
     node = yaml.safe_load((out / "nodes" / "arq.cli.md").read_text(encoding="utf-8").split("---")[1])
+    node.pop("sldb", None)  # sldb_api stamps generated provenance metadata on create_document
     assert node == {"id": "arq.cli", "spec": "SpecDoc:arq", "element": "cli", "kind": "entry", "collection": "nodes", "refs": [], "atom_refs": [], "contains": ["SpecNodeDoc:arq.core"], "data": {}}
     spec_doc = yaml.safe_load((out / "arq.md").read_text(encoding="utf-8").split("---")[1])
     assert spec_doc["spec_path"] == "docs/arq.yml" and len(spec_doc["sha256"]) == 64

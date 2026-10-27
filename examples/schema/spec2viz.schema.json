@@ -19,6 +19,14 @@
           "description": "Identifier of the terminal step in the activity flow.",
           "title": "End",
           "type": "string"
+        },
+        "groups": {
+          "additionalProperties": {
+            "$ref": "#/$defs/GroupModel"
+          },
+          "description": "Optional groups keyed by id. Each group becomes a collapsed subProcess in the BPMN renderer; a step joins one with its `group` field.",
+          "title": "Groups",
+          "type": "object"
         }
       },
       "required": [
@@ -935,6 +943,58 @@
         "relation"
       ],
       "title": "EnforcementFact",
+      "type": "object"
+    },
+    "GroupModel": {
+      "properties": {
+        "label": {
+          "description": "Display label of the collapsed subProcess that represents the group.",
+          "title": "Label",
+          "type": "string"
+        },
+        "tone": {
+          "anyOf": [
+            {
+              "enum": [
+                "success",
+                "warning",
+                "danger",
+                "info",
+                "neutral",
+                "rule1",
+                "rule2",
+                "rule3",
+                "rule4",
+                "rule5"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional BPMN in Color tone for the collapsed subProcess, using the same palette as steps.",
+          "title": "Tone"
+        },
+        "detail": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional long text about the group, shown in the viewer's side panel when the subProcess is selected.",
+          "title": "Detail"
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "title": "GroupModel",
       "type": "object"
     },
     "MatrixComponentModel": {
@@ -1884,6 +1944,32 @@
           "default": null,
           "description": "Optional color tone for the BPMN renderer: success, warning, danger, info, neutral, or rule1..rule5 to tint each decision group. A gateway's outgoing flows take its border color.",
           "title": "Tone"
+        },
+        "detail": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional long text shown in the viewer's side panel; the BPMN box keeps showing only `label`. Other renderers may ignore it.",
+          "title": "Detail"
+        },
+        "group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional group id the step belongs to. The BPMN renderer draws each group as a collapsed subProcess with its own drill-down plane; renderers that do not support groups ignore it.",
+          "title": "Group"
         },
         "partition": {
           "anyOf": [

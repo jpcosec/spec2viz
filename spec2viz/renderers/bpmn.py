@@ -1,33 +1,18 @@
-"""BPMN renderer: an activity spec as BPMN 2.0 XML with DI, plus an offline bpmn-js viewer page.
-
-`BpmnRenderer().render(ir)` returns the XML of one process (startEvent, a task per step, an
-exclusiveGateway per decision/merge step, a sequenceFlow per `next`/branch, one endEvent) and its
-BPMN DI computed by a deterministic layered layout:
-
-- ranks: longest path from the sources, left to right, over the graph without its back edges
-  (found by a DFS from the start event in spec order);
-- an edge that spans several ranks gets one dummy slot per intermediate rank, so it runs in its
-  own horizontal lane instead of crossing the nodes in between;
-- order inside a rank: discovery order refined by a few barycenter sweeps;
-- y: slots stacked per rank and the rank centered on the tallest one; x: one column per rank;
-- waypoints: orthogonal, leaving a node on its right, changing height only in the gaps between
-  columns, entering the target on its left; back edges go around below the diagram.
-
-`render_bpmn_html(xml, title, metadata)` wraps that XML in a self-contained page that inlines
-the vendored bpmn-js NavigatedViewer (spec2viz/templates/vendor/bpmn-js), so it works from file://.
-"""
-
 from __future__ import annotations
 
-import html
-import json
 import re
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
-from pathlib import Path
 
 from spec2viz.exceptions import RenderError
 from spec2viz.ir import ActivityIR
+from spec2viz.renderers.bpmn_palette import (
+    END_TONE,
+    GATEWAY_TONE,
+    START_TONE,
+    TONE_PALETTE,
+)
+from spec2viz.renderers.bpmn_viewer import render_bpmn_html, with_xml_provenance
 
 BPMN_NS = "http://www.omg.org/spec/BPMN/20100524/MODEL"
 BPMNDI_NS = "http://www.omg.org/spec/BPMN/20100524/DI"
@@ -36,48 +21,17 @@ DI_NS = "http://www.omg.org/spec/DD/20100524/DI"
 COLOR_NS = "http://www.omg.org/spec/BPMN/non-normative/color/1.0"
 NAMESPACES = {"bpmn": BPMN_NS, "bpmndi": BPMNDI_NS, "dc": DC_NS, "di": DI_NS, "color": COLOR_NS}
 
-VENDOR_DIR = Path(__file__).resolve().parent.parent / "templates" / "vendor" / "bpmn-js"
-
 GATEWAY_KINDS = {"decision", "merge"}
 
-# BPMN in Color (non-normative color namespace): (background, border) per tone. Soft fills with
-# dark borders, chosen to keep the 12px dark text and the 2px outline readable.
-TONE_PALETTE: dict[str, tuple[str, str]] = {
-    "success": ("#E3F4E6", "#2E7D32"),
-    "warning": ("#FFEFC7", "#B26A00"),
-    "danger": ("#FBE3E3", "#B42318"),
-    "info": ("#E1EEFB", "#1D4ED8"),
-    "neutral": ("#EEF0F3", "#6B7280"),
-    "rule1": ("#EDE9FE", "#6D4AFF"),
-    "rule2": ("#FDE7D9", "#C2410C"),
-    "rule3": ("#DCF5EE", "#0F766E"),
-    "rule4": ("#FDE7F1", "#BE185D"),
-    "rule5": ("#EAF0D8", "#4D7C0F"),
-}
-GATEWAY_TONE = ("#F4F0FB", "#7E57C2")
-START_TONE = ("#E3F4E6", "#2E7D32")
-END_TONE = ("#FBE3E3", "#8B1A1A")
-DEFAULT_LEGEND_LABELS = {
-    "success": "favorable",
-    "warning": "atención",
-    "danger": "rechazo",
-    "info": "informativo",
-    "neutral": "neutro",
-    "rule1": "regla 1",
-    "rule2": "regla 2",
-    "rule3": "regla 3",
-    "rule4": "regla 4",
-    "rule5": "regla 5",
-    "gateway": "gateway por defecto",
-    "start": "inicio",
-    "end": "fin",
-}
-
-# geometry (px); the viewer draws text at TEXT_FONT_SIZE, ~0.55em per character on average
+# geometry (px); the viewer draws text at TEXT_FONT_SIZE in Arial, so a character's width
+# depends on its class: uppercase, '_', 'm' and 'w' are wide, lowercase and digits medium,
+# spaces and thin punctuation narrow
 TEXT_FONT_SIZE = 14
-CHAR_W = 7.7
+CHAR_W_WIDE = 9.8
+CHAR_W_LOWER = 7.7
+CHAR_W_NARROW = 4.0
 LINE_H = 17
-TASK_MAX_W = 220
+TASK_MAX_W = 240
 TASK_MIN_W = 120
 TASK_PAD = 16      # text padding inside a task (bpmn-js wraps at width - 12)
 TASK_MIN_H = 64
@@ -86,11 +40,20 @@ EVENT = 36
 GATEWAY_LABEL_W = 190
 EDGE_LABEL_W = 150
 COL_GAP = 190
+MIN_COL_GAP = 70
 NODE_GAP = 44
 DUMMY_GAP = 30
 PARALLEL_STEP = 36
 MARGIN = 60
 LANE_STEP = 10
+SUB_MIN_W = 150
+SUB_MIN_H = 80
+SHORT_LABEL = 42
+
+# punctuation and separators that take almost no room in Arial 14
+_NARROW_CHARS = set(" .,:;!?'\"`|()[]{}-–—/\\·&")
+# lower-case letters that are as wide as an uppercase one
+_WIDE_LOWER = set("mw")
 
 
 def _q(ns: str, tag: str) -> str:
@@ -105,32 +68,53 @@ def _ncname(raw: str) -> str:
     return s
 
 
+def _char_w(ch: str) -> float:
+    """Estimated advance of `ch` in Arial 14px."""
+    if ch in _NARROW_CHARS:
+        return CHAR_W_NARROW
+    if ch.isupper() or ch == "_" or ch in _WIDE_LOWER:
+        return CHAR_W_WIDE
+    return CHAR_W_LOWER
+
+
+def _text_w(text: str) -> float:
+    """Estimated rendered width of `text` in Arial 14px."""
+    return sum(_char_w(ch) for ch in text)
+
+
 def _task_box(label: str) -> tuple[int, int]:
     """A task box sized to its label: wrapped at most at TASK_MAX_W, at least TASK_MIN_W wide."""
-    longest = max((len(word) for word in label.split()), default=1)
-    natural = longest * CHAR_W + TASK_PAD
+    longest = max((_text_w(word) for word in label.split()), default=CHAR_W_LOWER)
+    natural = longest + TASK_PAD
     w = int(min(TASK_MAX_W, max(TASK_MIN_W, natural)))
     lines = _wrap(label, w - TASK_PAD + 4)
     return w, max(TASK_MIN_H, lines * LINE_H + 24)
 
 
+def _sub_box(label: str) -> tuple[int, int]:
+    """A collapsed subprocess: compact by default, growing with its label."""
+    natural = _text_w(label) + TASK_PAD
+    w = int(min(TASK_MAX_W, max(SUB_MIN_W, natural)))
+    lines = _wrap(label, w - TASK_PAD + 4)
+    return w, max(SUB_MIN_H, lines * LINE_H + 24)
+
+
 def _wrap(text: str, width_px: float) -> int:
     """Number of lines `text` takes when word-wrapped in `width_px`."""
-    per_line = max(1, int(width_px / CHAR_W))
-    lines, current = 1, 0
+    width = max(CHAR_W_NARROW, float(width_px))
+    lines, current = 1, 0.0
     for word in text.split():
-        n = len(word)
-        while n > per_line:  # a word longer than the line is broken
-            if current:
-                lines += 1
-            current = 0
-            n -= per_line
+        w = _text_w(word)
+        if current and current + CHAR_W_NARROW + w <= width:
+            current += CHAR_W_NARROW + w
+            continue
+        if current:
             lines += 1
-        if current and current + 1 + n > per_line:
+            current = 0.0
+        while w > width:  # only a word wider than the whole line is broken
+            w -= width
             lines += 1
-            current = n
-        else:
-            current = current + (1 if current else 0) + n
+        current = w
     return lines
 
 
@@ -141,6 +125,7 @@ class _Node:
     name: str = ""
     step: str | None = None
     doc: str | None = None
+    detail: str | None = None
     tone: str | None = None
     w: int = 0
     h: int = 0
@@ -171,15 +156,199 @@ class _Edge:
     label: tuple[int, int, int, int] | None = None
 
 
+@dataclass
+class _Plane:
+    """The BPMNDiagram of a collapsed subProcess: its own nodes, edges and layout."""
+    id: str
+    bpmn_element: str
+    nodes: dict[str, _Node] = field(default_factory=dict)
+    edges: list[_Edge] = field(default_factory=list)
+
+
+@dataclass
+class _Diagram:
+    nodes: dict[str, _Node]
+    edges: list[_Edge]
+    planes: list[_Plane] = field(default_factory=list)
+
+
 class BpmnRenderer:
     """Renders an ActivityIR as BPMN 2.0 XML with diagram interchange (DI)."""
 
     def render(self, ir) -> str:
         if not isinstance(ir, ActivityIR):
             raise RenderError(f"BpmnRenderer cannot render {type(ir).__name__}")
-        nodes, edges = self._graph(ir)
-        self._layout(nodes, edges)
-        return self._xml(ir, nodes, edges)
+        diagram = self._build(ir)
+        self._layout(diagram.nodes, diagram.edges)
+        for plane in diagram.planes:
+            self._layout(plane.nodes, plane.edges)
+        return self._xml(ir, diagram)
+
+    def _build(self, ir: ActivityIR) -> _Diagram:
+        if not ir.groups:
+            nodes, edges = self._graph(ir)
+            return _Diagram(nodes, edges)
+        return self._grouped_graph(ir)
+
+    @staticmethod
+    def _step_node(uid, step) -> _Node:
+        label = step.label or step.id
+        if step.kind in GATEWAY_KINDS:
+            return _Node(uid(f"Gateway_{_ncname(step.id)}"), "gateway", label, step.id, step.notes,
+                         detail=step.detail, tone=step.tone, w=GATEWAY, h=GATEWAY,
+                         label_h=_wrap(label, GATEWAY_LABEL_W) * LINE_H)
+        w, h = _task_box(label)
+        return _Node(uid(f"Task_{_ncname(step.id)}"), "task", label, step.id, step.notes,
+                     detail=step.detail, tone=step.tone, w=w, h=h)
+
+    @staticmethod
+    def _short(text: str) -> str:
+        text = " ".join((text or "").split())
+        return text if len(text) <= SHORT_LABEL else text[:SHORT_LABEL - 1].rstrip() + "…"
+
+    def _grouped_graph(self, ir: ActivityIR) -> _Diagram:
+        """Steps in a group become a collapsed subProcess with its own drill-down plane."""
+        used: set[str] = set()
+
+        def uid(base: str) -> str:
+            cand, i = base, 2
+            while cand in used:
+                cand, i = f"{base}_{i}", i + 1
+            used.add(cand)
+            return cand
+
+        by_step = {step.id: step for step in ir.steps}
+        if ir.start not in by_step:
+            raise RenderError(f"Start step '{ir.start}' not found")
+        step_level: dict[str, str | None] = {}
+        for step in ir.steps:
+            if step.group is not None and step.group not in ir.groups:
+                raise RenderError(f"Step '{step.id}' references unknown group '{step.group}'")
+
+        top_nodes: dict[str, _Node] = {}
+        level_nodes: dict[str | None, dict[str, _Node]] = {None: top_nodes}
+        level_edges: dict[str | None, list[_Edge]] = {None: []}
+        group_node: dict[str, str] = {}
+        planes: dict[str, _Plane] = {}
+
+        top_start = _Node(uid(f"StartEvent_{_ncname(ir.start)}"), "start", w=EVENT, h=EVENT)
+        top_nodes[top_start.id] = top_start
+        for gid, group in ir.groups.items():
+            if not any(step.group == gid for step in ir.steps):
+                raise RenderError(f"Group '{gid}' has no steps")
+            nid = uid(f"SubProcess_{_ncname(gid)}")
+            group_node[gid] = nid
+            sub_w, sub_h = _sub_box(group.label or gid)
+            top_nodes[nid] = _Node(
+                nid, "subprocess", group.label or gid, doc=group.detail, tone=group.tone,
+                w=sub_w, h=sub_h,
+            )
+            level_nodes[gid] = {}
+            level_edges[gid] = []
+            planes[gid] = _Plane(uid(f"BPMNPlane_{_ncname(gid)}"), nid, level_nodes[gid], level_edges[gid])
+
+        node_of: dict[str, str] = {}
+        for step in ir.steps:
+            node = self._step_node(uid, step)
+            level = step.group
+            level_nodes[level][node.id] = node
+            node_of[step.id] = node.id
+            step_level[step.id] = level
+
+        top_end = _Node(uid(f"EndEvent_{_ncname(ir.end)}"), "end", w=EVENT, h=EVENT)
+        top_nodes[top_end.id] = top_end
+
+        def resolve(ref: str) -> tuple[str, str | None]:
+            if ref in by_step:
+                return node_of[ref], step_level[ref]
+            if ref == ir.end:
+                return top_end.id, None
+            raise RenderError(f"Activity reference '{ref}' is neither a step nor the end")
+
+        def add_edge(level: str | None, src: str, tgt: str, name: str = "") -> _Edge:
+            nodes = level_nodes[level]
+            s, t = nodes[src], nodes[tgt]
+            base = f"Flow_{_ncname(s.step or s.id)}__{_ncname(t.step or t.id)}"
+            edge = _Edge(uid(base), src, tgt, name)
+            level_edges[level].append(edge)
+            return edge
+
+        def target_label(ref: str, level: str | None) -> str:
+            if level is not None:
+                return ir.groups[level].label or level
+            if ref in by_step:
+                return by_step[ref].label or ref
+            return "fin"
+
+        external_in: dict[str, list[str]] = {gid: [] for gid in ir.groups}
+        external_out: dict[str, dict[str, tuple[str | None, str, str]]] = {
+            gid: {} for gid in ir.groups
+        }
+
+        # the top-level start event enters the subProcess when the start step lives inside one
+        start_level = step_level[ir.start]
+        start_target = group_node[start_level] if start_level else node_of[ir.start]
+        add_edge(None, top_start.id, start_target)
+        if start_level:
+            external_in[start_level].append(node_of[ir.start])
+
+        for step in ir.steps:
+            src_level = step_level[step.id]
+            outs = list(step.branches.items())
+            if step.next:
+                outs.append(("", step.next))
+            if not outs:  # terminal step: to the process end event, even when it is this step
+                outs.append(("", None))
+            for label, ref in outs:
+                if ref is None:
+                    tgt, tgt_level = top_end.id, None
+                else:
+                    tgt, tgt_level = resolve(ref)
+                if src_level == tgt_level:
+                    add_edge(src_level, node_of[step.id], tgt, label)
+                elif src_level is None:
+                    dest = group_node[tgt_level] if tgt_level else tgt
+                    add_edge(None, node_of[step.id], dest, label)
+                    if tgt_level:
+                        external_in[tgt_level].append(tgt)
+                else:
+                    key = tgt_level if tgt_level is not None else tgt
+                    if key not in external_out[src_level]:
+                        suffix = tgt_level or (by_step[ref].id if ref in by_step else "fin")
+                        end_id = uid(f"EndEvent_{_ncname(src_level)}__{_ncname(suffix)}")
+                        name = target_label(ref, tgt_level) if ref is not None else "fin"
+                        end_node = _Node(end_id, "end", self._short(name), w=EVENT, h=EVENT)
+                        level_nodes[src_level][end_id] = end_node
+                        external_out[src_level][key] = (tgt_level, tgt, end_id)
+                    add_edge(src_level, node_of[step.id], external_out[src_level][key][2], label)
+
+        # the internal start event feeds every step that received a flow from outside
+        for gid, entries in external_in.items():
+            unique = list(dict.fromkeys(entries))
+            if not unique:
+                continue
+            start = _Node(uid(f"StartEvent_{_ncname(gid)}__in"), "start", w=EVENT, h=EVENT)
+            planes[gid].nodes = {start.id: start, **planes[gid].nodes}
+            level_nodes[gid] = planes[gid].nodes
+            first: list[_Edge] = []
+            for entry in unique:
+                base = f"Flow_{_ncname(gid)}__in_{_ncname(level_nodes[gid][entry].step or entry)}"
+                first.append(_Edge(uid(base), start.id, entry))
+            level_edges[gid][0:0] = first
+            planes[gid].edges = level_edges[gid]
+
+        # one top-level flow per distinct external destination; labelled when the group has several
+        for gid, destinations in external_out.items():
+            many = len(destinations) > 1
+            for tgt_level, tgt, end_id in destinations.values():
+                dest = group_node[tgt_level] if tgt_level else tgt
+                name = ""
+                if many:
+                    end_node = level_nodes[gid][end_id]
+                    name = end_node.name
+                add_edge(None, group_node[gid], dest, name)
+
+        return _Diagram(top_nodes, level_edges[None], list(planes.values()))
 
     # ── graph ────────────────────────────────────────────────────────────────
 
@@ -292,10 +461,14 @@ class BpmnRenderer:
                 indeg[e.tgt] -= 1
                 if indeg[e.tgt] == 0:
                     queue.append(e.tgt)
-        end_id = next(n for n in real if nodes[n].kind == "end")
-        rank[end_id] = max(rank.values()) if len(real) > 1 else 0
-        if any(rank[n] == rank[end_id] and n != end_id for n in real):
-            rank[end_id] += 1
+        ends = [n for n in real if nodes[n].kind == "end"]
+        if ends:
+            last = max(rank.values()) if len(real) > 1 else 0
+            for end_id in ends:
+                rank[end_id] = last
+            if any(rank[n] == last for n in real if nodes[n].kind != "end"):
+                for end_id in ends:
+                    rank[end_id] = last + 1
         for n in real:
             nodes[n].rank = rank[n]
 
@@ -368,10 +541,22 @@ class BpmnRenderer:
         # a gateway's column is as wide as its label, so the label never reaches into a gap
         col_w = [max((GATEWAY_LABEL_W if all_nodes[n].label_h else all_nodes[n].w for n in layer), default=0) or EVENT
                  for layer in layers]
+        # the gap between two columns is only as wide as the longest edge label crossing it,
+        # so a mostly linear plan stays compact instead of paying COL_GAP at every column
+        gap_need = [0.0] * max(len(layers) - 1, 0)
+        for e in edges:
+            if e.back or not e.name:
+                continue
+            need = _text_w(e.name) + 40
+            # the label is drawn on the flow's first segment, so only that gap needs room
+            r = all_nodes[e.chain[0]].rank
+            if r < len(gap_need):
+                gap_need[r] = max(gap_need[r], need)
+        col_gap = [int(min(COL_GAP, max(MIN_COL_GAP, need))) for need in gap_need]
         col_x, x = [], MARGIN
-        for w in col_w:
+        for i, w in enumerate(col_w):
             col_x.append(x)
-            x += w + COL_GAP
+            x += w + (col_gap[i] if i < len(col_gap) else COL_GAP)
         # y: each rank starts stacked, then every slot is pulled toward the median of its neighbors
         # in the next/previous rank; the order and minimum gaps hold (isotonic regression per rank)
         def head(n: _Node) -> float:  # slot top -> center
@@ -440,9 +625,10 @@ class BpmnRenderer:
                 node.x = col_x[r] + (col_w[r] - node.w) // 2
                 node.y = int(round(center[nid] + shift - node.h / 2))
 
-        self._route(all_nodes, edges, col_x, col_w)
+        self._route(all_nodes, edges, col_x, col_w, col_gap)
 
-    def _route(self, nodes: dict[str, _Node], edges: list[_Edge], col_x: list[int], col_w: list[int]) -> None:
+    def _route(self, nodes: dict[str, _Node], edges: list[_Edge], col_x: list[int],
+               col_w: list[int], col_gap: list[int]) -> None:
         # hops in each gap that change height get a vertical lane: fan-outs near the source column,
         # fan-ins near the target column
         hops: list[tuple[_Edge, int, int, int, int]] = []  # edge, hop index, gap, y_from, y_to
@@ -469,13 +655,17 @@ class BpmnRenderer:
         lane_x: dict[tuple[int, tuple], int] = {}
         for gap, keys in lanes.items():
             left = col_x[gap] + col_w[gap]
-            right = left + COL_GAP
+            gap_w = col_gap[gap] if gap < len(col_gap) else COL_GAP
+            right = left + gap_w
             outs = sorted((k for k in keys if k[0] == "out"), key=lambda k: keys[k])
             ins = sorted((k for k in keys if k[0] == "in"), key=lambda k: keys[k])
+            # narrow gaps still split in two lanes (fan-out left, fan-in right), at a smaller step
+            half = max(6, gap_w // 2 - 18)
+            step = max(4, min(LANE_STEP, half // max(1, max(len(outs), len(ins)))))
             for i, k in enumerate(outs):
-                lane_x[(gap, k)] = left + 18 + i * LANE_STEP
+                lane_x[(gap, k)] = left + 18 + i * step
             for i, k in enumerate(ins):
-                lane_x[(gap, k)] = right - 18 - i * LANE_STEP
+                lane_x[(gap, k)] = right - 18 - i * step
 
         for e in edges:
             if e.back:
@@ -526,7 +716,7 @@ class BpmnRenderer:
 
     # ── xml ──────────────────────────────────────────────────────────────────
 
-    def _xml(self, ir: ActivityIR, nodes: dict[str, _Node], edges: list[_Edge]) -> str:
+    def _xml(self, ir: ActivityIR, diagram: _Diagram) -> str:
         for prefix, uri in NAMESPACES.items():
             ET.register_namespace(prefix, uri)
         pid = "Process_1"
@@ -536,58 +726,95 @@ class BpmnRenderer:
             "exporter": "spec2viz",
         })
         proc = ET.SubElement(defs, _q("bpmn", "process"), {"id": pid, "name": ir.title, "isExecutable": "false"})
-        tags = {"start": "startEvent", "end": "endEvent", "task": "task", "gateway": "exclusiveGateway"}
-        incoming: dict[str, list[str]] = {n: [] for n in nodes}
-        outgoing: dict[str, list[str]] = {n: [] for n in nodes}
-        for e in edges:
-            outgoing[e.src].append(e.id)
-            incoming[e.tgt].append(e.id)
-        for n in nodes.values():
+        tags = {
+            "start": "startEvent", "end": "endEvent", "task": "task",
+            "gateway": "exclusiveGateway", "subprocess": "subProcess",
+        }
+        planes_by_element = {plane.bpmn_element: plane for plane in diagram.planes}
+
+        def indexes(nodes: dict[str, _Node], edges: list[_Edge]):
+            incoming: dict[str, list[str]] = {n: [] for n in nodes}
+            outgoing: dict[str, list[str]] = {n: [] for n in nodes}
+            for e in edges:
+                outgoing[e.src].append(e.id)
+                incoming[e.tgt].append(e.id)
+            return incoming, outgoing
+
+        def emit_flows(parent: ET.Element, edges: list[_Edge]) -> None:
+            for e in edges:
+                attrs = {"id": e.id, "sourceRef": e.src, "targetRef": e.tgt}
+                if e.name:
+                    attrs["name"] = e.name
+                ET.SubElement(parent, _q("bpmn", "sequenceFlow"), attrs)
+
+        def emit_element(parent: ET.Element, n: _Node, incoming, outgoing) -> None:
             attrs = {"id": n.id}
             if n.name:
                 attrs["name"] = n.name
-            el = ET.SubElement(proc, _q("bpmn", tags[n.kind]), attrs)
+            el = ET.SubElement(parent, _q("bpmn", tags[n.kind]), attrs)
             if n.doc:
                 ET.SubElement(el, _q("bpmn", "documentation")).text = n.doc
+            if n.detail:
+                ET.SubElement(el, _q("bpmn", "documentation")).text = n.detail
             for f in incoming[n.id]:
                 ET.SubElement(el, _q("bpmn", "incoming")).text = f
             for f in outgoing[n.id]:
                 ET.SubElement(el, _q("bpmn", "outgoing")).text = f
-        for e in edges:
-            attrs = {"id": e.id, "sourceRef": e.src, "targetRef": e.tgt}
-            if e.name:
-                attrs["name"] = e.name
-            ET.SubElement(proc, _q("bpmn", "sequenceFlow"), attrs)
+            if n.kind == "subprocess":
+                plane = planes_by_element[n.id]
+                inner_in, inner_out = indexes(plane.nodes, plane.edges)
+                for child in plane.nodes.values():
+                    emit_element(el, child, inner_in, inner_out)
+                emit_flows(el, plane.edges)
 
-        diagram = ET.SubElement(defs, _q("bpmndi", "BPMNDiagram"), {"id": "BPMNDiagram_1"})
-        plane = ET.SubElement(diagram, _q("bpmndi", "BPMNPlane"), {"id": "BPMNPlane_1", "bpmnElement": pid})
-        gateway_border = {n.id: _tone_colors(n)[1] for n in nodes.values() if n.kind == "gateway"}
-        for n in nodes.values():
-            attrs = {"id": f"{n.id}_di", "bpmnElement": n.id}
-            if n.kind == "gateway":
-                attrs["isMarkerVisible"] = "true"
-            colors = _tone_colors(n)
-            if colors[0]:
-                attrs[_q("color", "background-color")] = colors[0]
-            if colors[1]:
-                attrs[_q("color", "border-color")] = colors[1]
-            shape = ET.SubElement(plane, _q("bpmndi", "BPMNShape"), attrs)
-            _bounds(shape, n.x, n.y, n.w, n.h)
-            if n.kind == "gateway":
-                lw = GATEWAY_LABEL_W
-                label = ET.SubElement(shape, _q("bpmndi", "BPMNLabel"))
-                _bounds(label, n.x + n.w // 2 - lw // 2, n.y - n.label_h - 6, lw, n.label_h)
-        for e in edges:
-            attrs = {"id": f"{e.id}_di", "bpmnElement": e.id}
-            border = gateway_border.get(e.src)
-            if border:
-                attrs[_q("color", "border-color")] = border
-            edge = ET.SubElement(plane, _q("bpmndi", "BPMNEdge"), attrs)
-            for x, y in e.points:
-                ET.SubElement(edge, _q("di", "waypoint"), {"x": str(x), "y": str(y)})
-            if e.label:
-                label = ET.SubElement(edge, _q("bpmndi", "BPMNLabel"))
-                _bounds(label, *e.label)
+        top_in, top_out = indexes(diagram.nodes, diagram.edges)
+        for n in diagram.nodes.values():
+            emit_element(proc, n, top_in, top_out)
+        emit_flows(proc, diagram.edges)
+
+        def emit_shapes(plane_el: ET.Element, nodes: dict[str, _Node], edges: list[_Edge]) -> None:
+            gateway_border = {n.id: _tone_colors(n)[1] for n in nodes.values() if n.kind == "gateway"}
+            for n in nodes.values():
+                attrs = {"id": f"{n.id}_di", "bpmnElement": n.id}
+                if n.kind == "gateway":
+                    attrs["isMarkerVisible"] = "true"
+                if n.kind == "subprocess":
+                    attrs["isExpanded"] = "false"
+                colors = _tone_colors(n)
+                if colors[0]:
+                    attrs[_q("color", "background-color")] = colors[0]
+                if colors[1]:
+                    attrs[_q("color", "border-color")] = colors[1]
+                shape = ET.SubElement(plane_el, _q("bpmndi", "BPMNShape"), attrs)
+                _bounds(shape, n.x, n.y, n.w, n.h)
+                if n.kind == "gateway":
+                    lw = GATEWAY_LABEL_W
+                    label = ET.SubElement(shape, _q("bpmndi", "BPMNLabel"))
+                    _bounds(label, n.x + n.w // 2 - lw // 2, n.y - n.label_h - 6, lw, n.label_h)
+            for e in edges:
+                attrs = {"id": f"{e.id}_di", "bpmnElement": e.id}
+                border = gateway_border.get(e.src)
+                if border:
+                    attrs[_q("color", "border-color")] = border
+                edge = ET.SubElement(plane_el, _q("bpmndi", "BPMNEdge"), attrs)
+                for x, y in e.points:
+                    ET.SubElement(edge, _q("di", "waypoint"), {"x": str(x), "y": str(y)})
+                if e.label:
+                    label = ET.SubElement(edge, _q("bpmndi", "BPMNLabel"))
+                    _bounds(label, *e.label)
+
+        top_diagram = ET.SubElement(defs, _q("bpmndi", "BPMNDiagram"), {"id": "BPMNDiagram_1"})
+        top_plane = ET.SubElement(top_diagram, _q("bpmndi", "BPMNPlane"),
+                                  {"id": "BPMNPlane_1", "bpmnElement": pid})
+        emit_shapes(top_plane, diagram.nodes, diagram.edges)
+
+        for plane in diagram.planes:
+            suffix = plane.id[len("BPMNPlane_"):]
+            sub_diagram = ET.SubElement(defs, _q("bpmndi", "BPMNDiagram"),
+                                        {"id": f"BPMNDiagram_{suffix}"})
+            sub_plane = ET.SubElement(sub_diagram, _q("bpmndi", "BPMNPlane"),
+                                      {"id": plane.id, "bpmnElement": plane.bpmn_element})
+            emit_shapes(sub_plane, plane.nodes, plane.edges)
 
         ET.indent(defs, space="  ")
         body = ET.tostring(defs, encoding="unicode")
@@ -602,7 +829,7 @@ def _tone_colors(node: "_Node") -> tuple[str | None, str | None]:
         return END_TONE
     if node.kind == "gateway":
         return TONE_PALETTE.get(node.tone or "", GATEWAY_TONE)
-    if node.kind == "task" and node.tone in TONE_PALETTE:
+    if node.kind in ("task", "subprocess") and node.tone in TONE_PALETTE:
         return TONE_PALETTE[node.tone]
     return None, None
 
@@ -625,224 +852,6 @@ def _compress(pts: list[tuple[int, int]]) -> list[tuple[int, int]]:
                 continue
         out.append(p)
     return out
-
-
-# ── viewer page ──────────────────────────────────────────────────────────────
-
-def _vendor(name: str) -> str:
-    path = VENDOR_DIR / name
-    if not path.exists():
-        raise RenderError(f"Vendored bpmn-js asset missing: {path}")
-    return path.read_text(encoding="utf-8")
-
-
-def _script_safe(text: str) -> str:
-    """Text that can sit inside an inline <script> or <style> element."""
-    return re.sub(r"</(script|style)", r"<\\/\1", text, flags=re.IGNORECASE)
-
-
-HTML_TEMPLATE = """<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>@@TITLE@@</title>
-<style>
-@@DIAGRAM_CSS@@
-</style>
-<style>
-@@BPMN_CSS@@
-</style>
-<style>
-  html, body { margin: 0; height: 100%; font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif; color: #1f2328; background: #fff; }
-  body { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
-  header { flex: 0 0 auto; padding: 6px 14px 4px; border-bottom: 1px solid #d0d7de; background: #fff; position: relative; z-index: 5; }
-  .row { display: flex; align-items: center; gap: 12px; justify-content: space-between; }
-  .row.second { justify-content: flex-start; gap: 16px; margin-top: 2px; }
-  h1 { font-size: 16px; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .toolbar { display: flex; gap: 6px; flex: 0 0 auto; }
-  .toolbar button { font: inherit; font-size: 12px; padding: 2px 9px; border: 1px solid #d0d7de; background: #f6f8fa; border-radius: 5px; cursor: pointer; }
-  details.meta { flex: 0 0 auto; font-size: 12px; line-height: 1.4; }
-  details.meta summary { cursor: pointer; padding: 2px 0; white-space: nowrap; }
-  details.meta .meta-body { position: absolute; left: 0; right: 0; top: 100%; max-height: 60vh; overflow: auto; padding: 10px 14px 12px; background: #fff; border-bottom: 1px solid #d0d7de; box-shadow: 0 6px 16px rgba(0, 0, 0, .12); z-index: 20; }
-  .meta-body p { margin: 3px 0; font-size: 13px; line-height: 1.45; max-width: 120ch; }
-  .meta-body h2 { font-size: 13px; margin: 8px 0 3px; }
-  .meta-body ul { margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.45; max-width: 120ch; }
-  .legend { flex: 1 1 auto; display: flex; flex-wrap: nowrap; gap: 4px 14px; overflow-x: auto; white-space: nowrap; font-size: 12px; align-items: center; }
-  .legend .item { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 5px; }
-  .legend .swatch { width: 16px; height: 13px; border-radius: 3px; border: 2px solid #555; box-sizing: border-box; }
-  .legend .title { flex: 0 0 auto; font-weight: 600; }
-  #canvas { flex: 1 1 auto; min-height: 0; position: relative; }
-  #error { color: #b42318; font-size: 12px; white-space: pre-wrap; position: absolute; right: 14px; top: 6px; }
-</style>
-</head>
-<body>
-<header>
-  <div class="row">
-    <h1>@@TITLE@@</h1>
-    <div class="toolbar">
-      <button type="button" id="fit">Fit</button>
-      <button type="button" id="zoom-in">Zoom +</button>
-      <button type="button" id="zoom-out">Zoom &minus;</button>
-    </div>
-  </div>
-  <div class="row second">
-@@META@@
-@@LEGEND@@
-  </div>
-  <div id="error"></div>
-</header>
-<div id="canvas"></div>
-<script>
-@@VIEWER_JS@@
-</script>
-<script>
-(function () {
-  var xml = @@XML_JSON@@;
-  var viewer = new BpmnJS({
-    container: '#canvas',
-    textRenderer: {
-      defaultStyle: { fontFamily: 'Arial, sans-serif', fontSize: @@FONT@@, lineHeight: 1.2 },
-      externalStyle: { fontFamily: 'Arial, sans-serif', fontSize: @@FONT@@, lineHeight: 1.2 }
-    }
-  });
-  window.bpmnViewer = viewer;
-  var MIN_ZOOM = 0.9;  // the initial view never shows the diagram smaller than this
-  function fitViewport() {
-    viewer.get('canvas').zoom('fit-viewport', 'auto');
-  }
-  function initialView() {
-    fitViewport();
-    var canvas = viewer.get('canvas');
-    if (canvas.zoom() < MIN_ZOOM) {
-      // too big to fit legibly: zoom in and start at the diagram's left edge,
-      // with the start event in view, instead of in the middle of the flow
-      canvas.zoom(MIN_ZOOM);
-      var start = viewer.get('elementRegistry').filter(function (el) {
-        return el.type === 'bpmn:StartEvent';
-      })[0];
-      if (start) {
-        var box = canvas.getAbsoluteBBox(start);
-        var outer = canvas.viewbox().outer;
-        canvas.scroll({ dx: 40 - box.x, dy: Math.round(outer.height * 0.4) - box.y });
-      }
-    }
-  }
-  viewer.importXML(xml).then(function (result) {
-    if (result.warnings && result.warnings.length) { console.warn('bpmn-js import warnings', result.warnings); }
-    initialView();
-    window.bpmnReady = true;
-  }).catch(function (err) {
-    document.getElementById('error').textContent = 'Could not render the BPMN diagram: ' + err.message;
-    console.error(err);
-  });
-  document.getElementById('fit').addEventListener('click', fitViewport);
-  document.getElementById('zoom-in').addEventListener('click', function () { viewer.get('zoomScroll').stepZoom(1); });
-  document.getElementById('zoom-out').addEventListener('click', function () { viewer.get('zoomScroll').stepZoom(-1); });
-  window.addEventListener('resize', function () { viewer.get('canvas').resized(); });
-})();
-</script>
-</body>
-</html>
-"""
-
-
-def _used_legend_keys(xml: str) -> list[str]:
-    """Legend entries that the diagram really uses, in palette order."""
-    keys: set[str] = set()
-    try:
-        root = ET.fromstring(xml)
-    except ET.ParseError:
-        return [*TONE_PALETTE, "gateway", "start", "end"]
-    by_background = {background: tone for tone, (background, _) in TONE_PALETTE.items()}
-    for el in root.iter():
-        if not el.tag.endswith("BPMNShape"):
-            continue
-        element_id = el.get("bpmnElement") or ""
-        background = el.get(f"{{{COLOR_NS}}}background-color")
-        if element_id.startswith("StartEvent_"):
-            keys.add("start")
-        elif element_id.startswith("EndEvent_"):
-            keys.add("end")
-        elif background == GATEWAY_TONE[0]:
-            keys.add("gateway")
-        elif background in by_background:
-            keys.add(by_background[background])
-    order = [*TONE_PALETTE, "gateway", "start", "end"]
-    return [key for key in order if key in keys]
-
-
-def _legend_html(xml: str, metadata: dict | None = None) -> str:
-    custom = metadata.get("legend") if isinstance(metadata, dict) else None
-    custom = custom if isinstance(custom, dict) else {}
-    items = []
-    for key in _used_legend_keys(xml):
-        if key in TONE_PALETTE:
-            background, border = TONE_PALETTE[key]
-            default = DEFAULT_LEGEND_LABELS[key]
-        else:
-            background, border = {"gateway": GATEWAY_TONE, "start": START_TONE, "end": END_TONE}[key]
-            default = DEFAULT_LEGEND_LABELS[key]
-        label = custom.get(key) if isinstance(custom.get(key), str) else default
-        items.append(
-            f'    <span class="item"><i class="swatch" style="background:{background};border-color:{border}"></i>'
-            f"{html.escape(label)}</span>"
-        )
-    return ('  <div class="legend" aria-label="Leyenda de colores">\n'
-            '    <span class="title">Colores:</span>\n' + "\n".join(items) + "\n  </div>")
-
-
-def _meta_html(metadata: dict | None) -> str:
-    """Description and open questions, collapsed into a <details> so they do not take the screen."""
-    if not isinstance(metadata, dict):
-        return ""
-    desc = metadata.get("description")
-    questions = metadata.get("preguntas_abiertas")
-    if isinstance(questions, str):
-        questions = [questions]
-    body: list[str] = []
-    if desc:
-        body.append(f'      <p class="description">{html.escape(str(desc).strip())}</p>')
-    if questions:
-        items = "\n".join(f"        <li>{html.escape(str(q))}</li>" for q in questions)
-        body.append('      <h2>Preguntas abiertas</h2>\n      <ul class="preguntas-abiertas">\n'
-                    + items + "\n      </ul>")
-    if not body:
-        return ""
-    return ('    <details class="meta">\n'
-            '      <summary>Descripción y preguntas abiertas</summary>\n'
-            '      <div class="meta-body">\n' + "\n".join(body) + "\n      </div>\n"
-            "    </details>")
-
-
-def render_bpmn_html(xml: str, title: str, metadata: dict | None = None) -> str:
-    """A self-contained page that renders `xml` with the vendored bpmn-js NavigatedViewer."""
-    # JSON with `<`, `>` and `&` escaped can never close the script element it lives in
-    xml_json = json.dumps(xml).replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
-    values = {
-        "@@DIAGRAM_CSS@@": _script_safe(_vendor("diagram-js.css")),
-        "@@BPMN_CSS@@": _script_safe(_vendor("bpmn-js.css")),
-        "@@VIEWER_JS@@": _script_safe(_vendor("bpmn-navigated-viewer.production.min.js")),
-        "@@XML_JSON@@": xml_json,
-        "@@META@@": _meta_html(metadata),
-        "@@LEGEND@@": _legend_html(xml, metadata),
-        "@@FONT@@": str(TEXT_FONT_SIZE),
-        "@@TITLE@@": html.escape(title),
-    }
-    return re.sub("|".join(re.escape(k) for k in values), lambda m: values[m.group(0)], HTML_TEMPLATE)
-
-
-def provenance_comment(text: str) -> str:
-    """`text` as an XML comment (`--` is not allowed inside one)."""
-    return "<!-- " + text.replace("--", "- -") + " -->\n"
-
-
-def with_xml_provenance(xml: str, header: str) -> str:
-    """The XML with a provenance comment right after its declaration."""
-    decl, sep, rest = xml.partition("\n")
-    if not decl.startswith("<?xml"):
-        return provenance_comment(header) + xml
-    return decl + sep + provenance_comment(header) + rest
 
 
 __all__ = ["BpmnRenderer", "render_bpmn_html", "with_xml_provenance", "NAMESPACES", "BPMN_NS"]

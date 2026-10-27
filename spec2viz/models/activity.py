@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Literal
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 from spec2viz.models.base import DocRef, BaseDiagram, DiagramType
 
 
@@ -19,6 +19,20 @@ class StepModel(BaseModel):
         description=(
             "Optional color tone for the BPMN renderer: success, warning, danger, info, neutral, or rule1..rule5 "
             "to tint each decision group. A gateway's outgoing flows take its border color."
+        ),
+    )
+    detail: str | None = Field(
+        default=None,
+        description=(
+            "Optional long text shown in the viewer's side panel; the BPMN box keeps showing only `label`. "
+            "Other renderers may ignore it."
+        ),
+    )
+    group: str | None = Field(
+        default=None,
+        description=(
+            "Optional group id the step belongs to. The BPMN renderer draws each group as a collapsed "
+            "subProcess with its own drill-down plane; renderers that do not support groups ignore it."
         ),
     )
     partition: str | None = Field(
@@ -46,6 +60,19 @@ class StepModel(BaseModel):
     )
 
 
+class GroupModel(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    label: str = Field(description="Display label of the collapsed subProcess that represents the group.")
+    tone: StepTone | None = Field(
+        default=None,
+        description="Optional BPMN in Color tone for the collapsed subProcess, using the same palette as steps.",
+    )
+    detail: str | None = Field(
+        default=None,
+        description="Optional long text about the group, shown in the viewer's side panel when the subProcess is selected.",
+    )
+
+
 class ActivityData(BaseModel):
     model_config = ConfigDict(extra="ignore")
     start: str = Field(description="Identifier of the first step in the activity flow.")
@@ -55,6 +82,24 @@ class ActivityData(BaseModel):
     end: str = Field(
         description="Identifier of the terminal step in the activity flow."
     )
+    groups: dict[str, GroupModel] = Field(
+        default_factory=dict,
+        description=(
+            "Optional groups keyed by id. Each group becomes a collapsed subProcess in the BPMN renderer; "
+            "a step joins one with its `group` field."
+        ),
+    )
+
+    @model_validator(mode="after")
+    def _groups_exist(self) -> "ActivityData":
+        known = set(self.groups)
+        for sid, step in self.steps.items():
+            if step.group is not None and step.group not in known:
+                available = ", ".join(sorted(known)) or "none defined"
+                raise ValueError(
+                    f"Step '{sid}' references unknown group '{step.group}' (groups: {available})"
+                )
+        return self
 
 
 class ActivityDiagram(BaseDiagram):
@@ -65,4 +110,4 @@ class ActivityDiagram(BaseDiagram):
     data: ActivityData = Field(description="Activity-specific steps and control flow.")
 
 
-__all__ = ["StepModel", "StepTone", "ActivityData", "ActivityDiagram"]
+__all__ = ["StepModel", "GroupModel", "StepTone", "ActivityData", "ActivityDiagram"]

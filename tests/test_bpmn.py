@@ -12,7 +12,7 @@ from click.testing import CliRunner
 
 from spec2viz import compile_ir, load, render_to_file
 from spec2viz.cli import main
-from spec2viz.ir import ActivityIR, ActivityStep, ComponentIR
+from spec2viz.ir import ActivityGroup, ActivityIR, ActivityStep, ComponentIR
 from spec2viz.exceptions import RenderError
 from spec2viz.renderers import render
 from spec2viz.renderers.bpmn import BpmnRenderer, render_bpmn_html
@@ -269,10 +269,79 @@ def test_tasks_are_wrapped_and_sized_to_their_text():
 
     w_short, h_short = bounds("Task_short")
     w_long, h_long = bounds("Task_long")
-    assert w_long <= 220 and w_long >= 120
+    assert w_long <= 240 and w_long >= 120
     assert h_long > h_short, "a long label grows the box in height instead of overflowing"
     assert w_short <= w_long
     assert h_short >= 60
+
+
+def _column_gaps(xml: str) -> list[int]:
+    """Horizontal space between consecutive columns: shapes plus their gateway labels."""
+    plane = _parse(xml).find("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)
+    spans: list[tuple[int, int]] = []
+    for shape in plane.findall("bpmndi:BPMNShape", NS):
+        for bounds in shape.iter(f"{{{NS['dc']}}}Bounds"):
+            x, w = int(bounds.get("x")), int(bounds.get("width"))
+            spans.append((x, x + w))
+    spans.sort()
+    merged: list[list[int]] = []
+    for a, b in spans:
+        if merged and a < merged[-1][1]:
+            merged[-1][1] = max(merged[-1][1], b)
+        else:
+            merged.append([a, b])
+    ends = [m[1] for m in merged]
+    starts = [m[0] for m in merged[1:]]
+    return [start - end for end, start in zip(ends, starts)]
+
+
+def test_text_width_is_estimated_per_character_class():
+    from spec2viz.renderers.bpmn import TASK_PAD, _task_box, _text_w, _wrap
+
+    # uppercase, '_' and 'm'/'w' are wider than the old flat 7.7px, narrow signs are thinner
+    assert _text_w("PARTIAL_STOCK") > len("PARTIAL_STOCK") * 7.7
+    assert _text_w("mmmm") > _text_w("iiii")
+    assert _text_w("...") < _text_w("III")
+    # PARTIAL_STOCK (the label that used to break in two) fits on a single line
+    w, _h = _task_box("PARTIAL_STOCK")
+    assert w - TASK_PAD + 4 >= _text_w("PARTIAL_STOCK")
+    assert _wrap("PARTIAL_STOCK", w - TASK_PAD + 4) == 1
+    # even the widest label of the real specs stays whole inside its box
+    w2, _h2 = _task_box("Revisar + RESERVA_INSTITUCIONAL · Customer Service")
+    assert _wrap("RESERVA_INSTITUCIONAL", w2 - TASK_PAD + 4) == 1
+    xml = BpmnRenderer().render(_ir([
+        ActivityStep(id="a", label="Aceptar + PARTIAL_STOCK", next="end"),
+    ], start="a"))
+    bounds = _shapes(xml)["Task_a"].find("dc:Bounds", NS)
+    assert int(bounds.get("width")) - TASK_PAD + 4 >= _text_w("PARTIAL_STOCK")
+
+
+def test_column_gaps_shrink_without_labels_and_grow_with_the_longest_one():
+    from spec2viz.renderers.bpmn import COL_GAP, MIN_COL_GAP, _text_w
+
+    # a linear plan with no edge labels only pays the minimum gap at every column
+    steps = [ActivityStep(id=f"s{i}", label=f"Paso {i}", next=f"s{i + 1}") for i in range(5)]
+    steps.append(ActivityStep(id="s5", label="Fin del camino"))
+    linear = _column_gaps(BpmnRenderer().render(_ir(steps, start="s0")))
+    assert linear and all(gap == MIN_COL_GAP for gap in linear)
+
+    # a labelled flow widens only the gap it crosses, up to the old COL_GAP ceiling
+    label = "etiqueta de rama"
+    xml = BpmnRenderer().render(_ir([
+        ActivityStep(id="a", label="A", next="d"),
+        ActivityStep(id="d", label="¿Sigue?", kind="decision", branches={label: "b", "no": "end"}),
+        ActivityStep(id="b", label="B", next="end"),
+    ], start="a"))
+    gaps = _column_gaps(xml)
+    assert int(min(COL_GAP, max(MIN_COL_GAP, _text_w(label) + 40))) in gaps
+    assert MIN_COL_GAP in gaps and max(gaps) < COL_GAP
+    long_label = "una etiqueta considerablemente mas larga que el hueco maximo permitido"
+    xml = BpmnRenderer().render(_ir([
+        ActivityStep(id="a", label="A", next="d"),
+        ActivityStep(id="d", label="¿Sigue?", kind="decision", branches={long_label: "b", "no": "end"}),
+        ActivityStep(id="b", label="B", next="end"),
+    ], start="a"))
+    assert max(_column_gaps(xml)) == COL_GAP
 
 
 def test_tone_field_is_validated_by_the_model():
@@ -303,12 +372,14 @@ def test_viewer_font_size_and_initial_zoom():
     page = render_bpmn_html(xml, "T", None)
     assert "textRenderer" in page and "defaultStyle" in page and "externalStyle" in page
     assert "fontSize: 14" in page
-    assert "MIN_ZOOM = 0.9" in page and "canvas.zoom(MIN_ZOOM)" in page
+    assert "MIN_ZOOM = 0.6" in page and "canvas.zoom(MIN_ZOOM)" in page
     # Fit really fits, it does not re-apply the minimum-zoom initial view
     assert "function fitViewport()" in page
     assert "document.getElementById('fit').addEventListener('click', fitViewport)" in page
     assert ".zoom('fit-viewport', 'auto')" in page
     assert "getAbsoluteBBox(start)" in page  # the initial view is anchored on the start event
+    # entering a subprocess applies the same rule as the initial view
+    assert "viewer.on('root.set', function () { try { initialView(); }" in page
 
 
 def test_legend_shows_only_used_tones_with_generic_spanish_labels():
@@ -319,7 +390,9 @@ def test_legend_shows_only_used_tones_with_generic_spanish_labels():
     ], start="a"))
     page = render_bpmn_html(xml, "T", None)
     assert ">favorable</span>" in page and ">rechazo</span>" in page
-    assert ">gateway por defecto</span>" in page and ">inicio</span>" in page and ">fin</span>" in page
+    assert ">gateway por defecto</span>" in page
+    # start/end events never take a legend colour
+    assert ">inicio</span>" not in page and ">fin</span>" not in page
     # unused tones are not in the legend
     for unused in ("atención", "informativo", "neutro", "regla 1", "regla 5"):
         assert f">{unused}</span>" not in page
@@ -333,3 +406,114 @@ def test_legend_reads_custom_labels_from_metadata():
     page = render_bpmn_html(xml, "T", {"legend": {"rule2": "R2 · Stock", "success": "Aceptar"}})
     assert ">R2 · Stock</span>" in page and ">Aceptar</span>" in page
     assert ">regla 2</span>" not in page
+
+
+def _group_ir() -> ActivityIR:
+    return ActivityIR(
+        title="Grupos", start="a", end="e",
+        steps=[
+            ActivityStep(id="a", label="Entrada", group="g1", detail="Texto largo de a.", next="b"),
+            ActivityStep(id="b", label="¿Sigue?", kind="decision", group="g1",
+                         branches={"ok": "c", "no": "x"}),
+            ActivityStep(id="c", label="Cierre interno", group="g1", next="d"),
+            ActivityStep(id="x", label="Afuera", next="d"),
+            ActivityStep(id="d", label="Evaluar", group="g2", next="e"),
+            ActivityStep(id="e", label="Fin del grupo", group="g2"),
+        ],
+        groups={
+            "g1": ActivityGroup(id="g1", label="Grupo uno", tone="info", detail="Detalle del grupo uno."),
+            "g2": ActivityGroup(id="g2", label="Grupo dos", tone="warning", detail="Detalle del grupo dos."),
+        },
+    )
+
+
+def test_groups_are_collapsed_subprocesses_with_their_own_planes():
+    from spec2viz.renderers.bpmn import TONE_PALETTE
+
+    root = _parse(BpmnRenderer().render(_group_ir()))
+    proc = root.find("bpmn:process", NS)
+    subs = {el.get("id"): el for el in proc.findall("bpmn:subProcess", NS)}
+    assert set(subs) == {"SubProcess_g1", "SubProcess_g2"}
+    assert subs["SubProcess_g1"].get("name") == "Grupo uno"
+    planes = {p.get("bpmnElement"): p for p in root.findall("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)}
+    assert set(planes) == {"Process_1", "SubProcess_g1", "SubProcess_g2"}
+    top_shapes = {s.get("bpmnElement"): s for s in planes["Process_1"].findall("bpmndi:BPMNShape", NS)}
+    for sid in subs:
+        assert top_shapes[sid].get("isExpanded") == "false"
+        assert top_shapes[sid].get(f"{{{COLOR_NS}}}background-color") in {
+            background for background, _ in TONE_PALETTE.values()
+        }
+    # ids are unique across every plane
+    ids = [el.get("id") for el in root.iter() if el.get("id")]
+    assert len(ids) == len(set(ids))
+    # each subprocess plane has its own start, its steps and its external end events
+    g1 = planes["SubProcess_g1"]
+    g1_nodes = [el.get("bpmnElement") for el in g1.findall("bpmndi:BPMNShape", NS)]
+    assert {"StartEvent_g1__in", "Task_a", "Gateway_b", "Task_c"} <= set(g1_nodes)
+    g1_ends = {el.get("bpmnElement") for el in g1.findall("bpmndi:BPMNShape", NS)
+               if el.get("bpmnElement", "").startswith("EndEvent_g1__")}
+    assert len(g1_ends) == 2  # one per distinct external destination (step x, group g2)
+    g1_flows = g1.findall("bpmndi:BPMNEdge", NS)
+    assert len(g1_flows) == 5
+    g2 = planes["SubProcess_g2"]
+    g2_ends = [el.get("bpmnElement") for el in g2.findall("bpmndi:BPMNShape", NS)
+               if el.get("bpmnElement", "").startswith("EndEvent_g2__")]
+    assert len(g2_ends) == 1  # terminal step e exits to the process end
+    # top level: flows enter the subprocess and leave it toward the real destinations
+    top_flows = proc.findall("bpmn:sequenceFlow", NS)
+    assert {(f.get("sourceRef"), f.get("targetRef")) for f in top_flows} == {
+        ("StartEvent_a", "SubProcess_g1"),
+        ("SubProcess_g1", "Task_x"),
+        ("SubProcess_g1", "SubProcess_g2"),
+        ("Task_x", "SubProcess_g2"),
+        ("SubProcess_g2", "EndEvent_e"),
+    }
+    labels = {f.get("name") for f in top_flows if f.get("sourceRef") == "SubProcess_g1"}
+    assert labels == {"Afuera", "Grupo dos"}
+    # the inner flows reach those end events
+    inner = {(f.get("sourceRef"), f.get("targetRef")) for f in subs["SubProcess_g1"].findall("bpmn:sequenceFlow", NS)}
+    assert ("Gateway_b", "Task_c") in inner and ("Task_c", "EndEvent_g1__g2") in inner
+
+
+def test_group_and_step_detail_reach_the_viewer_json():
+    xml = BpmnRenderer().render(_group_ir())
+    page = render_bpmn_html(xml, "T", None)
+    literal = re.search(r"var info = (\{.*?\});\n", page, re.S).group(1)
+    info = json.loads(literal)
+    assert info["Task_a"]["detail"] == "Texto largo de a."
+    assert info["SubProcess_g1"]["detail"] == "Detalle del grupo uno."
+    assert info["SubProcess_g1"]["label"] == "Grupo uno"
+    assert info["SubProcess_g1"]["subprocess"] is True
+    assert info["Gateway_b"]["branches"] == [
+        {"label": "ok", "target": "Cierre interno"},
+        {"label": "no", "target": "Afuera"},
+    ]
+    assert "id=\"panel\"" in page and "340px" in page and "toggle-panel" in page
+
+
+def test_spec_without_groups_produces_one_plane_and_no_subprocess():
+    xml = render(compile_ir(load(FIXTURES / "activity.mepu-decision.yml")), "bpmn")
+    root = _parse(xml)
+    assert root.findall(".//bpmn:subProcess", NS) == []
+    assert len(root.findall("bpmndi:BPMNDiagram", NS)) == 1
+    _check_structure(root)
+
+
+def test_other_renderers_accept_groups_and_detail():
+    ir = compile_ir(load(FIXTURES / "activity.groups.yml"))
+    for name in ("mermaid", "plantuml", "d2"):
+        assert render(ir, name)
+
+
+def test_model_validates_groups_and_detail():
+    from pydantic import ValidationError
+    from spec2viz.models.activity import ActivityData, GroupModel, StepModel
+
+    step = StepModel(label="A", detail="D", group="g")
+    assert step.detail == "D" and step.group == "g"
+    groups = {"g": GroupModel(label="G", tone="info", detail="GD")}
+    data = ActivityData(start="a", end="end", steps={"a": step}, groups=groups)
+    assert data.groups["g"].label == "G"
+    with pytest.raises(ValidationError, match="unknown group 'missing'"):
+        ActivityData(start="a", end="end",
+                     steps={"a": StepModel(label="A", next="end", group="missing")})

@@ -212,6 +212,16 @@ class ActivityStep:
     partition: str | None = None
     notes: str | None = None
     tone: str | None = None
+    detail: str | None = None
+    group: str | None = None
+
+
+@dataclass
+class ActivityGroup:
+    id: str
+    label: str
+    tone: str | None = None
+    detail: str | None = None
 
 
 @dataclass
@@ -221,6 +231,7 @@ class ActivityIR:
     steps: list[ActivityStep]
     end: str
     style_kinds: dict[str, dict] = field(default_factory=dict)
+    groups: dict[str, ActivityGroup] = field(default_factory=dict)
 
 
 # ── Deployment ────────────────────────────────────────────────────────────────
@@ -285,6 +296,7 @@ __all__ = [
     "ComponentEdge",
     "ComponentIR",
     "ActivityStep",
+    "ActivityGroup",
     "ActivityIR",
     "DeploymentNode",
     "DeploymentArtifact",
