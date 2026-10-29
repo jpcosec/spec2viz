@@ -507,3 +507,4 @@ include:
   glob: docs/architecture/spec2viz/sldb/state.diagram-sync-lifecycle/nodes/*.md
 - model: SpecNodeDoc
   glob: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/nodes/*.md
+policy: {}

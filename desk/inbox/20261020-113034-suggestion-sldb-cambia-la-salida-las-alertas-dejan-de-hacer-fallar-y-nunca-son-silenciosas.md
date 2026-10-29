@@ -8,9 +8,11 @@ target_project: spec2viz
 # ISO 8601 timestamp
 created_at: '2026-10-20T11:30:34'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: spec2viz
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-10-29T10:06:19'
 ---
 
 # sldb cambia la salida: las alertas dejan de hacer fallar y nunca son silenciosas
