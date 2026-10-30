@@ -515,3 +515,15 @@ def test_catalog_template_registers_the_elk_layout():
     assert "layout: 'elk'" in html and "curve: 'linear'" in html and "curve: 'basis'" not in html
     # el inicializador corre en DOMContentLoaded, despues de los modulos que cargan mermaid
     assert html.index("function initMermaid()") < html.index("initMermaid();\n      await mermaid.run")
+
+
+def test_component_mermaid_click_desde_href(tmp_path):
+    spec = tmp_path / "links.yml"
+    spec.write_text(
+        "id: component.links\ntitle: Links\ntype: component\nversion: '1'\n"
+        "metadata: {author: t, description: d}\n"
+        "data:\n  nodes:\n    a: {label: A, href: /wiki/a/}\n    b: {label: B}\n"
+    )
+    out = MermaidRenderer().render(compile_ir(load(spec)))
+    assert 'click a href "/wiki/a/"' in out
+    assert "click b" not in out

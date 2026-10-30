@@ -181,6 +181,7 @@ class ComponentNode:
     label: str
     kind: str
     contains: list[str] = field(default_factory=list)
+    href: str | None = None
 
 
 @dataclass

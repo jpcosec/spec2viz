@@ -11,6 +11,7 @@ class ComponentCompiler:
                 label=node.label or nid,
                 kind=node.kind,
                 contains=list(node.contains),
+                href=node.href,
             )
             for nid, node in diagram.data.nodes.items()
         ]
