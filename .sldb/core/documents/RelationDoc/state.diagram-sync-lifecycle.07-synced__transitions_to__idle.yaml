@@ -1,0 +1,17 @@
+name: state.diagram-sync-lifecycle.07-synced__transitions_to__idle
+path: docs/architecture/spec2viz/sldb/state.diagram-sync-lifecycle/edges/state.diagram-sync-lifecycle.07-synced__transitions_to__idle.md
+source_hash: acb185f8a8d9aa80ebe5c319b00de1df60914bd5f6cd47b701dc1f8dde86cbc1
+content_hash: 3c9f8a231b27f048f4e864888b05afb5b78b49957689239320885b51eaf11306
+field_hashes:
+  title: 4667962c870218b1e1ea57a079553502b5f0ec8557e91d4801c1832a081c3386
+  source_id: 6d3912cc369e0c8308d46a7ba39d61eb6efbd2fe134bf73caeef6f7393a32c39
+  target_id: 9b421a0b6a753770767ee96a60c69dee27cb0f1ad033ada6d00e75d8f531d4b5
+  relation_type: 28bd9b3da8f636e17ce2ec3811abebeff4a370a7f2cfb9e2080617063a2c0e87
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: dacc7d73ee39b8e345ca1916233010415a491a352ce4148fd559a4b7aec2ebe9
+  attributes: 7f8366bbf930f454e615178df158df3e6de4766b0f87af300634c2cbf01e18e9
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

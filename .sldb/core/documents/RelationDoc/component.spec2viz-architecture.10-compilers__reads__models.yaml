@@ -1,0 +1,17 @@
+name: component.spec2viz-architecture.10-compilers__reads__models
+path: docs/architecture/spec2viz/sldb/component.spec2viz-architecture/edges/component.spec2viz-architecture.10-compilers__reads__models.md
+source_hash: e804dfa98c54496e580c8d80d228bb22aeb89e965c3fadad2006cae4d7a3b89a
+content_hash: 226b2a0af136a0552d71e62f1e1269560cfbac3bb27f5a01d49d3f888a38e984
+field_hashes:
+  title: be06faa7d53e6c43a612175c4f7dfa806ea71826b2b21f34062432c7419c478b
+  source_id: 1d5846df4a2144801469de3a9767d1870e406a014c765481c197a1b4689ad131
+  target_id: 9f0071ee79f0f48cbcdc5b8dc607d7cc66d237af1e50c58ac3c959c0ef1758a4
+  relation_type: abf10a0d647457a2d27c9007f46ad3e87870c03ff6b7a492968131e48bb87cc7
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: a73f72ff57bb88712312429b4d4a2c6a19a8557267a0993c62de8a6eca19f3ae
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

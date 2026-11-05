@@ -1,0 +1,17 @@
+name: component.spec2viz-architecture.02-cli__uses__deskops
+path: docs/architecture/spec2viz/sldb/component.spec2viz-architecture/edges/component.spec2viz-architecture.02-cli__uses__deskops.md
+source_hash: f7e276f17a9ee9e6f31b26bbd09c47043b27a66f8933fee7941f1c9b4d4d0f6b
+content_hash: f72fb4c953fc3cbd60403c44feb63bc36019183d3abecd43c263e6a87d57f2fb
+field_hashes:
+  title: b6c3df8a6dddec536b3d43602695a91d6e8a392f5699a291e623391fc8acb146
+  source_id: 158b053de888a8790e74223ba8aa02d5ba33fdd9a9b511879c82a10e4ef538d6
+  target_id: 2a708730c124981d3d09e6a0461e8bbfdd540a5289abc4c8117f089d086a3590
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 440a4c1c2680124516b52b5d9100ad2645317dcbe6ae07d295bea1973321a359
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

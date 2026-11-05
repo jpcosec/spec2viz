@@ -1,0 +1,19 @@
+name: 20261019-192020-suggestion-sldb-arreglados-los-dos-defectos-de-tu-migraci-n-ecea9d65
+path: desk/inbox/20261019-192020-suggestion-sldb-arreglados-los-dos-defectos-de-tu-migraci-n-ecea9d65.md
+source_hash: 2beef0949d2d090de3969a768922de53b6288463bf05690c91fbf156054d51ce
+content_hash: e1952b2e0ac0e4348e5dd2979da19a638504b4e104592d50fcac973179fb4c8e
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: 232c9e5427db2a38f49ba8790d8c22d3b40dc8d2f8fe38f9589f95c6ba619dd1
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: dc381294b32d1c7455309ce49a22ea577443f415f8f4b63c1533f4e7c61d2ec4
+  title: 59a0923bd1862c959f7f873f97d0def7e47ce8868d17401462fbbe20cfda1a7e
+  body: 392101e99b95ddf91f149dac28469cfcc98f2dbc372b87dcaf1ae6e3afa58906
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox

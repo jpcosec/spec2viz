@@ -1,0 +1,24 @@
+name: statechart.state
+path: sldb/notations/statechart/glyphs/state.md
+source_hash: 03bec793df17efb532af3f31488085e3c1adc6f48fe57eafe1abfdefab3c28aa
+content_hash: cf2b1cf01652dcba839d8dae407e7019f6ba8e9f2d123b616766a8ae696b8cb3
+field_hashes:
+  id: 200b18ba8ff84cc4e87ab1eb4d0d64031b652f21461342ffd41f6740be90e624
+  title: 077ab647cf4f21a5a7c8455b38d0b0e3646ff13701b9857765aa9634b6ff2528
+  notation: e79798bcfdc88a411268058485292b14dee45dec4727f989940a737e6a227fc7
+  model: 1e5ce4d31ba8f3d06a3988d0cfb68162a27c153d9ffdf14d705450f4491c4733
+  where: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  shape: ca5591cb208c087538a46f775710da4b2becffdf216d9bbc6cd8cec78a8331ef
+  label: 8af1f905cae240380a410538a24d6887b0bf377b0a109ce3cdb19a811a44c2dc
+  label_style: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  keyword: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  compartments: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  function: 55af5b1d18b0d9ddda33273d987fd0579ef9b07af3a077c79d0accb6c8f17127
+  form: 1123c61313edd6d1339c2ab2c0229209dc78be4a021eb9876524c6c342ca51a7
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.glyph

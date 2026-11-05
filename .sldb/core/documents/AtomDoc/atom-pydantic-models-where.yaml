@@ -1,0 +1,18 @@
+name: atom-pydantic-models-where
+path: desk/atoms/atom-pydantic-models-where.md
+source_hash: 4c0a4bb4df8968912ad06fba1cf690eebb9900912603ea302c223cfeb1788573
+content_hash: a6aec4d7b07b690ffd3d723a97117854e62e916c786717094449eef205e07c23
+field_hashes:
+  id: f9361258bb1c32cfe74bbf74ed51b9aa6956ed79b360022746965d79d0e317c0
+  title: d60c00ff65f181f4519c8d9d9e76f96a9254171519957b80870db25d5b6deab0
+  five_wh_one_plus: 43f94244d00ce4813a89d3c0d15e1842fe2cfd95ce9fe3b063dda9e7983e0063
+  answer: 458aa314ff049f015791a7d852eb5628b4c27e93a666894620c72c1c7954bbd4
+  tags: e0c12ade23811bdb4a204cfb030949a46bf657668a04c99e94a12e766f4a2632
+  provenance: c8d6b956e0ac7c6b9fa84b57857d61ad75e9f151aa2cbd5a7e3ab2708dba23c5
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:models
+- type.knowledge.atom
+- workspace.desk.atoms

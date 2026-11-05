@@ -1,0 +1,17 @@
+name: state.diagram-type-lifecycle.01-raw_yaml__transitions_to__parsed_dict
+path: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/edges/state.diagram-type-lifecycle.01-raw_yaml__transitions_to__parsed_dict.md
+source_hash: 0e5a31afb7e22b255eec1b3290aaff5e4a9697ec5563b6f67b01c1ddd74dd111
+content_hash: cb83f7000bc118926d9aaa0beea4c6bf4e97a7450d3b663a9b44051361473e6f
+field_hashes:
+  title: 672f19319131cf4d3d2a1b79f4bef8f4cda83db7400712332714f675bdba2e1e
+  source_id: 534aacf5d9eb0c62eb342db9423685d02c7d86c9ef1e03ad5b73bb6c9dfc0ba1
+  target_id: 69709b281e03f8a0c6d18329b72750d06e6ffcba799ce3f1866a995909658e27
+  relation_type: 28bd9b3da8f636e17ce2ec3811abebeff4a370a7f2cfb9e2080617063a2c0e87
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: dfbad73903e79e52bd47d1fc17ac834168d504dd444a951da07404e1e97c70ca
+  attributes: e72a685ef0cab8c171f2378961b4f74db1882c74d7b3096620b10175067ee905
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

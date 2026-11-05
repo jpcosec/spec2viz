@@ -1,0 +1,22 @@
+name: statechart
+path: sldb/notations/statechart/notation.md
+source_hash: aeaf93f05680bbc6d8f299f4cada861c2b11dadc2807bb108dafe4c6cc6a2add
+content_hash: 129d0c0a57cd36e9b5cee354a9531eaa430ba19969164b09fa4886d6d526ad04
+field_hashes:
+  id: 45f3a7fb87a4a2332cc99b15162177e82a5e71fdc9f2109d72981ac972aee9d9
+  title: a4e08089c49e03c9d1c0f40b1df6196498b69bcf8d4d8f31a2c1e268261b4a37
+  name: 45f3a7fb87a4a2332cc99b15162177e82a5e71fdc9f2109d72981ac972aee9d9
+  diagram_type: 55af5b1d18b0d9ddda33273d987fd0579ef9b07af3a077c79d0accb6c8f17127
+  level: 6a4adbca11192a326f61110cda055762eb10de529ff037da568d56e23724242d
+  projection: 5cf7504d9781301d83347546cdabc01a03c9638ab5b36c0a9203911078a0d1a4
+  layout: 903e1bc7bfafa4a5e5195214fd26e449a4f77faeeb942447c1e3b4c47f2520d8
+  markers: 38ab5eda0eb4f29b1f48a398a02280dad7f0bc3aa5deba95c9ae9135922fe93d
+  glyphs: 3bd80890db1b3b1b16ce830acdc46413a7986aa2c6b3c9106d8dde6833838310
+  links: f60733a8193efc79f3e84c0db3ca11ff66a5fa01d1bc53efd5ad58bd3d7d22ba
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.vocabulary

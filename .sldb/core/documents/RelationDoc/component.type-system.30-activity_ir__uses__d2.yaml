@@ -1,0 +1,17 @@
+name: component.type-system.30-activity_ir__uses__d2
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.30-activity_ir__uses__d2.md
+source_hash: e241688473da928f7139386f765bbc9c611ea335710c89c455215fa95e58dd37
+content_hash: f042eef7abf9c5f8e99c2f32f36675411d752d5a4dd486f6aa6b3f130da86f56
+field_hashes:
+  title: ca8b8f3d968c27cda6a6e53eeba435e25ea7d452e7a8e58f5214114c8b7d80fd
+  source_id: 9f50ec9e90aa460c3338b16c6cc27c3f9b1b0e12aff5fd92201b723d284f9e7a
+  target_id: a9d42028b1100e7d1eb76f84ab13684a4c366b64245fa01fb12f993f90960d7f
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 0ff0d870265a015f05b9da917bbe0cf6a9dc0e681e3427b6c7ca8c982ed6c4f0
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

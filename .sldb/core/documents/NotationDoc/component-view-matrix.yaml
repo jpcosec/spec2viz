@@ -1,0 +1,22 @@
+name: component-view-matrix
+path: sldb/notations/component-view-matrix/notation.md
+source_hash: 86bb72089aef1a932eaad5e1368b0c37800b138672d8bf347e8cd971907632fd
+content_hash: 3d7508e752d7089032234594c3ed978755268b76b87e9db8511df4a1fb1aada3
+field_hashes:
+  id: 32abdde37520536c285d4d31fc60b980ab026be2e716d567c10cda78d1ccc273
+  title: 2716b44f066cedf9dcf7799b0963614d0ecb8a4c455d9cf5d8ec9a38509c5fd7
+  name: 32abdde37520536c285d4d31fc60b980ab026be2e716d567c10cda78d1ccc273
+  diagram_type: 4e10a40860cc3bb6fb94811ab2f342c6aaafb7fd3888acec633bffb43aaf0482
+  level: 414cc0c8413da97a052dbc9ac40ef5f9397c6f4b59c43e2f256d49f7c0dd8e0c
+  projection: 5cf7504d9781301d83347546cdabc01a03c9638ab5b36c0a9203911078a0d1a4
+  layout: 72b8480677501734574d2d04c07f42ba1509afdf3a01f56a6f36459baa482e5b
+  markers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  glyphs: 2956a7f953719eb3da1d80cdf44ba32ed25562c09db80c60c5cc2f1cdbc2c9e4
+  links: 4f078ec233c4ec9f95b548eb4d7d0fadaefd20046d48f17ae24753926a5d64e8
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.vocabulary

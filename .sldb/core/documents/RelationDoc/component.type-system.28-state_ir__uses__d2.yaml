@@ -1,0 +1,17 @@
+name: component.type-system.28-state_ir__uses__d2
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.28-state_ir__uses__d2.md
+source_hash: c15b11fd36c2be44ffcb9d173f8de65d93237ba674b76d096a4b6a5d40b7ea3a
+content_hash: a0e1008242ec65c9e7311d1c39345801d77a9cd71fb7241a65b3499503d6e7ed
+field_hashes:
+  title: d1d6b771493fef7f07c48922fe6b7eec435bc0f9426593052380006e49a2aec0
+  source_id: 23e298310017457c61f8824e7565a08de0559e3a74dac8da8e7140ad1c4ec28f
+  target_id: a9d42028b1100e7d1eb76f84ab13684a4c366b64245fa01fb12f993f90960d7f
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 0ff0d870265a015f05b9da917bbe0cf6a9dc0e681e3427b6c7ca8c982ed6c4f0
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

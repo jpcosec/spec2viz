@@ -1,0 +1,22 @@
+name: reflection
+path: sldb/notations/reflection/notation.md
+source_hash: 831d9641da909b54ad9139488f10eb0c020fb1e53eb58632df1234cf240b3a9b
+content_hash: 0f0713bc3066ab58052af1561d5ec5be0461a7a3e32f469ba5427e85d27dcb59
+field_hashes:
+  id: 47d2509da1ef5ef98426b1c5cbd0b777b60194416a3b28e2afa54bb27df128fd
+  title: 0ff68789aeb5439876fbcbb531066dbf1014b96ea6b6d6beab7dbfd533cf7442
+  name: 47d2509da1ef5ef98426b1c5cbd0b777b60194416a3b28e2afa54bb27df128fd
+  diagram_type: 47d2509da1ef5ef98426b1c5cbd0b777b60194416a3b28e2afa54bb27df128fd
+  level: 414cc0c8413da97a052dbc9ac40ef5f9397c6f4b59c43e2f256d49f7c0dd8e0c
+  projection: 5cf7504d9781301d83347546cdabc01a03c9638ab5b36c0a9203911078a0d1a4
+  layout: 903e1bc7bfafa4a5e5195214fd26e449a4f77faeeb942447c1e3b4c47f2520d8
+  markers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  glyphs: 5a4952b1afab112a5ff4ebb8e9406bf32d5e31906ffbde578f70ad4f8d90ba65
+  links: c60925bf32f8917fd355cc1a3a251f35211d302927e6d77d9bdcb5352369e26f
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.vocabulary

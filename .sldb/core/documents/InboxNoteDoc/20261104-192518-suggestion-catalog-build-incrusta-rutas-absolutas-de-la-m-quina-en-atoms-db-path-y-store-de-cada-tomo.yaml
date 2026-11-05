@@ -1,0 +1,18 @@
+name: 20261104-192518-suggestion-catalog-build-incrusta-rutas-absolutas-de-la-m-quina-en-atoms-db-path-y-store-de-cada-tomo
+path: desk/inbox/20261104-192518-suggestion-catalog-build-incrusta-rutas-absolutas-de-la-m-quina-en-atoms-db-path-y-store-de-cada-tomo.md
+source_hash: 0d4d2812a7c91cbfdeb06bd7cc78d95d38fc1a897907d49855587a2a4484ca3e
+content_hash: ba2a2420e94faa52a72e2d78e03eed951d30627ae1ac8a83b85e1e1490f50003
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: 9fcb94253c0a5dcabed8659d52ac550f63be55c059b6396d267b40f248b0c563
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  title: 652288f01b88463cfb8f431f37fb20f60a9ea23b9bac6a725f62dcbec4d7e3b9
+  body: 31f06504cdeec92c9f8eff83ea2b24785f122ac941e9524c0a2ba1c88c4b8e76
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null

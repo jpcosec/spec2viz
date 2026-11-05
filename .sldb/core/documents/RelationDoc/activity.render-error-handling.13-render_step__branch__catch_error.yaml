@@ -1,0 +1,17 @@
+name: activity.render-error-handling.13-render_step__branch__catch_error
+path: docs/architecture/spec2viz/sldb/activity.render-error-handling/edges/activity.render-error-handling.13-render_step__branch__catch_error.md
+source_hash: 4f74b264cc1234108a2a9b8002c1561df8877707920dbbf97787b4fa5a37d632
+content_hash: af7289ff9600927badf9abe30b87a4147acf9e9ed5476dcf77b422eee40f802a
+field_hashes:
+  title: a1b4cfc93b12c1ecc53af4884b768917180a5f6af9bef9dec806be02b8982144
+  source_id: 2be8d08f2c821c51e968f1792d335c8f6625636c777d2dcbabc722c3847237df
+  target_id: aae05b0990dde5ec2edddce1bffb483c1fc86d9b3bd69f5bc48ec321d85a35c8
+  relation_type: fcce49047e714afffc4f1581b5ce472263ed7631521c9c8d5bcded98d3988d6d
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: c0cb4518423d3f2a6cfc20ffc5a4ee8bcaf387211e879c48ac7a15b804acff68
+  attributes: cf01b081e8c143beaad83563489e3d3317bb818c2815c95cd8850a516897c25a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

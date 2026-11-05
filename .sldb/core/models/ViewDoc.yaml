@@ -1,0 +1,19 @@
+name: ViewDoc
+model_ref: spec2viz.sldb_models:ViewDoc
+path: spec2viz/sldb_models.py
+documents_index: .sldb/core/documents/ViewDoc.yaml
+sections_index: ''
+model_hash: 561f9ccf8b2fafb5ba692a48197ab8a9c573e7cdd09b8899014b92a045d94530
+roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+contract_hash: d60f12c8d7803b110f597caa71593044375ac53166f2a0af21d3199b8f2a213a
+documents_count: 0
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.view
+base_models: []

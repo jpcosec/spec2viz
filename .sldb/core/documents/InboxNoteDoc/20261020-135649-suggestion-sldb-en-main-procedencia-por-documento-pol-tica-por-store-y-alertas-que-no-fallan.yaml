@@ -1,0 +1,20 @@
+name: 20261020-135649-suggestion-sldb-en-main-procedencia-por-documento-pol-tica-por-store-y-alertas-que-no-fallan
+path: desk/inbox/20261020-135649-suggestion-sldb-en-main-procedencia-por-documento-pol-tica-por-store-y-alertas-que-no-fallan.md
+source_hash: ee6b9e08eed501ef09f4ab28230a9307d94eea439c9f998821e6ec4f4e2d9eb7
+content_hash: e025f917e4127991a956d19a37b58a480f99f189e35f241140136f2057504d17
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: 151284ae08add27982d7c39f5131e02f21c64d7244dbc800e0c5716fde2b1b7d
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: 2e5f1d71e59b689bb0957775e7ee7ac65bb108b11396beb6b7ba35a123d10b5f
+  title: b43b2262b1b3665d7dd881b6b235d653fcfc2cc3d0e85432854ae27b4271884e
+  body: edbbb319c65a90a2c97d7732b680576dd622ca1c0be48b05d9ddfc62da0e673e
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null

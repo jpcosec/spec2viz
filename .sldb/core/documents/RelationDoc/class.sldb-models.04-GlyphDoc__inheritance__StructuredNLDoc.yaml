@@ -1,0 +1,17 @@
+name: class.sldb-models.04-GlyphDoc__inheritance__StructuredNLDoc
+path: docs/architecture/spec2viz/sldb/class.sldb-models/edges/class.sldb-models.04-GlyphDoc__inheritance__StructuredNLDoc.md
+source_hash: b8a31830c011d79cd9d50b3912df61b347be56b04f95c85a9429c665754f6dcb
+content_hash: 0a8b5b9105cdb7dc68ea1182529fe07f110b1acb3c1df956c5f1ce326091a767
+field_hashes:
+  title: e8b614e14a2787b949b74d4946ea75f266c5e7df5f1f2ce0dd59c9571d3c0a71
+  source_id: 2847a9e83bbcd87ca7e6924e8251381010ed244dca99e0ac1ffe0ffb0319f28f
+  target_id: a802ac4703b7d8e014aeb4a0b1242dd18cfea4fb8d094ff8f22aa318038930ab
+  relation_type: 8116b0011e63872cf2984a9022415b4a56e42e30fe7292ffc68221c36985a829
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

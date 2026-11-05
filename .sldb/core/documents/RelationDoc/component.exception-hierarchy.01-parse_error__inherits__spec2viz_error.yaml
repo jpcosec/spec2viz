@@ -1,0 +1,17 @@
+name: component.exception-hierarchy.01-parse_error__inherits__spec2viz_error
+path: docs/architecture/spec2viz/sldb/component.exception-hierarchy/edges/component.exception-hierarchy.01-parse_error__inherits__spec2viz_error.md
+source_hash: c1076afa4c428de8dce64fd824708d6bd45a6d78254a66ddafeb0b2da5665dc5
+content_hash: e6a3107ad02489a2f81c44fac783ccae33e29897106a19bc0671539c21814385
+field_hashes:
+  title: 09dfc2db302b26ff9dd392bde4b6732c8516ed44034090d2c29bc9a75fb3c518
+  source_id: 5479515678f8b58d6dda80cc6d5071bf22467d3ed93ace45ae054a6de0fa8aa4
+  target_id: bf8934c72ae57f78d93310d94a340f79a99964da30669379646940635892e488
+  relation_type: 9b2108d818fc4e0eb1a24e241e89685e2713b4b82f6c1bac71762b020d21917b
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

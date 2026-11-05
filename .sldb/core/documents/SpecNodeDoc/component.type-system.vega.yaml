@@ -1,0 +1,22 @@
+name: component.type-system.vega
+path: docs/architecture/spec2viz/sldb/component.type-system/nodes/component.type-system.vega.md
+source_hash: 9f7f19e4e5e00f559f7d35e742fa3295e4674111b31f9fece6a1ea60b56c07a0
+content_hash: 1afe24cfcf958a4c9c135941cc110f6ace915fa9fc6130bd51d7acaf05f9def2
+field_hashes:
+  id: 3fbc4deac654db8397972ce71bfed5c7de5504ba2cb15b6459d40d8028c0eb97
+  title: 499fe78d49dc468a3cd0f0612c56492eeee8352022c75085ddb474d70cad9a7e
+  spec: f5888670b574f1fa0b0888069604ede8c8080a63dd52eb47528ecfee3b398eea
+  element: 270306238227ffc72a28439f4e6ae8d27f5f0e1450e12eb98dbbabdac3864ffd
+  kind: 7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c
+  collection: bbef1c19933039e17b86c861eac2bc37e24adee1503595cc2ec8f6afd1ae3adb
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

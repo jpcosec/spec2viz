@@ -1,0 +1,17 @@
+name: component.type-system.32-matrix_ir__uses__antonia
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.32-matrix_ir__uses__antonia.md
+source_hash: 7fdf3441c1e078e5367d1da92e536ffefbe62d9d4271cb87e8b64350b8189617
+content_hash: d85e73ee5302cc71416d0fb5c054b1077d8c588f03d2089f13d4b3d86276a0b9
+field_hashes:
+  title: c40971057402a50115adc328b43f9f365c5c12f6f30225b8a15ac74f4900f95f
+  source_id: 1b3ec75ad372a814ea36020fbef28331756c69ea018c3e1611ae53ec466b7e9d
+  target_id: 8614415eb90401f088ab27ee9913918d36e98c718263b6bd602401021954766e
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 0ff0d870265a015f05b9da917bbe0cf6a9dc0e681e3427b6c7ca8c982ed6c4f0
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

@@ -1,0 +1,17 @@
+name: component.type-system.11-activity_d__uses__activity_ir
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.11-activity_d__uses__activity_ir.md
+source_hash: b94ed3630bd80cce0c22ccfb08f6734ad99777100fee59f92e76507995c8ddb8
+content_hash: 80ff8e981e03279a34b92dc623271ae13bba46381dfa77045d0a2444464c7ab6
+field_hashes:
+  title: 4081bd2822f13a407532eae80b778be6a9a07ef665e57986082b6e9d4510f85c
+  source_id: 6a8ef2a45c8658ec6b4f771ec77dbf566ca3e9fbef601657d8fcb59f08cb1353
+  target_id: 9f50ec9e90aa460c3338b16c6cc27c3f9b1b0e12aff5fd92201b723d284f9e7a
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 66a5fb808c04eff71f298594a0e799aa7fa23402787ae10462853c5d79ecf10a
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

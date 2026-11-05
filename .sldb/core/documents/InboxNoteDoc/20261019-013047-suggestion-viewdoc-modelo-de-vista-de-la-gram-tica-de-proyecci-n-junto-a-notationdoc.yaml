@@ -1,0 +1,19 @@
+name: 20261019-013047-suggestion-viewdoc-modelo-de-vista-de-la-gram-tica-de-proyecci-n-junto-a-notationdoc
+path: desk/inbox/20261019-013047-suggestion-viewdoc-modelo-de-vista-de-la-gram-tica-de-proyecci-n-junto-a-notationdoc.md
+source_hash: 2b0bc38577094176b417de15a7255ecf0213d670c8f4b3c0d12e8b0c344e254d
+content_hash: 91e448734c2f394025127df6dcf09d07e0a85f22deb926b50dfdc7229a5850ef
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: 1d147ab379788e0277ce278d918ca7cf9e0572dffeefc59e10d282ef146bd45c
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: 2bd00da6132683752ca6a043cde087299f617deeecce744a37067aeee91d4122
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: c67abc2d3339e03e884e0de86d803b4b9279ac77d8c98df616df67d1df122e66
+  title: 3bf45687db3f11919519ca8c83ad3f2011f810a2563dff240200041fb22907f9
+  body: 214b56d31f29dd2f602f1fdcfa505bbd585eb9cfd89c31bfeb07210dca59a7dc
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox

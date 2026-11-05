@@ -1,0 +1,22 @@
+name: sequence.render-pipeline.Facade
+path: docs/architecture/spec2viz/sldb/sequence.render-pipeline/nodes/sequence.render-pipeline.Facade.md
+source_hash: 8f98fbc1e84c0fd89c210440761a7d113d1a3e63ea65828a0abd2f63f29d96b6
+content_hash: f5b344ffff68cc7b0a2366acb12198925331b5446b8af4a42e920c14bdc78552
+field_hashes:
+  id: f6d11740bf675a72644ed445bbe21ec84212595131b67eb29e865bf394f14c26
+  title: f4fdd23d0f90c808102f996d4b995c8833e4b75e8bfbe450d58ab6303ef45735
+  spec: 530cbcae6a1453feee9d9c9215acd35b751443af8d5503486214974c2781e19b
+  element: f4fdd23d0f90c808102f996d4b995c8833e4b75e8bfbe450d58ab6303ef45735
+  kind: 7b8d80ff88e64a533dfeadc499bbed22ca57302cc69925a0941b395faa712cc4
+  collection: 45ca9071383537d3da8ce7a14e310575533ddec1bada7201ff76e55e40a05293
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

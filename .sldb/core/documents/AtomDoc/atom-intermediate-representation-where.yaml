@@ -1,0 +1,18 @@
+name: atom-intermediate-representation-where
+path: desk/atoms/atom-intermediate-representation-where.md
+source_hash: a35212a13467f802ca546f1536e4bda9048b7687e98028bb1e651536770543cc
+content_hash: 81920d05cb1f17da109a0a6b4d8d4fb51ffc65ba50b27f5d6ee0d888f48bab59
+field_hashes:
+  id: 660acdd650cf9fa57d63e8f6965895feb3af24b3a2b52c13b475eaad60c7e720
+  title: ab883d04e8a339b2922a5828ab73fb70301443f1613254ad11a5543c831ac82a
+  five_wh_one_plus: 43f94244d00ce4813a89d3c0d15e1842fe2cfd95ce9fe3b063dda9e7983e0063
+  answer: 2050778483f7f4ed7d16ac19da663aaca2e40c82ed35f01a1cc691d37dbc8b60
+  tags: a4921af91b6f91fb11f6f1131ee0bf1147c9b4e1ed8df732d84f2d93d8f76cca
+  provenance: f33489a1c74d42afdf4fdc6b849ce8ea3e23b4e9b09c6796baa2ed8bdaccb800
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:ir
+- type.knowledge.atom
+- workspace.desk.atoms

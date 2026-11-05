@@ -1,0 +1,17 @@
+name: matrix.pipeline-coverage.07-cli__occupies__sync__notation
+path: docs/architecture/spec2viz/sldb/matrix.pipeline-coverage/edges/matrix.pipeline-coverage.07-cli__occupies__sync__notation.md
+source_hash: 185e521821ad54d1e50686b26e403b590bf3292cff57573ca1db7caa7b9fb565
+content_hash: cb2cb4b60ffed3365ebfbb48988182bee14bccfdf26cb438c6b2853ddde5da08
+field_hashes:
+  title: 3ed39d8ad74256c2d22703eafb15cf23d3f2d8121f8e4aeecc59cc7a872a505e
+  source_id: b07c68f28721b9d2f2fdb11f434bf38a5e08aaf27329181cd96f790d3a2e738c
+  target_id: c4cc69d870e4c8502e6bf19635c53a7a2f3df80c49c72179b07fa319f32e29bb
+  relation_type: 741f7a808b5f6ff650309a02c6b20f52ec05d7a19e8d09e9d47d1613f8fbc2ab
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 5cfa1a73f845669922af31371796703a709a5489a6db9091aaf64d8d905aedde
+  attributes: 9217b7ea76f5301ac341d5a9aa0c0cb22f8fe2343889e46ca3a0de0d106344d1
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

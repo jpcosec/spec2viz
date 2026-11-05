@@ -1,0 +1,22 @@
+name: matrix.pipeline-coverage.validator
+path: docs/architecture/spec2viz/sldb/matrix.pipeline-coverage/nodes/matrix.pipeline-coverage.validator.md
+source_hash: 56d5d6e03e7a7aadb478294c5f29dc6a34ff20bef8b32aa397c3fc377bc6ab2d
+content_hash: 2268b4bf9f82a559d1624813c24edff6163b4f7abe3c8ebf0c6e2c727ae352dd
+field_hashes:
+  id: 5b0639974297d02ddbd2c1e48dcbb4b603f435c7e66b186201e174287c065dd9
+  title: 114aabbb5d6d78eefc9b6498274debaa65b73f405b6a661399d6bf48c021294f
+  spec: a4af0c98ce3b89e90030427a63ba39f45c3a474eb55a6d1481fe2e485cebd668
+  element: 20289643ccdcea46bfd5234732c7eb8ba0f3c3f54ae1669e914f58aae91e1779
+  kind: ae6e9157995bdbcae79f0221fc05ca3df41dadbabd1d489c5aaee1a944a9c16d
+  collection: ef43d33b54cc0b428726d29e7b6526d3a1db8a8c5d52157ddd522a4ca5dd67de
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 493ec70c22710ccba4d4330ec7c426b9c3b35306c1b907d42867c2910bd34fd1
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

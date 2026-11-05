@@ -1,0 +1,17 @@
+name: component.type-system.25-activity_ir__uses__mermaid
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.25-activity_ir__uses__mermaid.md
+source_hash: 62d7abd1072bb48a9ac07773ed2c95751e3efdb9a0fb5f576fc2580554f0cbe9
+content_hash: 91a8aa6269ff5d540ca653098b5c09f9bcc03fb868b07acb2fd9c4bdcb982faa
+field_hashes:
+  title: fc13044d5dd75c39f01adb366a831a7813476a1cd4cfa26450cbfd02eac91adf
+  source_id: 9f50ec9e90aa460c3338b16c6cc27c3f9b1b0e12aff5fd92201b723d284f9e7a
+  target_id: ee1193db8b9c532edca2e02e7661cdfac34e594b6620f7f5e57ddbb1dfe99a30
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 0ff0d870265a015f05b9da917bbe0cf6a9dc0e681e3427b6c7ca8c982ed6c4f0
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

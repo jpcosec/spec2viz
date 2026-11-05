@@ -1,0 +1,18 @@
+name: atom-pydantic-models-how
+path: desk/atoms/atom-pydantic-models-how.md
+source_hash: 2e9512f3d4f4ef703e94b3865b54e1457e385340e45da94e07f2b5e01231f2c3
+content_hash: af27d8ee8029c2b47c80fbad3c0f62a6984189cb9d1a7842f640ab1cb0e2554c
+field_hashes:
+  id: 8f8f7ed12538a2a56ff134f83dc7be3f8d4d61410fa08386690fa676c7a05349
+  title: d60c00ff65f181f4519c8d9d9e76f96a9254171519957b80870db25d5b6deab0
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: 6ee1b86ea6c427eede283e8dd5f0879de4d63bfd62bf5c113c54480520de2bdc
+  tags: e0c12ade23811bdb4a204cfb030949a46bf657668a04c99e94a12e766f4a2632
+  provenance: c8d6b956e0ac7c6b9fa84b57857d61ad75e9f151aa2cbd5a7e3ab2708dba23c5
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:models
+- type.knowledge.atom
+- workspace.desk.atoms

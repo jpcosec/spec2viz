@@ -1,0 +1,18 @@
+name: atom-pydantic-models-for_whom
+path: desk/atoms/atom-pydantic-models-for_whom.md
+source_hash: 3844d0ca4ec2d9a3a1f0d5d8084ffe97d96a728b629604e043c82a54941f87e2
+content_hash: 95e745661f4da0480729c9dcb6bba2ac67ab9a375c0231f4c23f9a09ce3fe0b4
+field_hashes:
+  id: 73c69776ce669eeca6bba75ba6cc0b3109f9fc89b7ea967717e2ba2107ab44f7
+  title: d60c00ff65f181f4519c8d9d9e76f96a9254171519957b80870db25d5b6deab0
+  five_wh_one_plus: 8305e718bedf31054e243769182ea271c5448239cf1d4479bcbbc3dc97307915
+  answer: 6e539e6cf112730a95ec321bafb6eef80813b3cb5a096456b1f51ac23105c7c4
+  tags: e0c12ade23811bdb4a204cfb030949a46bf657668a04c99e94a12e766f4a2632
+  provenance: c8d6b956e0ac7c6b9fa84b57857d61ad75e9f151aa2cbd5a7e3ab2708dba23c5
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:models
+- type.knowledge.atom
+- workspace.desk.atoms

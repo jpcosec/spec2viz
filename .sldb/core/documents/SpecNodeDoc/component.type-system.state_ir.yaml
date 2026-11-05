@@ -1,0 +1,22 @@
+name: component.type-system.state_ir
+path: docs/architecture/spec2viz/sldb/component.type-system/nodes/component.type-system.state_ir.md
+source_hash: 176edceb1a005b277a0cfc10f76e1ffe3c66bf860420711ecee2c8d7e0bf8e4d
+content_hash: f6df9041c841bae31e721f997559676b4f1cce8de102e8420df422decbc67535
+field_hashes:
+  id: 300b8db8d2fbed4c4907d9e91c4583aa8fc43de577a18dfd0c613ee8aab587dd
+  title: 8bee41fa74e0fc457d2a75f84fbbc0ceedd78df0e95d80a29cb377d4010263b2
+  spec: f5888670b574f1fa0b0888069604ede8c8080a63dd52eb47528ecfee3b398eea
+  element: f323d3f0a05af3342e541b74b43ef597d937b261a8a9cb07d1cc7a1e02ca1b8d
+  kind: ae6e9157995bdbcae79f0221fc05ca3df41dadbabd1d489c5aaee1a944a9c16d
+  collection: bbef1c19933039e17b86c861eac2bc37e24adee1503595cc2ec8f6afd1ae3adb
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

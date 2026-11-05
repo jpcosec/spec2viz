@@ -1,0 +1,17 @@
+name: class.sldb-models.03-NotationDoc__inheritance__StructuredNLDoc
+path: docs/architecture/spec2viz/sldb/class.sldb-models/edges/class.sldb-models.03-NotationDoc__inheritance__StructuredNLDoc.md
+source_hash: 7117aeefbad8ebf2a287c9a75082f6b11cea57261ead74751326493fed5e283e
+content_hash: b159aa68c9f3947c875fae2ab2405203df40094f769377309d6377b2743c3217
+field_hashes:
+  title: 2f26332ff0cf3c4e8298a30a7ee57257674f0281ab7579bffbef81fd0d1f127f
+  source_id: 76719b581cc02da9a85c4223255984ac1d42e8080d30d608b8212d15d59bd5fe
+  target_id: a802ac4703b7d8e014aeb4a0b1242dd18cfea4fb8d094ff8f22aa318038930ab
+  relation_type: 8116b0011e63872cf2984a9022415b4a56e42e30fe7292ffc68221c36985a829
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

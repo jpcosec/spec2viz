@@ -1,0 +1,27 @@
+name: component-view-matrix.contains
+path: sldb/notations/component-view-matrix/links/contains.md
+source_hash: 641a8d14ed228a69c3846caef87178eb8573ffcadd46aba0a3c39c925b714b2f
+content_hash: bbeca275c241b61208902a22d86ff25794dd28ac832f2afbd197054e189717cd
+field_hashes:
+  id: 7ee22a44b2feb21c188f1bf8e83a360c12dd6bd0787fd3d14f783e7f3aefca51
+  title: 1f6ceaa0060a8c89cbfcd26188d474eb75c11dc7c780678f6c94206c197cdf8a
+  notation: 478c51f9ff13040afa17e9ebbc62212b0272c1128ff71023cbb996312e15f357
+  relation: dde0e3dc0ad9a0daf42c9d0ab5a9a1c466093b12ccae1ca4c613754a34526930
+  relation_type: f588ab1557bc90b2f6bff8b51382a2d4660d81ce6b8ee05ef75d531a40665f5b
+  model: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  draw: 6d6650b1c3b63ffa530be94cad935ca73ccecb2df3829a421157aa7a1fec9e69
+  line: c6f6be19cbb7ad2c353e1a0ef280c2fe1fe43630ee7e2d9bf9f3295657dd8ac0
+  source_end: 30a0924a3360be687d1df9fcbbfdff62c01bc0fd14036ab9076cf7f451568666
+  target_end: cc16e62bbbe3259830a3b5dfca9eb39ce1b5e25eb8dcc096d27a36d2f48067bb
+  label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  source_label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  target_label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  ends: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  form: c30eefb8087c8be660b25b1954060357f577d4adb990a734fd5354aa671d4367
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.link

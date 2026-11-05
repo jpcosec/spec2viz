@@ -1,0 +1,20 @@
+name: atom-deskops-bridge-how
+path: desk/atoms/atom-deskops-bridge-how.md
+source_hash: 4411f4785939f344d664d83108a38dc5974f1433f2d13b8e27e13738b2148101
+content_hash: 8ceebe1c4d0248e6ad6c0aa254b96bfb0b5582ac92c83f796c074ccd8cc92c23
+field_hashes:
+  id: f1467eaa76508ed1a9a787c9bf94534bd434cdc6e2c1e1e0558b7c71b509fe1c
+  title: cda90cc6e8f78e62116859fff32e4fcce66cbb82746381fa8418f0b25723f45e
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: b04f060d69a9d4235f81beefa1c4c6caf723ea954410f24f0ccda8ad4d4fc039
+  tags: a648f505e512a590bdcc531393106cc8b3e41e9ca21e2517d015af2e8d0a8ca5
+  provenance: 37bb78f88d2a6893e814e58d0b489a1ab9ee0fe5e2eac2f72917ec13dedc1a45
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:architecture
+- topic:deskops
+- topic:integration
+- type.knowledge.atom
+- workspace.desk.atoms

@@ -1,0 +1,24 @@
+name: uml-sequence.participant
+path: sldb/notations/uml-sequence/glyphs/participant.md
+source_hash: 0f5eed75478e0087da3345773395444538565c745a69279d57c0d58c1ff21787
+content_hash: 65b126dc7cb68f2d9c299ff5f0ee6978b3a4f758791f89f8df79617c615bed54
+field_hashes:
+  id: 397f426d9db22e28ad143eccf1bebe4dd4e12f9cf0cc2a72e61a15cf785edc12
+  title: d7368100169415371a2651c5b40c5c7f11da589ca81f685c00df102e1c30a66f
+  notation: 5e5925352014f06c312d2848538cc8f2fefdd24db8a10ab29fd1ac728d7f0e86
+  model: 1e5ce4d31ba8f3d06a3988d0cfb68162a27c153d9ffdf14d705450f4491c4733
+  where: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  shape: 65abcaee2f723f3d377465a9ff5429f72a79d293647e06167c7cc86f83d68229
+  label: 8af1f905cae240380a410538a24d6887b0bf377b0a109ce3cdb19a811a44c2dc
+  label_style: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  keyword: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  compartments: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  function: 9f15d9c8b6c78409704479666d7c75ca5db73eb2c5ff93fe54bc1f897576d267
+  form: 1123c61313edd6d1339c2ab2c0229209dc78be4a021eb9876524c6c342ca51a7
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.glyph

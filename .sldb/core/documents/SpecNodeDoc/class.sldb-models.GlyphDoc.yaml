@@ -1,0 +1,22 @@
+name: class.sldb-models.GlyphDoc
+path: docs/architecture/spec2viz/sldb/class.sldb-models/nodes/class.sldb-models.GlyphDoc.md
+source_hash: 15c830b627561870f149f9ace8b94b7684de1c02c2cfa71626726f706ba89a25
+content_hash: ae7898cc54f1886deeec815b326fb6e6e666031fe4c70c75eb557af1f224b1d2
+field_hashes:
+  id: 53c192db0d1cbb5496163d9ea514b5553814ac6ae504301631cf105100ca59c3
+  title: e28facfa5995e37ace6f9a1602b533d4ae048c09db7034c5a40547e934ef0f0d
+  spec: 67845e86c5cfa50b2c2cfa1ab7062590aad9c560c3a36310ea7e293fc08b3f28
+  element: e28facfa5995e37ace6f9a1602b533d4ae048c09db7034c5a40547e934ef0f0d
+  kind: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  collection: 2d573555365403bc103fa97ba432ce6c8891e0db87227c72e354460edd3fe729
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: d02b244aa8634d1c2e26452bfbc49c447d1126d0ebe6f80ab37dc05008ec0b16
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

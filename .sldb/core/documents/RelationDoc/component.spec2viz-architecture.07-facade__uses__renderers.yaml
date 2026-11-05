@@ -1,0 +1,17 @@
+name: component.spec2viz-architecture.07-facade__uses__renderers
+path: docs/architecture/spec2viz/sldb/component.spec2viz-architecture/edges/component.spec2viz-architecture.07-facade__uses__renderers.md
+source_hash: 151b366fee08ccb47ab05b3dcd2c0a4717b88a9599b602a0be6ffadeab968fc2
+content_hash: 1dbac2ef1b519d8986b6d922000c0da849a178367d0f02b0fa7679c06a6e577e
+field_hashes:
+  title: 418188a5e1a6ef7f5946400f6370cd86a448849c3a44a310318d25416f257e09
+  source_id: 6d5964e92f2056b32ab3cd333db511bc36b5b849cbc3e3ad7a4c5e200fefbf0c
+  target_id: 0eb93b9b192263ab5ccdc044bfb1ec9d5e2ebf445d17270ee8b49349368d5eb9
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: a924a4c9a12fa09e259d17ae51350097e5c85fdf27f86d8ac46cb0b009dcf49a
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

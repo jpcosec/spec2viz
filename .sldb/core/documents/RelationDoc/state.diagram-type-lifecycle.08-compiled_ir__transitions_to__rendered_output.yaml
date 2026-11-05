@@ -1,0 +1,17 @@
+name: state.diagram-type-lifecycle.08-compiled_ir__transitions_to__rendered_output
+path: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/edges/state.diagram-type-lifecycle.08-compiled_ir__transitions_to__rendered_output.md
+source_hash: 00ef4d8222f40bbc9f91a7c599c091079f53414791e1bbc2651a7151d3f1cfc2
+content_hash: a6f2c090bea4381302613b4904da5fbc6933fdb2d35c36578c456d3d1221f20a
+field_hashes:
+  title: f4d5d1257b6d7ecd6a8696e51503ca23d9ee3574067c673f60994a3fdb27f01a
+  source_id: f03677a398c6d868cd865dafb2e7183bc09fadf8b0b223248003973853258aec
+  target_id: c6121add638bee2e61f7b18a427401d35d1292950cc3cf4a9b9e35199a92ba50
+  relation_type: 28bd9b3da8f636e17ce2ec3811abebeff4a370a7f2cfb9e2080617063a2c0e87
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 589d7b71908d2b9ee627c1f58d22f91e827f7487e619e27ec576705dd86a48b0
+  attributes: 10b9e6806a700ba1453abcaff4bfe904ad2c7a0d9acbab67130f2752f5f43441
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

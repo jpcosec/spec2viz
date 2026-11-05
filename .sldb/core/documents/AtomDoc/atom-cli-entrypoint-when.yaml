@@ -1,0 +1,18 @@
+name: atom-cli-entrypoint-when
+path: desk/atoms/atom-cli-entrypoint-when.md
+source_hash: b4cdaaa4a3579598417cde6ebb908bbc7f10f087b06a1521e8af83b901e06fdd
+content_hash: 118867d998eb1ae2e5f470cfc809fbd112ae1bcfaae972d523f0128d93289abb
+field_hashes:
+  id: 130daaf0015668eec303abe6a77805af4a9f69f4b6ab467c0aadd303b60573e3
+  title: d26dbfd866e886eb7bdbd8705a91c94b71ca82f1021c3e63c6642cba5a851da0
+  five_wh_one_plus: 6d924791a1798656302bd4b9716a494a0c5f7f55ad9ceebf629dfb2317e86078
+  answer: 6b3709bac84c429c9eda4173d42937947462c1fefb468483835c6b36a0fa1c59
+  tags: 173184373a305ecbcf0e04184fb5c78aad97d524419d008b918b4fc1dc2b0cb6
+  provenance: cd0129a0a8f80f2aed5a230f4372e80615ed254f63d6f6828c8644fd75efbba4
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:cli
+- type.knowledge.atom
+- workspace.desk.atoms

@@ -1,0 +1,18 @@
+name: atom-deskops-bridge-what
+path: desk/atoms/atom-deskops-bridge-what.md
+source_hash: d66132249317854a132d74c4f08eef0bbecfc078592d63c04930b47b6060bf4c
+content_hash: 2609a962568b2a93db7b8547963b3a663589111c6cb682e7823251640f7c5558
+field_hashes:
+  id: 3f0f6294b016d32089c75140a50ca68021c3928aabb8de86fc2cf9cb2e389374
+  title: a673f00619a643767fd3dc4b06f7e68d4792821989e9fad9f029613fede35796
+  five_wh_one_plus: 0ac5b48a10a651e75b01f8d26468c18977ea336c90a9607a6163d0d330a4bb40
+  answer: fbd882af0a44482a90dcb562150fc20b465b106ed7b6f787814e8ba7df0c07bc
+  tags: edc4db39acf7c9a29d745a653027dd1837219a2fa1d4a7f8578af1e48d37a14a
+  provenance: 37bb78f88d2a6893e814e58d0b489a1ab9ee0fe5e2eac2f72917ec13dedc1a45
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:deskops
+- type.knowledge.atom
+- workspace.desk.atoms

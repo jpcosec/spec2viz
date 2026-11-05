@@ -1,0 +1,17 @@
+name: class.sldb-models.06-SpecDoc__aggregation__SpecNodeDoc
+path: docs/architecture/spec2viz/sldb/class.sldb-models/edges/class.sldb-models.06-SpecDoc__aggregation__SpecNodeDoc.md
+source_hash: aca91c0e49e2732a5baad2b44d5b620113407291ca18dacf86750c1aeb5d9006
+content_hash: eebab43da4a928ac640a585d9618f21eb186534c6b564e7ff21590a5cc18b9b2
+field_hashes:
+  title: 584254574b20b35c164c45c9015560199612e7f067b85e4cbe118c094d1cb028
+  source_id: e9a88e949dad60d73e4304bf517d0ea64d56a3ac62fa642deddb54df233b18ac
+  target_id: b810eb5cc1542db986713a90d18b542c70094b0b94cf4e848e6525703a0eb28b
+  relation_type: 8251f1fdd3752ed0183abc050d652216e768b88baf749c77d64e5b4fdfe815cf
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: bbef1c19933039e17b86c861eac2bc37e24adee1503595cc2ec8f6afd1ae3adb
+  attributes: 659743a2b232930d0e7ee652bdf98d3cf592838635c92139d9d145436afe09d3
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

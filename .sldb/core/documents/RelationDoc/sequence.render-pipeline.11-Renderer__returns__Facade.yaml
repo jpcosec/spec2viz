@@ -1,0 +1,17 @@
+name: sequence.render-pipeline.11-Renderer__returns__Facade
+path: docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.11-Renderer__returns__Facade.md
+source_hash: 9c70a3c18e5cd3521fb39c1ac22ea75df04ef5b6cecc5c5ca006ea9ab03c66a6
+content_hash: 1ec7f1dd811eca113bb0ecb4210926cb85399795e3b2cbe763e941e8f93bc8e8
+field_hashes:
+  title: ce55a9623729d325c3d57b1a13cf7f855af6f1cae39a579ecc055d384cd48c10
+  source_id: 5e01c9515f1fc3f2ad69622cbbed5c6ed9b975a5b482473df9b67c3e4eb859bf
+  target_id: 2f4fb1fa9ec8ac5a7aac42052aa68fde7fa3a22298626d9e619c64bb808e8bb8
+  relation_type: e1ffc2efea1148b515582ce4547f5fdfacaf60f4b6acbaa4a3b9cb223d9d79d3
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: f7d99e2c9d56aa8fd446e043b497d2c09d63a77058e5817402b4768929deaf56
+  attributes: b6dbb8619dcb48fd398191dc68195f3f9b7b1c4c303ca5e76d59160e01f73b6e
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

@@ -1,0 +1,27 @@
+name: uml-class.dependency
+path: sldb/notations/uml-class/links/dependency.md
+source_hash: 5a2593ac785b60d5125d23e03cae2cf9cd15294912d33be148f472436ea743d1
+content_hash: 2696a17d391058f4929a19c53376bc69d600a8324b2a8950e4d904218be3a8d2
+field_hashes:
+  id: 96e2b28e855a941a7a14e9bbe5f202d4c23184d8c3e64f0766ff07dd6d68e778
+  title: 837efe3b6e1190f4c81f6c8aca633d2691a293804353847cf1b70cd7e4af7d8d
+  notation: 0e9a6923f1eb1d721932ada3db53e95c916966fb6db1fcb19eebc540bd1a7156
+  relation: 30d2d4d0a5e709cc7ffb1a7eb17b21b07a4fd835ee9abc7fffe1fd45f58c46d9
+  relation_type: 1159a6ad828d05f0e9e33fc53588e6616ab40e0eaaf8bdad37d1401022c2e9dc
+  model: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  draw: 42d2b70866ba77b84620696f6c6cb2814379e3e65f3027c8ec4692eaf7dad0be
+  line: 93dceb1f727787993057f20f132f2f2b542dfa384034337be62f10ca1a15a1c6
+  source_end: 30a0924a3360be687d1df9fcbbfdff62c01bc0fd14036ab9076cf7f451568666
+  target_end: cc16e62bbbe3259830a3b5dfca9eb39ce1b5e25eb8dcc096d27a36d2f48067bb
+  label: af00ab4f8cd60e1e60d062d58fc643487403d04c9946653698d15f73c4507835
+  source_label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  target_label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  ends: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  form: 63ff999b86113f54703b9c507fad27d4e60692b9797516be69a394d365b6d2df
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.link

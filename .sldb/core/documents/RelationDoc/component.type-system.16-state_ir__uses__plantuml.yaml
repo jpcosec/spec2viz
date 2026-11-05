@@ -1,0 +1,17 @@
+name: component.type-system.16-state_ir__uses__plantuml
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.16-state_ir__uses__plantuml.md
+source_hash: 09650f37335843e6a8fb103d208898be6d7320fc067357ac023b004db48a4beb
+content_hash: 1ddc3185d8205eb35b6709acc3b09e43bc167cc6de85f5db3e4214ebc5b51449
+field_hashes:
+  title: 62145415a2b02313d79be4823172c160d2f4ed35b4abc8f595540498c76d8bd6
+  source_id: 23e298310017457c61f8824e7565a08de0559e3a74dac8da8e7140ad1c4ec28f
+  target_id: 7af9c1b5cf22a5de10981ddf49f20a7e10274010930a7ee2be89bdbede06c286
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 1080a60800d9e5bddc69f51489c636a776bacaadb5368f46db4aa0947c67e3ba
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

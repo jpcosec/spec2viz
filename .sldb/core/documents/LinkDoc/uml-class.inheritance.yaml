@@ -1,0 +1,27 @@
+name: uml-class.inheritance
+path: sldb/notations/uml-class/links/inheritance.md
+source_hash: 4fab854aa598f728a2e85da8921da6ff1bf3d1f803006d58052ec2c9c9f67bfb
+content_hash: b1e762fbc7a88523e667c4c6a26a73fd0a8e9af0b05872506de862fe7b9c6b60
+field_hashes:
+  id: 638214da2778c0a29c03f05538edd2fc920319adde454b3cc293a41102271fcc
+  title: 2b90afec05ffa278575da1d405b2f8d716a5fa4c631e67f2bd235c3d0065f6a7
+  notation: 0e9a6923f1eb1d721932ada3db53e95c916966fb6db1fcb19eebc540bd1a7156
+  relation: 8116b0011e63872cf2984a9022415b4a56e42e30fe7292ffc68221c36985a829
+  relation_type: 138af010d861641affac32beb5d170f9bc25a1a49c1d630d0cecbde66d73eb7c
+  model: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  draw: 42d2b70866ba77b84620696f6c6cb2814379e3e65f3027c8ec4692eaf7dad0be
+  line: c6f6be19cbb7ad2c353e1a0ef280c2fe1fe43630ee7e2d9bf9f3295657dd8ac0
+  source_end: 30a0924a3360be687d1df9fcbbfdff62c01bc0fd14036ab9076cf7f451568666
+  target_end: d247abad05ec6ba3c3fa6e62532535a48789f5955bea72314f3887782740b945
+  label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  source_label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  target_label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  ends: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  form: ab629fe97409072fd0cbee03d10b396f24411ad8a36ba3c02b1359ceecb6c60d
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.link

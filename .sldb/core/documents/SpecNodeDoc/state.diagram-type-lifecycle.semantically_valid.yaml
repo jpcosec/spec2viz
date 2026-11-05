@@ -1,0 +1,22 @@
+name: state.diagram-type-lifecycle.semantically_valid
+path: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/nodes/state.diagram-type-lifecycle.semantically_valid.md
+source_hash: e240837256c7004205d844e5743b9dff71329c281810a910f56478457ab7b80e
+content_hash: f406e59ee886db0fa5264ce36e47f18ab1cf081ef9175e782ed1c6acd3e33bed
+field_hashes:
+  id: 8f1537bbb6beb66d353e4b0ba5e3cd1aba4ecd318b348a46d34e73444c5f94b5
+  title: b32a60cd2fd631ca6fc537264309a1ed77b99d90132fe69c6e77b1a2e43b0af0
+  spec: 20db0eb9513490993080c0fe4e6a379b38529853f70ca61f9d39b01bb5218c33
+  element: ea7558b6b80f231764cfa4220ed664f29d5736a7fd17f6aec5529c6bad276743
+  kind: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  collection: 3c72197b735c852d335d78eb4676a275033753b992a2385625f87c9a21f77084
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

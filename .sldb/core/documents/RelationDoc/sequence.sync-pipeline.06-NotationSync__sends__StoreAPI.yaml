@@ -1,0 +1,17 @@
+name: sequence.sync-pipeline.06-NotationSync__sends__StoreAPI
+path: docs/architecture/spec2viz/sldb/sequence.sync-pipeline/edges/sequence.sync-pipeline.06-NotationSync__sends__StoreAPI.md
+source_hash: b31a0779a21c3ee933ce9ccfd4bd8bfe93f08d4d8ab7b8b57533862aa642cd1c
+content_hash: 99d3f22d9be738e0fd9deeba2b65ba06143d26549ee47b41ed928d4ba703f110
+field_hashes:
+  title: 5a306c96add60783671b66fac900dc8da8b09b9a37bf099d59fb113d543ff8e1
+  source_id: 84f3998c0e5215d3f80abc3c024761d290d994043bd71723fd61c877791bdb94
+  target_id: de3eea9b29713b49e193d7ce08142f4a3bef1389320404b653051bcaa3d397fe
+  relation_type: 514aa25f2df0d5491f40614a98bcd4d548a8d84866347177c7b8cd504db60452
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 2881cdf03a6622252b12de3de97ae71b24544d7b86f6b0c71ba462d99f278a5e
+  attributes: 51b4a20cb7468a6a3457a275628e09f33d91b488df4277813f7fc6affb42a48b
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

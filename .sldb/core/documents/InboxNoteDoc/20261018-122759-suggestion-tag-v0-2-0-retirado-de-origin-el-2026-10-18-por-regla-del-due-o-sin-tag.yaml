@@ -1,0 +1,19 @@
+name: 20261018-122759-suggestion-tag-v0-2-0-retirado-de-origin-el-2026-10-18-por-regla-del-due-o-sin-tag
+path: desk/inbox/20261018-122759-suggestion-tag-v0-2-0-retirado-de-origin-el-2026-10-18-por-regla-del-due-o-sin-tag.md
+source_hash: eb99917ebedb124e8f0b93bfaf9b9ad7680dfd7706f55112f623f4d359d8536a
+content_hash: 34616af886bf123c946b5aebaf0fb0a01973ccb8e997f8a073d28584143300e0
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: d8480d389ea9fe06825b1541bb600309265f2fe6d99cc90919514bec3f53cc9f
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: 2e444b9d65319d910b8bdb3daa2b241fcc61cb91318f89eda6226e0fb4cacc97
+  title: db3eb33c768750206ece2eb3ffe6fbeb3db851e5941d339e5f0592311b6316d1
+  body: 2f6b66d03012aa3530b9e4c9d9866d686c824c5073dfb508674cadf5fb9124d7
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox

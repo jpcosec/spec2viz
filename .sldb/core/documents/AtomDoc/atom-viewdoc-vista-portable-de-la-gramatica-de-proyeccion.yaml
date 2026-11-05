@@ -1,0 +1,18 @@
+name: atom-viewdoc-vista-portable-de-la-gramatica-de-proyeccion
+path: desk/atoms/atom-viewdoc-vista-portable-de-la-gramatica-de-proyeccion.md
+source_hash: b385c796c79dbbb96b0cfadb1905896925b7b88a5ba835dd15e330bccf4831ff
+content_hash: b185e694de53b526ca104848b653a424353140f16b102025492ce24e5da384a6
+field_hashes:
+  id: 6ac004fd8e233d95bdc4c3da60c4a0c5c359a7b57b382776ee30e200508190ba
+  title: 2a5042d15f400591714431eea525b16d7d9e035e8bdea1ee31f9d94d14f4fed7
+  five_wh_one_plus: 0ac5b48a10a651e75b01f8d26468c18977ea336c90a9607a6163d0d330a4bb40
+  answer: 89390913e28ba2f3c93fbbb58abf48a9b0bd8131b3e50621424c4dd6f1bc1b9e
+  tags: e44c3755ead39cbcc714f94a118d7763466b28cf8ae5d441267852ae5dbcb1f2
+  provenance: 38fd4bb07f9e4d1dfbb467c0393b7f3b40951e40d2add2035529a681b7bf0163
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:notation
+- type.knowledge.atom
+- workspace.desk.atoms

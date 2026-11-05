@@ -1,0 +1,18 @@
+name: atom-vocabulario-visual-declarativo-como-se-resuelve-una-vista
+path: desk/atoms/atom-vocabulario-visual-declarativo-como-se-resuelve-una-vista.md
+source_hash: e3a0e5fe6cb8bfacc2c556acb8cbaf52f3df80edf9779330f54f42441b57e700
+content_hash: ff939355d5145effba0a1bb3050013e7b3cab49eb55708da9f8378bf9c6f3a71
+field_hashes:
+  id: 7bce5f32ef31a8786f461f7fc8f1200cd2eab4596e73b6700890e8241c241644
+  title: f76a12b207b67a8c3ac332b0a97ecab8f6d789aa311a6e14e601189782739a23
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: ea340a78773a47794849cfb485fd1352ba931e5c0aea38c1031ba11bd2a65e8a
+  tags: e44c3755ead39cbcc714f94a118d7763466b28cf8ae5d441267852ae5dbcb1f2
+  provenance: ddefa5b689e933a8f6824a1c2962274c87f8e0e2012a785cfa9b127ab525b29a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:notation
+- type.knowledge.atom
+- workspace.desk.atoms

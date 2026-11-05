@@ -1,0 +1,17 @@
+name: state.diagram-sync-lifecycle.01-idle__transitions_to__validating
+path: docs/architecture/spec2viz/sldb/state.diagram-sync-lifecycle/edges/state.diagram-sync-lifecycle.01-idle__transitions_to__validating.md
+source_hash: 0bfc423e6728b3dee0336dc3292ef722946d5eef201a2c5f1f197c2717c80afe
+content_hash: 8fc7eaeed24e46c6bb414e8817801e1eacc41a072f56a36afe0c789727b0a9bd
+field_hashes:
+  title: 991ecb0104b10a332a728c2056283e48177e7804c74227c610bee582bede73a8
+  source_id: 9b421a0b6a753770767ee96a60c69dee27cb0f1ad033ada6d00e75d8f531d4b5
+  target_id: 57cf0f66a968f4c760e4f93289bce02858bd1b715386947c6b466c38db3d6ab7
+  relation_type: 28bd9b3da8f636e17ce2ec3811abebeff4a370a7f2cfb9e2080617063a2c0e87
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: ca48b93770eb965390a0e57a5567a03fb8c009774473ea14e06bd6fa0af5b876
+  attributes: 4da29d00a807d067e2b0fff55d44a6c7932b00a7364124af592ff22134ac0f44
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

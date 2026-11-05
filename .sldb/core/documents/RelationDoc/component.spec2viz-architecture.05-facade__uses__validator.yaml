@@ -1,0 +1,17 @@
+name: component.spec2viz-architecture.05-facade__uses__validator
+path: docs/architecture/spec2viz/sldb/component.spec2viz-architecture/edges/component.spec2viz-architecture.05-facade__uses__validator.md
+source_hash: 6d4e75061883d7575ff235265e3430ba98aa0ec38a34e662592f1c707afe3a4a
+content_hash: 5065c46bd385a111f22d20fb4d371dcd7d616fd74a4694a9def06fc6de8ac8eb
+field_hashes:
+  title: ebf5e2d3f5970fde019ec97550623e03fb16f3c38bdbcdc020da37fe3af22371
+  source_id: 6d5964e92f2056b32ab3cd333db511bc36b5b849cbc3e3ad7a4c5e200fefbf0c
+  target_id: 5fd8ae7a4e09be8d9ef7a3ab95a0228d01c468bb2839bdec7ea4d481eaa5dcde
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 1756cce97003ce6451c020037c76725df0d957d84368f5a1ac24a816d7d4d8e0
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

@@ -1,0 +1,18 @@
+name: atom-cli-entrypoint-where
+path: desk/atoms/atom-cli-entrypoint-where.md
+source_hash: 0c2d4101d165ffb8f79af7bd9bb55683e27f3363ba65feaa93980aafbb91ea79
+content_hash: 754b8c95becf681821f6b808146b7bd68b7970415fa644c3586d7a8653f3c1eb
+field_hashes:
+  id: 34fabecb77bd510b1d4849a5e23bf7ef41b6d58182c869669138a704517003fb
+  title: d26dbfd866e886eb7bdbd8705a91c94b71ca82f1021c3e63c6642cba5a851da0
+  five_wh_one_plus: 43f94244d00ce4813a89d3c0d15e1842fe2cfd95ce9fe3b063dda9e7983e0063
+  answer: 691133df8cdb6930cf4b5b0557b9f87a8062de278324f0cefe385820c244cf9b
+  tags: 173184373a305ecbcf0e04184fb5c78aad97d524419d008b918b4fc1dc2b0cb6
+  provenance: cd0129a0a8f80f2aed5a230f4372e80615ed254f63d6f6828c8644fd75efbba4
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:cli
+- type.knowledge.atom
+- workspace.desk.atoms

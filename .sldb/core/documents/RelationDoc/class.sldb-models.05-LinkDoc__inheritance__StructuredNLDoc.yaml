@@ -1,0 +1,17 @@
+name: class.sldb-models.05-LinkDoc__inheritance__StructuredNLDoc
+path: docs/architecture/spec2viz/sldb/class.sldb-models/edges/class.sldb-models.05-LinkDoc__inheritance__StructuredNLDoc.md
+source_hash: 4e47b0ddd2f7509d8745fe63bc3ab51fb66ee59b30e2bf5d376a987acb6d8d21
+content_hash: 1df8683a10c73f9aef8e9f499e522808d30d9749fefe56dafc6c3d8a71dad7fe
+field_hashes:
+  title: 5cdafc2abdd180fe98b7128523fe2f563f799681e1e49af80db929c782768bfe
+  source_id: 2ecab97129609a9f9c5699c3483c08055a7bc9775de0e806043e221827f88b1a
+  target_id: a802ac4703b7d8e014aeb4a0b1242dd18cfea4fb8d094ff8f22aa318038930ab
+  relation_type: 8116b0011e63872cf2984a9022415b4a56e42e30fe7292ffc68221c36985a829
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

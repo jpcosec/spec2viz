@@ -1,0 +1,17 @@
+name: component.exception-hierarchy.06-validator_mod__uses__validation_error
+path: docs/architecture/spec2viz/sldb/component.exception-hierarchy/edges/component.exception-hierarchy.06-validator_mod__uses__validation_error.md
+source_hash: 9570047dbeefd895ad2306a8245bfba051f993464892074ab3b10e61b01fc8e4
+content_hash: 29e78459ff3085b6a7ca3224451a9df71815f0d16acc409267a4bb83a4110d06
+field_hashes:
+  title: ac93ef8ed2fe9184f5d30229a7350809f532c4468942a45aa429e9f50c3c21cb
+  source_id: 050470f60a7524d9a889afc4d1044d5ed388a18d2603837e33ecf202e1508956
+  target_id: cda070e32d86f81881d462fac2cd2fdff73ab5e3772ee6dee0512930b88a9f7e
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 76d288f387467472dc7306fb94d20dce646e99fb3db9d1c49d5823b92c2f6f8d
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

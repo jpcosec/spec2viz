@@ -1,0 +1,23 @@
+name: component.spec2viz-architecture
+path: docs/architecture/spec2viz/sldb/component.spec2viz-architecture/component.spec2viz-architecture.md
+source_hash: e1ed4f85419b7b3b4b7108b2a2aa62193bb22e396c08b4c04025deba1113c6aa
+content_hash: 9050f8ab986a5863f65808cf2a1f6a5704d4faae0a7036d1d0f9990756e36a44
+field_hashes:
+  id: b74344e36c0548b3ecca3f9d3b36a22bcde68aa32606ad386788e0c4a4e384ff
+  title: 4726c6d4f7447ff548977fa15a5dfaaba7265bf3b4c20d635f603aa4e4b06090
+  diagram_type: 7b8d80ff88e64a533dfeadc499bbed22ca57302cc69925a0941b395faa712cc4
+  version: 5a4747fcdafec66d8d8812022e3b7d2666d886ec0e0ee7926ec8c50db40f29d5
+  spec_path: 1d930c42f1ce6ce52d2eb5a7443a2cf866ea959ef5444bc73d54ab5fa6b5f6a7
+  sha256: 279637a8307a22b45a2847348d9d1762fafc865d04645d2cc856ea9f99a7102b
+  nodes: d474a9af635eff149d94f30992fe2063a77e423f88b63fa09dd3e5caca3ceaa4
+  notation: cfea2df38da198f55ff06a26a564c6a328cb246a2814fa9873be59aeb9d30509
+  category: 33122481a3c50a787c0ef6c59a01cabc6d9ab7429b6336ef80d46af0297699aa
+  nav: f734f5cff53c6c6fbf8ab4623227d914b3292ecd2e51e13137187c2e85f66fb6
+  summary: 93f38995ac35ae3cbd5bb880fce9da39f3de3a219772e7d1718711994201d006
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec

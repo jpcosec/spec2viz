@@ -1,0 +1,21 @@
+name: pill-pattern-preserve-spec2viz-contracts-while-fixing-cli-behavior
+path: desk/contexts/pill-pattern-preserve-spec2viz-contracts-while-fixing-cli-behavior.md
+source_hash: ce046ad592ff76b6d271fbf46afbca72967f09917967b9c25bcd33dd2fa5c9b4
+content_hash: 03259d559bf807bc441635d9b5945c6ae5f937b7990b167a29719e8eaacb5ad0
+field_hashes:
+  title: 2cf2c749ef5d1d0eb58bfed623a7ef9c82e2e09419ccdf58297cea810a95a287
+  id: b6332cc4b1fcb3dfd7336b33cad4ae6a889a6c661feb94d903a657b83050ada3
+  status: 7db3f556c198d348a65c7a6a521ad0c1acabac156f8416330bc45c9c828bd666
+  summary: d62457f949518d70583f451038d15aed676d76732b198f8825f3e773db16bc8b
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  what: 9daed13478ae5578a3821800331aba505b10042b6012527fb892265828790123
+  why: 84448bb3eb8d5afc6332160f714118b6d590c44756c23c2e9948453a73721ab4
+  when: 6aeed21d8a969fea42f411ec2c78783291436bdad5735797e0dbf4507dce2782
+  where: 73618f298f28d362dff033ecb3c6786f5bfcbc9ce8aea8fc69d40c2c3c2ce93c
+  how: 7cd6db4ed0191bbab28e4a1255d91420ebd9b5863c33d88fade67ec4ebce6c5f
+  how_not: 827d0f284a107fc2e8a232859b989a646fb3480e501f82b50baa84262c99d022
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.pill
+- workspace.desk

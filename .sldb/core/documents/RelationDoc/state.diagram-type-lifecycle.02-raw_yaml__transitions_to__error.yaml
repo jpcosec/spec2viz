@@ -1,0 +1,17 @@
+name: state.diagram-type-lifecycle.02-raw_yaml__transitions_to__error
+path: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/edges/state.diagram-type-lifecycle.02-raw_yaml__transitions_to__error.md
+source_hash: 4a7a3abdb4f72c5024c4ebe6db0e0b3fde4e0e68d1767deb296b994d159bb02f
+content_hash: 6c829e4a3ba91f61ccacf6bca1b6968411ebaaeb5ff10db2a31a905970b2dd51
+field_hashes:
+  title: 0a80165cdce56c75c61795291fb9413a6cbe151858dc47743658b91f15cc0e4f
+  source_id: 534aacf5d9eb0c62eb342db9423685d02c7d86c9ef1e03ad5b73bb6c9dfc0ba1
+  target_id: 382499bf1548b609408bfa98830a4bf74ddf17e1b9621aa4a6a0126b7a3d20af
+  relation_type: 28bd9b3da8f636e17ce2ec3811abebeff4a370a7f2cfb9e2080617063a2c0e87
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: de0cfe6a4eb6e79256029f3de9ce2cd7669e117df6e5e4a7b93854cf0c19b049
+  attributes: 1460f6eb15d1fb5b93f57bc0e81f79944a776951a83439230e510e9c38f30c9b
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

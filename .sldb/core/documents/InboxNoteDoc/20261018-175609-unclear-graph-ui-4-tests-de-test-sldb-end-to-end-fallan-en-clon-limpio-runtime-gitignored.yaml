@@ -1,0 +1,19 @@
+name: 20261018-175609-unclear-graph-ui-4-tests-de-test-sldb-end-to-end-fallan-en-clon-limpio-runtime-gitignored
+path: desk/inbox/20261018-175609-unclear-graph-ui-4-tests-de-test-sldb-end-to-end-fallan-en-clon-limpio-runtime-gitignored.md
+source_hash: 0068ca87910b3e0db63bc9c8edaf27ca0e9361dc16465a29b0a30b1ae7bb7615
+content_hash: dafab27894a5157f3736a2d19b747fe6209b50df9b35ceafa6d8cadc215caad5
+field_hashes:
+  kind: 683144a12969e0fd85512737e57b4db93ed15ee760906165a5516d581a77889a
+  sender_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: 65e837ab58b81bfe5aa52e5c4056412dcd54b9cc2b0b8775f989127e94be1f53
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: afabf05cee520b4ed21c3b467f707ab05866fc8779a24786d04e91500506aff9
+  title: 1bdffd65e505a63ab41c15d1ceb6545e65bc0df112bd959c0ab8a79b6afbd4dd
+  body: 6cfbb56a09edc121cf2200e100a337fb60aa9d09f1d71ece42f8bc76115d4c73
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox

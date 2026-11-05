@@ -1,0 +1,22 @@
+name: sequence.build-pipeline.User
+path: docs/architecture/spec2viz/sldb/sequence.build-pipeline/nodes/sequence.build-pipeline.User.md
+source_hash: 674784754d2d77a4adcdfd71027ac4509f412f8ec8b72799a3a9c54e9c783478
+content_hash: 3c303f4db014af4a7708433fa36fe2ee9cd6ffda55ba1e80c7437879ee5f999d
+field_hashes:
+  id: 57e129a3863b5a0a55fb5dd53320f5bfa9399a756ec8565b414013a375e09a7f
+  title: f59d0ea2e8ec813b4add7a45f4e4fc4fecaa18239ba84fc70f8f2cead37130a8
+  spec: 55caef1a93783576a0c5f5abf7523290564ed5857cce05b67167e07a0e9d9b10
+  element: f59d0ea2e8ec813b4add7a45f4e4fc4fecaa18239ba84fc70f8f2cead37130a8
+  kind: 28b343cb4e6278763f24c8c2e9a4a79427250538f4e5de2601fbef8996a31a14
+  collection: 45ca9071383537d3da8ce7a14e310575533ddec1bada7201ff76e55e40a05293
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

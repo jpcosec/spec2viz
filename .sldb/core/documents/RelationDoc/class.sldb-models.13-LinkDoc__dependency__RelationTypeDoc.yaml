@@ -1,0 +1,17 @@
+name: class.sldb-models.13-LinkDoc__dependency__RelationTypeDoc
+path: docs/architecture/spec2viz/sldb/class.sldb-models/edges/class.sldb-models.13-LinkDoc__dependency__RelationTypeDoc.md
+source_hash: f76591587fcfef0492d545d80ad620db352612e146a78dd95bf5783d1f5d684c
+content_hash: 954c3455ed0719583aa4c1e6b0c5963c77fd887b7938da374c760c948b0f57bf
+field_hashes:
+  title: 784d42a6d5a289e4c6a5b2575d42a2d98735b11272abdbed4e86092b4abfcfa2
+  source_id: 2ecab97129609a9f9c5699c3483c08055a7bc9775de0e806043e221827f88b1a
+  target_id: dfb9ffc5e9aac6d496e56a75669521e53293cd3c5d9f5a3024b1fd7e70ceb025
+  relation_type: 30d2d4d0a5e709cc7ffb1a7eb17b21b07a4fd835ee9abc7fffe1fd45f58c46d9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 7cd6e5768c3000f12e40d4daae38888f9ecab840775d17465e8a093c40c2fa6f
+  attributes: e2e7824f54c6e986befe726a6f568d0aaeb0063bea1023f10b3218564db174f6
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

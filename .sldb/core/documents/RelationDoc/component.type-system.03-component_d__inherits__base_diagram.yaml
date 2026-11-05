@@ -1,0 +1,17 @@
+name: component.type-system.03-component_d__inherits__base_diagram
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.03-component_d__inherits__base_diagram.md
+source_hash: 9d6eda8477b663f8b760dd2ee7e771710cf984ce1698f45245b556ce3d3fa12c
+content_hash: 559d0a066a28ef8bcc7c4a3924998ab4e73a138ab802985b1acce4ebdea973d0
+field_hashes:
+  title: 999807fd9df570a46bb1e913bc9b31a341f2ed3ef793f598b246cded80bdf9b1
+  source_id: 85c981ab32ea8a1d1d530375adb06f71b92a072f2e4f2315a423e1e6104b00f1
+  target_id: ec4d2aefda7f6d243c46dd01e478bbb81a9930ab636cf6da1b113e1af457c359
+  relation_type: 9b2108d818fc4e0eb1a24e241e89685e2713b4b82f6c1bac71762b020d21917b
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

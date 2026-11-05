@@ -1,0 +1,18 @@
+name: atom-ast-compilers-where
+path: desk/atoms/atom-ast-compilers-where.md
+source_hash: 6a23214611cb05f448308dc4e26d59ab6c38a9aaefccfb7b5bb46d205ea61cb2
+content_hash: 48913905ab56ef37d723a93c9cb143411d9922a44bef11287eba52caa345d80b
+field_hashes:
+  id: 402edae4201fb7922857f1450958f0cd7537df56c0fd4ede39ea5e01e6fe43b9
+  title: 47220f96e832335fc841f9d8abdd6a3303957a91d68f1bc380fc5aea5a11f95c
+  five_wh_one_plus: 43f94244d00ce4813a89d3c0d15e1842fe2cfd95ce9fe3b063dda9e7983e0063
+  answer: 93636ed40908bf6dcce11843dd086f4e40ecee3e839f7dee48b5002ff249f0b6
+  tags: 6e6eb53bf0f1e15d6797eca47a27da5fe52a76106285a1832755fc41de027c9f
+  provenance: 7f0e8e29b36647f477fded3707c2d524e84b8fe53f54ebf81fcaaf9af718cdeb
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:compilers
+- type.knowledge.atom
+- workspace.desk.atoms

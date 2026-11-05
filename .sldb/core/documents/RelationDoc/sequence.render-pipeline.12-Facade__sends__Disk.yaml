@@ -1,0 +1,17 @@
+name: sequence.render-pipeline.12-Facade__sends__Disk
+path: docs/architecture/spec2viz/sldb/sequence.render-pipeline/edges/sequence.render-pipeline.12-Facade__sends__Disk.md
+source_hash: ffac61e7e381ef55dabaa8f49b054ad0e6e9b8843a85bc54ac765f4367e7feb9
+content_hash: 80625b8267c046820e32dd5ca60d0895cbc7a863e03ea15e1df155a5d9d7f27e
+field_hashes:
+  title: 62664a713275e3133ca16e6cf28665c13d55f8499bfd440537d670cbe5237689
+  source_id: 2f4fb1fa9ec8ac5a7aac42052aa68fde7fa3a22298626d9e619c64bb808e8bb8
+  target_id: 30d3576153def7276ba19de992b942853b9765f2ba9a2ea7cfb44cb5d5e750a8
+  relation_type: 514aa25f2df0d5491f40614a98bcd4d548a8d84866347177c7b8cd504db60452
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 43cc8820bde032d62e88c1dc1bf105cb649519092eee36b061590368fe65b212
+  attributes: 5e94f311d78090ff7880062e0cf00c75dcfde5b757a9f9cdb20e4aeb94e2c555
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

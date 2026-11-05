@@ -1,0 +1,22 @@
+name: sequence.render-pipeline.User
+path: docs/architecture/spec2viz/sldb/sequence.render-pipeline/nodes/sequence.render-pipeline.User.md
+source_hash: 06cd9060afdb8adf8e2f3893329355136be2ada6fc796841a90aabd4af07f0a9
+content_hash: 650432548314d8a1256dc05dc594c75043eb7285c4f4591077d9533950ee3a7f
+field_hashes:
+  id: f1159373beecff5336f03aec02f7871b23c7d141e599820042c33759e2dcb742
+  title: f59d0ea2e8ec813b4add7a45f4e4fc4fecaa18239ba84fc70f8f2cead37130a8
+  spec: 530cbcae6a1453feee9d9c9215acd35b751443af8d5503486214974c2781e19b
+  element: f59d0ea2e8ec813b4add7a45f4e4fc4fecaa18239ba84fc70f8f2cead37130a8
+  kind: 28b343cb4e6278763f24c8c2e9a4a79427250538f4e5de2601fbef8996a31a14
+  collection: 45ca9071383537d3da8ce7a14e310575533ddec1bada7201ff76e55e40a05293
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

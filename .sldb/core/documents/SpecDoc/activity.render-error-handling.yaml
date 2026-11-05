@@ -1,0 +1,23 @@
+name: activity.render-error-handling
+path: docs/architecture/spec2viz/sldb/activity.render-error-handling/activity.render-error-handling.md
+source_hash: 89756dac84599fa00e6fcc4c8738fa02a3e9832c445ec9b8cb8aa6a48e383356
+content_hash: 05f43e79662164d334d1f058558bf31c49313282fc6d5e773668f3bbfad399bb
+field_hashes:
+  id: 0c79d35d86574348ca873af5ae7f0cb04ececad37165905801cec0be6fe30a01
+  title: ec708929017aebe712a2825face3360fd6bd02ff243a6ff2190002652c2711f5
+  diagram_type: 00091aa568cb13873d1e8b761941b4ab506f6fc56867b6d5a6f4fc8c8539d810
+  version: 5a4747fcdafec66d8d8812022e3b7d2666d886ec0e0ee7926ec8c50db40f29d5
+  spec_path: 38b0010386e9005596b90fc8759c85c662b904085181665db598e5f3e596158a
+  sha256: ec355574397c54d96c35b6e71c4f82ca2b2bb46578ce282de26955287646da17
+  nodes: 2ab1c8598af6018e1a1598ebd384cf2c985bc88b74cc56f07dc75ab0887507dd
+  notation: 47770d4a6f8bca730a18d37857bae09f6fd927fc99dfdb1104ed77170999fdd3
+  category: f233262c1ddc90bf26badc5181aaef9ecb1d647f6e2c8abf79c986a08bc839ff
+  nav: 7dd2c85ff4747f947ff3fa465bae34ec7751be95303cdd2243de23ad20fc2dd6
+  summary: 331623d1063f7ef3a20b3f72f16d2ccd47e0b7110e4684c2b19b5c6909042345
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec

@@ -1,0 +1,17 @@
+name: activity.render-error-handling.04-iterate_path__branch__done
+path: docs/architecture/spec2viz/sldb/activity.render-error-handling/edges/activity.render-error-handling.04-iterate_path__branch__done.md
+source_hash: c26d9db6e25ab7a2207311efb0e29e61e2f108f9e99a0efc1c94caa901ee430a
+content_hash: 233c32d9242807c30d3c81c9ee6110353877a50c91a4744c00c13fe1b7419129
+field_hashes:
+  title: 53a993ad7e211cef5ec7cd0385d30714cfaed818b53ec51988494756a28f1ca6
+  source_id: 761b07e336923211ae6c38ccaa050b33c501d20bf4b10b348e0892bc02273744
+  target_id: 808b62430052d937e62cd62e7b140775da6390c0470d31bfdde092e253b8e479
+  relation_type: fcce49047e714afffc4f1581b5ce472263ed7631521c9c8d5bcded98d3988d6d
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: e6845188b1d2aebdf19d13c1613d7a49b5806a7fe336ec775fa182b36719bbc1
+  attributes: 6274ba4380a31a26ff7414a9dba5a3af83da11cdb93d31deada54ac1828716ac
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

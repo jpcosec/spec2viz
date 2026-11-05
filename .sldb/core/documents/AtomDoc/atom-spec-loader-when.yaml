@@ -1,0 +1,18 @@
+name: atom-spec-loader-when
+path: desk/atoms/atom-spec-loader-when.md
+source_hash: 5ffe4daf6b5d31aa649f5bf7b641fe4e85ded3dafe5a6e76e4f50482c17f12f4
+content_hash: 6058ac4667eab2379782c08fb51071672d2a487b6485cebd2171c5b8311f184e
+field_hashes:
+  id: fad8da64784bb57c290bd2c053fc06c58fe98c31fc5caec23fcd8c73a2172748
+  title: caf9e15e21b6d069f6ad6e2f3f48e9319b5ade9af7caa325e6a75b3bb0cece3a
+  five_wh_one_plus: 6d924791a1798656302bd4b9716a494a0c5f7f55ad9ceebf629dfb2317e86078
+  answer: 7fb62da11b2a5176e42ae02cb4dce254fdcea4cd0b6747d60d06ea9beaa9e124
+  tags: bcee74009260abfd035a984417a14b4b5e58f576d390f452722e3b4e1c34377c
+  provenance: 22ee95ea29b49b8f6010cd4fddc6cd828c983d2389b175e80d1f1dc36b7afddf
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:loader
+- type.knowledge.atom
+- workspace.desk.atoms

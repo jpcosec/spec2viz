@@ -1,0 +1,18 @@
+name: atom-vocabulario-visual-declarativo-por-que
+path: desk/atoms/atom-vocabulario-visual-declarativo-por-que.md
+source_hash: 51908ff5409b0388e84cb29189f74623c88d1b17b38ab8231546cf224d70ff78
+content_hash: 10e22c1999c76700450578ac56ea0502cff780395e1eb52e3780c5f5183a6407
+field_hashes:
+  id: a81eb637ed4def5db2606f84d6a1cb32b7e91f257e6bd1a1e7c132558b174c73
+  title: 4c180fa79863cb79e48df708847b78852117515f5a598b91fac32b8517de2c05
+  five_wh_one_plus: 1566d618b9ad05f5d6636ef68875b058a3311f288ab671709bb72d36b5dd1a5c
+  answer: 290a4c5b92428b758b76caa9e5773f3205f56d836be0a2c259df9e4c8caff274
+  tags: e44c3755ead39cbcc714f94a118d7763466b28cf8ae5d441267852ae5dbcb1f2
+  provenance: 38fd4bb07f9e4d1dfbb467c0393b7f3b40951e40d2add2035529a681b7bf0163
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:notation
+- type.knowledge.atom
+- workspace.desk.atoms

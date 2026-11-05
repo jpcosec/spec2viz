@@ -1,0 +1,18 @@
+name: atom-multi-backend-renderers-where
+path: desk/atoms/atom-multi-backend-renderers-where.md
+source_hash: 9482958423de355c787cb3c4a496120338fca472535e44c174ae52efe8db61ed
+content_hash: d79d0b329545443fe579ce1384a88a6cfcc37c5bc4a8f724633cce93b41fbd9d
+field_hashes:
+  id: d07505c0cf4f78969596d4b22fb262e7c32026325a2d4d3a5856ef9dac8ca0af
+  title: df4493052848dfead5e3cd5235c420fec51ff288eb779b2e8d809d49a2483457
+  five_wh_one_plus: 43f94244d00ce4813a89d3c0d15e1842fe2cfd95ce9fe3b063dda9e7983e0063
+  answer: c86a61f5f920bff8e157aae931c7037a5bfb6efbd1155437376159135250d82f
+  tags: 3116eb81b2e6da9b8dc465c04c6a4d73a08e5bb18d70b84f6937138aff0864b3
+  provenance: dab7f1d24968d45398845f414225dd8e87a96d7b26bdf0dc85e41bcd3413cb1c
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:renderers
+- type.knowledge.atom
+- workspace.desk.atoms

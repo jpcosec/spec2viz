@@ -1,0 +1,17 @@
+name: state.diagram-sync-lifecycle.03-validating__transitions_to__failed
+path: docs/architecture/spec2viz/sldb/state.diagram-sync-lifecycle/edges/state.diagram-sync-lifecycle.03-validating__transitions_to__failed.md
+source_hash: 663ccea7d3d9537e00331f02424b974e98859287ea85ba4957b7f5f84a07fd78
+content_hash: ddaef1fb12f5d8bcf5f7d57d791b5402e40640ac42d1c16aca28b2ca23050c8e
+field_hashes:
+  title: 76e880837d9c626b5e3e6f8f7bb900bcee807a817b21dc0dc73bc28c6fe725c2
+  source_id: 57cf0f66a968f4c760e4f93289bce02858bd1b715386947c6b466c38db3d6ab7
+  target_id: 525f98e0a8f4f98cebad5f7b634d5d6af73e3b0892749959e7df2bc863807705
+  relation_type: 28bd9b3da8f636e17ce2ec3811abebeff4a370a7f2cfb9e2080617063a2c0e87
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: d462b13b3dd7baa8456e2bb9fad2dfe73e13fcc4ad55eafbd60b255e33444da8
+  attributes: 1504fbfda89799408fc20f9ee2f00a22bbf7e7ebb3485692b0c936d5419123b0
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

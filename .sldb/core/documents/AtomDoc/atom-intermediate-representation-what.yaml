@@ -1,0 +1,18 @@
+name: atom-intermediate-representation-what
+path: desk/atoms/atom-intermediate-representation-what.md
+source_hash: 007f3016d8723dfc5402112de16c1caf149555986370a5809efe110e5ac315c7
+content_hash: 9db68a4740125bbe574169128759f1b946e27061a35b66db8599253400513f7d
+field_hashes:
+  id: bba4315a7c081bf527cc9efd477bcc17fd0df3e4753499747b3ea1c96905a593
+  title: ab883d04e8a339b2922a5828ab73fb70301443f1613254ad11a5543c831ac82a
+  five_wh_one_plus: 0ac5b48a10a651e75b01f8d26468c18977ea336c90a9607a6163d0d330a4bb40
+  answer: 6d8f2c346547598085e6559bb218c5904186b64ac0e625f53daab4a983e21a9d
+  tags: a4921af91b6f91fb11f6f1131ee0bf1147c9b4e1ed8df732d84f2d93d8f76cca
+  provenance: f33489a1c74d42afdf4fdc6b849ce8ea3e23b4e9b09c6796baa2ed8bdaccb800
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:ir
+- type.knowledge.atom
+- workspace.desk.atoms

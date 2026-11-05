@@ -1,0 +1,25 @@
+name: pill-adr-spec2viz-es-dueño-del-vocabulario-visual-graph-ui-de-la-vista-generica-y-los-gestos
+path: desk/contexts/pill-adr-spec2viz-es-dueño-del-vocabulario-visual-graph-ui-de-la-vista-generica-y-los-gestos.md
+source_hash: c296e89bdfeba7e3d6de2fc43b6572bd447fbd16de814a433cd08cf177c8e45d
+content_hash: 4fcd62fa16c1f41e20ffccccae34050562fd1068488ab6945527ac263fa46de4
+field_hashes:
+  title: adf19d93d7a2313af2f5db04e0a7bfe0c810216e990f622557fbb72353975cbf
+  id: 97cb9629fb548615dafb6d776e947f6966fb6ce40a705501f1939387828c7a25
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
+  summary: dfe605dd137940031852c41a76c2ee295190924b8d30f3eace21665f5437bdea
+  tags: 0a71c626367a09b192df94bbc119bc9f0840a04f53524e9eec8459d8e7054234
+  what: d401f85f36be0ee165e17b54378cff11587b44a1cd6f0cb8518b7e3d6b9eab7b
+  why: f80598d146be7f028d932df4b68c26b59efd2e2a6aa27cb5e183c92561251843
+  when: e3fe5298e8b9a379277111dde8f88f4ddbb351b4e202ef71563e090d199a9310
+  where: 15e605892c42d15e81b8bab2a1673508fdd536b90ad0594a1cb38c66c04e02c3
+  how: 569068c3af7c16adbd5a3bf44178f95bba36c15ffe1ae7af45c652349fecbb08
+  how_not: 48901fdacc28a8416687e37d66f1a04f3ce7f7337c1af32398aca39df1bad4ea
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:graph_ui
+- system:spec2viz
+- topic:notation
+- topic:sldb
+- type.workflow.pill
+- workspace.desk

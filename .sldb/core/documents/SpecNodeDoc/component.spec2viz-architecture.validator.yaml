@@ -1,0 +1,22 @@
+name: component.spec2viz-architecture.validator
+path: docs/architecture/spec2viz/sldb/component.spec2viz-architecture/nodes/component.spec2viz-architecture.validator.md
+source_hash: 1b1cfd9e035fdf65f760805cd3f00ac89b8015a62f8590c73200f7f86326c084
+content_hash: 4283d29a3c9c6f78099306f33038f8f6444b4da2a12933f0351cca016072d6c7
+field_hashes:
+  id: 4f93476845136ba472eabefc8af361967281eb5317e04efb84a3b8c546cd50d9
+  title: 988e4b341bda2d738a742fd02bdb8aed486326b6a63e7557e0ad31049d437072
+  spec: f4f4de0de733315f0265d11dec6d05f1775a34f42e11c59f4c9be2d83d5256d0
+  element: 20289643ccdcea46bfd5234732c7eb8ba0f3c3f54ae1669e914f58aae91e1779
+  kind: ae6e9157995bdbcae79f0221fc05ca3df41dadbabd1d489c5aaee1a944a9c16d
+  collection: bbef1c19933039e17b86c861eac2bc37e24adee1503595cc2ec8f6afd1ae3adb
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

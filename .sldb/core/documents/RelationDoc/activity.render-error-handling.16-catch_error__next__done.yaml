@@ -1,0 +1,17 @@
+name: activity.render-error-handling.16-catch_error__next__done
+path: docs/architecture/spec2viz/sldb/activity.render-error-handling/edges/activity.render-error-handling.16-catch_error__next__done.md
+source_hash: 635e5b5e5fc9ba07954609ee213b68da819a65d0b1d318737946b78adf10ed6e
+content_hash: 45e46907dc98d273c5d9549a6636e50e50157685d43d4407370cba3fb36dc029
+field_hashes:
+  title: 01dd47a07b3810c76c8a077a4496a03e2dd445746d5f453ceaa849f28b6a54cd
+  source_id: aae05b0990dde5ec2edddce1bffb483c1fc86d9b3bd69f5bc48ec321d85a35c8
+  target_id: 808b62430052d937e62cd62e7b140775da6390c0470d31bfdde092e253b8e479
+  relation_type: ca1733b5cdea2efcd28cb357b253498f97440592edd06d89895c4abcb5cfaae5
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

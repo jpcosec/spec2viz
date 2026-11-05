@@ -1,0 +1,17 @@
+name: class.sldb-models.11-NotationDoc__composition__GlyphDoc
+path: docs/architecture/spec2viz/sldb/class.sldb-models/edges/class.sldb-models.11-NotationDoc__composition__GlyphDoc.md
+source_hash: c5ff6ed731bc882aa20c95c58e28807357e5177032bbf8daf8e133c36730b8e6
+content_hash: a94572ab8741cfc04cc1401755b05d96b05a017602d177bcbe2a30bbe18cddcc
+field_hashes:
+  title: 378e9533eedd1bdbb0617ea59a85f1c581cff32749e5204c33b308f368c7677e
+  source_id: 76719b581cc02da9a85c4223255984ac1d42e8080d30d608b8212d15d59bd5fe
+  target_id: 2847a9e83bbcd87ca7e6924e8251381010ed244dca99e0ac1ffe0ffb0319f28f
+  relation_type: ee4da04c2f4755a40f1816b91b93640b25cf7a5de198b7c626ae828b7119a378
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 49b62680bee3f4d6a6be1370547cb0f3cb6d961a8a1d60b281484077bb8adfdb
+  attributes: 63d6a8372328f1775e359e91e35507aae8d7f3e3e5f56219224386ecc92ba570
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

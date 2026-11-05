@@ -1,0 +1,19 @@
+name: 20261019-121252-suggestion-sldb-envelope-un-json-por-corrida-y-exit-codes-tipados-opt-in
+path: desk/inbox/20261019-121252-suggestion-sldb-envelope-un-json-por-corrida-y-exit-codes-tipados-opt-in.md
+source_hash: c70be64c8a520a0ffbaf21f441278dc73279cd9122cfe98091ed9db69c27d59e
+content_hash: 276e95eab8accdb1c945f3f3c60c03228a58a798f924934c11fa08d8b357a9b7
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: d8e23eb076455091e1bc454815d1f919d5bec7e6662acad91c14a036ea2f1522
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: 9c6fe787a905fd2eb6ed1f335e9d2b9b81c6c834a2a0e1f5b40dddaf77ef319f
+  title: 044381bc5fca69e43e4e75dee4c7ac8ae0932fb0cc20bbbec381105d9e74e792
+  body: 65497d22fe6028334b325f1fbdb0db57f7317218a1fdf196063dfa6e2ef41c7e
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox

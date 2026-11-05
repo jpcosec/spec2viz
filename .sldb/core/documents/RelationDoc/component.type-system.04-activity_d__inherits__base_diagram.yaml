@@ -1,0 +1,17 @@
+name: component.type-system.04-activity_d__inherits__base_diagram
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.04-activity_d__inherits__base_diagram.md
+source_hash: 02fb460e0ce057aec4c0f52e131f3ef1977778835117b4a1b54023b1662d13d8
+content_hash: f47573a350097c52dc4cc36375fc28c9ce9dc43cdecca3cc7a74fcad260e79f7
+field_hashes:
+  title: 557e16961313738603c5d850067f8ee638eb6687a46201727d40b1463ef90d55
+  source_id: 6a8ef2a45c8658ec6b4f771ec77dbf566ca3e9fbef601657d8fcb59f08cb1353
+  target_id: ec4d2aefda7f6d243c46dd01e478bbb81a9930ab636cf6da1b113e1af457c359
+  relation_type: 9b2108d818fc4e0eb1a24e241e89685e2713b4b82f6c1bac71762b020d21917b
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

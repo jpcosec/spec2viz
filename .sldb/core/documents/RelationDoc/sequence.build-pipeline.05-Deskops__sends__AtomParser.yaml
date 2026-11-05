@@ -1,0 +1,17 @@
+name: sequence.build-pipeline.05-Deskops__sends__AtomParser
+path: docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.05-Deskops__sends__AtomParser.md
+source_hash: 952e491dc1cf4eebee26bad68ee01571c65fd0273dbad9bce5778be770317c28
+content_hash: e163a53cd733dbd47c90c0a5b2a48acc2c3477e5f7ec2dbf9ce0da9d8e5adbb3
+field_hashes:
+  title: 623115fa666b1fcd89862f6cda8d1e05c84febd6a4a4053055124cce23e78972
+  source_id: 0c7acb3d7ae6d83ba318e44d6f84e18fd91b8824568b8514a25acc9e8ba05865
+  target_id: c2449d9541b219bf19aba30cab04d3f633cd415a7d431c64c7bde0d2782e7a5f
+  relation_type: 514aa25f2df0d5491f40614a98bcd4d548a8d84866347177c7b8cd504db60452
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 9ece8933461aeff2cc3d871098209b5d8e392b0552a17b74d786b75dc1ba0e02
+  attributes: 42d1f2dafc35c843ee93f6519cbdf1258695eff18074729a3035dc15c1be1155
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

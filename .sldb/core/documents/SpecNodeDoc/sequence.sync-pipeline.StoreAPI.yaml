@@ -1,0 +1,22 @@
+name: sequence.sync-pipeline.StoreAPI
+path: docs/architecture/spec2viz/sldb/sequence.sync-pipeline/nodes/sequence.sync-pipeline.StoreAPI.md
+source_hash: 8b81629b502a5483f30f25b3165c1641d312bced65762ba84bc4c37f4c55314b
+content_hash: 9ce6f3d4e4cdf44e7f0f838165d9ac66b036ed1b96b85be0340da5a5848e565b
+field_hashes:
+  id: 6175e934aef6e9df2c59d7d70597cf70a289429e7861bddd61287097c0bd8f5a
+  title: eb4d56d6a90a01284014cb29896af6a0ad21298bb16aafbc17b9329148b47a00
+  spec: ee4b0be298317637cf05beb35d4e05bf9f2f61be4c94756e7205966cd4d11855
+  element: eb4d56d6a90a01284014cb29896af6a0ad21298bb16aafbc17b9329148b47a00
+  kind: 7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c
+  collection: 45ca9071383537d3da8ce7a14e310575533ddec1bada7201ff76e55e40a05293
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

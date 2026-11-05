@@ -1,0 +1,16 @@
+name: atom-spec2viz
+path: desk/atoms/atom-spec2viz.md
+source_hash: 6618bb89f12cd6bec5a1c3c21d32b3fb8f92fa176ca9925f23b3f97f1088cbcd
+content_hash: 2249415068b7d8c5c076982f934326b1f4646c63e84888be1a908989842c2268
+field_hashes:
+  id: ea758ebfafeda8164fcee2ec63d4c5d340fa491d0e449946be58a964bd18910f
+  title: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  five_wh_one_plus: 0ac5b48a10a651e75b01f8d26468c18977ea336c90a9607a6163d0d330a4bb40
+  answer: debb4ded7f3fabf8e4a7172619a7a520e31a91b1a4dd1955a7c50e7b86a2b832
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  provenance: d82ab49f91a6ba1662d933820377bd073d4da4fb04bd2911a20ecfde554cdd93
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.knowledge.atom
+- workspace.desk.atoms

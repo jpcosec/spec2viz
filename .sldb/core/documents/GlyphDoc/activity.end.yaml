@@ -1,0 +1,24 @@
+name: activity.end
+path: sldb/notations/activity/glyphs/end.md
+source_hash: a5be4b9bfe563dac6f6d3dfd07983a1d43fc01d024e5e13fa3deea096f4a8692
+content_hash: 8c598ebce4ed731cca6be3a42915ebd52dae9e28833f123bbe601522df8ab669
+field_hashes:
+  id: a5e0982faf5a38e8b6324cf6fcd8fe1dfb9a466d95ba2d582c814c6e10794f21
+  title: 135874d189176d139e2e54bd41286ec3bf7a216055cccfb7a78d2961aafd3e7f
+  notation: 47770d4a6f8bca730a18d37857bae09f6fd927fc99dfdb1104ed77170999fdd3
+  model: 1e5ce4d31ba8f3d06a3988d0cfb68162a27c153d9ffdf14d705450f4491c4733
+  where: 67647f51163a45a64a64154813c515f37401cf0c06580bd318aa503ab5062bdd
+  shape: bea5c1b519f743d797fbfaf4f7ad42157671ab1cad59e084ae78d142036fef9b
+  label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  label_style: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  keyword: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  compartments: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  function: 24105546e4824327e6c3769d53a0fae8af4113743646de5b07b86d7aef3af0e0
+  form: 62b51cec3819d254d7f65ce213e4879d6832b983dd10b360786f79feb195d06b
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.glyph

@@ -1,0 +1,19 @@
+name: 20261017-122918-suggestion-store-de-spec2viz-con-modelos-deskops-eliminados-rompe-api-schema-en-graph-ui
+path: desk/inbox/20261017-122918-suggestion-store-de-spec2viz-con-modelos-deskops-eliminados-rompe-api-schema-en-graph-ui.md
+source_hash: dbb36f6271323fc27ae807e109fa1378d82fe2a9f98f8efac7928064affc2223
+content_hash: b5c953ef845637cccd971edb69af8b6a4097c9eced224295de0c0ad153f9e78b
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: 1d147ab379788e0277ce278d918ca7cf9e0572dffeefc59e10d282ef146bd45c
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: 3bcb76f5256e2ba5a1f7d6518355506e55dca10b7df1fe7e7f72516d9092bd16
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: c13a909c46b2986e527c9c533dd22da0a7acd39d3f1bbb0d01aa1e30f9302966
+  title: ee2e22fd31c8e1daa76353239c51f985d97ca4c5a075b3e7cec896fd10242b50
+  body: f31d5db313136e3ac4a4901866bed9cf095c246e5f97029a97b175bb9b2536d2
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox

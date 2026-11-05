@@ -1,0 +1,22 @@
+name: component.type-system.antonia
+path: docs/architecture/spec2viz/sldb/component.type-system/nodes/component.type-system.antonia.md
+source_hash: 48a1e7c997168dc82b801c243449a43d7ed2fb8ffb97111351575e20f934224e
+content_hash: 33960208028428e104b3b83299839db15faea81d6aa84d469184da59ac64aac5
+field_hashes:
+  id: 5fc1766380fdc49b2894acda8ce5e50cf9da8eff814224f2472d7aff8ef8a21a
+  title: 41fc27f5d513738e2be6b241c30f50093ac4ad53c118ff935221ed093e5bf87b
+  spec: f5888670b574f1fa0b0888069604ede8c8080a63dd52eb47528ecfee3b398eea
+  element: bc147e5c4aafc5ff31a6a9d446ee6c5b93feb5645ead25068724e86497318e96
+  kind: 7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c
+  collection: bbef1c19933039e17b86c861eac2bc37e24adee1503595cc2ec8f6afd1ae3adb
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

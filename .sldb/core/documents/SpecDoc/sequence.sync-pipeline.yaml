@@ -1,0 +1,23 @@
+name: sequence.sync-pipeline
+path: docs/architecture/spec2viz/sldb/sequence.sync-pipeline/sequence.sync-pipeline.md
+source_hash: 14386f0c66e2152e5dddf2f58bece4d4f1f3aff51461cae03d7cc01f8fc46136
+content_hash: 41aa9883d3a180355c6b5cfbec2bf655a0d221dd4180e7cf3bd22f3ee90b0b85
+field_hashes:
+  id: 9aab05b39112fafd75a5546de12812650a698c69ad2d54ac163f9e9e35a9d898
+  title: 63af2012ecd27fbc4cbda5a75ed780522c22ab113463d86475b9d44704e83aaf
+  diagram_type: ac11f777bb7f3f09af2e42c448ccc679b622e08955d4eeb1705e48e1df621552
+  version: 5a4747fcdafec66d8d8812022e3b7d2666d886ec0e0ee7926ec8c50db40f29d5
+  spec_path: 7c035626ec685b3ce11ec82d2bdd45565baec74d30b200daeff20b5a241c9c9b
+  sha256: 6563ef60a79c0982fb777651d3eef5e16d27ce2c13f42ef82fb57688ff81424a
+  nodes: 13992b94534d7694bedb29ba501573e16678bb7ee65419e006d39bfef1d3140c
+  notation: 5e5925352014f06c312d2848538cc8f2fefdd24db8a10ab29fd1ac728d7f0e86
+  category: ea947e750b64dbf4db6acd3c439596fd609f70c494304e1fb55f17267550dbcd
+  nav: cc90261530b01ee7bb00f17c9026f7f58097f09d7b4eccb79b1ca1a5042181ef
+  summary: 7c348d2a2f0841098e00783b2f989cdae39f82af768a1e72d070f2d2570ca0f0
+  description: cc78ff8c1686807b3f37fda20116273b5c805dbce59e5ece2c968202fc384464
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec

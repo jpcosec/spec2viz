@@ -1,0 +1,20 @@
+name: atom-spec2viz-deskops-workflow-integration-contract
+path: desk/atoms/atom-spec2viz-deskops-workflow-integration-contract.md
+source_hash: 536035bc5c1fa99fdd53b004c9cbc359f5028f45fa8990e8c5f929a371db4310
+content_hash: f0c916aca9243903a45f4621e3b70d91c79bee2f7e559de685ed8ed506456962
+field_hashes:
+  id: 41c2c440c714d839123c67d331be11a3d8d199aa07cd8f0b28ba78169f21138a
+  title: 477c9c813c009566e7d4f799564bbf1aebc3cb04cfabd9a7818c899b31f1c656
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: ca5b2f97a65b6b95f2a9bd54e805e468df897c38b0a726ef5b8fbe10e9706d31
+  tags: dab041c42a0acd704939d84909efb2c3db5569a1b2fd54641230fad7d6787339
+  provenance: 37bb78f88d2a6893e814e58d0b489a1ab9ee0fe5e2eac2f72917ec13dedc1a45
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:deskops
+- system:spec2viz
+- topic:adr
+- topic:integration
+- type.knowledge.atom
+- workspace.desk.atoms

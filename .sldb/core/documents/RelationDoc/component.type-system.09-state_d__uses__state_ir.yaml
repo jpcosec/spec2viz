@@ -1,0 +1,17 @@
+name: component.type-system.09-state_d__uses__state_ir
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.09-state_d__uses__state_ir.md
+source_hash: 44c2ac0ae3807affe16456126403a87bc031a3947d785c8a2c197af401e6472b
+content_hash: f8e52fa43b41fcebde3efc1922ec357ef8231fc24bc4f96f35daacbf5e7a7ed9
+field_hashes:
+  title: d98ea79320d420c3424978b96ac916e3c47cf20f0f6b1f2d376b69934d452846
+  source_id: b8a0aea59efa56320310cdd13b513c6df669863b97ee7f401235de6c6ac46398
+  target_id: 23e298310017457c61f8824e7565a08de0559e3a74dac8da8e7140ad1c4ec28f
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: df4d32898c87e644d1de33c03bb1cbe82ec9719c3f9bf0bd1f3f5760905cafb0
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

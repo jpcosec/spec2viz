@@ -1,0 +1,20 @@
+name: 20261020-113034-suggestion-sldb-cambia-la-salida-las-alertas-dejan-de-hacer-fallar-y-nunca-son-silenciosas
+path: desk/inbox/20261020-113034-suggestion-sldb-cambia-la-salida-las-alertas-dejan-de-hacer-fallar-y-nunca-son-silenciosas.md
+source_hash: 5326c4d8e7424210758582dc04cafecf23375a68803e16120b8a391c31efd5b2
+content_hash: 58de71ac33e66127ebfddb59df7014cb8fdb20e4f6862ee2c5f1663503dd00c9
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: e4458ed7d8a0abd016d50e0b01926ff4096930be6812de9b54992d641b26766a
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: 51e5ee2c63887a7bfb41d1f1f36035c18ab76434cb63aa474185e1aba4545c91
+  title: c7db05709d3620c486efbdbd8bc6b003bdf5e997503e6018038eae13be5d44fd
+  body: 50afdd3836c5b8315a05c7f04f034fd4deb413c99a47c30c30c79c5dc9408ee4
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null

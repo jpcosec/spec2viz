@@ -1,0 +1,18 @@
+name: atom-ast-compilers-when
+path: desk/atoms/atom-ast-compilers-when.md
+source_hash: 952ca084ba9810f9e970f0948160b273b922e818c7ec662ce429b46819e260dc
+content_hash: 386f7976c11ce251579d21c4ccec73435b2a40ae0cd90ee247eec952b0a66b1e
+field_hashes:
+  id: 3b021c2df85c945cfb77d26b112b61654ec60e305fe6f12ba0c242dd48c0bd00
+  title: 47220f96e832335fc841f9d8abdd6a3303957a91d68f1bc380fc5aea5a11f95c
+  five_wh_one_plus: 6d924791a1798656302bd4b9716a494a0c5f7f55ad9ceebf629dfb2317e86078
+  answer: fc420e9f1ed746da23295a0d6a535d30febd2cab664991a9bb7c2c49f4c531b5
+  tags: 6e6eb53bf0f1e15d6797eca47a27da5fe52a76106285a1832755fc41de027c9f
+  provenance: 7f0e8e29b36647f477fded3707c2d524e84b8fe53f54ebf81fcaaf9af718cdeb
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:compilers
+- type.knowledge.atom
+- workspace.desk.atoms

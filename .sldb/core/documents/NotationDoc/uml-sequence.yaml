@@ -1,0 +1,22 @@
+name: uml-sequence
+path: sldb/notations/uml-sequence/notation.md
+source_hash: db013e70bdf635e756fa1c95472bed6ad764363db7755898809651d54e591f6d
+content_hash: 67a8b04f3758f45d8c25b90062b4a9c636bc7dcf1a735c48cbc0ce31979947f7
+field_hashes:
+  id: ecd1c6e066e26ca13a315a55cff5e490dd087f19d7220ffbf210a33e6a3f298f
+  title: 61c553bdaf09d364d97853317eff6b2254b6f887795af094d8f28c50bf6ade6b
+  name: ecd1c6e066e26ca13a315a55cff5e490dd087f19d7220ffbf210a33e6a3f298f
+  diagram_type: ac11f777bb7f3f09af2e42c448ccc679b622e08955d4eeb1705e48e1df621552
+  level: 40379066d3fe5a580c6e8def26218cf4463bfc3084db4ceeb97d23d02603de16
+  projection: 5cf7504d9781301d83347546cdabc01a03c9638ab5b36c0a9203911078a0d1a4
+  layout: cd56b31082f9d6f0bc88c6a6b154c6e9078ff809f5775e4bdf84bc31f6b5071a
+  markers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  glyphs: f21e0e5335fcdfe936e6d8f032ccc348ad5c26e2dc23f2dfad7eb5ae87164404
+  links: f58bc9f288b50a7f58e11195344d03789c2c5369ead1304c049d0ffcb89b8012
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.vocabulary

@@ -1,0 +1,17 @@
+name: component.spec2viz-architecture.11-compilers__uses__ir
+path: docs/architecture/spec2viz/sldb/component.spec2viz-architecture/edges/component.spec2viz-architecture.11-compilers__uses__ir.md
+source_hash: c9dec6e0d702544ec6e0e530cbbed8601b6188b6d9401c0fb3053509c1775c25
+content_hash: c1e758f637ed79e50a625839de38e5a0c08efad702b02d5a2369d3980c0076c0
+field_hashes:
+  title: b00a68f9c99e572ded8bacba68eefb5d82d91cd5cb892737972efcaacc9b98f5
+  source_id: 1d5846df4a2144801469de3a9767d1870e406a014c765481c197a1b4689ad131
+  target_id: 0b11c7b1bc5238ab282482d164027f4f64afccdd93197533ecef15064be4761c
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 1600c94b8716317c6a3caa3404e38b92bd26f48db995eeff86b544f221694d7a
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

@@ -1,0 +1,24 @@
+name: activity.start
+path: sldb/notations/activity/glyphs/start.md
+source_hash: ee88f9074facae807c0b387f987011afd306851af67239073ac3525a8be0c002
+content_hash: 359461bc40bc4db96ac40fccfff5049552a027d5837d33b4b7ce92a03183fe84
+field_hashes:
+  id: d0513b40af4a24f4f5629c6222df4f0faafb4401fa6d3ea1f5e898d269a2463a
+  title: 0a26a1e61c8256608c36cc49a5c5c2a45398f73717eed959402732656bd2b787
+  notation: 47770d4a6f8bca730a18d37857bae09f6fd927fc99dfdb1104ed77170999fdd3
+  model: 1e5ce4d31ba8f3d06a3988d0cfb68162a27c153d9ffdf14d705450f4491c4733
+  where: 47b7d19d4bbceea384d0bbebe9480e36aa41bc695b1f9b47868735991ce09380
+  shape: 5f68aabe41442ebb92d10b59af45f5305625fe775c2c3feec91e269458f845c8
+  label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  label_style: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  keyword: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  compartments: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  function: a92ae9615600f7f0bcb0edf9703b379c163bef33ed749ae40c48a0830d4ab6ae
+  form: be3a284c079049f22bba93b24e766801e022a377df3f41e837f2d9b827f7de14
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.glyph

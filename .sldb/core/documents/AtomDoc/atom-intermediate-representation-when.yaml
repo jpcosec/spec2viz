@@ -1,0 +1,18 @@
+name: atom-intermediate-representation-when
+path: desk/atoms/atom-intermediate-representation-when.md
+source_hash: 41434f12b537b2ee158368d16a568e14ed4f259fa4c63326136959a7625a5ea2
+content_hash: c2862b399365b6325cf03ab4df331dcafd2123884f319d3c0b5f6b44f1c9d92e
+field_hashes:
+  id: 3973b0f8f77b0f0a67d1778ef16d9e289084622a2d3435a68000e24cade1a9f7
+  title: ab883d04e8a339b2922a5828ab73fb70301443f1613254ad11a5543c831ac82a
+  five_wh_one_plus: 6d924791a1798656302bd4b9716a494a0c5f7f55ad9ceebf629dfb2317e86078
+  answer: 9f01176e71ada96f32775eeecb1b80bef4f849bf96bb7fb90174b63b21a4d8f6
+  tags: a4921af91b6f91fb11f6f1131ee0bf1147c9b4e1ed8df732d84f2d93d8f76cca
+  provenance: f33489a1c74d42afdf4fdc6b849ce8ea3e23b4e9b09c6796baa2ed8bdaccb800
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:ir
+- type.knowledge.atom
+- workspace.desk.atoms

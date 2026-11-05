@@ -1,0 +1,22 @@
+name: uml-class
+path: sldb/notations/uml-class/notation.md
+source_hash: 962b94b0781b318abe07ec13bd3675f0503bd937d1d809da4c50dca7fad97871
+content_hash: 01e7171be3724e115dde18e48e7281219486c06ece6e57f7e2a2870ad6a7996b
+field_hashes:
+  id: 92c5d8b05c002125e9d1fb412947ef4bebaa3935134b57b04f3ccc34dec0942e
+  title: 91f94e30152249a81c01185561f676745cbd957151401e3d3898dc4d30270b6e
+  name: 92c5d8b05c002125e9d1fb412947ef4bebaa3935134b57b04f3ccc34dec0942e
+  diagram_type: 27afc9e4df032a69ed33bd0a05087f7154031c0e256c3200437fba044d54151f
+  level: 414cc0c8413da97a052dbc9ac40ef5f9397c6f4b59c43e2f256d49f7c0dd8e0c
+  projection: 5cf7504d9781301d83347546cdabc01a03c9638ab5b36c0a9203911078a0d1a4
+  layout: b3b7ab14ebcbe0971596f94d2f2c129c277c0938435aa3ac618d098c41c6c907
+  markers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  glyphs: 95e7ea49b119276432db93142f6979b435c014fce03e517486fa9efc7192d297
+  links: ab73f30c7471d81b54e1478c9e7a8cd140514139c3b5def74030f903d8fcad7e
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.vocabulary

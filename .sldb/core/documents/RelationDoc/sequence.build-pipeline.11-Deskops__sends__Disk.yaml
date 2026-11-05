@@ -1,0 +1,17 @@
+name: sequence.build-pipeline.11-Deskops__sends__Disk
+path: docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.11-Deskops__sends__Disk.md
+source_hash: e549bed8b70940fb5b33509a569e1b05c68b75fda8b579a46bef701ede475bc5
+content_hash: b2683c9c795a870d15dad64d089596cd342f673d76e1d943d60f653527993488
+field_hashes:
+  title: 00c7778997380694b72c8f630f0f0d8172f8e3ce671e58229a62d322ac7671b1
+  source_id: 0c7acb3d7ae6d83ba318e44d6f84e18fd91b8824568b8514a25acc9e8ba05865
+  target_id: ba9084bdd122c7d35563c6da5b7bb82f93f3f867761e09ce42afad68231908ef
+  relation_type: 514aa25f2df0d5491f40614a98bcd4d548a8d84866347177c7b8cd504db60452
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: fa1b2d3575dab2f55fa3788b54d01097353a20d50d60eb70084a6b44a9d21880
+  attributes: 3c3918e7ca5979c00c6deea839acc1c999c0663edb580b1caedd366220d19c1c
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

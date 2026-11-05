@@ -10,5 +10,4 @@ build/
 .pytest_cache/
 .coverage
 *.egg
-.sldb/runtime/
-.sldb/core/
+.sldb_cache/

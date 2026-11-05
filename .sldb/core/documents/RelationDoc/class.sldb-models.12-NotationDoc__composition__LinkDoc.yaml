@@ -1,0 +1,17 @@
+name: class.sldb-models.12-NotationDoc__composition__LinkDoc
+path: docs/architecture/spec2viz/sldb/class.sldb-models/edges/class.sldb-models.12-NotationDoc__composition__LinkDoc.md
+source_hash: ea96dd652079004d9c21f0f4ce475f9d66f604004c3b3b98545bea79cbdd4a08
+content_hash: b958bbaa4b7a2b04af60ea0e4fcc89b9aa6480c4ab42ff69f766287374ec9ab0
+field_hashes:
+  title: e8d7d6a21731c1786126f44243b788670b227c80c8ed11078cacf2678c7b3836
+  source_id: 76719b581cc02da9a85c4223255984ac1d42e8080d30d608b8212d15d59bd5fe
+  target_id: 2ecab97129609a9f9c5699c3483c08055a7bc9775de0e806043e221827f88b1a
+  relation_type: ee4da04c2f4755a40f1816b91b93640b25cf7a5de198b7c626ae828b7119a378
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 30a74f913836b3ac83478ba4c65d7cdf92af4ae3df6711f15f0e3ac0e55f7047
+  attributes: de676b180c76451418cd30771826c7d5558902c5b98d06ca27c2f19928028338
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

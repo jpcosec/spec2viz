@@ -1,0 +1,18 @@
+name: atom-fixtures-y-goldens-de-spec2viz
+path: desk/atoms/atom-fixtures-y-goldens-de-spec2viz.md
+source_hash: 4ef11d2fb34c80db80c1858302e7cc0c97d6c14415809fab40e1b8d95e7d740d
+content_hash: 689f6b37361a2cbb15dc5214a73d340a4f739c878305d6538ebee45879123c4a
+field_hashes:
+  id: ad315c4e553f74242bc3b9abc32527f9af9c28754aa37a2ca4b8ae7de168360b
+  title: 757da45361b0bfec1e0dd9a0938ac7c4dbf3f2a61ab261347982c80dc38b2713
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: cbbba25dcfa4a18399361c750c206cca640c3059317670afa2492215156cd6d1
+  tags: 5dac6faeb87b64361911abce405160ae7d6de6cffff7b94b84dafc70a6d6ce57
+  provenance: 189b534522aaa48a9c29baa7511b2063fe51b7cfa350d686716b609c6a075e51
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:testing
+- type.knowledge.atom
+- workspace.desk.atoms

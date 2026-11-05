@@ -1,0 +1,19 @@
+name: reltype-inheritance
+path: sldb/relation_types/inheritance.md
+source_hash: cbf4f340794f2a025b27038b884f7d5b9b5dc92b329cf3308ddc66a10d7d6eae
+content_hash: 728e46d64f42789cd42d31130f36d6e5be5b94c15cd18e10a8049ad4e04a618b
+field_hashes:
+  title: 8116b0011e63872cf2984a9022415b4a56e42e30fe7292ffc68221c36985a829
+  name: 8116b0011e63872cf2984a9022415b4a56e42e30fe7292ffc68221c36985a829
+  direction: bc5965e31ad9b9fbdee7d03f2a8a26540c86629ea7b2abb3eb4cf2ac5e63a18b
+  cardinality: 3ea55382070a4f53a291448ffcb0ca975ac9b850f2514acbd418f89c891c1ffd
+  axis: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  source_types: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  target_types: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  description: 26cab0169a96e692183a8eb864731d248ad35e20ebf3ece2f5f965c78a0ae480
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.type

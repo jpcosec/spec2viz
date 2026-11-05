@@ -1,0 +1,24 @@
+name: uml-class.enum
+path: sldb/notations/uml-class/glyphs/enum.md
+source_hash: 0b54004e09a6cc538810060a03f1d444db6c0cba12078647f0f7702da41a0404
+content_hash: d61a90eec1b494e5aebaf3fca5ddcb2b81f047fd7f0a33148b6361021945afe3
+field_hashes:
+  id: bc7ed8be22b3386fa10bf56add1f66e81e43b11a93bd139073155ee6688170e8
+  title: 47d3a644f394e843b29c00cc5e82b7d0169633c48f043e89103c41c58e141c02
+  notation: 0e9a6923f1eb1d721932ada3db53e95c916966fb6db1fcb19eebc540bd1a7156
+  model: 1e5ce4d31ba8f3d06a3988d0cfb68162a27c153d9ffdf14d705450f4491c4733
+  where: ad7f8203dbb9916900358881174bfc75bdada3f764a92357af315fac3efbf9b2
+  shape: 0ec51e78a804dea952e3acbb402cb3d64e0e62e761ef4999b24813aba4e643f6
+  label: 8af1f905cae240380a410538a24d6887b0bf377b0a109ce3cdb19a811a44c2dc
+  label_style: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  keyword: 66a1ed1f9205eada87cd90c946d858ae61bc8cdc119887c9e0e09fc4ea4aaeb4
+  compartments: 4c42560eddc156756677b3af04aa416f1fea0a166d6e8938d9268894968f8392
+  function: e49fb5f753e8aa4d47de1997cf344e108a4ccc685d45f43a37b7f49085f585e2
+  form: dd2f0cde3521ac121e6f0a524d5c412cffdac1fd165c4289d97bb8428d2a7a5f
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.glyph

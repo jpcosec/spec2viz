@@ -1,0 +1,22 @@
+name: class.sldb-models.SpecDoc
+path: docs/architecture/spec2viz/sldb/class.sldb-models/nodes/class.sldb-models.SpecDoc.md
+source_hash: 1071b1083c59144f6f1abc8740ab21d8f55b426dda0cee8fd10e3967a27fae00
+content_hash: c7d40b9e921b774ce1986476990fe43d19fd41f95afa7583dc5301196b0eee07
+field_hashes:
+  id: bb139b65b986f2106e2b20355dd407c43205c8eb72efa30a92197022b78fe56c
+  title: 33d2130a2821f0c27a38194e932bd3894ab5ff309eaa54c63819142d11055f55
+  spec: 67845e86c5cfa50b2c2cfa1ab7062590aad9c560c3a36310ea7e293fc08b3f28
+  element: 33d2130a2821f0c27a38194e932bd3894ab5ff309eaa54c63819142d11055f55
+  kind: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  collection: 2d573555365403bc103fa97ba432ce6c8891e0db87227c72e354460edd3fe729
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 8feb6b0dda754c394102cac6f808b7e4ee738926185c5a64c02e2569dd1a2c2e
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

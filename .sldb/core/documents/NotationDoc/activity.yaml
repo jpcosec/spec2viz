@@ -1,0 +1,22 @@
+name: activity
+path: sldb/notations/activity/notation.md
+source_hash: 3323ed2cdba25c646864da380ae6db775e937d1674f76fc11e726518b434fa5e
+content_hash: 8137118647b18d0d44d6bd82dbe8cafbdc787b0d27c9f74d992f43b7b0cbd584
+field_hashes:
+  id: 00091aa568cb13873d1e8b761941b4ab506f6fc56867b6d5a6f4fc8c8539d810
+  title: f6afac984ea4da561fbe9273231a4fb1414f9efa3164cfc5fe8c75b9d8699798
+  name: 00091aa568cb13873d1e8b761941b4ab506f6fc56867b6d5a6f4fc8c8539d810
+  diagram_type: 00091aa568cb13873d1e8b761941b4ab506f6fc56867b6d5a6f4fc8c8539d810
+  level: 414cc0c8413da97a052dbc9ac40ef5f9397c6f4b59c43e2f256d49f7c0dd8e0c
+  projection: 5cf7504d9781301d83347546cdabc01a03c9638ab5b36c0a9203911078a0d1a4
+  layout: b3b7ab14ebcbe0971596f94d2f2c129c277c0938435aa3ac618d098c41c6c907
+  markers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  glyphs: 0ac1f409b14530de843e4bae4a2e24332296409c3cd41b850a8a419dd98f45f7
+  links: fade90fdf0499a15f0c3c3179c865aa5dcb53c9480d2c3028e6f4f18041c1f20
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.vocabulary

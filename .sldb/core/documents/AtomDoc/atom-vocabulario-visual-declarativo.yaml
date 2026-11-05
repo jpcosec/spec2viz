@@ -1,0 +1,18 @@
+name: atom-vocabulario-visual-declarativo
+path: desk/atoms/atom-vocabulario-visual-declarativo.md
+source_hash: ac3635d64c7678903a9e72da19bdae78802ec3d31a708d7c50c5e8cd5b56bb41
+content_hash: d233fd6b349ffe791f7cacc2f835aa7226941d939819e47c37cde0fb4e80ed6a
+field_hashes:
+  id: c9f08a9bed13c2b66de3d967f7c5b36240f203ce0ba55e4ca5a2532a4854a0b3
+  title: caed6c1c2b25330762b86654ba791ce7a644d5408d742df7735f17d54574ecae
+  five_wh_one_plus: 0ac5b48a10a651e75b01f8d26468c18977ea336c90a9607a6163d0d330a4bb40
+  answer: 296f90f0d00cf95489ff52fed5566b5d5a890152c1c50d3c44c52a2f8a541d13
+  tags: e44c3755ead39cbcc714f94a118d7763466b28cf8ae5d441267852ae5dbcb1f2
+  provenance: 38fd4bb07f9e4d1dfbb467c0393b7f3b40951e40d2add2035529a681b7bf0163
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:notation
+- type.knowledge.atom
+- workspace.desk.atoms

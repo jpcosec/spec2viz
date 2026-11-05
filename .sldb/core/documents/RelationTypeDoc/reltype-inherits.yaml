@@ -1,0 +1,19 @@
+name: reltype-inherits
+path: sldb/relation_types/inherits.md
+source_hash: 8443f319647b13ac4f13984d62ecf5052f6d73b66720e24ebf8340f3e94218d7
+content_hash: 3549532f028b5e5d8ef35cfa90180efa91a7f8a6a0cc9b622acf42a567779fcf
+field_hashes:
+  title: 9b2108d818fc4e0eb1a24e241e89685e2713b4b82f6c1bac71762b020d21917b
+  name: 9b2108d818fc4e0eb1a24e241e89685e2713b4b82f6c1bac71762b020d21917b
+  direction: bc5965e31ad9b9fbdee7d03f2a8a26540c86629ea7b2abb3eb4cf2ac5e63a18b
+  cardinality: 3ea55382070a4f53a291448ffcb0ca975ac9b850f2514acbd418f89c891c1ffd
+  axis: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  source_types: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  target_types: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  description: d3972686d294ad7ea4a58bfda57b1173fbbef52ae7c4414b669e0727dbf49a20
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.type

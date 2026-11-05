@@ -1,0 +1,24 @@
+name: uml-class.protocol
+path: sldb/notations/uml-class/glyphs/protocol.md
+source_hash: 8a9a42e6fa544d51743f74a04d1b3bf4f9ed56bc2c762c4494eba2dacae54ce2
+content_hash: 0f546d37a98ced0e0f1d89ae095199d02b683f932187109fdf86c3037fc463f1
+field_hashes:
+  id: 4a91931b5d8114594b35a1e21fdcc7b99a9f6b43b58878334db12b6dc329a395
+  title: 2805a8fceb7e865f1574212c0fe297c6cb29d4a630b9bb71621e0b0e241868a3
+  notation: 0e9a6923f1eb1d721932ada3db53e95c916966fb6db1fcb19eebc540bd1a7156
+  model: 1e5ce4d31ba8f3d06a3988d0cfb68162a27c153d9ffdf14d705450f4491c4733
+  where: f9aced183d566e2c8d39590fa186bd591971bc16dbca620ad98f7e67ac65cb94
+  shape: 0ec51e78a804dea952e3acbb402cb3d64e0e62e761ef4999b24813aba4e643f6
+  label: 8af1f905cae240380a410538a24d6887b0bf377b0a109ce3cdb19a811a44c2dc
+  label_style: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  keyword: dd68f2821fddd60518727cfb3db43c3b230df1de1a76d4fe457159e7de7341c3
+  compartments: 43eb22b5320c3183121f96c49dd10f080e35023c059f9951e7f433d4e2c203ea
+  function: d5bc1cc051b8e52709382b0de1efa968a8370032bf50dcd3b31f4e590c9a812e
+  form: d5b317875a742b7d7c543f9a60443c3d9a6fa698236574920d8b3c89eac0e5e2
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.glyph

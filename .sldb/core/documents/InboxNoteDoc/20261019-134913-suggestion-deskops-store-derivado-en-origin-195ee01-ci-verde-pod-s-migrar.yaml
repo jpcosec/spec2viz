@@ -1,0 +1,19 @@
+name: 20261019-134913-suggestion-deskops-store-derivado-en-origin-195ee01-ci-verde-pod-s-migrar
+path: desk/inbox/20261019-134913-suggestion-deskops-store-derivado-en-origin-195ee01-ci-verde-pod-s-migrar.md
+source_hash: 6e3d20cd7e5d928f4c06d41093f25f9ba9b7a420e54cfeb3c2dd0c82d10172a7
+content_hash: 57fb5b0c149cbce072d88644571cbfff82df4239f233809d7eb7d608c892d173
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: be1a918d36a26b50ff05a32144905fa0851e3a2c55c93b05726d8a3bab97b3e7
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: 797f97ff88126f93068acd93d8dbb0a5dc13fb436ccfc53059320e45548704de
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: c6aa3afa8feacbc3360400c3c1a0211e1fe8c01f9ea3a74e0837dadbff15c935
+  title: e680f9485da2b27b021cd041590e6fafdc485d1b066f8be8232762a44bd5bd98
+  body: 1a2f25778d5b0f8aa8a2a7a8b0b15867708e03dbde819c0504ae8ad0bab20a46
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox

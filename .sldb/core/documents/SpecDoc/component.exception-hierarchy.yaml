@@ -1,0 +1,23 @@
+name: component.exception-hierarchy
+path: docs/architecture/spec2viz/sldb/component.exception-hierarchy/component.exception-hierarchy.md
+source_hash: 2a240a1947ad5bae340166f2f82a069be1cfa5a1ed5467e90fdedbb836117c6e
+content_hash: 4da9bb87509a534b85b8d34d1b386cccbf6495062995483f464582e698e12ac7
+field_hashes:
+  id: b79f125a934543fb47a76b67d5a179cf5d8c237ce1fccc285d3a8c90509b2ee1
+  title: 0372c0c485594e6b105d18563bebb49515dba320b5dde51d18c0962f5ffd7915
+  diagram_type: 7b8d80ff88e64a533dfeadc499bbed22ca57302cc69925a0941b395faa712cc4
+  version: 5a4747fcdafec66d8d8812022e3b7d2666d886ec0e0ee7926ec8c50db40f29d5
+  spec_path: c8b6d7f5ac9932db39b1a01b33ae8b67245b621cb0d0d939045a3ac98eea975e
+  sha256: c9ac0124ad857bee7cb35d5d00881e52c8957339951406157e9e5ca38df23635
+  nodes: 0bb6d2d58995941a28c14f62201f90e6a19fc58d38e2d16f3ceb034cd7485502
+  notation: cfea2df38da198f55ff06a26a564c6a328cb246a2814fa9873be59aeb9d30509
+  category: 33122481a3c50a787c0ef6c59a01cabc6d9ab7429b6336ef80d46af0297699aa
+  nav: 5ff6376d95681e967a470f789ef34de61bf6a1060c97b71f0618d4afa0010d93
+  summary: 4203f3af5af77919ea6f7fa99d75f21d8d48f623981e174d8523001ae8051204
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec

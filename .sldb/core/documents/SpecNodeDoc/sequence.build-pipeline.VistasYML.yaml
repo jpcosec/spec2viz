@@ -1,0 +1,22 @@
+name: sequence.build-pipeline.VistasYML
+path: docs/architecture/spec2viz/sldb/sequence.build-pipeline/nodes/sequence.build-pipeline.VistasYML.md
+source_hash: 59c32c1c6edfab30ea6aff82393cee8f0f178914a416ffa339e2fee36c3bc6dd
+content_hash: 3a6c770033ddf24e54347eae1fa3d3bb5cb02e4c5f8fe99b9d2f34378a7fd368
+field_hashes:
+  id: 9382abb87b83ae6d383bc374b65b8c07d83a99b2efa5b5ae4753c86ed0f20cc7
+  title: 324baed878b75b9718e2a131906b72557ffcc5d92b43395642935619ada2b38f
+  spec: 55caef1a93783576a0c5f5abf7523290564ed5857cce05b67167e07a0e9d9b10
+  element: 324baed878b75b9718e2a131906b72557ffcc5d92b43395642935619ada2b38f
+  kind: 7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c
+  collection: 45ca9071383537d3da8ce7a14e310575533ddec1bada7201ff76e55e40a05293
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

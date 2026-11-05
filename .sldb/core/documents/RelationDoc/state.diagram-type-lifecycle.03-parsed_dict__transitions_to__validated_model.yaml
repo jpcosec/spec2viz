@@ -1,0 +1,17 @@
+name: state.diagram-type-lifecycle.03-parsed_dict__transitions_to__validated_model
+path: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/edges/state.diagram-type-lifecycle.03-parsed_dict__transitions_to__validated_model.md
+source_hash: c795c102cf3af3c66db03d2f0f95a43c0dd6d1e99d9fd8970a538e949ef1009b
+content_hash: 6884cc0093896361eefd1ed798c90c42f155207ae314622bd9458cebbfde4537
+field_hashes:
+  title: a202f0223eb986709938fbe7a305348548f57cc55716f391e76c01ef99139dab
+  source_id: 69709b281e03f8a0c6d18329b72750d06e6ffcba799ce3f1866a995909658e27
+  target_id: 36136915ed7f5ba43f629397cde273ef883f5569ea10ff50335c97c95eec1247
+  relation_type: 28bd9b3da8f636e17ce2ec3811abebeff4a370a7f2cfb9e2080617063a2c0e87
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 37e567a874cce51221f94a9f051a2e2e561495f91d49096579b2dd4dcb85fd80
+  attributes: 954017abee81b7a185adcf46d3958b1a005b4f5540c5afb4481bfc15c41413a4
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

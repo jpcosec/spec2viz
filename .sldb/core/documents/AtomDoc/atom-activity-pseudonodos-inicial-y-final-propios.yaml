@@ -1,0 +1,18 @@
+name: atom-activity-pseudonodos-inicial-y-final-propios
+path: desk/atoms/atom-activity-pseudonodos-inicial-y-final-propios.md
+source_hash: 836ae397d570f74254214a6d0d5ad9212c67d56e1f593633d929bd471ff10db3
+content_hash: 89bdb5167c313de77b44b20252e9da9a17df5d710a532da0663dca62a6f19f8c
+field_hashes:
+  id: 37909b622c043e370a64438d36b32cab331fca8db5b5ab0ca8c289ba69a31db3
+  title: 343542b1cee22cfc96e1a9d4f720c9f483ddfd7caf81b7dcc194811831bd5b04
+  five_wh_one_plus: 0ac5b48a10a651e75b01f8d26468c18977ea336c90a9607a6163d0d330a4bb40
+  answer: 302ad27c670c7a475e8f84baad2e5628be803b4a0efaf3fbed4c35f603d8160a
+  tags: e44c3755ead39cbcc714f94a118d7763466b28cf8ae5d441267852ae5dbcb1f2
+  provenance: 38fd4bb07f9e4d1dfbb467c0393b7f3b40951e40d2add2035529a681b7bf0163
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:notation
+- type.knowledge.atom
+- workspace.desk.atoms

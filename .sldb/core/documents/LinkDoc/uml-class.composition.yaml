@@ -1,0 +1,27 @@
+name: uml-class.composition
+path: sldb/notations/uml-class/links/composition.md
+source_hash: 489f6f9faf3b11ff4e90354dc2f4f4f369401907186423da52529d6843e4e483
+content_hash: 3f8b6fc011e7a7541877e1f8d647e4bf057c9fef25b3c53f3c32893e92077694
+field_hashes:
+  id: 7fde17e20547ba0a4ce726a56f76a03e9f711621a63f86800d1c967c0371fabe
+  title: 09697e2361f06889ced954f9f901cbe2fbb02cb138a293d55e4c0f52910e9d22
+  notation: 0e9a6923f1eb1d721932ada3db53e95c916966fb6db1fcb19eebc540bd1a7156
+  relation: ee4da04c2f4755a40f1816b91b93640b25cf7a5de198b7c626ae828b7119a378
+  relation_type: 9fcf93b9f22e233924adcc68f3be417a2b4514ac818e977cbffdc805006d636a
+  model: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  draw: 42d2b70866ba77b84620696f6c6cb2814379e3e65f3027c8ec4692eaf7dad0be
+  line: c6f6be19cbb7ad2c353e1a0ef280c2fe1fe43630ee7e2d9bf9f3295657dd8ac0
+  source_end: 94db35454e3c0d3ec18031c84be0ac3b9f2814626a9c535396c951c24609f21f
+  target_end: 30a0924a3360be687d1df9fcbbfdff62c01bc0fd14036ab9076cf7f451568666
+  label: af00ab4f8cd60e1e60d062d58fc643487403d04c9946653698d15f73c4507835
+  source_label: 8679434d0f63f5f37c795bcad2426d07a7d9a5e5f15d6c3f3dbac115272ddfcf
+  target_label: cb094ff77e902d4350ba7629873730d55598c0eacfa59362c2552ea6bfe8914d
+  ends: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  form: e116d982d11d56cc3e9de850335c87a84b284fca30e1c1707f58b1aa3a318395
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.link

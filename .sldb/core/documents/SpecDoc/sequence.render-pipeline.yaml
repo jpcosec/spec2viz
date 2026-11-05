@@ -1,0 +1,23 @@
+name: sequence.render-pipeline
+path: docs/architecture/spec2viz/sldb/sequence.render-pipeline/sequence.render-pipeline.md
+source_hash: edcf2216b8ee5440484497c82bb0c771b3e61f00ad75d83e11cc4310d8a7a79f
+content_hash: 4947bf286cce0750ad71b8c4b6e34879ae88a7d08b99d5b7a27d1ae9357e3fcd
+field_hashes:
+  id: 6a8a75bcdc300b191bea861fe7852a701e9c8fc1a48a972f798145dc8f51c288
+  title: 75ee3a7300d4c12b28b71ca9c3f3463f70a995c3fe69b21cbef3fb40213e6210
+  diagram_type: ac11f777bb7f3f09af2e42c448ccc679b622e08955d4eeb1705e48e1df621552
+  version: 5a4747fcdafec66d8d8812022e3b7d2666d886ec0e0ee7926ec8c50db40f29d5
+  spec_path: b60a91966acc178ee8ac2e0ea90bf8ba42a812baea7a4f515fc8bd5083906a8a
+  sha256: 908b67c955c8bd1c8d0bb0b827348cfaa6d3214b50b1c2ba183e62eb1f16c385
+  nodes: b34590e3f25d5d7de268660e4a73fea2d453afe55913bec10e81ec5d159c5352
+  notation: 5e5925352014f06c312d2848538cc8f2fefdd24db8a10ab29fd1ac728d7f0e86
+  category: ea947e750b64dbf4db6acd3c439596fd609f70c494304e1fb55f17267550dbcd
+  nav: 5e58af99d6d4fa6adf639a3d6148784a14df6fdddbaa3591c45f7af9715a8c9a
+  summary: dabfd1f4eb36861c729595124f06d189221680017a416c0b4c6c006f25c0589e
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec

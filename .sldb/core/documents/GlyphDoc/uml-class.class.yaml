@@ -1,0 +1,24 @@
+name: uml-class.class
+path: sldb/notations/uml-class/glyphs/class.md
+source_hash: bbeb07e22a52f4401f0c4db3535a0bf5da8db7b645714b45f8cc519ea41f1f98
+content_hash: 49a4c54ff6c5922bcaabed52eeb7e65de85c65e0bc4c621d94930599ec951a3d
+field_hashes:
+  id: de44c622dc13ff1fbae54f24129069f55ed345e11907d75ae334ea974e2481cc
+  title: 39abe9b4e5300d41a19ff5f458a82e8dbbd8d4d83f5b1552ae44c45d64bde40a
+  notation: 0e9a6923f1eb1d721932ada3db53e95c916966fb6db1fcb19eebc540bd1a7156
+  model: 1e5ce4d31ba8f3d06a3988d0cfb68162a27c153d9ffdf14d705450f4491c4733
+  where: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  shape: 0ec51e78a804dea952e3acbb402cb3d64e0e62e761ef4999b24813aba4e643f6
+  label: 8af1f905cae240380a410538a24d6887b0bf377b0a109ce3cdb19a811a44c2dc
+  label_style: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  keyword: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  compartments: 43eb22b5320c3183121f96c49dd10f080e35023c059f9951e7f433d4e2c203ea
+  function: 27afc9e4df032a69ed33bd0a05087f7154031c0e256c3200437fba044d54151f
+  form: 1123c61313edd6d1339c2ab2c0229209dc78be4a021eb9876524c6c342ca51a7
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.glyph

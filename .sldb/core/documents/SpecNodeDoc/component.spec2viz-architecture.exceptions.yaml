@@ -1,0 +1,22 @@
+name: component.spec2viz-architecture.exceptions
+path: docs/architecture/spec2viz/sldb/component.spec2viz-architecture/nodes/component.spec2viz-architecture.exceptions.md
+source_hash: a8a85f25f9c70d7b6c6850822a27ee61595c3b9ac99782652fc58628faf16027
+content_hash: 4acae34463859121531bc190d75de83e93ffb87406c1943107339335f6deb62e
+field_hashes:
+  id: db18f6eb3469e43105d45fb4abe9d0bc8cf66ade0484ab8f6751be51f77400d5
+  title: d8d3fcf089b11797c3ae77711002edfa007c70d593d24a454d7a6cdfda16566f
+  spec: f4f4de0de733315f0265d11dec6d05f1775a34f42e11c59f4c9be2d83d5256d0
+  element: 887117b56b740a88b60675ecbdff4f77260cd3a05ae46b71b1a073216266a1c6
+  kind: ae6e9157995bdbcae79f0221fc05ca3df41dadbabd1d489c5aaee1a944a9c16d
+  collection: bbef1c19933039e17b86c861eac2bc37e24adee1503595cc2ec8f6afd1ae3adb
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

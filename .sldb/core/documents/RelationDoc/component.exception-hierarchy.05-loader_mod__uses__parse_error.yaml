@@ -1,0 +1,17 @@
+name: component.exception-hierarchy.05-loader_mod__uses__parse_error
+path: docs/architecture/spec2viz/sldb/component.exception-hierarchy/edges/component.exception-hierarchy.05-loader_mod__uses__parse_error.md
+source_hash: 279bbeb5a2ebcb1791dfb238b8fc6dcf1095a8b9cd02af1bbb169f2a17fcf08f
+content_hash: 35d7cc2857adaa34377d5981a53ad1d9a46883fb1ec5ddd6a5ca94dcb983d8b5
+field_hashes:
+  title: a5793caaebcfadfb6618a4c6df69a9d976dd91cd09b97a774ce4284c31819aca
+  source_id: 285e3a0e8534407c1dfd53306612404a76857ae372aed550e982ba0b739f742b
+  target_id: 5479515678f8b58d6dda80cc6d5071bf22467d3ed93ace45ae054a6de0fa8aa4
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 76d288f387467472dc7306fb94d20dce646e99fb3db9d1c49d5823b92c2f6f8d
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

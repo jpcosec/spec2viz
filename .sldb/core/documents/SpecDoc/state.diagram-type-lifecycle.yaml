@@ -1,0 +1,23 @@
+name: state.diagram-type-lifecycle
+path: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/state.diagram-type-lifecycle.md
+source_hash: da1f441f342832370addc62adb7c9de7ca7d392b59fc66c3c5c768e076fa9824
+content_hash: 2e972708c50dd8cf3f68a850d4f108fcbb716b610e9fe86f63d7dcf959d131ee
+field_hashes:
+  id: baad7672c897be057de6de7001a4ec078f0d92f3f1211da39ee8fe5f50c09a83
+  title: 02b904889fbfbbc46ce8ed7c5adddb42380cd7036434c8d4ed11b04a3363c524
+  diagram_type: 55af5b1d18b0d9ddda33273d987fd0579ef9b07af3a077c79d0accb6c8f17127
+  version: 5a4747fcdafec66d8d8812022e3b7d2666d886ec0e0ee7926ec8c50db40f29d5
+  spec_path: c1198563aaa19063449b362284681f804ff063ca9f196ef8389957778d0709f8
+  sha256: b9b8e98a39c48d8bbccd21670f0c0a9196bfda1b2d4f5e5ce04ca6ba932d2656
+  nodes: b22a3f9f964ae99e53cd99d968005645a063d5f14ac36bb677b449bea1251e7c
+  notation: e79798bcfdc88a411268058485292b14dee45dec4727f989940a737e6a227fc7
+  category: 2be464d5d08bdda64bc013e29fdd1396bc62bcc468aa5aeee8688303b3c10974
+  nav: b22c645ffb53288ef36566b2156d1a8667ee66131fcc354be6875990e2ff5f8f
+  summary: 4cf32baaca2cb9b61395cc8cf7318ea8a62fa4bfdbf1919345270e663cc4add5
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec

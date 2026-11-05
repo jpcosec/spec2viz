@@ -1,0 +1,17 @@
+name: component.spec2viz-architecture.06-facade__uses__compilers
+path: docs/architecture/spec2viz/sldb/component.spec2viz-architecture/edges/component.spec2viz-architecture.06-facade__uses__compilers.md
+source_hash: 993907375bbc7c1fb85141ae0f518e28086f7efdb734b794b65e4f92b315a5f9
+content_hash: 5e6ef19b7728971045c380faf1425ebcb71177bf1a6c8754eeb52b11374afec8
+field_hashes:
+  title: 41a61ea7fe47fac4ae0e4ac91a91ff48a348d17d57a0990fc0428345b5c3b997
+  source_id: 6d5964e92f2056b32ab3cd333db511bc36b5b849cbc3e3ad7a4c5e200fefbf0c
+  target_id: 1d5846df4a2144801469de3a9767d1870e406a014c765481c197a1b4689ad131
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 93edac59733db11b5908597e98f8e39277ed494db2cb8999810b670f6093e1db
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

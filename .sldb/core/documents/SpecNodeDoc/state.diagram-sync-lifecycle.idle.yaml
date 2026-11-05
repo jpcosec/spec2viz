@@ -1,0 +1,22 @@
+name: state.diagram-sync-lifecycle.idle
+path: docs/architecture/spec2viz/sldb/state.diagram-sync-lifecycle/nodes/state.diagram-sync-lifecycle.idle.md
+source_hash: 79faf90940c5bd48a695157eb8f67c4a89237411a72d899c0e6cfcf792fdc75f
+content_hash: 7d3db8681f0512bb0d355b365c68a96e90f503457f75de0a46b814a3ba952ad2
+field_hashes:
+  id: 46e1fe11c5cc7a17abdbb80ac82bc441715d7015f2ebc207082048ff957abd15
+  title: 713fb8989d856941cb1f98f49dfbf0ef0bc3620ad2d31c5628b4c2f3ce7bbe17
+  spec: 5490d0be6d0e3d178b976a1f1ecd6e09a1f8ad6f2c638c03abc8624c2ef4ba54
+  element: 7d124c1a7f40100adef282ef87a08885f5818b6dbb3a186b5fa7208f8774e9ae
+  kind: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  collection: 3c72197b735c852d335d78eb4676a275033753b992a2385625f87c9a21f77084
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 50aa653c5a79d5a9768e73ca434ad3402c74a9864e3b0ac1e0d5af221377c5dc
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

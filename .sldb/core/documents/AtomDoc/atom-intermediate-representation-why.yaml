@@ -1,0 +1,18 @@
+name: atom-intermediate-representation-why
+path: desk/atoms/atom-intermediate-representation-why.md
+source_hash: 5781a38f23c8f3e6855bc25008dc652df017d91c5fa7ee04095f82cc8a9a252c
+content_hash: e4c3206c703c31b6a69b5088ca1620516640d8d4699739bcbbe1055cbd276a5c
+field_hashes:
+  id: 01ef9d3e1632dd1e0462353b6e9b944838b261fa2b96f2100bd78f175ddb4270
+  title: ab883d04e8a339b2922a5828ab73fb70301443f1613254ad11a5543c831ac82a
+  five_wh_one_plus: 1566d618b9ad05f5d6636ef68875b058a3311f288ab671709bb72d36b5dd1a5c
+  answer: 91e22c06e98ba022f81e0e2259ad679387ad8f5716044bfd0dfa770460508030
+  tags: a4921af91b6f91fb11f6f1131ee0bf1147c9b4e1ed8df732d84f2d93d8f76cca
+  provenance: f33489a1c74d42afdf4fdc6b849ce8ea3e23b4e9b09c6796baa2ed8bdaccb800
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:ir
+- type.knowledge.atom
+- workspace.desk.atoms

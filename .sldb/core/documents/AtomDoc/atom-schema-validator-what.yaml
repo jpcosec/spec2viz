@@ -1,0 +1,18 @@
+name: atom-schema-validator-what
+path: desk/atoms/atom-schema-validator-what.md
+source_hash: 09351404e1ece992c4b63795dfad9a61ab0016015711b3fee5a0c44090af3708
+content_hash: 5df8c7a95de85f063491b6f9ac27738966b40fde9b3dd0c1559f4a16a24e0038
+field_hashes:
+  id: f42c061d40149e912a2e5339a2bc568d340620c2ad9fc43c7326d156b89b42fd
+  title: ffd72a6ddad135c0c0f63b0da9267dc5c98686a1ef6eb51d03384dbd29865cf7
+  five_wh_one_plus: 0ac5b48a10a651e75b01f8d26468c18977ea336c90a9607a6163d0d330a4bb40
+  answer: d45db5dbc307d58174f447d6aadb194dcd04140693af9388e10da8eba503c1b1
+  tags: 675dfce15bd864b4a2d74bf60319f214b3950e8ef52aa30b42bb2dce7cd0c335
+  provenance: c7b95ac5ceb0c0321090069c12129af10276fa5137c47512df2a5514c8443afb
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:validator
+- type.knowledge.atom
+- workspace.desk.atoms

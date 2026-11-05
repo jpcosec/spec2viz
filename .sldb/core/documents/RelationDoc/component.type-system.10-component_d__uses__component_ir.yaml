@@ -1,0 +1,17 @@
+name: component.type-system.10-component_d__uses__component_ir
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.10-component_d__uses__component_ir.md
+source_hash: 308fc3dcbb3b75ac0c7f5206ea13d03f03eea72f6ba84bc6e4d972cd3b802609
+content_hash: abe35ee6a02005760a39bc18927bda686d8128588fede44658e273223f470c60
+field_hashes:
+  title: a837407611f29f4bece063ad14db97b1dc45ebe3e4052651bd181a0f5d28fdb7
+  source_id: 85c981ab32ea8a1d1d530375adb06f71b92a072f2e4f2315a423e1e6104b00f1
+  target_id: 0dc09ce20fb576c7c177b365aa4f07e5d4d8131207796a6ae8b6f6309c946a11
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: c1b6157850b655433ac723dd479317aa267b4bdcdde0332421c0c902bf1e57c3
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

@@ -1,0 +1,22 @@
+name: component.exception-hierarchy.validation_error
+path: docs/architecture/spec2viz/sldb/component.exception-hierarchy/nodes/component.exception-hierarchy.validation_error.md
+source_hash: 8110bc78da729b60f3b0cefdc8207c3239bc21baf3920351d15f7da226b2b730
+content_hash: 947fc31de35a7088330d9bef878c8ae3b3b9d36dff87bd03a0041fc6c013f3cf
+field_hashes:
+  id: 916d4c9dd7244ff60081cd82d88ece970c562181e6aaad8afeb1cb84a2ea0526
+  title: cb6ec6eb9b8efb37865b0022725d2fdd63fce22fb2ade4ee2b9b2c255d9f97c5
+  spec: 5846c6a7e3daee40fa59038051c3818acbf8310cd5f244835645e89b7ab32c94
+  element: 0d3b566327421add657ebb70df1530f6a69fbb29160a7d64649d6d673452fe9a
+  kind: ae6e9157995bdbcae79f0221fc05ca3df41dadbabd1d489c5aaee1a944a9c16d
+  collection: bbef1c19933039e17b86c861eac2bc37e24adee1503595cc2ec8f6afd1ae3adb
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

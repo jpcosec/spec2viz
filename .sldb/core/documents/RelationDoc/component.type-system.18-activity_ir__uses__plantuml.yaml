@@ -1,0 +1,17 @@
+name: component.type-system.18-activity_ir__uses__plantuml
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.18-activity_ir__uses__plantuml.md
+source_hash: c9f29bff0dfb29628b9f1b7e563b0597b165279e3d6d904eeae613f3c97667d1
+content_hash: b4ff9b823ce3fbb560790b833b0ce98891390edb9133eb860a1049e0fbe70649
+field_hashes:
+  title: ebdb961884bf42799bca5e6e34b646be73a3e1c5b9ec0079ef40c99675e462e4
+  source_id: 9f50ec9e90aa460c3338b16c6cc27c3f9b1b0e12aff5fd92201b723d284f9e7a
+  target_id: 7af9c1b5cf22a5de10981ddf49f20a7e10274010930a7ee2be89bdbede06c286
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 1080a60800d9e5bddc69f51489c636a776bacaadb5368f46db4aa0947c67e3ba
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

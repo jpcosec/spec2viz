@@ -1,0 +1,17 @@
+name: component.type-system.08-sequence_d__uses__sequence_ir
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.08-sequence_d__uses__sequence_ir.md
+source_hash: 1324328ad503c3b8b0a86650341b1bc88d6f029caaaf2d640684a1dfa6565f12
+content_hash: 6076d2c36382dbcf891505be72efeecd5cff6095e32aaa0070fefeb7e58ba3d8
+field_hashes:
+  title: 8dd9b0803c58767cf93a2b76365c95360891e774e59771a3e8705e770968d28a
+  source_id: e12f92feaf3533b3f1743147bfe1738611d12d2bdeea5daf7c0e52d3b18a075d
+  target_id: 26c2a7a4f7e3befea737b5c49958a605d8e1368b4bfa0b39bf9c06b5285e6bbd
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: d59df557ec42103388320f1cea8df656195adde5115316d7325fabdd4a6d0db5
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

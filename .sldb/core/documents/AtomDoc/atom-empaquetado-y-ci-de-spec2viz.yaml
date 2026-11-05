@@ -1,0 +1,18 @@
+name: atom-empaquetado-y-ci-de-spec2viz
+path: desk/atoms/atom-empaquetado-y-ci-de-spec2viz.md
+source_hash: b52c321fdf64f5ea28269fcbb4534836a7d3b2085efe552679f6f82af51d0164
+content_hash: 7605a897a49675a92c03fd47802d37826be2dc1469e0f96b4e2289600a8775f2
+field_hashes:
+  id: f6f3a665d4505b4ace0348a3b2012d9e44b2c5f795bd17ef30b085b2f00c21b4
+  title: 8d4deaa2f435840ab858159296d79186c26da810c1ce3533112fbaf3a2b5f299
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: b799c08c461e10bab5c74310fb3816010eb46d49c9aeacbca157c17662570e4a
+  tags: 129e3c2eac1c93a9243dac125c4ce7f48a66c71fdb3a87ed6170942d4a6314ce
+  provenance: 9c6cd9431da5c16d2ee820ad552f266833f2ce755f554cbf9ffc5e0d3ccf1504
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:packaging
+- type.knowledge.atom
+- workspace.desk.atoms

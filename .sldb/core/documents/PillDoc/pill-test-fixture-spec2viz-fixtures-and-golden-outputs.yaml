@@ -1,0 +1,21 @@
+name: pill-test-fixture-spec2viz-fixtures-and-golden-outputs
+path: desk/contexts/pill-test-fixture-spec2viz-fixtures-and-golden-outputs.md
+source_hash: 5db7ab635fd0f579a34bf26d79bb20c35ea30e16dd6a25c02e6b76a1bfb8f31a
+content_hash: 2eef60f1dead92f85edf62d77d075fb5f3eeecb943ab031b74251713c61e9073
+field_hashes:
+  title: e13830d894da642599013e9cd87d4b7fa3f7537398f39787a65eee7754eb676b
+  id: 4f912dffdcf36f5c16edc864e952fc6f3d2946fc0f57bb0425343a9403ac1699
+  status: 7db3f556c198d348a65c7a6a521ad0c1acabac156f8416330bc45c9c828bd666
+  summary: ea9409381f4b59da12b61c6080292c9514dcc211ef5aed0e6b4960eee67f2a36
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  what: ad1e93287bee13380e2ed78c82a815bad3ed57ca1e8eec11fa50942e95f918fc
+  why: ab678611d910c66fafd284b8f17cd743975940498eadc3aafad903282fa28a78
+  when: b8375ac811302b507cc00817695766c716c911c67218115c6dd28162dcff7dcf
+  where: 559bff4967c040db72e7dbc11eb55b1982086841a9d0f83d195fff3b3561a138
+  how: b5f32e1f10cc796a04268259d12f1ab5d212e733f143e5ba77a96736cfdf1a08
+  how_not: f57261197eb42f1af328134bbaa970f6357bbffc6f085c89009115e2474c7825
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.pill
+- workspace.desk

@@ -1,0 +1,18 @@
+name: atom-proyeccion-del-grafo-de-fuente-python-de-sldb
+path: desk/atoms/atom-proyeccion-del-grafo-de-fuente-python-de-sldb.md
+source_hash: 5a0e99eccf57714bda0912d64660adbebc98e249ef711c6a0ea3442b1c95cc47
+content_hash: 2f49de8caaeab08461067b64cd0e056bfae5cbb706b927f5f0d30530668e8d95
+field_hashes:
+  id: 68bd0a1dfe532a9868f488f6a4f389dcdddd9b749f898e24c6ae60b25aa3f043
+  title: 6c6c315605636e5a81640ea243c9c434435d1f433737e399cd2779861f82946b
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: 705d3e5f1334c6479b64ded30a86f4714fdea52c96fa01146e89cd7db87bbcb6
+  tags: 024d8c551788d3a920c3f10982875c17b8e7af9acc7ef0dcf4f507a28b3c4cf7
+  provenance: 128958129861b6ef4f1457500b814fc3d537be5904ab30315e008104109786a6
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:graph-import
+- type.knowledge.atom
+- workspace.desk.atoms

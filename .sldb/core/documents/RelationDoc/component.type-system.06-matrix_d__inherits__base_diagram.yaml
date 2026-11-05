@@ -1,0 +1,17 @@
+name: component.type-system.06-matrix_d__inherits__base_diagram
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.06-matrix_d__inherits__base_diagram.md
+source_hash: f297d1638579e369965af970e114116cb1061ade0bd7af7adcdd8aed49c25d04
+content_hash: a4832e0938e37e37f2296a77db2cc36813ec4812db71f8b23bbf584be7497929
+field_hashes:
+  title: 358df90941a6a8ae78961e431c0a80a7b8f6486ba8a7be135388133c9d0dd5b2
+  source_id: 7e30e6cdb083b268c58635202ecd510119afc878fa0031e935c8f5c3d1cf7b8f
+  target_id: ec4d2aefda7f6d243c46dd01e478bbb81a9930ab636cf6da1b113e1af457c359
+  relation_type: 9b2108d818fc4e0eb1a24e241e89685e2713b4b82f6c1bac71762b020d21917b
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

@@ -1,0 +1,18 @@
+name: atom-contratos-de-spec2viz-al-arreglar-la-cli
+path: desk/atoms/atom-contratos-de-spec2viz-al-arreglar-la-cli.md
+source_hash: 6409d9ed87e198cd0c94641afc847e200e17e4bc38fb39f26775efa294950f8e
+content_hash: daac05873167561fa88b38836c063c79d4275fd48f1b9f327c92e83d189eb7d2
+field_hashes:
+  id: 78798c0a49c29cc4d1446aca1a313da6949505f75ab3cdf8666e05cd4bbfdfa6
+  title: e05710e7759fbf8a1b310aeb1198df4c86a80c3e00956aca7171adcc5e65b6b3
+  five_wh_one_plus: c7d4bb6c4e85ef7f9bf7592aeecd1d09dd38adc39afd1ffb3908b19e689040ad
+  answer: b1eef71ce76bc73083907a68cc1efed007d8ba32feb93dc36c89cd0196d83d89
+  tags: 5dac6faeb87b64361911abce405160ae7d6de6cffff7b94b84dafc70a6d6ce57
+  provenance: f34e8b3f93c9d3038008b2db01aa300fe6632f6bef7f13c83351a94d48ee2a70
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:testing
+- type.knowledge.atom
+- workspace.desk.atoms

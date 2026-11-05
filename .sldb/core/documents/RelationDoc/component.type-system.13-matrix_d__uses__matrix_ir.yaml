@@ -1,0 +1,17 @@
+name: component.type-system.13-matrix_d__uses__matrix_ir
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.13-matrix_d__uses__matrix_ir.md
+source_hash: d81525622cc6b3d33a8fef2d89d310c0cbfd94351ed90ff116d59f16005df6a2
+content_hash: ba13f6d98f1cb45b37cfbd94aeb931dbf836649d5690b8a0da2e995096af8ac9
+field_hashes:
+  title: 7cd8d7eedd797d90d6e34783e80a3061e58921d9f79945b09923d7126c5056b5
+  source_id: 7e30e6cdb083b268c58635202ecd510119afc878fa0031e935c8f5c3d1cf7b8f
+  target_id: 1b3ec75ad372a814ea36020fbef28331756c69ea018c3e1611ae53ec466b7e9d
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 5bcea65c12d8d4c2aa265e45bad1b99d305525cfd0b5215a3545a6858b486ba2
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

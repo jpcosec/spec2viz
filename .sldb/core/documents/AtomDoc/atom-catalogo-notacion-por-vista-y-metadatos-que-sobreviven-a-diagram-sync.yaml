@@ -1,0 +1,18 @@
+name: atom-catalogo-notacion-por-vista-y-metadatos-que-sobreviven-a-diagram-sync
+path: desk/atoms/atom-catalogo-notacion-por-vista-y-metadatos-que-sobreviven-a-diagram-sync.md
+source_hash: d8ac7a8321f777fd6820f0b7996133f7fec2f37a9e454622226ffdebdcefd6ab
+content_hash: 61893a20c8d0ca925038cd68e30c819dd77067cc8db362f0aaf2117e84694030
+field_hashes:
+  id: 17f3a9226315a1049c2ce84fc31db2659b36585775906103e1c06e03d78680bb
+  title: ae9952bf699b660a49386e560e58628dac233cf682d5a5b9b39f2c677d561a05
+  five_wh_one_plus: 0ac5b48a10a651e75b01f8d26468c18977ea336c90a9607a6163d0d330a4bb40
+  answer: b2119ed4198ef1afc2db2d9e34a3cbf712d10dabe7530f35844fceeaa8fcab50
+  tags: 88e02b48a638b4050fe59066e7102b50a026c7fb90093086d4c572f07194ec48
+  provenance: d82ab49f91a6ba1662d933820377bd073d4da4fb04bd2911a20ecfde554cdd93
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:catalog
+- type.knowledge.atom
+- workspace.desk.atoms

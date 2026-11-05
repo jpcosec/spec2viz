@@ -1,0 +1,17 @@
+name: sequence.build-pipeline.12-Deskops__returns__CLI
+path: docs/architecture/spec2viz/sldb/sequence.build-pipeline/edges/sequence.build-pipeline.12-Deskops__returns__CLI.md
+source_hash: bbee3d482782b7427936c9a168633f0c9173a391388a9528156bdbf9f4c3145e
+content_hash: 7d6365f2c9de49626ace7e00fd4dcd2b0ff174d6c25e27bc469ddb713d2f6271
+field_hashes:
+  title: a399b7e27892c2fc677546c392554ca8948c4a111fcbec7a9ddb3fd4fd78e1de
+  source_id: 0c7acb3d7ae6d83ba318e44d6f84e18fd91b8824568b8514a25acc9e8ba05865
+  target_id: 0da97c891d40ac995d34ea0da4b6e43879cac0a7260324ccf4c268d5ed735e1e
+  relation_type: e1ffc2efea1148b515582ce4547f5fdfacaf60f4b6acbaa4a3b9cb223d9d79d3
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: e1ffc2efea1148b515582ce4547f5fdfacaf60f4b6acbaa4a3b9cb223d9d79d3
+  attributes: c8c588ac582c6bda06d15aa1d7427755af8cc4fed51da66e87a73aa16cd3a95f
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

@@ -1,0 +1,17 @@
+name: state.diagram-type-lifecycle.09-compiled_ir__transitions_to__error
+path: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/edges/state.diagram-type-lifecycle.09-compiled_ir__transitions_to__error.md
+source_hash: f4e02c2248fd0d40ba782af5cc0bba538dbe623ca68b249f1cacbab374120c44
+content_hash: 9616c1c04f156820bcc0672891843498bae99bebdbb430d575645a82e80b9407
+field_hashes:
+  title: 14090db7169a4f1f0a2fba1ecc66cbad2213b23b86deda213cdbda27b04c7640
+  source_id: f03677a398c6d868cd865dafb2e7183bc09fadf8b0b223248003973853258aec
+  target_id: 382499bf1548b609408bfa98830a4bf74ddf17e1b9621aa4a6a0126b7a3d20af
+  relation_type: 28bd9b3da8f636e17ce2ec3811abebeff4a370a7f2cfb9e2080617063a2c0e87
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 7a5225a976333fea2786dd1d004aa221d2d86846941ba0ebc4c8a9860eef7409
+  attributes: a70a81a5d168d6a328259017b8875614a46cecaac431161969d3cf443230ae3e
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

@@ -1,0 +1,17 @@
+name: state.diagram-sync-lifecycle.02-validating__transitions_to__writing
+path: docs/architecture/spec2viz/sldb/state.diagram-sync-lifecycle/edges/state.diagram-sync-lifecycle.02-validating__transitions_to__writing.md
+source_hash: 07dddbe10da9ee6a3b05c4daeefeac520462f3b29b06ee2d613c0f0c09d5e398
+content_hash: 1f0bf967b631bf02341ba99e93b143dbbf14e6463758b14f25c5726446888355
+field_hashes:
+  title: 21d5738c356bfe015070c7982505c6318e755f2df48853412c354fdad66dd815
+  source_id: 57cf0f66a968f4c760e4f93289bce02858bd1b715386947c6b466c38db3d6ab7
+  target_id: b02aa6270bfa23e23e6738497b1cc31ac143f8213d87302500edd34442c73f8e
+  relation_type: 28bd9b3da8f636e17ce2ec3811abebeff4a370a7f2cfb9e2080617063a2c0e87
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 7422c221c73513afe6203fc961dfdefdf2e60cd1bb8a4b42e40512011d8ab7ad
+  attributes: 23c3ee46292b694c81553a754a4bbca7399ed3c8df016447d946ef491a8a0c3c
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

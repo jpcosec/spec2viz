@@ -1,0 +1,17 @@
+name: component.type-system.19-deployment_ir__uses__plantuml
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.19-deployment_ir__uses__plantuml.md
+source_hash: f50468755cf98bf09e4390cd2a26c81a3436c63dddfba2ac58827009f99c9f4a
+content_hash: cb52c450a2c8b785314d63831ea65ceee712da9e20a94c78c303111058b81dfc
+field_hashes:
+  title: c8a80292ada0212f511da0e16a41e15c129ba76ff495844a47c126c65eaed947
+  source_id: dddca0cea2db03b7809975784f28031d8c2ffc80264042ef8fd64f2d637ab0af
+  target_id: 7af9c1b5cf22a5de10981ddf49f20a7e10274010930a7ee2be89bdbede06c286
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 1080a60800d9e5bddc69f51489c636a776bacaadb5368f46db4aa0947c67e3ba
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

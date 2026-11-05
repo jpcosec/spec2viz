@@ -1,0 +1,17 @@
+name: activity.render-error-handling.02-receive_paths__next__iterate_path
+path: docs/architecture/spec2viz/sldb/activity.render-error-handling/edges/activity.render-error-handling.02-receive_paths__next__iterate_path.md
+source_hash: 1c8ab52365e90a9c763527730fb7679967a26981496eaef247c645c2fdcfe582
+content_hash: 7c345ed74415914629cee4a8524e7ce32b736933b8b3a8a43e8dd27923c78825
+field_hashes:
+  title: ba4440b2ce2463e92d49375b28a0f6eb6d531a4397eb20bdc582e51abe7f3be0
+  source_id: 1e94871c4a18b4b8c6ae424de80c5198d26eb3875f8f90f8b2927ba619f28413
+  target_id: 761b07e336923211ae6c38ccaa050b33c501d20bf4b10b348e0892bc02273744
+  relation_type: ca1733b5cdea2efcd28cb357b253498f97440592edd06d89895c4abcb5cfaae5
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

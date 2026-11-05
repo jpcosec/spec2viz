@@ -1,0 +1,24 @@
+name: component-view-matrix.stage
+path: sldb/notations/component-view-matrix/glyphs/stage.md
+source_hash: bf4629da292c120a7b1c424896c81080c0158dcd5696473699135b2cab1ed7f0
+content_hash: 90983a6fd96fea58d570c808dd73789946f4846895ea7b7565d9346ea8530e29
+field_hashes:
+  id: d9c282e6c7e57523abf3f786a5739a6c2816a09cd17020c9670d6f8cd6243027
+  title: 5c12a5212b46fa10485c5c9c70b44b0814c1ec76c1b0e39befe1838b9ef2d312
+  notation: 478c51f9ff13040afa17e9ebbc62212b0272c1128ff71023cbb996312e15f357
+  model: 1e5ce4d31ba8f3d06a3988d0cfb68162a27c153d9ffdf14d705450f4491c4733
+  where: 294abf36e57401c862ee74fdfef36b69f2e690a3d46f64200b7f9349df47a043
+  shape: bd30aa399dba6d12af14c55dfdf5835ee14f0474bc39296c92e7bbe67bbe1dba
+  label: 8af1f905cae240380a410538a24d6887b0bf377b0a109ce3cdb19a811a44c2dc
+  label_style: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  keyword: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  compartments: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  function: f0c9bdd8bfedf214526c811174ab972f04af332b7d9941702c7faa8a7f0f6a34
+  form: 12ef6a1da48dc1e69fd185b998624feaac2efb42d36dae9ac7edc083f367309f
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.glyph

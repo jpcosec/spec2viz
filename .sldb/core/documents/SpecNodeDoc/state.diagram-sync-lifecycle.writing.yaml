@@ -1,0 +1,22 @@
+name: state.diagram-sync-lifecycle.writing
+path: docs/architecture/spec2viz/sldb/state.diagram-sync-lifecycle/nodes/state.diagram-sync-lifecycle.writing.md
+source_hash: a13a6064913ace632a89310f66d4e4896055a1892cc57f5632c562ee0e6087c2
+content_hash: cfa55d69359c69034822ae14ef560f15adfb1074cf7262f78c3fa5407e0b4ebf
+field_hashes:
+  id: 29e2210e108fe624534b841291f9d1dd0556029067b506ba0e951d19e275bd62
+  title: 8f168284425e436ee42a7ed405c12826c145ebaabd7d5ec78c230f775e3c46e8
+  spec: 5490d0be6d0e3d178b976a1f1ecd6e09a1f8ad6f2c638c03abc8624c2ef4ba54
+  element: a977b91f7793a938740d46871ad87b2b0646ac4711e854ec47d425cf0b21ff7b
+  kind: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  collection: 3c72197b735c852d335d78eb4676a275033753b992a2385625f87c9a21f77084
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

@@ -1,0 +1,18 @@
+name: atom-ast-compilers-why
+path: desk/atoms/atom-ast-compilers-why.md
+source_hash: 043d132cf21579898cacf553203257bdafaab4feb614c881045d1afbd368533e
+content_hash: 28f329a3ba3c33a4e0204e31e4a8284769e8b62f340ab8c4c748ad94aaa83084
+field_hashes:
+  id: c3c9f82a174f69ec8cc66236105376868b2b51ce570fa092b425929e929518aa
+  title: 47220f96e832335fc841f9d8abdd6a3303957a91d68f1bc380fc5aea5a11f95c
+  five_wh_one_plus: 1566d618b9ad05f5d6636ef68875b058a3311f288ab671709bb72d36b5dd1a5c
+  answer: 7c4b99e4851d423f99a4a81c1dc763c5bb60e0d1ab914fb9b304cb84ca11f68b
+  tags: 6e6eb53bf0f1e15d6797eca47a27da5fe52a76106285a1832755fc41de027c9f
+  provenance: 7f0e8e29b36647f477fded3707c2d524e84b8fe53f54ebf81fcaaf9af718cdeb
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:compilers
+- type.knowledge.atom
+- workspace.desk.atoms

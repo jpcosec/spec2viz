@@ -1,0 +1,17 @@
+name: class.sldb-models.10-SpecDoc__association__NotationDoc
+path: docs/architecture/spec2viz/sldb/class.sldb-models/edges/class.sldb-models.10-SpecDoc__association__NotationDoc.md
+source_hash: 2ec0b3f68c4a6b045b03ed4cf5b7e73ffc2aaedfd71f8e2ad9207e8090c970d0
+content_hash: 5599d892ceb21859c82a98482cd79232af068284e79978ba545487a76f3977fb
+field_hashes:
+  title: f2f21639d97febbf6208d471f44a28ab0beaecb8025f183714a99843770e86c5
+  source_id: e9a88e949dad60d73e4304bf517d0ea64d56a3ac62fa642deddb54df233b18ac
+  target_id: 76719b581cc02da9a85c4223255984ac1d42e8080d30d608b8212d15d59bd5fe
+  relation_type: e4e36336db9c0f6f20a9f326970de25b3fd32d48ed2f857e436582d856d7e297
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: e3b7d6c1de787d0ef18da38793a02aaea6a3b26cfb4d4b62d5e6fe2d790c8153
+  attributes: e43d564bc07430697266dc5f02a3201af12d413edff2eb98844e231449916f8f
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

@@ -1,0 +1,24 @@
+name: reflection.boundary
+path: sldb/notations/reflection/glyphs/boundary.md
+source_hash: b5361336c6fe67d81df3b8fcde87fedd7077b4f8c5023ec98918eac581bd790f
+content_hash: c06d65b24b1f19f61a4e067c000ff1d44d613c88fe91338c49f2c114aa84cd62
+field_hashes:
+  id: 3328bc43a67238555f29cfb3aae6fbbfa5ec4dea1c8e82ce6a83679b844e5055
+  title: 7fe3b9cef01102866d7ae54fcd1bbc3dafc42903c01b71362d96a8c5b3e3431d
+  notation: 3169645eb795b03837d820263626c0dceed09c3081277d101c288f4f7545f570
+  model: 1e5ce4d31ba8f3d06a3988d0cfb68162a27c153d9ffdf14d705450f4491c4733
+  where: db2d390156886d5becd82a672814bd9b521a020a7346b159e0f6adc3a316301c
+  shape: bba32342159e988decdcc832b0979d0264febbb3aa380da27cfa3115874a95cc
+  label: 8af1f905cae240380a410538a24d6887b0bf377b0a109ce3cdb19a811a44c2dc
+  label_style: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  keyword: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  compartments: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  function: 7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c
+  form: 748325b4723ee22f702630168cb7e52927fdce7958dc8824a02025f0020ee9c7
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.glyph

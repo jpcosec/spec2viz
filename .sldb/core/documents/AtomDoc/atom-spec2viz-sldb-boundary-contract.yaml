@@ -1,0 +1,20 @@
+name: atom-spec2viz-sldb-boundary-contract
+path: desk/atoms/atom-spec2viz-sldb-boundary-contract.md
+source_hash: fab12b8866b6a3c1250f9383c08a4cb9a00a331fe9a649d7b4e23574e33d776b
+content_hash: 8cfe2ef88407a49a9724fc75946ed34e898cc9173498ce02fd58382501c937fb
+field_hashes:
+  id: c22ee82bc93e2ee11d89f18fda46c1becf3f35eba9ce6677cd87fdc3d10a700b
+  title: 2481b77a1d568a9770fc5ca3164d94da220faa6839464a70f3e8e7d689c450af
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: be959c4b592ae17162c6c228c763f6b8aa24ad68a6cbbd45ecfbe254284fca1d
+  tags: e3f5cb6531f4327322bdc120573cbefe0b351ce4f0dde52852d6558526d19bb3
+  provenance: d82ab49f91a6ba1662d933820377bd073d4da4fb04bd2911a20ecfde554cdd93
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:sldb
+- system:spec2viz
+- topic:adr
+- topic:boundary
+- type.knowledge.atom
+- workspace.desk.atoms

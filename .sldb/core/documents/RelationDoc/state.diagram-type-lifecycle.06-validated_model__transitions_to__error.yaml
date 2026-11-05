@@ -1,0 +1,17 @@
+name: state.diagram-type-lifecycle.06-validated_model__transitions_to__error
+path: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/edges/state.diagram-type-lifecycle.06-validated_model__transitions_to__error.md
+source_hash: d279efca4f0a5a21f6376382e19bc18447e8f09efa0faf326297cc6cf47675d0
+content_hash: 920eb38586a6cd8a53c0136af486abc4527589a05b6bb574edde903f0bac74a3
+field_hashes:
+  title: 38eb01027ae3e9a07c7468ed948ab8a958ce56adbf1b04a7cda603d635677e35
+  source_id: 36136915ed7f5ba43f629397cde273ef883f5569ea10ff50335c97c95eec1247
+  target_id: 382499bf1548b609408bfa98830a4bf74ddf17e1b9621aa4a6a0126b7a3d20af
+  relation_type: 28bd9b3da8f636e17ce2ec3811abebeff4a370a7f2cfb9e2080617063a2c0e87
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 20509f1fb276bae727e23c4a43ceffdfb16d06bf3c2d0d0b7fa64f3afab19027
+  attributes: abaef0cd468d6987d61ac797f4b382e19e563643044e1ad638a107b1285bac93
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

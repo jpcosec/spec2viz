@@ -1,0 +1,27 @@
+name: uml-class.realization
+path: sldb/notations/uml-class/links/realization.md
+source_hash: 44fa9f2d0a3b832666b59344d1c81e570c2098e535fb3a412d2cb4277f401fc8
+content_hash: 70867caf89a825518fa1d0527c61d62b0b3c868e42bb8c96c9a810e5ade5093d
+field_hashes:
+  id: 7ec26102e9ba6929868b66898513892c858056b7e1eae2d1f0b566658b67e58a
+  title: e5ec28c57ff60eae560321c3fabf785de38dc252908cc1a067721ca51fd1e966
+  notation: 0e9a6923f1eb1d721932ada3db53e95c916966fb6db1fcb19eebc540bd1a7156
+  relation: d878bf086efe32b60036f4ab5b2d31c307947cabf1d3b4e42d84dc751bfefc0b
+  relation_type: f50ef14b64dd3a90966c574a2a9b1efc100ab2967af9901c08c58fbe51811104
+  model: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  draw: 42d2b70866ba77b84620696f6c6cb2814379e3e65f3027c8ec4692eaf7dad0be
+  line: 93dceb1f727787993057f20f132f2f2b542dfa384034337be62f10ca1a15a1c6
+  source_end: 30a0924a3360be687d1df9fcbbfdff62c01bc0fd14036ab9076cf7f451568666
+  target_end: d247abad05ec6ba3c3fa6e62532535a48789f5955bea72314f3887782740b945
+  label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  source_label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  target_label: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  ends: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  form: 79d53614e12c9f4e6317b9cdad3d401e0972b3f85f99009d76caedc70810449e
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.link

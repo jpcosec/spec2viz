@@ -1,0 +1,22 @@
+name: activity.render-error-handling.__initial
+path: docs/architecture/spec2viz/sldb/activity.render-error-handling/nodes/activity.render-error-handling.__initial.md
+source_hash: 6e04b840c785fea921584a17e73f28c648fce62b9770dffa2efc3bcd379a257f
+content_hash: e1896231d28aba93fc9171bfc2762d570c634649e1bcf195a7677d1c36ec82eb
+field_hashes:
+  id: 325df9232caf882d818a92d92b4e68515b5c056b6cbc3c9d1a28857a1e239877
+  title: a92ae9615600f7f0bcb0edf9703b379c163bef33ed749ae40c48a0830d4ab6ae
+  spec: e8d38aa56a1eb2f078343c34e0d7fdc94d0b92602c9f991f93ac878980a8c242
+  element: 3e54648af8b9d9e07e176625a091ece5231c0c0ef768c57fedc02de4f85ed353
+  kind: a92ae9615600f7f0bcb0edf9703b379c163bef33ed749ae40c48a0830d4ab6ae
+  collection: ccb5167cac54f9796d4d7be1ce43146e90a04171970aa4d3bd1f398a511bce03
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 50aa653c5a79d5a9768e73ca434ad3402c74a9864e3b0ac1e0d5af221377c5dc
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

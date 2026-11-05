@@ -1,0 +1,18 @@
+name: atom-deskops-bridge-why
+path: desk/atoms/atom-deskops-bridge-why.md
+source_hash: e14627356ad546471f2424d789f79a953200d7f97fb557b921e6a1bddf679823
+content_hash: 262c0968d849380a13d326873725648a3abd89a7bd310df9a1a26422456b5c32
+field_hashes:
+  id: 087e9a212e80371b85a9ff957b3b34fe3937d82132a6bc3b900311be34e035af
+  title: a673f00619a643767fd3dc4b06f7e68d4792821989e9fad9f029613fede35796
+  five_wh_one_plus: 1566d618b9ad05f5d6636ef68875b058a3311f288ab671709bb72d36b5dd1a5c
+  answer: 9f817647a5859e291f82470d1332fad04b6eba3ac54ab29caa9c73a71d889210
+  tags: edc4db39acf7c9a29d745a653027dd1837219a2fa1d4a7f8578af1e48d37a14a
+  provenance: 37bb78f88d2a6893e814e58d0b489a1ab9ee0fe5e2eac2f72917ec13dedc1a45
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:deskops
+- type.knowledge.atom
+- workspace.desk.atoms

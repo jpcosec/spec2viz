@@ -1,0 +1,19 @@
+name: 20261019-194412-suggestion-graph-ui-para-el-contrato-de-estilo-resolver-p-blico-para-viewdoc-y-leyenda-resuelta
+path: desk/inbox/20261019-194412-suggestion-graph-ui-para-el-contrato-de-estilo-resolver-p-blico-para-viewdoc-y-leyenda-resuelta.md
+source_hash: 6f5c40167349be42f3883936f7d4c6359e7f7f76d1721a1a6fa5fe4fd1446ab5
+content_hash: 09e35cc8ee04492df5ade1f8865892ac8c3dbf7159dca2de95f81f51750ddef7
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: 1d147ab379788e0277ce278d918ca7cf9e0572dffeefc59e10d282ef146bd45c
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: 5e3da19359b37341aabc50744cda4b3c108d95dbdfbd702f9658a2a310489d46
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: 90f418a2602436c3d9484dede4ebf2deff8fb568c8c31b92d03ca73d1953526f
+  title: 2fc50828b3047ae9fd77081e3e5a4cfb5eb33b17a03be10321e7860b9a642855
+  body: d8c04f6c7e547959cd02ab2b78e38464e45cd7c5086b79e6c11e8890d508a35c
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox

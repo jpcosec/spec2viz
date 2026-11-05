@@ -1,0 +1,19 @@
+name: 20261018-134144-unclear-pron-la-suite-no-colecciona-from-plnr-import-plan
+path: desk/inbox/20261018-134144-unclear-pron-la-suite-no-colecciona-from-plnr-import-plan.md
+source_hash: fbcda9d80618118a9ee26ff11e4980cabd2b1c0171d6b4f51eb4929218376c5d
+content_hash: 29b1dde7b07cedd8994e8090883a70612ac66437b324483e29462de541849c2a
+field_hashes:
+  kind: 683144a12969e0fd85512737e57b4db93ed15ee760906165a5516d581a77889a
+  sender_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: 4af16498c996f56c18c3d59907d3559b428b500ea5862aac0fd5dca6753dabff
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: 05707156364b81793be8924937c459bb6b9122f642b0db2638265e5ecba6db17
+  title: bba65a5c969b1db1d5ec81a1bcb8d11e02e909b5486f61ea06b9f7cfa33ab547
+  body: c1d8ecebbcf4ba33b3765b8a944a389739c7ad31947efcc00aaf5ad8f4f1469e
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox

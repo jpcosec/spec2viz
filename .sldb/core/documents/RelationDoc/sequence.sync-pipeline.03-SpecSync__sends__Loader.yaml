@@ -1,0 +1,17 @@
+name: sequence.sync-pipeline.03-SpecSync__sends__Loader
+path: docs/architecture/spec2viz/sldb/sequence.sync-pipeline/edges/sequence.sync-pipeline.03-SpecSync__sends__Loader.md
+source_hash: 79826b221657968423703efade4a8685c818e35990caa0d8bc4062f200d4057b
+content_hash: 79ba4f464458e70529bd5f878b875a18320f9ea57c4b54bfc833fcc5ad414eb0
+field_hashes:
+  title: a327e88f3cca7f72a491d874ca24bfcf6767da0fdcf2f023736d4ad13b1ef1fa
+  source_id: 62ef4633bf7f7ad0aca1eb236aefda90be9107968d25e4af2138eb92ec2bed6b
+  target_id: b34d7fb9f0b19b9ef01accad51734126220d5d3d438435cca01f8e94b2e75871
+  relation_type: 514aa25f2df0d5491f40614a98bcd4d548a8d84866347177c7b8cd504db60452
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 11178032aa6d6935ddddadeeb88d444580a93575d242c9d6d0ecb711f2645fbb
+  attributes: 96c694ebc0863187351f2f907c7693ad68f4a234c3e580321ba19d68705fc625
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

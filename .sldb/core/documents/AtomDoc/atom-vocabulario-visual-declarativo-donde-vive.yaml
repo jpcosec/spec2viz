@@ -1,0 +1,18 @@
+name: atom-vocabulario-visual-declarativo-donde-vive
+path: desk/atoms/atom-vocabulario-visual-declarativo-donde-vive.md
+source_hash: 29922502f3a8f529c9c341e3bf45775d50f80d6b6a76fe42803fb73c58913c52
+content_hash: e937d3d626339bb39bb95e4730d06039e271e91c3b139d0ebda5324e0c41f559
+field_hashes:
+  id: 36a156b4fb12576a3eece9de11ebeebc0e29578372c2f4dfc6450c703967cf70
+  title: dd5c603df7b2c2e080f6d94596bcc9569de9f5e9bf46519ec9febb10947f9919
+  five_wh_one_plus: 43f94244d00ce4813a89d3c0d15e1842fe2cfd95ce9fe3b063dda9e7983e0063
+  answer: 4116b98ee8813201e69764d1118bc513f02f176fa2622f0c0f0a6c9040e13805
+  tags: e44c3755ead39cbcc714f94a118d7763466b28cf8ae5d441267852ae5dbcb1f2
+  provenance: 38fd4bb07f9e4d1dfbb467c0393b7f3b40951e40d2add2035529a681b7bf0163
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:notation
+- type.knowledge.atom
+- workspace.desk.atoms

@@ -1,0 +1,17 @@
+name: component.type-system.20-matrix_ir__uses__vega
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.20-matrix_ir__uses__vega.md
+source_hash: d70473f603faff8f68351c3d2f74324a500c072e9e843030618ac51e5ef7eb03
+content_hash: 6a0106bc61afcf547624ee6f62fa67f94469926f687e2bcb29ab18764ec8443b
+field_hashes:
+  title: 5c0ee9dcc5fec4862c20f19c9ecfb2f1abc281d081806053eed20ead3692baf1
+  source_id: 1b3ec75ad372a814ea36020fbef28331756c69ea018c3e1611ae53ec466b7e9d
+  target_id: 99edb57b504a9e80ec6d526c87bfeb5d14d868fe6eac9efe2bb16f236fc5e7f0
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 1080a60800d9e5bddc69f51489c636a776bacaadb5368f46db4aa0947c67e3ba
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance

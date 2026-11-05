@@ -1,0 +1,18 @@
+name: atom-cli-entrypoint-what
+path: desk/atoms/atom-cli-entrypoint-what.md
+source_hash: 797af581c9b7192361d0295d53e9168cbe132f004713945e8b0e011dff060bf3
+content_hash: 802af802f5ebeb95ae6192912a9ba1f275d0a969ce2cac80949acd4938ad68fe
+field_hashes:
+  id: 6f7d360ad49443c421f862917cf93a0356a87e289ce5964e4b283c6e1d146587
+  title: d26dbfd866e886eb7bdbd8705a91c94b71ca82f1021c3e63c6642cba5a851da0
+  five_wh_one_plus: 0ac5b48a10a651e75b01f8d26468c18977ea336c90a9607a6163d0d330a4bb40
+  answer: 4c571d06be35cd980876c59c8db870c035f6e4c7517b4c19478e3245c5a2b210
+  tags: 173184373a305ecbcf0e04184fb5c78aad97d524419d008b918b4fc1dc2b0cb6
+  provenance: cd0129a0a8f80f2aed5a230f4372e80615ed254f63d6f6828c8644fd75efbba4
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:cli
+- type.knowledge.atom
+- workspace.desk.atoms

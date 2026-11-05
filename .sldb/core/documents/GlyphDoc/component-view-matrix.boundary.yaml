@@ -1,0 +1,24 @@
+name: component-view-matrix.boundary
+path: sldb/notations/component-view-matrix/glyphs/boundary.md
+source_hash: d6fcec8631b5faa9a0a0211057faabf4a2baa4beae02af251f20e17266725454
+content_hash: d15af33ec76c7ebc8d11ac39c89a6eebf3530e5f0a27990ea6d494d6952a5a5b
+field_hashes:
+  id: d04069e1f964bfc9bc6bb1ecec3ce5ee5227e72dde8a06cbca8d02d971d87165
+  title: 696cc090c8100e603d5dcb2be0612efd6baed529626602a09689659ade4b41ae
+  notation: 478c51f9ff13040afa17e9ebbc62212b0272c1128ff71023cbb996312e15f357
+  model: 1e5ce4d31ba8f3d06a3988d0cfb68162a27c153d9ffdf14d705450f4491c4733
+  where: db2d390156886d5becd82a672814bd9b521a020a7346b159e0f6adc3a316301c
+  shape: a6bc445ce4ad3d1328dae9147d805ecf7911a7b853479f0efc6f60f1402fadb4
+  label: 8af1f905cae240380a410538a24d6887b0bf377b0a109ce3cdb19a811a44c2dc
+  label_style: 2cd63dd677f5fb164924d44bdedf1d94feea31760e83cf61b49987abf671ab8a
+  keyword: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  compartments: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  function: 32d78dbd6700ffcd6e9b0a3ee27eacb94a9d577f27cabb6e08b6447fab06785c
+  form: 748325b4723ee22f702630168cb7e52927fdce7958dc8824a02025f0020ee9c7
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.notation.glyph

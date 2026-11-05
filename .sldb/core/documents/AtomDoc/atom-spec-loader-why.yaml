@@ -1,0 +1,18 @@
+name: atom-spec-loader-why
+path: desk/atoms/atom-spec-loader-why.md
+source_hash: 12b873ab22bbec2fca53ae2dfd668223bd32a250c6f2d83c76265aad30781a7b
+content_hash: b945d700a936290b21091413401b8b90a4f2e2e633f3d79f444fbe1b7b930b02
+field_hashes:
+  id: 24d02fa083700cf393c3eab5e5b519fe7cf790aaaa571cbb5d1e27a13f339925
+  title: caf9e15e21b6d069f6ad6e2f3f48e9319b5ade9af7caa325e6a75b3bb0cece3a
+  five_wh_one_plus: 1566d618b9ad05f5d6636ef68875b058a3311f288ab671709bb72d36b5dd1a5c
+  answer: 1202474607c93896219376036328dc85fc42966f1056004b525adddbe6ee384c
+  tags: bcee74009260abfd035a984417a14b4b5e58f576d390f452722e3b4e1c34377c
+  provenance: 22ee95ea29b49b8f6010cd4fddc6cd828c983d2389b175e80d1f1dc36b7afddf
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:loader
+- type.knowledge.atom
+- workspace.desk.atoms

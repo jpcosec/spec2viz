@@ -1,0 +1,18 @@
+name: atom-intermediate-representation-how
+path: desk/atoms/atom-intermediate-representation-how.md
+source_hash: e6b2bff91ec3f4e91306867f0c007c5751a0a0531d6c40acdb8b0a04823e82a4
+content_hash: 0673d6924978f9a99339c577bd3702b3115108b85913910213364cc1b6aa74e8
+field_hashes:
+  id: 99841705df1ead845208df31144aa8480055430ecbe6443cbdd96be0881b06de
+  title: ab883d04e8a339b2922a5828ab73fb70301443f1613254ad11a5543c831ac82a
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: ed74acb2022639692c99dc897e900adc1de6c8c3c70fca9190e508457318bffd
+  tags: a4921af91b6f91fb11f6f1131ee0bf1147c9b4e1ed8df732d84f2d93d8f76cca
+  provenance: f33489a1c74d42afdf4fdc6b849ce8ea3e23b4e9b09c6796baa2ed8bdaccb800
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:ir
+- type.knowledge.atom
+- workspace.desk.atoms

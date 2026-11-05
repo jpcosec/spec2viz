@@ -1,0 +1,18 @@
+name: atom-ast-compilers-for_whom
+path: desk/atoms/atom-ast-compilers-for_whom.md
+source_hash: 97ae60db3e2501bd53e349fdb4f2fae1a2c175d298887fceb5aff6bb47ed76f5
+content_hash: 0ff7f245d86c67dba0782bbb54a38a0870fe93a342397e46b893736b2a9407da
+field_hashes:
+  id: c16b5a8b349068faba1b9acc1824afd969ae2413dc5e1318ba2d80790afdaf81
+  title: 47220f96e832335fc841f9d8abdd6a3303957a91d68f1bc380fc5aea5a11f95c
+  five_wh_one_plus: 8305e718bedf31054e243769182ea271c5448239cf1d4479bcbbc3dc97307915
+  answer: b0f5d20041d3ce22c5286bbf0854883a44f0948bef487f6edd0e2e3eaf8d2987
+  tags: 6e6eb53bf0f1e15d6797eca47a27da5fe52a76106285a1832755fc41de027c9f
+  provenance: 7f0e8e29b36647f477fded3707c2d524e84b8fe53f54ebf81fcaaf9af718cdeb
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:compilers
+- type.knowledge.atom
+- workspace.desk.atoms

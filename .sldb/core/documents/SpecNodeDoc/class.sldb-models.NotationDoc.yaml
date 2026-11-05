@@ -1,0 +1,22 @@
+name: class.sldb-models.NotationDoc
+path: docs/architecture/spec2viz/sldb/class.sldb-models/nodes/class.sldb-models.NotationDoc.md
+source_hash: 7687e102bd0baf465c70a17373ae26b6cf529515550aec0ca9d15c461180a891
+content_hash: dc879d8f8772d18f990f87905d994ac40cddc49f84e313f133cd546a8c61614e
+field_hashes:
+  id: 757d8f0f8d90ff876d377d5c11562ce9c45d1bd5332a67bca7cc702b16f65e74
+  title: fc6ac5f8b4767cb4af6375d7bf25a05507376bc80a84031dff1a5e715f6f5629
+  spec: 67845e86c5cfa50b2c2cfa1ab7062590aad9c560c3a36310ea7e293fc08b3f28
+  element: fc6ac5f8b4767cb4af6375d7bf25a05507376bc80a84031dff1a5e715f6f5629
+  kind: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  collection: 2d573555365403bc103fa97ba432ce6c8891e0db87227c72e354460edd3fe729
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 7b0d1ed774c96511eb067b7b4868d9609231f3dbc6e3c92d025c0e9b6fc23c5a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

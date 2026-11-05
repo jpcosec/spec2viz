@@ -1,0 +1,23 @@
+name: sequence.build-pipeline
+path: docs/architecture/spec2viz/sldb/sequence.build-pipeline/sequence.build-pipeline.md
+source_hash: c6f05cd4fbedc71f205e080c17bd50e9c5c4d9a6554181c33b5a3edc2caf8062
+content_hash: 1e9dc9366231058660bfd0a2c9996dd86ab28c0f6856db398cd9187c8ae9b9ee
+field_hashes:
+  id: 30d4fd44035f2aea4af6a7c205007892df1b1081860ffcf07e994a871cccb08d
+  title: 5f1bad6b2dd6f3c857d6f5287abbcb54a96ab946fd3d4e1809d2a520a694532e
+  diagram_type: ac11f777bb7f3f09af2e42c448ccc679b622e08955d4eeb1705e48e1df621552
+  version: 5a4747fcdafec66d8d8812022e3b7d2666d886ec0e0ee7926ec8c50db40f29d5
+  spec_path: 7214f951e33964000a2fcc8e31a481d78737f689db6102a51b2a310558116059
+  sha256: 8e5444d0d8229d4990c4eb854a8cc4361994444dcbc7d321086e8fc351c9bbfd
+  nodes: 802a64461725e391b95d23ec5706ff18903a0747df1790eecb967d7d515f38b6
+  notation: 5e5925352014f06c312d2848538cc8f2fefdd24db8a10ab29fd1ac728d7f0e86
+  category: ea947e750b64dbf4db6acd3c439596fd609f70c494304e1fb55f17267550dbcd
+  nav: 8f4b2028ad75465d67f2ef6c7ee58daf67de0c38e1f545db67c4466a1e6b27f1
+  summary: 9e8d58719ba058490040fb38ca49bd9b0c081e7bc8f428c4e3267f5369ae231f
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec

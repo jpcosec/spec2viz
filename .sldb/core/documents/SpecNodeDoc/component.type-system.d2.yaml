@@ -1,0 +1,22 @@
+name: component.type-system.d2
+path: docs/architecture/spec2viz/sldb/component.type-system/nodes/component.type-system.d2.md
+source_hash: 5e0a14a1fb00d0f2b69de72398018a7c44e4819b80e353bdf9af00b38d358677
+content_hash: 0a05fa80ddf3e252c582ed07730a0caf11b19c9e0913d4320cdbde4387373fb1
+field_hashes:
+  id: 8ed87da17dfddc1dfd1fa264e41cf58903328a9e2f3cca0012fd91d15d9cdf0f
+  title: 237ce859aadd37fed57146547ccc9ef37f05dd701aba01de148fbd8e481589a4
+  spec: f5888670b574f1fa0b0888069604ede8c8080a63dd52eb47528ecfee3b398eea
+  element: 34412f715fb0a97e9a93ca3bbea23343ec3483e620f5ed226266e64eb2b7ad72
+  kind: 7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c
+  collection: bbef1c19933039e17b86c861eac2bc37e24adee1503595cc2ec8f6afd1ae3adb
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

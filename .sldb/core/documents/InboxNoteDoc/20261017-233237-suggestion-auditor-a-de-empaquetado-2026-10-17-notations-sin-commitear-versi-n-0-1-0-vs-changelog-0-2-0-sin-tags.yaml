@@ -1,0 +1,19 @@
+name: 20261017-233237-suggestion-auditor-a-de-empaquetado-2026-10-17-notations-sin-commitear-versi-n-0-1-0-vs-changelog-0-2-0-sin-tags
+path: desk/inbox/20261017-233237-suggestion-auditor-a-de-empaquetado-2026-10-17-notations-sin-commitear-versi-n-0-1-0-vs-changelog-0-2-0-sin-tags.md
+source_hash: e61f86925e34ef62b90c9debeba9b2b75a6dd98213c3f7121058515cdc9f0d7d
+content_hash: d3594db0358d192b215bc1a11881c15bc3b9e269f45b8b002f2560b14d57079c
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: dcbef89da62dea4d60a48d13a17fc159dcb470ae17acff2a86bdaeb5a1293707
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: e44a0d11cc7d2f174e108de03858bac098cdbade6010a1fa23ae06bdea2d9178
+  title: 6d138ee5177b4846659b6f2fde31b2737beeb07b4491f9849a18d8279c014dde
+  body: 3a9f2c10cfc79804c09853baee15ae48ec99b50ec5bd6584c2a8b811572c7015
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox

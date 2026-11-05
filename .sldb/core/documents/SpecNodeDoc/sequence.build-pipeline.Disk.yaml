@@ -1,0 +1,22 @@
+name: sequence.build-pipeline.Disk
+path: docs/architecture/spec2viz/sldb/sequence.build-pipeline/nodes/sequence.build-pipeline.Disk.md
+source_hash: 5d6548e457984ba5ba2e996cf9f0de3eecb997cb18d3bc3c618f813825c0bb86
+content_hash: 50fb409239ca719e1961b797c368b939d809f3d386666c5686d750b62dc66024
+field_hashes:
+  id: ef785d566747e5fd7724087bf59e345439813a9ab81a71267b7747dbd62a671d
+  title: e715ed4dff48d8e7762d29a82fe9de1cfd4a5069317d90714403f610b683b059
+  spec: 55caef1a93783576a0c5f5abf7523290564ed5857cce05b67167e07a0e9d9b10
+  element: e715ed4dff48d8e7762d29a82fe9de1cfd4a5069317d90714403f610b683b059
+  kind: 7ae59c97caaea107c40952aaf15358316ff88f3193179142d49e9a611702e16c
+  collection: 45ca9071383537d3da8ce7a14e310575533ddec1bada7201ff76e55e40a05293
+  refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atom_refs: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  contains: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  data: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.architecture.spec.node

@@ -1,0 +1,19 @@
+name: 20261019-120253-suggestion-sldb-declare-ya-no-emite-rutas-absolutas-ci-de-sldb-en-verde
+path: desk/inbox/20261019-120253-suggestion-sldb-declare-ya-no-emite-rutas-absolutas-ci-de-sldb-en-verde.md
+source_hash: 9f550edf2535156a9adce6621e6720f22f7422ddf569488bf63b2bb855123f09
+content_hash: 63f0c518ca259d15e70b3392832aab4b9faf9a3461d53e2bc38b3b0f2f3467fd
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: 0f0d430448676746489ba7dc6f3d2b326ad478ec813bf8daba4aa927561c916b
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: 25663b18242c9d0fe66198f9367660bbebb4efd897183d5cddc46e857c6404af
+  title: f793733e7fbeb672e13903032d31f75be3a5ff7eef7e6510f85afd0252a79af4
+  body: 773a0dadc714f3fbb60d934d217e6367cdc63998eb5462ee85f01009600af3e7
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox

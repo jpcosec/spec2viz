@@ -1,0 +1,18 @@
+name: atom-deskops-bridge-where
+path: desk/atoms/atom-deskops-bridge-where.md
+source_hash: 7ad1f81167a5b11ef7ef5afc298a06ec7ab4381701018f4ddd64ac93b90e0b8a
+content_hash: a78344544b8ebd8dd268d970ae75562448070fdff07146d32eed294c95aee45a
+field_hashes:
+  id: ce9e8921fc8ad343474b9fff3190ba53145cb8cbc00a8cedce57ac15d8bb16cd
+  title: a673f00619a643767fd3dc4b06f7e68d4792821989e9fad9f029613fede35796
+  five_wh_one_plus: 43f94244d00ce4813a89d3c0d15e1842fe2cfd95ce9fe3b063dda9e7983e0063
+  answer: 702b544a6a270a737862f203db18116bcd6db5ce39f6f5cb8f8a0ca2b26dd98b
+  tags: edc4db39acf7c9a29d745a653027dd1837219a2fa1d4a7f8578af1e48d37a14a
+  provenance: 37bb78f88d2a6893e814e58d0b489a1ab9ee0fe5e2eac2f72917ec13dedc1a45
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:deskops
+- type.knowledge.atom
+- workspace.desk.atoms

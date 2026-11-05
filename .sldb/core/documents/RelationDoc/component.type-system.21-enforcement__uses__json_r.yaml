@@ -1,0 +1,17 @@
+name: component.type-system.21-enforcement__uses__json_r
+path: docs/architecture/spec2viz/sldb/component.type-system/edges/component.type-system.21-enforcement__uses__json_r.md
+source_hash: ce57205c85eed300b494cc5db84d877e84f84060b678a6bbfd9ba5b1b72a89f3
+content_hash: 55f97d1ef79590da362176250dbc88cc16dd4c025c4afd011bbdf5ed143127a5
+field_hashes:
+  title: 1bf1655d76971272a5ba778d02416c8317323ee38bd23eed4483c994f2d8793f
+  source_id: 76760fad2406167ff33b01b5842358c0a52ab898ab699fb3d0992f061ae0e469
+  target_id: 6aa0d79173077624f2a201baf87cafd19e90aee75b448867f53c9a94dee2925a
+  relation_type: 396e3cd6e2b52898c8de40c21c5fcb55b16e01e04bba974f9c12b4b7f56329c9
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 1080a60800d9e5bddc69f51489c636a776bacaadb5368f46db4aa0947c67e3ba
+  attributes: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance
