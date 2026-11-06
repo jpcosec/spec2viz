@@ -1322,6 +1322,19 @@
           },
           "title": "Refs",
           "type": "array"
+        },
+        "href": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional URL the node opens when clicked; the mermaid renderer emits it as a `click` line.",
+          "title": "Href"
         }
       },
       "title": "NodeModel",

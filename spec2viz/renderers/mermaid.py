@@ -163,6 +163,7 @@ class MermaidRenderer:
             else:
                 lines.append(f"    {edge.from_} --> {edge.to}")
         lines.extend(_kind_classes(ir.style_kinds, {n.id: n.kind for n in ir.nodes}))
+        lines.extend(f'    click {n.id} href "{_esc_label(n.href)}"' for n in ir.nodes if n.href)
         return "\n".join(lines)
 
     def _activity(self, ir: ActivityIR) -> str:

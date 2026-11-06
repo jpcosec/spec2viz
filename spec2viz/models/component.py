@@ -24,6 +24,10 @@ class NodeModel(BaseModel):
         default_factory=list,
         description="Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
     )
+    href: str | None = Field(
+        default=None,
+        description="Optional URL the node opens when clicked; the mermaid renderer emits it as a `click` line.",
+    )
 
 
 class EdgeModel(BaseModel):
