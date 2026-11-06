@@ -1,0 +1,18 @@
+name: ReviewDoc
+model_ref: deskops.models:ReviewDoc
+path: ''
+documents_index: .sldb/core/documents/ReviewDoc.yaml
+sections_index: ''
+model_hash: b56ab2078896df1c91dd8f1a50817c8bfe03c45896b2b1491027fb9975835629
+roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+contract_hash: 9943636bd29f9a9681e8dfd607d638e2aa0ac57762e4c298d5b9f84f06423c39
+documents_count: 0
+version: 1
+canonical: false
+family: null
+semantics:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+base_models: []

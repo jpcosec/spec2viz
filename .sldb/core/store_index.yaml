@@ -268,6 +268,78 @@ models:
   - source.document.markdown
   - system.spec2viz
   - type.palette.vocabulary
+- name: ReviewDoc
+  model_ref: deskops.models:ReviewDoc
+  path: ''
+  models_index: .sldb/core/models/ReviewDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics: []
+  origin: deskops
+- name: TaskAggregateDoc
+  model_ref: deskops.models:TaskAggregateDoc
+  path: ''
+  models_index: .sldb/core/models/TaskAggregateDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics: []
+  origin: deskops
+- name: TaskCodeDoc
+  model_ref: deskops.models:TaskCodeDoc
+  path: ''
+  models_index: .sldb/core/models/TaskCodeDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics: []
+  origin: deskops
+- name: TaskDebugDoc
+  model_ref: deskops.models:TaskDebugDoc
+  path: ''
+  models_index: .sldb/core/models/TaskDebugDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics: []
+  origin: deskops
+- name: TaskDecisionDoc
+  model_ref: deskops.models:TaskDecisionDoc
+  path: ''
+  models_index: .sldb/core/models/TaskDecisionDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics: []
+  origin: deskops
+- name: TaskDocsDoc
+  model_ref: deskops.models:TaskDocsDoc
+  path: ''
+  models_index: .sldb/core/models/TaskDocsDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics: []
+  origin: deskops
+- name: TaskExternalDoc
+  model_ref: deskops.models:TaskExternalDoc
+  path: ''
+  models_index: .sldb/core/models/TaskExternalDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics: []
+  origin: deskops
+- name: TaskRefactorDoc
+  model_ref: deskops.models:TaskRefactorDoc
+  path: ''
+  models_index: .sldb/core/models/TaskRefactorDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics: []
+  origin: deskops
 predicates:
 - name: is_solved_by
   axis: HOW
@@ -345,4 +417,4 @@ predicates:
   axis: WHERE
   description: 'The store links that store under an alias (`stores add`): it reads
     its documents and inherits its models.'
-store_hash: 16380afda8e2e657c6d2203bceffddf3d052eaa5cc0ba2a490e46b9e575323e3
+store_hash: 73c23f6aada9f920a7977b7098b382a5e640be6cf0102d04e1958eeda77c02e4

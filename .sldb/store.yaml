@@ -67,6 +67,30 @@ models:
 - name: DeskFAQDoc
   model_ref: deskops.models:DeskFAQDoc
   origin: deskops
+- name: ReviewDoc
+  model_ref: deskops.models:ReviewDoc
+  origin: deskops
+- name: TaskAggregateDoc
+  model_ref: deskops.models:TaskAggregateDoc
+  origin: deskops
+- name: TaskCodeDoc
+  model_ref: deskops.models:TaskCodeDoc
+  origin: deskops
+- name: TaskDebugDoc
+  model_ref: deskops.models:TaskDebugDoc
+  origin: deskops
+- name: TaskDecisionDoc
+  model_ref: deskops.models:TaskDecisionDoc
+  origin: deskops
+- name: TaskDocsDoc
+  model_ref: deskops.models:TaskDocsDoc
+  origin: deskops
+- name: TaskExternalDoc
+  model_ref: deskops.models:TaskExternalDoc
+  origin: deskops
+- name: TaskRefactorDoc
+  model_ref: deskops.models:TaskRefactorDoc
+  origin: deskops
 predicates:
   applies_to_source:
     axis: WHAT
@@ -507,4 +531,5 @@ include:
   glob: docs/architecture/spec2viz/sldb/state.diagram-sync-lifecycle/nodes/*.md
 - model: SpecNodeDoc
   glob: docs/architecture/spec2viz/sldb/state.diagram-type-lifecycle/nodes/*.md
+graph_backend: networkx
 policy: {}

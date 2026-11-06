@@ -3,9 +3,9 @@ model_ref: spec2viz.sldb_models:NotationDoc
 path: spec2viz/sldb_models.py
 documents_index: .sldb/core/documents/NotationDoc.yaml
 sections_index: .sldb/runtime/sections/NotationDoc.yaml
-model_hash: 5cf47a6e40e7c724d6b1b4d89d324b1ee0fa618c6891b0b3ee53c27225a22460
+model_hash: 52de9ef3667975f8691c9ee934411d2583b2a34075fe53fb8b6765a7cae0f116
 roster_hash: a189f0806703b7797adb67b7627159d6716a1d25025a0f1e0aa9249385e90aaa
-contract_hash: 83c5e53a6226b458fa98cc928e81731ccffc380e48f5d908c4a708aad48b2c13
+contract_hash: 679366843bb9468ac04d1e0be4b08a411f2473933417e2bda8afda2a6040aad0
 documents_count: 8
 version: 1
 canonical: false
