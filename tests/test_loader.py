@@ -105,6 +105,28 @@ def test_metadata_takes_project_annotations_only_as_x_keys(tmp_path):
         load(_with(tmp_path, lambda r: r.setdefault("metadata", {}).__setitem__("fuentes", [])))
 
 
+def test_activity_steps_take_project_annotations_only_as_x_keys(tmp_path):
+    """A step keeps its `x-*` keys under `extensions` and renderers ignore them; other unknown keys fail."""
+    from spec2viz import compile_ir
+    from spec2viz.renderers import render
+    src = FIXTURES / "activity.mepu-decision.yml"
+    raw = yaml.safe_load(src.read_text(encoding="utf-8"))
+    raw["data"]["steps"]["misma"].update({"x-veredicto": "aceptar", "x-marcas": ["CAUTELA_SAME_CLIENT"],
+                                          "x-a_quien": None, "x-motivo": "Reserva del mismo cliente"})
+    f = tmp_path / "decision.yml"
+    f.write_text(yaml.safe_dump(raw, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    d = load(f)
+    assert d.data.steps["misma"].extensions == {"x-veredicto": "aceptar", "x-marcas": ["CAUTELA_SAME_CLIENT"],
+                                                "x-a_quien": None, "x-motivo": "Reserva del mismo cliente"}
+    assert d.data.steps["linea"].extensions == {}
+    for renderer in ("mermaid", "bpmn"):
+        assert render(compile_ir(d), renderer) == render(compile_ir(load(src)), renderer)
+    raw["data"]["steps"]["misma"]["veredicto"] = "aceptar"
+    f.write_text(yaml.safe_dump(raw, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    with pytest.raises(ParseError, match=r"unknown key 'data\.steps\.misma\.veredicto'"):
+        load(f)
+
+
 def test_metadata_types_preguntas_abiertas_and_legend(tmp_path):
     """The bpmn viewer reads both from the model: they are typed fields, not `x-` keys."""
     def meta(r):

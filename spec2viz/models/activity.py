@@ -1,7 +1,7 @@
 from __future__ import annotations
-from typing import Literal
+from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict, Field, model_validator
-from spec2viz.models.base import DocRef, BaseDiagram, DiagramType
+from spec2viz.models.base import DocRef, BaseDiagram, DiagramType, move_extensions
 
 
 StepTone = Literal["success", "warning", "danger", "info", "neutral", "rule1", "rule2", "rule3", "rule4", "rule5"]
@@ -58,6 +58,18 @@ class StepModel(BaseModel):
         default_factory=list,
         description="Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
     )
+    extensions: dict[str, Any] = Field(
+        default_factory=dict,
+        description=(
+            "Project annotations: every step key that starts with `x-` (`x-veredicto`, `x-marcas`), kept as "
+            "written (renderers ignore them). Any other unknown key in a step is an error."
+        ),
+    )
+
+    @model_validator(mode="before")
+    @classmethod
+    def _extensions(cls, value: Any) -> Any:
+        return move_extensions(value)
 
 
 class GroupModel(BaseModel):

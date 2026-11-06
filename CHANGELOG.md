@@ -28,7 +28,9 @@
   the OpenAPI-style `x-` prefix (`x-fuentes`, `x-estado`): they are kept under `metadata.extensions`; any
   other unknown key there is an error too. The two metadata keys the bpmn viewer reads are typed fields of
   `Metadata`: `preguntas_abiertas` (list of strings; a single string is a one-item list) and `legend` (label
-  per tone); `render --renderer bpmn` takes them from the loaded model instead of re-reading the YAML
+  per tone); `render --renderer bpmn` takes them from the loaded model instead of re-reading the YAML.
+  Activity steps take `x-*` keys the same way (`x-veredicto`, `x-marcas`): kept under the step's
+  `extensions`, ignored by every renderer; any other unknown key in a step is an error
 - `catalog build` draws every `graph`-layout view from its resolved view (`resolve_view`) with the view's
   `notation:` (or the builtin of the type): glyph shapes, keywords, compartments, resolved style and links
   are the same source graph_ui uses. The view comes from the project store when the spec is synced there

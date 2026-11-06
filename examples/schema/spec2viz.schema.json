@@ -2152,6 +2152,12 @@
           },
           "title": "Refs",
           "type": "array"
+        },
+        "extensions": {
+          "additionalProperties": true,
+          "description": "Project annotations: every step key that starts with `x-` (`x-veredicto`, `x-marcas`), kept as written (renderers ignore them). Any other unknown key in a step is an error.",
+          "title": "Extensions",
+          "type": "object"
         }
       },
       "required": [

@@ -24,8 +24,19 @@ class DiagramType(str, Enum):
     reflection = "reflection"
 
 
-#: Prefix of the project annotations a spec may add under ``metadata`` (OpenAPI-style ``x-`` extensions).
+#: Prefix of the project annotations a spec may add under ``metadata`` and activity steps (OpenAPI-style ``x-`` extensions).
 EXTENSION_PREFIX = "x-"
+
+
+def move_extensions(value: Any) -> Any:
+    """Move every ``x-*`` key of a raw mapping into its ``extensions`` entry (a ``mode="before"`` helper)."""
+    if not isinstance(value, dict):
+        return value
+    value = dict(value)
+    found = {k: value.pop(k) for k in list(value) if isinstance(k, str) and k.startswith(EXTENSION_PREFIX)}
+    if found:
+        value["extensions"] = {**(value.get("extensions") or {}), **found}
+    return value
 
 
 class Metadata(BaseModel):
@@ -70,13 +81,8 @@ class Metadata(BaseModel):
     @model_validator(mode="before")
     @classmethod
     def _extensions(cls, value: Any) -> Any:
-        if not isinstance(value, dict):
-            return value
-        value = dict(value)
-        found = {k: value.pop(k) for k in list(value) if isinstance(k, str) and k.startswith(EXTENSION_PREFIX)}
-        if found:
-            value["extensions"] = {**(value.get("extensions") or {}), **found}
-        if isinstance(value.get("preguntas_abiertas"), str):
+        value = move_extensions(value)
+        if isinstance(value, dict) and isinstance(value.get("preguntas_abiertas"), str):
             value["preguntas_abiertas"] = [value["preguntas_abiertas"]]
         return value
 
