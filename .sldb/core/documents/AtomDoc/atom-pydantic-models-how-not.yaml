@@ -1,0 +1,19 @@
+name: atom-pydantic-models-how-not
+path: desk/atoms/atom-pydantic-models-how-not.md
+source_hash: 9576c91e6188072264b983a3ad15d9e91c45ef637785cd17d0619c10b69b48c0
+content_hash: 80067f27b12c23bd23be791f2560e28d6f4ada9a940252f54065f2fc30195daa
+field_hashes:
+  id: 7ada20d6f08555bfbea0202a1f97a3e5a88f35b7a2584245c4f348e2ef2565d7
+  title: d60c00ff65f181f4519c8d9d9e76f96a9254171519957b80870db25d5b6deab0
+  five_wh_one_plus: c7d4bb6c4e85ef7f9bf7592aeecd1d09dd38adc39afd1ffb3908b19e689040ad
+  answer: 8724db20d94f83be64938b63d331f80921c6dd6d8aad880a4dda2ef5c643a869
+  tags: e0c12ade23811bdb4a204cfb030949a46bf657668a04c99e94a12e766f4a2632
+  provenance: c8d6b956e0ac7c6b9fa84b57857d61ad75e9f151aa2cbd5a7e3ab2708dba23c5
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:models
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance: null

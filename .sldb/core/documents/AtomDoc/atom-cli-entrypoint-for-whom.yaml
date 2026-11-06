@@ -1,0 +1,19 @@
+name: atom-cli-entrypoint-for-whom
+path: desk/atoms/atom-cli-entrypoint-for-whom.md
+source_hash: cbee78a1a0fb6bb77064db0b663f14726677e569e88919f23c563fa4f23e69fe
+content_hash: 8ed8a06df48e80df76a4ea1c79aaafa5d884c72f642441a6128ba8cd309594c7
+field_hashes:
+  id: 76a678c991f1f339b8e18d805647e1b168cb089c2682f2c68293ea23a7a7b420
+  title: d26dbfd866e886eb7bdbd8705a91c94b71ca82f1021c3e63c6642cba5a851da0
+  five_wh_one_plus: 8305e718bedf31054e243769182ea271c5448239cf1d4479bcbbc3dc97307915
+  answer: 3ae2ee7e0b50734316bec8dbda477897bbcef3ed045ec73a127492d5c55bfc9f
+  tags: 173184373a305ecbcf0e04184fb5c78aad97d524419d008b918b4fc1dc2b0cb6
+  provenance: cd0129a0a8f80f2aed5a230f4372e80615ed254f63d6f6828c8644fd75efbba4
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:cli
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance: null

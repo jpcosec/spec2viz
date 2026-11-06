@@ -1,0 +1,19 @@
+name: atom-spec-loader-for-whom
+path: desk/atoms/atom-spec-loader-for-whom.md
+source_hash: d85774fd063901265a43c8729ca6fb542e63b6895b672a40c2654625677ad565
+content_hash: c76a1e141d564924f639df4d4615e16c3195c366a90f8e0f16e86211c98c7158
+field_hashes:
+  id: a4aef1f33eae90eb998fd087d266c32c6b540c7300b77dba349d96fc0b973044
+  title: caf9e15e21b6d069f6ad6e2f3f48e9319b5ade9af7caa325e6a75b3bb0cece3a
+  five_wh_one_plus: 8305e718bedf31054e243769182ea271c5448239cf1d4479bcbbc3dc97307915
+  answer: ad7aa431a0d7cc648deee4e59c578fdf9e6d6011a1ad2199013e18e059c83e80
+  tags: bcee74009260abfd035a984417a14b4b5e58f576d390f452722e3b4e1c34377c
+  provenance: 22ee95ea29b49b8f6010cd4fddc6cd828c983d2389b175e80d1f1dc36b7afddf
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:loader
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance: null

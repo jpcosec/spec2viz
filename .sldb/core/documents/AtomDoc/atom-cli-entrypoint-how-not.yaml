@@ -1,0 +1,19 @@
+name: atom-cli-entrypoint-how-not
+path: desk/atoms/atom-cli-entrypoint-how-not.md
+source_hash: 9c649f39b9d151d4351cb83de9ba3623507352f19d8a55a0d99e72f04b3ec639
+content_hash: a65b2406f85aef56bc345a4ac62214f5e38a02b8ebb79ef51d80c84deaa45481
+field_hashes:
+  id: c397c646909700e74d311e1d5b0cdb2057d33852aaceef0bdd4d5ddac863be2d
+  title: d26dbfd866e886eb7bdbd8705a91c94b71ca82f1021c3e63c6642cba5a851da0
+  five_wh_one_plus: c7d4bb6c4e85ef7f9bf7592aeecd1d09dd38adc39afd1ffb3908b19e689040ad
+  answer: d43d2cd9a74b3a8edb89f0e575a7433e856f94a6c5ee4819e74f0517ea7f9253
+  tags: 173184373a305ecbcf0e04184fb5c78aad97d524419d008b918b4fc1dc2b0cb6
+  provenance: cd0129a0a8f80f2aed5a230f4372e80615ed254f63d6f6828c8644fd75efbba4
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:cli
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance: null

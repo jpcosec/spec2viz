@@ -1,0 +1,19 @@
+name: atom-deskops-bridge-for-whom
+path: desk/atoms/atom-deskops-bridge-for-whom.md
+source_hash: 4f484dc83e8b7d2aaaf785427648f93971ac1d0271dd98bff46bfb834ea71ed8
+content_hash: 11647dd42755efeff1693d6ee2ac9edb3c604fbc1f8a5cb7bbfd245158316ecc
+field_hashes:
+  id: 7ca66ad2325341835e6b04a62a51516a0792165140dd38b4d81a17c71eeea6d1
+  title: a673f00619a643767fd3dc4b06f7e68d4792821989e9fad9f029613fede35796
+  five_wh_one_plus: 8305e718bedf31054e243769182ea271c5448239cf1d4479bcbbc3dc97307915
+  answer: 912afd9185b9fe860a17c08bd1759d1127be55e15204e96625b9ab0b4cc900c7
+  tags: edc4db39acf7c9a29d745a653027dd1837219a2fa1d4a7f8578af1e48d37a14a
+  provenance: 37bb78f88d2a6893e814e58d0b489a1ab9ee0fe5e2eac2f72917ec13dedc1a45
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:deskops
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance: null

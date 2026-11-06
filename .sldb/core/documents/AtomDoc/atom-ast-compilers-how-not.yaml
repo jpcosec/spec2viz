@@ -1,0 +1,19 @@
+name: atom-ast-compilers-how-not
+path: desk/atoms/atom-ast-compilers-how-not.md
+source_hash: 7811378614d53b8fa038e8fc74f646762e8d7577396d89ffdca3da1606851923
+content_hash: 3c8548c9302833dc554d563dfc5e077e25fc1beb45d6c503a86088053bf52faf
+field_hashes:
+  id: 7990bd12dcf4665866e77889e8aadbef8bd42e9a34176121f1c50e8098362dc2
+  title: 47220f96e832335fc841f9d8abdd6a3303957a91d68f1bc380fc5aea5a11f95c
+  five_wh_one_plus: c7d4bb6c4e85ef7f9bf7592aeecd1d09dd38adc39afd1ffb3908b19e689040ad
+  answer: f693a99ee80f96414dfc20026c3979c5650b4ae6e1bc9d9f3b3d0866c5a20602
+  tags: 6e6eb53bf0f1e15d6797eca47a27da5fe52a76106285a1832755fc41de027c9f
+  provenance: 7f0e8e29b36647f477fded3707c2d524e84b8fe53f54ebf81fcaaf9af718cdeb
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:compilers
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance: null

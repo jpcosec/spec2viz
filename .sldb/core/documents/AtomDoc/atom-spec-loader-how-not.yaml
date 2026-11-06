@@ -1,0 +1,19 @@
+name: atom-spec-loader-how-not
+path: desk/atoms/atom-spec-loader-how-not.md
+source_hash: 98477dec81c9fb1966ca612c96d0c3de21878eff201638cb3cf808bd820710ad
+content_hash: 3323b4d2558890efeab38a413f7658234f049a34d80dcc8a00d62da4d3ddd92c
+field_hashes:
+  id: 35886ba0c529b83912906dc18857b7a279f266c8fe8faf15fd386cd0cc43fa08
+  title: caf9e15e21b6d069f6ad6e2f3f48e9319b5ade9af7caa325e6a75b3bb0cece3a
+  five_wh_one_plus: c7d4bb6c4e85ef7f9bf7592aeecd1d09dd38adc39afd1ffb3908b19e689040ad
+  answer: 21b4a227c5bff2c03080eaccc5420131739ff43a1b20da235e0b0977a9a1e320
+  tags: bcee74009260abfd035a984417a14b4b5e58f576d390f452722e3b4e1c34377c
+  provenance: 22ee95ea29b49b8f6010cd4fddc6cd828c983d2389b175e80d1f1dc36b7afddf
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:loader
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance: null

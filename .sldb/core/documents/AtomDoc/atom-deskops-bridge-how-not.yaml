@@ -1,0 +1,19 @@
+name: atom-deskops-bridge-how-not
+path: desk/atoms/atom-deskops-bridge-how-not.md
+source_hash: 3a10cae289eb1f8809dc7f2e451c1cbe02883426fd02ec76ae67c6126b92d611
+content_hash: cedae993361b2f7623c51ecc52f9b739931aab7687e13d6102f3374b4d46d1b7
+field_hashes:
+  id: 66ddd4efc11161b3b40f86b89666864a8df7e5ff57b2b8dcaae0085d96dc1d9d
+  title: a673f00619a643767fd3dc4b06f7e68d4792821989e9fad9f029613fede35796
+  five_wh_one_plus: c7d4bb6c4e85ef7f9bf7592aeecd1d09dd38adc39afd1ffb3908b19e689040ad
+  answer: ca86f265365876ad29522a14587f8fdb58c9e20316613b68a03777cdfbad3e5c
+  tags: edc4db39acf7c9a29d745a653027dd1837219a2fa1d4a7f8578af1e48d37a14a
+  provenance: 37bb78f88d2a6893e814e58d0b489a1ab9ee0fe5e2eac2f72917ec13dedc1a45
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:deskops
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance: null

@@ -1,0 +1,19 @@
+name: atom-intermediate-representation-for-whom
+path: desk/atoms/atom-intermediate-representation-for-whom.md
+source_hash: 7af5f7b5189a3ce8873b4a2abe7df3239fe6d6f571354eee7a91b8feffcfb049
+content_hash: 0099c003ab102594ee88370bdf94bc599fe6ba3def909df9295c5d4646f7ccf4
+field_hashes:
+  id: 3e23746775ff0763405275aadcb40a4b7fd2ba00a93155185da996ea98ab5d58
+  title: ab883d04e8a339b2922a5828ab73fb70301443f1613254ad11a5543c831ac82a
+  five_wh_one_plus: 8305e718bedf31054e243769182ea271c5448239cf1d4479bcbbc3dc97307915
+  answer: d744da0c9bf4c587036067bdf2fd44ab6267034b3e51d2a157efb416d5205235
+  tags: a4921af91b6f91fb11f6f1131ee0bf1147c9b4e1ed8df732d84f2d93d8f76cca
+  provenance: f33489a1c74d42afdf4fdc6b849ce8ea3e23b4e9b09c6796baa2ed8bdaccb800
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:ir
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance: null
