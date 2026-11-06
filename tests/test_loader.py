@@ -105,6 +105,19 @@ def test_metadata_takes_project_annotations_only_as_x_keys(tmp_path):
         load(_with(tmp_path, lambda r: r.setdefault("metadata", {}).__setitem__("fuentes", [])))
 
 
+def test_metadata_types_preguntas_abiertas_and_legend(tmp_path):
+    """The bpmn viewer reads both from the model: they are typed fields, not `x-` keys."""
+    def meta(r):
+        r.setdefault("metadata", {})["preguntas_abiertas"] = "¿Una sola?"
+        r["metadata"]["legend"] = {"success": "Aceptar", "rule2": "R2 · Stock"}
+    d = load(_with(tmp_path, meta))
+    assert d.metadata.preguntas_abiertas == ["¿Una sola?"]
+    assert d.metadata.legend == {"success": "Aceptar", "rule2": "R2 · Stock"}
+    assert d.metadata.extensions == {}
+    with pytest.raises(ParseError, match=r"metadata\.legend"):
+        load(_with(tmp_path, lambda r: r.setdefault("metadata", {}).__setitem__("legend", ["Aceptar"])))
+
+
 def test_every_example_and_fixture_has_only_known_keys():
     """Forbidding unknown keys must not break a spec the project ships."""
     from spec2viz.loader import _valid_types

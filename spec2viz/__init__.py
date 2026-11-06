@@ -71,18 +71,11 @@ def render_to_file(
 
 def _write_bpmn(spec_path: Path, output_path: Path, xml: str, diagram: BaseDiagram) -> Path:
     """`<stem>.bpmn` (the XML) and `<stem>.bpmn.html` (the offline bpmn-js viewer)."""
-    import yaml
     from spec2viz.renderers.bpmn import render_bpmn_html, with_xml_provenance
 
     output_path.write_text(with_xml_provenance(xml, provenance_text(spec_path)), encoding="utf-8")
-    # the metadata model keeps only author/description; the page also shows preguntas_abiertas
-    try:
-        raw = yaml.safe_load(spec_path.read_text(encoding="utf-8")) or {}
-    except yaml.YAMLError:
-        raw = {}
-    metadata = raw.get("metadata") if isinstance(raw, dict) else None
-    if not isinstance(metadata, dict):
-        metadata = diagram.metadata.model_dump() if diagram.metadata else None
+    # description, preguntas_abiertas and legend are typed fields of the metadata model
+    metadata = diagram.metadata.model_dump() if diagram.metadata else None
     page = render_bpmn_html(xml, diagram.title, metadata)
     output_path.with_name(output_path.name + ".html").write_text(page, encoding="utf-8")
     return output_path

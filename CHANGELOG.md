@@ -26,7 +26,9 @@
   the browser the same mermaid source, one arrow per deployment connection; every shipped example and
   fixture is checked for unknown keys. The one place a project may add keys of its own is `metadata`, with
   the OpenAPI-style `x-` prefix (`x-fuentes`, `x-estado`): they are kept under `metadata.extensions`; any
-  other unknown key there is an error too
+  other unknown key there is an error too. The two metadata keys the bpmn viewer reads are typed fields of
+  `Metadata`: `preguntas_abiertas` (list of strings; a single string is a one-item list) and `legend` (label
+  per tone); `render --renderer bpmn` takes them from the loaded model instead of re-reading the YAML
 - `catalog build` draws every `graph`-layout view from its resolved view (`resolve_view`) with the view's
   `notation:` (or the builtin of the type): glyph shapes, keywords, compartments, resolved style and links
   are the same source graph_ui uses. The view comes from the project store when the spec is synced there

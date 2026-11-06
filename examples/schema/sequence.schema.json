@@ -89,6 +89,38 @@
           "description": "Free-form summary that explains the intent of the diagram.",
           "title": "Description"
         },
+        "preguntas_abiertas": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Open questions about the diagram. A single string is taken as a one-item list. The bpmn viewer shows them under the description.",
+          "title": "Preguntas Abiertas"
+        },
+        "legend": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Label per colour in the bpmn viewer legend, keyed by tone (`success`, `rule2`, `gateway`, ...); a tone without a label keeps its generic Spanish one.",
+          "title": "Legend"
+        },
         "extensions": {
           "additionalProperties": true,
           "description": "Project annotations: every `metadata` key that starts with `x-`, kept as written (renderers ignore them). Any other unknown key under `metadata` is an error.",

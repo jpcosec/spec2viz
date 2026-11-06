@@ -8,6 +8,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import pytest
+import yaml
 from click.testing import CliRunner
 
 from spec2viz import compile_ir, load, render_to_file
@@ -406,6 +407,18 @@ def test_legend_reads_custom_labels_from_metadata():
     page = render_bpmn_html(xml, "T", {"legend": {"rule2": "R2 · Stock", "success": "Aceptar"}})
     assert ">R2 · Stock</span>" in page and ">Aceptar</span>" in page
     assert ">regla 2</span>" not in page
+
+
+def test_cli_render_takes_legend_and_questions_from_the_metadata_model(tmp_path):
+    spec = tmp_path / "leyenda.yml"
+    raw = yaml.safe_load((FIXTURES / "activity.mepu-decision.yml").read_text(encoding="utf-8"))
+    raw["metadata"]["preguntas_abiertas"] = "¿Una sola pregunta?"
+    raw["metadata"]["legend"] = {"gateway": "Decisión de negocio"}
+    spec.write_text(yaml.safe_dump(raw, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    result = CliRunner().invoke(main, ["diagram", "render", str(spec), "--out", str(tmp_path), "--renderer", "bpmn"])
+    assert result.exit_code == 0, result.output
+    page = (tmp_path / "leyenda.bpmn.html").read_text(encoding="utf-8")
+    assert "<li>¿Una sola pregunta?</li>" in page and ">Decisión de negocio</span>" in page
 
 
 def _group_ir() -> ActivityIR:

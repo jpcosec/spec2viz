@@ -9,7 +9,7 @@ metadata:
     marcas > Aceptar); la OC toma el peor veredicto de sus líneas. Revisar dice a quién le toca (comprador, Customer
     Service, Comercial). Las alertas (fuera de plazo, varias direcciones, información mixta) no cambian el veredicto.
     Lo «por definir» de la fuente está resuelto hoy en el código con un valor provisional (marcado aquí).
-  fuentes:
+  x-fuentes:
     - "specs/negocio/README.md §3 (R1–R5, combinación, casos puntuales)"
     - "src/mepu/evaluacion/evaluacion.py (SIN_STOCK = REJECTED y PRECIO_NO_CALZA = HUMAN_REVIEW, provisionales; MESES_VENCIMIENTO)"
     - "specs/negocio/README.md §3 R5 «Cómo se compara» (REV-3, 2026-10-21: misma unidad, sin redondear)"
@@ -21,7 +21,7 @@ metadata:
     - "R2 pendiente de stock (DEC-128): el plazo de «a tiempo» (días desde el corte) y la confiabilidad y cadencia del informe PEND se confirman con Giuseppe (acuerdos.md fila 9)."
     - "R4: si Giuseppe puede liberar reservas de otro cliente (README §6.3); la lista completa de cautelas de Lab Chile (ANT-14)."
     - "R5 precio que no calza: por definir; el código usa Revisar (Comercial). Sin negocio vigente no aplica: el archivo no cubre a las OCs abiertas (docs/analisis/2026-10-21-r5-sin-cruces-collective.md)."
-  decididas_2026_10_22: >-
+  x-decididas_2026_10_22: >-
     Lote vencido no cuenta; lote sin fecha manda a Revisar; 12 meses calendario; 48 h desde el envío al proveedor con una
     sola cuenta; la cautela institucional cuenta pero la línea queda en Revisar con la marca RESERVA_INSTITUCIONAL; sin stock
     con ingreso confirmado a tiempo = Aceptar + PENDIENTE_STOCK (DEC-128). Estado y fuente de cada regla: specs/negocio/acuerdos.md.

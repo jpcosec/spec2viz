@@ -45,6 +45,20 @@ class Metadata(BaseModel):
         default=None,
         description="Free-form summary that explains the intent of the diagram.",
     )
+    preguntas_abiertas: list[str] | None = Field(
+        default=None,
+        description=(
+            "Open questions about the diagram. A single string is taken as a one-item list. The bpmn viewer "
+            "shows them under the description."
+        ),
+    )
+    legend: dict[str, str] | None = Field(
+        default=None,
+        description=(
+            "Label per colour in the bpmn viewer legend, keyed by tone (`success`, `rule2`, `gateway`, ...); "
+            "a tone without a label keeps its generic Spanish one."
+        ),
+    )
     extensions: dict[str, Any] = Field(
         default_factory=dict,
         description=(
@@ -62,6 +76,8 @@ class Metadata(BaseModel):
         found = {k: value.pop(k) for k in list(value) if isinstance(k, str) and k.startswith(EXTENSION_PREFIX)}
         if found:
             value["extensions"] = {**(value.get("extensions") or {}), **found}
+        if isinstance(value.get("preguntas_abiertas"), str):
+            value["preguntas_abiertas"] = [value["preguntas_abiertas"]]
         return value
 
 
