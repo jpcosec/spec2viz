@@ -2,11 +2,11 @@ name: BoardDoc
 model_ref: deskops.models:BoardDoc
 path: ''
 documents_index: .sldb/core/documents/BoardDoc.yaml
-sections_index: ''
-model_hash: e571d298dd62faf15aa332b8dde9e25d5388ec3c8d71cd6330957e926ebda9fd
-roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+sections_index: .sldb/runtime/sections/BoardDoc.yaml
+model_hash: b4863b5b6063c614a5196ebf72670bff809bc13040062a38f7a4ad6f0ab87e06
+roster_hash: 397e98189797688b96b8ef159ea08b4eceedb218ee6d40bfe6a60884884ad802
 contract_hash: efc79456a8b75fb3ece9476ec5c84df977f7ab5a4491a40cfcb1398a12f085cc
-documents_count: 0
+documents_count: 1
 version: 1
 canonical: false
 family: null

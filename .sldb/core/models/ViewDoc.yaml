@@ -3,9 +3,9 @@ model_ref: spec2viz.sldb_models:ViewDoc
 path: spec2viz/sldb_models.py
 documents_index: .sldb/core/documents/ViewDoc.yaml
 sections_index: ''
-model_hash: d0f6e0d3388c6fd990b236eb8ac6236ea6a6f3a53438966a63c1c6a3dc42e4a3
+model_hash: 63f39a83db01852ddd18d46f28d96e51e1987e4e1222776a22926562ea95c7c8
 roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-contract_hash: 22ae50a35c63d66c91a053a5ae72e61b717acde31365cccf48e290bc22351a1e
+contract_hash: 1616bd1b499ad0c18556a9a4cc0ccd4982aad885727c41aa8e7fd53262d69c2b
 documents_count: 0
 version: 1
 canonical: false
