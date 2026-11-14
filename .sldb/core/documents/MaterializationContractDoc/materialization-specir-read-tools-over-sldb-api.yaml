@@ -1,0 +1,26 @@
+name: materialization-specir-read-tools-over-sldb-api
+path: desk/materializations/materialization-specir-read-tools-over-sldb-api.md
+source_hash: 0daf7c50150e59aee42399068356725ee7d49d29556637157a2835e77aa0bc80
+content_hash: 6185567caf28ee3fe339f612251f5bd9246734a1966a44e3e05ffce914d24ee3
+field_hashes:
+  id: 65421357b7210b306b8f7715ae79e3596c815bd194d2954fe7f38a910750bd28
+  title: 6a371edce6ff57023401bf94e3608dfd40b3ccb65eeaf10e50899ec6c4e79906
+  source_atoms: 4fbd7106c966e854fec9e96d309891f4cae31056e596c461fe297d173b9b80d1
+  target_kind: 3e99dbb6780aa5f83b56f0bfddfc67e9d3047e51eb103d116d666ba801ac68ac
+  target_identity: c7ae55f30b4540417b9b942e7c1826911e6d39005045636e6e69833312bcdeae
+  intent: 2fc7c1b5eaeae864a50155a64516f2708c524e49beaa95269c4a92ced5b0903b
+  validation: ea6041db79ba6571cfdb7dabd362fd50e46722c078c2c18464fdb6fba9912e5a
+  tags: 26f4064aa1513c77593cf59f359de5438ca4b1fa62a405c93fcfdb820d26f73d
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:materialization
+- topic:mcp
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-14T15:13:36Z'
+  authority: generated
+  via: create_document

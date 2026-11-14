@@ -1,3 +1,4 @@
+FILE:desk/tasks/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real.md
 ---
 sldb:
   by: agent
@@ -93,3 +94,7 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 Las pruebas anteriores pasan sobre la copia aislada del store real de este repo y un agente conectado al servidor recorre ese store sin escribir en él.
+
+FILE:instruccion
+Preflight solo-TaskDoc de la tarea task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real: reformula el encargo tal como lo leería un ejecutor sin ningún otro contexto, lista ambigüedades con cita textual del input y da el DRY-RUN sin ejecutar nada. No ejecutes nada.
+

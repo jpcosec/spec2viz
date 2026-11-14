@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-14T10:48:01Z'
+  at: '2026-11-14T15:14:57Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -11,7 +11,6 @@ scope: desk
 # List of task-xxx paths
 tasks:
 - desk/tasks/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp.md
-- desk/tasks/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real.md
 - desk/tasks/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo.md
 - desk/tasks/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar.md
 - desk/tasks/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog.md
@@ -59,7 +58,6 @@ Diecisiete tareas de specIR autoradas desde el drawer, todas en borrador: ningun
 _Generated from the task references above._
 
 - IR02 Decisión: contrato de escritura y nivel de mutabilidad del MCP [draft] - Un registro de decisión en docs/decisiones/contrato-de-escritura-mcp.md con cuatro decisiones tomadas por el dueño del proyecto (qué es una propuesta de cambio, qué precondición protege la aplicación, dónde se declara el nivel de escritura permitido, y si existe deshacer), y un atom durable por cada decisión que la deja disponible para las demás tareas.
-- IR03 Servidor MCP de solo lectura sobre un store SLDB real [draft] - Un servidor MCP de solo lectura, en el paquete specIR, con el que un agente descubre modelos, lee documentos, recorre relaciones y resuelve vistas de un store SLDB.
 - IR05 Decisión: procedencia y divergencia entre código y modelo [draft] - Una taxonomía canónica de procedencia para specIR y una regla para la divergencia entre el modelo y el código del que se extrajo.
 - IR04 Escritura validada por MCP: proponer, validar, aplicar [draft] - Tools MCP de escritura con las que un agente propone, valida y aplica cambios al store, con el mecanismo decidido en la tarea de contrato de escritura.
 - IR06 Tipos de dominio transversales y cadena de prueba del blog [draft] - Los tipos de dominio transversales de specIR y un store de prueba con la cadena de publicar un post del blog de ejemplo (React, Django REST Framework, PostgreSQL), recorrible por MCP.

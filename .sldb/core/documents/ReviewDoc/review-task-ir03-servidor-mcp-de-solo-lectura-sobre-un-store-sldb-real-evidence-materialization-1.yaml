@@ -1,0 +1,36 @@
+name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-evidence-materialization-1
+path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/evidence-materialization-1.md
+source_hash: 7143ff3699a20268401c8eff3532cb805ebbd2dd41453190038b52534bda9629
+content_hash: a1647492bbd9245a032b89bf19d89e66c687a72db2d8bb07e29be8bbc4e4f8a1
+field_hashes:
+  id: 39dae28a9951b409fc9fa1b0e9e3bb9f9c61cdf4522657d78f0dc21bf5c3e987
+  title: 2e6bc4823d28f7d034c4e6b2cd697b3f217aeb6f5bdc48a80b1971d2f8cfa081
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: b77d8cf6414796c495587568e836eb101f2c47c6cbab025c9e93d24db5ead67b
+  value: 7bd64e647c944178cf4eff9bf8ad8316b79b0f94eba023c06f146cb3dc52c71d
+  subject: 6d9de121ea4fdefea5adef2c6bae1be68df5c9e719ff24299687becd8db5beee
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: ae5345a90497a9686d2477383cb8d47de81da111a9518d6d97f400f0c0e42942
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe
+  reason: c413ade3c36230b114ac56bd3bb3dd295af6b6544246f0a8f320d5f91f74087e
+  created_at: 565a5811b99ad5bc8f55a82b40583d0cb088cd91eb3fed36576b4623c5089579
+  disposed_at: 565a5811b99ad5bc8f55a82b40583d0cb088cd91eb3fed36576b4623c5089579
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 158178380414e97b9b8289d326e87b462def6108b0291780d87dd25345b99a36
+  disposition: 5d1cf03dc9cb2b2834d51ae4da874c561997193b84782c6838eb4cc86cfe7cfe
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-14T15:13:16Z'
+  authority: generated
+  via: save_document_payload

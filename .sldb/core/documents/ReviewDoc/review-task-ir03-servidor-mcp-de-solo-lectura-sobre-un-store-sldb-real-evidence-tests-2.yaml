@@ -1,0 +1,36 @@
+name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-evidence-tests-2
+path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/evidence-tests-2.md
+source_hash: 60bf570a22a6b5ede63d59dec9c5cfdbe1a62c8b4f5c1dbf83dea1d5782fa994
+content_hash: c8288201a673a8d1876c25a8f36ddca19bbc539e027a9d149e38c110362cd981
+field_hashes:
+  id: 4b1be20cbdc643dbc6b0aff094c9aa7597a24574adf4372d57edcb272de3f354
+  title: cb02af6643d4f1baffa4877e37569f84df10f69e3cad350a62815d2d0a46956a
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: e6104d391f328c11123e3762ad1e55020e7e8077a29fd0d0d298bafabc989194
+  subject: 6d9de121ea4fdefea5adef2c6bae1be68df5c9e719ff24299687becd8db5beee
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 6109cbae36d7586538eca646ed8c9af4196f532c7593b94efa44e3ad30931805
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: d01ddcd1a6ef44f40f771922eef80474c4dac3df61e75aa61b480a35bc72d145
+  created_at: 881f68df4b35a1e2632869ab3d6ee89f0f6341a8eb2de5831133409c6e30f645
+  disposed_at: 881f68df4b35a1e2632869ab3d6ee89f0f6341a8eb2de5831133409c6e30f645
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: a933a240533cc2fc399664905b59d37d9710aec49a914b3e9f5b3ae1608d48e7
+  disposition: f15934fc7e7dc9102f82d3ab55efb6735fbbef279194e29327ac302cf2999294
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-14T15:14:39Z'
+  authority: generated
+  via: save_document_payload

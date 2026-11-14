@@ -1,0 +1,26 @@
+name: materialization-specir-package-root
+path: desk/materializations/materialization-specir-package-root.md
+source_hash: a9b0aa06f5c4104fb4fe14fe71d94344058caecf99dec46111b99000ae6510af
+content_hash: c23909868208210a21435eea08bc2bc78ff3be924786b58bb95b86b24308ec9c
+field_hashes:
+  id: 708e53ea651582a67bf7ac7998edc5969f6416b84566953b2b01db8dfd8c96d0
+  title: 124bcde7b71e125e669b892790b3f49242ce2d500e16a72a2e175cf6055c873e
+  source_atoms: 4ff846c136eab616698b307efd0661b07a506287c93e401319933ab49fac1f01
+  target_kind: 3e99dbb6780aa5f83b56f0bfddfc67e9d3047e51eb103d116d666ba801ac68ac
+  target_identity: 59498494653a2a6950e044a9260601b1be17757cc6d317b3e5c34ca408ee1f86
+  intent: 8d337170601eb3bdcf4638964be675d235dffbc952c9e3c567ebbbc82f02e4a2
+  validation: ea6041db79ba6571cfdb7dabd362fd50e46722c078c2c18464fdb6fba9912e5a
+  tags: 26f4064aa1513c77593cf59f359de5438ca4b1fa62a405c93fcfdb820d26f73d
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:materialization
+- topic:mcp
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-14T15:13:32Z'
+  authority: generated
+  via: create_document

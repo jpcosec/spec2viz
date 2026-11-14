@@ -1,0 +1,26 @@
+name: materialization-specir-stable-addresses
+path: desk/materializations/materialization-specir-stable-addresses.md
+source_hash: 3321b83fc98794c53b260edd52d81c5cc7cd0ae38771a408ff0247f8d22b7a4d
+content_hash: 98a882c320a02fea296d42258c4b8d70252adc2e16ff401f38403b0296ad984a
+field_hashes:
+  id: 8145171b33673d3a0c8dcfd33865bc04d59ff811a3929b3dcadf20911a1ec8ae
+  title: 0b350606e85990826f79894332fc7462604f6e94f627fe1f2d5461b00916ac5b
+  source_atoms: 4fbd7106c966e854fec9e96d309891f4cae31056e596c461fe297d173b9b80d1
+  target_kind: 3e99dbb6780aa5f83b56f0bfddfc67e9d3047e51eb103d116d666ba801ac68ac
+  target_identity: e97385949dceb2b2b5855868b7ef8af2e74f45f9aa725ec98b78dd7a72c3dabb
+  intent: d9847d0c56bf0ade20dc19f92ca2b5a0269fc1f4e667e369ae82ae271041f3c9
+  validation: ea6041db79ba6571cfdb7dabd362fd50e46722c078c2c18464fdb6fba9912e5a
+  tags: 26f4064aa1513c77593cf59f359de5438ca4b1fa62a405c93fcfdb820d26f73d
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:materialization
+- topic:mcp
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-14T15:13:38Z'
+  authority: generated
+  via: create_document

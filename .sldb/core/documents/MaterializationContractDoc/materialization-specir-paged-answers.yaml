@@ -1,0 +1,26 @@
+name: materialization-specir-paged-answers
+path: desk/materializations/materialization-specir-paged-answers.md
+source_hash: 6aa56cf78e81cf8c461dcc99afe015fe36f69375d4beed9f7c158baa2a1f8c00
+content_hash: 1582c3fdafd1b7d27c3ba84ec01ea645fcee106ceed4d5f29545065c4228c613
+field_hashes:
+  id: 8208e41006a0d24cbeea61a8d3de0286143228754e1e4b162f1b9511954c36e6
+  title: ca97bac76f684b83ae3292d7d29565690c0aed24b4e61a6f690920da9865a7e5
+  source_atoms: 7c4c6f802a9cf1fdcbad23699a485f7030f1a96bfa54f5d72655e7c714d52044
+  target_kind: 3e99dbb6780aa5f83b56f0bfddfc67e9d3047e51eb103d116d666ba801ac68ac
+  target_identity: 837eb4af8d18d5d711bfb542ac940a90c0b5e85063dc55d8e4f4e94a5eeb5c93
+  intent: dc2cced3e0841e7ec9770d9df5fdece5870cb37416720f58a199609dc3f94902
+  validation: ea6041db79ba6571cfdb7dabd362fd50e46722c078c2c18464fdb6fba9912e5a
+  tags: 26f4064aa1513c77593cf59f359de5438ca4b1fa62a405c93fcfdb820d26f73d
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:materialization
+- topic:mcp
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-14T15:13:41Z'
+  authority: generated
+  via: create_document

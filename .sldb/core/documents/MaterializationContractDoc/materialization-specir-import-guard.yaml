@@ -1,0 +1,26 @@
+name: materialization-specir-import-guard
+path: desk/materializations/materialization-specir-import-guard.md
+source_hash: 43a57b2e9f3f629186e92318f1d2940d56db88932923217c974686e8fac48847
+content_hash: 021eff2786ca8816f767037792194f6a54e28a60fb72ca69d6735d310e38da8e
+field_hashes:
+  id: 3d04f63cb3e64c76fdbacaf38e9693d27aa260d80c574fb0fffc5a07384e3d5f
+  title: 2a6f5e68db2697a397fa03b4fdaef521b20279f85cb4c4743a590326e31bc8f3
+  source_atoms: 4ff846c136eab616698b307efd0661b07a506287c93e401319933ab49fac1f01
+  target_kind: 636fef96733cf18e3bf781120123c91c12b25fcfc6410d1540a6048d962556a8
+  target_identity: 414d0090855b7cfdab2d43369414fa45ec7d0dc7f6d9416b4bd15bf086d5bac4
+  intent: 84040f24bd548ad43997b73a1f28de52af941824351cbedadef6d0817fc52e36
+  validation: ea6041db79ba6571cfdb7dabd362fd50e46722c078c2c18464fdb6fba9912e5a
+  tags: 26f4064aa1513c77593cf59f359de5438ca4b1fa62a405c93fcfdb820d26f73d
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:materialization
+- topic:mcp
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-14T15:13:49Z'
+  authority: generated
+  via: create_document

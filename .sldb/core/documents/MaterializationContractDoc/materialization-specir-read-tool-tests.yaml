@@ -1,0 +1,26 @@
+name: materialization-specir-read-tool-tests
+path: desk/materializations/materialization-specir-read-tool-tests.md
+source_hash: 7ce8b48e908b77be484d4907a56b06b79a1662a2733c2f6dfee6d22691968676
+content_hash: 4ad3afe6fb1542fa253204a7bef4eda889269f6a7030e9ed56e439d180e6b045
+field_hashes:
+  id: 4323b0faf7e54f72b0d91f20d9b39dd4a827c24033002019b2e16ecdf433825f
+  title: 656b24005fa286880422d20e60cbf146ee3d2fe69a32c0fd48d6eb761b92a0f3
+  source_atoms: 4fbd7106c966e854fec9e96d309891f4cae31056e596c461fe297d173b9b80d1
+  target_kind: 636fef96733cf18e3bf781120123c91c12b25fcfc6410d1540a6048d962556a8
+  target_identity: 569fd9deb007e6b37b88af48f9d44d661d063e9d001f0cb0f96c3c40b3a55d67
+  intent: b4c3a967d2920a41216b8bda7a7e62901e60bb37b6ec110017fa9caaf9d10b00
+  validation: ea6041db79ba6571cfdb7dabd362fd50e46722c078c2c18464fdb6fba9912e5a
+  tags: 26f4064aa1513c77593cf59f359de5438ca4b1fa62a405c93fcfdb820d26f73d
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:materialization
+- topic:mcp
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-14T15:13:45Z'
+  authority: generated
+  via: create_document

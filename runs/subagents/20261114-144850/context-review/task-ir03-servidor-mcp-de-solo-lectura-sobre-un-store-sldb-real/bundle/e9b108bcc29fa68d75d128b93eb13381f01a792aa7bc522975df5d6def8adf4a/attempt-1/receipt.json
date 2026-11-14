@@ -1,0 +1,9 @@
+{
+  "key": "task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "e9b108bcc29fa68d75d128b93eb13381f01a792aa7bc522975df5d6def8adf4a",
+  "output_sha256": "d9fa2846fd95f4fa3264c8f9165e1c4c0e8d9a68764596ceb2eb68338730f9f8",
+  "start": "2026-11-14T14:48:51.106275+00:00",
+  "end": "2026-11-14T14:49:12.620754+00:00"
+}
