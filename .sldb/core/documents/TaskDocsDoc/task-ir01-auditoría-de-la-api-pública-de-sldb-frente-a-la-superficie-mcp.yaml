@@ -1,7 +1,7 @@
 name: task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp
 path: desk/tasks/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp.md
-source_hash: bb8718dab698211c2a45e5626593bcf29429ecc1dd55112f69bbd4512213c9c5
-content_hash: a7a2b87a4bc0939453c84dd51eb92e5e8b06a2654cb26fe63d4165d5740f4bfd
+source_hash: b7a3f8e267b962daa8eeb2fc07b26aae622f1de06209fe3c096552796149e127
+content_hash: 43c18b27822e4413398ae4803641103fd9c26297449a49ac431ebab8693bfd62
 field_hashes:
   title: 69dbc702448240a3e316c9ceaf587bf160b0cd4e18e6dbb07635dc9ae5a7524d
   id: 4a3813ffaa940d6500fec80dbb13f43194b8969a736a58ff04e360f2548e33cc
@@ -13,7 +13,7 @@ field_hashes:
   why: 59d10513716ad711a076bf855f5e8a9208b75ef07578bcf88ba70bcfa35cc633
   goal: bb23df62b272b4dc39c2fb35364626af6d06fed74ea5c80001564265280c776e
   scope: 24c9357779bb5c4675e6788a1519779bb94242f59e6e12cc6a961e305d36c343
-  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  references: 92f6b965f93d8a126dabd9ea8cfcec178342ab6928453229e7779b0557464be3
   depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pills: ddf6e14bcd3d7e7ba3303067acc37188531dcdc1b91196407f9c9f86797d0e04
   files: 1bcd641a1bf9eb329df260fc5d32630ed02d7ce2ed2c0420f4d27e44d8505add
@@ -36,6 +36,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-14T10:46:00Z'
+  at: '2026-11-14T10:47:46Z'
   authority: generated
   via: save_document_payload

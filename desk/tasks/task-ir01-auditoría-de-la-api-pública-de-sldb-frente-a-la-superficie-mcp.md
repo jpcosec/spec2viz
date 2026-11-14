@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-14T10:46:00Z'
+  at: '2026-11-14T10:47:46Z'
   authority: generated
   via: save_document_payload
 id: task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp
@@ -16,7 +16,10 @@ current_node: ritual-closeout
 history:
 - task_activates
 - task_hands_to_closeout
-references: []
+references:
+- 2df3bf4
+- docs/auditoria/sldb-api-frente-a-mcp.md
+- sldb:20261114-074447-suggestion-specir-brechas-api-p-blica-sldb-para-mcp
 depends_on: []
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
