@@ -1,0 +1,36 @@
+name: review-task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos-preflight-1
+path: desk/reviews/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos/preflight-1.md
+source_hash: 0c393d59964808c82790d8cd2dfab18f9f0bd8065be644f3a6a356094bd731d8
+content_hash: b7fb08500febbc08a00d88ad05fd27570d4cc76e0335edb727313d102252d496
+field_hashes:
+  id: 0c045f2b22bec51f827308e5203c60a3d190e2cc0ec9e7a057620a73c11d2827
+  title: 92e526250a5183b5fb5dc4e39bfbd7570ad672ad06bd2b09e96f16d1bc061062
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 2084ab1f92c9d175af793523a0776508084d0fcea1e2ab61b7e64c98f538e410
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 54da37fdafac98743126f23c93beb3e5af783ff92659ebfd744b7f69ac999d5e
+  input_sha256: 73723c68e1fa547fdca297551afefcaa6d55390e5a4100a4adeb3910c8e21602
+  output_sha256: 84d80087ee4cf7e704c0f3f9732b5eb4d19995095bba4b6ac80928e8698e8415
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 9b3ea4e9fd9eedfe89f1800902ff902de164b9b93c9f7ec8257498c9d897b778
+  created_at: 00f99a89c957f8f3d499dc5538bdbf477346c95cc260d09dd5fb50f0a2df8046
+  disposed_at: beb31524d5b11f454e4aa1ca82a99df62818e5c18ea79065ce3443d3acb153ac
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: c0967066eed34b4fe1487d4f7d19e28ac9183172dcacd0a6da2793a3449f43a3
+  disposition: 8f08e1f9b52922fc821ca117086dbb766c4d89404078c38907b30938643eafd5
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:29:43Z'
+  authority: generated
+  via: save_document_payload

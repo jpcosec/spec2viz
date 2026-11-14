@@ -1,0 +1,23 @@
+name: atom-specir-reemplaza-a-spec2viz-y-cubre-todas-sus-funciones
+path: desk/atoms/atom-specir-reemplaza-a-spec2viz-y-cubre-todas-sus-funciones.md
+source_hash: 3099bda4a2859795482fc5c847ddbd34f48d6c714d3b3c6629c46628b588fd03
+content_hash: b2e11088cc7d12c533ed0ae92e2e5be318e27a1b43270b93f54ccf2c930b4856
+field_hashes:
+  id: 687e1b09129462aa051a8c9542bdd96c5755f1ccc685a33990edf8f913b946bc
+  title: 647d2ea4f1f3b14c518ac70c813a6b6897a72b7405109d254547fb05e24db312
+  five_wh_one_plus: 6d924791a1798656302bd4b9716a494a0c5f7f55ad9ceebf629dfb2317e86078
+  answer: 5600525770595746e4b6f615e1705e12adb72f024be20e6a07b126d870e98a1c
+  tags: 1cf5e7177e61d8c7e53690cf036db2bbc059a0b71057eabea40f57c1c641dc51
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- system:specir
+- topic:migracion
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-11T22:25:35Z'
+  authority: generated
+  via: create_document

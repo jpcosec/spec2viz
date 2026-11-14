@@ -1,0 +1,36 @@
+name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-preflight-5
+path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/preflight-5.md
+source_hash: 979caa8e095a98a22769ba2e5458e5c4b15b1f3c946bdd03f139838360ec1631
+content_hash: 1b5ef2fbf1e843d99a653e2eea3fdda1b1dbe369f1aee5ed1515bac217f50255
+field_hashes:
+  id: 1fd16d6c253ca11358b5cba67102de33059b0198016f84c51b68c619571ae884
+  title: 64b2f07cdad8ee7fe5eb517e852eec085ccf0a88d73d33d92b323396689845e0
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 0358c79d8ce900367c98e642f3d97f54a78604109c6844a4c1733a7099e67bb0
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 6c4a3a8854dc80214b5f33b3afa2124996a9e3a10bffd7f50e2435c69398b724
+  input_sha256: ed96d7eaf0d755d3d62c86f395a9641c5d9e640a3cf27d9cbfae1b3aed593d33
+  output_sha256: f041d4aba31dd2a779674803f26decbfe4f0a5a49adbd1b7750dc49d7805d94e
+  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
+  reason: 3ee668fce23e5912920242f45b402c2587636698d493c0988e997627cd3e74a7
+  created_at: 10bd7c88890abfa691db3c3fd6a6edde95ea4a1fe78da3346bc30d01c2384ef0
+  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  summary: d7f8ad781a46af973d9e480eafcd37b29bf21e5987f9a89b6afe36caa6845427
+  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T04:45:59Z'
+  authority: generated
+  via: create_document

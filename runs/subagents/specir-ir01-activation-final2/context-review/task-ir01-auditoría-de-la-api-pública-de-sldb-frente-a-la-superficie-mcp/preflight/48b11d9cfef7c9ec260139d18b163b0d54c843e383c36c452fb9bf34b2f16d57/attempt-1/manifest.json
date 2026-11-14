@@ -1,0 +1,38 @@
+{
+  "key": "task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight",
+  "input_sha256": "48b11d9cfef7c9ec260139d18b163b0d54c843e383c36c452fb9bf34b2f16d57",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/home/jp/proyectos/SLDB_1/IR/runs/subagents/specir-ir01-activation-final2/context-review/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight/48b11d9cfef7c9ec260139d18b163b0d54c843e383c36c452fb9bf34b2f16d57/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp.md",
+      "sha256": "52256a3e98bfd3847e76afe3c4c27a198000c424eb46e8f1468d886c4c3f830c",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-12T04:00:18.150542+00:00",
+  "finished": "2026-11-12T04:00:37.149186+00:00",
+  "retry_reason": "Se precisaron actor, conducta requerida por fila, Model:name, precondición atómica, corpus recursivo, campos del mensaje y valor de handoff según revisión fría."
+}

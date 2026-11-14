@@ -1,0 +1,74 @@
+{
+  "key": "specir-reemplazo-spec2viz-sobre-sldb/IR04",
+  "input_sha256": "857f06952bc442ded74de2d60a5b7d03c59382ace0576b090d66f37f128078b8",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/home/jp/proyectos/SLDB_1/IR/runs/subagents/20261112-034425/context-review/specir-reemplazo-spec2viz-sobre-sldb/IR04/857f06952bc442ded74de2d60a5b7d03c59382ace0576b090d66f37f128078b8/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/drawer/plans/specir/dag.yaml#node:IR04",
+      "sha256": "dd22caffac316753a6b2e6022d848ef48c842d1de4565058bb17de65341fcdf5",
+      "projection": "node_contract"
+    },
+    {
+      "path": "desk/drawer/plans/specir/dag.yaml#edge:IR02",
+      "sha256": "32c4b0de657dacd036c6b23d20b2237f13efb2f9ebd7cd9f40d96f4170d725a0",
+      "projection": "edge_contract"
+    },
+    {
+      "path": "desk/drawer/plans/specir/dag.yaml#edge:IR03",
+      "sha256": "b26bd6c34acbc430dce89d0b706f42566b5bdede1da822071d61f5e2513eac8d",
+      "projection": "edge_contract"
+    },
+    {
+      "path": "desk/drawer/plans/specir/dag.yaml#edge:IR06",
+      "sha256": "7a116f492eaa82fe8146a8937755a4a69065a26a5be84161e82c627e7170b396",
+      "projection": "edge_contract"
+    },
+    {
+      "path": "desk/drawer/plans/specir/dag.yaml#edge:ROOT",
+      "sha256": "f66c6e2b5b4c0045a88e56803abc25201b663b2dfa06209ad6c35a738d762e2a",
+      "projection": "edge_contract"
+    }
+  ],
+  "omitted_sources": [
+    {
+      "path": "desk/drawer/plans/specir/context-review-guide.md",
+      "reason": "missing"
+    },
+    {
+      "path": "desk/drawer/plans/specir/brief.md",
+      "reason": "missing"
+    },
+    {
+      "path": "desk/drawer/plans/specir/alcance.md",
+      "reason": "missing"
+    },
+    {
+      "path": "desk/drawer/plans/specir/decisiones.md",
+      "reason": "missing"
+    }
+  ],
+  "started": "2026-11-12T03:45:30.568758+00:00",
+  "finished": "2026-11-12T03:45:53.433160+00:00"
+}

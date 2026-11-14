@@ -1,0 +1,36 @@
+name: review-task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp-bundle-1
+path: desk/reviews/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp/bundle-1.md
+source_hash: 5de89a042e3c4f466ff0f3f0c63eb096a987ea8ee755a4ed697c4c7750513d23
+content_hash: 359782201e7f793344454c82e57fa8528d87743adeffbe94a2fdce0979b7751c
+field_hashes:
+  id: 5c99a7ef5dbfd198305ed24a5e2f5ff8a1e868a0f39691196986447352edc27e
+  title: 0afea07045c56b218304f4ec2a3f680542314851fd25835070c4a203f38b002b
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 3e42d9d933282dc1b7dda27fe1c452d169f0a20caf77591be83db20ddc1cd123
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 9af44f8192e7b1fb1fd867c9959696471eadf02fba402b1d3105852a4488d2a0
+  input_sha256: bfb1cc1c9262cbb8805d1f63ab7ecefb345ebad529c13a46237ceea091a54baa
+  output_sha256: 5e393c85792ab0f70d8b5a66d586f7817e41c2bb9bd458d9c08375215ed46adc
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: a2e85c993dd112fa20d0d63cdc77a5ad0bfaaa4c5e94eb4622151170de26b360
+  created_at: 7bb5aefe17cc46a89c0002df8b5200b31b6a86c52838c73e03ccfe5b337d3836
+  disposed_at: 58571135f980d694ace7bb29258c3f872e8cfbe1195a2a72e0c1297e3566db84
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 7e701260b8442489d6a4d1841ba3c93d8a15a69d19429f5888779696afa69252
+  disposition: e5b15c5c788be4fa343ec2f8ecf87cc4e7095a3c1f68c4d3d5765ab2944deee1
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:38:35Z'
+  authority: generated
+  via: save_document_payload

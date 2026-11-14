@@ -1,0 +1,23 @@
+name: atom-specir-no-depende-de-pron-adopta-contratos-no-código
+path: desk/atoms/atom-specir-no-depende-de-pron-adopta-contratos-no-código.md
+source_hash: f98229aa0d0f7410904a5ad8a891706f44ed270630f42650d2f478335b227963
+content_hash: 137899459fdbdf394d50a657258231922c165b6cb9b9144de1cc72cc9f2257fd
+field_hashes:
+  id: 885c1438af951ec8cd5f82c68ef8289ce2e164bca8ac0da6287856046edb1a79
+  title: c10da9d8e289bf45dffb6e856de20db9d419a2e927169de651b6e5dcf45af208
+  five_wh_one_plus: c7d4bb6c4e85ef7f9bf7592aeecd1d09dd38adc39afd1ffb3908b19e689040ad
+  answer: 6e016922576ac29a594affc5aa7955a07bb0d199392481b4a0246bea7bf2296b
+  tags: 94172a0d2d35fa863a86949dd992a5302d790e1e17848ffb3d7a0d8e79bbd91c
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:pron
+- system:specir
+- topic:dependencias
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-11T22:25:33Z'
+  authority: generated
+  via: create_document

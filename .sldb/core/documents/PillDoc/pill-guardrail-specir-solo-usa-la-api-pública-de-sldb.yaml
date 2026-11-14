@@ -1,0 +1,28 @@
+name: pill-guardrail-specir-solo-usa-la-api-pública-de-sldb
+path: desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
+source_hash: 4b48dc0685cc3b457dfc02102855266f1c1fb6e13bcea74758c908562e28ba37
+content_hash: ab7d4922349e88c532f423756577ac56988e3af00775226e50a91ad06a784431
+field_hashes:
+  title: 693e2fa962f9fd8e5dc3a1f9ad5d5d14f1a3c69ae863bfe93033a991871a5bea
+  id: 31856e41578707c73231e389b202575570d7df8ede0d98e202bfee04f33ca14a
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
+  summary: 82489a4c633bc54fc1cf332680ca3066dfc45f7f5e1bba0a610636a3c5a20a5f
+  tags: 413aa4f8e3cc5f6e7b14256965c770030f817d7877fb57c9c26c173383d51888
+  what: 31694cf216864c95a6c89f340ffdebc1ba530b31de212193f90fcd5aa653d84c
+  why: 3b5fb86e787ee10aa18956425966d5d730cc5785432a1598cdad0afa09d6464f
+  when: 7d8e382237002443c619792a4ca0e934587559a4cb1756a804b42c79c3c7a3e6
+  where: d23ed1fa2094afb6e8d887e05b3257539d75bd93ae7add65944f58b8ea92a899
+  how: e27966223da90ce958038faddd6199d166042cbf84cc275005b37e286bbfcaf0
+  how_not: 3b4554f49746cf2c8b4abf5269b6d7e5dc2dc74da79d5aa003d6d17b2714b852
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- type.workflow.pill
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T01:22:48Z'
+  authority: generated
+  via: create_document

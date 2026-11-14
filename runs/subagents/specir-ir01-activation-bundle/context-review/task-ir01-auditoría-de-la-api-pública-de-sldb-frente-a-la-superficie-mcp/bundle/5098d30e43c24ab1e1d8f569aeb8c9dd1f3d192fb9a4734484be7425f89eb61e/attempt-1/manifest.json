@@ -1,0 +1,83 @@
+{
+  "key": "task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle",
+  "input_sha256": "5098d30e43c24ab1e1d8f569aeb8c9dd1f3d192fb9a4734484be7425f89eb61e",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/home/jp/proyectos/SLDB_1/IR/runs/subagents/specir-ir01-activation-bundle/context-review/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle/5098d30e43c24ab1e1d8f569aeb8c9dd1f3d192fb9a4734484be7425f89eb61e/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp.md",
+      "sha256": "74fb231886643d674ea281adf1b224a851119596181e23fe481472ab28c9dd2b",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/phase.md",
+      "sha256": "cc7f0b52d4153679b69fa0dccee57ec4ac915602a6dbd8d2ff226764c90a2e5f",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/execution.md",
+      "sha256": "a16c7c317f4eec9ce8659464625ae18b5fe94d790e3fdd3755296dcc51898bdc",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/testing.md",
+      "sha256": "e5b616e2d90b009c2cbac612d281727dbb0f13ad23fdd62a5dd8a6dbbb08aca6",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/closeout.md",
+      "sha256": "b8eed83052f326b72b3a33f4523e8f70068c7eb76bd270691425519019ca88c1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md",
+      "sha256": "4b48dc0685cc3b457dfc02102855266f1c1fb6e13bcea74758c908562e28ba37",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md",
+      "sha256": "29cff042e91d7b973c448f91c31ae71409e44b054119b1471d18797c23a34d8e",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-specir-depende-solo-de-la-api-pública-de-sldb.md",
+      "sha256": "f2d8b7f31c3332a9cb45045467a73135c5be7de6dbb76090f05c11d26f1ee0a7",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-specir-no-depende-de-pron-adopta-contratos-no-código.md",
+      "sha256": "f98229aa0d0f7410904a5ad8a891706f44ed270630f42650d2f478335b227963",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [
+    {
+      "path": "docs/auditoria/sldb-api-frente-a-mcp.md",
+      "reason": "missing"
+    }
+  ],
+  "started": "2026-11-12T03:55:52.729128+00:00",
+  "finished": "2026-11-12T03:56:06.444118+00:00",
+  "retry_reason": "Scope and validation contract were refined from cold review; refresh full ritual/pills/atoms/files review before activation."
+}

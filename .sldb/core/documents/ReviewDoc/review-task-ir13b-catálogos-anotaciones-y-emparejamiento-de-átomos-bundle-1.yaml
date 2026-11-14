@@ -1,0 +1,36 @@
+name: review-task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos-bundle-1
+path: desk/reviews/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos/bundle-1.md
+source_hash: ac924f75916eb188839c7b1ba347af42e07f11aaf568c8a4e8bf0c9eeff94523
+content_hash: a3b206e2f685f789c7c26b389ef54ce5f03c24d7b63c45995de66661d9643457
+field_hashes:
+  id: f81a49980c49d379486e2692f0935bf3805ef01bad790e4b6dc59b31bc03314e
+  title: 1d3392009902010b7fe7e9503467c1f30df6cf87bef244191272d433acf17dd3
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 2084ab1f92c9d175af793523a0776508084d0fcea1e2ab61b7e64c98f538e410
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: c81e4fbd6c00060e6ba2c7aafa858982dbc8319897379219305f769c712b5308
+  input_sha256: 0591ff9fa2cf9364a149eef2f05393a640cae4ac73d1085fc4d6db2d77379fe7
+  output_sha256: c4d954e0a614842427785588987b06bfe6e24c706852cbd556eebd7174aaddaa
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: a2e85c993dd112fa20d0d63cdc77a5ad0bfaaa4c5e94eb4622151170de26b360
+  created_at: 6e08f95c38bbb07b8441982bcd2d6d0afdaf8a583ee8863f4fdabcbd1b4897c1
+  disposed_at: 7c125f031f11c3c380d33c9de6755e9d4961249b76bc36d65efa75af7f68a760
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: b3fc2e29c9074785d4c32e553a1a7f948947004610ec45d488deae880832300d
+  disposition: e5b15c5c788be4fa343ec2f8ecf87cc4e7095a3c1f68c4d3d5765ab2944deee1
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:38:55Z'
+  authority: generated
+  via: save_document_payload

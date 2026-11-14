@@ -1,0 +1,36 @@
+name: review-task-ir13c-notaciones-y-paletas-expuestas-desde-specir-preflight-1
+path: desk/reviews/task-ir13c-notaciones-y-paletas-expuestas-desde-specir/preflight-1.md
+source_hash: 88a4b90e06e050e4f42e7a2b4c6a24bdbaf5e9d1c2a1c0534c4a4e9d5c58fb16
+content_hash: 18b9107f9c5dc997f11b2e55251912cbef6d746d1e6c8d58b7446a06bfe80978
+field_hashes:
+  id: 57f1d59bbc694aadd0bc8ffd6918b03968b775defba31abc7df234738c56d486
+  title: 904d1184ddb54166731ee6ec6671e6240bc110a1977420ca7d1b670206bf1740
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 43c3a2cdd8f18f31710bd44df3dd66ce98fd90480b96f67d9c9c1938a97c1bac
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: b87e59d6daf1e3edd067a3720c29325a5cc6f2543a8aaf566e08e895361367af
+  input_sha256: 25e5696bbb39d9fda98fcedd188acc6808542cb7e6f8aed8df1e31833fb3165d
+  output_sha256: c010d2aa5b2f7baa033569cefc0e949642cc8a17475d9a5c926b487c3160d852
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 9b3ea4e9fd9eedfe89f1800902ff902de164b9b93c9f7ec8257498c9d897b778
+  created_at: f7c4433899e19726c9c59329dcbdce5d7ef450d9e049ae531b60d6c7c2507128
+  disposed_at: 477300b956b52d50d0cf6be454c368f42752e0ba6ebb3b4922ef7bcaa4abb0db
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: dcdbc8572d438199c0d7853205cf12266f8b4baf6c74fa19f5783243a120cf43
+  disposition: 8f08e1f9b52922fc821ca117086dbb766c4d89404078c38907b30938643eafd5
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:29:45Z'
+  authority: generated
+  via: save_document_payload

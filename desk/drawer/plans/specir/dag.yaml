@@ -1,0 +1,1528 @@
+id: specir-reemplazo-spec2viz-sobre-sldb
+revision: 3
+revision_note: 'Rev 3: incorpora revisiones Pi/Claude: gate externo SLDB para pron, scope de absorción
+  de spec2viz explícito, evidencia de cierre definida por los recibos TaskDoc y el acta IR13, IDs IR13a-d
+  y generación repetible desde los TaskDocs. Ejecución autorizada por el usuario, sujeta a gates individuales.'
+status: proposed
+as_of: '2026-11-12'
+source: TaskDocs en desk/tasks son la fuente canónica de contratos y dependencias; build_plan.py regenera
+  aquí su vista DAG y README.
+execution_authorized: true
+estimate_legend: {}
+gates:
+  G_SLDB_PRON_MCP:
+    title: Capacidades de pron integradas y expuestas por SLDB como MCP/API pública
+    state: pending
+    resolver: DeskOps del repositorio sldb; IR01 prepara el handoff del contrato faltante
+    evidence: TaskDoc del desk de sldb cerrado con decisión de integración de pron en SLDB y evidencia
+      de operaciones MCP/API pública disponibles, más validación de integración en sldb. El contrato exacto
+      se fija tras el inventario de IR01; no asumir qué funciones se portan.
+    required_for: Cierre del plan ROOT. No bloquea tareas locales independientes que puedan avanzar con
+      la API pública actual.
+hierarchy:
+  root:
+    id: ROOT
+    title: 'specIR: MCP sobre SLDB y reemplazo funcional de spec2viz'
+    owner_repo: specIR
+    scope: 'specIR es un paquete periférico construido sobre la API pública de SLDB. Incluye su MCP de
+      modelado semántico y, en una rama posterior, la cobertura completa de la superficie pública de spec2viz:
+      modelos y formatos de spec, compiladores, renderers, linter, recursos, catálogos, notaciones/paletas,
+      CLI, API Python, habilidad de agente y migración de consumidores. El MCP de SLDB para integrar capacidades
+      de pron es trabajo externo propiedad del desk de sldb; specIR no importa pron ni implementa allí.'
+    acceptance: 'Plan completo cuando todos los TaskDocs hijos están cerrados con sus recibos de closeout
+      y evidencia declarada en DeskOps; IR13 demuestra cobertura y migración antes de proponer retirar
+      spec2viz; G_SLDB_PRON_MCP queda satisfecho por el desk de sldb. No requiere un recibo agregado extra:
+      la fuente de evidencia son los recibos/commits de cada hijo y el acta de IR13.'
+    children:
+    - IR01
+    - IR02
+    - IR03
+    - IR04
+    - IR05
+    - IR06
+    - IR07
+    - IR08
+    - IR09
+    - IR10
+    - IR11
+    - IR12
+    - IR13
+    - IR13a
+    - IR13b
+    - IR13c
+    - IR13d
+tasks:
+- id: IR01
+  task_doc: desk/tasks/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp.md
+  title: IR01 Auditoría de la API pública de SLDB frente a la superficie MCP
+  kind: docs
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on: []
+  requires: []
+  scope: 'Objetivo:
+
+    Una matriz que diga, capacidad por capacidad, qué necesita la superficie MCP de specIR y si la API
+    pública de SLDB ya lo ofrece, hay que extenderlo en SLDB, o falta.
+
+
+    Alcance:
+
+    _State what is in scope and what is out of scope._
+
+
+    _State what is in scope and what is out of scope._
+
+
+    _State what is in scope and what is out of scope._
+
+
+    _State what is in scope and what is out of scope._
+
+
+    _State what is in scope and what is out of scope._
+
+
+    _State what is in scope and what is out of scope._
+
+
+    _State what is in scope and what is out of scope._
+
+
+    _State what is in scope and what is out of scope._
+
+
+    _State what is in scope and what is out of scope._
+
+
+    _State what is in scope and what is out of scope._
+
+
+    _State what is in scope and what is out of scope._
+
+
+    Auditar exactamente 11 filas para el cliente MCP de specIR, con agente MCP como actor y nombre de
+    fila igual a la frase tras su número: (1) catálogo de modelos y tipos de relación con campos/tipos;
+    (2) leer payload/campo por identidad estable Model:name; (3) vecinos y recorrido dirigido de aristas
+    con profundidad; (4) seleccionar por predicados con sldb.api.select_documents y buscar texto rankeado
+    con sldb.api.search, anotando requisito de texto además de where; (5) ejecutar una ViewDoc existente;
+    (6) crear/editar/borrar documentos ordinarios, RelationDoc, RelationTypeDoc y RuleDoc con validación
+    de modelo/reglas; (7) crear modelos, editar esquema, validar/promover draft y registrar clase Python
+    existente; (8) diagnósticos públicos de integridad del store e índice de aristas; (9) consultar journal
+    e historial de documento/procedencia; (10) leer StoreFingerprint.store_hash y usar la huella global
+    como precondición atómica de escritura, rechazando mismatch; (11) detectar operación pública SLDB
+    que cumpla la capacidad de deshacer escritura confirmada de kb_undo/forma undo. Para fila 11 no inferir
+    detalles ausentes en pron §4: si SLDB ofrece función relacionada pero no documenta el comportamiento
+    requerido, clasificar requiere-extensión-en-SLDB y preguntar al desk que lo integre/documente; si
+    no hay operación relacionada, faltante y solicitarla. En toda fila, si SLDB ofrece operación relacionada
+    pero no demuestra la conducta requerida en una fuente permitida, requiere-extensión-en-SLDB; si no
+    hay operación relacionada, faltante. Disponibilidad requiere evidencia directa o composición explícita
+    en docstring sldb.api o doc SLDB listado. Composición explícita significa que las fuentes nombran
+    las operaciones y describen la relación/orden que produce la capacidad; no se infiere solo por similitud
+    de firmas o por combinar funciones sin contrato documentado. Cada una de las dos suboperaciones de
+    fila 4 recibe su propia evidencia, resultado de disponibilidad y brecha dentro de esa fila; si difieren,
+    la fila usa el estado más restrictivo y enumera ambas. Una fila por número; suboperaciones relacionadas
+    no crean filas extra. La decisión final de política de escritura queda fuera solo como decisión de
+    producto de IR02; las filas 6, 10 y 11 documentarán las APIs existentes frente a las necesidades declaradas.
+    Actor de todas las necesidades: agente MCP de specIR operando un store SLDB. Model:name es la identidad
+    estable registrada por SLDB; usar sldb://document/Model:name solo si ../sldb/docs/addressability_model.md
+    la respalda. Predicados limitados a sldb.api.where. Estados exactos: disponible, requiere-extensión-en-SLDB,
+    faltante; acciones: usar/componer para disponible y solicitar-extensión para no disponible. Handoff
+    disponible: EM DASH literal —. Tras envío, repetir el mismo sldb:<stem> en filas no disponibles, con
+    stem como basename del path JSON sin .md. Si falla el envío, conservar estado y acción de cada fila
+    según la evidencia, cambiar solo handoff a ERROR literal, no afirmar que fue notificada y dejar tarea
+    abierta. Resumen enviado exacto: Nota enviada; ID: sldb:<stem>. Sin brechas exacto: No se envió nota:
+    todas las capacidades están disponibles. Una nota única puede contener de 1 a 11 secciones, solo una
+    por fila no disponible. El informe no diseña tools ni decide política final de escritura. Fuera: código,
+    cambios en otros repos, lectura de módulos internos SLDB, importar/ejecutar pron. El nombre canónico
+    y capacidad de cada fila es la frase completa tras su número en la lista 1–11; usar esa misma frase
+    en título de fila y mensaje. El valor de handoff disponible es exactamente el carácter —, sin texto
+    adicional. Si falla cualquier comando Git, usar el fallback para el bloque snapshot completo: los
+    tres metadatos como desconocido/no disponible y el error completo; hashear todos los archivos del
+    corpus. Ordenar las secciones de la nota por número ascendente de capacidad. La evidencia de API consiste
+    en docstring de la función pública citada o documentación SLDB listada que describa esa operación;
+    puede estar en su módulo exportado, no se requiere docstring del paquete. El destinatario `--to sldb`
+    es el desk SLDB; “Pregunta al desk” es el campo textual dentro de cada sección y no cambia ese destinatario.
+    Si `deskops message send` falla, registrar en Resultado el código de salida, stderr completo y stdout
+    completo (incluido JSON si lo produjo), en ese orden; no escoger uno ni descartar el otro. Para la
+    fila 4, la severidad es disponible < requiere-extensión-en-SLDB < faltante; el estado conjunto es
+    el más severo de sus dos suboperaciones. Las frases en cursiva heredadas de la plantilla bajo los
+    encabezados describen el tipo de contenido esperado y no son requisitos adicionales de esta tarea.
+    Para cada nombre de capacidad, tomar literalmente el texto después de su número hasta el siguiente
+    punto y coma; excluir número, paréntesis y separador final, y conservar el resto de la frase. Una
+    operación es relacionada solo si su nombre o documentación pública declara propósito, entrada o salida
+    que coincide con una parte de la necesidad de esa fila; similitud incidental de firma no basta. La
+    conducta está demostrada solo cuando el docstring de la operación pública o los docs permitidos describen
+    explícitamente el resultado/precondición que la fila requiere; evidencia parcial se clasifica requiere-extensión-en-SLDB.
+    La matriz puede describir brechas y compatibilidad, pero no recomienda política, arquitectura ni nivel
+    de mutabilidad de escritura; eso lo decide IR02. La referencia a pron §1 y §4 significa únicamente
+    las secciones 1 y 4, no el intervalo 1–4. La fila 11 requiere solo identificar una operación pública
+    que revierta una escritura ya confirmada, que es el significado mínimo indicado por pron §4; no inferir
+    historial, selección de operación, repetición ni otras semánticas de undo. El ID sldb:<stem> se repite
+    en el campo handoff de cada fila no disponible; no se añade al cuerpo de la nota. Al formar el nombre
+    de capacidad se quita solo el marcador numérico inicial `(N)` y el separador `;` o punto final de
+    la lista; cualquier paréntesis dentro de la frase se conserva. Los docs SLDB permitidos son exactamente
+    los enumerados en Implementation Path. En una fuente documental, una mención nominal de una función
+    sin descripción de su comportamiento no demuestra la capacidad. La celda de evidencia debe citar únicamente
+    fuentes que describan explícitamente la conducta requerida. Las pills asociadas al TaskDoc son guardrails
+    obligatorios para el trabajo, no fuentes de evidencia técnica. Para la celda Necesidad, formular la
+    entrada como “solicitud MCP para <nombre canónico>” y el resultado como el resultado explícito en
+    la misma frase de capacidad; no añadir requisitos de producto. En la pregunta al desk usar: “¿Puede
+    SLDB exponer o documentar <conducta faltante> mediante la API pública para soportar <nombre canónico>?”
+    Para fila 11, “escritura confirmada” significa una operación nivel 1 o 2 cuya evaluación terminó con
+    éxito; buscar el equivalente público de la forma `(undo)` de pron §4. Excluir edición de modelos nivel
+    3, que la misma sección declara no reversible. No inferir qué escritura elige undo ni su historial.
+    En fallback Git, los tres valores desconocidos son commit=desconocido, branch=desconocida y status=no
+    disponible; conservar la fecha UTC real y copiar el error Git completo en Snapshot. La fecha no se
+    sustituye. Fuentes revisadas enumera cada archivo Python del corpus efectivamente leído y cada documento
+    `.md` efectivamente leído, incluida la spec pron con §1 y §4; las rutas de API que se citan en filas
+    también aparecen en esa lista. La clasificación fila 11 toma los niveles de pron §4: nivel 1 contenido/documentos
+    y aristas; nivel 2 reglas del mundo (tipos, condiciones y transiciones); excluye nivel 3 modelos/esquema.
+    Para disponibilidad, se acepta como evidencia suficiente una ruta pública citada o un doc SLDB listado
+    que describa explícitamente el contrato; la fila cita el tipo de fuente que realmente lo demuestra
+    y nunca inventa símbolos. Si la fuente es un doc, la celda Evidencia no tiene que incluir ruta bajo
+    sldb/api. Excepción de nombre: para la fila 4, el nombre termina en `sldb.api.search`; la frase “anotando
+    requisito de texto además de where” es instrucción de necesidad, no parte del nombre. Para fila 11,
+    éxito de escritura en la especificación pron significa que la evaluación devuelve `outcome: done`;
+    la referencia a escrituras usa los registros con `done` que describe pron §4. En Snapshot, incluir
+    el stdout literal de git status en bloque fenced (vacío se rotula `clean`); hashes son un bloque separado
+    de archivos dirty. En un error de envío, Fecha UTC es la hora del intento de envío, independiente
+    del timestamp de snapshot.
+
+
+    Ruta:
+
+    _Outline the expected implementation route or affected surface._
+
+
+    _Outline the expected implementation route or affected surface._
+
+
+    _Outline the expected implementation route or affected surface._
+
+
+    _Outline the expected implementation route or affected surface._
+
+
+    _Outline the expected implementation route or affected surface._
+
+
+    _Outline the expected implementation route or affected surface._
+
+
+    _Outline the expected implementation route or affected surface._
+
+
+    _Outline the expected implementation route or affected surface._
+
+
+    Trabajar desde /home/jp/proyectos/SLDB_1/IR. Corpus exacto de snapshot: todos los archivos Python
+    bajo ../sldb/src/sldb/api/; ../sldb/docs/README.md; ../sldb/docs/addressability_model.md; y ../sldb/docs/architecture/current-system-overview.md,
+    derived-store-boundary.md, edges.md, journal-authority.md, model-authoring.md, model-federation-on-the-graph.md,
+    notations-and-views.md, provenance.md, rules.md, rules-language.md, selectors.md. Capturar git -C
+    ../sldb rev-parse HEAD, branch --show-current y status --short --untracked-files=all limitado a esas
+    rutas; archivos fuera del corpus no cuentan. Dirty incluye tracked/untracked dentro del corpus. Hashear
+    SHA-256 solo archivos del corpus modificados/untracked; excluir IR/pron. Si cualquier comando git
+    falla, escribir commit=desconocido, branch=desconocida, status=no disponible, el error completo, y
+    hashear todos los archivos del corpus. Escribir solo docs/auditoria/sldb-api-frente-a-mcp.md. Fila
+    7: add_model(model_ref) registra clase StructuredNLDoc por referencia module:ClassName; create_model
+    crea clase desde campos; add_model_field, remove_model_field, edit_model_template, validate_model_draft
+    y promote_model_draft editan/promueven. Fila 8 revisa check_store/check_edges sin ejecutarlos. Fila
+    10 requiere que StoreFingerprint.store_hash global sea aceptada y comparada dentro de la escritura
+    con rechazo atómico; source_hash por doc no basta. Fila 4 distingue select_documents (predicados)
+    y search (texto rankeado más where). Fuentes de composición: solo docstrings públicos sldb.api y docs
+    SLDB listados. Leer únicamente las secciones 1 y 4 (no 1–4) de ../pron/source/spec/14-superficie-mcp.md
+    como documento externo. Si hay filas no disponibles, message_body contiene solo esas filas, formato
+    exacto por fila: encabezado ## Capacidad N: <nombre>; después líneas Necesidad (con el mismo Actor/Entrada/Resultado
+    de la fila), Rutas/símbolos revisados, Brecha, Pregunta al desk, TaskDoc: task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp.
+    No introducción ni filas disponibles. Enviar una sola vez desde IR: deskops message send "$message_body"
+    --root . --to sldb --kind suggestion --title "[specIR] Brechas API pública SLDB para MCP" --format
+    json. El campo path del JSON devuelve el archivo creado; el ID es basename sin .md. Repetirlo como
+    sldb:<stem> y usar Resumen exacto Nota enviada; ID: sldb:<stem>. Si falla/no hay path, estado/acción
+    siguen igual; handoff ERROR; Resumen de error exacto por campos: Nota no enviada; tarea abierta; Comando:
+    deskops message send "$message_body" --root . --to sldb --kind suggestion --title "[specIR] Brechas
+    API pública SLDB para MCP" --format json; Resultado: <código de salida; stderr completo; stdout completo>;
+    Fecha UTC: <ISO-8601>. No reintentar ni declarar notificada. Sin brechas, handoff literal — y Resumen
+    exacto No se envió nota: todas las capacidades están disponibles. Rutas ../sldb y ../pron relativas
+    a raíz IR. Registrar la fecha/hora UTC del snapshot en ISO-8601 `YYYY-MM-DDTHH:MM:SSZ`. Estructura
+    del informe, en este orden: título `# Auditoría de la API pública de SLDB frente a la superficie MCP
+    de specIR`; `## Snapshot` con commit, branch, fecha UTC ISO-8601, status y hashes; `## Matriz` con
+    las siete columnas en el orden de Validation; `## Resumen`; `## Fuentes revisadas`. La fila 4 divide
+    Necesidad, Estado, Evidencia, Brecha y Acción en entradas `select_documents:` y `search:` usando `<br>`;
+    Handoff es común a la fila. Estado muestra el de cada suboperación y luego `fila: <estado más severo>`,
+    con orden disponible < requiere-extensión-en-SLDB < faltante. El Resumen va debajo de la matriz y
+    contiene exactamente la cadena requerida por Scope. Fuentes revisadas enumera solo documentos efectivamente
+    leídos. Para la respuesta de message send, el envío es exitoso solo si código de salida es cero, JSON
+    es válido y path es una cadena no vacía; cualquier otro resultado es fallo, aunque incluya path, y
+    registra código, stderr y stdout completos. La sección Snapshot incluye el stdout exacto del comando
+    de status como bloque fenced, con encabezado `git status (corpus):`; si no hay salida, mostrar `clean`.
+    La lista de hashes es separada y solo contiene rutas dirty. En el registro de error del envío, Fecha
+    UTC corresponde al inicio del intento de envío, no al snapshot.'
+  acceptance: 'Terminado cuando:
+
+    La matriz está escrita, cada fila tiene estado y cita, y los faltantes reales (si los hay) están notificados
+    a SLDB.
+
+
+    Validación:
+
+    - El informe contiene exactamente once capacidades y cada fila incluye capacidad, necesidad con actor/entrada/resultado,
+    estado, evidencia, brecha, acción y referencia de handoff.
+
+    - Cada fila usa uno de los estados cerrados y la acción correspondiente; disponible usa usar/componer
+    y cada no disponible usa solicitar-extensión.
+
+    - Cada fila disponible cita la ruta/símbolo público o el doc SLDB listado que efectivamente documenta
+    la conducta; no inventa símbolos para evidencia documental. Cuando usa composición, cita y describe
+    cada operación y su relación documentada.
+
+    - La fila 4 informa por separado la evidencia y disponibilidad de select_documents y search; no combinar
+    sus resultados en una sola afirmación. La fila conserva un único estado global más restrictivo y explica
+    cada suboperación.
+
+    - Cada fila no disponible enumera módulos existentes inspeccionados y explica la conducta que falta;
+    no cita rutas o símbolos inventados.
+
+    - El informe lista el snapshot: commit/branch de sldb si existen, fecha UTC y git status; si los archivos
+    de fuente están modificados, incluye hashes SHA-256 para fijar la revisión auditada.
+
+    - Si hay filas no disponibles, se envió un único mensaje cuyo título y cuerpo siguen Implementation
+    Path, y el ID exacto aparece en Resumen y filas afectadas; si no hay filas no disponibles, Resumen
+    declara que no se envió nota y cada handoff disponible contiene el carácter literal —.
+
+    - Si deskops message send falla o no retorna ID, Resumen registra el resultado y la tarea no se cierra
+    como notificada.
+
+    - El informe lista fuentes revisadas y no abre módulos internos de SLDB ni importa/ejecuta pron; leer
+    la spec pron como documento está permitido.
+
+    - La tabla usa exactamente este orden de columnas: Capacidad, Necesidad, Estado, Evidencia, Brecha,
+    Acción, Handoff.
+
+    - Para toda fila disponible, Brecha dice exactamente “Ninguna: la conducta requerida está documentada.”;
+    para filas no disponibles describe la conducta requerida ausente o parcialmente documentada.
+
+    - La celda Necesidad usa exactamente `Actor: ...; Entrada: ...; Resultado esperado: ...`; el actor
+    se mantiene “agente MCP de specIR operando un store SLDB”.
+
+    - Las filas no disponibles citan las rutas de los módulos existentes bajo sldb/api que se abrieron
+    y evaluaron para esa capacidad. Si no existe símbolo relacionado, indicar “sin operación relacionada”
+    y citar los archivos del corpus donde se buscaron candidatos por nombre/concepto; no se exige listar
+    archivos no abiertos ni probar ausencia global fuera del corpus.
+
+    - El documento usa exactamente la estructura y títulos fijados en Implementation Path.
+
+    - La celda Necesidad usa la entrada y salida acotadas por Scope, sin agregar requisitos.
+
+    - La fila 4 divide Necesidad, Estado, Evidencia, Brecha y Acción con los sublabels `select_documents:`
+    y `search:`; Handoff es común, y Estado incluye el estado por suboperación y el estado global más
+    severo.
+
+    - Cada fila no disponible usa la plantilla literal de Pregunta al desk establecida en Scope; cambia
+    solo capacidad y conducta faltante.
+
+    - Las pills asociadas se cumplen como guardrails, pero no se citan como evidencia técnica.'
+  output_scope:
+  - docs/auditoria/sldb-api-frente-a-mcp.md
+- id: IR02
+  task_doc: desk/tasks/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp.md
+  title: 'IR02 Decisión: contrato de escritura y nivel de mutabilidad del MCP'
+  kind: decision
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR01
+  requires: []
+  scope: 'Objetivo:
+
+    Un registro de decisión en docs/decisiones/contrato-de-escritura-mcp.md con cuatro decisiones tomadas
+    por el dueño del proyecto (qué es una propuesta de cambio, qué precondición protege la aplicación,
+    dónde se declara el nivel de escritura permitido, y si existe deshacer), y un atom durable por cada
+    decisión que la deja disponible para las demás tareas.
+
+
+    Alcance:
+
+    Dentro: (a) propuesta de cambio como lote prevalidado sin persistir o como documento persistente;
+    (b) precondición que impide aplicar sobre un store que cambió desde la validación; (c) dónde se declara
+    el nivel de escritura permitido (contenido, reglas y tipos de relación, modelos): al arrancar el servidor,
+    en un documento del store, o por actor; (d) si hay una operación de deshacer o basta la historia en
+    git. Fuera: implementar; decidir permisos multiusuario.
+
+
+    Ruta:
+
+    El entregable tiene dos partes con un solo origen. (1) Registro de decisión: docs/decisiones/contrato-de-escritura-mcp.md,
+    con una sección por decisión que contiene el contexto, las alternativas, la operación de la API pública
+    de SLDB que sostiene cada alternativa según la matriz de la tarea de auditoría, la alternativa elegida,
+    el motivo y la fecha. Es el documento con el que cierra esta tarea. (2) Cuatro atoms, uno por decisión,
+    creados con deskops add atom con --provenance docs/decisiones/contrato-de-escritura-mcp.md; cada atom
+    enuncia solo la decisión vigente y el registro conserva las alternativas descartadas. Quién hace qué:
+    el ejecutor redacta el registro con las alternativas y una recomendación; el dueño del proyecto elige,
+    y su elección queda escrita en el registro (el recibo owner que exige la activación de una tarea de
+    decisión acredita que la decisión es suya); el ejecutor crea después los cuatro atoms y actualiza
+    con deskops edit atom el atom de principios de seguridad de la superficie MCP para que cite los mecanismos
+    decididos; los ids de los atoms creados se anotan en el registro y en las referencias de la tarea.
+    Si el registro cambia más adelante, se actualiza primero el registro y después el atom correspondiente,
+    nunca al revés.'
+  acceptance: 'Terminado cuando:
+
+    El registro de decisión está completo con la elección del dueño, los cuatro atoms existen y apuntan
+    a él, y la tarea de escritura por MCP puede citar un mecanismo concreto para cada principio.
+
+
+    Validación:
+
+    - docs/decisiones/contrato-de-escritura-mcp.md existe y tiene una sección por cada una de las cuatro
+    decisiones, cada una con alternativas, alternativa elegida, motivo, fecha y quién decidió.
+
+    - Cada sección nombra la operación de la API pública de SLDB que sostiene la alternativa elegida según
+    la matriz de auditoría, o la carencia notificada a SLDB.
+
+    - Existe un atom por cada decisión, su campo provenance apunta al registro y su texto coincide con
+    la alternativa elegida en el registro.
+
+    - El registro lista los ids de los cuatro atoms y las referencias de la tarea los incluyen.
+
+    - Ninguna decisión introduce un camino de escritura al store que no pase por la API pública de SLDB.
+
+    - El atom de principios de seguridad de la superficie MCP cita los mecanismos decididos y ya no los
+    declara pendientes.'
+  output_scope:
+  - docs/decisiones/contrato-de-escritura-mcp.md
+- id: IR03
+  task_doc: desk/tasks/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real.md
+  title: IR03 Servidor MCP de solo lectura sobre un store SLDB real
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR01
+  requires: []
+  scope: 'Objetivo:
+
+    Un servidor MCP de solo lectura, en el paquete specIR, con el que un agente descubre modelos, lee
+    documentos, recorre relaciones y resuelve vistas de un store SLDB.
+
+
+    Alcance:
+
+    Dentro: servidor MCP por stdio sobre la API pública de SLDB con tools para listar y describir modelos
+    y tipos de relación, leer un documento o campo, consultar vecinos salientes/entrantes filtrados por
+    tipo de relación y obtener la vecindad a profundidad por dirección, buscar por predicados, resolver
+    una vista (ViewDoc o SpecDoc) a JSON e inspeccionar integridad del store. Las tools de grafo son adaptadores
+    MCP delgados. La vecindad multi-salto recorre los tipos de relación del índice según la dirección;
+    el contrato no promete filtrar un tipo específico en cada salto. specIR no mantiene índice de aristas,
+    algoritmo de recorrido, parser de predicados ni backend de grafo propio. Fuera: paths entre dos extremos
+    (graph_path/graph_paths), cualquier escritura, tipos de dominio nuevos, extractores y renderizado
+    de diagramas.
+
+
+    Ruta:
+
+    _Outline the expected implementation route or affected surface._
+
+
+    _Outline the expected implementation route or affected surface._
+
+
+    _Outline the expected implementation route or affected surface._
+
+
+    Paquete Python specIR con dependencia en structuredLanguageDB y el SDK de MCP como extra opcional;
+    las tools son envoltorios de las operaciones que la matriz de auditoría marca como existentes. Store
+    de las pruebas: una copia aislada del store real de este repo, sin registros fabricados. La obtiene
+    un fixture de tests/conftest.py que copia a un directorio temporal de la prueba las carpetas .sldb/,
+    sldb/ y desk/ de la raíz del repo (los documentos reales del desk: atoms, tareas, rituales, reglas
+    y tipos de relación), sin copiar .sldb_cache/. Sobre la copia solo operan herramientas públicas de
+    SLDB: sldb stores update para reconstruir los índices derivados, sldb edges rebuild para el índice
+    de aristas y sldb stores check para comprobar la integridad antes de usarla; el store federado deskops,
+    que el original enlaza por ruta relativa, se vuelve a enlazar en la copia con sldb stores add apuntando
+    a su ruta real, y con el mismo comando se enlaza además el store real de spec2viz (../spec2viz/.sldb
+    respecto de la raíz de este repo); ambos se leen en sitio en solo lectura y las pruebas no escriben
+    en ellos. El servidor bajo prueba es el servidor MCP real, lanzado por stdio y consultado con el cliente
+    del SDK de MCP: no se simulan ni la API de SLDB, ni el servidor, ni el cliente. La prueba de resolución
+    de vistas usa el SpecDoc real class.sldb-models del store federado de spec2viz: primero comprueba
+    que ese documento resuelve desde la federación de la copia y después lo lee y resuelve su vista por
+    las tools del servidor. Si el store de spec2viz o ese documento dejan de existir, la prueba falla
+    con un mensaje que nombra el store y el documento que faltan; no se sustituye por un documento inventado.
+    Mapeo exacto: vecinos salientes/entrantes con filtro de tipo usan `sldb.api.edges_from`/`edges_to`;
+    vecindad multi-salto con dirección y profundidad usa `sldb.api.graph.collect_neighborhood_by_direction`,
+    que recorre las relaciones del índice y no filtra un tipo en cada salto. Esta tarea no expone paths
+    entre dos extremos; si se requieren más adelante, son otra tool delgada que delega en `graph_path`
+    (una ruta, con `directed`) o `graph_paths` (varias rutas, con `relations` y `cutoff`). specIR no implementa
+    ni itera un recorrido propio como fallback.'
+  acceptance: 'Terminado cuando:
+
+    Las pruebas anteriores pasan sobre la copia aislada del store real de este repo y un agente conectado
+    al servidor recorre ese store sin escribir en él.
+
+
+    Validación:
+
+    - Las pruebas corren con un cliente MCP real contra el servidor real lanzado por stdio sobre la copia
+    aislada del store de este repo; cada tool devuelve JSON estructurado y, por cada documento, su dirección
+    estable.
+
+    - Los documentos que devuelven las tools existen en el store original con el mismo id y contenido
+    (comparación contra los archivos de desk/ del repo).
+
+    - Todo conjunto llega paginado, con su total y una marca cuando quedó cortado; se prueba sobre el
+    modelo con más documentos del store.
+
+    - El SpecDoc real class.sldb-models del store de spec2viz resuelve desde la federación de la copia,
+    y las tools de lectura y de resolución de vistas lo devuelven con el mismo contenido que tiene en
+    ../spec2viz/.sldb; si el store o el documento faltan, la prueba falla nombrando cuál falta.
+
+    - Montar la copia y ejecutar todas las tools de lectura no modifica ningún archivo de la copia ni
+    de los stores federados de deskops y de spec2viz (comparación del árbol antes y después).
+
+    - El store original del repo no cambia durante las pruebas (comparación del árbol de .sldb/ y desk/
+    antes y después).
+
+    - Una consulta sobre algo que el store no declara devuelve conjunto vacío con explicación, no un error
+    opaco.
+
+    - Una prueba de imports comprueba que el paquete no importa pron, spec2viz, ni módulos de SLDB fuera
+    de sldb.api.
+
+    - Ninguna prueba crea documentos de contenido inventado ni sustituye la API de SLDB, el servidor o
+    el cliente por un doble.'
+  output_scope:
+  - pyproject.toml
+  - src/specir/__init__.py
+  - src/specir/mcp/__init__.py
+  - src/specir/mcp/server.py
+  - src/specir/mcp/read_tools.py
+  - src/specir/mcp/addresses.py
+  - src/specir/mcp/paging.py
+  - tests/conftest.py
+  - tests/mcp/test_read_tools.py
+  - tests/mcp/test_no_writes.py
+  - tests/test_imports.py
+- id: IR04
+  task_doc: desk/tasks/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar.md
+  title: 'IR04 Escritura validada por MCP: proponer, validar, aplicar'
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR02
+  - IR03
+  requires: []
+  scope: 'Objetivo:
+
+    Tools MCP de escritura con las que un agente propone, valida y aplica cambios al store, con el mecanismo
+    decidido en la tarea de contrato de escritura.
+
+
+    Alcance:
+
+    _State what is in scope and what is out of scope._
+
+
+    Dentro, mutaciones del store que expone el MCP: crear, editar y borrar documentos de modelos ya registrados;
+    afirmar y retirar aristas (RelationDoc); declarar y editar tipos de relación (RelationTypeDoc) y reglas
+    (RuleDoc), que son documentos del store y por eso se escriben como datos. Toda escritura admite ejecución
+    en seco. Fuera: crear o editar clases Python de modelos por MCP. Las clases de modelo se definen como
+    código en el paquete specIR (o en el paquete del proyecto que las declare) y entran al store por el
+    registro de modelos de SLDB; exponer su edición por MCP queda como decisión posterior, condicionada
+    a la tarea de contrato de escritura. Fuera también: síntesis de código de aplicación. En specIR, estas
+    operaciones solo se exponen como tools MCP; no se implementan funciones propias de CRUD ni escrituras
+    directas al filesystem o a índices SLDB. La creación, edición, borrado, validación de modelos, reglas
+    e integridad se delegan en las operaciones existentes de `sldb.api`; si una capacidad falta, se pide
+    extensión al desk SLDB.
+
+
+    Ruta:
+
+    _Outline the expected implementation route or affected surface._
+
+
+    Las tools envuelven las operaciones de escritura, prevalidación, reglas y transiciones que la matriz
+    de auditoría marca como existentes en la API pública de SLDB; lo que falte se resuelve en SLDB, no
+    en specIR. Delegación obligatoria por operación: crear documento con `sldb.api.create_document`; editar
+    payload de documento existente con `sldb.api.save_document_payload`; borrar con `sldb.api.delete_document`.
+    RelationDoc, RelationTypeDoc y RuleDoc se escriben como documentos mediante esas mismas funciones
+    con su modelo registrado, no mediante mutación propia del índice de aristas. Los tools MCP convierten
+    argumentos tipados a llamadas API y devuelven sus resultados/errores; no duplican serialización, renderizado,
+    validación de modelo/reglas, mantenimiento de índices, ni borrado de archivos. Para agrupar cambios
+    usa `sldb.api.transaction` cuando corresponda. La ejecución en seco y el contrato de precondición
+    usan mecanismos existentes de SLDB; si la API pública no los ofrece, el nodo no crea una implementación
+    paralela en specIR y deja la brecha solicitada a SLDB.'
+  acceptance: 'Terminado cuando:
+
+    Las pruebas anteriores pasan contra un store de prueba y un agente completa el ciclo proponer, validar
+    y aplicar sobre un documento y sobre una arista.
+
+
+    Validación:
+
+    - Una ejecución en seco devuelve lo que se escribiría y no cambia ningún archivo del store.
+
+    - Aplicar un cambio validado sobre un store que cambió después de la validación es rechazado con un
+    error que lo dice.
+
+    - Una arista que viola los tipos de origen o destino, la cardinalidad o la condición de su RelationTypeDoc
+    es rechazada antes de escribir.
+
+    - Un cambio que incumple un RuleDoc vigente es rechazado o reportado según la severidad de la regla,
+    y la respuesta nombra la regla.
+
+    - Ninguna tool de escritura recibe texto libre para interpretar: solo argumentos tipados.
+
+    - Cada documento escrito lleva en su procedencia quién y por qué operación se escribió.
+
+    - Una tool por encima del nivel de escritura permitido responde error sin evaluar nada.
+
+    - No existe ninguna tool que cree o modifique módulos Python.'
+  output_scope:
+  - src/specir/mcp/write_tools.py
+  - src/specir/mcp/changes.py
+  - src/specir/mcp/mutability.py
+  - tests/mcp/test_write_tools.py
+  - tests/mcp/test_dry_run.py
+  - tests/mcp/test_mutability.py
+- id: IR05
+  task_doc: desk/tasks/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo.md
+  title: 'IR05 Decisión: procedencia y divergencia entre código y modelo'
+  kind: decision
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR01
+  requires: []
+  scope: 'Objetivo:
+
+    Una taxonomía canónica de procedencia para specIR y una regla para la divergencia entre el modelo
+    y el código del que se extrajo.
+
+
+    Alcance:
+
+    Dentro: elegir la taxonomía canónica entre (1) observado, inferido, validado (fundamentos_modelado_semantico_mcp.md,
+    sección 7); (2) observado, derivado estáticamente, inferencia de LLM, verificado (Plan_IR.md, fase
+    5); (3) la autoridad de SLDB: source_raw, authored, theorem, generated, cache (sldb/src/sldb/models/provenance.py);
+    definir las equivalencias; decidir si la relación entre un nodo extraído y su fuente se expresa con
+    las anclas de código de SLDB; decidir qué prevalece cuando modelo y código discrepan y cómo se representa
+    lo desconocido. Fuera: implementar extractores.
+
+
+    Ruta:
+
+    Cada decisión se registra como atom. Lectura de sldb/docs/architecture/provenance.md y anchoring.md.'
+  acceptance: 'Terminado cuando:
+
+    Los tres atoms existen y las tareas de tipos de dominio y de extractores pueden citar una sola taxonomía.
+
+
+    Validación:
+
+    - Existe un atom con la taxonomía canónica y la tabla de equivalencias con las otras dos listas.
+
+    - Existe un atom que dice cómo se representa lo desconocido y cómo una inferencia pasa a validada,
+    y por acción de quién.
+
+    - Existe un atom sobre divergencia: qué ocurre con un nodo cuya fuente cambió.
+
+    - Si la decisión exige algo que SLDB no tiene, la carencia está identificada con la fila correspondiente
+    de la matriz de auditoría.'
+  output_scope:
+  - docs/decisiones/procedencia-y-divergencia.md
+- id: IR06
+  task_doc: desk/tasks/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog.md
+  title: IR06 Tipos de dominio transversales y cadena de prueba del blog
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR04
+  - IR05
+  requires: []
+  scope: 'Objetivo:
+
+    Los tipos de dominio transversales de specIR y un store de prueba con la cadena de publicar un post
+    del blog de ejemplo (React, Django REST Framework, PostgreSQL), recorrible por MCP.
+
+
+    Alcance:
+
+    Dentro: (1) clases Python de modelo, definidas en el paquete specIR como subclases del documento base
+    de SLDB, para control de interfaz, acción, operación de API, handler, operación de dominio, política,
+    estado, entidad de dominio y tabla; (2) tipos de relación como documentos RelationTypeDoc que specIR
+    distribuye e instala en un store: triggers, invokes, handled_by, executes, governed_by, transitions,
+    writes, persisted_in; (3) invariantes entre capas como documentos RuleDoc que specIR distribuye, por
+    ejemplo que toda acción de interfaz invoque una operación de API existente; (4) un store de prueba
+    poblado por MCP con la cadena de publicar un post. Frontera: las clases de modelo son código de specIR;
+    los tipos de relación y las reglas son datos del store; el MCP escribe datos y no clases. Fuera: extractores
+    automáticos, análisis de impacto, síntesis.
+
+
+    Ruta:
+
+    Módulo de modelos dentro del paquete specIR, registrado en el store por el mecanismo de registro de
+    modelos de SLDB, como hace deskops con los suyos; documentos builtin de RelationTypeDoc y RuleDoc
+    instalados por un comando de specIR; población del store de prueba con las tools de escritura.'
+  acceptance: 'Terminado cuando:
+
+    Las pruebas anteriores pasan y la cadena del blog queda como store de prueba reutilizable por las
+    tareas posteriores.
+
+
+    Validación:
+
+    - Por MCP se recorre PublishButton, PublishAction, endpoint, handler, PublishPost y tabla, en ambos
+    sentidos.
+
+    - Una relación entre tipos no permitidos (por ejemplo un control de interfaz que escribe directo en
+    una tabla) es rechazada por su RelationTypeDoc.
+
+    - Quitar del store de prueba la operación de API que una acción invoca hace que la evaluación de reglas
+    reporte el RuleDoc incumplido.
+
+    - Dos vistas distintas (una de estados y una de componentes) muestran la misma entidad Post y el store
+    contiene un solo documento para ella.
+
+    - Cada nodo y relación lleva la procedencia de la taxonomía canónica decidida.
+
+    - Las clases de modelo viven en el paquete specIR y ningún modelo de vocabulario visual de SLDB se
+    redefine.'
+  output_scope:
+  - src/specir/models/__init__.py
+  - src/specir/models/domain.py
+  - src/specir/data/relation_types.yaml
+  - src/specir/data/rules.yaml
+  - src/specir/install.py
+  - tests/models/test_domain_models.py
+  - tests/models/test_blog_chain.py
+  - tests/fixtures/blog_chain.yaml
+- id: IR07
+  task_doc: desk/tasks/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro.md
+  title: 'IR07 Cobertura completa de spec2viz: matriz, fuente de verdad del diagrama y gate de retiro'
+  kind: docs
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR03
+  - IR06
+  requires: []
+  scope: 'Objetivo:
+
+    Una matriz de cobertura de todas las capacidades de spec2viz, con modo y condición de retiro por fila;
+    la decisión sobre el papel del YAML de spec frente al grafo; y un gate comprobable de migración y
+    retiro. Es un plan de cobertura: no declara nada como ya migrado.
+
+
+    Alcance:
+
+    Dentro, una fila por cada capacidad de spec2viz, cada una con modo (migrar tal cual; reemplazar por
+    otra arquitectura o experiencia con resultado equivalente; exponer desde specIR lo que ya vive en
+    SLDB) y condición verificable de retiro:
+
+    - Modelos de spec por tipo de diagrama: clase, secuencia, estado, componente, actividad, despliegue,
+    matriz, reflexión; carga y validación de specs; export de JSON Schema de specs y de catálogos.
+
+    - Representación intermedia y compiladores por tipo de diagrama.
+
+    - Renderizadores: Mermaid, PlantUML, D2, BPMN y su visor, Vega, árbol, HTML de grafo, antonia-html
+    y salida JSON.
+
+    - Linter de Mermaid.
+
+    - SpecSync: materializar un spec en el store como SpecDoc, SpecNodeDoc y RelationDoc, creando el RelationTypeDoc
+    que falte y borrando lo que salió del spec.
+
+    - from-graph: compilar el grafo de un store o un snapshot en un spec de componentes.
+
+    - Generación de un spec de componentes desde el AST de Python.
+
+    - Catálogos: build (HTML autocontenido), sync, validate y serve con autoguardado de anotaciones; registro
+    vistas.yml y stores jerárquicos de diagramas.
+
+    - NotationDoc, GlyphDoc, LinkDoc y PaletteDoc: list, validate, sync y view de notaciones; list, validate
+    y sync de paletas, con la comprobación de contraste WCAG.
+
+    - Emparejamiento de átomos con elementos de diagrama y cobertura por vista.
+
+    - API Python pública y recursos empaquetados (plantillas HTML, bpmn-js, notaciones y paleta builtin).
+
+    - Comando about y la habilidad de uso de spec2viz instalada para agentes.
+
+    Dentro también: inventario de consumidores, con el archivo donde cada uno importa o invoca spec2viz:
+    graph_ui (UIs/graph_ui/frontends/mindmap/sldb_adapter.py y su pyproject.toml), deskops (reglas de
+    rutas en el módulo graph.desk_graph del paquete deskops, documentación de diagramas y la habilidad
+    use-spec2viz) y los stores cuyo índice registra modelos spec2viz.sldb_models.
+
+    Dentro también, la decisión antes separada: la fuente semántica es el grafo de SLDB; decidir si el
+    YAML de spec queda como formato de autoría e intercambio de forma permanente o solo durante la paridad;
+    cómo se dibuja algo que todavía no existe en el grafo (diseño previo a la implementación); y qué pasa
+    con los specs YAML existentes en los repos que usan spec2viz.
+
+    Fuera: migrar o implementar cualquier fila; extractores de otras tecnologías; análisis de impacto.
+
+
+    Ruta:
+
+    Fuentes: spec2viz/spec2viz/cli.py y los módulos del paquete; spec2viz/tests/ como definición de paridad;
+    el plan absorber-spec2viz-y-modelos-ui de SLDB para lo que ya vive en SLDB. La matriz se escribe en
+    el repo de specIR. Cada fila o grupo de filas se convierte después en una tarea de migración propia;
+    esta tarea no migra nada. Propiedad de archivos compartidos: esta tarea crea docs/spec2viz/matriz-de-cobertura.md
+    con todas las filas, su modo y su condición de retiro, sin evidencia de cumplimiento; la tarea final
+    IR13 la actualiza después, añadiendo por fila la prueba que acredita la cobertura, una vez cerradas
+    IR13a, IR13b, IR13c e IR13d.'
+  acceptance: 'Terminado cuando:
+
+    La matriz, la decisión y el gate de retiro están escritos y revisados, y de la matriz se pueden derivar
+    las tareas de migración sin volver a inventariar spec2viz.
+
+
+    Validación:
+
+    - Todos los comandos y subgrupos que lista la ayuda del CLI de spec2viz aparecen en la matriz.
+
+    - Todos los módulos de compiladores, renderizadores, linters y generadores del paquete spec2viz aparecen
+    en la matriz.
+
+    - Ninguna fila dice descartado, fuera de alcance o ya implementado sin una prueba citada.
+
+    - Cada fila en modo reemplazar nombra el sustituto y la prueba que demostrará la equivalencia.
+
+    - Cada fila en modo exponer desde SLDB cita la operación de la API pública de SLDB que la respalda.
+
+    - Cada consumidor inventariado cita el archivo donde importa o invoca spec2viz.
+
+    - Existe un atom con la decisión sobre el YAML de spec frente al grafo, con las alternativas descartadas,
+    la regla para diseño previo a la implementación y el destino de los specs existentes.
+
+    - El gate de retiro está escrito como lista comprobable: toda fila con su condición cumplida; la suite
+    de spec2viz pasa contra specIR o tiene prueba equivalente declarada por fila reemplazada; ningún consumidor
+    importa ni invoca spec2viz; ningún store registra modelos spec2viz.sldb_models.'
+  output_scope:
+  - docs/spec2viz/matriz-de-cobertura.md
+  - docs/spec2viz/gate-de-retiro.md
+  - docs/decisiones/fuente-de-verdad-del-diagrama.md
+- id: IR08
+  task_doc: desk/tasks/task-ir08-extractor-estático-django-drf-y-sql.md
+  title: IR08 Extractor estático Django/DRF y SQL
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR05
+  - IR06
+  requires: []
+  scope: 'Objetivo:
+
+    Un extractor estático que, a partir de una aplicación Django REST Framework y su esquema SQL, produce
+    documentos y relaciones de los tipos de dominio de specIR, cada uno con su evidencia de origen.
+
+
+    Alcance:
+
+    Dentro: lectura estática (AST y metadatos, sin ejecutar la aplicación) de rutas y vistas, serializers
+    y sus campos, modelos Django con sus relaciones, y tablas, columnas y claves del esquema SQL; producción
+    de operaciones de API, handlers, entidades de dominio, tablas y las relaciones entre ellos; procedencia
+    por nodo y relación con archivo, línea y hash del fragmento fuente, en la taxonomía decidida en la
+    tarea de procedencia; idempotencia: extraer dos veces el mismo código no cambia el store.
+
+    Fuera: frontend; análisis en tiempo de ejecución; reglas de negocio que no se deducen del código,
+    que quedan como desconocidas o marcadas como inferidas; análisis de impacto; cualquier parche al código.
+
+
+    Ruta:
+
+    Módulo de extracción en el paquete specIR que escribe por la API pública de SLDB con las mismas operaciones
+    validadas que la superficie MCP de escritura; anclas de código de SLDB para ligar cada nodo a su fuente,
+    si la tarea de procedencia lo decide así; fixture: una aplicación Django REST Framework real y pequeña,
+    la del blog de ejemplo, versionada en el repo de specIR.'
+  acceptance: 'Terminado cuando:
+
+    Las pruebas anteriores pasan sobre el fixture y el grafo de backend y datos del blog se obtiene sin
+    poblarlo a mano.
+
+
+    Validación:
+
+    - Sobre el fixture de la aplicación del blog, el extractor produce los nodos de backend y datos de
+    la cadena de publicar un post que la tarea de tipos de dominio pobló a mano, con los mismos tipos
+    y relaciones.
+
+    - Cada nodo y relación extraído lleva archivo, línea y hash del fragmento fuente, y su procedencia
+    en la taxonomía canónica.
+
+    - Ejecutar el extractor dos veces sobre el mismo código deja el store idéntico (comparación del árbol
+    del store).
+
+    - Modificar un archivo fuente del fixture y volver a extraer señala los nodos anclados a ese archivo
+    como cambiados, sin borrar hechos validados por una persona.
+
+    - Ningún nodo inferido queda con procedencia de observado o validado.
+
+    - Las relaciones extraídas pasan la validación de sus RelationTypeDoc y de los RuleDoc vigentes.
+
+    - El módulo no importa pron ni spec2viz, ni módulos de SLDB fuera de sldb.api.'
+  output_scope:
+  - src/specir/extract/__init__.py
+  - src/specir/extract/provenance.py
+  - src/specir/extract/django_drf.py
+  - src/specir/extract/sql_schema.py
+  - tests/extract/test_django_drf.py
+  - tests/extract/test_sql_schema.py
+  - tests/extract/test_idempotencia.py
+  - tests/fixtures/blog_backend/manage.py
+- id: IR09
+  task_doc: desk/tasks/task-ir09-extractor-estático-react-tsx-y-contratos-de-api.md
+  title: IR09 Extractor estático React/TSX y contratos de API
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR05
+  - IR06
+  requires: []
+  scope: 'Objetivo:
+
+    Un extractor estático que, a partir de código React (JSX y TSX) y de los contratos de API disponibles,
+    produce los elementos de interfaz del grafo de specIR y los vincula a las operaciones de backend,
+    con evidencia de origen.
+
+
+    Alcance:
+
+    Dentro: lectura estática de componentes y sus propiedades, controles, acciones (handlers de eventos),
+    estados locales declarados y llamadas HTTP; contratos de API disponibles (por ejemplo OpenAPI) para
+    resolver a qué operación corresponde cada llamada; producción de controles, acciones, estados y las
+    relaciones triggers e invokes hacia operaciones de API; evidencia de origen por nodo y relación con
+    archivo, línea y hash; idempotencia.
+
+    Fuera: observación del DOM o de eventos en ejecución; comportamiento dinámico que no se deduce del
+    código, que no se afirma: se marca como inferido o se deja como desconocido; generación o modificación
+    de código de interfaz.
+
+
+    Ruta:
+
+    Módulo de extracción en el paquete specIR; el analizador de JSX y TSX se elige en la tarea activa
+    y queda aislado detrás del módulo; los vínculos a backend se resuelven contra las operaciones de API
+    que ya están en el grafo (pobladas a mano o por el extractor de backend); fixture: el frontend React
+    del blog de ejemplo.'
+  acceptance: 'Terminado cuando:
+
+    Las pruebas anteriores pasan sobre el fixture y la mitad de interfaz de la cadena de publicar un post
+    se obtiene sin poblarla a mano.
+
+
+    Validación:
+
+    - Sobre el fixture del blog, el extractor produce PublishButton, PublishAction y su relación con la
+    operación de API de publicar, con los tipos de la tarea de tipos de dominio.
+
+    - Cada nodo y relación extraído lleva archivo, línea y hash del fragmento fuente.
+
+    - Una llamada HTTP cuya URL no se resuelve estáticamente produce una relación marcada como inferida
+    o un hueco declarado, nunca una relación observada.
+
+    - Una llamada a un endpoint que no existe en el grafo queda registrada como brecha, no se descarta
+    ni se inventa la operación.
+
+    - Ejecutar el extractor dos veces sobre el mismo código deja el store idéntico.
+
+    - Las relaciones extraídas pasan la validación de sus RelationTypeDoc.'
+  output_scope:
+  - src/specir/extract/react_tsx.py
+  - src/specir/extract/api_contracts.py
+  - tests/extract/test_react_tsx.py
+  - tests/extract/test_api_contracts.py
+  - tests/fixtures/blog_frontend/package.json
+- id: IR10
+  task_doc: desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md
+  title: IR10 Reglas semánticas y análisis de impacto
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR06
+  - IR08
+  - IR09
+  requires: []
+  scope: 'Objetivo:
+
+    Un conjunto de reglas RuleDoc que detectan brechas entre capas y una operación de análisis de impacto,
+    expuesta por MCP, que devuelve los elementos afectados por un cambio con el camino que lo justifica.
+
+
+    Alcance:
+
+    Dentro: reglas RuleDoc, distribuidas por specIR como documentos, para cadenas rotas interfaz, API,
+    operación, datos: acción sin operación de API, campo de interfaz ausente del serializer, operación
+    sin handler, entidad sin persistencia, política sin representación en la interfaz; cada hallazgo con
+    severidad, regla que lo produce y evidencia; operación de impacto: dado un nodo (campo, endpoint,
+    regla, tabla), los nodos afectados en las demás capas con el camino de relaciones que lo explica y
+    la procedencia de cada tramo; tool MCP de solo lectura para ambas.
+
+    Fuera: proponer parches o cambios de código; aplicar correcciones al grafo; reglas que requieran ejecutar
+    la aplicación.
+
+
+    Ruta:
+
+    Las reglas se escriben en el lenguaje de reglas de SLDB y se evalúan con sus operaciones públicas
+    de reglas; el impacto se calcula con las operaciones públicas de recorrido del grafo de SLDB. Si el
+    lenguaje de reglas no alcanza para alguna brecha, la carencia se resuelve en SLDB, no con lógica paralela
+    en specIR.'
+  acceptance: 'Terminado cuando:
+
+    Las pruebas anteriores pasan y un agente puede responder por MCP qué partes de la interfaz afecta
+    un cambio en un campo, un endpoint o una regla del blog.
+
+
+    Validación:
+
+    - Por cada regla hay un store de prueba con la brecha sembrada y la evaluación la reporta con su severidad,
+    la regla y los documentos implicados.
+
+    - Sobre el grafo completo del blog sin brechas sembradas, las reglas no reportan hallazgos.
+
+    - Dado el campo status de la tabla de posts, la operación de impacto devuelve PublishButton entre
+    los afectados, con el camino completo de relaciones.
+
+    - Cada tramo del camino devuelto lleva su procedencia, y un camino que pasa por una relación inferida
+    se señala como tal.
+
+    - Las tools de reglas e impacto no escriben en el store (comparación del árbol antes y después).
+
+    - Ninguna respuesta incluye un parche ni una modificación propuesta.'
+  output_scope:
+  - src/specir/data/layer_rules.yaml
+  - src/specir/impact.py
+  - src/specir/mcp/impact_tools.py
+  - tests/rules/test_layer_rules.py
+  - tests/test_impact.py
+- id: IR11
+  task_doc: desk/tasks/task-ir11-compiladores-y-proyecciones-de-spec2viz.md
+  title: IR11 Compiladores y proyecciones de spec2viz
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR07
+  - IR06
+  requires: []
+  scope: 'Objetivo:
+
+    specIR compila todos los tipos de diagrama que compila spec2viz y produce diagramas tanto desde un
+    spec autorado como desde una proyección del grafo, según el contrato decidido en la tarea de cobertura.
+
+
+    Alcance:
+
+    Dentro: modelos de spec, carga y validación para clase, secuencia, estado, componente, actividad,
+    despliegue, matriz y reflexión; representación intermedia visual propia de specIR y un compilador
+    por tipo; materialización de proyecciones: de un ViewDoc evaluado por la API de SLDB sobre su grafo
+    y de un SpecDoc con sus SpecNodeDoc a la misma representación intermedia. specIR puede transformar
+    esos resultados en nodos y aristas específicos del dominio/diagrama, pero la consulta del store, el
+    índice, las aristas autoradas y los recorridos genéricos siguen siendo de SLDB y se consumen mediante
+    su API pública. Los modelos de vocabulario visual se usan desde SLDB y no se redefinen. Fuera: índice
+    o backend genérico de grafo, renderizado a formatos de salida, linter y recursos empaquetados; sincronización
+    al store, catálogos y consumidores; retirar spec2viz.
+
+
+    Ruta:
+
+    _Outline the expected implementation route or affected surface._
+
+
+    Módulos de compilación en el paquete specIR; resolución de vistas por la API pública de SLDB. Paridad:
+    los fixtures y pruebas de compiladores de spec2viz se portan a tests/visual/ de specIR y se comparan
+    por equivalencia estructural normalizada de la representación intermedia: mismos tipos de elemento,
+    mismos campos con los mismos valores, mismos nodos y aristas con los mismos extremos y atributos,
+    comparados tras ordenar de forma determinista las colecciones cuyo orden no es significativo (nodos
+    y aristas por id) y conservando el orden donde sí lo es (pasos de actividad, mensajes de secuencia,
+    miembros de clase). Solo se excluye de la comparación la metadata de procedencia (origen, marcas de
+    tiempo, rutas absolutas); cualquier otra diferencia es un fallo o una diferencia declarada en la matriz.
+    El código de specIR bajo src/ no importa spec2viz. Las pruebas de paridad bajo tests/ sí pueden importar
+    spec2viz como oráculo de desarrollo para producir el valor esperado, marcadas como pruebas de paridad
+    y omitidas si spec2viz no está instalado; cuando spec2viz se retire, el oráculo se sustituye por los
+    resultados guardados de su última ejecución. Propiedad de archivos compartidos: esta tarea crea src/specir/visual/__init__.py
+    con las exportaciones de modelos de spec, compiladores y proyecciones; la tarea IR13d lo extiende
+    después con la API pública completa, y corre siempre después de esta porque depende de ella por la
+    cadena IR13a e IR12. `projections.py` obtiene datos del store mediante la API pública de SLDB: `run_view`
+    para ViewDoc compuesto, `evaluate_projection_view` para ViewDoc de proyección y `resolve_view` para
+    SpecDoc; luego los transforma a la representación visual específica. No consulta archivos/índices
+    internos ni reproduce recorridos genéricos.'
+  acceptance: 'Terminado cuando:
+
+    Las pruebas de paridad de compiladores pasan en specIR y las filas de compiladores y proyecciones
+    de la matriz de cobertura tienen su condición de retiro cumplida.
+
+
+    Validación:
+
+    - Los ocho tipos de diagrama compilan en specIR, y cada fixture de compilador de spec2viz produce
+    en specIR una representación intermedia estructuralmente equivalente a la de spec2viz según la normalización
+    definida en el camino de implementación, o la diferencia está declarada en la fila correspondiente
+    de la matriz de cobertura con su prueba equivalente.
+
+    - La función de normalización tiene su propia prueba: dos representaciones que difieren solo en el
+    orden de nodos o en metadata de procedencia resultan iguales, y dos que difieren en un campo, un nodo
+    o una arista resultan distintas.
+
+    - Los specs YAML existentes validan en specIR con los mismos errores tipados que en spec2viz, salvo
+    que la decisión de la tarea de cobertura diga otra cosa.
+
+    - Un diagrama de componentes y uno de estados generados desde proyecciones del grafo del blog muestran
+    la entidad Post y el store sigue teniendo un solo documento para ella.
+
+    - Compilar desde un spec autorado y desde la proyección equivalente del grafo da representaciones
+    intermedias estructuralmente equivalentes según la misma normalización.
+
+    - specIR no define ninguna clase con el nombre de un modelo de vocabulario visual de SLDB.
+
+    - Ningún módulo bajo src/specir/ importa spec2viz (prueba de imports); spec2viz solo aparece importado
+    en pruebas de paridad bajo tests/.'
+  output_scope:
+  - src/specir/visual/__init__.py
+  - src/specir/visual/spec_models.py
+  - src/specir/visual/loader.py
+  - src/specir/visual/validator.py
+  - src/specir/visual/ir.py
+  - src/specir/visual/compilers.py
+  - src/specir/visual/projections.py
+  - tests/visual/test_spec_models.py
+  - tests/visual/test_compilers.py
+  - tests/visual/test_projections.py
+- id: IR12
+  task_doc: desk/tasks/task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz.md
+  title: IR12 Renderers, linter y recursos estáticos de spec2viz
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR11
+  requires: []
+  scope: 'Objetivo:
+
+    specIR produce todos los formatos de salida de spec2viz a partir de la representación intermedia,
+    con paridad verificable, y distribuye los recursos que esos formatos necesitan.
+
+
+    Alcance:
+
+    Dentro: renderizadores Mermaid, PlantUML, D2, Vega, BPMN y su visor, árbol, HTML de grafo, antonia
+    HTML y salida JSON; linter de Mermaid; export de JSON Schema de specs y de catálogos; recursos empaquetados:
+    plantillas HTML, bpmn-js y los que requiera cada formato; comandos equivalentes a render, lint y schema.
+    Cada pieza se migra tal cual o se reemplaza, según la matriz de cobertura.
+
+    Fuera: compiladores; sincronización al store, catálogos y consumidores; retirar spec2viz.
+
+
+    Ruta:
+
+    Módulos de renderizado en el paquete specIR que consumen la representación intermedia de la tarea
+    de compiladores; paridad medida con los golden y pruebas de renderizadores de spec2viz ejecutados
+    contra specIR.'
+  acceptance: 'Terminado cuando:
+
+    Las pruebas de paridad de renderizadores, linter y schema pasan en specIR y sus filas de la matriz
+    de cobertura tienen la condición de retiro cumplida.
+
+
+    Validación:
+
+    - Por cada renderizador, los fixtures de spec2viz producen en specIR una salida idéntica a su golden,
+    o la diferencia está declarada en la matriz de cobertura con su prueba equivalente.
+
+    - El linter de Mermaid reporta en specIR los mismos hallazgos que en spec2viz sobre los fixtures de
+    lint.
+
+    - El JSON Schema exportado por specIR para specs y catálogos es igual al de spec2viz, o la diferencia
+    está declarada.
+
+    - El HTML del visor BPMN y el HTML de grafo generados abren sin recursos externos faltantes (prueba
+    de empaquetado).
+
+    - Todos los valores del selector de renderizador de spec2viz existen en specIR.
+
+    - El paquete no importa spec2viz.'
+  output_scope:
+  - src/specir/visual/renderers/__init__.py
+  - src/specir/visual/renderers/mermaid.py
+  - src/specir/visual/renderers/plantuml.py
+  - src/specir/visual/renderers/d2.py
+  - src/specir/visual/renderers/vega.py
+  - src/specir/visual/renderers/bpmn.py
+  - src/specir/visual/renderers/tree.py
+  - src/specir/visual/renderers/graph_html.py
+  - src/specir/visual/renderers/antonia_html.py
+  - src/specir/visual/renderers/json_out.py
+  - src/specir/visual/lint_mermaid.py
+  - src/specir/visual/schema.py
+  - src/specir/visual/templates/default.html
+  - tests/visual/test_renderers.py
+  - tests/visual/test_lint_mermaid.py
+  - tests/visual/test_schema.py
+  - tests/visual/test_resources.py
+- id: IR13
+  task_doc: desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
+  title: IR13 Migración de consumidores y gate final de retiro de spec2viz
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR13a
+  - IR13b
+  - IR13c
+  - IR13d
+  - IR07
+  requires: []
+  scope: 'Objetivo:
+
+    Un comprobador del gate de retiro y un acta que demuestran, con evidencia, que toda capacidad de spec2viz
+    está cubierta por specIR y que ningún consumidor importa ni invoca spec2viz.
+
+
+    Alcance:
+
+    Dentro: comprobador del gate de retiro, que lee la matriz de cobertura y verifica que cada fila tiene
+    su condición cumplida con una prueba citada, y que recorre en solo lectura el universo auditado buscando
+    dependencias de spec2viz. Universo auditado: exactamente los repos consumidores y los stores que lista
+    el inventario de consumidores de docs/spec2viz/matriz-de-cobertura.md, más el propio repo de specIR;
+    un repo o store que no esté en ese inventario no se audita, y añadir uno exige actualizar primero
+    el inventario. Qué cuenta como dependencia: importaciones de spec2viz en código (import spec2viz o
+    from spec2viz); dependencias declaradas en configuración ejecutable (pyproject.toml, requirements,
+    archivos de CI, Makefile y scripts); puntos de entrada y llamadas al comando spec2viz en código, scripts
+    o configuración ejecutable; llamadas a su API Python; y modelos spec2viz.sldb_models registrados en
+    un índice de store. Qué no cuenta: menciones en texto, documentación, comentarios, changelogs o documentos
+    del desk. Salida: por cada dependencia remanente, el repo o store, la ruta del archivo, la línea y
+    la clase de dependencia; con al menos una, el gate falla con código de salida distinto de cero y el
+    retiro no se puede declarar; pedidos de migración a los desks de graph_ui, deskops y de cada repo
+    con stores afectados; acta de retiro con la evidencia por fila y por consumidor; actualización de
+    la matriz de cobertura con esa evidencia.
+
+    Fuera: implementar capacidades de spec2viz, que corresponden a las tareas de compiladores, renderers,
+    IR13a, IR13b, IR13c e IR13d; editar archivos de otros repos; archivar o borrar el repo spec2viz, que
+    es decisión de su dueño una vez cumplido el gate.
+
+
+    Ruta:
+
+    Módulo src/specir/visual/retirement.py con el comprobador, expuesto como subcomando del comando de
+    specIR; lee del inventario de la matriz de cobertura la lista de repos consumidores y de stores a
+    revisar y recibe por argumento solo la ruta local de cada uno; no escribe en ellos. Si el gate falla,
+    el acta registra las dependencias remanentes con su ruta y línea y deja el retiro como no declarado.
+    Los cambios en otros repos se piden con deskops message send --to <repo> y se registran en docs/spec2viz/acta-de-retiro.md
+    con la referencia al cambio que los resolvió. La matriz docs/spec2viz/matriz-de-cobertura.md se actualiza
+    con la prueba que acredita cada fila. Propiedad de archivos compartidos: docs/spec2viz/matriz-de-cobertura.md
+    ya existe cuando esta tarea empieza: la crea la tarea de cobertura (IR07). Aquí solo se actualiza,
+    añadiendo por fila la prueba y la evidencia de cumplimiento, después de cerradas IR13a, IR13b, IR13c
+    e IR13d; no se cambian los modos ni las condiciones de retiro que fijó IR07 sin registrarlo en el
+    acta. Propiedad de archivo compartido: src/specir/cli.py lo crea la tarea IR13d con la base del comando
+    y sus subcomandos; esta tarea agrega ahí solo el subcomando del gate de retiro, después de cerrada
+    IR13d, de la que depende, sin modificar los subcomandos existentes.'
+  acceptance: 'Terminado cuando:
+
+    El comprobador termina con código de salida cero sobre todo el universo auditado, el acta de retiro
+    está completa y declara el retiro, y spec2viz puede archivarse sin que ningún repo del workspace falle.
+
+
+    Validación:
+
+    - El comprobador falla sobre una matriz de entrada con una fila sin prueba citada y pasa cuando todas
+    la tienen.
+
+    - Sobre un repo de entrada con una importación de spec2viz en código, una dependencia en pyproject.toml
+    y una llamada al comando spec2viz en un script, y un índice de store con un modelo spec2viz.sldb_models,
+    el comprobador reporta las cuatro con repo, ruta, línea y clase de dependencia, termina con código
+    de salida distinto de cero y no modifica ningún archivo.
+
+    - Sobre un repo de entrada que solo menciona spec2viz en documentación, comentarios y un changelog,
+    el comprobador no reporta ninguna dependencia.
+
+    - El comprobador audita exactamente los repos y stores del inventario de la matriz de cobertura más
+    el repo de specIR, y falla con un error que lo dice si se le pide auditar uno que no está en el inventario
+    o si falta la ruta de uno que sí está.
+
+    - Ejecutado sobre todos los repos y stores reales del inventario, el comprobador no reporta ninguna
+    dependencia y termina con código de salida cero.
+
+    - La suite de spec2viz pasa contra specIR, o cada prueba no portada tiene su equivalente declarado
+    en la matriz de cobertura.
+
+    - El acta de retiro lista, por cada consumidor del inventario, el mensaje enviado a su desk, la referencia
+    del cambio que lo resolvió y la salida del comprobador; si quedó alguna dependencia, el acta dice
+    que el retiro no está declarado.
+
+    - Toda fila de la matriz de cobertura tiene su condición de retiro cumplida y su prueba citada.'
+  output_scope:
+  - src/specir/visual/retirement.py
+  - src/specir/cli.py
+  - tests/visual/test_retirement_gate.py
+  - docs/spec2viz/acta-de-retiro.md
+  - docs/spec2viz/matriz-de-cobertura.md
+- id: IR13a
+  task_doc: desk/tasks/task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs.md
+  title: IR13a Sincronización de specs al store y generación de specs
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR07
+  - IR11
+  requires: []
+  scope: 'Objetivo:
+
+    specIR materializa un spec en el store y genera specs de componentes desde un grafo y desde código
+    Python, con el mismo resultado que spec2viz.
+
+
+    Alcance:
+
+    Dentro: sincronización de un spec al store como SpecDoc, SpecNodeDoc y RelationDoc, con creación del
+    RelationTypeDoc que falte y borrado de los documentos que salieron del spec; compilación de un grafo
+    de store o de un snapshot a un spec de componentes; generación de un spec de componentes desde el
+    AST de Python. Cada pieza se migra tal cual o se reemplaza, según el modo que le asigne la matriz
+    de cobertura.
+
+    Fuera: catálogos; notaciones y paletas; CLI; migración de consumidores; retirar spec2viz.
+
+
+    Ruta:
+
+    Módulos src/specir/visual/sync.py, graph_import.py y generate_python.py sobre los modelos y compiladores
+    de la tarea de compiladores, escribiendo por la API pública de SLDB. Paridad medida portando a tests/visual/
+    las pruebas de spec2viz de sincronización, importación de grafo y generación desde AST.'
+  acceptance: 'Terminado cuando:
+
+    Las pruebas anteriores pasan y las filas de sincronización, importación de grafo y generación de la
+    matriz de cobertura tienen su condición de retiro cumplida.
+
+
+    Validación:
+
+    - Sincronizar un spec con specIR deja en un store de prueba los mismos SpecDoc, SpecNodeDoc y RelationDoc
+    que spec2viz sobre los fixtures de sincronización.
+
+    - Volver a sincronizar tras quitar un elemento del spec borra su SpecNodeDoc y sus RelationDoc.
+
+    - Una relación de tipo no builtin crea su RelationTypeDoc y el índice de aristas valida después de
+    sincronizar.
+
+    - La compilación desde grafo produce, sobre el fixture de snapshot de spec2viz, un spec de componentes
+    que valida y es equivalente al de spec2viz, o su reemplazo por proyección tiene la prueba equivalente
+    declarada en la matriz.
+
+    - La generación desde AST produce, sobre un paquete Python de fixture, un spec de componentes equivalente
+    al de spec2viz.
+
+    - El paquete no importa spec2viz.'
+  output_scope:
+  - src/specir/visual/sync.py
+  - src/specir/visual/graph_import.py
+  - src/specir/visual/generate_python.py
+  - tests/visual/test_sync.py
+  - tests/visual/test_graph_import.py
+  - tests/visual/test_generate_python.py
+- id: IR13b
+  task_doc: desk/tasks/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos.md
+  title: IR13b Catálogos, anotaciones y emparejamiento de átomos
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR13a
+  - IR12
+  requires: []
+  scope: 'Objetivo:
+
+    specIR construye, sincroniza, valida y sirve catálogos de diagramas, con anotaciones y con los átomos
+    emparejados a cada elemento, cubriendo lo que hace spec2viz.
+
+
+    Alcance:
+
+    Dentro: registro de vistas (vistas.yml) y stores jerárquicos de diagramas; construcción del catálogo
+    HTML autocontenido; sincronización del catálogo al store; validación del registro; servidor local
+    con autoguardado de anotaciones; emparejamiento de átomos con elementos de diagrama (explícito y difuso)
+    y cobertura por vista. Cada pieza se migra tal cual o se reemplaza, según la matriz de cobertura.
+
+    Fuera: sincronización de un spec individual; notaciones y paletas; CLI; migración de consumidores.
+
+
+    Ruta:
+
+    Módulos src/specir/visual/catalog.py, catalog_serve.py y atoms.py sobre la sincronización de la tarea
+    IR13a y los renderizadores de la tarea de renderers. Paridad medida portando a tests/visual/ las pruebas
+    de spec2viz de catálogo, rutas de catálogo, vistas resueltas y emparejamiento de átomos.'
+  acceptance: 'Terminado cuando:
+
+    Las pruebas anteriores pasan y las filas de catálogo y de emparejamiento de átomos de la matriz de
+    cobertura tienen su condición de retiro cumplida.
+
+
+    Validación:
+
+    - La validación de un registro de vistas reporta en specIR los mismos errores tipados que spec2viz
+    sobre los fixtures de catálogo.
+
+    - La sincronización del catálogo deja en un store de prueba el mismo contenido que spec2viz, y no
+    escribe nada si alguna vista falla.
+
+    - El catálogo construido contiene las mismas vistas, categorías y navegación que el de spec2viz sobre
+    el fixture, y abre sin recursos externos faltantes.
+
+    - Una anotación hecha en el servidor local queda guardada y reaparece al recargar.
+
+    - El emparejamiento de átomos reporta los mismos átomos por elemento y la misma cobertura por vista
+    que spec2viz sobre los fixtures de átomos; un id de átomo desconocido es advertencia, o error en modo
+    estricto.
+
+    - El paquete no importa spec2viz.'
+  output_scope:
+  - src/specir/visual/catalog.py
+  - src/specir/visual/catalog_serve.py
+  - src/specir/visual/atoms.py
+  - tests/visual/test_catalog.py
+  - tests/visual/test_catalog_serve.py
+  - tests/visual/test_atoms_matching.py
+- id: IR13c
+  task_doc: desk/tasks/task-ir13c-notaciones-y-paletas-expuestas-desde-specir.md
+  title: IR13c Notaciones y paletas expuestas desde specIR
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR07
+  requires: []
+  scope: 'Objetivo:
+
+    specIR expone las operaciones de notaciones y paletas de spec2viz delegando en la API pública de SLDB,
+    sin redefinir sus modelos.
+
+
+    Alcance:
+
+    Dentro: listar, validar, sincronizar al store y resolver la vista de notaciones (NotationDoc, GlyphDoc,
+    LinkDoc); listar, validar y sincronizar paletas (PaletteDoc), incluida la comprobación de contraste;
+    todo como envoltorio de las operaciones de SLDB.
+
+    Fuera: redefinir modelos de vocabulario visual o reimplementar el resolvedor de vistas; catálogos;
+    CLI general; migración de consumidores.
+
+
+    Ruta:
+
+    Módulo src/specir/visual/notations.py que llama a las operaciones de notaciones y vistas de la API
+    pública de SLDB. Paridad medida portando a tests/visual/ las pruebas de spec2viz de notación, vista
+    de notación y paleta.'
+  acceptance: 'Terminado cuando:
+
+    Las pruebas anteriores pasan y las filas de notaciones y paletas de la matriz de cobertura tienen
+    su condición de retiro cumplida.
+
+
+    Validación:
+
+    - Listar notaciones y paletas desde specIR devuelve las builtin que distribuye SLDB.
+
+    - Validar una notación o una paleta inválida de los fixtures reporta los mismos problemas que spec2viz,
+    incluido el contraste insuficiente.
+
+    - Sincronizar una notación desde specIR deja en un store de prueba sus NotationDoc, GlyphDoc y LinkDoc.
+
+    - La vista resuelta de un spec de fixture desde specIR es igual a la que devuelve la API pública de
+    SLDB para ese spec.
+
+    - specIR no define ninguna clase con el nombre de un modelo de vocabulario visual de SLDB, y el módulo
+    no importa spec2viz.'
+  output_scope:
+  - src/specir/visual/notations.py
+  - tests/visual/test_notations.py
+  - tests/visual/test_palettes.py
+- id: IR13d
+  task_doc: desk/tasks/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual.md
+  title: IR13d CLI, API Python y habilidad de agente de la capa visual
+  kind: code
+  node_role: delivery
+  parent_id: ROOT
+  owner_repo: specIR
+  depends_on:
+  - IR13a
+  - IR13b
+  - IR13c
+  - IR12
+  requires: []
+  scope: 'Objetivo:
+
+    specIR ofrece un comando, una API Python pública y una habilidad de agente que cubren cada entrada
+    pública de spec2viz.
+
+
+    Alcance:
+
+    Dentro: comando de specIR con equivalentes de todos los comandos y subgrupos de spec2viz (diagram,
+    notation, palette, catalog, y los alias de primer nivel render, validate, lint, schema y build, y
+    about); API Python pública equivalente a la que exporta el paquete spec2viz; habilidad de agente que
+    reemplaza a la de uso de spec2viz; tabla de correspondencia comando por comando.
+
+    Fuera: implementar las capacidades, que vienen de las tareas de compiladores, renderers, IR13a, IR13b
+    e IR13c; instalar la habilidad en otros repos; migrar consumidores.
+
+
+    Ruta:
+
+    Módulo src/specir/cli.py y exportaciones públicas en src/specir/visual/__init__.py que conectan las
+    capacidades ya implementadas; habilidad en skills/use-specir/SKILL.md; correspondencia en docs/spec2viz/correspondencia-cli.md.
+    Paridad medida portando a tests/visual/ las pruebas de spec2viz de CLI, API y empaquetado. Propiedad
+    de archivos compartidos: src/specir/visual/__init__.py ya existe cuando esta tarea empieza: lo crea
+    la tarea de compiladores y proyecciones (IR11), de la que esta depende por la cadena IR13a e IR12.
+    Aquí solo se extiende con las exportaciones públicas que faltan; no se recrea ni se quitan las exportaciones
+    existentes.'
+  acceptance: 'Terminado cuando:
+
+    Las pruebas anteriores pasan y las filas de CLI, API Python y habilidad de la matriz de cobertura
+    tienen su condición de retiro cumplida.
+
+
+    Validación:
+
+    - Cada comando y subgrupo que lista la ayuda de spec2viz tiene una fila en la tabla de correspondencia
+    con su equivalente en specIR, y una prueba invoca cada equivalente.
+
+    - Las pruebas de API de spec2viz portadas pasan contra la API pública de specIR.
+
+    - La habilidad de agente nombra solo comandos que existen en el comando de specIR (comprobado por
+    una prueba que los extrae y los invoca con ayuda).
+
+    - El paquete se instala en un entorno limpio y el comando arranca sin spec2viz instalado.'
+  output_scope:
+  - src/specir/cli.py
+  - src/specir/visual/__init__.py
+  - skills/use-specir/SKILL.md
+  - docs/spec2viz/correspondencia-cli.md
+  - tests/visual/test_cli.py
+  - tests/visual/test_api.py
+  - tests/visual/test_packaging.py
+external_references:
+  sldb_pron_mcp:
+    repo: sldb
+    path: desk/tasks (TaskDoc a solicitar al desk de sldb tras IR01)
+    status: pending
+    note: Propiedad de sldb; enviar solicitud por su DeskOps. No modificar sldb desde este repo.
+execution_authorization_note: Autorizado por el usuario el 2026-11-12 para iniciar IR01 después de revisión
+  del DAG y gates de activación; no omite preflight, dependencias ni closeout de tareas.

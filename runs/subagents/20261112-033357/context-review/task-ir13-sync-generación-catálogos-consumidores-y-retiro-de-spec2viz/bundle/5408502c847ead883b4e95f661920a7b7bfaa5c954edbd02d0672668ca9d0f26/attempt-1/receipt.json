@@ -1,0 +1,9 @@
+{
+  "key": "task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "5408502c847ead883b4e95f661920a7b7bfaa5c954edbd02d0672668ca9d0f26",
+  "output_sha256": "8bf37ab893f209f101c1f024ca3fde1d3855a7783436fc968cc4aae8ad173cc3",
+  "start": "2026-11-12T03:33:57.179323+00:00",
+  "end": "2026-11-12T03:34:07.492507+00:00"
+}

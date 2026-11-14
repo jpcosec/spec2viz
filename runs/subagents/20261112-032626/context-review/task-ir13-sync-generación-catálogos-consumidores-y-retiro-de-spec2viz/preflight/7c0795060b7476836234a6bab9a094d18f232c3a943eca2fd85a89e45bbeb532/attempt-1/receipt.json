@@ -1,0 +1,9 @@
+{
+  "key": "task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "7c0795060b7476836234a6bab9a094d18f232c3a943eca2fd85a89e45bbeb532",
+  "output_sha256": "dfd93e06ba50272e2fce97f182fa13ec62db71737aea8e2d4f7dbabdf67f1378",
+  "start": "2026-11-12T03:26:26.693565+00:00",
+  "end": "2026-11-12T03:26:41.841684+00:00"
+}

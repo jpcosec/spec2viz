@@ -1,0 +1,41 @@
+name: task-ir08-extractor-estático-django-drf-y-sql
+path: desk/tasks/task-ir08-extractor-estático-django-drf-y-sql.md
+source_hash: 3abee0d3dc02561c6a8ce21e64c2c13cf73ce5e74df3b13da0a5812d77417ee9
+content_hash: 62c7c10af3cc1a160169397e7d196b693cefe965314e3a58fdbb404f4c0f086b
+field_hashes:
+  title: ad7800e8142992538794d0e7ab91fb6d4e61fcda0e2d661022cbd2a28ff15358
+  id: 69d505b1bbea82b207df04a92ee89d3a9db0c4d5919fdd139834bffd175bd7a1
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 11390109122143e68171363a6e901063a60e2c711a21c8b6e85fdc5b02ef95ba
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: b99db0dae913f3525b2ee03306f03cb22e7300bc3e5a5a4c05d27fe25523a941
+  goal: 5af7b40ad1edadabd23003408b4d8d6a7cbbfa604519d8e35e73d17b8b81ad9d
+  scope: 8ae8a68b0035ef583e3626e44fc04a975da3bd2c3681220df93626f03959cb0d
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 6ebb37435b615b350a7dfaccc892c596418b860de70c8249a2b01690cdf95dcd
+  pills: 857633de51d8431f8d4b794fa4a05fd81ea9e127b0c5ef4219e8aa85a7d2a327
+  files: 0718f462adc160953fa16253323f10b025c0ef33220c4dea47199f54e63e041e
+  implementation_path: 2153eaab8d9f18e8362ba9459a968f987fa8943be3fffdc9d36d3ed693862ae3
+  validation: d86a034a7607d8cd2a8a470eac71a3cc339c073302af47a557e36576dfabdd4e
+  done_when: 7d3fd10e862d27eb1553f878e059e7fb42aab81fda1cf9f933ac15bc0fee513c
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 2ab655d60608696dda45beb2d8dfa479d037623d634ee7c9308dbf2bbea24712
+  from_drawer: 1d9541e830fef7481fc335a6011335c87d1bde67bc40c25ed7bbef109161d87e
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:extractores
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T01:25:19Z'
+  authority: generated
+  via: save_document_payload

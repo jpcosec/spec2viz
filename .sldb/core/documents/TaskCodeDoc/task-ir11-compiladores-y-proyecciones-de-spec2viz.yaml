@@ -1,0 +1,42 @@
+name: task-ir11-compiladores-y-proyecciones-de-spec2viz
+path: desk/tasks/task-ir11-compiladores-y-proyecciones-de-spec2viz.md
+source_hash: a355b3f6cc669cd916a001317ef5bab65668080b7d9bef1e95a0904571f262f3
+content_hash: c1dc87a7cbc92b13169c94355a2311cbcb12b981f9c1b9a25ee88b664d9b2833
+field_hashes:
+  title: d9dd96470daf76e1edd6a6470ba8f539ad48b9cf2e8275903cc62a5be56f7f0b
+  id: 1f40f8af64eaffffddd78a4842acdd6506dafebdce340152ef4b466b88eae1d7
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: eb38b729ff402b1aeb05904a6d2e69f5d3b68c45ee695fb0423f17f9634bcb1d
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: c3de89c13f33c290f7b812cf8eb0f5a4fc9ee778882993ab3a5679149c3b9e29
+  goal: 9f6ceeb5ce2a66f4663fa8ae6b49effb0904838c6af4ebaa32df97291d5efad9
+  scope: 912bf2a4d29c923a3dad6966941da1b7527e39e996dfb35d0b1777b17fece4bd
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: f0111b5f6fb8fd49dd864a35d8b564e4f1568d6608cca608dc1201c770ee2ea1
+  pills: 4646693546d631bc326d394a766ac84a7c860ee563d0014f03de033a15c217e1
+  files: cca9f91b4accb7b9094062d2ae7a8b8bec12082f156690f976d5ee9e13bb8a34
+  implementation_path: b1066adb69ddff033a7982efe8c5ef788bfdd3341b4803dc2b21f1d8ba9a8912
+  validation: 7251a19e8b3be9aa3d12e63f1369c7ebe118f7598806ba0bfb945ef7a89c9227
+  done_when: f83156f00603a23ba395fb001b81abd7a0233a6d29706f27182269c3ee12a9e5
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: fc56ff6c3b7cc146e0680d2e0ac963c5559903dcf99b3797a502b8682f52580b
+  from_drawer: 689090b6939f26a140d7d9d359673009bcc96707596fcf4a5d1eeee58a0995b1
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- system:specir
+- topic:migracion
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T04:43:53Z'
+  authority: generated
+  via: save_document_payload

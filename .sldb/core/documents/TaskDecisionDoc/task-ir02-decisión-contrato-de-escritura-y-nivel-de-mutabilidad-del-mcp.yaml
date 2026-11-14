@@ -1,0 +1,41 @@
+name: task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp
+path: desk/tasks/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp.md
+source_hash: 38371eb845dafbc01d1cccd4d4c79f90f8ab35f33295f7adf6d0c22ab10616c1
+content_hash: 4649bdab5334094dea764c529d438b42e0e5b2e131f86723c63797daac1f2f9f
+field_hashes:
+  title: fe8f2d75c7b9e712fd09cc4741b3c7bbfd7e23790df54c9085a408e9fcfee464
+  id: 56c3d35f7c878c09ae26c6975d516d768636c17cb32a3dbbe49c2300fc040e6f
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: a5143a133d54b1ec4b01b2428d93eb615b147606fcb52e83fcc2647dafb89de5
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 08c02c5164d12c8bc3538f49730de0311ba9ec657201fa51dac90ad211a4f52a
+  goal: d0de02768f2d855cd327cc618f875e889955eef1769018a1730b42937e9a8ab7
+  scope: 29abbf69974530897e5b0abbb1833c07ace3f2047d22418d21ca567032d04449
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 75bb4cadee9ff0d1d1cecf7f87092ba9554724f0ee56b6f34a233edfb56dbd03
+  pills: b827094dcdfcfb9b14e9e0ef168777de406eb464beafd62deb4f31698881ab9f
+  files: 66b5c1e591fc33b5c8ab09e337ff90546cdfb830bda8b6ebc2ad255e7358344b
+  implementation_path: ec988fc6db72f76fda67e834747fa1ffe8d834d1d3d70639966cafe167a55e85
+  validation: 77bd0cc3aad51a98cc0bdf520b14854e0cc81240973c5b124b9f5f446fecc70e
+  done_when: 1c827b833c60f31a30e827c86e4c4de57ce25366e670167ef5cd051b9b169683
+  task_type: a4df8849de4c7c42dff3bfe95bbeb8759b5ca37238136b51e418b9d2f5ef311c
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 209c4e05892fe24043e11ab3c3bcf8d669fb4b2f4cf04e9d21b50f9828280790
+  from_drawer: 170c03aa5ea3a1f771c5b34407882e3b4ab23d1a1e8bbb7d3a37917c67e0464e
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:mcp
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:23:12Z'
+  authority: generated
+  via: save_document_payload

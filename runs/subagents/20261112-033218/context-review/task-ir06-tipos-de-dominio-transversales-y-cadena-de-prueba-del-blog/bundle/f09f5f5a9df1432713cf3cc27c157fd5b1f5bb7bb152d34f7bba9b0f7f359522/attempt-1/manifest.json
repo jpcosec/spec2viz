@@ -1,0 +1,120 @@
+{
+  "key": "task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/bundle",
+  "input_sha256": "f09f5f5a9df1432713cf3cc27c157fd5b1f5bb7bb152d34f7bba9b0f7f359522",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/home/jp/proyectos/SLDB_1/IR/runs/subagents/20261112-033218/context-review/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/bundle/f09f5f5a9df1432713cf3cc27c157fd5b1f5bb7bb152d34f7bba9b0f7f359522/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog.md",
+      "sha256": "7b53a668f340435cb58f86721a4099cfa16a5103d562747b61bef18ff1d57c2d",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/phase.md",
+      "sha256": "cc7f0b52d4153679b69fa0dccee57ec4ac915602a6dbd8d2ff226764c90a2e5f",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/execution.md",
+      "sha256": "a16c7c317f4eec9ce8659464625ae18b5fe94d790e3fdd3755296dcc51898bdc",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/testing.md",
+      "sha256": "e5b616e2d90b009c2cbac612d281727dbb0f13ad23fdd62a5dd8a6dbbb08aca6",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/closeout.md",
+      "sha256": "b8eed83052f326b72b3a33f4523e8f70068c7eb76bd270691425519019ca88c1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md",
+      "sha256": "4b48dc0685cc3b457dfc02102855266f1c1fb6e13bcea74758c908562e28ba37",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md",
+      "sha256": "aecd844c7ddd17f0b5cc0d541e28362e0ae2fb69e7cbeeb3c6f5496d0059df19",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-entidad-aparición-proyección-y-notación-son-cosas-distintas.md",
+      "sha256": "4131eda71854fb1e216e61fb00b6bad67ea943c7adeb94db4c5c073b95588243",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-por-qué-existe-specir-coherencia-entre-capas-para-agentes-de-código.md",
+      "sha256": "037c53578be6b232e11966c332d6170dad49ec5c7aa1b94cd91700c6d7d88038",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-omg-es-referencia-conceptual-no-dependencia.md",
+      "sha256": "f199a4451dfd83e5d7ade39bfc5dc08b7bd534cb906a45cb2e45c4d802b02950",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-specir-depende-solo-de-la-api-pública-de-sldb.md",
+      "sha256": "f2d8b7f31c3332a9cb45045467a73135c5be7de6dbb76090f05c11d26f1ee0a7",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [
+    {
+      "path": "src/specir/models/__init__.py",
+      "reason": "missing"
+    },
+    {
+      "path": "src/specir/models/domain.py",
+      "reason": "missing"
+    },
+    {
+      "path": "src/specir/data/relation_types.yaml",
+      "reason": "missing"
+    },
+    {
+      "path": "src/specir/data/rules.yaml",
+      "reason": "missing"
+    },
+    {
+      "path": "src/specir/install.py",
+      "reason": "missing"
+    },
+    {
+      "path": "tests/models/test_domain_models.py",
+      "reason": "missing"
+    },
+    {
+      "path": "tests/models/test_blog_chain.py",
+      "reason": "missing"
+    },
+    {
+      "path": "tests/fixtures/blog_chain.yaml",
+      "reason": "missing"
+    }
+  ],
+  "started": "2026-11-12T03:32:18.798592+00:00",
+  "finished": "2026-11-12T03:32:26.162683+00:00"
+}

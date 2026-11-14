@@ -1,0 +1,36 @@
+name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-preflight-1
+path: desk/reviews/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/preflight-1.md
+source_hash: b621faa7725cc761c98ba8bd40eeb5134c1891a137ea988fccf75935e9bffbb5
+content_hash: 935a5ecad3a29397d17cd3f650c0f96ddaa623a885811c2c342df75d6f257aae
+field_hashes:
+  id: 7b59ebf04919affb2d972e32fda3fafbdc64f9904324dd2da3b02987ee9c298b
+  title: a49a39620c6e207471466ecdba3ae5ab4a2d80a7d9427e081a9e01ad733173d6
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: f54f4a671dd31dbee393a58db950fbbe83830c1e99751f8d52ce9b13d7314967
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 6630543b8526dd57fdd4b01ca1749489ad1cc8702277216c2193c5b483f64816
+  input_sha256: f14277dc942a42bf13fa8675eaa97f66260179a56917d67b501a38572aa70fd2
+  output_sha256: d864fb2499105bc95fcd72073b63cf107faf98deae4afb9467a830272b68c592
+  verdict: b93e167bbe964a29c927882c2bc868922a912d6e74592730258b222da98b8c6c
+  reason: ea10b29e6e33a06c69669bfb5b7858297fa9a92e430565ede996d8f56229dc5b
+  created_at: af8882f1e02b8c792833fdbe508421427643bce1dd7cf9b31327e8a6acb66265
+  disposed_at: 021c8619f7a029dc70e0505bf6d3a817c8f42edea5c10410f1ef40ebd2e67fb4
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: e080ce65fcd5f20209e6138fcf9596d94518b15138a63fae106ac5f3c3e811dd
+  disposition: d44b3e9ec22702f2d1de2d8996122d52341fb5c12265ec32d2c8f567ff2a0519
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:29:36Z'
+  authority: generated
+  via: save_document_payload

@@ -1,0 +1,9 @@
+{
+  "key": "task-ir11-compiladores-y-proyecciones-de-spec2viz/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "3727392b68f45e26e4353cd09710dd1739c010bfe7697d590a66bd26e575533f",
+  "output_sha256": "2004f00b9c41d8811f4f8b69fa9d09a59bf788d0b5885337e6c0b33d410f37a6",
+  "start": "2026-11-12T04:42:17.040821+00:00",
+  "end": "2026-11-12T04:42:25.018925+00:00"
+}

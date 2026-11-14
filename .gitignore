@@ -1,0 +1,3 @@
+.sldb_cache/
+.deskops.log
+runs/subagents/*/session.jsonl

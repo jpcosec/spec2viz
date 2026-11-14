@@ -1,0 +1,36 @@
+name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-bundle-1
+path: desk/reviews/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/bundle-1.md
+source_hash: a4b8f7ce830634b8492627fc37f332bd4dac6761d6bc718b0ae6062cc933e200
+content_hash: 29d28083ae28717cb568776226cbab53b7468b65aeb7768efcfe66e5baecdd4e
+field_hashes:
+  id: 10488fb2fb61a87be6c77cb83c7742a384a475bfaf64e68e9c7e7231f721004c
+  title: 1db1d83d4c361a462285268d71fca9975e97f3660a7e5ff1591bc924c2060413
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: f54f4a671dd31dbee393a58db950fbbe83830c1e99751f8d52ce9b13d7314967
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 1ca534d159aeb15a150dbebd6eafabba4de375aaeea99eeb10ce22fef5ac5d8b
+  input_sha256: 63bb5c528510b9a9c7b3f50b53296ab0a978c2c71e97ba1d2b1f79ce190a3957
+  output_sha256: fd926d7a3cd3c77af9bfead156076b339b06910e1e883183e078a94c45a194fe
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: a2e85c993dd112fa20d0d63cdc77a5ad0bfaaa4c5e94eb4622151170de26b360
+  created_at: 1a08a42e2a97a9ee83ce517913cabb9820409d848348deb55b8d13883c1a59ff
+  disposed_at: 44d2921de073a8477ddd4faee573a5784fa9b7e76d7caf0e641f2e18dedd1ace
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: fed52baaa81e2beef72ac53d1eee1c4bb6bb76d381d1fe8ca3fea4cbca5caac4
+  disposition: e5b15c5c788be4fa343ec2f8ecf87cc4e7095a3c1f68c4d3d5765ab2944deee1
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:38:52Z'
+  authority: generated
+  via: save_document_payload

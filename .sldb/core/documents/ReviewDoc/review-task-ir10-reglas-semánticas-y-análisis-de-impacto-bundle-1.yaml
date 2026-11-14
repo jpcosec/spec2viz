@@ -1,0 +1,36 @@
+name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-bundle-1
+path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/bundle-1.md
+source_hash: 7056c6896baf10522c57924d3ec8c8a2b77a534156837ad3a06cc92f6de21c82
+content_hash: f3fdddc7f6d6a22e36295815c0d889f0a99a083591a8ef887e566c88447e1a6c
+field_hashes:
+  id: 7c126f634be3cb5663d55cd46762e10df82b67c6e632629e97b43537d524ecde
+  title: fa18854484a75c1bf4b13578bfdff572c9221f9e84ba067935210ce1f707b0a4
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 8d497a79106cf74e545aa593e5a947ed109b8196a2bbcd74cb180510c9dc0505
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 7eefd50556b792fa8f140477d276535268841eb4664acf8a319134f20db1e41d
+  input_sha256: 4e9b00252690469b9caf0616da0f36bbe660a6403ff95571f9a36f5474411b1e
+  output_sha256: 8d1bf6e26252fdbb00b443cdb3b4c2480098c08bf49b091cf7502f8982033871
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: a2e85c993dd112fa20d0d63cdc77a5ad0bfaaa4c5e94eb4622151170de26b360
+  created_at: 9c0b38c91df14ea1860c9d900fa96132e039b9ab9bf3bb908a6e81920de9dfa1
+  disposed_at: 6b47b5144f14b47772cd87e168f7e1a386ee32c4caf0817059907783b15510f1
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 0df40a37ab2bdfad6645369a6396c9f54aa778908dca81119485126d3af45739
+  disposition: e5b15c5c788be4fa343ec2f8ecf87cc4e7095a3c1f68c4d3d5765ab2944deee1
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:38:47Z'
+  authority: generated
+  via: save_document_payload

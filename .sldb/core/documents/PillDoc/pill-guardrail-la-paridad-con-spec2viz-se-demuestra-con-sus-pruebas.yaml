@@ -1,0 +1,28 @@
+name: pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas
+path: desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md
+source_hash: 1e506d60129a5e8581506f1ac4b58aef645417948a7e2da697625943afff1db0
+content_hash: c49027b04ed137fe40dd33a498384bad566cc54604e9c95b1392d23bdc12a28e
+field_hashes:
+  title: a1d1419b8308230655cae2945fe3bd16b48ad81c99c19a40ff3be34ea819e0d2
+  id: 26df09c94775d64250df10534d76631a378882bfd78bb159203103de6fc64ba0
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
+  summary: 982d71ab56c54d2e70bc5074e6a4e1665ac73a3add5aa4aa2d911f35b106cf4a
+  tags: 413aa4f8e3cc5f6e7b14256965c770030f817d7877fb57c9c26c173383d51888
+  what: 550b0d643fcfc5c9df3decdf5391f1fd4d157422c010e3681f7fbbbc69eabfe4
+  why: 31c42082cba89e4392861882b14fe047e88e79fb17adb111be5cc00564ffda71
+  when: 66962c2001187717339a5c5881f37fd8718fc166bb94457178eed79e06e0c3bd
+  where: 1e8e63cbf048c1e48854c8678490952ed0e02bff4964df9f78e03f5408821cf8
+  how: a65226b498d65eaa4795f462c08c5dae0ba44f380522f9e568c3eeca3c72869f
+  how_not: 22c6944a67b29948f9cb0d4ea0b6bc4370c35efc119fca1f8780768e92555ce4
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- type.workflow.pill
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T01:22:50Z'
+  authority: generated
+  via: create_document

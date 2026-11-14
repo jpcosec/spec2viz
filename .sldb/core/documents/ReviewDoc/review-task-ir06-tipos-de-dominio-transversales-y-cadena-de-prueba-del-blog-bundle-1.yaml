@@ -1,0 +1,36 @@
+name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-bundle-1
+path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/bundle-1.md
+source_hash: dcac0279d776bc07ad730e1aa6524b60639835136429ec43972c8461bdb40848
+content_hash: 3b3480121bffeaf147a15135e1a11eed1e35bd92607df3414c7a70f01db8b611
+field_hashes:
+  id: 97b36921c027a6e1afd51a2867f3bfe83b0b7992cf5dc8de40e805a231f9dac9
+  title: ad0efb8e6268a658a01ab66b18f7d169c22a665c575e9057ce726fbbb0cd420e
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: ed306437dd60c577cbd482764f16d74133a84598053fc873589c35bc9c78dc0d
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: f53afbc6a04d615feb9fc022dc4b7cc7565031843aa586efcd3523d43284c69a
+  input_sha256: 6d70cf6f2f2ad91b137e658e824391dafe6b02564ab6c05b0991465fc6a22958
+  output_sha256: 2f3867095f18aa257896c30659ab0f4d27a4d3d541589f0ff5d51fc578c1ab4a
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: a2e85c993dd112fa20d0d63cdc77a5ad0bfaaa4c5e94eb4622151170de26b360
+  created_at: 28a2832d1eaf7d87da5b7bd5d7cac04df3617e71add3b216e94ea5ca45c4d716
+  disposed_at: 51b324d4d6192e2784222275128480edd6c45a4e6b38f04e8b959cf776574903
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 4329c5375d9f3da994c5111003907e5d65bec9988884833fdeae9c86cf64d294
+  disposition: e5b15c5c788be4fa343ec2f8ecf87cc4e7095a3c1f68c4d3d5765ab2944deee1
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:38:41Z'
+  authority: generated
+  via: save_document_payload

@@ -1,0 +1,41 @@
+name: task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real
+path: desk/tasks/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real.md
+source_hash: 522b296f3986b174c49d5605dea84c248289e692486f0cd8ac619f5662e8342c
+content_hash: 73df4ea0387806e94716900598388959dd6d22e1cae8401468e91e5490a43546
+field_hashes:
+  title: 231c531ca6153dd4244e7ecee48a4338031193d795ecf9d77297690d483935fc
+  id: ded98f735ef8f0daa9a86735713fdcf9d949578303610a7b0539675ff6e08049
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: a5143a133d54b1ec4b01b2428d93eb615b147606fcb52e83fcc2647dafb89de5
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 9dd388e2414e9feed3018bc6a19e62e7ecf97681d43543488405bdc2d953323d
+  goal: 847957b4acb3bc537ce82720638f5acf2ceb2243288d58dc3fadb80ec224ca26
+  scope: 10353b06d181426b3a74d9e2c17b55dcae757cd8d2c358f1757b183452463705
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 75bb4cadee9ff0d1d1cecf7f87092ba9554724f0ee56b6f34a233edfb56dbd03
+  pills: 857633de51d8431f8d4b794fa4a05fd81ea9e127b0c5ef4219e8aa85a7d2a327
+  files: 8196967eaf21f8ab9c0a5f5b6604bd80f539a506dafbe3c5d0af024c4d8743b0
+  implementation_path: 43460c6726f6c71ed9a9ad3be0c676efc657db3941a04d43dca5b8dd3bc556c3
+  validation: 09c90f3f4aa24363e41c1de460f9acbcbeb6138afd97721434aa98b87450d461
+  done_when: 27071c032648ccf9587eb06752e3a9c774042d15acb11105cba786ac5e114f81
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 7b63812b02f07e2e9b77392a51096a6e86588467a4b5e31fda64bf1eb58b2f14
+  from_drawer: 7a76fd455d855057ab6cf50a2fd6b987a8a009ab53a2699e76ddf2cf2e4f895d
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:mcp
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T04:47:11Z'
+  authority: generated
+  via: save_document_payload

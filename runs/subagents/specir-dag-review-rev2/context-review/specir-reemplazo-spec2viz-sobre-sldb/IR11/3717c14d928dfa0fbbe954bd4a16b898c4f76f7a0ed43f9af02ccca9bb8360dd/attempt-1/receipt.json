@@ -1,0 +1,9 @@
+{
+  "key": "specir-reemplazo-spec2viz-sobre-sldb/IR11",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "3717c14d928dfa0fbbe954bd4a16b898c4f76f7a0ed43f9af02ccca9bb8360dd",
+  "output_sha256": "c0e4cb1460f399056c4c2e0e7dd08cc67777dc3289110182dd322a0dceb925c0",
+  "start": "2026-11-12T03:54:08.212019+00:00",
+  "end": "2026-11-12T03:54:19.616518+00:00"
+}

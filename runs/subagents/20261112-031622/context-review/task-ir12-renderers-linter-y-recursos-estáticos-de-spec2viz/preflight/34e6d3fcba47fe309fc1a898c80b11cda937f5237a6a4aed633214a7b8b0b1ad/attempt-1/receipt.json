@@ -1,0 +1,9 @@
+{
+  "key": "task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "34e6d3fcba47fe309fc1a898c80b11cda937f5237a6a4aed633214a7b8b0b1ad",
+  "output_sha256": "5b2836814259ee286fcc826372627f117541f7d3c884df696790e8dedaac7633",
+  "start": "2026-11-12T03:16:22.964517+00:00",
+  "end": "2026-11-12T03:16:33.882510+00:00"
+}

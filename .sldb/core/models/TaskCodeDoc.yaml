@@ -1,0 +1,18 @@
+name: TaskCodeDoc
+model_ref: deskops.models:TaskCodeDoc
+path: ''
+documents_index: .sldb/core/documents/TaskCodeDoc.yaml
+sections_index: .sldb/runtime/sections/TaskCodeDoc.yaml
+model_hash: 1b71fe4aef26fb119f777682be0e99ab80ceb3ed8b11139aaab5d4d18952db6f
+roster_hash: 240bbc4f67325f18e4cc5477841700e79b52bdc17bca7902fed536063bebecf5
+contract_hash: fac7ef5325d87f49c624009f368c0ee7695b8e8c29c3b57df00e8d85c50fcb80
+documents_count: 13
+version: 1
+canonical: false
+family: null
+semantics:
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+base_models: []

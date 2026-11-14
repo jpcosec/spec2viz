@@ -1,0 +1,9 @@
+{
+  "key": "specir-reemplazo-spec2viz-sobre-sldb/ROOT",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "637424c2c575a6bc5b18c6b6552856521ced75d6b96022286b99bf1c620718ca",
+  "output_sha256": "1083deea909491316f7b619267677b6511d15cc5557b64285ed84ffecd0d36a5",
+  "start": "2026-11-12T03:44:25.172900+00:00",
+  "end": "2026-11-12T03:44:40.233570+00:00"
+}

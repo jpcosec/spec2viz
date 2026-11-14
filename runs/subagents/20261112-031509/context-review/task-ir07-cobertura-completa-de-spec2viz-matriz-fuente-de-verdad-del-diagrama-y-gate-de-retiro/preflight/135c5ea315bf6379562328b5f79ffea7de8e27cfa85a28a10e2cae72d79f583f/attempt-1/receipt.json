@@ -1,0 +1,9 @@
+{
+  "key": "task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "135c5ea315bf6379562328b5f79ffea7de8e27cfa85a28a10e2cae72d79f583f",
+  "output_sha256": "043727854f8fdda625cb4e72834c17d8a9ad0f16e898a9b9801ea10525e66632",
+  "start": "2026-11-12T03:15:09.400450+00:00",
+  "end": "2026-11-12T03:15:22.963458+00:00"
+}

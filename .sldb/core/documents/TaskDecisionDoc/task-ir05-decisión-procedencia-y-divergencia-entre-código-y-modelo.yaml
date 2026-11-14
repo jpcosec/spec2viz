@@ -1,0 +1,41 @@
+name: task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo
+path: desk/tasks/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo.md
+source_hash: 62fc2b783843da7d566cc9583ed8253969c580ce6d74436dd6a95f3cee68cb32
+content_hash: df4bd45f883b3b67529cc9a56710cec7cc2d42658dbcc3113205fc3fb2be7802
+field_hashes:
+  title: 1b5e7061eb2fee3475d509b0adb08b485c59d0152c97938b24373a853f58865d
+  id: c27e92fd61c7a0ac49a477c0f067f4129dc7ad45c231e3b96a4233da094d2f01
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 5c53e75d92a1fc5811133da7ec9ff4da17e8290a4726087dcc16ce59c9f872fa
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 7815e6558b71f1ca10d6f172ba194fc5f291790258c6259b4c466e41f42ab0d4
+  goal: 176e2169aa3f97cea93cd0a2a94e9d710fb794a8c166d3aab844dfbf8878167c
+  scope: c5606f193624b12140add43b0e3d2c5cd0783d6b0cc8a40669a34d38e902ad1f
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 75bb4cadee9ff0d1d1cecf7f87092ba9554724f0ee56b6f34a233edfb56dbd03
+  pills: b827094dcdfcfb9b14e9e0ef168777de406eb464beafd62deb4f31698881ab9f
+  files: 8a29bda90572132f925f25d6f780316fb8ad582219a81eeb25106c76290a6533
+  implementation_path: f8dd14a8f034e8f196020050202f73066754ffc2a9545835c7d9278e0fef216a
+  validation: 600dccf7af282dbf1253bc330bcab4b382379b317d87dad4ae257ced87b94c46
+  done_when: 0eb97d1967289b656260908a3f005a700d6ac611a55c392ffbbdb783e384e14f
+  task_type: a4df8849de4c7c42dff3bfe95bbeb8759b5ca37238136b51e418b9d2f5ef311c
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 00ec3002127a0cd2bb7dd8e38c2f84507d72c120ff2ecfb272ef568c7bd4521e
+  from_drawer: ec909822cb37508395da35c6521ca3dee80a1df9faedab943a1ff7a5a71ac93c
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:procedencia
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T01:25:34Z'
+  authority: generated
+  via: save_document_payload

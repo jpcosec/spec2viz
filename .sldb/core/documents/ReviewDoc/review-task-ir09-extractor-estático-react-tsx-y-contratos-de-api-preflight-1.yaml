@@ -1,0 +1,36 @@
+name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-preflight-1
+path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/preflight-1.md
+source_hash: c67ea28d14cfc89e6664ee4530b2a9f839209cce1aab2357e23b5eb6ca4a82fa
+content_hash: c20f84d54657e69ade39103f5c988fb3cbf199a439519c92addcd7eea039c09c
+field_hashes:
+  id: ef0dc4d9f9db66819e1d265f678df27a643fb646c6d0200252b767d3dcf42368
+  title: 589e0a726180af51ed3a8ecd9281bfd30ae33ebc69a286d7f03b5523ef00d68e
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 6049be89142ee26eaefc3882bccd5e0d03165df15e22a62d787057fd09f5f857
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: e303f53928ba2aa96caef6ca8150ed27afa75c36d69019229e55e44844f5f358
+  input_sha256: 05c1cf801c5c52d68868e4a04331aea7f03c9a260a7adeaa729e7c1b5e9ec589
+  output_sha256: 94776fdf237573dd21930ed214b3e8627492ee4d69b31ad9f41b8be507a49016
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 9b3ea4e9fd9eedfe89f1800902ff902de164b9b93c9f7ec8257498c9d897b778
+  created_at: 702f5bf0c022d89649e020f37de10e979a75530a58de3f707ca17182b404972d
+  disposed_at: eab362a0bd00b881f7f741e9e670cb75a8027fa82587e51ab64fa08c7f2f7d73
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 021d03c97b6359bca7cad4b4dd08897d1c0a79ce5ef11ad59810aa2c9fa9df30
+  disposition: 8f08e1f9b52922fc821ca117086dbb766c4d89404078c38907b30938643eafd5
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:29:26Z'
+  authority: generated
+  via: save_document_payload

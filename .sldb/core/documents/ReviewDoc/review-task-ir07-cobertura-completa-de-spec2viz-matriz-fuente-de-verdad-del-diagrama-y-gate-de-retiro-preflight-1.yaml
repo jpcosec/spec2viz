@@ -1,0 +1,36 @@
+name: review-task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro-preflight-1
+path: desk/reviews/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro/preflight-1.md
+source_hash: bcfd1f566aef58557fd9bc6e705bf732562d8496788c0627cb795c428f79ac3d
+content_hash: 621e94d36e80b0d32ae15e7dfb6ba8aa1b5abc1d59bfcebe73b5447e3aca3171
+field_hashes:
+  id: d62abf704773441987b48fcdae61f08782c8c4922dded2b3f1b6111d6d18b5e1
+  title: 503c25f584629a11c8f74d095e3836620913dd14f61ed38aae8b57f76f11f7f5
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 055362b6cf66c28ecdf981e1b0156f8c6be817edd9d3abf5c58bbb6eff8b7f45
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 50d3c86cfc98eb51fd1ed06246b1fd3dedd11752662ce839b1d79da3ebc8cc45
+  input_sha256: d064761136c19fbab878fd0406d8cf652c8accea6ceda598eb8243dd0c64636d
+  output_sha256: f18981a46e4cc0fca85d67b9ef5b51438779a6e09b4ace8276af154914fece6d
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 9b3ea4e9fd9eedfe89f1800902ff902de164b9b93c9f7ec8257498c9d897b778
+  created_at: 9ed2d8ebbfafac9c788b2a78d870c4197d811ba027cc177ece658dfb243537ff
+  disposed_at: 4501ff9a3edccf4295c2048dc699cf124f16e6934350dc2e56938f6ffdb545e2
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 9894e6c63e23d6289a74b113119bf4cd3d78351e38165374521cb1fbf8cfff56
+  disposition: 8f08e1f9b52922fc821ca117086dbb766c4d89404078c38907b30938643eafd5
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:29:22Z'
+  authority: generated
+  via: save_document_payload

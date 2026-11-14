@@ -1,0 +1,36 @@
+name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-preflight-1
+path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/preflight-1.md
+source_hash: 332086d7ab86203a688b88d6418744c16df67bb90993749a7ace91d8df80aa19
+content_hash: 30d7bf44a822a20adc31d5f6cf0fb628747c30cc0549a94f26a1b3dbc104a807
+field_hashes:
+  id: b2674fd4f028436e3d7f3f264e87a30fc48e31f31f9546d732ee8c66b97210a5
+  title: 6df82046b8dffd5606ca689271607b2e27140a4121e39b75d3b16da4d9c87629
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 38d7ee3a24135d0fae9aedac8b4c3f1540079f97f27958468b64e661d51f777c
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 198f24187a9764c32ae56b0f0f9a8e0b5b4a0ad112ac43dacb8abf909f31b319
+  input_sha256: 5a8c06a0dc36f79f52938a98f7126f665196a7d1d160956535d15a84fdf17c21
+  output_sha256: 7e1355412aab97e9f07f73b9184525fbf6aee1e1819c39e82e43939046d403ff
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 9b3ea4e9fd9eedfe89f1800902ff902de164b9b93c9f7ec8257498c9d897b778
+  created_at: 38836d341a085b5b3fe16f97e88771e9f1f6271085c871ec7d56bc1f0731c622
+  disposed_at: f0139a2e4c91c048a6a7382c421699cb768e4bd885b6b91df616092ee9cbd19a
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 39689f554cbd0ed0544daa40c35afd20586d16e5627d8b0d8a9ed470c4fba727
+  disposition: 8f08e1f9b52922fc821ca117086dbb766c4d89404078c38907b30938643eafd5
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:29:16Z'
+  authority: generated
+  via: save_document_payload

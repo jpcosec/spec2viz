@@ -1,0 +1,9 @@
+{
+  "key": "task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "e78fc2d683e0292feb98d844986de63e98c03a1de9da64bba49fdb7033ef9dba",
+  "output_sha256": "3e717669d086ec9ffad044d6b379990774b75e37dbc3dde3b615de5930546c3b",
+  "start": "2026-11-12T03:32:09.314361+00:00",
+  "end": "2026-11-12T03:32:17.611265+00:00"
+}

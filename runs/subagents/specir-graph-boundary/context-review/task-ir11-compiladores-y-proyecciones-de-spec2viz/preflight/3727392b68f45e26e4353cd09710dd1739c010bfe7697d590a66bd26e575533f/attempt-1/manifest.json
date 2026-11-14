@@ -1,0 +1,38 @@
+{
+  "key": "task-ir11-compiladores-y-proyecciones-de-spec2viz/preflight",
+  "input_sha256": "3727392b68f45e26e4353cd09710dd1739c010bfe7697d590a66bd26e575533f",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/home/jp/proyectos/SLDB_1/IR/runs/subagents/specir-graph-boundary/context-review/task-ir11-compiladores-y-proyecciones-de-spec2viz/preflight/3727392b68f45e26e4353cd09710dd1739c010bfe7697d590a66bd26e575533f/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir11-compiladores-y-proyecciones-de-spec2viz.md",
+      "sha256": "bdd53c65e122f715cf57d481565617f8eb7747094ca7e5bcbca7329389a729de",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-12T04:42:17.040821+00:00",
+  "finished": "2026-11-12T04:42:25.018925+00:00",
+  "retry_reason": "Se delimitó el IR visual de dominio frente al índice y recorridos genéricos de SLDB."
+}

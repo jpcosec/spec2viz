@@ -1,0 +1,9 @@
+{
+  "key": "task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "ae11293414c2cd38145534609934222d9992af98c4b447a8afd55a64a6ab21ba",
+  "output_sha256": "cc5f2d73d053f1e318949d005859b07fc1f6b62b58f59b524dcd1983eaabee5a",
+  "start": "2026-11-12T03:16:59.226724+00:00",
+  "end": "2026-11-12T03:17:14.192476+00:00"
+}

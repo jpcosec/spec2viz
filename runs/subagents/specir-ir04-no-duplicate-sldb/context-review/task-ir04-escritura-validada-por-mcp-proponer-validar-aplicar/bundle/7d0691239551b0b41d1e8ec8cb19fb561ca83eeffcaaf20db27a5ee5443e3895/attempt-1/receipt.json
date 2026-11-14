@@ -1,0 +1,9 @@
+{
+  "key": "task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "7d0691239551b0b41d1e8ec8cb19fb561ca83eeffcaaf20db27a5ee5443e3895",
+  "output_sha256": "f91d14776bdc67645f1074f3533f2ddabfe874eebcd577c3ae0cd2afa88869f6",
+  "start": "2026-11-12T04:53:14.939231+00:00",
+  "end": "2026-11-12T04:53:33.427047+00:00"
+}

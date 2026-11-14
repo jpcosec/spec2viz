@@ -1,0 +1,41 @@
+name: task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar
+path: desk/tasks/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar.md
+source_hash: bd0e4cc2e7ce2487384f5e4bc31125a34fb934ee96cf09e3337fd5c1ec086fc1
+content_hash: 70891bb6ebc31f986856ec99ef991e5cc2f2f05f349c555f6b706901fe406fc6
+field_hashes:
+  title: 8c7ae8160872ec37cf785a5850b05dcdce439a4cd4008852fdd8e6dfbf5d16ae
+  id: c9e35577a7dd44629d19767c8209eb39e0ad8d75038ea34303320fe3effe1442
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: a5143a133d54b1ec4b01b2428d93eb615b147606fcb52e83fcc2647dafb89de5
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: fb027a0510c25786cc8ab4cc3bef5af08507f5d294515bfdb63d902e2a436e74
+  goal: 7f2c686c463aded0ab4ee3d9b63d14d96c82f35715dc8ea183b7dc2c8e572977
+  scope: ce391c3ffaf2e36589021416c73c88baaeb643db6f1137de2aef976bf523fa84
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 94f77800e6f726e069acf27a8c06cd630ce5d681bff8a6bc082b13b2ea32e829
+  pills: 857633de51d8431f8d4b794fa4a05fd81ea9e127b0c5ef4219e8aa85a7d2a327
+  files: 1a49ec1f0cae237e2d342467a98b993ac61b5a3bf23353892db3d6d993d8dd12
+  implementation_path: e64ac571ef2eedfed4968bce9962b76155168b212d7bf985e8d60eb0bb73f36b
+  validation: bf517a45ca7afc71af86d7fb3f434dd002a32d51307c14ef82ed543f704a7827
+  done_when: cc81dad9ce5e484545f9ed9f1f7893639a3f011f832698a5be2d635a01134503
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 209c4e05892fe24043e11ab3c3bcf8d669fb4b2f4cf04e9d21b50f9828280790
+  from_drawer: cc0fab0e0c3fa20b9f3006be08b241bbf503f616e000537d57490b16a9923d00
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:mcp
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T04:40:28Z'
+  authority: generated
+  via: save_document_payload

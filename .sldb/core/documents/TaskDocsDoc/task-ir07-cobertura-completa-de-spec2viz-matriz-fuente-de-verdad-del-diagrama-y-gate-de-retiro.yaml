@@ -1,0 +1,42 @@
+name: task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro
+path: desk/tasks/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro.md
+source_hash: 4c98fccef026a3f320ae2fb16c27f890761635ea3b4d994ad04deb166dc87b7c
+content_hash: 1b822636cf6a2aaab97e44b64fe107e6a262f5c5f57900c0f2520b9ae696e74e
+field_hashes:
+  title: ad9be9166eb62125a31fb53ba7ce70f82b256c4a494bcfc2332a80659d094a05
+  id: 8874eea45f7fe3bfec9c1cae3ec1c5d20648ac1d6945e6e6821915125e92379e
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: eb38b729ff402b1aeb05904a6d2e69f5d3b68c45ee695fb0423f17f9634bcb1d
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 75163be29ee1f2750377ea58fa60a6d719ba2ebaff078cd8bbb79c6b21c1266c
+  goal: 978f6a3f9b9418521cbfda8bc253c7697568fe910879b44ffc477fa239d5ac4d
+  scope: 8f69a88e0dfeb92cb99a463a54d125e84f27daa8bbd04253a4d632b4a8de7be0
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: da57e6df2a39362e12454fd030440cdbd84898b7d046eb88b09afb544597320a
+  pills: 6555075013c877b94048b0ff0fc07d705bba3f8cfc6385b74cdd6c8e724c7300
+  files: 976fde4ea9e4dfe874594c0ab8ff46b2be0b0baaf6e5e9a121542894dc8492cf
+  implementation_path: 51f74e625c19b55b5d0541fbbf9cfe65ed4b070574ab40a85167c5b54e4240f0
+  validation: 36e098624188a5bc9572df97d0777cbdb2ce0bbc1b7ee0d8fff5dc5b801dbd7c
+  done_when: 63225e58f7d8f8fee0ef4f4b688f83be1fb65de7442ebd8c1b9e1c687e322f69
+  task_type: 8dbc7ea3fc2d737a841f8f9a89de6dd4bd2ca7fdc77434a53400db8767ba695d
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: fc56ff6c3b7cc146e0680d2e0ac963c5559903dcf99b3797a502b8682f52580b
+  from_drawer: b011e7dc8c74da40c34d5a2d4cb040e48ea094198e361179a92b4fabba5f088d
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- system:specir
+- topic:migracion
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T01:31:27Z'
+  authority: generated
+  via: save_document_payload

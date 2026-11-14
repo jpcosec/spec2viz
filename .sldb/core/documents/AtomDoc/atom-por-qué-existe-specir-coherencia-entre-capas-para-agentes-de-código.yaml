@@ -1,0 +1,23 @@
+name: atom-por-qué-existe-specir-coherencia-entre-capas-para-agentes-de-código
+path: desk/atoms/atom-por-qué-existe-specir-coherencia-entre-capas-para-agentes-de-código.md
+source_hash: 037c53578be6b232e11966c332d6170dad49ec5c7aa1b94cd91700c6d7d88038
+content_hash: 8ec3062017c5058e154c0cf5705f51b170eb2e39a1311032768cdfc2840dff61
+field_hashes:
+  id: 6b5d8ebe01ff95fb78cd5bec6a3b4f42991bfcbcddf13967a2122262ec8f6c7d
+  title: 0b8cd9aa44c9d417dde8bf106500da240b0ff8082052bd12414dd3d0676cd25d
+  five_wh_one_plus: 1566d618b9ad05f5d6636ef68875b058a3311f288ab671709bb72d36b5dd1a5c
+  answer: 15a0a52ea6db8dcb25afc01f82c321ae7f1f833330f87073e6b86d0d82ce9fa3
+  tags: aef9fadd10ce21e5bedd27945d2795d82fa352b2d1ee43024eeb15f2f85c7bed
+  provenance: a295e34faee33b6e64f7219affbb5f453cb54791f8963d6d0db348e73dba7524
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:motivacion
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-11T22:25:30Z'
+  authority: generated
+  via: create_document

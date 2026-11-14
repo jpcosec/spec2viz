@@ -1,0 +1,9 @@
+{
+  "key": "task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "303a5dcac35ee5810c29dfc1d5cc286aa12a7143f4ac8aed02d4a1a76843ae8c",
+  "output_sha256": "9ebde930cef1d540924ccd417bc09f7c95f6c96d699e61fdc206e13bb2379c68",
+  "start": "2026-11-12T03:13:05.433870+00:00",
+  "end": "2026-11-12T03:13:21.663295+00:00"
+}

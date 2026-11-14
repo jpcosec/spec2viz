@@ -1,0 +1,52 @@
+---
+sldb:
+  by: agent
+  at: '2026-11-12T03:38:41Z'
+  authority: generated
+  via: save_document_payload
+# review-<task>-<kind>-<n>
+id: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-bundle-1
+# preflight | bundle | reproduction | goldens | owner | node | evidence
+kind: bundle
+# kind evidence only: tests | commit | atom | materialization | document | external
+fact: ''
+# kind evidence only: what the producer verified, one item per line
+value: ''
+# doc:<Model>:<id> or empty for reviews of plan nodes
+subject: doc:TaskCodeDoc:task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog@sha256:da777a7ac947877e9f5994f543ecc27f3dd2a389a35e38f87f5e7307aca55f38
+# <plan>/dag.yaml#node:<ID>; empty when subject names a document
+subject_ref: ''
+# RuntimeProfileDoc name or "human"
+engine: runtime-pi-deepseek-flash
+actor: IR
+# Run evidence directory under runs/, relative to the project root
+run_dir: runs/subagents/20261112-033218/context-review/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/bundle/f09f5f5a9df1432713cf3cc27c157fd5b1f5bb7bb152d34f7bba9b0f7f359522/attempt-1
+input_sha256: f09f5f5a9df1432713cf3cc27c157fd5b1f5bb7bb152d34f7bba9b0f7f359522
+output_sha256: 23aa45b6a846a73f401590d0050ced2dff0e94d520e476211d0adc9a58199a4e
+# pending | accepted | rejected | incomplete
+verdict: accepted
+reason: 'Pi revisó los 17 bundles: todos son ejecutables en contexto cero; las decisiones
+  abiertas pertenecen al deliverable o llegan por depends_on.'
+# ISO 8601 timestamp
+created_at: '2026-11-12T03:32:26.163308+00:00'
+# ISO 8601 timestamp, empty while pending
+disposed_at: '2026-11-12T03:38:41.205025+00:00'
+disposed_by: IR
+# e.g. workspace:desk
+tags:
+- workspace:desk
+---
+
+# Bundle review of task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog
+
+## Summary
+
+_Summarize what was reviewed and the evidence this receipt records._
+
+bundle review; engine runtime-pi-deepseek-flash; evidence under runs/subagents/20261112-033218/context-review/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/bundle/f09f5f5a9df1432713cf3cc27c157fd5b1f5bb7bb152d34f7bba9b0f7f359522/attempt-1.
+
+## Disposition
+
+_Record the verdict rationale and who disposed of the review._
+
+Verdict accepted: Pi revisó los 17 bundles: todos son ejecutables en contexto cero; las decisiones abiertas pertenecen al deliverable o llegan por depends_on.

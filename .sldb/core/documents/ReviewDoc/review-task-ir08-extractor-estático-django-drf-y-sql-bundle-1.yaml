@@ -1,0 +1,36 @@
+name: review-task-ir08-extractor-estático-django-drf-y-sql-bundle-1
+path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/bundle-1.md
+source_hash: faec46a574e455d3ffee02b521d3c654f3650ed659a30875b0b46c3f56a1d081
+content_hash: 9842f1591853e29ce9e8823167a99aecf2a05f84ae0ca8349bdcbb90c3a112fe
+field_hashes:
+  id: 91f9ee9d1925d6ba415e6630bb9f9526609a6fb02a939019bc8c3ef47621decd
+  title: 64eebda22562883a76eb334497357bb3be2a9028479ce5deafa5f3e46d97582e
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: e0b5639347f95ee559b2840e48feef061dcf7f96b392935826f59980923d41aa
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 54d29a011ad392cc437f683f26a027efef36eaf00d41badc26412ee56443e22a
+  input_sha256: 8ec1d82d1f555851064424ba992cb36921f3db35e2a109a34a3a3c6402670add
+  output_sha256: 9b5f68734c3fa9876fc30f86ecb2d7cc9c470fc5065632ece45f617a4ca25125
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: a2e85c993dd112fa20d0d63cdc77a5ad0bfaaa4c5e94eb4622151170de26b360
+  created_at: 65cadd2d1878551e11da4fd6ad54a13484753f89ca9b74a9a25928e5511259fd
+  disposed_at: f39452ba971035853bfb6964054bbb56a1692b0026b161fb3152ef490220f7bb
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 0703813527c07d4615b5c87f02d4c690a50def26b7653fc364ce624fff0f1a56
+  disposition: e5b15c5c788be4fa343ec2f8ecf87cc4e7095a3c1f68c4d3d5765ab2944deee1
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:38:44Z'
+  authority: generated
+  via: save_document_payload

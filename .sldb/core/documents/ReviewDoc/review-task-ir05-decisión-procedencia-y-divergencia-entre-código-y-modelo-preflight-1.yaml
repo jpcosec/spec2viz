@@ -1,0 +1,36 @@
+name: review-task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo-preflight-1
+path: desk/reviews/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo/preflight-1.md
+source_hash: c54022234635670b18670b6e2e1445f2f102a4c3b5e7f6b0afbc210136462cdf
+content_hash: 6d21314448b2bebcf8a7d59d97c389016baaa2ef118a71dccc43cba7e5c19d75
+field_hashes:
+  id: 9cef223edfbd044324e2e386927769c8d927139c605ca26a3ca082ae23965b9f
+  title: 677a238355faa1ff19a2521de39de6538bde1a99a985cebe72f3e32d6b0e4c35
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: ed75e2fbbc7cbff9d00b48526e9e741bea63feb678f0fcdf0addaf340a1d2e95
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: a5fa6b463d90ffca732b473999bd3ea7e50703c9487e29fd4c9bde87850fde89
+  input_sha256: e755d5029ae345de8942f0749fab18fcda43948956cc352d4fc8c21ce09834ba
+  output_sha256: b1c0fe2be43da60ae90085e13fecd057bd9a9ad554a880af1448664a0e67728e
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 9b3ea4e9fd9eedfe89f1800902ff902de164b9b93c9f7ec8257498c9d897b778
+  created_at: 62f555c68843e4720cea694941ee76da7f4edc7a5a8af8c55151882281c92724
+  disposed_at: c8dd7f91069ccc95ada8130aac51a3af0d265ec324d5a7da562ef9d62f3928ba
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: d478a4173f6822114474d17d3a7e1e765fc1b6691da2a47d218889ee4088d3f1
+  disposition: 8f08e1f9b52922fc821ca117086dbb766c4d89404078c38907b30938643eafd5
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:29:18Z'
+  authority: generated
+  via: save_document_payload

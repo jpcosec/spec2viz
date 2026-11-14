@@ -1,0 +1,9 @@
+{
+  "key": "task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "86bd1a183ba4c8c8de0243b9d6867345ff02647495c0dcecf3e379beb8751f46",
+  "output_sha256": "d763973ba0a0d869fc4f0b1434f72e56c70a2c07ecc9b1f84a6ef48111d10ea7",
+  "start": "2026-11-12T04:44:02.206052+00:00",
+  "end": "2026-11-12T04:44:22.328587+00:00"
+}

@@ -1,0 +1,38 @@
+{
+  "key": "task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/preflight",
+  "input_sha256": "41dac5ce891ec7ad857d4ef813735d2ba31d2cdf61be75a5cd482d84ebc9e6cf",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/home/jp/proyectos/SLDB_1/IR/runs/subagents/specir-graph-boundary-final/context-review/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/preflight/41dac5ce891ec7ad857d4ef813735d2ba31d2cdf61be75a5cd482d84ebc9e6cf/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real.md",
+      "sha256": "51a5e487a782b02dd5bc41c1201a4a5637ce1ef8ada93f52c6dfdfb97dde93cb",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-12T04:45:42.800547+00:00",
+  "finished": "2026-11-12T04:45:59.780656+00:00",
+  "retry_reason": "Se cerró el alcance: vecinos con filtro por relación y vecindad multi-salto por dirección sin duplicar algoritmo."
+}

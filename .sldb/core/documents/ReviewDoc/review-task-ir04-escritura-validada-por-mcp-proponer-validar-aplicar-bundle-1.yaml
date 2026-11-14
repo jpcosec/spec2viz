@@ -1,0 +1,36 @@
+name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-bundle-1
+path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/bundle-1.md
+source_hash: 46f0d64a13852b9678f7d6a8c7fd0b154f4fa65a7e41acc6c335ad7b25eed809
+content_hash: c170ed743ef7a2c1b16a7db048a1196c6de784f52637bf7b6b51679a9f7b7987
+field_hashes:
+  id: 28267e6cf60d49a945cf291e111e3fdea374a7c6b8afa8b89132571a30bf73c7
+  title: cbae82cc187287640e2d7933b1b7fe65cf991860e1934cb255d56efd27012718
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 38d7ee3a24135d0fae9aedac8b4c3f1540079f97f27958468b64e661d51f777c
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 6ee58ea895af6ad3ef79878a8e6b36da4ef78947d2cbba39d6e6c8a733fc529e
+  input_sha256: 9160d30ebf5c54c73f13c6ec1682e911d4529e8312275975612bae3054150063
+  output_sha256: 7c08ccea2e3a6b3d1cae9fb6eeaef2dd37f847d8c8b3127c06971877ccba48bc
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: a2e85c993dd112fa20d0d63cdc77a5ad0bfaaa4c5e94eb4622151170de26b360
+  created_at: e8ce6f6046ee0f06717ccdffdba294180f678ff2b5dfdefcd07617089a9384d5
+  disposed_at: 5b0794a08953c6f92e94975830948e88f26893bbdfbdf36913db652977b3af0b
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 25e62d437c420f9705821a7c223d89a1c37efa96c69097268398750b51bf1651
+  disposition: e5b15c5c788be4fa343ec2f8ecf87cc4e7095a3c1f68c4d3d5765ab2944deee1
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T03:38:38Z'
+  authority: generated
+  via: save_document_payload

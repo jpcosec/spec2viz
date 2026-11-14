@@ -1,0 +1,9 @@
+{
+  "key": "specir-reemplazo-spec2viz-sobre-sldb/IR08",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "368dd2124c1cb9ca2f97e1d57758cbe864c578214feb095d51524c55b90ef37b",
+  "output_sha256": "8c465af9b03f526ac5b066c6ed563b40a8fde4456752a8fa92488fe4e2fe85f0",
+  "start": "2026-11-12T03:53:28.266301+00:00",
+  "end": "2026-11-12T03:53:46.587827+00:00"
+}

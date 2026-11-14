@@ -1,0 +1,25 @@
+name: atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
+path: desk/atoms/atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir.md
+source_hash: d0c1bde2fe40a71cb3f8ccdedf4185212d164ea93b9a147608d0c7cd1d7eeda0
+content_hash: a2259084900a458b1e2ea611307d8a13a49fbda130684913afd046c1bc3d6ed3
+field_hashes:
+  id: 3df3c3aa476d3ca4738ba7a6761b56e701210b670c5060f24aab792b9ac2e662
+  title: 66b26e71f7f7a73805592ae5dc9ea154e11c281a6f21e062ef7ffc75d223f358
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: 39e4a5f0db1ddd3b4cfe9b59622a3dd6896175acb14cca80a02a9980f1c80d25
+  tags: 4287656baef054a53f296c34ef75dd81f3df53a405897927278c53d065c4a331
+  provenance: a295e34faee33b6e64f7219affbb5f453cb54791f8963d6d0db348e73dba7524
+semantic_tags:
+- layer:superficie
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:mcp
+- topic:procedencia
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-12T00:48:16Z'
+  authority: generated
+  via: save_document_payload

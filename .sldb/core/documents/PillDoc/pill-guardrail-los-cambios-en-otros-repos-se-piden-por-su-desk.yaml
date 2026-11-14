@@ -1,0 +1,28 @@
+name: pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk
+path: desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
+source_hash: 29cff042e91d7b973c448f91c31ae71409e44b054119b1471d18797c23a34d8e
+content_hash: cb0d97c323a0ef2016b1225aff51e713b034c8cb14540b26634e8e82b95383cc
+field_hashes:
+  title: d6184a573c5e273bee74303f2f1ddd8b408751d821c7f7d30ed7601f93ce370d
+  id: 801c4c19956d25478dd2ac39432a4878d19182c3a0e5d7f02e902ae6dab64008
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
+  summary: d867f6878302ed7d0b7c83a522a3362f9a234fc5cc64b28cfdf3a46ac3a490c5
+  tags: 413aa4f8e3cc5f6e7b14256965c770030f817d7877fb57c9c26c173383d51888
+  what: f8a79457c937d321bf0796295a5b385e96299704ee64a0c69b7065b561dbb8ae
+  why: af45f8828833f7f34621dc74c167dc61ec30ad3cbf247eb7e9850e74813d4fd0
+  when: 0cc36042bc329e6ce70b4fedf0b6fadd8d41427cf82691ff29beb3784cdd252f
+  where: 29924656dab66ee514b5fd8701721a75060e44529c298c061eabffe2573592c1
+  how: db599e354e848d9888bf14eb2a9bb1a5ad83c7bfa2415c24da4ce99fcfb91167
+  how_not: 1c75c76a52680af9ea95e782aef2687410bc3a9b46d9b4d9e71362d9cf7bf77d
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- type.workflow.pill
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-12T01:22:50Z'
+  authority: generated
+  via: create_document

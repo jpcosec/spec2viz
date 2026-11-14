@@ -1,0 +1,24 @@
+name: atom-specir-depende-solo-de-la-api-pública-de-sldb
+path: desk/atoms/atom-specir-depende-solo-de-la-api-pública-de-sldb.md
+source_hash: f2d8b7f31c3332a9cb45045467a73135c5be7de6dbb76090f05c11d26f1ee0a7
+content_hash: 35b184ee3a4d7f380a7b9898027548e84dc23c2e5a8481071b6eb16595307e7e
+field_hashes:
+  id: 3c6c72a20d22a693888e9407b7300a54aba0875eeba44909e92b00e0d25e0600
+  title: 1251d3be99b52d9e86e746ac19332aa629b758a1fff25e8596ee2f203580d0d5
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: d2bbfe6e9ede96bb72a66155a94ed2771579540529ed969d26f1dbbda1d2dde8
+  tags: 32eede36609aa02f8b4a0f4935a987ca0c5ca94bcbcc86c36bc1731b0d59f016
+semantic_tags:
+- layer:arquitectura
+- representation.markdown
+- source.document.markdown
+- system:sldb
+- system:specir
+- topic:dependencias
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-11T22:25:34Z'
+  authority: generated
+  via: create_document
