@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-12T01:27:28Z'
+  at: '2026-11-14T10:48:01Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -10,7 +10,6 @@ id: board-001
 scope: desk
 # List of task-xxx paths
 tasks:
-- desk/tasks/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp.md
 - desk/tasks/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp.md
 - desk/tasks/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real.md
 - desk/tasks/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo.md
@@ -59,8 +58,7 @@ Diecisiete tareas de specIR autoradas desde el drawer, todas en borrador: ningun
 
 _Generated from the task references above._
 
-- IR01 Auditoría de la API pública de SLDB frente a la superficie MCP [draft] - Una matriz que diga, capacidad por capacidad, qué necesita la superficie MCP de specIR y si la API pública de SLDB ya lo ofrece, hay que extenderlo en SLDB, o falta.
-- IR02 Decisión: contrato de escritura y nivel de mutabilidad del MCP [draft] - Cuatro decisiones registradas: qué es una propuesta de cambio, qué precondición protege la aplicación, dónde se declara el nivel de escritura permitido, y si existe deshacer.
+- IR02 Decisión: contrato de escritura y nivel de mutabilidad del MCP [draft] - Un registro de decisión en docs/decisiones/contrato-de-escritura-mcp.md con cuatro decisiones tomadas por el dueño del proyecto (qué es una propuesta de cambio, qué precondición protege la aplicación, dónde se declara el nivel de escritura permitido, y si existe deshacer), y un atom durable por cada decisión que la deja disponible para las demás tareas.
 - IR03 Servidor MCP de solo lectura sobre un store SLDB real [draft] - Un servidor MCP de solo lectura, en el paquete specIR, con el que un agente descubre modelos, lee documentos, recorre relaciones y resuelve vistas de un store SLDB.
 - IR05 Decisión: procedencia y divergencia entre código y modelo [draft] - Una taxonomía canónica de procedencia para specIR y una regla para la divergencia entre el modelo y el código del que se extrajo.
 - IR04 Escritura validada por MCP: proponer, validar, aplicar [draft] - Tools MCP de escritura con las que un agente propone, valida y aplica cambios al store, con el mecanismo decidido en la tarea de contrato de escritura.
