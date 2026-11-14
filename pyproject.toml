@@ -1,0 +1,31 @@
+[project]
+name = "specir"
+version = "0.1.0"
+description = "specIR: a read-only MCP surface over an SLDB store, built on sldb.api"
+requires-python = ">=3.12"
+dependencies = [
+    "structuredLanguageDB",
+]
+
+[project.optional-dependencies]
+mcp = [
+    "mcp>=2.2",
+]
+test = [
+    "mcp>=2.2",
+    "pytest>=8",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+specir-mcp = "specir.mcp.server:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
