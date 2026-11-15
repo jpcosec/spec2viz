@@ -1,20 +1,26 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-12T01:25:34Z'
+  at: '2026-11-15T05:06:01Z'
   authority: generated
   via: save_document_payload
 id: task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
 - system:specir
 - topic:procedencia
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-testing
+history:
+- task_activates
+references:
+- docs/decisiones/procedencia-y-divergencia.md
+- atom-la-procedencia-en-specir-tiene-dos-ejes-y-la-autoridad-de-sldb-se-asigna-por-tabla
+- atom-lo-desconocido-se-nombra-y-solo-un-humano-fuera-del-mcp-o-un-chequeo-determinista-verifica
+- atom-un-nodo-extraído-se-ancla-con-sldb-y-la-divergencia-con-el-código-se-calcula-según-su-origen
+- atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
 depends_on:
 - task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp
 pills:

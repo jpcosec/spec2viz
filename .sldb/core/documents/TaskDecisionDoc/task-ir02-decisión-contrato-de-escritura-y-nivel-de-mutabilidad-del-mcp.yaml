@@ -1,19 +1,19 @@
 name: task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp
 path: desk/tasks/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp.md
-source_hash: 38371eb845dafbc01d1cccd4d4c79f90f8ab35f33295f7adf6d0c22ab10616c1
-content_hash: 4649bdab5334094dea764c529d438b42e0e5b2e131f86723c63797daac1f2f9f
+source_hash: 0886b503f84a66e9bc0dc97ae1cc0c3e01dcb83dc8ce6bd227c41e05cc8299ec
+content_hash: bb5e7aa0327550af3f0ac1adbe2a22932ceda047323b3fc42ff8a7bcfa4b4fc4
 field_hashes:
   title: fe8f2d75c7b9e712fd09cc4741b3c7bbfd7e23790df54c9085a408e9fcfee464
   id: 56c3d35f7c878c09ae26c6975d516d768636c17cb32a3dbbe49c2300fc040e6f
-  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
   summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   tags: a5143a133d54b1ec4b01b2428d93eb615b147606fcb52e83fcc2647dafb89de5
-  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
-  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: d10f5286503cbf750af0584acaec732741c2d9cfbae2a6d5b8ce45b8bf83b79d
+  history: f89b8fd2ac9e43a24ba505d162381268ed901d0695f62c6ad8ec2c62718dfa1c
   why: 08c02c5164d12c8bc3538f49730de0311ba9ec657201fa51dac90ad211a4f52a
   goal: d0de02768f2d855cd327cc618f875e889955eef1769018a1730b42937e9a8ab7
   scope: 29abbf69974530897e5b0abbb1833c07ace3f2047d22418d21ca567032d04449
-  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  references: be33899817e6b3f152849e4e175945c047496704546e0692ef808bb8a2d333ac
   depends_on: 75bb4cadee9ff0d1d1cecf7f87092ba9554724f0ee56b6f34a233edfb56dbd03
   pills: b827094dcdfcfb9b14e9e0ef168777de406eb464beafd62deb4f31698881ab9f
   files: 66b5c1e591fc33b5c8ab09e337ff90546cdfb830bda8b6ebc2ad255e7358344b
@@ -36,6 +36,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-12T03:23:12Z'
+  at: '2026-11-15T05:03:22Z'
   authority: generated
   via: save_document_payload

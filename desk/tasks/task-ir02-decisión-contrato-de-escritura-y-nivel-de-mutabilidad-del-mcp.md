@@ -1,20 +1,27 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-12T03:23:12Z'
+  at: '2026-11-15T05:03:22Z'
   authority: generated
   via: save_document_payload
 id: task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
 - system:specir
 - topic:mcp
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-testing
+history:
+- task_activates
+references:
+- docs/decisiones/contrato-de-escritura-mcp.md
+- atom-una-propuesta-de-cambio-del-mcp-es-un-lote-efímero-prevalidado
+- atom-la-aplicación-de-un-cambio-mcp-se-protege-con-guardas-por-documento-y-huella-global-en-nivel-2
+- atom-el-nivel-de-escritura-del-mcp-se-fija-al-arrancar-el-servidor
+- atom-el-deshacer-del-mcp-es-un-lote-inverso-con-guardas
+- atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
 depends_on:
 - task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp
 pills:

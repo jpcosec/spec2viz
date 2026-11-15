@@ -1,19 +1,19 @@
 name: task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo
 path: desk/tasks/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo.md
-source_hash: 62fc2b783843da7d566cc9583ed8253969c580ce6d74436dd6a95f3cee68cb32
-content_hash: df4bd45f883b3b67529cc9a56710cec7cc2d42658dbcc3113205fc3fb2be7802
+source_hash: 4ea9a09b8aaf3365ff02f95cdb367bb2b463866adb9a164ac6b8074a7864dbd5
+content_hash: b90970e35ea60d1e197e0654c1e8df9e5fe864a67f6c81136c25fac151723c5c
 field_hashes:
   title: 1b5e7061eb2fee3475d509b0adb08b485c59d0152c97938b24373a853f58865d
   id: c27e92fd61c7a0ac49a477c0f067f4129dc7ad45c231e3b96a4233da094d2f01
-  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
   summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   tags: 5c53e75d92a1fc5811133da7ec9ff4da17e8290a4726087dcc16ce59c9f872fa
-  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
-  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: d10f5286503cbf750af0584acaec732741c2d9cfbae2a6d5b8ce45b8bf83b79d
+  history: f89b8fd2ac9e43a24ba505d162381268ed901d0695f62c6ad8ec2c62718dfa1c
   why: 7815e6558b71f1ca10d6f172ba194fc5f291790258c6259b4c466e41f42ab0d4
   goal: 176e2169aa3f97cea93cd0a2a94e9d710fb794a8c166d3aab844dfbf8878167c
   scope: c5606f193624b12140add43b0e3d2c5cd0783d6b0cc8a40669a34d38e902ad1f
-  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  references: 8c9314e1b324082e0a88f9651734b9095991a099dd842e2cbe8b66181d43c08c
   depends_on: 75bb4cadee9ff0d1d1cecf7f87092ba9554724f0ee56b6f34a233edfb56dbd03
   pills: b827094dcdfcfb9b14e9e0ef168777de406eb464beafd62deb4f31698881ab9f
   files: 8a29bda90572132f925f25d6f780316fb8ad582219a81eeb25106c76290a6533
@@ -36,6 +36,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-12T01:25:34Z'
+  at: '2026-11-15T05:06:01Z'
   authority: generated
   via: save_document_payload

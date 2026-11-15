@@ -1,0 +1,24 @@
+name: atom-la-aplicación-de-un-cambio-mcp-se-protege-con-guardas-por-documento-y-huella-global-en-nivel-2
+path: desk/atoms/atom-la-aplicación-de-un-cambio-mcp-se-protege-con-guardas-por-documento-y-huella-global-en-nivel-2.md
+source_hash: dbeacfed0add986939b37a9942889d9a66bc6bc52fccc4ac5c4b5da8d460ca73
+content_hash: 1d948fcb6e65e4794a9296f6619aa39a120568508bca0fa24eb8b9ec031c9bb8
+field_hashes:
+  id: 10d757e60cf372b65c9c4d9e6bd6f24a04e4abc770e3d7ca4c2149e0c1062db7
+  title: b84f35eb590fcdff1b47fc2f8e70e03bcf6b5c8b3929a27c129297dd2d31f6ae
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: 7eaf0179ac2b743f3626de05aa21002d6da387fdfc1def0170657eb56cad3272
+  tags: 22129faf8f65ae58291a144c2e2642cae27ae91a84a72cb5af861724c1edc81a
+  provenance: 28618bb9e04205ef3684013a53613155389241bdfe9b33c83aa0d174ae780e1e
+semantic_tags:
+- layer:superficie
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:mcp
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-15T05:02:51Z'
+  authority: generated
+  via: create_document

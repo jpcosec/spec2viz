@@ -1,11 +1,9 @@
 # Contrato de escritura y nivel de mutabilidad del MCP de specIR
 
-> **Estado: PROPUESTA — pendiente de la elección del dueño (JP).**
+> **Estado: DECIDIDO — JP aceptó las cuatro recomendaciones el 2026-11-15 (chat con el supervisor).**
 > Tarea: `task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp`.
-> Redactado: 2026-11-14 por el ejecutor (agente). Las secciones «Alternativa elegida»,
-> «Motivo», «Fecha» y «Decidió» se completan cuando JP elija; hasta entonces solo hay una
-> recomendación. Los atoms de cada decisión se crean después de la elección (TaskDoc,
-> Implementation Path) y sus ids se anotan en la última sección.
+> Redactado: 2026-11-14 por el ejecutor (agente) con alternativas y recomendación; elección de
+> JP registrada el 2026-11-15 en cada sección. Los atoms de cada decisión están en la última sección.
 
 ## Insumos y alcance
 
@@ -62,10 +60,10 @@ se agrega cuando la fase de síntesis (Plan_IR fase 6) la necesite. Requiere un 
 un `dry_run` público de `apply_batch` (o re-exportar `prevalidate_changes`); mientras no
 exista, specIR no debe importar el módulo interno sin que SLDB lo declare público.
 
-- Alternativa elegida: _pendiente (JP)_
-- Motivo: _pendiente_
-- Fecha: _pendiente_
-- Decidió: _pendiente_
+- Alternativa elegida: **D1-A (lote efímero prevalidado)**
+- Motivo: se acepta la recomendación: proponer no escribe y aplicar es todo o nada por `apply_batch`; el `dry_run` público se pide a SLDB.
+- Fecha: 2026-11-15
+- Decidió: JP (chat con el supervisor)
 
 ## D2. Qué precondición protege la aplicación
 
@@ -85,10 +83,10 @@ el agente. La huella global solo vale para el nivel 2, donde la validez depende 
 entero; ahí la extensión pedida a SLDB es la que cierra el hueco. Si JP prefiere no depender
 de SLDB, D2-A solo es suficiente para el nivel 1.
 
-- Alternativa elegida: _pendiente (JP)_
-- Motivo: _pendiente_
-- Fecha: _pendiente_
-- Decidió: _pendiente_
+- Alternativa elegida: **D2-C (guarda por documento en nivel 1; `store_hash` atómico para nivel 2 cuando SLDB lo entregue)**
+- Motivo: se acepta la recomendación: cada nivel con la guarda que su validez necesita.
+- Fecha: 2026-11-15
+- Decidió: JP (chat con el supervisor)
 
 ## D3. Dónde se declara el nivel de escritura permitido
 
@@ -111,10 +109,10 @@ lectura, coherente con IR03) y los niveles acumulativos de pron. Es lo único qu
 puede tocar y no exige nada de SLDB. D3-D queda como evolución si un store necesita restringirse
 por sí mismo.
 
-- Alternativa elegida: _pendiente (JP)_
-- Motivo: _pendiente_
-- Fecha: _pendiente_
-- Decidió: _pendiente_
+- Alternativa elegida: **D3-A (al arrancar el servidor, por store montado; nivel 0 por defecto)**
+- Motivo: se acepta la recomendación: es lo único que el agente no puede tocar y no exige nada de SLDB.
+- Fecha: 2026-11-15
+- Decidió: JP (chat con el supervisor)
 
 ## D4. Si existe deshacer
 
@@ -134,10 +132,10 @@ IR01, nota enviada). El nivel 3 (modelos) queda excluido en cualquier caso.
 historia durable y el pedido a SLDB abierto; si SLDB entrega D4-B, specIR la adopta y retira
 la suya.
 
-- Alternativa elegida: _pendiente (JP)_
-- Motivo: _pendiente_
-- Fecha: _pendiente_
-- Decidió: _pendiente_
+- Alternativa elegida: **D4-C (lote inverso con guardas en specIR, niveles 1-2, últimos lotes de la sesión; git como historia durable)**
+- Motivo: se acepta la recomendación; si SLDB entrega deshacer nativo, specIR lo adopta y retira el suyo.
+- Fecha: 2026-11-15
+- Decidió: JP (chat con el supervisor)
 
 ---
 
@@ -160,11 +158,11 @@ Se envían por `deskops message send --to sldb` después de la elección de JP (
 
 ## Atoms
 
-_Se crean tras la elección con `deskops add atom --provenance docs/decisiones/contrato-de-escritura-mcp.md`;
-ids pendientes._
+Creados el 2026-11-15 con `deskops add atom --provenance docs/decisiones/contrato-de-escritura-mcp.md`:
 
-- D1: _pendiente_
-- D2: _pendiente_
-- D3: _pendiente_
-- D4: _pendiente_
-- Actualización de `atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir`: _pendiente_
+- D1: `atom-una-propuesta-de-cambio-del-mcp-es-un-lote-efímero-prevalidado`
+- D2: `atom-la-aplicación-de-un-cambio-mcp-se-protege-con-guardas-por-documento-y-huella-global-en-nivel-2`
+- D3: `atom-el-nivel-de-escritura-del-mcp-se-fija-al-arrancar-el-servidor`
+- D4: `atom-el-deshacer-del-mcp-es-un-lote-inverso-con-guardas`
+- Actualizado con `deskops edit atom`: `atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir`
+  (cita los cuatro mecanismos y ya no los declara pendientes).

@@ -1,0 +1,24 @@
+name: atom-un-nodo-extraído-se-ancla-con-sldb-y-la-divergencia-con-el-código-se-calcula-según-su-origen
+path: desk/atoms/atom-un-nodo-extraído-se-ancla-con-sldb-y-la-divergencia-con-el-código-se-calcula-según-su-origen.md
+source_hash: d9912d4fe154b38e7124f770245993d7f6a84b1680de012c4fe85dbb35fab9b8
+content_hash: 556b3f5eebb4a2bdcae6caf5eb7434c7148769f8a320d49d807467a81895e1b3
+field_hashes:
+  id: fff0520d56ff49086e767ff3dddf1c6012d37b8f3786fd14665d98589f7f9779
+  title: 30adff76f903d71b17e363f3869325f62803ff51f73c1e2b2d52ecfd54da3c14
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: ba931c3d6850e5ed3d8b8df062983c71ee009091ff6772a878e6e747f44fb669
+  tags: 35206f523fbed740c03e4575e7e23c09c7491ae938ebe04ecc5883c6e4636478
+  provenance: 68b184e13df2aa7b5466087bd31a1a7c092f9a0ac02153b264396e11b11f38aa
+semantic_tags:
+- layer:modelo
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:procedencia
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-15T05:05:38Z'
+  authority: generated
+  via: create_document

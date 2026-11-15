@@ -1,0 +1,24 @@
+name: atom-el-nivel-de-escritura-del-mcp-se-fija-al-arrancar-el-servidor
+path: desk/atoms/atom-el-nivel-de-escritura-del-mcp-se-fija-al-arrancar-el-servidor.md
+source_hash: 95f5e30423e8af4e8223de6528abf474906a007049150105951812b4220f28c9
+content_hash: e47f249f4921313bf9e876aba69218864b501fc5f3fbd7b84054d205dfc3d6de
+field_hashes:
+  id: d008bf98e06b70e2509c1d29a8352583e1c5d9a3df6131064017f722631aa85b
+  title: 0339a344af3c47b612e536fe16d44e1f377d194af5eebc9dec778c30dac90f8a
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: 1d8f6c8f9aeb7b513ba35c2b6615ad2c45522a0ef5c3a72691144976bd8cd465
+  tags: 22129faf8f65ae58291a144c2e2642cae27ae91a84a72cb5af861724c1edc81a
+  provenance: 28618bb9e04205ef3684013a53613155389241bdfe9b33c83aa0d174ae780e1e
+semantic_tags:
+- layer:superficie
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:mcp
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-15T05:02:53Z'
+  authority: generated
+  via: create_document

@@ -1,0 +1,24 @@
+name: atom-la-procedencia-en-specir-tiene-dos-ejes-y-la-autoridad-de-sldb-se-asigna-por-tabla
+path: desk/atoms/atom-la-procedencia-en-specir-tiene-dos-ejes-y-la-autoridad-de-sldb-se-asigna-por-tabla.md
+source_hash: b4bdd7db31cc38c2dd0d506a1ee0f408f5d6d3b5e4f50da28957519b5abf170b
+content_hash: ff8699160c2c6b718896e6e5fcd14e5bbfd2506a4e5e1e30d60c1d852667583c
+field_hashes:
+  id: a71413297be76f49bd2cd83aabb2908da81aeda2556e8e04a9af3f312a8013e9
+  title: c8d7aa6abe4bce9f7377069c8b4d45453794e60d00336946ab4449211396d81f
+  five_wh_one_plus: 0ac5b48a10a651e75b01f8d26468c18977ea336c90a9607a6163d0d330a4bb40
+  answer: ab9080ac216b09a3bc14d2fa71b97d3d583b2d148a59bab3fbff1cc6bd0e0956
+  tags: 35206f523fbed740c03e4575e7e23c09c7491ae938ebe04ecc5883c6e4636478
+  provenance: 68b184e13df2aa7b5466087bd31a1a7c092f9a0ac02153b264396e11b11f38aa
+semantic_tags:
+- layer:modelo
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:procedencia
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-15T05:05:34Z'
+  authority: generated
+  via: create_document

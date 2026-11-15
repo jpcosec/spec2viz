@@ -1,10 +1,9 @@
 # Procedencia y divergencia entre código y modelo en specIR
 
-> **Estado: PROPUESTA — pendiente de la elección del dueño (JP).**
+> **Estado: DECIDIDO — JP aceptó las recomendaciones el 2026-11-15 (chat con el supervisor).**
 > Tarea: `task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo`.
-> Redactado: 2026-11-14 por el ejecutor (agente). Cada decisión termina con su recomendación;
-> «Alternativa elegida», «Motivo», «Fecha» y «Decidió» se completan con la elección de JP, y
-> recién entonces se crean los tres atoms que pide la Validation del TaskDoc.
+> Redactado: 2026-11-14 por el ejecutor (agente) con alternativas y recomendación; elección de
+> JP registrada el 2026-11-15 en cada sección. Los atoms están en la última sección.
 
 ## Insumos
 
@@ -75,8 +74,10 @@ decisión) y no se extrajo de código: el Plan dice que no todo se genera desde 
 | `verificado` | validado | verificado |
 | `refutado` | — | — |
 
-- Alternativa elegida: _pendiente (JP)_
-- Motivo / Fecha / Decidió: _pendiente_
+- Alternativa elegida: **D1-B (dos ejes `origen` y `verificacion` en specIR; autoridad SLDB por la tabla de equivalencias)**
+- Motivo: se acepta la recomendación de esta sección.
+- Fecha: 2026-11-15
+- Decidió: JP (chat con el supervisor)
 
 ## D2. Cómo se representa lo desconocido y cómo una inferencia pasa a verificada
 
@@ -97,8 +98,10 @@ decisión) y no se extrajo de código: el Plan dice que no todo se genera desde 
 
 **Recomendación: D2-B + D2-E.**
 
-- Alternativa elegida: _pendiente (JP)_
-- Motivo / Fecha / Decidió: _pendiente_
+- Alternativa elegida: **D2-B + D2-E (`null` + lista `desconocidos`; verifica solo un humano fuera del MCP o un chequeo determinista)**
+- Motivo: se acepta la recomendación de esta sección.
+- Fecha: 2026-11-15
+- Decidió: JP (chat con el supervisor)
 
 ## D3. Relación nodo extraído ↔ fuente: ¿anclas de código de SLDB?
 
@@ -118,8 +121,10 @@ notifica a SLDB con `deskops message send --to sldb` tras la elección de JP. Se
 la fila «consultar journal e historial» solo para la historia del nodo, que ya cubre
 `document_history`.
 
-- Alternativa elegida: _pendiente (JP)_
-- Motivo / Fecha / Decidió: _pendiente_
+- Alternativa elegida: **D3-A (anclas de código de SLDB; TSX y SQL pedidos a SLDB, mientras tanto D3-B con `sin_verificar`)**
+- Motivo: se acepta la recomendación de esta sección.
+- Fecha: 2026-11-15
+- Decidió: JP (chat con el supervisor)
 
 ## D4. Divergencia: qué prevalece cuando modelo y código discrepan
 
@@ -132,19 +137,23 @@ la fila «consultar journal e historial» solo para la historia del nodo, que ya
 **Recomendación: D4-C.** Lo desconocido (D2) y lo divergente se conservan y se muestran; nada
 se borra en silencio.
 
-- Alternativa elegida: _pendiente (JP)_
-- Motivo / Fecha / Decidió: _pendiente_
+- Alternativa elegida: **D4-C (según el origen; la divergencia se calcula al leer y nada se borra en silencio)**
+- Motivo: se acepta la recomendación de esta sección.
+- Fecha: 2026-11-15
+- Decidió: JP (chat con el supervisor)
 
 ---
 
-## Atoms (tras la elección)
+## Atoms
 
-La Validation del TaskDoc pide tres; se crean con
-`deskops add atom --provenance docs/decisiones/procedencia-y-divergencia.md`:
+Creados el 2026-11-15 con `deskops add atom --provenance docs/decisiones/procedencia-y-divergencia.md`:
 
-1. Taxonomía canónica y tabla de equivalencias (D1): _pendiente_
-2. Lo desconocido y la promoción a verificado, por acción de quién (D2): _pendiente_
-3. Divergencia: qué pasa con un nodo cuya fuente cambió (D3 + D4): _pendiente_
+1. Taxonomía canónica y tabla de equivalencias (D1):
+   `atom-la-procedencia-en-specir-tiene-dos-ejes-y-la-autoridad-de-sldb-se-asigna-por-tabla`
+2. Lo desconocido y la promoción a verificado, por acción de quién (D2):
+   `atom-lo-desconocido-se-nombra-y-solo-un-humano-fuera-del-mcp-o-un-chequeo-determinista-verifica`
+3. Divergencia: qué pasa con un nodo cuya fuente cambió (D3 + D4):
+   `atom-un-nodo-extraído-se-ancla-con-sldb-y-la-divergencia-con-el-código-se-calcula-según-su-origen`
 
-Y se actualiza `atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir`, que hoy declara la
-taxonomía «pendiente de decisión».
+Actualizado con `deskops edit atom`: `atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir`
+(cita la taxonomía decidida y ya no la declara pendiente).
