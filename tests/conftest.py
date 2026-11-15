@@ -11,6 +11,7 @@ import os
 import shutil
 import subprocess
 import sys
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, Iterator
 
@@ -63,13 +64,12 @@ def original_digest() -> dict[str, str]:
     return tree_digest(REPO / ".sldb", REPO / "desk")
 
 
-@pytest.fixture(scope="session")
-def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
-    """The project root of an isolated copy of this repo's store, mounted and checked."""
-    for name, store in FEDERATED.items():
+def mount_copy(tmp_path_factory: pytest.TempPathFactory, name: str) -> Path:
+    """The project root of a new isolated copy of this repo's store, mounted and checked."""
+    for alias, store in FEDERATED.items():
         if not (store / "core").is_dir():
-            pytest.fail(f"the {name} store is missing: {store}")
-    root = tmp_path_factory.mktemp("specir-store") / "IR"
+            pytest.fail(f"the {alias} store is missing: {store}")
+    root = tmp_path_factory.mktemp(name) / "IR"
     root.mkdir()
     for name in COPIED:
         shutil.copytree(REPO / name, root / name, ignore=shutil.ignore_patterns(CACHE), symlinks=True)
@@ -79,6 +79,17 @@ def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[s
     sldb("edges", "rebuild", "--store", ".sldb", cwd=root)
     sldb("stores", "check", "--store", ".sldb", cwd=root)
     return root
+
+
+def copy_digest(root: Path) -> dict[str, str]:
+    """A mounted copy and the linked stores, file by file."""
+    return {**tree_digest(*(root / name for name in COPIED)), **federated_digest()}
+
+
+@pytest.fixture(scope="session")
+def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
+    """The copy the read tools are served from; nothing writes to it."""
+    return mount_copy(tmp_path_factory, "specir-store")
 
 
 class McpSession:
@@ -108,21 +119,52 @@ class McpSession:
 @pytest.fixture(scope="session")
 def copy_digest_before(store_copy: Path) -> dict[str, str]:
     """The mounted copy and the linked stores before the server reads them."""
-    return {**tree_digest(*(store_copy / name for name in COPIED)), **federated_digest()}
+    return copy_digest(store_copy)
 
 
-@pytest.fixture(scope="session")
-def mcp(store_copy: Path, copy_digest_before: dict[str, str]) -> Iterator[McpSession]:
-    """A session with `python -m specir.mcp.server --store <copy>/.sldb`, launched by stdio."""
+@contextmanager
+def served(root: Path, *options: str) -> Iterator[McpSession]:
+    """A session with `python -m specir.mcp.server --store <root>/.sldb <options>`, launched by stdio."""
     from anyio.from_thread import start_blocking_portal
     from mcp import Client, StdioServerParameters
 
     params = StdioServerParameters(
         command=sys.executable,
-        args=["-m", "specir.mcp.server", "--store", str(store_copy / ".sldb")],
-        cwd=str(store_copy),
+        args=["-m", "specir.mcp.server", "--store", str(root / ".sldb"), *options],
+        cwd=str(root),
         env={**os.environ},
     )
     with start_blocking_portal() as portal:
         with portal.wrap_async_context_manager(Client(params, read_timeout_seconds=TOOL_TIMEOUT)) as client:
             yield McpSession(portal, client)
+
+
+@pytest.fixture(scope="session")
+def mcp(store_copy: Path, copy_digest_before: dict[str, str]) -> Iterator[McpSession]:
+    """The read-only server (level 0, the default) over the read copy."""
+    with served(store_copy) as session:
+        yield session
+
+
+#: Who the write tests' server says it is; every document it writes must carry it.
+WRITER = "agent:specir-ir04-tests"
+
+
+@pytest.fixture(scope="session")
+def write_copy(tmp_path_factory: pytest.TempPathFactory) -> Path:
+    """A second copy, the one the write tools write to."""
+    return mount_copy(tmp_path_factory, "specir-write-store")
+
+
+@pytest.fixture(scope="session")
+def writer(write_copy: Path) -> Iterator[McpSession]:
+    """The server at write level 2 (content and rules as data) over the write copy."""
+    with served(write_copy, "--level", "2", "--actor", WRITER) as session:
+        yield session
+
+
+@pytest.fixture(scope="session")
+def content_writer(write_copy: Path) -> Iterator[McpSession]:
+    """The server at write level 1 (content only) over the write copy."""
+    with served(write_copy, "--level", "1", "--actor", WRITER) as session:
+        yield session

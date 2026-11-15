@@ -46,11 +46,15 @@ def one_document(mcp, path: str) -> dict[str, Any]:
     return rows[0]
 
 
+def routed_task() -> Path:
+    """The first code task routed on the board that binds pills (a closed task leaves desk/tasks/)."""
+    return next(p for p in sorted((REPO / "desk" / "tasks").glob("task-*.md")) if front_matter(p).get("pills") and front_matter(p).get("task_type") == "task.code")
+
+
 @pytest.fixture(scope="module")
 def task(mcp) -> dict[str, Any]:
-    """This task's own TaskDoc, as the store selects it from its path."""
-    path = next((REPO / "desk" / "tasks").glob("task-ir03-*.md")).relative_to(REPO)
-    return one_document(mcp, str(path))
+    """A routed TaskDoc, as the store selects it from its path."""
+    return one_document(mcp, str(routed_task().relative_to(REPO)))
 
 
 def test_tools_are_the_read_surface_and_read_only(mcp) -> None:
@@ -69,7 +73,7 @@ def test_list_models_is_the_store_registry(mcp, store_copy: Path) -> None:
     described = mcp.call("describe_model", model="TaskCodeDoc")
     assert described["found"] and described["address"] == "sldb://model/TaskCodeDoc"
     fields = {f["name"]: f["annotation"] for f in described["fields"]}
-    task_file = front_matter(next((REPO / "desk" / "tasks").glob("task-ir03-*.md")))
+    task_file = front_matter(routed_task())
     assert {"id", "status", "pills", "files"} <= set(fields) and set(task_file) - {"sldb"} <= set(fields) | {"task_type"}
 
 

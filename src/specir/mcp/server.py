@@ -1,8 +1,11 @@
-"""The specIR read-only MCP server over stdio.
+"""The specIR MCP server over stdio.
 
 `specir-mcp --store <project>/.sldb` (or `python -m specir.mcp.server --store ...`) serves the
-tools of `read_tools.ReadTools`. Every tool is annotated read-only and idempotent and returns
-structured JSON; none writes to the store or to its linked stores."""
+tools of `read_tools.ReadTools`, annotated read-only and idempotent: none writes to the store or
+to its linked stores. That is level 0, the default. Started with `--level 1` (content) or
+`--level 2` (rules as data) it also serves the write tools of `write_tools.WriteTools`
+(`propose_changes`, `apply_changes`); the level is the operator's, never a tool argument
+(IR02 D3-A). Every tool returns structured JSON."""
 
 from __future__ import annotations
 
@@ -14,10 +17,14 @@ from mcp.server.mcpserver import MCPServer
 from mcp.server.mcpserver.exceptions import ToolError
 from mcp.types import ToolAnnotations
 
+from specir.mcp.changes import Change, Proposal
+from specir.mcp.mutability import LEVELS, READ
 from specir.mcp.paging import DEFAULT_LIMIT
 from specir.mcp.read_tools import ReadTools
+from specir.mcp.write_tools import DEFAULT_ACTOR, WriteTools
 
 READ_ONLY = ToolAnnotations(read_only_hint=True, destructive_hint=False, idempotent_hint=True, open_world_hint=False)
+WRITES = ToolAnnotations(read_only_hint=False, destructive_hint=True, idempotent_hint=False, open_world_hint=False)
 
 INSTRUCTIONS = (
     "Read-only access to one SLDB store and the stores it links. Documents are named "
@@ -36,10 +43,17 @@ def run(method: Callable[..., dict[str, Any]], *args: Any) -> dict[str, Any]:
         raise ToolError(f"{type(error).__name__}: {error}") from error
 
 
-def build_server(store: str | Path) -> MCPServer:
-    """An MCP server whose tools read `store` through `sldb.api`."""
+WRITE_INSTRUCTIONS = (
+    " Writing is two steps: propose_changes (typed changes; writes nothing and answers what "
+    "would be written) and apply_changes (the proposal exactly as returned; applied whole or "
+    "not at all, or rejected with its cause)."
+)
+
+
+def build_server(store: str | Path, level: int = READ, actor: str | None = None) -> MCPServer:
+    """An MCP server whose tools read `store` through `sldb.api`, and write it at `level` >= 1."""
     tools = ReadTools(store)
-    server = MCPServer("specir", instructions=INSTRUCTIONS)
+    server = MCPServer("specir", instructions=INSTRUCTIONS + (WRITE_INSTRUCTIONS if level > READ else ""))
 
     @server.tool(annotations=READ_ONLY)
     def list_models(offset: int = 0, limit: int = DEFAULT_LIMIT) -> dict[str, Any]:
@@ -105,15 +119,35 @@ def build_server(store: str | Path) -> MCPServer:
         """Check the store's integrity and its edge index; findings come as one page."""
         return run(tools.check_integrity, offset, limit)
 
+    if level > READ:
+        add_write_tools(server, WriteTools(store, level, actor))
     return server
+
+
+def add_write_tools(server: MCPServer, writes: WriteTools) -> None:
+    """The write tools. A call above the server's level is refused before anything is read."""
+
+    @server.tool(annotations=ToolAnnotations(read_only_hint=True, destructive_hint=False, idempotent_hint=False, open_world_hint=False))
+    def propose_changes(changes: list[Change]) -> dict[str, Any]:
+        """Dry run: turn typed changes (create/update/delete a document, assert_edge/retract_edge)
+        into a sealed proposal with the server's guards, and answer what it would write. Writes nothing."""
+        return run(writes.propose_changes, changes)
+
+    @server.tool(annotations=WRITES)
+    def apply_changes(proposal: Proposal) -> dict[str, Any]:
+        """Apply a proposal exactly as propose_changes returned it: whole, or nothing and why
+        (`stale` when the store changed since, `rules` naming the RuleDocs that refused it)."""
+        return run(writes.apply_changes, proposal)
 
 
 def main(argv: list[str] | None = None) -> None:
     """Serve the read tools of one store over stdio."""
     parser = argparse.ArgumentParser(prog="specir-mcp", description=__doc__.splitlines()[0])
     parser.add_argument("--store", required=True, help="The store directory (`<project>/.sldb`).")
+    parser.add_argument("--level", type=int, choices=sorted(LEVELS), default=READ, help="Write level: 0 read only (default), 1 content, 2 rules as data.")
+    parser.add_argument("--actor", default=None, help=f"Who signs what this server writes (default {DEFAULT_ACTOR}).")
     args = parser.parse_args(argv)
-    build_server(args.store).run("stdio")
+    build_server(args.store, args.level, args.actor).run("stdio")
 
 
 if __name__ == "__main__":
