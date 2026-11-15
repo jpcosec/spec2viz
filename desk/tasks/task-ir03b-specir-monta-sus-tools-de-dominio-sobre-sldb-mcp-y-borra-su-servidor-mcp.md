@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T21:12:24Z'
+  at: '2026-11-15T21:18:56Z'
   authority: generated
   via: save_document_payload
 id: task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp
@@ -57,7 +57,7 @@ Esperar a que cierre la tarea espejo A (sldb mcp con punto de extensión). Luego
 Decisiones (preflight 1):
 - Módulo y función de la extensión: specir.mcp_extension:register (src/specir/mcp_extension.py), firma register(server, context) del contrato sldb.mcp.extension.
 - Frontera de borrado: src/specir/mcp se borra entero (paging, addresses, mutability, changes, read_tools, write_tools y server están en sldb/src/sldb/mcp desde ce0a854e). Lo único de dominio que había era claims_verified de write_tools (IR05 D2-E: un agente no escribe verificacion: verificado por el MCP), que sldb no migró a propósito; pasa a la extensión, que desde nivel 1 sirve propose_changes y apply_changes de un mismo WriteTools de sldb con esa comprobación delante de propose_changes. Tools de dominio nuevas y pequeñas sobre los tipos de IR06 (specir.models.domain), de solo lectura y en todos los niveles: specir_types (tipos de dominio, capa, campos propios, si el store los registra y cuántos documentos tiene) y specir_nodes (nodos de specIR del store con su procedencia, filtrables por tipo, capa, origen y verificación, paginados; un tipo desconocido es señal unknown_model).
-- Inventario de tests: tests/mcp/test_dry_run.py, test_mutability.py, test_no_writes.py, test_read_tools.py, test_write_tools.py y writing.py se borran porque sldb/tests/mcp tiene su equivalente (mismos nombres; writing.py en mcp_helpers.py y mcp_world.py). Lo que dependía del store real de IR y su federación (lectura del SpecDoc de spec2viz enlazado y no-escritura sobre deskops y spec2viz) pasa a tests/test_mcp_extension.py. tests/conftest.py y tests/models/blog.py levantan sldb mcp --extension specir.mcp_extension:register.
+- Inventario de tests: los módulos de prueba test_dry_run, test_mutability, test_no_writes, test_read_tools, test_write_tools y el ayudante writing de la carpeta de pruebas MCP de specIR se borran porque las pruebas MCP de sldb tienen su equivalente (mismos nombres; writing en mcp_helpers y mcp_world). Lo que dependía del store real de IR y su federación (lectura del SpecDoc de spec2viz enlazado y no-escritura sobre deskops y spec2viz) pasa a tests/test_mcp_extension.py. tests/conftest.py y tests/models/blog.py levantan sldb mcp --extension specir.mcp_extension:register.
 - Contexto y niveles: los de sldb mcp, sldb.mcp.context.ServerContext (store_path, project_root, level, actor, log) y los niveles 0 lectura, 1 contenido, 2 reglas como datos.
 - Imports: la extensión es el único módulo de specIR que alcanza sldb.mcp (contrato de extensión: changes, paging, registry, write) y, a través de él, mcp; el resto de specIR solo usa sldb.api. tests/test_imports.py lo comprueba y que no quede servidor propio ni script specir-mcp.
 
