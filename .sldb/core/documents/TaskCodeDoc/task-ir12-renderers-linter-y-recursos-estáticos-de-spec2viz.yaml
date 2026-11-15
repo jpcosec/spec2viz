@@ -1,7 +1,7 @@
 name: task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz
 path: desk/tasks/task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz.md
-source_hash: 2095271dccfc66167c4e2c75206fd8ef8810d64e67fafb82b9bade7830326724
-content_hash: d7defa09a4f92a3c9a03c64d24d80f814b473eb93732db13a8822aa60bfd9974
+source_hash: 80451e72abd0f7c3015b6fbde352fbf43695a63ac63517ab0d852b77040df74b
+content_hash: 11e5e45fa8a25532d14c63781611e398c022747dc17e664c5034dcc6167759c1
 field_hashes:
   title: c64c6b0e7d56ec0f7658a5f8ff99451cdb0fcdadd4fd2a72f04b8639c5b87427
   id: beebd68178693b33c2e73937084a97d851a01d49aa02cce02a57b0252328277c
@@ -16,8 +16,8 @@ field_hashes:
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   depends_on: adc79d32db94750018bb5a5f39f3f45be409cac44ce9f07917465900d24107db
   pills: 4646693546d631bc326d394a766ac84a7c860ee563d0014f03de033a15c217e1
-  files: 6935f0e91e0ab8774a5a8c69ccea6508df91ad9fafc60d324e1a34b3c820b243
-  implementation_path: 8c817997f0d9376513104ee8982316b509ad1726f32893800151c89b9d8fe8a2
+  files: 1e60b9cbf95bcdf087593f82e08d753afca235ee03e233c3edb76e6cccab4c06
+  implementation_path: 91708c463638ba59c35e704a6f52f6b36bff6bbccc2f55f4292a8cbcd3d21b87
   validation: fb425b63da613954f42a174dcc23853f421066576b74c6c85e341ac7570a87fb
   done_when: 493d17b3444032aa177370731a9fbaeba268186ba3175139bfadb6595e64c39a
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-12T01:26:15Z'
+  at: '2026-11-15T22:58:11Z'
   authority: generated
   via: save_document_payload

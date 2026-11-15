@@ -1,0 +1,323 @@
+{
+  "key": "task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz/bundle",
+  "input_sha256": "f32b8b7d121d59eaec1bbe53a8d00a81a73dd9eb636624de851bd9bb3e7614f0",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261115-225724/context-review/task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz/bundle/f32b8b7d121d59eaec1bbe53a8d00a81a73dd9eb636624de851bd9bb3e7614f0/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz.md",
+      "sha256": "9490c0ca5de214a7d6021d12119cfe90795eaeb5f6aec330dd98fcce420799bc",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/phase.md",
+      "sha256": "cc7f0b52d4153679b69fa0dccee57ec4ac915602a6dbd8d2ff226764c90a2e5f",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/execution.md",
+      "sha256": "a16c7c317f4eec9ce8659464625ae18b5fe94d790e3fdd3755296dcc51898bdc",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/testing.md",
+      "sha256": "e5b616e2d90b009c2cbac612d281727dbb0f13ad23fdd62a5dd8a6dbbb08aca6",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/closeout.md",
+      "sha256": "b8eed83052f326b72b3a33f4523e8f70068c7eb76bd270691425519019ca88c1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md",
+      "sha256": "4b48dc0685cc3b457dfc02102855266f1c1fb6e13bcea74758c908562e28ba37",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md",
+      "sha256": "aecd844c7ddd17f0b5cc0d541e28362e0ae2fb69e7cbeeb3c6f5496d0059df19",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md",
+      "sha256": "1e506d60129a5e8581506f1ac4b58aef645417948a7e2da697625943afff1db0",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-specir-reemplaza-a-spec2viz-y-cubre-todas-sus-funciones.md",
+      "sha256": "3099bda4a2859795482fc5c847ddbd34f48d6c714d3b3c6629c46628b588fd03",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/__init__.py",
+      "sha256": "a8c56b5332cca805279d7f6c308b65919477c6e72dd3fb14aeccd0c54a51b1f3",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/exceptions.py",
+      "sha256": "3622c2fa3bf7007a4c58ecc6297eb9ecc0b998e0e756384e543b49102e30ce84",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/ir.py",
+      "sha256": "2759e97667a97716d8157a0bb56e483b5ba846f383ec60d4d00379f6aeb3566f",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/projections.py",
+      "sha256": "28028f2bc37f9658ab66d0c765f074a9ea2a78826c35c2c83772c944a8c56c81",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/spec_models.py",
+      "sha256": "4ecb53220d056944137669c612fde1e3361d59be1b260daf1bc9a168162658c2",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/notation_style.py",
+      "sha256": "aad112cb668221fb4014c8abff7d98dceb7149b1ceabf9fdb0bb028c210482ae",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/__init__.py",
+      "sha256": "ebd6e6c209031aff98cfd3e0c0ccb722eda9305dc86823e4d7ec0cb272c56ffe",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/mermaid.py",
+      "sha256": "37fa7a1d2497d1575f8691d32be93fa454d2b1af214d14672d6a282bb99674f8",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/plantuml.py",
+      "sha256": "adae6f6a9ba8d53b7f5dbf8348160af673e2acedccf4a9fe28297bf18bca46a8",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/d2.py",
+      "sha256": "0c800d196da8a668f1577aec1b6e73e3fe8dc7b7491409bf517f4d7a42373ff6",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/vega.py",
+      "sha256": "1d71c78bb13dbb4b790d442a699af44a6e20846155016e1aa545d7721d63f0b9",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/bpmn.py",
+      "sha256": "016e12fc978e056f4c450d0277178cbfd80efe62bcf5450084ba4503f8d2b79a",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/bpmn_palette.py",
+      "sha256": "0fadd809dca33e55681c142dd440f1cecd3f7e438d5dfc8b982f6e5f2ebe4fc9",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/bpmn_viewer.py",
+      "sha256": "4b9f407c02f8e1ef9e4c6c9f3ea02e8224d75775f8ad83f0232b8d1f02a6768c",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/tree.py",
+      "sha256": "083930f316b81a5b6f5c04345a39a1c05284674442ce415016dc9fa74e6aec31",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/graph_html.py",
+      "sha256": "ac5e0039437aa32ded71c1a247350fcd9eca789db803fec9b551c3b74f6c5118",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/antonia_html.py",
+      "sha256": "77d98e8d54052656e500a89f6b14be6edd5d5833663fd1cc681042c73090bef6",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/json_out.py",
+      "sha256": "02de7f728e8c6720145ab8c7383b8194b3565befa27c9c50a3ce617d579782d6",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/class_diagram.py",
+      "sha256": "532d1317ab2acae7c8cc21bef5c9c6a23cdff5a685844f8094f7093d4ea84ba1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/renderers/view_mermaid.py",
+      "sha256": "39be8780c567aec56940e6bde8ef1863fec91e5983b88b7dd68717b70e8d28ec",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/lint_mermaid.py",
+      "sha256": "a46c08cc21b8b4f5b379416ae7f043e21f02765a35baefa48f85e7536ae99eca",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/schema.py",
+      "sha256": "04ba94bd57f872e9a7f59dec82c91335d1939abf92bb5e0b2baed469f77f9bb0",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/render_file.py",
+      "sha256": "84a768bc4e8a0a14e8741830a3f6ba389b9c93d0c0227027c0686d1fa216ff76",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/commands.py",
+      "sha256": "bd92aa28369c8958c569608206c3d2d7a5b4eab0a0362f067746d90a55735b38",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/templates/default.html",
+      "sha256": "ca679801cadc706a82bc5dc8b4aca06246b1735e81843863658f4725a43c8dc0",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/templates/vendor/bpmn-js/LICENSE",
+      "sha256": "5788cf8bd61481776cee1c943595525499a1355c045e9244f92e6c8092c06770",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/templates/vendor/bpmn-js/README.md",
+      "sha256": "bf523e90b3ed010cc58bb8fd7f9d161ea1ebaf2442dcb20e7a346e948b017bef",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/templates/vendor/bpmn-js/bpmn-js.css",
+      "sha256": "a1add5dca479c779a54adda507f26796f4d61a5ae15f6cc14a1b017ff65b4015",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/templates/vendor/bpmn-js/diagram-js.css",
+      "sha256": "73f990dcd6cd2ed696aa63a3c73822a97f0ea69a221d76ebe6cf24b01111df21",
+      "projection": "whole_file"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "f19edf09eba88d0eb25a7f0c16eb5c6565dc929497a2ce03504502d2aaa91c57",
+      "projection": "whole_file"
+    },
+    {
+      "path": "docs/spec2viz/matriz-de-cobertura.md",
+      "sha256": "f93d242f778a92997870a17b2a9cce60899dc2b80f2449cf7cb272276289ab63",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/test_imports.py",
+      "sha256": "e6786dfd0a125735999a41b0b036b52cdafcc3af1782e3b6a9de3fdbbdf91135",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/render_parity.py",
+      "sha256": "4dfff7dbadb0d372f5baea3feb596a17f94317ab3a3085705eedf533cbc669b0",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/goldens/spec2viz-2de1056-lint.json",
+      "sha256": "c2a7482f46a433e2a8db734af6dc60636937363ba0fe16d4ee9920d373b486d1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/fixtures/spec2viz/examples/schema/sequence.schema.json",
+      "sha256": "b81693aa4c9e2a0b95bac156b9e5722b0f81677df6034a73a05ca946c147a4b1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/fixtures/spec2viz/examples/schema/class.schema.json",
+      "sha256": "720a03b37290ea1c0e61de128c7b3e8d9c5975b301c206049ec708528d05b8fb",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_renderers.py",
+      "sha256": "06e75f956e90417c31e6325242ec3756f388e42431241aab733528b0420e61e6",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_render_parity.py",
+      "sha256": "e0313bb2376617c929362acad0e24457851e5bd43b6c0b1a43c335087fff61fa",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_render_cases.py",
+      "sha256": "7720d947497e171b4d52bff0542bb54ab9cdd0dbd2a2b072d3b993451440bcad",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_render_commands.py",
+      "sha256": "85088602f34ec9dc99a20a64425b4fcf1d4fbe22fbd68dcf392a2a6165609fb3",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_bpmn.py",
+      "sha256": "25bbada5e0c4be95de42837239180d3a35f0f98394de46fab5ea0aef5bb1d449",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_lint_mermaid.py",
+      "sha256": "3df0920b23addf66ca0355dffd119cf8729cbd36f7b1dcb15a15239140c22037",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_schema.py",
+      "sha256": "7c71ef9fcb4d79cc4176529d32b6af51d46c6c8e2fd095193e63236c9ae7c61a",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_resources.py",
+      "sha256": "d6fc56b4fd9e7acb315382ffe79e72391c00bd2f3f3dd6c851d390595c4f52a5",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_visual_names.py",
+      "sha256": "de153753d93a9f98cc01b99b242b27f7617b163eee3cf2888e6c4f73becd5788",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [
+    {
+      "path": "src/specir/visual/templates/vendor/bpmn-js/bpmn-navigated-viewer.production.min.js",
+      "reason": "size>=60000",
+      "size": 194764
+    },
+    {
+      "path": "tests/visual/goldens/spec2viz-2de1056-renders.json",
+      "reason": "size>=60000",
+      "size": 628474
+    },
+    {
+      "path": "tests/visual/goldens/spec2viz-2de1056-schema.json",
+      "reason": "size>=60000",
+      "size": 144263
+    },
+    {
+      "path": "tests/visual/fixtures/spec2viz/examples/schema/spec2viz.schema.json",
+      "reason": "size>=60000",
+      "size": 63701
+    }
+  ],
+  "started": "2026-11-15T22:57:24.415261+00:00",
+  "finished": "2026-11-15T22:57:50.674175+00:00"
+}

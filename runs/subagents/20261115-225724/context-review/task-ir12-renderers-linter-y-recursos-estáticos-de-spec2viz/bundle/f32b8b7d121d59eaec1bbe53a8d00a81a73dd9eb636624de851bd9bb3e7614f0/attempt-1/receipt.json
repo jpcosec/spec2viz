@@ -1,0 +1,9 @@
+{
+  "key": "task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "f32b8b7d121d59eaec1bbe53a8d00a81a73dd9eb636624de851bd9bb3e7614f0",
+  "output_sha256": "e988b59206106273e3d997509d28ac7e9bafae2c48dfc25fe4df8b0806913b66",
+  "start": "2026-11-15T22:57:24.415261+00:00",
+  "end": "2026-11-15T22:57:50.674175+00:00"
+}
