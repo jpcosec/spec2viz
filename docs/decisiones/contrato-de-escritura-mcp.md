@@ -154,7 +154,15 @@ y aun así escribe por la API.
 4. Guardas re-verificados dentro de la transacción de `apply_batch` o un cerrojo de escritura
    del store — nuevo, cierra la carrera residual de D2.
 
-Se envían por `deskops message send --to sldb` después de la elección de JP (pill de guardrail).
+Enviados el 2026-11-15 con `deskops message send --to sldb --kind suggestion` (pill de guardrail):
+
+- 1: `sldb:20261115-022430-suggestion-specir-dry-run-p-blico-de-apply-batch`
+- 2 y 3: ya en `sldb:20261114-074447-suggestion-specir-brechas-api-p-blica-sldb-para-mcp` (IR01)
+- 4: `sldb:20261115-022444-suggestion-specir-guardas-de-apply-batch-bajo-el-cerrojo-del-store`
+
+Antes de pedir se verificó en sldb `a3514755` que no existieran: `apply_batch` no tiene
+`dry_run`; `StoreIOLock` existe pero se toma por escritura de índice, por eso el pedido 4 es
+reusarlo y no crear un cerrojo nuevo.
 
 ## Atoms
 

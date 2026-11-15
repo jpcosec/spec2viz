@@ -1,2 +1,3 @@
 {"task_id": "task-ir01-auditor\u00eda-de-la-api-p\u00fablica-de-sldb-frente-a-la-superficie-mcp", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
 {"task_id": "task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
+{"task_id": "task-ir02-decisi\u00f3n-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}

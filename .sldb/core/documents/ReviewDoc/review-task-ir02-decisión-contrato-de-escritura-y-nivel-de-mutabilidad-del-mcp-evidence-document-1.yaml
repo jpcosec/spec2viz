@@ -1,0 +1,36 @@
+name: review-task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp-evidence-document-1
+path: desk/reviews/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp/evidence-document-1.md
+source_hash: 0a581ed9f9e1dc347ed6c50f2b3d22ac8ae68fa7eb2ad8dbd2d9d0c3f1388cd8
+content_hash: 782b0f692bc373b30dd4b08881d64b7ae8c1aead2bebe67a7fba063252a1c529
+field_hashes:
+  id: 5083f51d814b2d7fa8f2f51b816e3d1179068b71f4bba4233cabc527f6e262d9
+  title: edf6c67627db72922c7232cab1d974880dc6e5067c4a6f81134f85463a385c72
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 64ac8e615520cd1ae43ab0d47cfc9e750a82d13f9c47d468dab7cd8c982b7859
+  value: 28618bb9e04205ef3684013a53613155389241bdfe9b33c83aa0d174ae780e1e
+  subject: 3e42d9d933282dc1b7dda27fe1c452d169f0a20caf77591be83db20ddc1cd123
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 39b5a507b3175532d4ed7bd9dcecfdb6b80a149cca60a056e150a1dc74a23a1d
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 7f1247c720615990aa1660ba5fdae70d4d1edcd8af79fd4454165e6524da5f51
+  created_at: 65f48602d663fc37112d4bb377b7a5f65d31801b0201704af7148fbc2d082cb6
+  disposed_at: 65f48602d663fc37112d4bb377b7a5f65d31801b0201704af7148fbc2d082cb6
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 3e81c9c66fcc87a174333c9fbdc7bbb92a7e1a3a4b6fd0645c14c35ffd65ba84
+  disposition: cafc05ac38e6f0b036374005697d5e41609b3a4b79ef700b6f742fd6d32277f7
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-15T05:25:14Z'
+  authority: generated
+  via: save_document_payload
