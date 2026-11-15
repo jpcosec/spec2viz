@@ -1,7 +1,7 @@
 name: task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro
 path: desk/tasks/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro.md
-source_hash: 3cad37e59c3716feeae86681225b1859b06d5f14abdfde0455dc7ce97acced16
-content_hash: a7b945970051a0753b5375c7b795fe269c4abc2a991a58b0fdd5931a02f8923c
+source_hash: a59d1e95f4fe9c796abbfde7c2209d57b2ee6f3e2d8a40ae6b277123efda4ac1
+content_hash: 1ae1f9ec51fdd4ed18f2af12eee4f0b29c85845583fe6ecbacef6cf3c50ad49a
 field_hashes:
   title: ad9be9166eb62125a31fb53ba7ce70f82b256c4a494bcfc2332a80659d094a05
   id: 8874eea45f7fe3bfec9c1cae3ec1c5d20648ac1d6945e6e6821915125e92379e
@@ -16,14 +16,14 @@ field_hashes:
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   depends_on: da57e6df2a39362e12454fd030440cdbd84898b7d046eb88b09afb544597320a
   pills: 6555075013c877b94048b0ff0fc07d705bba3f8cfc6385b74cdd6c8e724c7300
-  files: 976fde4ea9e4dfe874594c0ab8ff46b2be0b0baaf6e5e9a121542894dc8492cf
-  implementation_path: 51f74e625c19b55b5d0541fbbf9cfe65ed4b070574ab40a85167c5b54e4240f0
+  files: 891e52b79a2f6ee3dc3f5297a25a2cb010c0d4270ee79e40557dcbe1551cc48e
+  implementation_path: 444fb39e58509715ee2e7dfdf813d1da7173d538134c0f52ab2d8f6f47149cbc
   validation: da16e193fc22bc1e17e9e185ed4ccc4496296b0535f8bcc0fe1e2ff5580f770c
   done_when: 63225e58f7d8f8fee0ef4f4b688f83be1fb65de7442ebd8c1b9e1c687e322f69
   task_type: 8dbc7ea3fc2d737a841f8f9a89de6dd4bd2ca7fdc77434a53400db8767ba695d
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
-  atoms: fc56ff6c3b7cc146e0680d2e0ac963c5559903dcf99b3797a502b8682f52580b
+  atoms: 1bc9a16c8f8068a897e34baa80d661847ced3667fa338816f146d7334cdaaf1d
   from_drawer: b011e7dc8c74da40c34d5a2d4cb040e48ea094198e361179a92b4fabba5f088d
 semantic_tags:
 - artifact:task
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-15T16:55:12Z'
+  at: '2026-11-15T21:58:20Z'
   authority: generated
   via: save_document_payload

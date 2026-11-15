@@ -1,0 +1,25 @@
+name: atom-propuesta-pendiente-de-jp-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al
+path: desk/atoms/atom-propuesta-pendiente-de-jp-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al.md
+source_hash: b96d38ccb7cbe0a88054c94bb27126e5b35cc8c35c75f523c4bdca149e043cff
+content_hash: 63f0a036f688516d193bae27f52944ebea74163ee293b402475636245773d738
+field_hashes:
+  id: 203061d32d627dee60294f14add63050872566d7e054237c02fe3d984acf735a
+  title: 9d856c731c01b58677b4c245cfcf2ff9255e9e298f9b1c52c9764cf5c4e137af
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: cb875bfa0c1861fa093d3aa04020bc9eca0b3c0ae6f93c8125b48b6321faa33a
+  tags: 549b842eb0ab37ecb1505c6a3307f954f02e0377b8aed362a9185ca2e0c4826f
+  provenance: 9516ddd6716e54461c81ecd8e3453027ba8f7b679b9c25dd436e68604734f37d
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- system:specir
+- topic:fuente-de-verdad
+- topic:migracion
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-15T21:33:03Z'
+  authority: generated
+  via: create_document

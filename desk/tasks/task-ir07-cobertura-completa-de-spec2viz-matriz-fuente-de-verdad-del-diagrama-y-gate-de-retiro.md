@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T16:55:12Z'
+  at: '2026-11-15T21:58:20Z'
   authority: generated
   via: save_document_payload
 id: task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro
@@ -26,6 +26,7 @@ files:
 - docs/spec2viz/matriz-de-cobertura.md
 - docs/spec2viz/gate-de-retiro.md
 - docs/decisiones/fuente-de-verdad-del-diagrama.md
+- tests/test_matriz_cobertura_spec2viz.py
 task_type: task.docs
 inherits_from: []
 inherit_acceptance_context: false
@@ -33,6 +34,7 @@ atoms:
 - atom-specir-reemplaza-a-spec2viz-y-cubre-todas-sus-funciones
 - atom-el-vocabulario-visual-y-el-resolvedor-de-vistas-ya-viven-en-sldb
 - atom-entidad-aparición-proyección-y-notación-son-cosas-distintas
+- atom-propuesta-pendiente-de-jp-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al
 from_drawer: desk/drawer/tasks/task-ir07-matriz-de-cobertura-de-spec2viz-para-su-retiro.md
 ---
 
@@ -76,6 +78,9 @@ Fuera: migrar o implementar cualquier fila; extractores de otras tecnologías; a
 _Outline the expected implementation route or affected surface._
 
 Fuentes: spec2viz/spec2viz/cli.py y los módulos del paquete; spec2viz/tests/ como definición de paridad; el plan absorber-spec2viz-y-modelos-ui de SLDB para lo que ya vive en SLDB. La matriz se escribe en el repo de specIR. Cada fila o grupo de filas se convierte después en una tarea de migración propia; esta tarea no migra nada. Propiedad de archivos compartidos: esta tarea crea docs/spec2viz/matriz-de-cobertura.md con todas las filas, su modo y su condición de retiro, sin evidencia de cumplimiento; la tarea final IR13 la actualiza después, añadiendo por fila la prueba que acredita la cobertura, una vez cerradas IR13a, IR13b, IR13c e IR13d.
+Precisiones (preflight): revisión inventariada de spec2viz = commit 2de1056 (versión 0.2.0), cuya ayuda de CLI coincide con spec2viz/cli.py. Plan de SLDB = sldb/desk/drawer/plans/absorber-spec2viz-y-modelos-ui/ (alcance.md, brief.md, decisiones.md). Tareas de sldb que migran: D1 task-migrar-specsync-de-spec2viz-a-sldb-api-notations-junto-a-notationsync-y-palettesync-d1-b1-cierra-lo, D2 task-migrar-a-sldb-el-generador-de-spec-de-componentes-desde-un-grafo-y-desde-el-ast-de-python-d2-b4, D3 task-migrar-a-sldb-los-modelos-de-spec-por-tipo-de-diagrama-de-spec2viz-con-carga-y-validación-junto-a-sp, D4 task-emparejamiento-de-átomos-con-elementos-de-diagrama-explícito-y-difuso-en-sldb-api-matching-d4 (espejos task-espejo-sldb-* en este desk). Universo de repos para consumidores y specs existentes: los repos con .git bajo SLDB_1 (IR, deskops, pron, scion, sldb, spec2viz, UIs/graph_ui; sldb-runtime y deskops-runtime se auditan por su repo de origen) y todo store.yaml y store_index.yaml bajo SLDB_1. Atom de la decisión: se crea con deskops add atom en desk/atoms de este repo, five_wh_one_plus how, se añade a atoms de esta tarea, y como AtomDoc no tiene campo de estado, su título y su respuesta dicen que es propuesta pendiente de JP. El gate de retiro como lista comprobable vive en la matriz; docs/spec2viz/gate-de-retiro.md fija el procedimiento. Prueba de completitud: tests/test_matriz_cobertura_spec2viz.py.
+
+Precisiones (bundle): la decisión del YAML es del dueño: esta tarea deja una recomendación con alternativas, nunca la marca aceptada; G7 del gate queda abierto hasta que JP decida. El gate solo se redacta: ningún ítem ni fila se marca cumplido (lo evalúa IR13). El atom de la propuesta ya existe y no se recrea; se edita solo cuando JP decida. docs/spec2viz/gate-de-retiro.md ya existe y se conserva como procedimiento.
 
 ## Validation
 

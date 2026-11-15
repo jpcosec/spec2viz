@@ -1,0 +1,107 @@
+{
+  "key": "task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro/bundle",
+  "input_sha256": "a3771c8ef9003eb721552fa539c783ba1653cbfeae003758a3d33b3bb8c60e2e",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261115-215747/context-review/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro/bundle/a3771c8ef9003eb721552fa539c783ba1653cbfeae003758a3d33b3bb8c60e2e/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro.md",
+      "sha256": "ddd81d832fd4d1b7ebcce64b1d03f0efd879a5addd111e866dc09d3a4810c38a",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/phase.md",
+      "sha256": "cc7f0b52d4153679b69fa0dccee57ec4ac915602a6dbd8d2ff226764c90a2e5f",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/execution.md",
+      "sha256": "a16c7c317f4eec9ce8659464625ae18b5fe94d790e3fdd3755296dcc51898bdc",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/testing.md",
+      "sha256": "e5b616e2d90b009c2cbac612d281727dbb0f13ad23fdd62a5dd8a6dbbb08aca6",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/closeout.md",
+      "sha256": "b8eed83052f326b72b3a33f4523e8f70068c7eb76bd270691425519019ca88c1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md",
+      "sha256": "29cff042e91d7b973c448f91c31ae71409e44b054119b1471d18797c23a34d8e",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md",
+      "sha256": "1e506d60129a5e8581506f1ac4b58aef645417948a7e2da697625943afff1db0",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-specir-reemplaza-a-spec2viz-y-cubre-todas-sus-funciones.md",
+      "sha256": "3099bda4a2859795482fc5c847ddbd34f48d6c714d3b3c6629c46628b588fd03",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-el-vocabulario-visual-y-el-resolvedor-de-vistas-ya-viven-en-sldb.md",
+      "sha256": "9912e4c0539e907ef5cb2ced8705b938763773eab5c4e788e289bc766719b14e",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-entidad-aparición-proyección-y-notación-son-cosas-distintas.md",
+      "sha256": "4131eda71854fb1e216e61fb00b6bad67ea943c7adeb94db4c5c073b95588243",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-propuesta-pendiente-de-jp-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al.md",
+      "sha256": "b96d38ccb7cbe0a88054c94bb27126e5b35cc8c35c75f523c4bdca149e043cff",
+      "projection": "whole_file"
+    },
+    {
+      "path": "docs/spec2viz/matriz-de-cobertura.md",
+      "sha256": "60cb6de811a1c387b7bbdf603f529874acaa1c9647ce8f49fddc4318d8dd7161",
+      "projection": "whole_file"
+    },
+    {
+      "path": "docs/spec2viz/gate-de-retiro.md",
+      "sha256": "878bdb4d6296b9c097150b1bada0db9ab8b6b132db3a78c1fa557d7bf58f4e45",
+      "projection": "whole_file"
+    },
+    {
+      "path": "docs/decisiones/fuente-de-verdad-del-diagrama.md",
+      "sha256": "360d0580d3387f37b20c33305ec272d31212dbe66eb330d8ff34a4d506fa32d5",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/test_matriz_cobertura_spec2viz.py",
+      "sha256": "5ad2775a5ba0298fd5cb9210d92f6f6ffc40e65a37700cc76e330872a3474a2c",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-15T21:57:47.345050+00:00",
+  "finished": "2026-11-15T21:58:06.281246+00:00"
+}
