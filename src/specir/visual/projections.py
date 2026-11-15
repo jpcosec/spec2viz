@@ -42,11 +42,9 @@ from sldb.api.notations import (
 
 from specir.visual.compilers import compile_ir
 from specir.visual.exceptions import CompileError
-from specir.visual.ir import ComponentEdge, ComponentIR, ComponentNode, StateIR, StateNode, Transition
+from specir.visual.ir import ANY_STATE, ComponentEdge, ComponentIR, ComponentNode, StateIR, StateNode, Transition
 from specir.visual.spec_models import ComponentDiagram, validate_spec
 
-#: The `from_` of a transition whose source state the graph does not name.
-ANY_STATE = "*"
 #: The relation D2 nests (`contains: [...]`) instead of drawing.
 CONTAINS = "contains"
 DOCUMENT = "sldb://document/"

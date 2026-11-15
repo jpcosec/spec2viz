@@ -155,6 +155,12 @@ class StateNode:
     contains: list[str] | None = None
 
 
+#: The `from_` of a transition whose source state is not named (specIR's state projection, IR11:
+#: the graph does not say which state an operation leaves). The renderers draw it as one pseudostate
+#: labelled `*` that is not the initial state (IR12).
+ANY_STATE = "*"
+
+
 @dataclass
 class Transition:
     from_: str
@@ -293,6 +299,7 @@ __all__ = [
     "SequenceIR",
     "StateNode",
     "Transition",
+    "ANY_STATE",
     "StateIR",
     "ComponentNode",
     "ComponentEdge",

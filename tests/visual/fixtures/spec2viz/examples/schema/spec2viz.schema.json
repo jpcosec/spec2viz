@@ -1,0 +1,2284 @@
+{
+  "$defs": {
+    "ActivityData": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "description": "Identifier of the first step in the activity flow.",
+          "title": "Start",
+          "type": "string"
+        },
+        "steps": {
+          "additionalProperties": {
+            "$ref": "#/$defs/StepModel"
+          },
+          "description": "All activity steps keyed by identifier.",
+          "title": "Steps",
+          "type": "object"
+        },
+        "end": {
+          "description": "Identifier of the terminal step in the activity flow.",
+          "title": "End",
+          "type": "string"
+        },
+        "groups": {
+          "additionalProperties": {
+            "$ref": "#/$defs/GroupModel"
+          },
+          "description": "Optional groups keyed by id. Each group becomes a collapsed subProcess in the BPMN renderer; a step joins one with its `group` field.",
+          "title": "Groups",
+          "type": "object"
+        }
+      },
+      "required": [
+        "start",
+        "steps",
+        "end"
+      ],
+      "title": "ActivityData",
+      "type": "object"
+    },
+    "ActivityDiagram": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Stable identifier for the diagram specification.",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "description": "Human-readable title shown in rendered output.",
+          "title": "Title",
+          "type": "string"
+        },
+        "type": {
+          "const": "activity",
+          "default": "activity",
+          "description": "Discriminator for activity diagram specs.",
+          "title": "Type",
+          "type": "string"
+        },
+        "version": {
+          "description": "Schema or document version for the specification.",
+          "title": "Version",
+          "type": "string"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Metadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional authorship and descriptive metadata for the spec."
+        },
+        "style": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Style"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional presentation hints for renderers."
+        },
+        "data": {
+          "$ref": "#/$defs/ActivityData",
+          "description": "Activity-specific steps and control flow."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "version",
+        "data"
+      ],
+      "title": "ActivityDiagram",
+      "type": "object"
+    },
+    "ArtifactModel": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional display name for the deployed artifact.",
+          "title": "Label"
+        },
+        "kind": {
+          "default": "component",
+          "description": "Semantic artifact kind used in rendering.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
+        }
+      },
+      "title": "ArtifactModel",
+      "type": "object"
+    },
+    "ClassAttribute": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_?!-]*$",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.\\[\\], ?|<>-]*$",
+          "title": "Type",
+          "type": "string"
+        },
+        "visibility": {
+          "default": "public",
+          "enum": [
+            "public",
+            "private",
+            "protected",
+            "package"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "static": {
+          "default": false,
+          "title": "Static",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "title": "ClassAttribute",
+      "type": "object"
+    },
+    "ClassData": {
+      "additionalProperties": false,
+      "properties": {
+        "direction": {
+          "default": "TB",
+          "enum": [
+            "TB",
+            "LR"
+          ],
+          "title": "Direction",
+          "type": "string"
+        },
+        "classes": {
+          "minProperties": 1,
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_]*$": {
+              "$ref": "#/$defs/ClassDefinition"
+            }
+          },
+          "title": "Classes",
+          "type": "object"
+        },
+        "relations": {
+          "items": {
+            "$ref": "#/$defs/ClassRelation"
+          },
+          "title": "Relations",
+          "type": "array"
+        },
+        "packages": {
+          "description": "Optional UML packages. When a spec declares packages, every class belongs to exactly one package (an orphan class is an error); packages nest through `contains`.",
+          "patternProperties": {
+            "^[A-Za-z_][A-Za-z0-9_]*$": {
+              "$ref": "#/$defs/ClassPackage"
+            }
+          },
+          "title": "Packages",
+          "type": "object"
+        }
+      },
+      "required": [
+        "classes"
+      ],
+      "title": "ClassData",
+      "type": "object"
+    },
+    "ClassDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[^\\r\\n{}\\\\\"]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "kind": {
+          "default": "class",
+          "enum": [
+            "class",
+            "interface",
+            "abstract",
+            "record",
+            "protocol",
+            "enum"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "attributes": {
+          "items": {
+            "$ref": "#/$defs/ClassAttribute"
+          },
+          "title": "Attributes",
+          "type": "array"
+        },
+        "methods": {
+          "items": {
+            "$ref": "#/$defs/ClassMethod"
+          },
+          "title": "Methods",
+          "type": "array"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
+        }
+      },
+      "title": "ClassDefinition",
+      "type": "object"
+    },
+    "ClassDiagram": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Stable identifier for the diagram specification.",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "description": "Human-readable title shown in rendered output.",
+          "title": "Title",
+          "type": "string"
+        },
+        "type": {
+          "const": "class",
+          "default": "class",
+          "title": "Type",
+          "type": "string"
+        },
+        "version": {
+          "description": "Schema or document version for the specification.",
+          "title": "Version",
+          "type": "string"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Metadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional authorship and descriptive metadata for the spec."
+        },
+        "style": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Style"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional presentation hints for renderers."
+        },
+        "data": {
+          "$ref": "#/$defs/ClassData"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "version",
+        "data"
+      ],
+      "title": "ClassDiagram",
+      "type": "object"
+    },
+    "ClassMethod": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_?!-]*$",
+          "title": "Name",
+          "type": "string"
+        },
+        "parameters": {
+          "items": {
+            "$ref": "#/$defs/ClassParameter"
+          },
+          "title": "Parameters",
+          "type": "array"
+        },
+        "returns": {
+          "default": "void",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.\\[\\], ?|<>-]*$",
+          "title": "Returns",
+          "type": "string"
+        },
+        "visibility": {
+          "default": "public",
+          "enum": [
+            "public",
+            "private",
+            "protected",
+            "package"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "abstract": {
+          "default": false,
+          "title": "Abstract",
+          "type": "boolean"
+        },
+        "static": {
+          "default": false,
+          "title": "Static",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "ClassMethod",
+      "type": "object"
+    },
+    "ClassPackage": {
+      "additionalProperties": false,
+      "description": "A UML package: groups classes and other packages (nesting at any depth).",
+      "properties": {
+        "label": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[^\\r\\n{}\\\\\"]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "kind": {
+          "default": "package",
+          "description": "Semantic kind of the package (a domain, a layer...); `style.kinds` styles it by this kind, with the same precedence as any element.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "contains": {
+          "description": "Class and package identifiers inside this package. Each class and each package has at most one parent package, without cycles.",
+          "items": {
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+            "type": "string"
+          },
+          "title": "Contains",
+          "type": "array"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "atoms": {
+          "description": "Optional atom ids that explain this package.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs this package points at.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
+        }
+      },
+      "title": "ClassPackage",
+      "type": "object"
+    },
+    "ClassParameter": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_?!-]*$",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.\\[\\], ?|<>-]*$",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "title": "ClassParameter",
+      "type": "object"
+    },
+    "ClassRelation": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+          "title": "To",
+          "type": "string"
+        },
+        "relation": {
+          "enum": [
+            "inheritance",
+            "realization",
+            "composition",
+            "aggregation",
+            "association",
+            "dependency"
+          ],
+          "title": "Relation",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "^[^\\r\\n{}\\\\\"]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "from_multiplicity": {
+          "anyOf": [
+            {
+              "pattern": "^(?:\\*|[0-9]+(?:\\.\\.(?:[0-9]+|\\*))?)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "From Multiplicity"
+        },
+        "to_multiplicity": {
+          "anyOf": [
+            {
+              "pattern": "^(?:\\*|[0-9]+(?:\\.\\.(?:[0-9]+|\\*))?)$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "To Multiplicity"
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "relation"
+      ],
+      "title": "ClassRelation",
+      "type": "object"
+    },
+    "ComponentData": {
+      "additionalProperties": false,
+      "properties": {
+        "nodes": {
+          "additionalProperties": {
+            "$ref": "#/$defs/NodeModel"
+          },
+          "description": "Component nodes keyed by identifier.",
+          "title": "Nodes",
+          "type": "object"
+        },
+        "edges": {
+          "description": "Relationships between the declared component nodes.",
+          "items": {
+            "$ref": "#/$defs/EdgeModel"
+          },
+          "title": "Edges",
+          "type": "array"
+        }
+      },
+      "required": [
+        "nodes"
+      ],
+      "title": "ComponentData",
+      "type": "object"
+    },
+    "ComponentDiagram": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Stable identifier for the diagram specification.",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "description": "Human-readable title shown in rendered output.",
+          "title": "Title",
+          "type": "string"
+        },
+        "type": {
+          "const": "component",
+          "default": "component",
+          "description": "Discriminator for component diagram specs.",
+          "title": "Type",
+          "type": "string"
+        },
+        "version": {
+          "description": "Schema or document version for the specification.",
+          "title": "Version",
+          "type": "string"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Metadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional authorship and descriptive metadata for the spec."
+        },
+        "style": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Style"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional presentation hints for renderers."
+        },
+        "data": {
+          "$ref": "#/$defs/ComponentData",
+          "description": "Component-specific nodes and relationships."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "version",
+        "data"
+      ],
+      "title": "ComponentDiagram",
+      "type": "object"
+    },
+    "ConnectionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "description": "Source node identifier for the connection.",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "description": "Destination node or artifact identifier for the connection.",
+          "title": "To",
+          "type": "string"
+        },
+        "kind": {
+          "default": "communication",
+          "description": "communication (default): a communication path between two nodes, or between two artifacts as before; deploy: \u00abdeploy\u00bb from an artifact to the node it is deployed on; manifest: \u00abmanifest\u00bb from an artifact to the node or artifact it manifests.",
+          "enum": [
+            "communication",
+            "deploy",
+            "manifest"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "protocol": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional protocol or transport label for the connection.",
+          "title": "Protocol"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional label for the connection; shown with the protocol when both are set.",
+          "title": "Label"
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "title": "ConnectionModel",
+      "type": "object"
+    },
+    "DeploymentData": {
+      "additionalProperties": false,
+      "properties": {
+        "nodes": {
+          "additionalProperties": {
+            "$ref": "#/$defs/DeploymentNodeModel"
+          },
+          "description": "Deployment nodes keyed by identifier.",
+          "title": "Nodes",
+          "type": "object"
+        },
+        "artifacts": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ArtifactModel"
+          },
+          "description": "Deployable artifacts keyed by identifier.",
+          "title": "Artifacts",
+          "type": "object"
+        },
+        "connections": {
+          "description": "Communication paths between nodes (or artifacts) and \u00abdeploy\u00bb/\u00abmanifest\u00bb relations from artifacts.",
+          "items": {
+            "$ref": "#/$defs/ConnectionModel"
+          },
+          "title": "Connections",
+          "type": "array"
+        }
+      },
+      "required": [
+        "nodes"
+      ],
+      "title": "DeploymentData",
+      "type": "object"
+    },
+    "DeploymentDiagram": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Stable identifier for the diagram specification.",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "description": "Human-readable title shown in rendered output.",
+          "title": "Title",
+          "type": "string"
+        },
+        "type": {
+          "const": "deployment",
+          "default": "deployment",
+          "description": "Discriminator for deployment diagram specs.",
+          "title": "Type",
+          "type": "string"
+        },
+        "version": {
+          "description": "Schema or document version for the specification.",
+          "title": "Version",
+          "type": "string"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Metadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional authorship and descriptive metadata for the spec."
+        },
+        "style": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Style"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional presentation hints for renderers."
+        },
+        "data": {
+          "$ref": "#/$defs/DeploymentData",
+          "description": "Deployment-specific nodes, artifacts, and connections."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "version",
+        "data"
+      ],
+      "title": "DeploymentDiagram",
+      "type": "object"
+    },
+    "DeploymentNodeModel": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional display name for the deployment node.",
+          "title": "Label"
+        },
+        "kind": {
+          "default": "server",
+          "description": "Semantic infrastructure kind, such as server or browser.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "contains": {
+          "description": "Artifact or node identifiers hosted within this deployment node. Nodes nest (VPC > subnet > cluster > service): a node has at most one parent and containment has no cycles.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Contains",
+          "type": "array"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
+        }
+      },
+      "title": "DeploymentNodeModel",
+      "type": "object"
+    },
+    "EdgeModel": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "description": "Source component identifier.",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "description": "Destination component identifier.",
+          "title": "To",
+          "type": "string"
+        },
+        "relation": {
+          "default": "uses",
+          "description": "Semantic relationship between the connected components.",
+          "title": "Relation",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional label shown alongside the relationship.",
+          "title": "Label"
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "title": "EdgeModel",
+      "type": "object"
+    },
+    "EnforcementArtifact": {
+      "additionalProperties": false,
+      "description": "Condensed version of the IR for consumption by linters, auditors, and gates.",
+      "properties": {
+        "fingerprint": {
+          "description": "Hash or version identifier to ensure artifact integrity.",
+          "title": "Fingerprint",
+          "type": "string"
+        },
+        "facts": {
+          "description": "List of atomic facts that form the enforcement surface.",
+          "items": {
+            "$ref": "#/$defs/EnforcementFact"
+          },
+          "title": "Facts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "fingerprint",
+        "facts"
+      ],
+      "title": "EnforcementArtifact",
+      "type": "object"
+    },
+    "EnforcementFact": {
+      "description": "A single atomic fact extracted for enforcement purposes.",
+      "properties": {
+        "source": {
+          "description": "Subject identifier of the fact.",
+          "title": "Source",
+          "type": "string"
+        },
+        "target": {
+          "description": "Object identifier of the fact.",
+          "title": "Target",
+          "type": "string"
+        },
+        "relation": {
+          "description": "The semantic relation between source and target.",
+          "title": "Relation",
+          "type": "string"
+        },
+        "context": {
+          "additionalProperties": true,
+          "description": "Condensed 6D context or additional attributes.",
+          "title": "Context",
+          "type": "object"
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "relation"
+      ],
+      "title": "EnforcementFact",
+      "type": "object"
+    },
+    "GroupModel": {
+      "properties": {
+        "label": {
+          "description": "Display label of the collapsed subProcess that represents the group.",
+          "title": "Label",
+          "type": "string"
+        },
+        "tone": {
+          "anyOf": [
+            {
+              "enum": [
+                "success",
+                "warning",
+                "danger",
+                "info",
+                "neutral",
+                "rule1",
+                "rule2",
+                "rule3",
+                "rule4",
+                "rule5"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional BPMN in Color tone for the collapsed subProcess, using the same palette as steps.",
+          "title": "Tone"
+        },
+        "detail": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional long text about the group, shown in the viewer's side panel when the subProcess is selected.",
+          "title": "Detail"
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "title": "GroupModel",
+      "type": "object"
+    },
+    "MatrixComponentModel": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "Stable component identifier used within the matrix hierarchy.",
+          "title": "Name",
+          "type": "string"
+        },
+        "kind": {
+          "default": "core",
+          "description": "Semantic category assigned to the component.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional display name for the component.",
+          "title": "Label"
+        },
+        "stages": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "description": "View-to-stage membership mapping for the component.",
+          "title": "Stages",
+          "type": "object"
+        },
+        "children": {
+          "description": "Nested child components rendered beneath this component.",
+          "items": {
+            "$ref": "#/$defs/MatrixComponentModel"
+          },
+          "title": "Children",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "MatrixComponentModel",
+      "type": "object"
+    },
+    "MatrixData": {
+      "additionalProperties": false,
+      "properties": {
+        "views": {
+          "description": "Matrix views that define the column layout.",
+          "items": {
+            "$ref": "#/$defs/MatrixViewModel"
+          },
+          "title": "Views",
+          "type": "array"
+        },
+        "components": {
+          "description": "Top-level components rendered as rows in the matrix.",
+          "items": {
+            "$ref": "#/$defs/MatrixComponentModel"
+          },
+          "title": "Components",
+          "type": "array"
+        }
+      },
+      "required": [
+        "views",
+        "components"
+      ],
+      "title": "MatrixData",
+      "type": "object"
+    },
+    "MatrixDiagram": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Stable identifier for the diagram specification.",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "description": "Human-readable title shown in rendered output.",
+          "title": "Title",
+          "type": "string"
+        },
+        "type": {
+          "const": "component_view_matrix",
+          "default": "component_view_matrix",
+          "description": "Discriminator for component view matrix specs.",
+          "title": "Type",
+          "type": "string"
+        },
+        "version": {
+          "description": "Schema or document version for the specification.",
+          "title": "Version",
+          "type": "string"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Metadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional authorship and descriptive metadata for the spec."
+        },
+        "style": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Style"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional presentation hints for renderers."
+        },
+        "data": {
+          "$ref": "#/$defs/MatrixData",
+          "description": "Matrix-specific views and component hierarchy."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "version",
+        "data"
+      ],
+      "title": "MatrixDiagram",
+      "type": "object"
+    },
+    "MatrixStageModel": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Stable stage identifier used inside matrix views.",
+          "title": "Id",
+          "type": "string"
+        },
+        "label": {
+          "description": "Display label rendered for the stage column.",
+          "title": "Label",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "title": "MatrixStageModel",
+      "type": "object"
+    },
+    "MatrixViewModel": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Stable identifier for the matrix view.",
+          "title": "Id",
+          "type": "string"
+        },
+        "label": {
+          "description": "Display label rendered for the view.",
+          "title": "Label",
+          "type": "string"
+        },
+        "stages": {
+          "description": "Ordered stages shown within the view.",
+          "items": {
+            "$ref": "#/$defs/MatrixStageModel"
+          },
+          "title": "Stages",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "stages"
+      ],
+      "title": "MatrixViewModel",
+      "type": "object"
+    },
+    "MessageModel": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "description": "Participant id that sends the message.",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "description": "Participant id that receives the message.",
+          "title": "To",
+          "type": "string"
+        },
+        "message": {
+          "description": "Label displayed on the message arrow.",
+          "title": "Message",
+          "type": "string"
+        },
+        "kind": {
+          "default": "sync",
+          "description": "Message interaction type, such as sync or async.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional condition that qualifies when the message is sent.",
+          "title": "Condition"
+        },
+        "group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional group label for visually related messages.",
+          "title": "Group"
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "message"
+      ],
+      "title": "MessageModel",
+      "type": "object"
+    },
+    "Metadata": {
+      "additionalProperties": false,
+      "description": "Authorship and description, plus the project's own annotations as ``x-*`` keys.\n\n``metadata`` is the only place a project may add keys of its own, and only with the ``x-`` prefix\n(``x-fuentes``, ``x-estado``): they are kept as written under ``extensions``. Any other unknown key is\nan error with its path, like everywhere else in a spec (a typo there is caught, not silently kept).",
+      "properties": {
+        "author": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Name of the person or team responsible for the diagram spec.",
+          "title": "Author"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Free-form summary that explains the intent of the diagram.",
+          "title": "Description"
+        },
+        "preguntas_abiertas": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Open questions about the diagram. A single string is taken as a one-item list. The bpmn viewer shows them under the description.",
+          "title": "Preguntas Abiertas"
+        },
+        "legend": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Label per colour in the bpmn viewer legend, keyed by tone (`success`, `rule2`, `gateway`, ...); a tone without a label keeps its generic Spanish one.",
+          "title": "Legend"
+        },
+        "extensions": {
+          "additionalProperties": true,
+          "description": "Project annotations: every `metadata` key that starts with `x-`, kept as written (renderers ignore them). Any other unknown key under `metadata` is an error.",
+          "title": "Extensions",
+          "type": "object"
+        }
+      },
+      "title": "Metadata",
+      "type": "object"
+    },
+    "NodeModel": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional display name for the component node.",
+          "title": "Label"
+        },
+        "kind": {
+          "default": "core",
+          "description": "Semantic category for the component.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "contains": {
+          "description": "Identifiers of nested components contained by this node.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Contains",
+          "type": "array"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
+        },
+        "href": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional URL the node opens when clicked; the mermaid renderer emits it as a `click` line.",
+          "title": "Href"
+        }
+      },
+      "title": "NodeModel",
+      "type": "object"
+    },
+    "ParticipantModel": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Unique participant identifier referenced by messages.",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "default": "component",
+          "description": "Semantic participant kind used for styling or grouping.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "ParticipantModel",
+      "type": "object"
+    },
+    "ReflectionDiagram": {
+      "additionalProperties": false,
+      "description": "Diagram type specifically for architectural reflection and enforcement.",
+      "properties": {
+        "id": {
+          "description": "Stable identifier for the diagram specification.",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "description": "Human-readable title shown in rendered output.",
+          "title": "Title",
+          "type": "string"
+        },
+        "type": {
+          "const": "reflection",
+          "default": "reflection",
+          "description": "Discriminator for reflection diagram specs.",
+          "title": "Type",
+          "type": "string"
+        },
+        "version": {
+          "description": "Schema or document version for the specification.",
+          "title": "Version",
+          "type": "string"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Metadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional authorship and descriptive metadata for the spec."
+        },
+        "style": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Style"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional presentation hints for renderers."
+        },
+        "data": {
+          "$ref": "#/$defs/ReflectionIR",
+          "description": "The core semantic IR containing nodes and edges."
+        },
+        "enforcement": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EnforcementArtifact"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional condensed artifact for inward architectural enforcement."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "version",
+        "data"
+      ],
+      "title": "ReflectionDiagram",
+      "type": "object"
+    },
+    "ReflectionEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "description": "Source node identifier.",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "description": "Target node identifier.",
+          "title": "To",
+          "type": "string"
+        },
+        "relation": {
+          "default": "relates",
+          "description": "Semantic relationship type (e.g., depends_on, inherits).",
+          "title": "Relation",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional label shown alongside the relationship.",
+          "title": "Label"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SemanticMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional 6D metadata for the edge."
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "title": "ReflectionEdge",
+      "type": "object"
+    },
+    "ReflectionIR": {
+      "additionalProperties": false,
+      "description": "Semantic Intermediate Representation for reflection and enforcement.",
+      "properties": {
+        "nodes": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ReflectionNode"
+          },
+          "description": "Reflection nodes keyed by their stable identifier.",
+          "title": "Nodes",
+          "type": "object"
+        },
+        "edges": {
+          "description": "Relationships between the reflection nodes.",
+          "items": {
+            "$ref": "#/$defs/ReflectionEdge"
+          },
+          "title": "Edges",
+          "type": "array"
+        }
+      },
+      "required": [
+        "nodes"
+      ],
+      "title": "ReflectionIR",
+      "type": "object"
+    },
+    "ReflectionNode": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "default": "core",
+          "description": "Semantic kind of the node (e.g., repository, module).",
+          "title": "Kind",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional display label for the node.",
+          "title": "Label"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SemanticMetadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional 6D metadata for the node."
+        }
+      },
+      "title": "ReflectionNode",
+      "type": "object"
+    },
+    "SemanticMetadata": {
+      "additionalProperties": false,
+      "description": "Metadata supporting the 6D model for cross-ecosystem alignment.",
+      "properties": {
+        "author": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Name of the person or team responsible for the diagram spec.",
+          "title": "Author"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Free-form summary that explains the intent of the diagram.",
+          "title": "Description"
+        },
+        "preguntas_abiertas": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Open questions about the diagram. A single string is taken as a one-item list. The bpmn viewer shows them under the description.",
+          "title": "Preguntas Abiertas"
+        },
+        "legend": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Label per colour in the bpmn viewer legend, keyed by tone (`success`, `rule2`, `gateway`, ...); a tone without a label keeps its generic Spanish one.",
+          "title": "Legend"
+        },
+        "extensions": {
+          "additionalProperties": true,
+          "description": "Project annotations: every `metadata` key that starts with `x-`, kept as written (renderers ignore them). Any other unknown key under `metadata` is an error.",
+          "title": "Extensions",
+          "type": "object"
+        },
+        "who": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Who: Context actor or responsible entity.",
+          "title": "Who"
+        },
+        "what": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "What: The object of the semantic relation.",
+          "title": "What"
+        },
+        "where": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Where: Topology or persistence context.",
+          "title": "Where"
+        },
+        "when": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "When: Temporal or phase context.",
+          "title": "When"
+        },
+        "how": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "How: Mechanical or technical context.",
+          "title": "How"
+        },
+        "why": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Why: Rationale or business rule.",
+          "title": "Why"
+        }
+      },
+      "title": "SemanticMetadata",
+      "type": "object"
+    },
+    "SequenceData": {
+      "additionalProperties": false,
+      "properties": {
+        "participants": {
+          "description": "Ordered participants that appear across the sequence diagram.",
+          "items": {
+            "$ref": "#/$defs/ParticipantModel"
+          },
+          "title": "Participants",
+          "type": "array"
+        },
+        "messages": {
+          "description": "Ordered interactions exchanged between participants.",
+          "items": {
+            "$ref": "#/$defs/MessageModel"
+          },
+          "title": "Messages",
+          "type": "array"
+        }
+      },
+      "required": [
+        "participants",
+        "messages"
+      ],
+      "title": "SequenceData",
+      "type": "object"
+    },
+    "SequenceDiagram": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Stable identifier for the diagram specification.",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "description": "Human-readable title shown in rendered output.",
+          "title": "Title",
+          "type": "string"
+        },
+        "type": {
+          "const": "sequence",
+          "default": "sequence",
+          "description": "Discriminator for sequence diagram specs.",
+          "title": "Type",
+          "type": "string"
+        },
+        "version": {
+          "description": "Schema or document version for the specification.",
+          "title": "Version",
+          "type": "string"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Metadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional authorship and descriptive metadata for the spec."
+        },
+        "style": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Style"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional presentation hints for renderers."
+        },
+        "data": {
+          "$ref": "#/$defs/SequenceData",
+          "description": "Sequence-specific participants and messages."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "version",
+        "data"
+      ],
+      "title": "SequenceDiagram",
+      "type": "object"
+    },
+    "StateData": {
+      "additionalProperties": false,
+      "properties": {
+        "entity": {
+          "description": "Name of the entity whose lifecycle is being modeled.",
+          "title": "Entity",
+          "type": "string"
+        },
+        "initial": {
+          "description": "Identifier of the initial state.",
+          "title": "Initial",
+          "type": "string"
+        },
+        "states": {
+          "description": "All states that can appear in the lifecycle.",
+          "items": {
+            "$ref": "#/$defs/StateModel"
+          },
+          "title": "States",
+          "type": "array"
+        },
+        "transitions": {
+          "description": "Transitions connecting the defined states.",
+          "items": {
+            "$ref": "#/$defs/TransitionModel"
+          },
+          "title": "Transitions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "entity",
+        "initial",
+        "states",
+        "transitions"
+      ],
+      "title": "StateData",
+      "type": "object"
+    },
+    "StateDiagram": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Stable identifier for the diagram specification.",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "description": "Human-readable title shown in rendered output.",
+          "title": "Title",
+          "type": "string"
+        },
+        "type": {
+          "const": "state",
+          "default": "state",
+          "description": "Discriminator for state diagram specs.",
+          "title": "Type",
+          "type": "string"
+        },
+        "version": {
+          "description": "Schema or document version for the specification.",
+          "title": "Version",
+          "type": "string"
+        },
+        "metadata": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Metadata"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional authorship and descriptive metadata for the spec."
+        },
+        "style": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Style"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional presentation hints for renderers."
+        },
+        "data": {
+          "$ref": "#/$defs/StateData",
+          "description": "State-specific lifecycle nodes and transitions."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "version",
+        "data"
+      ],
+      "title": "StateDiagram",
+      "type": "object"
+    },
+    "StateModel": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Stable state identifier referenced by transitions.",
+          "title": "Id",
+          "type": "string"
+        },
+        "label": {
+          "description": "Display label rendered for the state.",
+          "title": "Label",
+          "type": "string"
+        },
+        "contains": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional child states for composite (nested) states.",
+          "title": "Contains"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "title": "StateModel",
+      "type": "object"
+    },
+    "StepModel": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "description": "Display label rendered for the activity step.",
+          "title": "Label",
+          "type": "string"
+        },
+        "kind": {
+          "default": "action",
+          "description": "Semantic step type: action (default), decision (branches) or merge (joins branches back into one flow; drawn as a diamond like decision).",
+          "title": "Kind",
+          "type": "string"
+        },
+        "tone": {
+          "anyOf": [
+            {
+              "enum": [
+                "success",
+                "warning",
+                "danger",
+                "info",
+                "neutral",
+                "rule1",
+                "rule2",
+                "rule3",
+                "rule4",
+                "rule5"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional color tone for the BPMN renderer: success, warning, danger, info, neutral, or rule1..rule5 to tint each decision group. A gateway's outgoing flows take its border color.",
+          "title": "Tone"
+        },
+        "detail": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional long text shown in the viewer's side panel; the BPMN box keeps showing only `label`. Other renderers may ignore it.",
+          "title": "Detail"
+        },
+        "group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional group id the step belongs to. The BPMN renderer draws each group as a collapsed subProcess with its own drill-down plane; renderers that do not support groups ignore it.",
+          "title": "Group"
+        },
+        "partition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional swimlane (UML activity partition) the step belongs to, such as Dev, Approver or AWS; renderers draw one lane per partition.",
+          "title": "Partition"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional UML note attached to the step, drawn as a note with a folded corner joined to it.",
+          "title": "Notes"
+        },
+        "next": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Identifier of the next step in the default path.",
+          "title": "Next"
+        },
+        "branches": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Conditional branch labels mapped to destination step identifiers.",
+          "title": "Branches",
+          "type": "object"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
+        },
+        "extensions": {
+          "additionalProperties": true,
+          "description": "Project annotations: every step key that starts with `x-` (`x-veredicto`, `x-marcas`), kept as written (renderers ignore them). Any other unknown key in a step is an error.",
+          "title": "Extensions",
+          "type": "object"
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "title": "StepModel",
+      "type": "object"
+    },
+    "Style": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "default": "default",
+          "description": "Renderer theme name used to style the generated output.",
+          "title": "Theme",
+          "type": "string"
+        },
+        "kinds": {
+          "additionalProperties": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "description": "Style per semantic kind. Neutral keys `fill`, `stroke` (a token of the default palette such as `database-fill`, a `#rrggbb` hex used in both themes, or a `{light, dark}` pair of hex or tokens) and `icon` (a name of the palette's Lucide icon set) apply to every renderer and to graph_ui, below the notation's glyph and above the default palette. A renderer-specific block (such as `plantuml: {background, border, font}`) is read only by that renderer.",
+          "title": "Kinds",
+          "type": "object"
+        }
+      },
+      "title": "Style",
+      "type": "object"
+    },
+    "TransitionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "description": "Source state identifier for the transition.",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "description": "Destination state identifier for the transition.",
+          "title": "To",
+          "type": "string"
+        },
+        "on": {
+          "description": "Event or trigger that causes the transition.",
+          "title": "On",
+          "type": "string"
+        },
+        "guard": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional guard condition that must be true for the transition.",
+          "title": "Guard"
+        },
+        "action": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional action executed during the transition.",
+          "title": "Action"
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "on"
+      ],
+      "title": "TransitionModel",
+      "type": "object"
+    }
+  },
+  "discriminator": {
+    "mapping": {
+      "activity": "#/$defs/ActivityDiagram",
+      "class": "#/$defs/ClassDiagram",
+      "component": "#/$defs/ComponentDiagram",
+      "component_view_matrix": "#/$defs/MatrixDiagram",
+      "deployment": "#/$defs/DeploymentDiagram",
+      "reflection": "#/$defs/ReflectionDiagram",
+      "sequence": "#/$defs/SequenceDiagram",
+      "state": "#/$defs/StateDiagram"
+    },
+    "propertyName": "type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/ClassDiagram"
+    },
+    {
+      "$ref": "#/$defs/SequenceDiagram"
+    },
+    {
+      "$ref": "#/$defs/StateDiagram"
+    },
+    {
+      "$ref": "#/$defs/ComponentDiagram"
+    },
+    {
+      "$ref": "#/$defs/ActivityDiagram"
+    },
+    {
+      "$ref": "#/$defs/DeploymentDiagram"
+    },
+    {
+      "$ref": "#/$defs/MatrixDiagram"
+    },
+    {
+      "$ref": "#/$defs/ReflectionDiagram"
+    }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "$defs": {
+    "MessageModel": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "description": "Participant id that sends the message.",
+          "title": "From",
+          "type": "string"
+        },
+        "to": {
+          "description": "Participant id that receives the message.",
+          "title": "To",
+          "type": "string"
+        },
+        "message": {
+          "description": "Label displayed on the message arrow.",
+          "title": "Message",
+          "type": "string"
+        },
+        "kind": {
+          "default": "sync",
+          "description": "Message interaction type, such as sync or async.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional condition that qualifies when the message is sent.",
+          "title": "Condition"
+        },
+        "group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional group label for visually related messages.",
+          "title": "Group"
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "message"
+      ],
+      "title": "MessageModel",
+      "type": "object"
+    },
+    "Metadata": {
+      "additionalProperties": false,
+      "description": "Authorship and description, plus the project's own annotations as ``x-*`` keys.\n\n``metadata`` is the only place a project may add keys of its own, and only with the ``x-`` prefix\n(``x-fuentes``, ``x-estado``): they are kept as written under ``extensions``. Any other unknown key is\nan error with its path, like everywhere else in a spec (a typo there is caught, not silently kept).",
+      "properties": {
+        "author": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Name of the person or team responsible for the diagram spec.",
+          "title": "Author"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Free-form summary that explains the intent of the diagram.",
+          "title": "Description"
+        },
+        "preguntas_abiertas": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Open questions about the diagram. A single string is taken as a one-item list. The bpmn viewer shows them under the description.",
+          "title": "Preguntas Abiertas"
+        },
+        "legend": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Label per colour in the bpmn viewer legend, keyed by tone (`success`, `rule2`, `gateway`, ...); a tone without a label keeps its generic Spanish one.",
+          "title": "Legend"
+        },
+        "extensions": {
+          "additionalProperties": true,
+          "description": "Project annotations: every `metadata` key that starts with `x-`, kept as written (renderers ignore them). Any other unknown key under `metadata` is an error.",
+          "title": "Extensions",
+          "type": "object"
+        }
+      },
+      "title": "Metadata",
+      "type": "object"
+    },
+    "ParticipantModel": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "Unique participant identifier referenced by messages.",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "default": "component",
+          "description": "Semantic participant kind used for styling or grouping.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "atoms": {
+          "description": "Optional atom ids (desk/atoms) that explain this element; the catalog shows exactly these instead of fuzzy matching.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Atoms",
+          "type": "array"
+        },
+        "refs": {
+          "description": "Optional sldb document refs `Model:name` (or `store:Model:name` for a linked store) this element points at; the catalog resolves and lists them.",
+          "items": {
+            "pattern": "^(?:[A-Za-z0-9][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9_]*:[^\\s:]+$",
+            "type": "string"
+          },
+          "title": "Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "ParticipantModel",
+      "type": "object"
+    },
+    "SequenceData": {
+      "additionalProperties": false,
+      "properties": {
+        "participants": {
+          "description": "Ordered participants that appear across the sequence diagram.",
+          "items": {
+            "$ref": "#/$defs/ParticipantModel"
+          },
+          "title": "Participants",
+          "type": "array"
+        },
+        "messages": {
+          "description": "Ordered interactions exchanged between participants.",
+          "items": {
+            "$ref": "#/$defs/MessageModel"
+          },
+          "title": "Messages",
+          "type": "array"
+        }
+      },
+      "required": [
+        "participants",
+        "messages"
+      ],
+      "title": "SequenceData",
+      "type": "object"
+    },
+    "Style": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "default": "default",
+          "description": "Renderer theme name used to style the generated output.",
+          "title": "Theme",
+          "type": "string"
+        },
+        "kinds": {
+          "additionalProperties": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "description": "Style per semantic kind. Neutral keys `fill`, `stroke` (a token of the default palette such as `database-fill`, a `#rrggbb` hex used in both themes, or a `{light, dark}` pair of hex or tokens) and `icon` (a name of the palette's Lucide icon set) apply to every renderer and to graph_ui, below the notation's glyph and above the default palette. A renderer-specific block (such as `plantuml: {background, border, font}`) is read only by that renderer.",
+          "title": "Kinds",
+          "type": "object"
+        }
+      },
+      "title": "Style",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "Stable identifier for the diagram specification.",
+      "title": "Id",
+      "type": "string"
+    },
+    "title": {
+      "description": "Human-readable title shown in rendered output.",
+      "title": "Title",
+      "type": "string"
+    },
+    "type": {
+      "const": "sequence",
+      "default": "sequence",
+      "description": "Discriminator for sequence diagram specs.",
+      "title": "Type",
+      "type": "string"
+    },
+    "version": {
+      "description": "Schema or document version for the specification.",
+      "title": "Version",
+      "type": "string"
+    },
+    "metadata": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Metadata"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional authorship and descriptive metadata for the spec."
+    },
+    "style": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Style"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional presentation hints for renderers."
+    },
+    "data": {
+      "$ref": "#/$defs/SequenceData",
+      "description": "Sequence-specific participants and messages."
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "version",
+    "data"
+  ],
+  "title": "SequenceDiagram",
+  "type": "object"
+}

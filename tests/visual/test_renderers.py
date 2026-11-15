@@ -1,0 +1,538 @@
+"""Renderers of specIR's visual layer: `tests/test_renderers.py` of spec2viz (revision 2de1056) ported
+case by case, over the same fixtures (`fixtures/spec2viz/`), loading with sldb (`load_spec`, D3) and
+compiling and rendering with specIR. The parity of every renderer over the whole corpus, and the
+drawing of a transition without a source state, are in `test_render_parity.py`."""
+
+import json
+import pytest
+from pathlib import Path
+
+from sldb.api.notations import load_spec as load
+
+from specir.visual.compilers import compile_ir
+from specir.visual.renderers import render
+from specir.visual.renderers.plantuml import PlantUMLRenderer
+from specir.visual.renderers.vega import VegaRenderer
+from specir.visual.renderers.mermaid import MermaidRenderer
+from specir.visual.renderers.d2 import D2Renderer
+from specir.visual.renderers.antonia_html import AntoniaHtmlRenderer
+from specir.visual.renderers.graph_html import GraphRenderer
+from specir.visual.renderers import JsonRenderer
+from specir.visual.exceptions import RenderError
+from specir.visual.ir import DeploymentArtifact, DeploymentConnection, DeploymentIR, DeploymentNode, SequenceIR, MatrixIR
+
+CORPUS = Path(__file__).resolve().parent / "fixtures" / "spec2viz"
+FIXTURES = CORPUS / "tests" / "fixtures"
+EXAMPLES = CORPUS / "examples"
+
+
+def _ir(name):
+    return compile_ir(load(FIXTURES / name))
+
+
+# ── PlantUML ──────────────────────────────────────────────────────────────────
+
+
+def test_sequence_puml():
+    out = PlantUMLRenderer().render(_ir("sequence.create-quotation.yml"))
+    assert "@startuml" in out and "@enduml" in out
+    assert "actor User" in out
+    assert "User -> QuotationFlow" in out
+
+
+def test_state_puml():
+    out = PlantUMLRenderer().render(_ir("state.quotation.yml"))
+    assert "[*] --> browsing" in out
+    assert "select_client" in out
+    assert "all validations passed" in out
+
+
+def test_component_puml():
+    out = PlantUMLRenderer().render(_ir("component.quotation.yml"))
+    assert "@startuml" in out
+    assert "QuotationFlow" in out
+    assert "skinparam component<<core>> BackgroundColor" in out
+    assert 'rectangle "Store" as Store <<boundary>>' in out
+
+
+def test_component_puml_uses_yaml_style_overrides():
+    out = PlantUMLRenderer().render(_ir("component.styled.yml"))
+    assert "skinparam component<<core>> BackgroundColor #112233" in out
+    assert "skinparam component<<core>> BorderColor #445566" in out
+    assert "skinparam component<<core>> FontColor #778899" in out
+
+
+def test_component_puml_nests_children_without_redefining_them():
+    out = PlantUMLRenderer().render(_ir("component.quotation.yml"))
+    assert out.count('rectangle "Store" as Store <<boundary>>') == 1
+    assert out.count('package "QuotationFlow" as QuotationFlow <<core>> {') == 1
+
+
+def test_activity_puml():
+    out = PlantUMLRenderer().render(_ir("activity.validation.yml"))
+    assert "start" in out and "stop" in out
+    assert "Load basket" in out
+    assert "if (" in out
+
+
+def test_activity_complex_puml():
+    out = PlantUMLRenderer().render(_ir("activity.complex.yml"))
+    assert out.count("if (") == 2
+    assert "Load data" in out
+    assert "Save result" in out
+    assert "Show auth error" in out
+    assert "Show data error" in out
+
+
+def test_activity_complex_mermaid():
+    out = MermaidRenderer().render(_ir("activity.complex.yml"))
+    assert out.count("{") == 2
+    assert "Load data" in out
+    assert "Save result" in out
+    assert "Show auth error" in out
+    assert "Show data error" in out
+
+
+def test_deployment_puml():
+    out = PlantUMLRenderer().render(_ir("deployment.runtime.yml"))
+    assert "Browser" in out
+    assert "HTTPS" in out
+
+
+# ── Vega ──────────────────────────────────────────────────────────────────────
+
+
+def test_vega_schema():
+    spec = VegaRenderer().render(_ir("matrix.quotation-view.yml"))
+    assert spec["$schema"].startswith("https://vega.github.io/schema/vega/")
+
+
+def test_vega_data_sections():
+    spec = VegaRenderer().render(_ir("matrix.quotation-view.yml"))
+    names = {d["name"] for d in spec["data"]}
+    assert {"stages", "rows", "spans", "stageBoundaries"} <= names
+
+
+def test_vega_stages():
+    spec = VegaRenderer().render(_ir("matrix.quotation-view.yml"))
+    stages = next(d for d in spec["data"] if d["name"] == "stages")["values"]
+    assert [s["id"] for s in stages] == [
+        "browse",
+        "client",
+        "basket",
+        "validation",
+        "completed",
+    ]
+
+
+def test_vega_spans():
+    spec = VegaRenderer().render(_ir("matrix.quotation-view.yml"))
+    spans = next(d for d in spec["data"] if d["name"] == "spans")["values"]
+    qf = next(s for s in spans if s["component"] == "QuotationFlow")
+    assert qf["start"] == 0 and qf["end"] == 5
+
+
+def test_vega_rows():
+    spec = VegaRenderer().render(_ir("matrix.quotation-view.yml"))
+    rows = next(d for d in spec["data"] if d["name"] == "rows")["values"]
+    ids = [r["id"] for r in rows]
+    assert "QuotationFlow" in ids
+    depths = {r["id"]: r["depth"] for r in rows}
+    assert depths["QuotationFlow"] == 0
+    assert depths["BasketItem"] > depths["Basket"]
+
+
+def test_vega_signals():
+    spec = VegaRenderer().render(_ir("matrix.quotation-view.yml"))
+    names = {s["name"] for s in spec["signals"]}
+    assert {"left", "top", "cellWidth", "rowHeight", "barPadding"} <= names
+
+
+def test_vega_scales():
+    spec = VegaRenderer().render(_ir("matrix.quotation-view.yml"))
+    assert any(s["name"] == "kindColor" for s in spec["scales"])
+
+
+def test_vega_marks_types():
+    spec = VegaRenderer().render(_ir("matrix.quotation-view.yml"))
+    types = {m["type"] for m in spec["marks"]}
+    assert {"text", "rect", "rule"} <= types
+
+
+def test_vega_rejects_wrong_ir():
+    ir = _ir("sequence.create-quotation.yml")
+    with pytest.raises(RenderError):
+        VegaRenderer().render(ir)
+
+
+def test_plantuml_rejects_matrix():
+    ir = _ir("matrix.quotation-view.yml")
+    with pytest.raises(RenderError):
+        PlantUMLRenderer().render(ir)
+
+
+def test_mermaid_rejects_matrix():
+    ir = _ir("matrix.quotation-view.yml")
+    with pytest.raises(RenderError):
+        MermaidRenderer().render(ir)
+
+
+# ── Mermaid ───────────────────────────────────────────────────────────────────
+
+
+def test_mermaid_sequence():
+    out = MermaidRenderer().render(_ir("sequence.create-quotation.yml"))
+    assert "sequenceDiagram" in out
+    assert "User" in out
+
+
+def test_mermaid_state():
+    out = MermaidRenderer().render(_ir("state.quotation.yml"))
+    assert "stateDiagram-v2" in out
+    assert "[*] --> browsing" in out
+
+
+def test_mermaid_component():
+    out = MermaidRenderer().render(_ir("component.quotation.yml"))
+    assert "flowchart TD" in out and "layout: elk" in out
+    assert "QuotationFlow" in out
+
+
+def test_mermaid_activity():
+    out = MermaidRenderer().render(_ir("activity.validation.yml"))
+    assert "flowchart TD" in out
+    assert "Load basket" in out
+
+
+def test_mermaid_deployment():
+    out = MermaidRenderer().render(_ir("deployment.runtime.yml"))
+    assert "flowchart TD" in out and "layout: elk" in out
+    assert "Browser" in out
+    assert "HTTPS" in out
+
+
+# ── D2 / HTML / JSON ──────────────────────────────────────────────────────────
+
+
+def test_d2_sequence():
+    out = D2Renderer().render(_ir("sequence.create-quotation.yml"))
+    assert "direction: right" in out
+    assert "User -> QuotationFlow: open quotation flow" in out
+
+
+def test_d2_state():
+    out = D2Renderer().render(_ir("state.quotation.yml"))
+    assert "browsing -> client_selected: select_client" in out
+
+
+def test_d2_component():
+    out = D2Renderer().render(_ir("component.quotation.yml"))
+    assert 'QuotationFlow: "QuotationFlow"' in out
+    assert 'QuotationFlow.ClientSelection: "ClientSelection"' in out
+
+
+def test_d2_activity():
+    out = D2Renderer().render(_ir("activity.validation.yml"))
+    assert "__start: Start" in out
+    assert "check_validity.shape: diamond" in out
+    assert "__end: End" in out
+
+
+def test_d2_deployment():
+    out = D2Renderer().render(_ir("deployment.runtime.yml"))
+    assert 'browser.quotation_ui: "Quotation UI"' in out
+    # las aristas usan la ruta del contenedor; un id suelto haria que d2 creara otro elemento
+    assert 'browser.quotation_ui -> app_server.quotation_api: "HTTPS"' in out
+
+
+def test_d2_and_mermaid_deployment_without_protocol():
+    ir = DeploymentIR(
+        title="runtime",
+        nodes=[DeploymentNode(id="n1", label="N1", kind="server")],
+        artifacts=[],
+        connections=[DeploymentConnection(from_="a", to="b")],
+    )
+    assert "a -> b" in D2Renderer().render(ir)
+    assert "a --> b" in MermaidRenderer().render(ir)
+
+
+def test_d2_rejects_matrix():
+    with pytest.raises(RenderError):
+        D2Renderer().render(_ir("matrix.quotation-view.yml"))
+
+
+def test_plantuml_sequence_message_condition_and_group():
+    from specir.visual.ir import SequenceIR, Participant, Message
+    ir = SequenceIR(
+        title="Test",
+        participants=[Participant(id="A"), Participant(id="B")],
+        messages=[
+            Message(from_="A", to="B", message="hello", condition="cond1", group="g1"),
+            Message(from_="B", to="A", message="world", condition="cond2", group=None),
+        ],
+    )
+    out = PlantUMLRenderer().render(ir)
+    assert "[cond1]" in out
+    assert "group g1" in out
+    assert "end" in out  # group close
+    assert "[cond2]" in out
+    assert out.count("group g1") == 1  # group appears only once for first message
+
+
+def test_plantuml_state_transition_with_action():
+    from specir.visual.ir import StateIR, StateNode, Transition
+    ir = StateIR(
+        title="Test",
+        entity="Order",
+        initial="open",
+        states=[StateNode(id="open", label="Open"), StateNode(id="closed", label="Closed")],
+        transitions=[Transition(from_="open", to="closed", on="finish", action="doSomething")],
+    )
+    out = PlantUMLRenderer().render(ir)
+    assert " / doSomething" in out
+
+
+def test_plantuml_component_style_kinds_non_dict_plantuml():
+    from specir.visual.ir import ComponentIR, ComponentNode, ComponentEdge
+    ir = ComponentIR(
+        title="Test",
+        nodes=[ComponentNode(id="A", label="A", kind="core")],
+        edges=[],
+        style_kinds={"core": {"plantuml": "not a dict"}},
+    )
+    out = PlantUMLRenderer().render(ir)
+    # Should not crash and should produce valid output
+    assert "@startuml" in out
+
+
+def test_plantuml_activity_broken_chain():
+    from specir.visual.ir import ActivityIR, ActivityStep
+    ir = ActivityIR(
+        title="Test",
+        start="step1",
+        steps=[
+            ActivityStep(id="step1", label="Step 1", kind="action", next="missing"),
+        ],
+        end="end",
+    )
+    out = PlantUMLRenderer().render(ir)
+    assert "@startuml" in out
+    assert "start" in out
+    assert "stop" in out
+    # Should not crash on missing step
+
+
+def test_plantuml_activity_decision_branches():
+    from specir.visual.ir import ActivityIR, ActivityStep
+    ir = ActivityIR(
+        title="Test",
+        start="decide",
+        steps=[
+            ActivityStep(id="decide", label="Decide?", kind="decision", branches={"yes": "yes_step", "no": "no_step"}),
+            ActivityStep(id="yes_step", label="Yes", next="end"),
+            ActivityStep(id="no_step", label="No", next="end"),
+        ],
+        end="end",
+    )
+    out = PlantUMLRenderer().render(ir)
+    assert "if (Decide??) then (yes)" in out or "if (Decide?) then (yes)" in out
+    assert "else (no)" in out
+    assert "endif" in out
+
+
+def test_json_renderer_handles_model_and_plain_dict():
+    model_payload = JsonRenderer().render(compile_ir(load(EXAMPLES / "reflection" / "canonical.yml")))
+    plain_payload = JsonRenderer().render({"ok": True})
+    assert isinstance(model_payload, dict)
+    assert plain_payload == {"ok": True}
+
+
+def test_graph_html_renderer_is_standalone_and_depth_aware():
+    out = GraphRenderer().render(_ir("component.quotation.yml"))
+    assert "Hierarchical Tree" in out
+    assert "https://d3js.org" not in out
+    assert 'data-depth="${depth}"' in out
+    assert "const totalNodes = Object.keys(NODES).length;" in out
+    assert "const DEFAULT_EXPANDED_DEPTH = 2;" in out
+
+
+def test_graph_html_renderer_rejects_wrong_ir():
+    with pytest.raises(RenderError):
+        GraphRenderer().render(_ir("sequence.create-quotation.yml"))
+
+
+# ── Mermaid linter ─────────────────────────────────────────────────
+
+
+def test_mermaid_return_arrow_is_valid_and_lints_clean():
+    from specir.visual.lint_mermaid import lint_mermaid
+
+    out = MermaidRenderer().render(_ir("sequence.create-quotation.yml"))
+    assert "<<--" not in out  # invalid mermaid must never be emitted
+    assert lint_mermaid(out) == []
+
+
+def test_linter_flags_invalid_return_arrow():
+    from specir.visual.lint_mermaid import lint_mermaid
+
+    bad = "sequenceDiagram\n    A<<--B: reply"
+    problems = lint_mermaid(bad)
+    assert any("<<--" in p or "invalid sequence arrow" in p for p in problems)
+
+
+def test_linter_flags_raw_angle_brackets():
+    from specir.visual.lint_mermaid import lint_mermaid
+
+    bad = "sequenceDiagram\n    A->>B: GET path?x=<id>"
+    assert lint_mermaid(bad, check_html=True)
+    assert lint_mermaid(bad, check_html=False) == []
+
+
+def test_render_to_file_sanitizes_mermaid_messages(tmp_path):
+    from specir.visual.render_file import render_to_file
+
+    spec = tmp_path / "s.yml"
+    spec.write_text(
+        'id: s\ntitle: S\ntype: sequence\nversion: "0.1"\n'
+        "data:\n  participants:\n    - id: A\n      kind: actor\n"
+        "    - id: B\n      kind: component\n"
+        "  messages:\n    - from: A\n      to: B\n      message: get <id> now\n"
+    )
+    out = render_to_file(spec, out=tmp_path, renderer="mermaid")
+    text = out.read_text(encoding="utf-8")
+    assert "#lt;id#gt;" in text
+
+
+# ── Dispatch ──────────────────────────────────────────────────────────────────
+
+
+def test_render_dispatch_plantuml():
+    out = render(_ir("sequence.create-quotation.yml"))
+    assert isinstance(out, str) and "@startuml" in out
+
+
+def test_render_dispatch_vega():
+    out = render(_ir("matrix.quotation-view.yml"))
+    assert isinstance(out, dict) and "$schema" in out
+
+
+def test_render_dispatch_override():
+    out = render(_ir("sequence.create-quotation.yml"), renderer="mermaid")
+    assert "sequenceDiagram" in out
+
+
+def test_render_dispatch_unknown_renderer():
+    with pytest.raises(RenderError):
+        render(_ir("sequence.create-quotation.yml"), renderer="nope")
+
+
+def test_render_dispatch_without_default_renderer():
+    class UnknownIR:
+        pass
+
+    with pytest.raises(RenderError):
+        render(UnknownIR())
+
+
+def test_antonia_html_escapes_mermaid_source():
+    """Stereotypes like <<record>> must survive the HTML parser.
+
+    Unescaped, the browser reads `<<record>>` as a bogus tag and drops it,
+    so mermaid receives `<>` from the DOM and renders a syntax error.
+    """
+    ir = compile_ir(load(EXAMPLES / "class" / "runtime.yml"))
+    raw = MermaidRenderer().render(ir)
+    assert "<<record>>" in raw
+
+    html_out = AntoniaHtmlRenderer().render(ir)
+    assert "&lt;&lt;record&gt;&gt;" in html_out
+    assert "<<record>>" not in html_out
+
+
+def test_antonia_html_source_survives_the_dom():
+    """What the browser exposes as textContent must equal the mermaid source."""
+    from html.parser import HTMLParser
+
+    class PreText(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.inside = False
+            self.text = []
+
+        def handle_starttag(self, tag, attrs):
+            if tag == "pre" and dict(attrs).get("class") == "mermaid":
+                self.inside = True
+
+        def handle_endtag(self, tag):
+            if tag == "pre":
+                self.inside = False
+
+        def handle_data(self, data):
+            if self.inside:
+                self.text.append(data)
+
+    ir = compile_ir(load(EXAMPLES / "class" / "runtime.yml"))
+    expected = MermaidRenderer().render(ir)
+
+    parser = PreText()
+    parser.feed(AntoniaHtmlRenderer().render(ir))
+    assert "".join(parser.text).strip() == expected.strip()
+
+
+def test_sequence_consecutive_group_renders_as_one_block():
+    from specir.visual.ir import Participant, Message
+    ir = SequenceIR(
+        title="Test",
+        participants=[Participant(id="A"), Participant(id="B"), Participant(id="C")],
+        messages=[
+            Message(from_="A", to="B", message="one", group="g"),
+            Message(from_="A", to="C", message="two", group="g"),
+            Message(from_="B", to="C", message="three", condition="c"),
+        ],
+    )
+    puml = PlantUMLRenderer().render(ir)
+    assert puml.count("group g") == 1
+    assert puml.count("\nend") == 1
+    mmd = MermaidRenderer().render(ir)
+    assert mmd.count("rect ") == 1
+    assert "Note over A,B: g" in mmd
+    assert mmd.count("    end") == 1
+    assert "three [c]" in mmd
+
+
+def test_mermaid_sequence_escapes_semicolon():
+    from specir.visual.ir import Participant, Message
+    ir = SequenceIR(
+        title="Test",
+        participants=[Participant(id="A"), Participant(id="B")],
+        messages=[Message(from_="A", to="B", message="uno; dos")],
+    )
+    out = MermaidRenderer().render(ir)
+    assert "uno#59; dos" in out
+
+
+def test_mermaid_flowcharts_select_elk_with_orthogonal_curves():
+    out = MermaidRenderer().render(_ir("deployment.runtime.yml"))
+    assert out.startswith("---\nconfig:\n  layout: elk\n  flowchart:\n    curve: linear\n---\nflowchart TD\n")
+
+
+def test_catalog_template_registers_the_elk_layout():
+    from importlib.resources import files
+
+    html = files("specir.visual").joinpath("templates", "default.html").read_text(encoding="utf-8")
+    assert "mermaid.registerLayoutLoaders(elkLayouts)" in html and "layout-elk@0.2.3" in html
+    assert "layout: 'elk'" in html and "curve: 'linear'" in html and "curve: 'basis'" not in html
+    # el inicializador corre en DOMContentLoaded, despues de los modulos que cargan mermaid
+    assert html.index("function initMermaid()") < html.index("initMermaid();\n      await mermaid.run")
+
+
+def test_component_mermaid_click_desde_href(tmp_path):
+    spec = tmp_path / "links.yml"
+    spec.write_text(
+        "id: component.links\ntitle: Links\ntype: component\nversion: '1'\n"
+        "metadata: {author: t, description: d}\n"
+        "data:\n  nodes:\n    a: {label: A, href: /wiki/a/}\n    b: {label: B}\n"
+    )
+    out = MermaidRenderer().render(compile_ir(load(spec)))
+    assert 'click a href "/wiki/a/"' in out
+    assert "click b" not in out

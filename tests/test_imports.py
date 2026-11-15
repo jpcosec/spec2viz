@@ -1,7 +1,9 @@
 """specIR imports SLDB only through its public API (`sldb.api`), and never pron or spec2viz.
 
 Until `sldb.api.notations` exports the diagram spec models of D3, `specir.visual.spec_models` is the
-one module that imports them from `sldb.models.notation.diagram_specs` (and only from there).
+one module that imports them from `sldb.models.notation.diagram_specs` (and only from there). Until it
+exports `resolve_style`, `load_palette` and `NotationError`, `specir.visual.notation_style` is the one
+module that imports them from `sldb.notations` (and only from there).
 
 The one exception is specIR's extension of the MCP server of sldb (`specir.mcp_extension`): it
 is the only module that reaches `sldb.mcp` (the extension contract of `sldb mcp --extension`)
@@ -20,10 +22,18 @@ EXTENSION = PACKAGE / "mcp_extension.py"
 #: does not export yet (asked to sldb's desk); it imports them and nothing else of sldb's internals.
 SPEC_MODELS = PACKAGE / "visual" / "spec_models.py"
 SPEC_MODELS_PACKAGE = "sldb.models.notation.diagram_specs"
+#: The only module allowed to reach sldb's notations package (style resolution, the default palette
+#: and the notation error root), which `sldb.api` does not export yet (asked to sldb's desk).
+NOTATION_STYLE = PACKAGE / "visual" / "notation_style.py"
+NOTATIONS_PACKAGE = "sldb.notations"
 
 
 def is_spec_models(module: str) -> bool:
     return module == SPEC_MODELS_PACKAGE or module.startswith(SPEC_MODELS_PACKAGE + ".")
+
+
+def is_notations(module: str) -> bool:
+    return module == NOTATIONS_PACKAGE or module.startswith(NOTATIONS_PACKAGE + ".")
 
 
 def is_mcp(module: str) -> bool:
@@ -54,6 +64,8 @@ def test_package_imports_only_the_public_sldb_api() -> None:
                 continue
             if path == SPEC_MODELS and is_spec_models(module):
                 continue
+            if path == NOTATION_STYLE and module == NOTATIONS_PACKAGE:
+                continue
             if root in FORBIDDEN or (root == "sldb" and module != "sldb.api" and not module.startswith("sldb.api.")):
                 offending.append(f"{path.relative_to(PACKAGE.parent)}: {module}")
     assert not offending, offending
@@ -82,3 +94,8 @@ def test_specir_has_no_mcp_server_of_its_own() -> None:
 def test_only_spec_models_reaches_the_diagram_spec_models() -> None:
     reaching = {str(path.relative_to(PACKAGE.parent)) for path in sorted(PACKAGE.rglob("*.py")) if any(is_spec_models(m) for m in imported_modules(path))}
     assert reaching == {str(SPEC_MODELS.relative_to(PACKAGE.parent))}, reaching
+
+
+def test_only_notation_style_reaches_sldb_notations() -> None:
+    reaching = {str(path.relative_to(PACKAGE.parent)) for path in sorted(PACKAGE.rglob("*.py")) if any(is_notations(m) for m in imported_modules(path))}
+    assert reaching == {str(NOTATION_STYLE.relative_to(PACKAGE.parent))}, reaching

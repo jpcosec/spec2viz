@@ -4,8 +4,8 @@
   `sldb.api` exports and the notation and palette specs of `sldb.notations`).
 - No class of specIR has the name of a diagram spec model: the eight models (and every model they
   are made of) are sldb's (D3) and `compile_ir` dispatches sldb's classes.
-- spec2viz is imported, under tests/, only by the parity oracle (tests/visual/parity.py); under
-  src/specir/ never (tests/test_imports.py)."""
+- spec2viz is imported, under tests/, only by the parity oracles (tests/visual/parity.py of IR11
+  and tests/visual/render_parity.py of IR12); under src/specir/ never (tests/test_imports.py)."""
 
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ from specir.visual.spec_models import SPEC_MODELS, BaseDiagram, EnforcementArtif
 REPO = Path(__file__).resolve().parents[2]
 PACKAGE = REPO / "src" / "specir"
 TESTS = REPO / "tests"
-ORACLE = TESTS / "visual" / "parity.py"
+ORACLES = {TESTS / "visual" / "parity.py", TESTS / "visual" / "render_parity.py"}
 EIGHT = {"ClassDiagram", "SequenceDiagram", "StateDiagram", "ComponentDiagram", "ActivityDiagram",
          "DeploymentDiagram", "MatrixDiagram", "ReflectionDiagram"}
 
@@ -99,4 +99,4 @@ def test_spec2viz_is_imported_only_by_the_parity_oracle() -> None:
             names = [a.name for a in node.names] if isinstance(node, ast.Import) else [node.module or ""] if isinstance(node, ast.ImportFrom) else []
             if any(n.split(".")[0] == "spec2viz" for n in names):
                 importing.add(path)
-    assert importing == {ORACLE}, importing
+    assert importing == ORACLES, importing

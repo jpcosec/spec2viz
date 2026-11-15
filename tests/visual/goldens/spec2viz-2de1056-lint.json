@@ -1,0 +1,192 @@
+{
+ "bad-return-arrow": {
+  "check_html": [
+   "line 2: invalid sequence arrow '<<--'. Mermaid return arrows are '-->>'. Use kind: return -> '-->>' (dashed, forward).\n    -> A<<--B: bad",
+   "line 2: invalid sequence arrow '<<--'. Valid arrows: ->>, -->>, ->, -->, -x, --x, -), --)."
+  ],
+  "no_html": [
+   "line 2: invalid sequence arrow '<<--'. Mermaid return arrows are '-->>'. Use kind: return -> '-->>' (dashed, forward).\n    -> A<<--B: bad",
+   "line 2: invalid sequence arrow '<<--'. Valid arrows: ->>, -->>, ->, -->, -x, --x, -), --)."
+  ]
+ },
+ "brace-edge-label": {
+  "check_html": [],
+  "no_html": []
+ },
+ "empty-decision": {
+  "check_html": [
+   "line 2: empty decision node label '{}' is not renderable.\n    -> d{}"
+  ],
+  "no_html": [
+   "line 2: empty decision node label '{}' is not renderable.\n    -> d{}"
+  ]
+ },
+ "html-entity-seq": {
+  "check_html": [],
+  "no_html": []
+ },
+ "invalid-return-arrow": {
+  "check_html": [
+   "line 2: invalid sequence arrow '<<--'. Mermaid return arrows are '-->>'. Use kind: return -> '-->>' (dashed, forward).\n    -> A<<--B: reply",
+   "line 2: invalid sequence arrow '<<--'. Valid arrows: ->>, -->>, ->, -->, -x, --x, -), --)."
+  ],
+  "no_html": [
+   "line 2: invalid sequence arrow '<<--'. Mermaid return arrows are '-->>'. Use kind: return -> '-->>' (dashed, forward).\n    -> A<<--B: reply",
+   "line 2: invalid sequence arrow '<<--'. Valid arrows: ->>, -->>, ->, -->, -x, --x, -), --)."
+  ]
+ },
+ "mermaid:docs/architecture/spec2viz/activity-render-error-handling.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:docs/architecture/spec2viz/class-sldb-models.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:docs/architecture/spec2viz/component-architecture.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:docs/architecture/spec2viz/component-exception-hierarchy.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:docs/architecture/spec2viz/component-type-system.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:docs/architecture/spec2viz/sequence-build-pipeline.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:docs/architecture/spec2viz/sequence-render-pipeline.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:docs/architecture/spec2viz/sequence-sync-pipeline.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:docs/architecture/spec2viz/state-diagram-sync-lifecycle.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:docs/architecture/spec2viz/state-diagram-type-lifecycle.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:examples/activity/example.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:examples/activity/validation.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:examples/catalog/leaves/sample-component.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:examples/class/runtime.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:examples/component/example.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:examples/deployment/example.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:examples/fixtures/canonical.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:examples/sequence/example.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:examples/state/example.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/activity.complex.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/activity.groups.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/activity.lanes.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/activity.mepu-decision.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/activity.validation.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/class.packages.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/component.kinds.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/component.quotation.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/component.styled.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/deployment.nested.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/deployment.runtime.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/sequence.create-quotation.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "mermaid:tests/fixtures/state.quotation.yml": {
+  "check_html": [],
+  "no_html": []
+ },
+ "nested-quotes": {
+  "check_html": [],
+  "no_html": []
+ },
+ "paren-edge-label": {
+  "check_html": [],
+  "no_html": []
+ },
+ "quoted-paren-edge": {
+  "check_html": [],
+  "no_html": []
+ },
+ "raw-angle-brackets": {
+  "check_html": [
+   "line 2: raw '<...>' in a label/message is parsed as HTML by mermaid and breaks the diagram. Escape as '&lt;...&gt;' or drop the brackets.\n    -> A->>B: GET path?x=<id>"
+  ],
+  "no_html": []
+ },
+ "sequence-ok": {
+  "check_html": [],
+  "no_html": []
+ },
+ "simple-graph": {
+  "check_html": [],
+  "no_html": []
+ }
+}
