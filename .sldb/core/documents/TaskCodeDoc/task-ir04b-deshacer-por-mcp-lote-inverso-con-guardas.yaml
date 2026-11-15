@@ -1,7 +1,7 @@
 name: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
 path: desk/tasks/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas.md
-source_hash: 7b2a93f9a6e7c1e3528a4c5db664e626fc4a65a6e4c0380de8c5a56ea802fefd
-content_hash: 3ba74bb30db745bb7eda2ad5536796f0b66e41a98864e0a646abce815ac3cb17
+source_hash: 6e846218202225ea0baa7e4cdb83054ed56ca33e43097d743530a90778f9549b
+content_hash: eb4ad72f0d5a2d5224c5696c52426f6a32d136a6161953a2108349aea522c89f
 field_hashes:
   title: 23dd8cf93df143e429a80fd29d18f3c14a879fe858cd7cbac6c844e622e2db61
   id: 505050d1000deb7af48cd481b64d8c527030e85c2415b05f9db1c24765a13a44
@@ -11,13 +11,13 @@ field_hashes:
   current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
   history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   why: 5eb69c288ec7a7ccfc32e501a309594d4f93670ae42bca485a283ed4858623b1
-  goal: dcc1be02a9d70746e99533f464f135a960cb6f7d98aa1ed0801b2a95109fbf93
-  scope: ad8362b50b6ce35d6ab118c7817ed8e202d105ae46f5d9049c780b0216c0fa1f
+  goal: 6d321cb1bddf27c580957846419560a6f158f559a8ed348bd2f54dda65d04e59
+  scope: 406f15b60677e1897dfd4144b924f09116c9dc470b9e29a6abad5cb422684f9a
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 2515623f2a61c78142f418bc1feaf2106e6a3e1d11a87c7b41fde5665c769c48
   pills: cd52265a75a519d9a09b455a9b0e6a8a09f8ebfa0c435314ecdaf50e5a2f12fd
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: e5912d976b77e39f7b840b98ba8ffa04fb27c662b87314c7e35a85fda33f59ae
+  implementation_path: e17fdf57bba78df44694f7f0e415e4a6624055cb0445f69969d2020c4ee43d05
   validation: 633168f9930a0a0eda9ae6b1a061e2a4d30d1b6cbc3e959a1c2aabece0e465af
   done_when: 11cdd5d3c4331c9bb7082141de6372c9473873211e91914061151540b376cf7a
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -33,6 +33,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-15T15:39:12Z'
+  at: '2026-11-15T16:53:19Z'
   authority: generated
   via: save_document_payload

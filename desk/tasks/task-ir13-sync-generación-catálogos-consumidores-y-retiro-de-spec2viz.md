@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-12T03:23:29Z'
+  at: '2026-11-15T16:55:06Z'
   authority: generated
   via: save_document_payload
 id: task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz
@@ -19,7 +19,6 @@ references: []
 depends_on:
 - task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs
 - task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos
-- task-ir13c-notaciones-y-paletas-expuestas-desde-specir
 - task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual
 - task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro
 pills:

@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-12T01:25:19Z'
+  at: '2026-11-15T16:53:35Z'
   authority: generated
   via: save_document_payload
 id: task-ir08-extractor-estático-django-drf-y-sql
@@ -18,18 +18,11 @@ references: []
 depends_on:
 - task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo
 - task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog
+- task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
-files:
-- src/specir/extract/__init__.py
-- src/specir/extract/provenance.py
-- src/specir/extract/django_drf.py
-- src/specir/extract/sql_schema.py
-- tests/extract/test_django_drf.py
-- tests/extract/test_sql_schema.py
-- tests/extract/test_idempotencia.py
-- tests/fixtures/blog_backend/manage.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
@@ -52,20 +45,19 @@ La cadena del blog se puebla a mano en la tarea de tipos de dominio; para trabaj
 
 _Describe the concrete result this task must produce._
 
-Un extractor estático que, a partir de una aplicación Django REST Framework y su esquema SQL, produce documentos y relaciones de los tipos de dominio de specIR, cada uno con su evidencia de origen.
+Un mapeo de dominio que, a partir de los hechos que los readers de sldb extraen de una aplicación Django REST Framework y de su esquema SQL (sldb/code y los readers de la tarea espejo B2), produce documentos y relaciones de los tipos de dominio de specIR, cada uno con su evidencia de origen. specIR no escribe extractores: mapea hechos de sldb a su dominio.
 
 ## Scope
 
 _State what is in scope and what is out of scope._
 
-Dentro: lectura estática (AST y metadatos, sin ejecutar la aplicación) de rutas y vistas, serializers y sus campos, modelos Django con sus relaciones, y tablas, columnas y claves del esquema SQL; producción de operaciones de API, handlers, entidades de dominio, tablas y las relaciones entre ellos; procedencia por nodo y relación con archivo, línea y hash del fragmento fuente, en la taxonomía decidida en la tarea de procedencia; idempotencia: extraer dos veces el mismo código no cambia el store.
-Fuera: frontend; análisis en tiempo de ejecución; reglas de negocio que no se deducen del código, que quedan como desconocidas o marcadas como inferidas; análisis de impacto; cualquier parche al código.
+Dentro: mapeo de los facts de sldb (rutas y vistas, serializers y sus campos, modelos Django y sus relaciones, tablas, columnas y claves del esquema SQL) a operaciones de API, handlers, entidades de dominio, tablas y las relaciones entre ellos; la procedencia por nodo y relación con archivo, línea y hash del fragmento, tomada de las anclas de sldb y traducida a la taxonomía de la tarea de procedencia; idempotencia: mapear dos veces el mismo código no cambia el store. Fuera: leer o analizar código (es de sldb: readers, facts y anclas); frontend; análisis en tiempo de ejecución; reglas de negocio que no se deducen del código, que quedan como desconocidas o marcadas como inferidas; análisis de impacto; cualquier parche al código. Si un reader o un fact no existe en sldb, se pide por el desk de sldb y no se reimplementa en specIR.
 
 ## Implementation Path
 
 _Outline the expected implementation route or affected surface._
 
-Módulo de extracción en el paquete specIR que escribe por la API pública de SLDB con las mismas operaciones validadas que la superficie MCP de escritura; anclas de código de SLDB para ligar cada nodo a su fuente, si la tarea de procedencia lo decide así; fixture: una aplicación Django REST Framework real y pequeña, la del blog de ejemplo, versionada en el repo de specIR.
+Módulo de mapeo en el paquete specIR (specir.extract) que consume solo la API pública de sldb: los facts y anclas de sldb/code sobre el código del fixture, y las operaciones validadas de escritura de sldb (apply_batch) para crear documentos y relaciones. Sin tree-sitter, ast ni parsers propios en specIR. Fixture: una aplicación Django REST Framework real y pequeña, la del blog de ejemplo, versionada en el repo de specIR. Depende de la tarea espejo B2 (readers y facts de TSX, TS y SQL de sldb) y de las tareas de procedencia y de tipos de dominio.
 
 ## Validation
 
@@ -83,4 +75,4 @@ _List the checks required before this task can close._
 
 _Name the observable condition that makes the task complete._
 
-Las pruebas anteriores pasan sobre el fixture y el grafo de backend y datos del blog se obtiene sin poblarlo a mano.
+Las pruebas anteriores pasan sobre el fixture, el grafo de backend y datos del blog se obtiene sin poblarlo a mano y specIR no contiene ningún lector de código propio: solo el mapeo de los facts de sldb a sus tipos de dominio.

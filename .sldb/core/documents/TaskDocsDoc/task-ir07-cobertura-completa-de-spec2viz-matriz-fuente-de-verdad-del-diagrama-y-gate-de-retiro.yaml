@@ -1,7 +1,7 @@
 name: task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro
 path: desk/tasks/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro.md
-source_hash: 4c98fccef026a3f320ae2fb16c27f890761635ea3b4d994ad04deb166dc87b7c
-content_hash: 1b822636cf6a2aaab97e44b64fe107e6a262f5c5f57900c0f2520b9ae696e74e
+source_hash: 3cad37e59c3716feeae86681225b1859b06d5f14abdfde0455dc7ce97acced16
+content_hash: a7b945970051a0753b5375c7b795fe269c4abc2a991a58b0fdd5931a02f8923c
 field_hashes:
   title: ad9be9166eb62125a31fb53ba7ce70f82b256c4a494bcfc2332a80659d094a05
   id: 8874eea45f7fe3bfec9c1cae3ec1c5d20648ac1d6945e6e6821915125e92379e
@@ -12,13 +12,13 @@ field_hashes:
   history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   why: 75163be29ee1f2750377ea58fa60a6d719ba2ebaff078cd8bbb79c6b21c1266c
   goal: 978f6a3f9b9418521cbfda8bc253c7697568fe910879b44ffc477fa239d5ac4d
-  scope: 8f69a88e0dfeb92cb99a463a54d125e84f27daa8bbd04253a4d632b4a8de7be0
+  scope: 7bc1949ee2a7b9f0cb849ab574ccc72809fed042d55080a306e8e1b4df6f93e9
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   depends_on: da57e6df2a39362e12454fd030440cdbd84898b7d046eb88b09afb544597320a
   pills: 6555075013c877b94048b0ff0fc07d705bba3f8cfc6385b74cdd6c8e724c7300
   files: 976fde4ea9e4dfe874594c0ab8ff46b2be0b0baaf6e5e9a121542894dc8492cf
   implementation_path: 51f74e625c19b55b5d0541fbbf9cfe65ed4b070574ab40a85167c5b54e4240f0
-  validation: 36e098624188a5bc9572df97d0777cbdb2ce0bbc1b7ee0d8fff5dc5b801dbd7c
+  validation: da16e193fc22bc1e17e9e185ed4ccc4496296b0535f8bcc0fe1e2ff5580f770c
   done_when: 63225e58f7d8f8fee0ef4f4b688f83be1fb65de7442ebd8c1b9e1c687e322f69
   task_type: 8dbc7ea3fc2d737a841f8f9a89de6dd4bd2ca7fdc77434a53400db8767ba695d
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-12T01:31:27Z'
+  at: '2026-11-15T16:55:12Z'
   authority: generated
   via: save_document_payload

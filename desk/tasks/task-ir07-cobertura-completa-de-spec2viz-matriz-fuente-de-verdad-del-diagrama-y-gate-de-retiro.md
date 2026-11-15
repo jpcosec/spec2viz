@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-12T01:31:27Z'
+  at: '2026-11-15T16:55:12Z'
   authority: generated
   via: save_document_payload
 id: task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro
@@ -54,7 +54,7 @@ Una matriz de cobertura de todas las capacidades de spec2viz, con modo y condici
 
 _State what is in scope and what is out of scope._
 
-Dentro, una fila por cada capacidad de spec2viz, cada una con modo (migrar tal cual; reemplazar por otra arquitectura o experiencia con resultado equivalente; exponer desde specIR lo que ya vive en SLDB) y condición verificable de retiro:
+Dentro, una fila por cada capacidad de spec2viz, cada una con modo (migrar tal cual; reemplazar por otra arquitectura o experiencia con resultado equivalente; usar sldb directamente: lo que ya vive en SLDB se consume por su API, su CLI o sldb serve, sin envoltorio ni reexportación en specIR; migrado a sldb: las piezas de spec2viz que no son visuales ni de dominio, esto es SpecSync, from-graph, generador desde el AST de Python, modelos de spec por tipo de diagrama y emparejamiento de átomos, cuyo código pasa a sldb con sus pruebas portadas y que specIR consume desde allí) y condición verificable de retiro:
 - Modelos de spec por tipo de diagrama: clase, secuencia, estado, componente, actividad, despliegue, matriz, reflexión; carga y validación de specs; export de JSON Schema de specs y de catálogos.
 - Representación intermedia y compiladores por tipo de diagrama.
 - Renderizadores: Mermaid, PlantUML, D2, BPMN y su visor, Vega, árbol, HTML de grafo, antonia-html y salida JSON.
@@ -85,7 +85,8 @@ _List the checks required before this task can close._
 - Todos los módulos de compiladores, renderizadores, linters y generadores del paquete spec2viz aparecen en la matriz.
 - Ninguna fila dice descartado, fuera de alcance o ya implementado sin una prueba citada.
 - Cada fila en modo reemplazar nombra el sustituto y la prueba que demostrará la equivalencia.
-- Cada fila en modo exponer desde SLDB cita la operación de la API pública de SLDB que la respalda.
+- Cada fila en modo usar sldb directamente cita la operación de la API pública de SLDB que la respalda, y no define ningún envoltorio en specIR.
+- Cada fila en modo migrado a sldb cita la tarea de sldb que la migra (SpecSync, generador de spec desde grafo y AST, modelos de spec o emparejamiento de átomos) y las pruebas de spec2viz que se portan a sldb.
 - Cada consumidor inventariado cita el archivo donde importa o invoca spec2viz.
 - Existe un atom con la decisión sobre el YAML de spec frente al grafo, con las alternativas descartadas, la regla para diseño previo a la implementación y el destino de los specs existentes.
 - El gate de retiro está escrito como lista comprobable: toda fila con su condición cumplida; la suite de spec2viz pasa contra specIR o tiene prueba equivalente declarada por fila reemplazada; ningún consumidor importa ni invoca spec2viz; ningún store registra modelos spec2viz.sldb_models.

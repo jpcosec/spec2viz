@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-12T01:25:20Z'
+  at: '2026-11-15T16:53:53Z'
   authority: generated
   via: save_document_payload
 id: task-ir09-extractor-estático-react-tsx-y-contratos-de-api
@@ -18,15 +18,11 @@ references: []
 depends_on:
 - task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo
 - task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog
+- task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
-files:
-- src/specir/extract/react_tsx.py
-- src/specir/extract/api_contracts.py
-- tests/extract/test_react_tsx.py
-- tests/extract/test_api_contracts.py
-- tests/fixtures/blog_frontend/package.json
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
@@ -49,20 +45,19 @@ El problema que motiva specIR es la pérdida de coherencia cuando un cambio atra
 
 _Describe the concrete result this task must produce._
 
-Un extractor estático que, a partir de código React (JSX y TSX) y de los contratos de API disponibles, produce los elementos de interfaz del grafo de specIR y los vincula a las operaciones de backend, con evidencia de origen.
+Un mapeo de dominio que, a partir de los hechos que los readers de sldb extraen de código React (JSX y TSX) y de los contratos de API disponibles, produce los elementos de interfaz del grafo de specIR y los vincula a las operaciones de backend, con evidencia de origen. specIR no escribe extractores: mapea hechos de sldb a su dominio.
 
 ## Scope
 
 _State what is in scope and what is out of scope._
 
-Dentro: lectura estática de componentes y sus propiedades, controles, acciones (handlers de eventos), estados locales declarados y llamadas HTTP; contratos de API disponibles (por ejemplo OpenAPI) para resolver a qué operación corresponde cada llamada; producción de controles, acciones, estados y las relaciones triggers e invokes hacia operaciones de API; evidencia de origen por nodo y relación con archivo, línea y hash; idempotencia.
-Fuera: observación del DOM o de eventos en ejecución; comportamiento dinámico que no se deduce del código, que no se afirma: se marca como inferido o se deja como desconocido; generación o modificación de código de interfaz.
+Dentro: mapeo de los facts de sldb (componentes y propiedades, controles, handlers de eventos, estados locales declarados, llamadas HTTP) a controles, acciones, estados y las relaciones triggers e invokes hacia operaciones de API; resolución de cada llamada contra los contratos de API disponibles (por ejemplo OpenAPI) y contra las operaciones ya presentes en el grafo; evidencia de origen por nodo y relación con archivo, línea y hash, tomada de las anclas de sldb; idempotencia. Fuera: leer o analizar código TSX (es de sldb: readers y facts, tarea espejo B2); observación del DOM o de eventos en ejecución; comportamiento dinámico que no se deduce del código, que no se afirma: se marca como inferido o se deja como desconocido; generación o modificación de código de interfaz. Si un reader o un fact no existe en sldb, se pide por el desk de sldb y no se reimplementa en specIR.
 
 ## Implementation Path
 
 _Outline the expected implementation route or affected surface._
 
-Módulo de extracción en el paquete specIR; el analizador de JSX y TSX se elige en la tarea activa y queda aislado detrás del módulo; los vínculos a backend se resuelven contra las operaciones de API que ya están en el grafo (pobladas a mano o por el extractor de backend); fixture: el frontend React del blog de ejemplo.
+Módulo de mapeo en el paquete specIR (specir.extract) que consume solo la API pública de sldb: los facts y anclas del reader TSX de sldb/code y las operaciones validadas de escritura de sldb. Sin analizador de JSX ni de TSX propio en specIR. Los vínculos a backend se resuelven contra las operaciones de API que ya están en el grafo (pobladas a mano o por el mapeo de backend). Fixture: el frontend React del blog de ejemplo. Depende de la tarea espejo B2.
 
 ## Validation
 
@@ -79,4 +74,4 @@ _List the checks required before this task can close._
 
 _Name the observable condition that makes the task complete._
 
-Las pruebas anteriores pasan sobre el fixture y la mitad de interfaz de la cadena de publicar un post se obtiene sin poblarla a mano.
+Las pruebas anteriores pasan sobre el fixture, la mitad de interfaz de la cadena de publicar un post se obtiene sin poblarla a mano y specIR no contiene ningún analizador de JSX o TSX propio.

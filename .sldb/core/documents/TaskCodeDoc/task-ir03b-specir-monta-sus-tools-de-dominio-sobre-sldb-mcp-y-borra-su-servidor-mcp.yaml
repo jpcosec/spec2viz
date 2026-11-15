@@ -1,0 +1,38 @@
+name: task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp
+path: desk/tasks/task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp.md
+source_hash: c8ebc35d2572dbe37a374a291e3c4a125641a174a8d3de1c7d6d0600c64bd7d4
+content_hash: 3735c44424ff2cfcb9cc743148adc659e58dbf6b5062654e8df464d06e18f357
+field_hashes:
+  title: c957e86889fa46871ac2d28b3b5cce20c8393a880dadb94a464c72ad6a9fb506
+  id: 04499a41d0030e7f7e6a57e0b90bf85a69e1412df6052659978db6cfd5f72187
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 9e7e8be2998f87dfcbb538781d827f202722ef7dad630b93bca343e20f247db8
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: e3e61d5707f50f9c66a15159e8f08d1a5a1ee9d391ea9914ca06a8efed93995c
+  goal: d34c38fc92a11c59e7efbe3c1801f08d1359f34989b8f79015e596648703167a
+  scope: 628db0201f655c8ea634e8846a9044471e5364da1794426d6263eabea83ed871
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 232d0f2e996f2d9d34c0cb0715d742ed943f9c31360ddaf3e6d674ecd0d64b7a
+  pills: cd52265a75a519d9a09b455a9b0e6a8a09f8ebfa0c435314ecdaf50e5a2f12fd
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 7664c79b219e0e6faf3d53d7064c0ca7b25a7142fc47462a4a93ea33ce634b15
+  validation: 598f8dd7834a424a2a1cba00c1bd560f662f6ca3214c13d03e1249a09fa0423c
+  done_when: 573d4065658f3c474ec50b1192ed79cd30c72175168f46036b0867e271d528e3
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 2fd9b97735dcdd6083d7b2290debe927a08654ac300fabf556fc274b2085d738
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-15T16:55:51Z'
+  authority: generated
+  via: save_document_payload

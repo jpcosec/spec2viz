@@ -1,0 +1,38 @@
+name: task-espejo-sldb-sldb-mcp-servidor-mcp-genérico-a
+path: desk/tasks/task-espejo-sldb-sldb-mcp-servidor-mcp-genérico-a.md
+source_hash: a4c7904d5eacf49aab13e14f5013779b70334dc2e9b72ed3782e5cc4a9236fbb
+content_hash: 9dce9c5101f69f993d8e28b5be363b9f78a346a77201ba1ce7c9b98d798d4ef1
+field_hashes:
+  title: 142ee814458a04bcb2f2b4bc36b8467bdf76cd1cb84e80dc78c0e168d898d7df
+  id: 133b9ea20c633bbd8f9d81bc08d680a3a241c78a33a2d160e5fe5a5aa7e093d1
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 9e7e8be2998f87dfcbb538781d827f202722ef7dad630b93bca343e20f247db8
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 8f61b66a0cafecb3283238cdf51e706ae3862ae307bb0a5c6ca0e2b317ed91e9
+  goal: 5702d8a9934e5d2deb11ce1b4096e9b3ffdacae07661bfaabf7b15ac4e871c45
+  scope: 366a4a252e325672e1e46e9a28ad5a9c2c85832a88d3bd7504370fd7ea9cc673
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: eaf2c416512da6fb7175670d0988cd6e7606a601c9fcba378f55e06219ba6a5f
+  validation: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  done_when: 2a387bc92c45be410a0f19c7a88eb117291676379f8960c034106f23159c748b
+  task_type: 5619d24174620ad487a0abcf96f8cf76f2194860f28794d1d441226cd2d613dd
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-15T16:51:04Z'
+  authority: generated
+  via: create_document

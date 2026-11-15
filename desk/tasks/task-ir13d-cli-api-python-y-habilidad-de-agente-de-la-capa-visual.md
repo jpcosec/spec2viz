@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-12T01:31:25Z'
+  at: '2026-11-15T16:54:51Z'
   authority: generated
   via: save_document_payload
 id: task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual
@@ -19,7 +19,6 @@ references: []
 depends_on:
 - task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs
 - task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos
-- task-ir13c-notaciones-y-paletas-expuestas-desde-specir
 - task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md

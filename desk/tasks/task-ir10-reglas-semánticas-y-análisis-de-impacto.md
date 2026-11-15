@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-12T01:25:37Z'
+  at: '2026-11-15T16:54:11Z'
   authority: generated
   via: save_document_payload
 id: task-ir10-reglas-semánticas-y-análisis-de-impacto
@@ -19,16 +19,12 @@ depends_on:
 - task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog
 - task-ir08-extractor-estático-django-drf-y-sql
 - task-ir09-extractor-estático-react-tsx-y-contratos-de-api
+- task-espejo-sldb-graph-path-y-graph-paths-explicados-b3
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
 - desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
-files:
-- src/specir/data/layer_rules.yaml
-- src/specir/impact.py
-- src/specir/mcp/impact_tools.py
-- tests/rules/test_layer_rules.py
-- tests/test_impact.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
@@ -51,20 +47,19 @@ Tener el grafo no basta: el agente necesita que el sistema le diga qué se rompe
 
 _Describe the concrete result this task must produce._
 
-Un conjunto de reglas RuleDoc que detectan brechas entre capas y una operación de análisis de impacto, expuesta por MCP, que devuelve los elementos afectados por un cambio con el camino que lo justifica.
+Un conjunto de reglas RuleDoc de dominio que detectan brechas entre capas, evaluadas con el motor de reglas de sldb, y un análisis de impacto que usa los caminos explicados de sldb (graph_path y graph_paths, tarea espejo B3) y lo expone como tool de dominio sobre sldb mcp, con el camino que justifica cada afectado.
 
 ## Scope
 
 _State what is in scope and what is out of scope._
 
-Dentro: reglas RuleDoc, distribuidas por specIR como documentos, para cadenas rotas interfaz, API, operación, datos: acción sin operación de API, campo de interfaz ausente del serializer, operación sin handler, entidad sin persistencia, política sin representación en la interfaz; cada hallazgo con severidad, regla que lo produce y evidencia; operación de impacto: dado un nodo (campo, endpoint, regla, tabla), los nodos afectados en las demás capas con el camino de relaciones que lo explica y la procedencia de cada tramo; tool MCP de solo lectura para ambas.
-Fuera: proponer parches o cambios de código; aplicar correcciones al grafo; reglas que requieran ejecutar la aplicación.
+Dentro: reglas RuleDoc, distribuidas por specIR como documentos, para cadenas rotas interfaz, API, operación, datos: acción sin operación de API, campo de interfaz ausente del serializer, operación sin handler, entidad sin persistencia, política sin representación en la interfaz; cada hallazgo con severidad, regla que lo produce y evidencia; operación de impacto de dominio: dado un nodo (campo, endpoint, regla, tabla), los nodos afectados en las demás capas, obtenidos con los caminos explicados de sldb, con la procedencia de cada tramo; tool de solo lectura para ambas, registrada como extensión de sldb mcp. Fuera: recorrer el grafo o explicar caminos en specIR (es de sldb, B3); proponer parches o cambios de código; aplicar correcciones al grafo; reglas que requieran ejecutar la aplicación.
 
 ## Implementation Path
 
 _Outline the expected implementation route or affected surface._
 
-Las reglas se escriben en el lenguaje de reglas de SLDB y se evalúan con sus operaciones públicas de reglas; el impacto se calcula con las operaciones públicas de recorrido del grafo de SLDB. Si el lenguaje de reglas no alcanza para alguna brecha, la carencia se resuelve en SLDB, no con lógica paralela en specIR.
+Las reglas se escriben en el lenguaje de reglas de sldb y se evalúan con sus operaciones públicas de reglas; el impacto llama a graph_path y graph_paths de sldb y solo añade el mapeo de dominio (qué tipos cuentan como afectados y cómo se nombran). La tool se registra como extensión de sldb mcp. Si el lenguaje de reglas o el recorrido no alcanzan para alguna brecha, la carencia se resuelve en sldb, no con lógica paralela en specIR. Depende de la tarea espejo B3.
 
 ## Validation
 
@@ -81,4 +76,4 @@ _List the checks required before this task can close._
 
 _Name the observable condition that makes the task complete._
 
-Las pruebas anteriores pasan y un agente puede responder por MCP qué partes de la interfaz afecta un cambio en un campo, un endpoint o una regla del blog.
+Las pruebas anteriores pasan, un agente puede responder por sldb mcp qué partes de la interfaz afecta un cambio en un campo, un endpoint o una regla del blog, y specIR no contiene ningún recorrido de grafo propio.

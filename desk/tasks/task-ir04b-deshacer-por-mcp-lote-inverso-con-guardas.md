@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T15:39:12Z'
+  at: '2026-11-15T16:53:19Z'
   authority: generated
   via: save_document_payload
 id: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
@@ -13,7 +13,9 @@ tags:
 current_node: ritual-execution
 history: []
 references: []
-depends_on: []
+depends_on:
+- task-espejo-sldb-sldb-mcp-servidor-mcp-genérico-a
+- task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
@@ -40,19 +42,19 @@ IR02 decidió (D4) que el deshacer del MCP es un lote inverso con guardas para l
 
 _Describe the concrete result this task must produce._
 
-Una tool MCP undo_changes que deshace los últimos lotes de la sesión reaplicando, con sldb.api.apply_batch, el lote inverso que sldb devolvió al aplicar cada uno. Bloqueada hasta que sldb entregue ese lote inverso (sldb:20261115-123855-suggestion-specir-apply-batch-devuelve-el-lote-inverso-con-guardas-deshacer-en-sldb).
+Una tool MCP undo_changes, montada sobre sldb mcp por el punto de extensión, que deshace los últimos lotes de la sesión reaplicando con sldb.api.apply_batch el lote inverso con guardas que sldb devuelve al aplicar cada uno. Bloqueada hasta que sldb entregue sldb mcp y el lote inverso (tareas espejo de sldb: servidor MCP genérico y lote inverso).
 
 ## Scope
 
 _State what is in scope and what is out of scope._
 
-Dentro: guardar en memoria de la sesión los lotes inversos que devuelve apply_batch; tool undo_changes en niveles 1 y 2 que los reaplica en orden inverso; traducir el rechazo de sldb (ConflictError) a stale nombrando el documento. Fuera: construir lotes inversos, calcular guardas o restaurar estado en specIR (es de sldb, decisión de JP 2026-11-15); deshacer entre sesiones; nivel 3. Si sldb no lo entrega, la tarea no se ejecuta: no hay sustituto en specIR.
+Dentro: la tool undo_changes de dominio sobre sldb mcp, en niveles 1 y 2; reaplicar en orden inverso, con sldb.api.apply_batch, los lotes inversos que sldb devuelve al aplicar cada lote (la pila de la sesión es de sldb mcp); traducir el rechazo de sldb (ConflictError) a stale nombrando el documento. Fuera: construir lotes inversos, calcular guardas o restaurar estado en specIR (es de sldb, decisión de JP 2026-11-15); deshacer entre sesiones; nivel 3. Si sldb no lo entrega, la tarea no se ejecuta: no hay sustituto en specIR.
 
 ## Implementation Path
 
 _Outline the expected implementation route or affected surface._
 
-Esperar a que sldb cierre sldb:20261115-123855-suggestion-specir-apply-batch-devuelve-el-lote-inverso-con-guardas-deshacer-en-sldb. Luego ampliar src/specir/mcp/write_tools.py: apply_changes guarda report.inverse en la pila de la sesión; undo_changes llama apply_batch(inverse). Sin lógica de inversión ni de guardas en specIR.
+Esperar a que cierren las tareas espejo del servidor sldb mcp y del lote inverso de apply_batch. Luego registrar undo_changes como extensión de dominio de sldb mcp (build_server con extensions, o --extension modulo:funcion) en el paquete specIR; apply_changes de sldb ya guarda en la sesión el lote inverso. Sin lógica de inversión ni de guardas en specIR, y sin ampliar el servidor MCP propio de specIR, que IR03b retira.
 
 ## Validation
 

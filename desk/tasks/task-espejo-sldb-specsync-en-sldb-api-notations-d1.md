@@ -1,0 +1,61 @@
+---
+sldb:
+  by: agent
+  at: '2026-11-15T16:51:37Z'
+  authority: generated
+  via: create_document
+id: task-espejo-sldb-specsync-en-sldb-api-notations-d1
+status: draft
+summary: ''
+tags:
+- workspace:desk
+- artifact:task
+current_node: ritual-execution
+history: []
+references: []
+depends_on: []
+pills: []
+files: []
+task_type: task.external
+inherits_from: []
+inherit_acceptance_context: false
+atoms: []
+---
+
+# Espejo sldb: SpecSync en sldb.api.notations (D1)
+
+## Rationale
+
+_Explain why this task exists or the business driver behind it._
+
+Espejo en el desk de IR de una tarea del desk de sldb, para que depends_on la exprese con un id local que deskops resuelve; el trabajo vive en sldb.
+
+## Goal
+
+_Describe the concrete result this task must produce._
+
+Disponer en sldb de la sincronización de specs al store junto a NotationSync y PaletteSync.
+
+## Scope
+
+_State what is in scope and what is out of scope._
+
+Dentro: reflejar el estado de la tarea de sldb task-migrar-specsync-de-spec2viz-a-sldb-api-notations-junto-a-notationsync-y-palettesync-d1-b1-cierra-lo (desk de sldb, repo registrado como sldb). Fuera: cualquier trabajo en IR; el cambio se pide y se cierra en el desk de sldb.
+
+## Implementation Path
+
+_Outline the expected implementation route or affected surface._
+
+Sin implementación en IR. Se cierra cuando la tarea de sldb task-migrar-specsync-de-spec2viz-a-sldb-api-notations-junto-a-notationsync-y-palettesync-d1-b1-cierra-lo está cerrada, con un commit de sldb como evidencia externa.
+
+## Validation
+
+_List the checks required before this task can close._
+
+- 
+
+## Done When
+
+_Name the observable condition that makes the task complete._
+
+La tarea de sldb task-migrar-specsync-de-spec2viz-a-sldb-api-notations-junto-a-notationsync-y-palettesync-d1-b1-cierra-lo está cerrada y integrada en la rama principal de sldb.

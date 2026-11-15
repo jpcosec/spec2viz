@@ -2,11 +2,11 @@ name: TaskExternalDoc
 model_ref: deskops.models:TaskExternalDoc
 path: ''
 documents_index: .sldb/core/documents/TaskExternalDoc.yaml
-sections_index: ''
-model_hash: 90a40a6b0a3bab4365617e806937b296e50add26df0e405666dab1b68d92fe2b
-roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+sections_index: .sldb/runtime/sections/TaskExternalDoc.yaml
+model_hash: c7adaf44e76d453eeed65857b5d176c2cadddeb057628a3c13b80b8d71f12ec4
+roster_hash: a4af3d1c232c3281391e46679ab0b533f97b69899b50b66c264a961e0c4e533b
 contract_hash: 18c9b4f737e2efd59001a6b1d09075cac4eca474b2b89b816d2b4ee631fd1e1c
-documents_count: 0
+documents_count: 8
 version: 1
 canonical: false
 family: null

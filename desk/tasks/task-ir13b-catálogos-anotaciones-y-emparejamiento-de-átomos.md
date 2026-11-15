@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-12T01:25:44Z'
+  at: '2026-11-15T16:54:47Z'
   authority: generated
   via: save_document_payload
 id: task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos
@@ -19,17 +19,12 @@ references: []
 depends_on:
 - task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs
 - task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz
+- task-espejo-sldb-emparejamiento-de-átomos-en-sldb-api-matching-d4
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
 - desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md
-files:
-- src/specir/visual/catalog.py
-- src/specir/visual/catalog_serve.py
-- src/specir/visual/atoms.py
-- tests/visual/test_catalog.py
-- tests/visual/test_catalog_serve.py
-- tests/visual/test_atoms_matching.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
@@ -51,20 +46,19 @@ Parte de la migración final de spec2viz, separada de IR13 para que cada tarea t
 
 _Describe the concrete result this task must produce._
 
-specIR construye, sincroniza, valida y sirve catálogos de diagramas, con anotaciones y con los átomos emparejados a cada elemento, cubriendo lo que hace spec2viz.
+specIR construye, sincroniza, valida y sirve catálogos de diagramas con anotaciones, y empareja átomos con elementos de diagrama usando sldb.api.matching (D4); el catálogo se sirve con sldb serve si alcanza. specIR conserva solo la parte visual del catálogo.
 
 ## Scope
 
 _State what is in scope and what is out of scope._
 
-Dentro: registro de vistas (vistas.yml) y stores jerárquicos de diagramas; construcción del catálogo HTML autocontenido; sincronización del catálogo al store; validación del registro; servidor local con autoguardado de anotaciones; emparejamiento de átomos con elementos de diagrama (explícito y difuso) y cobertura por vista. Cada pieza se migra tal cual o se reemplaza, según la matriz de cobertura.
-Fuera: sincronización de un spec individual; notaciones y paletas; CLI; migración de consumidores.
+Dentro: registro de vistas (vistas.yml) y stores jerárquicos de diagramas; construcción del catálogo HTML autocontenido con los renderers de IR12; sincronización y validación del catálogo; emparejamiento de átomos con elementos de diagrama (explícito y difuso) y cobertura por vista llamando a sldb.api.matching (D4); servicio del catálogo y autoguardado de anotaciones con sldb serve; si sldb serve no alcanza para las anotaciones, se pide por el desk de sldb y solo queda en specIR lo que sea visual. Fuera: implementar el emparejamiento en specIR (se migra a sldb, tarea espejo D4); sincronización de un spec individual; notaciones y paletas, que se usan desde sldb; CLI; migración de consumidores.
 
 ## Implementation Path
 
 _Outline the expected implementation route or affected surface._
 
-Módulos src/specir/visual/catalog.py, catalog_serve.py y atoms.py sobre la sincronización de la tarea IR13a y los renderizadores de la tarea de renderers. Paridad medida portando a tests/visual/ las pruebas de spec2viz de catálogo, rutas de catálogo, vistas resueltas y emparejamiento de átomos.
+Capa delgada en el paquete specIR (specir.visual) sobre la sincronización de IR13a, los renderers de IR12, sldb.api.matching y sldb serve. Paridad medida con pruebas de specIR que comparan con las de spec2viz de catálogo, rutas de catálogo, vistas resueltas y emparejamiento de átomos como oráculo de desarrollo. Depende de la tarea espejo D4.
 
 ## Validation
 
@@ -81,4 +75,4 @@ _List the checks required before this task can close._
 
 _Name the observable condition that makes the task complete._
 
-Las pruebas anteriores pasan y las filas de catálogo y de emparejamiento de átomos de la matriz de cobertura tienen su condición de retiro cumplida.
+Las pruebas anteriores pasan, specIR no define su propio emparejamiento de átomos y las filas de catálogo y de emparejamiento de átomos de la matriz de cobertura tienen su condición de retiro cumplida.
