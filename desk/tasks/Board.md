@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T16:55:43Z'
+  at: '2026-11-15T16:56:30Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -19,7 +19,6 @@ tasks:
 - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
 - desk/tasks/task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs.md
 - desk/tasks/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos.md
-- desk/tasks/task-ir13c-notaciones-y-paletas-expuestas-desde-specir.md
 - desk/tasks/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual.md
 - desk/tasks/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas.md
 - desk/tasks/task-espejo-sldb-sldb-mcp-servidor-mcp-genérico-a.md
@@ -72,7 +71,6 @@ _Generated from the task references above._
 - IR13 Migración de consumidores y gate final de retiro de spec2viz [draft] - Un comprobador del gate de retiro y un acta que demuestran, con evidencia, que toda capacidad de spec2viz está cubierta por specIR y que ningún consumidor importa ni invoca spec2viz.
 - IR13a Sincronización de specs al store y generación de specs [draft] - specIR sincroniza un spec al store y genera specs de componentes usando lo que migra a sldb: SpecSync (D1), el generador desde un grafo o un snapshot y desde el AST de Python (D2, que cubre B4). specIR queda como adaptador de dominio y verifica la paridad con spec2viz; no reimplementa nada de eso.
 - IR13b Catálogos, anotaciones y emparejamiento de átomos [draft] - specIR construye, sincroniza, valida y sirve catálogos de diagramas con anotaciones, y empareja átomos con elementos de diagrama usando sldb.api.matching (D4); el catálogo se sirve con sldb serve si alcanza. specIR conserva solo la parte visual del catálogo.
-- IR13c Notaciones y paletas expuestas desde specIR [draft] - specIR expone las operaciones de notaciones y paletas de spec2viz delegando en la API pública de SLDB, sin redefinir sus modelos.
 - IR13d CLI, API Python y habilidad de agente de la capa visual [draft] - specIR ofrece un comando, una API Python pública y una habilidad de agente que cubren cada entrada pública de spec2viz.
 - IR04b Deshacer por MCP: adaptador sobre el lote inverso de sldb [draft] - Una tool MCP undo_changes, montada sobre sldb mcp por el punto de extensión, que deshace los últimos lotes de la sesión reaplicando con sldb.api.apply_batch el lote inverso con guardas que sldb devuelve al aplicar cada uno. Bloqueada hasta que sldb entregue sldb mcp y el lote inverso (tareas espejo de sldb: servidor MCP genérico y lote inverso).
 - Espejo sldb: sldb mcp servidor MCP genérico (A) [draft] - Disponer de sldb mcp (servidor MCP genérico con niveles, propose/apply, log de señales y punto de extensión) para que specIR monte sus tools de dominio encima.
