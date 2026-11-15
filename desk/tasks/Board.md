@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T21:21:06Z'
+  at: '2026-11-15T22:19:22Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -12,7 +12,6 @@ scope: desk
 tasks:
 - desk/tasks/task-ir08-extractor-estático-django-drf-y-sql.md
 - desk/tasks/task-ir09-extractor-estático-react-tsx-y-contratos-de-api.md
-- desk/tasks/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro.md
 - desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md
 - desk/tasks/task-ir11-compiladores-y-proyecciones-de-spec2viz.md
 - desk/tasks/task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz.md
@@ -62,7 +61,6 @@ _Generated from the task references above._
 
 - IR08 Extractor estático Django/DRF y SQL [draft] - Un mapeo de dominio que, a partir de los hechos que los readers de sldb extraen de una aplicación Django REST Framework y de su esquema SQL (sldb/code y los readers de la tarea espejo B2), produce documentos y relaciones de los tipos de dominio de specIR, cada uno con su evidencia de origen. specIR no escribe extractores: mapea hechos de sldb a su dominio.
 - IR09 Extractor estático React/TSX y contratos de API [draft] - Un mapeo de dominio que, a partir de los hechos que los readers de sldb extraen de código React (JSX y TSX) y de los contratos de API disponibles, produce los elementos de interfaz del grafo de specIR y los vincula a las operaciones de backend, con evidencia de origen. specIR no escribe extractores: mapea hechos de sldb a su dominio.
-- IR07 Cobertura completa de spec2viz: matriz, fuente de verdad del diagrama y gate de retiro [draft] - Una matriz de cobertura de todas las capacidades de spec2viz, con modo y condición de retiro por fila; la decisión sobre el papel del YAML de spec frente al grafo; y un gate comprobable de migración y retiro. Es un plan de cobertura: no declara nada como ya migrado.
 - IR10 Reglas semánticas y análisis de impacto [draft] - Un conjunto de reglas RuleDoc de dominio que detectan brechas entre capas, evaluadas con el motor de reglas de sldb, y un análisis de impacto que usa los caminos explicados de sldb (graph_path y graph_paths, tarea espejo B3) y lo expone como tool de dominio sobre sldb mcp, con el camino que justifica cada afectado.
 - IR11 Compiladores y proyecciones de spec2viz [draft] - specIR compila todos los tipos de diagrama que compila spec2viz y produce diagramas tanto desde un spec autorado como desde una proyección del grafo, según el contrato decidido en la tarea de cobertura.
 - IR12 Renderers, linter y recursos estáticos de spec2viz [draft] - specIR produce todos los formatos de salida de spec2viz a partir de la representación intermedia, con paridad verificable, y distribuye los recursos que esos formatos necesitan.
