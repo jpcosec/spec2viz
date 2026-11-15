@@ -1,0 +1,36 @@
+name: review-task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo-evidence-commit-1
+path: desk/reviews/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo/evidence-commit-1.md
+source_hash: c0ef6eb9810c3a63796e89f12ec52a84abe8a552077b3788d765106ea2047088
+content_hash: 739817dc0d819128c69a62650a865da877c2089483b0b285cb5cb14d6304838d
+field_hashes:
+  id: b70a362301c7a3b78284c1aed6209c1c34fb66fb36b794f9ed48ecee44f6db14
+  title: 633fb834bb4e2370e7f1b5baafdc10c8fa5d881d401ec404ed425003168cf316
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 5ea9c58673a69c87d0e5540a6f9978aad8f8e0a0b9ce3471cff139c730d97888
+  value: 9c29cc1bd516e5549f3ea5de46e4d56fa78f76d281928e7ae5ed2b459122e5aa
+  subject: ed75e2fbbc7cbff9d00b48526e9e741bea63feb678f0fcdf0addaf340a1d2e95
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 62543cb08fd28f7129814d4c905dfb30d32612011ebc081a981c68faf5d3542a
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 7920d75d596dd86d60aacc698807d437be25a87c13481208796b8112051e9330
+  created_at: a76c0425bab7d4fce9a87a52de8d72377614807ea1df2bc38427aab916ebca62
+  disposed_at: a76c0425bab7d4fce9a87a52de8d72377614807ea1df2bc38427aab916ebca62
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: ba06b2cc62f545dd0cc6ae2e7b2c45e24d16e83255b10e58ddbe57f9fb30da78
+  disposition: a7bb7b2e6b1f6717ada15f1e04ffc0b74bc3ffe39b1bea1220f937deb5ccf1a3
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-15T05:26:37Z'
+  authority: generated
+  via: save_document_payload

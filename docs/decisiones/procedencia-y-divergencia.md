@@ -116,8 +116,8 @@ a SQL (gramáticas tree-sitter) antes de IR08/IR09. Mientras no exista, los nodo
 fuentes usan D3-B y quedan con `verificacion: sin_verificar` y la ancla en `desconocidos`.
 
 **Carencia frente a la matriz IR01:** la matriz **no tiene fila** para anclar a código fuera
-de Python; es una carencia nueva. Se agrega como fila a la matriz (o se cita esta sección) y se
-notifica a SLDB con `deskops message send --to sldb` tras la elección de JP. Se relaciona con
+de Python; es una carencia nueva. Queda registrada en esta sección (IR01 está cerrada y su matriz no se reabre) y se
+notificó a SLDB el 2026-11-15: `sldb:20261115-022446-suggestion-specir-anclas-de-c-digo-para-tsx-y-sql` (verificado antes en sldb `a3514755`: `src/sldb/code/scan.py` solo recorre `.py`). Se relaciona con
 la fila «consultar journal e historial» solo para la historia del nodo, que ya cubre
 `document_history`.
 
