@@ -1,7 +1,7 @@
 name: task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs
 path: desk/tasks/task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs.md
-source_hash: 33f3f3103f2e7efe2d980323d9e31f1c4cb239bdac43ec40fab6039cc1858a5f
-content_hash: 061bf8cd99c6c181ea0761ad2e09e7951416e75c4116af4aafa35b0da9053e62
+source_hash: 8296e1469ed813487ec3bce4ae0f7da142ce650622b3f4a773c358cb3bf6a20b
+content_hash: 1d29e4719c9a047bdb6ed16eec1ffa7c1477d9d7141567c3a8fc5c3e18ccc61e
 field_hashes:
   title: 04cbc83a42cc589ed03cf923b153bfcc5d33ac51b60e175d00a5afa969036567
   id: 379d4ba935325c7386e4783e80df67a3b7982c873dce31011077c2fd605b34d6
@@ -16,8 +16,8 @@ field_hashes:
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   depends_on: 3dbb97668f3f37335baec32bf79b907e8b64b0c1af6f8777a8e9c00e268e0160
   pills: 4646693546d631bc326d394a766ac84a7c860ee563d0014f03de033a15c217e1
-  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 69daabfa218cac9ef6dd1e3789584a921d773701930d51ba0a2b506307b032bc
+  files: f5bd8005a9756611dd136b7caaa7b411acf8796d86869f6dcb08a95055801a41
+  implementation_path: a6dc15eab15cc60cc901b2fbebf6d82b206162e655d2c550bceb58e125babfe0
   validation: a4f48a943147316da493af3f9042b51fbf09785c2dc1bf8a55c2c1971773020e
   done_when: 5d02b8615523ec4843d942d60c14e388e29444ec91a830afc07b666562c95447
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-15T16:54:29Z'
+  at: '2026-11-15T23:37:44Z'
   authority: generated
   via: save_document_payload

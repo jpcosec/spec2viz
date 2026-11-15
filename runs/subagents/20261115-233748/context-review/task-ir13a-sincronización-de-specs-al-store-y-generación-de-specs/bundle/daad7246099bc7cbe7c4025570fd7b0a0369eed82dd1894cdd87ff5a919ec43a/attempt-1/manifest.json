@@ -1,0 +1,117 @@
+{
+  "key": "task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs/bundle",
+  "input_sha256": "daad7246099bc7cbe7c4025570fd7b0a0369eed82dd1894cdd87ff5a919ec43a",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261115-233748/context-review/task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs/bundle/daad7246099bc7cbe7c4025570fd7b0a0369eed82dd1894cdd87ff5a919ec43a/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs.md",
+      "sha256": "8296e1469ed813487ec3bce4ae0f7da142ce650622b3f4a773c358cb3bf6a20b",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/phase.md",
+      "sha256": "cc7f0b52d4153679b69fa0dccee57ec4ac915602a6dbd8d2ff226764c90a2e5f",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/execution.md",
+      "sha256": "a16c7c317f4eec9ce8659464625ae18b5fe94d790e3fdd3755296dcc51898bdc",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/testing.md",
+      "sha256": "e5b616e2d90b009c2cbac612d281727dbb0f13ad23fdd62a5dd8a6dbbb08aca6",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/closeout.md",
+      "sha256": "b8eed83052f326b72b3a33f4523e8f70068c7eb76bd270691425519019ca88c1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md",
+      "sha256": "4b48dc0685cc3b457dfc02102855266f1c1fb6e13bcea74758c908562e28ba37",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md",
+      "sha256": "aecd844c7ddd17f0b5cc0d541e28362e0ae2fb69e7cbeeb3c6f5496d0059df19",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md",
+      "sha256": "1e506d60129a5e8581506f1ac4b58aef645417948a7e2da697625943afff1db0",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-specir-reemplaza-a-spec2viz-y-cubre-todas-sus-funciones.md",
+      "sha256": "3099bda4a2859795482fc5c847ddbd34f48d6c714d3b3c6629c46628b588fd03",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-el-vocabulario-visual-y-el-resolvedor-de-vistas-ya-viven-en-sldb.md",
+      "sha256": "9912e4c0539e907ef5cb2ced8705b938763773eab5c4e788e289bc766719b14e",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-specir-depende-solo-de-la-api-pública-de-sldb.md",
+      "sha256": "f2d8b7f31c3332a9cb45045467a73135c5be7de6dbb76090f05c11d26f1ee0a7",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_sync_generation_parity.py",
+      "sha256": "7f1d0ca20a81505a63bf3ce74591671f4acdf134374aa4855ee0a148c7548908",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/test_imports.py",
+      "sha256": "df91cbb00f257262d14224d39d8c98e955c32d6a7787ce78752c8f6d9ed3c47e",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_visual_names.py",
+      "sha256": "7b888381d213ba6de84c12224ef586d43e101f1aa008f7e6efecebced5dd1a69",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/__init__.py",
+      "sha256": "912b012e2e7480c7a642a9a8ab7e82c9771786a7c3bcd76b4d41c0f5602d82fe",
+      "projection": "whole_file"
+    },
+    {
+      "path": "docs/spec2viz/matriz-de-cobertura.md",
+      "sha256": "75e3fc6b36c7cc33785bd7c005fdf0b56e8e18c994c4c83c7ae2140c21b6cb8b",
+      "projection": "whole_file"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "50994eb70df7031fdf0d4f005c9568bbd7ba87241c7a566e21309c02894540ef",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-15T23:37:48.693650+00:00",
+  "finished": "2026-11-15T23:38:01.691730+00:00"
+}

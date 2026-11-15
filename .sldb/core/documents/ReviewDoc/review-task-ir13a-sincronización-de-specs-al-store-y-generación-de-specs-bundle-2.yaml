@@ -1,0 +1,36 @@
+name: review-task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs-bundle-2
+path: desk/reviews/task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs/bundle-2.md
+source_hash: 831344287e974485c6e8926a7d37aa3ba8ae556b90fbe3b3664658cf4426ba43
+content_hash: bd0db0640dc9a3e679a87c250317bf66be4e8effd7629c60120f461929d23de4
+field_hashes:
+  id: 34afa0f285f2252a287778bc58537c4af2c19e42c03e4a5cdffbe40eae20d57f
+  title: 20fc30dc6c7037f1711e8c3dd89c3a182240c963d61d5d89799ffda149d5b063
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: f8fb48e009788a06ad70e02a1daf7250c157eeb679d920e312869a82942f8d39
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 6edff29967254495c2da88bf976a2d2e852c3fdbaa3ada3c8d4f33d38f556f1f
+  input_sha256: 36108affc3ddee616375f2eda26fc06cf2499fdc72baab26e7227b44b57452d7
+  output_sha256: 38275df2d5ab26e92a828dd963dc3844a278408645fa5f16abcce3e951407e87
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 759013233d5b11a2d43197446a04272298daa7603a8b1e34c25abb0f41632d98
+  created_at: c55693788ad208b187bce3374c51d2d5c6b4ea0a081c05f20eed748e139f99aa
+  disposed_at: 5abe95e40580f9d2d8441bce2965c96ad0cc26dae6cafdf355d49b665cd28e9f
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: db89e14a71af60d021367d0ce1fabf1e8c10fd6888ebf9037d945a33a70302bb
+  disposition: d9e56b0910a4ec8f5d68b24fceabd4184820c7a0dd252809f0be19c27830cb76
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-15T23:38:17Z'
+  authority: generated
+  via: save_document_payload

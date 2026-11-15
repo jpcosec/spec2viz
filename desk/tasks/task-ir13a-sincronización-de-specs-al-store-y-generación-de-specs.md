@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T16:54:29Z'
+  at: '2026-11-15T23:37:44Z'
   authority: generated
   via: save_document_payload
 id: task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs
@@ -25,7 +25,13 @@ pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
 - desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md
-files: []
+files:
+- tests/visual/test_sync_generation_parity.py
+- tests/test_imports.py
+- tests/visual/test_visual_names.py
+- src/specir/visual/__init__.py
+- docs/spec2viz/matriz-de-cobertura.md
+- pyproject.toml
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
@@ -60,7 +66,7 @@ Dentro: la entrada de specIR a SpecSync de sldb (D1) y al generador de spec de c
 
 _Outline the expected implementation route or affected surface._
 
-Capa delgada en el paquete specIR (specir.visual) que llama a las funciones públicas de sldb de D1 y D2 y las expone junto a los compiladores de IR11; la paridad se mide con pruebas de specIR que comparan la salida de sldb con la de spec2viz como oráculo de desarrollo (omitidas si spec2viz no está instalado). Si el resultado de sldb difiere de spec2viz, la diferencia se declara en la matriz o se pide el arreglo por el desk de sldb. Depende de las tareas espejo D1 y D2.
+Sin capa propia en specIR (regla de JP: lo genérico es de sldb y specIR no lo envuelve): los flujos de specIR y sus usuarios llaman directamente a sldb.api.notations (SpecSync, sync_spec, component_spec_from_graph, component_spec_from_python, write_component_spec) o a la CLI sldb notations sync --spec y sldb notations from-graph; specir.visual solo documenta ese uso, como ya hace con load_spec y validate_spec. La paridad se mide con pruebas de specIR en tests/visual/test_sync_generation_parity.py que comparan la salida de sldb con la de spec2viz como oráculo de desarrollo (marca parity, omitidas si spec2viz no está instalado): el store de prueba es un store sldb real creado con sldb.api.init_store en tmp_path; los fixtures de sincronización son los specs válidos del corpus de IR11 (tests/visual/fixtures/spec2viz, copia de tests/fixtures de spec2viz en 2de1056) más los specs ARQ y FLOW de tests/test_sldb_sync.py de spec2viz; el snapshot es el node-link de tests/test_graph_import.py de spec2viz; el paquete Python de fixture es el propio src/specir (código real, sin datos fabricados). tests/test_imports.py prueba que specIR no importa spec2viz y no define SpecSync ni generador de spec. Si el resultado de sldb difiere de spec2viz, la diferencia se declara en la matriz (docs/spec2viz/matriz-de-cobertura.md, filas SV-E01, SV-F01 y SV-F02) o se pide el arreglo por el desk de sldb. D1 y D2 son las tareas espejo task-espejo-sldb-specsync-en-sldb-api-notations-d1 y task-espejo-sldb-generador-de-spec-desde-grafo-y-ast-d2 (B4 es la fila del generador AST en el plan de migración).
 
 ## Validation
 
