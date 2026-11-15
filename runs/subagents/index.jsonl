@@ -10,3 +10,4 @@
 {"task_id": "task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
 {"task_id": "task-espejo-sldb-modelos-de-spec-por-tipo-de-diagrama-d3", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
 {"task_id": "task-ir11-compiladores-y-proyecciones-de-spec2viz", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
+{"task_id": "task-ir12-renderers-linter-y-recursos-est\u00e1ticos-de-spec2viz", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
