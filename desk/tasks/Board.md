@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T15:32:13Z'
+  at: '2026-11-15T15:49:34Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -10,7 +10,6 @@ id: board-001
 scope: desk
 # List of task-xxx paths
 tasks:
-- desk/tasks/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog.md
 - desk/tasks/task-ir08-extractor-estático-django-drf-y-sql.md
 - desk/tasks/task-ir09-extractor-estático-react-tsx-y-contratos-de-api.md
 - desk/tasks/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro.md
@@ -55,7 +54,6 @@ Diecisiete tareas de specIR autoradas desde el drawer, todas en borrador: ningun
 
 _Generated from the task references above._
 
-- IR06 Tipos de dominio transversales y cadena de prueba del blog [draft] - Los tipos de dominio transversales de specIR y un store de prueba con la cadena de publicar un post del blog de ejemplo (React, Django REST Framework, PostgreSQL), recorrible por MCP.
 - IR08 Extractor estático Django/DRF y SQL [draft] - Un extractor estático que, a partir de una aplicación Django REST Framework y su esquema SQL, produce documentos y relaciones de los tipos de dominio de specIR, cada uno con su evidencia de origen.
 - IR09 Extractor estático React/TSX y contratos de API [draft] - Un extractor estático que, a partir de código React (JSX y TSX) y de los contratos de API disponibles, produce los elementos de interfaz del grafo de specIR y los vincula a las operaciones de backend, con evidencia de origen.
 - IR07 Cobertura completa de spec2viz: matriz, fuente de verdad del diagrama y gate de retiro [draft] - Una matriz de cobertura de todas las capacidades de spec2viz, con modo y condición de retiro por fila; la decisión sobre el papel del YAML de spec frente al grafo; y un gate comprobable de migración y retiro. Es un plan de cobertura: no declara nada como ya migrado.

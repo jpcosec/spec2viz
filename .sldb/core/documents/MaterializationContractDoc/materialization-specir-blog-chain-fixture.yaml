@@ -1,0 +1,26 @@
+name: materialization-specir-blog-chain-fixture
+path: desk/materializations/materialization-specir-blog-chain-fixture.md
+source_hash: 8dbb0beaf6c41ce974849a73d72b8a9d759c698f57888ce7f250136a9ca9abaa
+content_hash: 77fa1490768084f293658c38172630a5d6ef4540331a61a98378a4d1d2c624ed
+field_hashes:
+  id: a06cf883ff04cfa0ad16ac52b1e8a34dee31b32c9da60a9bb259fe4c5a39c1cb
+  title: 272b442bb080db4596a57b59916e4dd1eab451e5a249a819426cdf8fb5010843
+  source_atoms: 8ced83c4a82041a9c91dce8ccb316961982806fd3f7745e6b611f13d9781bbf0
+  target_kind: 95be9a483bf3c93183ca37b0ae565c0f25a60a57ecf181bcafa2865a773f9912
+  target_identity: 4b5c172fde4fdfd19730f70cc41429b9a3a034897c428019de4fb0db547ecfea
+  intent: 97928c34ea9638eac28cc84a73406399995143ba4af7dc8790974d11f4099cc1
+  validation: ea6041db79ba6571cfdb7dabd362fd50e46722c078c2c18464fdb6fba9912e5a
+  tags: 77b8865b6c2821e9b132fcc63e0bab2f3273c74316620cde92e688181c75ca80
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:materialization
+- topic:modelado
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-15T15:46:11Z'
+  authority: generated
+  via: save_document_payload

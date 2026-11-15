@@ -1,0 +1,26 @@
+name: materialization-specir-relation-types
+path: desk/materializations/materialization-specir-relation-types.md
+source_hash: 1eeb31c48236514e3cd85b711a66011018fba65d3c851464222a976336468843
+content_hash: af6b54697c5a4ec4c40dd29b90f50dc17bd66d6b00c35c561f0dcd846a8eaab7
+field_hashes:
+  id: de00fd948d41dd06dacd009d12aff52067e5507761271d8086aa652c0de21996
+  title: d68cb324dcc4af5b682bcce0f2546187fb4a02f1c23ec7108de9eed14303ddb4
+  source_atoms: b317d28d305e63b511e69f765e9b127a33a682f5a4db71f463feecf172851ccd
+  target_kind: 95be9a483bf3c93183ca37b0ae565c0f25a60a57ecf181bcafa2865a773f9912
+  target_identity: 04afc80201d5f875bfcbc174d8a23dba24f830793d0c52cf990ba49c9337b36e
+  intent: b0ceb9cfdbc0f53e5e2bd71927567ce992c04f642bc1f5dea736d96c7cc6d62c
+  validation: ea6041db79ba6571cfdb7dabd362fd50e46722c078c2c18464fdb6fba9912e5a
+  tags: 77b8865b6c2821e9b132fcc63e0bab2f3273c74316620cde92e688181c75ca80
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:materialization
+- topic:modelado
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-15T15:34:33Z'
+  authority: generated
+  via: create_document

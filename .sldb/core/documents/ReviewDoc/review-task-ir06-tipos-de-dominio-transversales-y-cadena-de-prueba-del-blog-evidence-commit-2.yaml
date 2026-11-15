@@ -1,0 +1,36 @@
+name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-evidence-commit-2
+path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/evidence-commit-2.md
+source_hash: a481826011d8d49c08584e66342f4a4554e8b5a7410a359f49ea1aca90ad5fb1
+content_hash: f0fae0a4564831196162ef66ee3aeaa1c40c4f304fda54f7bb570a4c29649a69
+field_hashes:
+  id: 4c088b4da9172fbf1aca2f11a08bd4757ee6f72ab6cb8839fb44104551c637b1
+  title: a6b2b3dcd92ca66d8210d110c8a3f0d8654b32ec9612cb666bffb06ec7de15ad
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 5ea9c58673a69c87d0e5540a6f9978aad8f8e0a0b9ce3471cff139c730d97888
+  value: 8b8c987a720c65d82a7a456554cb16e26ac9f8efea6fdd3f4649b70514e86119
+  subject: d6bf50147238cabfd39a4046e9829084f07983c66d22a970039c47a8b764e852
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 1bb72417fe6c48eb28d3c87ae678800e14255ef8bc88fca544f27303fdb4a193
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 0058777f5a12140d7fe53c1e5c49b95b64bcd1c3385ca17b686de03f64a76a0c
+  created_at: aac134cadf5229f5d83901375805f15beebb43272f81a38e46e56d265cbe42aa
+  disposed_at: aac134cadf5229f5d83901375805f15beebb43272f81a38e46e56d265cbe42aa
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 13d108dce748d3e949103566180751b3767fb3817ebd3f0cce01b537abcd1fc5
+  disposition: f5ad80a383a055acc8ed60ee0a8d1d643440eb05e357ff43fdeb2321bf31683a
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-15T15:49:10Z'
+  authority: generated
+  via: save_document_payload

@@ -1,0 +1,36 @@
+name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-evidence-materialization-1
+path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/evidence-materialization-1.md
+source_hash: 4993f20ef448a490305a39b6b58126a4019e453697719327750ec25c2e0e44cb
+content_hash: 64ab37bac2f0fd0dcbeba6e046aa6f50b6f96f680edc8ec1891f5f7d9eaa2f07
+field_hashes:
+  id: 60b815d67d8b2f6e6ec6e6698e0b9fc0027af45e46b73e833600a8bfaeef88f8
+  title: 2d4fa6ce762f4fae6e45d08a325c2410557ac857240951484e38497db308ccb4
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: b77d8cf6414796c495587568e836eb101f2c47c6cbab025c9e93d24db5ead67b
+  value: bcc0346a223f18264ac6b2824fa403cac6b45a10c83f07f6eae74ec4f7db10d7
+  subject: ed306437dd60c577cbd482764f16d74133a84598053fc873589c35bc9c78dc0d
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 1f8df99b1e395cfbccd0748bbb5006339a4f8622a338281a10f4a2cdb5ad3b17
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe
+  reason: 60d6089a2f250c430e3a32efa4d5534eab29af2da56b3dfb4f1ff46d1487e103
+  created_at: 0a7ea3adb190685cfd66e8d35cb75e0b37a4281bb3e694fdc7cabfdd8e46dbac
+  disposed_at: 0a7ea3adb190685cfd66e8d35cb75e0b37a4281bb3e694fdc7cabfdd8e46dbac
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 749806fb8ce2737461fd2adf9dca8155085563b8ce1aae954c1118069ec37cf8
+  disposition: e8b8b423503b1cfe621a4ba3747fbb66106cd4b107a0ead6e4966bf0922b8255
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-15T15:45:41Z'
+  authority: generated
+  via: save_document_payload

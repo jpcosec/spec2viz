@@ -1,0 +1,26 @@
+name: materialization-specir-domain-models
+path: desk/materializations/materialization-specir-domain-models.md
+source_hash: 3882c759dcc6b8610c4e2bd91b596c34dbb904d5433b3a234b96fbac279eb804
+content_hash: 898ed6e4af14aa90d852b99766bbe7774e3c6e41258b81f3cfbfad82d081636d
+field_hashes:
+  id: 627673356d4a2fa47c2be6b29bf557d7f2ec98d52776e5a627140ab9fb57b9a8
+  title: 5bceddedf980b71a2eadb3e6ef5a168423a6d68349aaafefa90a5ce6bf633f65
+  source_atoms: 15415afadfba08e48ffa5d70b2dcaab5988da14a1532b53f9fe89faa0881cac7
+  target_kind: 208cd4edf0b7fbeb4360ff271a609eef3e6b5a8a9d13c2c9a79b346c998bd7c5
+  target_identity: a8c5421e0d79483e25f50d0879829a32f685b9be595417817c4a602f7d54b6a8
+  intent: 7eb5bcdd8907eb53cbdd8f163b748d1ad570fdd8f338586960f026870477f442
+  validation: ea6041db79ba6571cfdb7dabd362fd50e46722c078c2c18464fdb6fba9912e5a
+  tags: 77b8865b6c2821e9b132fcc63e0bab2f3273c74316620cde92e688181c75ca80
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:materialization
+- topic:modelado
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-15T15:34:25Z'
+  authority: generated
+  via: create_document

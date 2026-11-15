@@ -1,0 +1,36 @@
+name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-evidence-tests-2
+path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/evidence-tests-2.md
+source_hash: 53efdbc9dd19c80b100acf2f9e009c20ee9d2bc9134b9f82c39a346ba08f0e2b
+content_hash: d8afa54bd644727e222c67c2b90775e0868adf92ca4b21a82611412f29103ede
+field_hashes:
+  id: ff753d5e94f65901165db14f16aa5a83a54c745f863071d9aa0fc98a4b09b124
+  title: 39570a55eca198ba4ea671420ea5fafd361569cfdf146b7b23b6158900865bce
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: 63560b1a9bb4c61328bf5d147a41567991368a93a8eb904c81eedb9a5706b54f
+  subject: ed306437dd60c577cbd482764f16d74133a84598053fc873589c35bc9c78dc0d
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 764575510c202ce698760e2ecd2f21c67e1ad499c76817c6aea111c58718fa45
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 415d9d0958977cade02d139cdab708d75cf4723e8fd19460610080deac535a95
+  created_at: 705aa58d2b16e151d53aa85e70f67d2a7def9b3d64e335b0d17dfd0d0e0b9eb0
+  disposed_at: 705aa58d2b16e151d53aa85e70f67d2a7def9b3d64e335b0d17dfd0d0e0b9eb0
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 61215c95cc3508c5e873830dc5e7136587b350a5bba39af2e835b50577879f63
+  disposition: 7d00757cb8ba8edb4ee7f49fea5c1257a6c8725c49e27ae0be4c785468638d9b
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-15T15:45:56Z'
+  authority: generated
+  via: save_document_payload

@@ -1,0 +1,26 @@
+name: materialization-specir-cross-layer-rules
+path: desk/materializations/materialization-specir-cross-layer-rules.md
+source_hash: 1e442ee544f433b8e2da6cb80ca1b411543d0d8c646453b99d982069a39b4294
+content_hash: cea170b5bf86fbedacf2482a919230a7b31f69d263cbbee09307552c586c073b
+field_hashes:
+  id: 8413ae5e7fb8adc660b1fce4afc98cb6aea2722270ff431060656928fff4355f
+  title: fe35952094981e165b094ea37c7bde7e830c7383802c45d08aaff6f56bfd1492
+  source_atoms: cda9fbf96d7e0db256197b4b06d6e8af82e08e9c44511425ce6d63c3a1ff390a
+  target_kind: 95be9a483bf3c93183ca37b0ae565c0f25a60a57ecf181bcafa2865a773f9912
+  target_identity: 1b2e702861b26e98ed5a53219f9dc8d03c527138a2b0334612bf3e406e50bbc3
+  intent: 7fbfeecd45a266841f04fb5a8a0809574f7060bc61cb06484c8bb5bad9a2d4b1
+  validation: ea6041db79ba6571cfdb7dabd362fd50e46722c078c2c18464fdb6fba9912e5a
+  tags: 77b8865b6c2821e9b132fcc63e0bab2f3273c74316620cde92e688181c75ca80
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:materialization
+- topic:modelado
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-15T15:34:35Z'
+  authority: generated
+  via: create_document
