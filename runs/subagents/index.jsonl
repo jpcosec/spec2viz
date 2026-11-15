@@ -12,3 +12,4 @@
 {"task_id": "task-ir11-compiladores-y-proyecciones-de-spec2viz", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
 {"task_id": "task-ir12-renderers-linter-y-recursos-est\u00e1ticos-de-spec2viz", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
 {"task_id": "task-espejo-sldb-specsync-en-sldb-api-notations-d1", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
+{"task_id": "task-espejo-sldb-generador-de-spec-desde-grafo-y-ast-d2", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
