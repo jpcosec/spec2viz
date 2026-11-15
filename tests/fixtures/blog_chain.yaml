@@ -1,0 +1,85 @@
+# The chain "publish a post" of the example blog (React, Django REST Framework, PostgreSQL), as
+# fundamentos_modelado_semantico_mcp.md §4 draws it, written to a store with specIR's MCP write
+# tools: each batch is one `propose_changes` + `apply_changes`, in order.
+#
+# Every element is `declarado`: the blog has no code yet, so nothing here was observed and
+# nothing is verified. What the diagram does not say is null and named in `desconocidos`
+# (IR05 D2-B), never filled in. Edges carry the same two axes in their attributes.
+#
+# Reused by later tasks through tests/models/blog.py (`blog_store`).
+
+unknown_code: &unknown_code 'el blog de ejemplo no tiene código todavía; la cadena es la declarada en fundamentos §4'
+edge_provenance: &edge {origen: declarado, verificacion: sin_verificar}
+
+batches:
+  - name: nodes
+    changes:
+      - {action: create, model: InterfaceControlDoc, name: publish-button, path: blog/interface/publish-button.md,
+         payload: {title: PublishButton, origen: declarado, kind: button, component: null,
+                   desconocidos: {component: *unknown_code},
+                   description: The button of the post editor that publishes the post.}}
+      - {action: create, model: InterfaceActionDoc, name: publish-action, path: blog/interface/publish-action.md,
+         payload: {title: PublishAction, origen: declarado, event: click,
+                   description: What the editor does when the user publishes the post it shows.}}
+      - {action: create, model: ApiOperationDoc, name: publish-post-endpoint, path: blog/api/publish-post-endpoint.md,
+         payload: {title: 'POST /posts/{id}/publish', origen: declarado, method: POST, route: '/posts/{id}/publish',
+                   description: The endpoint that publishes one post.}}
+      - {action: create, model: HandlerDoc, name: publish-handler, path: blog/backend/publish-handler.md,
+         payload: {title: publish handler, origen: declarado, framework: django-rest-framework, symbol: null,
+                   desconocidos: {symbol: *unknown_code},
+                   description: The Django REST Framework handler of the publish endpoint.}}
+      - {action: create, model: DomainOperationDoc, name: publish-post, path: blog/domain/publish-post.md,
+         payload: {title: PublishPost, origen: declarado, symbol: null,
+                   desconocidos: {symbol: *unknown_code},
+                   description: 'Publishing a post, however it is invoked (UI, CLI, a scheduled job, an agent).'}}
+      - {action: create, model: PolicyDoc, name: can-publish, path: blog/domain/can-publish.md,
+         payload: {title: CanPublish, origen: declarado, statement: null,
+                   desconocidos: {statement: 'fundamentos §4 names the policy and the role/editor context it reads, not its rule'},
+                   description: Who may publish a post.}}
+      - {action: create, model: DomainEntityDoc, name: post, path: blog/domain/post.md,
+         payload: {title: Post, origen: declarado, symbol: null,
+                   desconocidos: {symbol: *unknown_code},
+                   description: A post of the blog.}}
+      - {action: create, model: StateDoc, name: post-draft, path: blog/domain/post-draft.md,
+         payload: {title: Draft, origen: declarado, entity: 'DomainEntityDoc:post',
+                   description: The post is written and not visible to readers.}}
+      - {action: create, model: StateDoc, name: post-published, path: blog/domain/post-published.md,
+         payload: {title: Published, origen: declarado, entity: 'DomainEntityDoc:post',
+                   description: The post is visible to readers.}}
+      - {action: create, model: TableDoc, name: posts, path: blog/data/posts.md,
+         payload: {title: posts, origen: declarado, schema_name: null, columns: [status],
+                   desconocidos: {schema_name: fundamentos §4 names the table and its status column only},
+                   description: The table the posts are stored in.}}
+
+  - name: edges
+    changes:
+      - {action: assert_edge, name: publish-button-triggers-publish-action, path: blog/edges/publish-button-triggers-publish-action.md,
+         source: 'InterfaceControlDoc:publish-button', target: 'InterfaceActionDoc:publish-action', relation_type: triggers, attributes: *edge}
+      - {action: assert_edge, name: publish-action-invokes-publish-post-endpoint, path: blog/edges/publish-action-invokes-publish-post-endpoint.md,
+         source: 'InterfaceActionDoc:publish-action', target: 'ApiOperationDoc:publish-post-endpoint', relation_type: invokes, attributes: *edge}
+      - {action: assert_edge, name: publish-post-endpoint-handled-by-publish-handler, path: blog/edges/publish-post-endpoint-handled-by-publish-handler.md,
+         source: 'ApiOperationDoc:publish-post-endpoint', target: 'HandlerDoc:publish-handler', relation_type: handled_by, attributes: *edge}
+      - {action: assert_edge, name: publish-handler-executes-publish-post, path: blog/edges/publish-handler-executes-publish-post.md,
+         source: 'HandlerDoc:publish-handler', target: 'DomainOperationDoc:publish-post', relation_type: executes, attributes: *edge}
+      - {action: assert_edge, name: publish-post-governed-by-can-publish, path: blog/edges/publish-post-governed-by-can-publish.md,
+         source: 'DomainOperationDoc:publish-post', target: 'PolicyDoc:can-publish', relation_type: governed_by, attributes: *edge}
+      - {action: assert_edge, name: publish-post-transitions-to-published, path: blog/edges/publish-post-transitions-to-published.md,
+         source: 'DomainOperationDoc:publish-post', target: 'StateDoc:post-published', relation_type: transitions, attributes: *edge}
+      - {action: assert_edge, name: publish-post-writes-posts, path: blog/edges/publish-post-writes-posts.md,
+         source: 'DomainOperationDoc:publish-post', target: 'TableDoc:posts', relation_type: writes, attributes: *edge}
+      - {action: assert_edge, name: post-persisted-in-posts, path: blog/edges/post-persisted-in-posts.md,
+         source: 'DomainEntityDoc:post', target: 'TableDoc:posts', relation_type: persisted_in, attributes: *edge}
+
+  - name: views
+    changes:
+      - {action: create, model: ViewDoc, name: post-states, path: blog/views/post-states.md,
+         payload: {id: post-states, name: post-states, title: Estados de Post,
+                   nodes: [{model: DomainEntityDoc}, {model: StateDoc}, {model: DomainOperationDoc}],
+                   relations: [transitions, references],
+                   description: The states of a post and the operations that lead to them.}}
+      - {action: create, model: ViewDoc, name: publish-components, path: blog/views/publish-components.md,
+         payload: {id: publish-components, name: publish-components, title: Componentes de publicar,
+                   nodes: [{model: InterfaceControlDoc}, {model: InterfaceActionDoc}, {model: ApiOperationDoc}, {model: HandlerDoc},
+                           {model: DomainOperationDoc}, {model: DomainEntityDoc}, {model: TableDoc}],
+                   relations: [triggers, invokes, handled_by, executes, writes, persisted_in],
+                   description: 'The components the publication goes through, from the button to the table.'}}

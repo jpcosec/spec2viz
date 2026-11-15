@@ -1,0 +1,41 @@
+# The cross-layer invariants specIR distributes: RuleDoc payloads, installed in a store by
+# `specir.install` as SLDB document seeds. SLDB evaluates them (`sldb rules check`,
+# `sldb.api.rules_check`, the MCP's `check_integrity`): `on_check` rules over the whole store,
+# `on_write` rules on every write (`apply_batch` refuses an `error`). Language:
+# sldb docs/architecture/rules-language.md.
+- name: rule-specir-action-invokes-an-api-operation
+  title: An interface action invokes an operation of the API
+  subject: model <= InterfaceActionDoc
+  condition: 'any(rel:invokes: model <= ApiOperationDoc)'
+  severity: error
+  moment: on_check
+  message: An interface action invokes no existing API operation.
+- name: rule-specir-api-operation-is-handled
+  title: An API operation has a handler
+  subject: model <= ApiOperationDoc
+  condition: 'any(rel:handled_by: model <= HandlerDoc)'
+  severity: alert
+  moment: on_check
+  message: No handler receives this API operation.
+- name: rule-specir-handler-executes-a-domain-operation
+  title: A handler executes a domain operation
+  subject: model <= HandlerDoc
+  condition: 'any(rel:executes: model <= DomainOperationDoc)'
+  severity: alert
+  moment: on_check
+  message: The handler reaches no domain operation.
+- name: rule-specir-control-triggers-an-action
+  title: An interface control triggers an action
+  subject: model <= InterfaceControlDoc
+  condition: 'any(rel:triggers: model <= InterfaceActionDoc)'
+  severity: alert
+  moment: on_check
+  message: The interface control triggers no interface action.
+- name: rule-specir-edges-carry-their-provenance
+  title: A specIR edge carries its provenance
+  subject: model <= RelationDoc
+  where: relation_type in ["triggers", "invokes", "handled_by", "executes", "governed_by", "transitions", "writes", "persisted_in"]
+  condition: attributes.origen in ["observado", "derivado", "inferido", "declarado"] and attributes.verificacion in ["sin_verificar", "verificado", "refutado"]
+  severity: error
+  moment: on_write
+  message: 'An edge of a specIR relation type declares origen and verificacion in its attributes (IR05 D1-B).'

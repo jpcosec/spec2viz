@@ -1,0 +1,62 @@
+# The relation types specIR distributes: RelationTypeDoc payloads, installed in a store by
+# `specir.install` as SLDB document seeds (`sldb.api.scaffold_store`). SLDB's edge index checks
+# every edge against them (source and target types, cardinality, condition). They are data of
+# the store, not code: a store may add its own. The chain they draw is the one of
+# fundamentos_modelado_semantico_mcp.md §4 (control -> action -> API -> handler -> operation ->
+# data), with the operation's policy and the state it leads to.
+- name: triggers
+  title: Triggers
+  axis: HOW
+  cardinality: many_to_many
+  source_types: [InterfaceControlDoc]
+  target_types: [InterfaceActionDoc]
+  description: Using the interface control starts the interface action. The control is where the user acts; the action is what the interface does, which other controls may start too.
+- name: invokes
+  title: Invokes
+  axis: HOW
+  cardinality: many_to_many
+  source_types: [InterfaceActionDoc]
+  target_types: [ApiOperationDoc]
+  description: The interface action calls the API operation. An action that invokes no operation of the API does nothing the backend knows of.
+- name: handled_by
+  title: Handled by
+  axis: HOW
+  cardinality: many_to_one
+  source_types: [ApiOperationDoc]
+  target_types: [HandlerDoc]
+  description: The API operation is received by the backend handler. An operation has one handler; a handler may receive several operations.
+- name: executes
+  title: Executes
+  axis: HOW
+  cardinality: many_to_many
+  source_types: [HandlerDoc]
+  target_types: [DomainOperationDoc]
+  description: The handler runs the domain operation. The operation is the capability; the handler is one of the ways to reach it.
+- name: governed_by
+  title: Governed by
+  axis: WHY
+  cardinality: many_to_many
+  source_types: [DomainOperationDoc]
+  target_types: [PolicyDoc]
+  description: The domain operation may run only as the policy allows.
+- name: transitions
+  title: Transitions
+  axis: WHEN
+  cardinality: many_to_many
+  source_types: [DomainOperationDoc]
+  target_types: [StateDoc]
+  description: The domain operation moves its entity into the target state.
+- name: writes
+  title: Writes
+  axis: WHAT
+  cardinality: many_to_many
+  source_types: [DomainOperationDoc]
+  target_types: [DomainEntityDoc, TableDoc]
+  description: The domain operation changes the entity or the table. Only a domain operation writes; an interface control or a handler that writes directly skips the operation and its policy.
+- name: persisted_in
+  title: Persisted in
+  axis: WHERE
+  cardinality: many_to_many
+  source_types: [DomainEntityDoc]
+  target_types: [TableDoc]
+  description: The domain entity is stored in the table.

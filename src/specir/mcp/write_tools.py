@@ -66,6 +66,21 @@ PENDING = {
 }
 
 
+def claims_verified(change: Any) -> bool:
+    """Whether a change writes `verificacion: verificado` on a node or in an edge's attributes
+    (IR05 D2-E: the MCP is not a surface that verifies)."""
+    if isinstance(change, CreateDocument):
+        written = [change.payload, change.payload.get("attributes") or {}]
+    elif isinstance(change, UpdateDocument):
+        fields = change.fields
+        written = [fields, fields.get("attributes") or {}, {"verificacion": fields.get("attributes.verificacion")}]
+    elif isinstance(change, AssertEdge):
+        written = [change.attributes]
+    else:
+        return False
+    return any(isinstance(values, dict) and values.get("verificacion") == "verificado" for values in written)
+
+
 class WriteTools:
     """The write surface over one SLDB store, at the level the server was started with."""
 
@@ -86,6 +101,9 @@ class WriteTools:
         self._require(changes, "propose_changes")
         if not changes:
             raise ValueError("propose at least one change")
+        for change in changes:
+            if claims_verified(change):
+                raise ValueError(f"{change.name}: an agent does not write verificacion: verificado through the MCP; only a human outside the MCP or a deterministic check verifies (IR05 D2-E)")
         for change in changes:
             path = getattr(change, "path", None)
             if path is not None and not path.endswith(".md"):

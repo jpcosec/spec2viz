@@ -168,3 +168,26 @@ def content_writer(write_copy: Path) -> Iterator[McpSession]:
     """The server at write level 1 (content only) over the write copy."""
     with served(write_copy, "--level", "1", "--actor", WRITER) as session:
         yield session
+
+
+#: Who writes the blog chain (IR06); every node and edge of it must carry it.
+BLOG_WRITER = "agent:specir-ir06-blog"
+
+
+@pytest.fixture(scope="session")
+def blog_root(tmp_path_factory: pytest.TempPathFactory) -> Path:
+    """A new project with an SLDB store and specIR installed (tests/models/blog.py), empty."""
+    from blog import new_blog_project
+
+    return new_blog_project(tmp_path_factory.mktemp("specir-blog") / "blog")
+
+
+@pytest.fixture(scope="session")
+def blog(blog_root: Path) -> Iterator[McpSession]:
+    """The server at write level 1 over the blog store, after it wrote the chain of
+    tests/fixtures/blog_chain.yaml (its answers in `blog.populated`)."""
+    from blog import populate
+
+    with served(blog_root, "--level", "1", "--actor", BLOG_WRITER) as session:
+        session.populated = populate(session)
+        yield session
