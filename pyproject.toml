@@ -34,3 +34,6 @@ specir = ["data/*.yaml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = [
+    "parity: compares specIR with spec2viz as the oracle; skipped when spec2viz is not installed",
+]

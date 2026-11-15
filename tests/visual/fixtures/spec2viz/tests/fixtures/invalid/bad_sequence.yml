@@ -1,0 +1,12 @@
+id: sequence.bad
+title: Bad Sequence
+type: sequence
+version: "0.1"
+data:
+  participants:
+    - id: User
+      kind: actor
+  messages:
+    - from: User
+      to: GhostComponent
+      message: hello

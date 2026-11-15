@@ -1,0 +1,21 @@
+from __future__ import annotations
+from specir.visual.spec_models import DeploymentDiagram
+from specir.visual.ir import DeploymentIR, DeploymentNode, DeploymentArtifact, DeploymentConnection
+
+
+class DeploymentCompiler:
+    def compile(self, diagram: DeploymentDiagram) -> DeploymentIR:
+        nodes = [
+            DeploymentNode(id=nid, label=n.label or nid, kind=n.kind, contains=list(n.contains))
+            for nid, n in diagram.data.nodes.items()
+        ]
+        artifacts = [
+            DeploymentArtifact(id=aid, label=a.label or aid, kind=a.kind)
+            for aid, a in diagram.data.artifacts.items()
+        ]
+        connections = [
+            DeploymentConnection(from_=c.from_, to=c.to, protocol=c.protocol, kind=c.kind, label=c.label)
+            for c in diagram.data.connections
+        ]
+        style_kinds = dict(diagram.style.kinds) if diagram.style else {}
+        return DeploymentIR(title=diagram.title, nodes=nodes, artifacts=artifacts, connections=connections, style_kinds=style_kinds)

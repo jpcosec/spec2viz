@@ -1,0 +1,97 @@
+id: class.sldb-models
+title: "spec2viz documents in the sldb store"
+type: class
+version: "0.1"
+
+metadata:
+  description: >-
+    The documents spec2viz writes into an sldb store: a spec as a namespace (SpecDoc,
+    SpecNodeDoc, RelationDoc) and the declarative visual vocabulary that says how to draw it
+    (NotationDoc, GlyphDoc, LinkDoc). This spec is itself synced with the `uml-class`
+    notation, so a surface such as graph_ui draws it from the store.
+
+data:
+  direction: TB
+  classes:
+    StructuredNLDoc:
+      label: StructuredNLDoc
+      kind: abstract
+      methods:
+        - name: render
+          returns: str
+    SpecDoc:
+      label: SpecDoc
+      attributes:
+        - {name: id, type: str}
+        - {name: diagram_type, type: str}
+        - {name: spec_path, type: str}
+        - {name: sha256, type: str}
+        - {name: notation, type: "NotationDoc"}
+        - {name: nodes, type: "list[SpecNodeDoc]"}
+    SpecNodeDoc:
+      label: SpecNodeDoc
+      attributes:
+        - {name: id, type: str}
+        - {name: element, type: str}
+        - {name: kind, type: str}
+        - {name: refs, type: "list[str]"}
+        - {name: atom_refs, type: "list[AtomDoc]"}
+        - {name: contains, type: "list[SpecNodeDoc]"}
+        - {name: data, type: dict}
+    RelationDoc:
+      label: RelationDoc
+      attributes:
+        - {name: source_id, type: SpecNodeDoc}
+        - {name: target_id, type: SpecNodeDoc}
+        - {name: relation_type, type: str}
+        - {name: notes, type: str}
+    NotationDoc:
+      label: NotationDoc
+      attributes:
+        - {name: name, type: str}
+        - {name: diagram_type, type: str}
+        - {name: level, type: str}
+        - {name: layout, type: dict}
+        - {name: markers, type: "list[dict]"}
+        - {name: glyphs, type: "list[GlyphDoc]"}
+        - {name: links, type: "list[LinkDoc]"}
+    GlyphDoc:
+      label: GlyphDoc
+      attributes:
+        - {name: model, type: str}
+        - {name: where, type: str}
+        - {name: shape, type: str}
+        - {name: label, type: str}
+        - {name: keyword, type: str}
+        - {name: compartments, type: "list[str]"}
+        - {name: function, type: str}
+    LinkDoc:
+      label: LinkDoc
+      attributes:
+        - {name: relation, type: str}
+        - {name: relation_type, type: RelationTypeDoc}
+        - {name: draw, type: str}
+        - {name: line, type: str}
+        - {name: source_end, type: str}
+        - {name: target_end, type: str}
+        - {name: label, type: str}
+    RelationTypeDoc:
+      label: RelationTypeDoc
+      attributes:
+        - {name: name, type: str}
+        - {name: direction, type: str}
+        - {name: cardinality, type: str}
+  relations:
+    - {from: SpecDoc, to: StructuredNLDoc, relation: inheritance}
+    - {from: SpecNodeDoc, to: StructuredNLDoc, relation: inheritance}
+    - {from: NotationDoc, to: StructuredNLDoc, relation: inheritance}
+    - {from: GlyphDoc, to: StructuredNLDoc, relation: inheritance}
+    - {from: LinkDoc, to: StructuredNLDoc, relation: inheritance}
+    - {from: SpecDoc, to: SpecNodeDoc, relation: aggregation, label: nodes, from_multiplicity: "1", to_multiplicity: "*"}
+    - {from: SpecNodeDoc, to: SpecNodeDoc, relation: composition, label: contains}
+    - {from: RelationDoc, to: SpecNodeDoc, relation: association, label: "source_id / target_id", to_multiplicity: "2"}
+    - {from: RelationDoc, to: RelationTypeDoc, relation: dependency, label: relation_type}
+    - {from: SpecDoc, to: NotationDoc, relation: association, label: notation, to_multiplicity: "0..1"}
+    - {from: NotationDoc, to: GlyphDoc, relation: composition, label: glyphs, to_multiplicity: "1..*"}
+    - {from: NotationDoc, to: LinkDoc, relation: composition, label: links, to_multiplicity: "*"}
+    - {from: LinkDoc, to: RelationTypeDoc, relation: dependency, label: relation_type}

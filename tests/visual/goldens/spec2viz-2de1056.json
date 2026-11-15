@@ -1,0 +1,4853 @@
+{
+ "docs/architecture/spec2viz/activity-render-error-handling.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ActivityIR",
+   "end": "done",
+   "groups": {},
+   "start": "receive_paths",
+   "steps": [
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "receive_paths",
+     "kind": "action",
+     "label": "Receive SPEC paths from CLI args",
+     "next": "iterate_path",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "empty": "done",
+      "has_next": "try_render"
+     },
+     "detail": null,
+     "group": null,
+     "id": "iterate_path",
+     "kind": "decision",
+     "label": "For each path",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "try_render",
+     "kind": "action",
+     "label": "Call render_to_file(path, out, renderer)",
+     "next": "load_step",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "ParseError": "catch_error",
+      "ok": "validate_step"
+     },
+     "detail": null,
+     "group": null,
+     "id": "load_step",
+     "kind": "decision",
+     "label": "load(path): YAML parse + Pydantic validate",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "ValidationError": "catch_error",
+      "ok": "compile_step"
+     },
+     "detail": null,
+     "group": null,
+     "id": "validate_step",
+     "kind": "decision",
+     "label": "validate(diagram): check cross-references",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "CompileError": "catch_error",
+      "ok": "render_step"
+     },
+     "detail": null,
+     "group": null,
+     "id": "compile_step",
+     "kind": "decision",
+     "label": "compile_ir(diagram): pattern-match compiler",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "RenderError": "catch_error",
+      "ok": "write_output"
+     },
+     "detail": null,
+     "group": null,
+     "id": "render_step",
+     "kind": "decision",
+     "label": "render(ir, renderer): dispatch to backend",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "write_output",
+     "kind": "action",
+     "label": "Write result to disk",
+     "next": "echo_success",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "echo_success",
+     "kind": "action",
+     "label": "echo 'Rendered X -> Y'",
+     "next": "iterate_path",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "catch_error",
+     "kind": "action",
+     "label": "echo error to stderr + sys.exit(1)",
+     "next": "done",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "done",
+     "kind": "action",
+     "label": "Exit",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    }
+   ],
+   "style_kinds": {},
+   "title": "CLI Render Command Error Handling"
+  }
+ },
+ "docs/architecture/spec2viz/class-sldb-models.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ClassIR",
+   "classes": [
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "model",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "where",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "shape",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "label",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "keyword",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "compartments",
+       "static": false,
+       "type": "list[str]",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "function",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      }
+     ],
+     "id": "GlyphDoc",
+     "kind": "class",
+     "label": "GlyphDoc",
+     "methods": []
+    },
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "relation",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "relation_type",
+       "static": false,
+       "type": "RelationTypeDoc",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "draw",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "line",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "source_end",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "target_end",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "label",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      }
+     ],
+     "id": "LinkDoc",
+     "kind": "class",
+     "label": "LinkDoc",
+     "methods": []
+    },
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "name",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "diagram_type",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "level",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "layout",
+       "static": false,
+       "type": "dict",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "markers",
+       "static": false,
+       "type": "list[dict]",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "glyphs",
+       "static": false,
+       "type": "list[GlyphDoc]",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "links",
+       "static": false,
+       "type": "list[LinkDoc]",
+       "visibility": "public"
+      }
+     ],
+     "id": "NotationDoc",
+     "kind": "class",
+     "label": "NotationDoc",
+     "methods": []
+    },
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "source_id",
+       "static": false,
+       "type": "SpecNodeDoc",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "target_id",
+       "static": false,
+       "type": "SpecNodeDoc",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "relation_type",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "notes",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      }
+     ],
+     "id": "RelationDoc",
+     "kind": "class",
+     "label": "RelationDoc",
+     "methods": []
+    },
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "name",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "direction",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "cardinality",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      }
+     ],
+     "id": "RelationTypeDoc",
+     "kind": "class",
+     "label": "RelationTypeDoc",
+     "methods": []
+    },
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "id",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "diagram_type",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "spec_path",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "sha256",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "notation",
+       "static": false,
+       "type": "NotationDoc",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "nodes",
+       "static": false,
+       "type": "list[SpecNodeDoc]",
+       "visibility": "public"
+      }
+     ],
+     "id": "SpecDoc",
+     "kind": "class",
+     "label": "SpecDoc",
+     "methods": []
+    },
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "id",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "element",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "kind",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "refs",
+       "static": false,
+       "type": "list[str]",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "atom_refs",
+       "static": false,
+       "type": "list[AtomDoc]",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "contains",
+       "static": false,
+       "type": "list[SpecNodeDoc]",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "data",
+       "static": false,
+       "type": "dict",
+       "visibility": "public"
+      }
+     ],
+     "id": "SpecNodeDoc",
+     "kind": "class",
+     "label": "SpecNodeDoc",
+     "methods": []
+    },
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [],
+     "id": "StructuredNLDoc",
+     "kind": "abstract",
+     "label": "StructuredNLDoc",
+     "methods": [
+      {
+       "__type__": "ClassMethodIR",
+       "abstract": false,
+       "name": "render",
+       "parameters": [],
+       "returns": "str",
+       "static": false,
+       "visibility": "public"
+      }
+     ]
+    }
+   ],
+   "direction": "TB",
+   "packages": [],
+   "relations": [
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "GlyphDoc",
+     "from_multiplicity": null,
+     "label": null,
+     "relation": "inheritance",
+     "to": "StructuredNLDoc",
+     "to_multiplicity": null
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "LinkDoc",
+     "from_multiplicity": null,
+     "label": "relation_type",
+     "relation": "dependency",
+     "to": "RelationTypeDoc",
+     "to_multiplicity": null
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "LinkDoc",
+     "from_multiplicity": null,
+     "label": null,
+     "relation": "inheritance",
+     "to": "StructuredNLDoc",
+     "to_multiplicity": null
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "NotationDoc",
+     "from_multiplicity": null,
+     "label": "glyphs",
+     "relation": "composition",
+     "to": "GlyphDoc",
+     "to_multiplicity": "1..*"
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "NotationDoc",
+     "from_multiplicity": null,
+     "label": "links",
+     "relation": "composition",
+     "to": "LinkDoc",
+     "to_multiplicity": "*"
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "NotationDoc",
+     "from_multiplicity": null,
+     "label": null,
+     "relation": "inheritance",
+     "to": "StructuredNLDoc",
+     "to_multiplicity": null
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "RelationDoc",
+     "from_multiplicity": null,
+     "label": "relation_type",
+     "relation": "dependency",
+     "to": "RelationTypeDoc",
+     "to_multiplicity": null
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "RelationDoc",
+     "from_multiplicity": null,
+     "label": "source_id / target_id",
+     "relation": "association",
+     "to": "SpecNodeDoc",
+     "to_multiplicity": "2"
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "SpecDoc",
+     "from_multiplicity": "1",
+     "label": "nodes",
+     "relation": "aggregation",
+     "to": "SpecNodeDoc",
+     "to_multiplicity": "*"
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "SpecDoc",
+     "from_multiplicity": null,
+     "label": "notation",
+     "relation": "association",
+     "to": "NotationDoc",
+     "to_multiplicity": "0..1"
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "SpecDoc",
+     "from_multiplicity": null,
+     "label": null,
+     "relation": "inheritance",
+     "to": "StructuredNLDoc",
+     "to_multiplicity": null
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "SpecNodeDoc",
+     "from_multiplicity": null,
+     "label": "contains",
+     "relation": "composition",
+     "to": "SpecNodeDoc",
+     "to_multiplicity": null
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "SpecNodeDoc",
+     "from_multiplicity": null,
+     "label": null,
+     "relation": "inheritance",
+     "to": "StructuredNLDoc",
+     "to_multiplicity": null
+    }
+   ],
+   "style_kinds": {},
+   "title": "spec2viz documents in the sldb store"
+  }
+ },
+ "docs/architecture/spec2viz/component-architecture.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ComponentIR",
+   "edges": [
+    {
+     "__type__": "ComponentEdge",
+     "from_": "cli",
+     "label": "build command",
+     "relation": "uses",
+     "to": "deskops"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "cli",
+     "label": "render / validate commands",
+     "relation": "uses",
+     "to": "facade"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "cli",
+     "label": "schema command",
+     "relation": "uses",
+     "to": "schema_mod"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "compilers",
+     "label": "emit IR dataclasses",
+     "relation": "uses",
+     "to": "ir"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "compilers",
+     "label": "read model fields",
+     "relation": "reads",
+     "to": "models"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "facade",
+     "label": "compile_ir(diagram)",
+     "relation": "uses",
+     "to": "compilers"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "facade",
+     "label": "load(path)",
+     "relation": "uses",
+     "to": "loader"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "facade",
+     "label": "render(ir, name)",
+     "relation": "uses",
+     "to": "renderers"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "facade",
+     "label": "validate(diagram)",
+     "relation": "uses",
+     "to": "validator"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "loader",
+     "label": "TypeAdapter(AnyDiagram).validate_python()",
+     "relation": "uses",
+     "to": "models"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "renderers",
+     "label": "consume IR dataclasses",
+     "relation": "reads",
+     "to": "ir"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "validator",
+     "label": "inspect references",
+     "relation": "uses",
+     "to": "models"
+    }
+   ],
+   "nodes": [
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "cli",
+     "kind": "boundary",
+     "label": "CLI"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "compilers",
+     "kind": "core",
+     "label": "Compiler Dispatch"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "deskops",
+     "kind": "boundary",
+     "label": "Deskops Builder"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "exceptions",
+     "kind": "core",
+     "label": "Exception Hierarchy"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "facade",
+     "kind": "core",
+     "label": "API Facade"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "ir",
+     "kind": "core",
+     "label": "Intermediate Repr"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "loader",
+     "kind": "core",
+     "label": "Loader"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "models",
+     "kind": "core",
+     "label": "Pydantic Models"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "renderers",
+     "kind": "core",
+     "label": "Renderer Dispatch"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "schema_mod",
+     "kind": "core",
+     "label": "Schema Export"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "validator",
+     "kind": "core",
+     "label": "Validator"
+    }
+   ],
+   "style_kinds": {},
+   "title": "spec2viz Module Dependency Graph"
+  }
+ },
+ "docs/architecture/spec2viz/component-exception-hierarchy.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ComponentIR",
+   "edges": [
+    {
+     "__type__": "ComponentEdge",
+     "from_": "compile_error",
+     "label": null,
+     "relation": "inherits",
+     "to": "spec2viz_error"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "compilers_mod",
+     "label": "raises",
+     "relation": "uses",
+     "to": "compile_error"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "loader_mod",
+     "label": "raises",
+     "relation": "uses",
+     "to": "parse_error"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "parse_error",
+     "label": null,
+     "relation": "inherits",
+     "to": "spec2viz_error"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "render_error",
+     "label": null,
+     "relation": "inherits",
+     "to": "spec2viz_error"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "renderers_mod",
+     "label": "raises",
+     "relation": "uses",
+     "to": "render_error"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "validation_error",
+     "label": null,
+     "relation": "inherits",
+     "to": "spec2viz_error"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "validator_mod",
+     "label": "raises",
+     "relation": "uses",
+     "to": "validation_error"
+    }
+   ],
+   "nodes": [
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "compile_error",
+     "kind": "core",
+     "label": "CompileError"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "compilers_mod",
+     "kind": "boundary",
+     "label": "compilers/"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "loader_mod",
+     "kind": "boundary",
+     "label": "loader.py"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "parse_error",
+     "kind": "core",
+     "label": "ParseError"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "render_error",
+     "kind": "core",
+     "label": "RenderError"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "renderers_mod",
+     "kind": "boundary",
+     "label": "renderers/"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "spec2viz_error",
+     "kind": "core",
+     "label": "Spec2VizError"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "validation_error",
+     "kind": "core",
+     "label": "ValidationError"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "validator_mod",
+     "kind": "boundary",
+     "label": "validator.py"
+    }
+   ],
+   "style_kinds": {},
+   "title": "Exception Hierarchy and Pipeline Stages"
+  }
+ },
+ "docs/architecture/spec2viz/component-type-system.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ComponentIR",
+   "edges": [
+    {
+     "__type__": "ComponentEdge",
+     "from_": "activity_d",
+     "label": "ActivityCompiler",
+     "relation": "uses",
+     "to": "activity_ir"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "activity_d",
+     "label": null,
+     "relation": "inherits",
+     "to": "base_diagram"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "activity_ir",
+     "label": "alt",
+     "relation": "uses",
+     "to": "d2"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "activity_ir",
+     "label": "alt",
+     "relation": "uses",
+     "to": "mermaid"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "activity_ir",
+     "label": "default",
+     "relation": "uses",
+     "to": "plantuml"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "component_d",
+     "label": "ComponentCompiler",
+     "relation": "uses",
+     "to": "component_ir"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "component_d",
+     "label": null,
+     "relation": "inherits",
+     "to": "base_diagram"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "component_ir",
+     "label": "alt",
+     "relation": "uses",
+     "to": "d2"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "component_ir",
+     "label": "alt",
+     "relation": "uses",
+     "to": "mermaid"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "component_ir",
+     "label": "default",
+     "relation": "uses",
+     "to": "plantuml"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "deployment_d",
+     "label": "DeploymentCompiler",
+     "relation": "uses",
+     "to": "deployment_ir"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "deployment_d",
+     "label": null,
+     "relation": "inherits",
+     "to": "base_diagram"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "deployment_ir",
+     "label": "alt",
+     "relation": "uses",
+     "to": "d2"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "deployment_ir",
+     "label": "alt",
+     "relation": "uses",
+     "to": "mermaid"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "deployment_ir",
+     "label": "default",
+     "relation": "uses",
+     "to": "plantuml"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "enforcement",
+     "label": "default",
+     "relation": "uses",
+     "to": "json_r"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "matrix_d",
+     "label": "MatrixCompiler",
+     "relation": "uses",
+     "to": "matrix_ir"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "matrix_d",
+     "label": null,
+     "relation": "inherits",
+     "to": "base_diagram"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "matrix_ir",
+     "label": "alt",
+     "relation": "uses",
+     "to": "antonia"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "matrix_ir",
+     "label": "default",
+     "relation": "uses",
+     "to": "vega"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "reflection_d",
+     "label": "ReflectionCompiler",
+     "relation": "uses",
+     "to": "enforcement"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "reflection_d",
+     "label": null,
+     "relation": "inherits",
+     "to": "base_diagram"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "sequence_d",
+     "label": "SequenceCompiler",
+     "relation": "uses",
+     "to": "sequence_ir"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "sequence_d",
+     "label": null,
+     "relation": "inherits",
+     "to": "base_diagram"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "sequence_ir",
+     "label": "alt",
+     "relation": "uses",
+     "to": "d2"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "sequence_ir",
+     "label": "alt",
+     "relation": "uses",
+     "to": "mermaid"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "sequence_ir",
+     "label": "default",
+     "relation": "uses",
+     "to": "plantuml"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "state_d",
+     "label": "StateCompiler",
+     "relation": "uses",
+     "to": "state_ir"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "state_d",
+     "label": null,
+     "relation": "inherits",
+     "to": "base_diagram"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "state_ir",
+     "label": "alt",
+     "relation": "uses",
+     "to": "d2"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "state_ir",
+     "label": "alt",
+     "relation": "uses",
+     "to": "mermaid"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "state_ir",
+     "label": "default",
+     "relation": "uses",
+     "to": "plantuml"
+    }
+   ],
+   "nodes": [
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "activity_d",
+     "kind": "core",
+     "label": "ActivityDiagram"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "activity_ir",
+     "kind": "core",
+     "label": "ActivityIR"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "antonia",
+     "kind": "boundary",
+     "label": "Antonia HTML"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "base_diagram",
+     "kind": "core",
+     "label": "BaseDiagram"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "component_d",
+     "kind": "core",
+     "label": "ComponentDiagram"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "component_ir",
+     "kind": "core",
+     "label": "ComponentIR"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "d2",
+     "kind": "boundary",
+     "label": "D2"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "deployment_d",
+     "kind": "core",
+     "label": "DeploymentDiagram"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "deployment_ir",
+     "kind": "core",
+     "label": "DeploymentIR"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "enforcement",
+     "kind": "core",
+     "label": "EnforcementArtifact"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "json_r",
+     "kind": "boundary",
+     "label": "JSON"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "matrix_d",
+     "kind": "core",
+     "label": "MatrixDiagram"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "matrix_ir",
+     "kind": "core",
+     "label": "MatrixIR"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "mermaid",
+     "kind": "boundary",
+     "label": "Mermaid"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "plantuml",
+     "kind": "boundary",
+     "label": "PlantUML"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "reflection_d",
+     "kind": "core",
+     "label": "ReflectionDiagram"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "sequence_d",
+     "kind": "core",
+     "label": "SequenceDiagram"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "sequence_ir",
+     "kind": "core",
+     "label": "SequenceIR"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "state_d",
+     "kind": "core",
+     "label": "StateDiagram"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "state_ir",
+     "kind": "core",
+     "label": "StateIR"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "vega",
+     "kind": "boundary",
+     "label": "Vega"
+    }
+   ],
+   "style_kinds": {},
+   "title": "Type System: Models, IR, and Renderers"
+  }
+ },
+ "docs/architecture/spec2viz/matrix-pipeline-coverage.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "MatrixIR",
+   "rows": [
+    {
+     "__type__": "Row",
+     "depth": 0,
+     "id": "cli",
+     "label": "cli.py",
+     "row": 0
+    },
+    {
+     "__type__": "Row",
+     "depth": 0,
+     "id": "core",
+     "label": "core",
+     "row": 1
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "loader",
+     "label": "loader.py",
+     "row": 2
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "validator",
+     "label": "validator.py",
+     "row": 3
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "compilers",
+     "label": "compilers/",
+     "row": 4
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "renderers",
+     "label": "renderers/",
+     "row": 5
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "linters",
+     "label": "linters/mermaid.py",
+     "row": 6
+    },
+    {
+     "__type__": "Row",
+     "depth": 0,
+     "id": "store",
+     "label": "store layer",
+     "row": 7
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "sldb_sync",
+     "label": "sldb_sync.py",
+     "row": 8
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "notation",
+     "label": "notation.py",
+     "row": 9
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "notation_view",
+     "label": "notation_view.py",
+     "row": 10
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "sldb_models",
+     "label": "sldb_models.py",
+     "row": 11
+    }
+   ],
+   "spans": [
+    {
+     "__type__": "Span",
+     "component": "cli",
+     "end": 10,
+     "kind": "boundary",
+     "row": 0,
+     "start": 5
+    },
+    {
+     "__type__": "Span",
+     "component": "cli",
+     "end": 5,
+     "kind": "boundary",
+     "row": 0,
+     "start": 0
+    },
+    {
+     "__type__": "Span",
+     "component": "compilers",
+     "end": 3,
+     "kind": "core",
+     "row": 4,
+     "start": 2
+    },
+    {
+     "__type__": "Span",
+     "component": "core",
+     "end": 4,
+     "kind": "core",
+     "row": 1,
+     "start": 0
+    },
+    {
+     "__type__": "Span",
+     "component": "linters",
+     "end": 5,
+     "kind": "core",
+     "row": 6,
+     "start": 4
+    },
+    {
+     "__type__": "Span",
+     "component": "loader",
+     "end": 1,
+     "kind": "core",
+     "row": 2,
+     "start": 0
+    },
+    {
+     "__type__": "Span",
+     "component": "notation",
+     "end": 7,
+     "kind": "core",
+     "row": 9,
+     "start": 6
+    },
+    {
+     "__type__": "Span",
+     "component": "notation_view",
+     "end": 10,
+     "kind": "core",
+     "row": 10,
+     "start": 9
+    },
+    {
+     "__type__": "Span",
+     "component": "renderers",
+     "end": 4,
+     "kind": "core",
+     "row": 5,
+     "start": 3
+    },
+    {
+     "__type__": "Span",
+     "component": "sldb_models",
+     "end": 8,
+     "kind": "boundary",
+     "row": 11,
+     "start": 7
+    },
+    {
+     "__type__": "Span",
+     "component": "sldb_sync",
+     "end": 6,
+     "kind": "core",
+     "row": 8,
+     "start": 5
+    },
+    {
+     "__type__": "Span",
+     "component": "sldb_sync",
+     "end": 9,
+     "kind": "core",
+     "row": 8,
+     "start": 7
+    },
+    {
+     "__type__": "Span",
+     "component": "store",
+     "end": 10,
+     "kind": "core",
+     "row": 7,
+     "start": 5
+    },
+    {
+     "__type__": "Span",
+     "component": "validator",
+     "end": 2,
+     "kind": "core",
+     "row": 3,
+     "start": 1
+    }
+   ],
+   "stages": [
+    {
+     "__type__": "Stage",
+     "id": "load",
+     "index": 0,
+     "label": "load",
+     "view": "Render pipeline"
+    },
+    {
+     "__type__": "Stage",
+     "id": "validate",
+     "index": 1,
+     "label": "validate",
+     "view": "Render pipeline"
+    },
+    {
+     "__type__": "Stage",
+     "id": "compile",
+     "index": 2,
+     "label": "compile",
+     "view": "Render pipeline"
+    },
+    {
+     "__type__": "Stage",
+     "id": "render",
+     "index": 3,
+     "label": "render",
+     "view": "Render pipeline"
+    },
+    {
+     "__type__": "Stage",
+     "id": "lint",
+     "index": 4,
+     "label": "lint",
+     "view": "Render pipeline"
+    },
+    {
+     "__type__": "Stage",
+     "id": "extract",
+     "index": 5,
+     "label": "extract",
+     "view": "Store sync"
+    },
+    {
+     "__type__": "Stage",
+     "id": "notation",
+     "index": 6,
+     "label": "notation",
+     "view": "Store sync"
+    },
+    {
+     "__type__": "Stage",
+     "id": "write",
+     "index": 7,
+     "label": "write",
+     "view": "Store sync"
+    },
+    {
+     "__type__": "Stage",
+     "id": "index",
+     "index": 8,
+     "label": "index",
+     "view": "Store sync"
+    },
+    {
+     "__type__": "Stage",
+     "id": "view",
+     "index": 9,
+     "label": "view",
+     "view": "Store sync"
+    }
+   ],
+   "title": "Module coverage across the render pipeline"
+  }
+ },
+ "docs/architecture/spec2viz/sequence-build-pipeline.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "SequenceIR",
+   "messages": [
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "User",
+     "group": null,
+     "index": 0,
+     "kind": "sync",
+     "message": "spec2viz build --config vistas.yml --out arch.html --atoms-dir desk/atoms/",
+     "to": "CLI"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "CLI",
+     "group": null,
+     "index": 1,
+     "kind": "sync",
+     "message": "build_deskops(config, out, base_dir, atoms_dir)",
+     "to": "Deskops"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Deskops",
+     "group": null,
+     "index": 2,
+     "kind": "sync",
+     "message": "yaml.safe_load(config_path)",
+     "to": "VistasYML"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Deskops",
+     "group": null,
+     "index": 3,
+     "kind": "sync",
+     "message": "read_text(template_path)",
+     "to": "Template"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Deskops",
+     "group": null,
+     "index": 4,
+     "kind": "sync",
+     "message": "parse_atoms(atoms_dir)",
+     "to": "AtomParser"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "AtomParser",
+     "group": null,
+     "index": 5,
+     "kind": "sync",
+     "message": "glob('*.md')",
+     "to": "AtomsDir"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "AtomParser",
+     "group": null,
+     "index": 6,
+     "kind": "sync",
+     "message": "regex split frontmatter + yaml.safe_load",
+     "to": "AtomParser"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "AtomParser",
+     "group": null,
+     "index": 7,
+     "kind": "reply",
+     "message": "returns JSON string",
+     "to": "Deskops"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Deskops",
+     "group": null,
+     "index": 8,
+     "kind": "sync",
+     "message": "build NAV + SECTIONS HTML",
+     "to": "Deskops"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Deskops",
+     "group": null,
+     "index": 9,
+     "kind": "sync",
+     "message": "replace {{NAV}}, {{SECTIONS}}, {{ATOMS_DB}}",
+     "to": "Deskops"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Deskops",
+     "group": null,
+     "index": 10,
+     "kind": "sync",
+     "message": "out_path.write_text(html)",
+     "to": "Disk"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Deskops",
+     "group": null,
+     "index": 11,
+     "kind": "reply",
+     "message": "returns",
+     "to": "CLI"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "CLI",
+     "group": null,
+     "index": 12,
+     "kind": "reply",
+     "message": "Rendered deskops architecture -> arch.html",
+     "to": "User"
+    }
+   ],
+   "participants": [
+    {
+     "__type__": "Participant",
+     "id": "User",
+     "kind": "actor"
+    },
+    {
+     "__type__": "Participant",
+     "id": "CLI",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "Deskops",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "AtomParser",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "AtomsDir",
+     "kind": "boundary"
+    },
+    {
+     "__type__": "Participant",
+     "id": "VistasYML",
+     "kind": "boundary"
+    },
+    {
+     "__type__": "Participant",
+     "id": "Template",
+     "kind": "boundary"
+    },
+    {
+     "__type__": "Participant",
+     "id": "Disk",
+     "kind": "boundary"
+    }
+   ],
+   "title": "Deskops Build Pipeline Call Chain"
+  }
+ },
+ "docs/architecture/spec2viz/sequence-render-pipeline.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "SequenceIR",
+   "messages": [
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "User",
+     "group": null,
+     "index": 0,
+     "kind": "sync",
+     "message": "spec2viz render spec.yml --backend mermaid",
+     "to": "CLI"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "CLI",
+     "group": null,
+     "index": 1,
+     "kind": "sync",
+     "message": "render_to_file(path, out, renderer)",
+     "to": "Facade"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Facade",
+     "group": null,
+     "index": 2,
+     "kind": "sync",
+     "message": "load(path)",
+     "to": "Loader"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Loader",
+     "group": null,
+     "index": 3,
+     "kind": "sync",
+     "message": "yaml.safe_load() + TypeAdapter.validate_python()",
+     "to": "Loader"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Loader",
+     "group": null,
+     "index": 4,
+     "kind": "reply",
+     "message": "returns BaseDiagram",
+     "to": "Facade"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Facade",
+     "group": null,
+     "index": 5,
+     "kind": "sync",
+     "message": "validate(diagram)",
+     "to": "Validator"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Validator",
+     "group": null,
+     "index": 6,
+     "kind": "reply",
+     "message": "returns None or raises ValidationError",
+     "to": "Facade"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Facade",
+     "group": null,
+     "index": 7,
+     "kind": "sync",
+     "message": "compile_ir(diagram)",
+     "to": "Compiler"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Compiler",
+     "group": null,
+     "index": 8,
+     "kind": "reply",
+     "message": "returns DiagramIR",
+     "to": "Facade"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Facade",
+     "group": null,
+     "index": 9,
+     "kind": "sync",
+     "message": "render(ir, mermaid)",
+     "to": "Renderer"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Renderer",
+     "group": null,
+     "index": 10,
+     "kind": "reply",
+     "message": "returns string",
+     "to": "Facade"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Facade",
+     "group": null,
+     "index": 11,
+     "kind": "sync",
+     "message": "output_path.write_text(result)",
+     "to": "Disk"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Facade",
+     "group": null,
+     "index": 12,
+     "kind": "reply",
+     "message": "returns output_path",
+     "to": "CLI"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "CLI",
+     "group": null,
+     "index": 13,
+     "kind": "reply",
+     "message": "Rendered spec.yml -> output.mmd",
+     "to": "User"
+    }
+   ],
+   "participants": [
+    {
+     "__type__": "Participant",
+     "id": "User",
+     "kind": "actor"
+    },
+    {
+     "__type__": "Participant",
+     "id": "CLI",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "Facade",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "Loader",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "Validator",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "Compiler",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "Renderer",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "Disk",
+     "kind": "boundary"
+    }
+   ],
+   "title": "Render Pipeline Call Chain"
+  }
+ },
+ "docs/architecture/spec2viz/sequence-sync-pipeline.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "SequenceIR",
+   "messages": [
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "User",
+     "group": null,
+     "index": 0,
+     "kind": "sync",
+     "message": "spec2viz diagram sync a.yml b.yml --strict",
+     "to": "CLI"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "CLI",
+     "group": "loop for each spec",
+     "index": 1,
+     "kind": "sync",
+     "message": "sync(path, notation)",
+     "to": "SpecSync"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "SpecSync",
+     "group": "loop for each spec",
+     "index": 2,
+     "kind": "sync",
+     "message": "load(path)",
+     "to": "Loader"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "Loader",
+     "group": "loop for each spec",
+     "index": 3,
+     "kind": "reply",
+     "message": "BaseDiagram or ParseError",
+     "to": "SpecSync"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "SpecSync",
+     "group": "alt the diagram type has a notation",
+     "index": 4,
+     "kind": "sync",
+     "message": "sync(name, finish=False)",
+     "to": "NotationSync"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "NotationSync",
+     "group": "alt the diagram type has a notation",
+     "index": 5,
+     "kind": "sync",
+     "message": "create_document / save_document_payload (NotationDoc, GlyphDoc, LinkDoc)",
+     "to": "StoreAPI"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "StoreAPI",
+     "group": "alt the diagram type has a notation",
+     "index": 6,
+     "kind": "reply",
+     "message": "documents",
+     "to": "NotationSync"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "SpecSync",
+     "group": "loop for each spec",
+     "index": 7,
+     "kind": "sync",
+     "message": "upsert SpecNodeDoc, SpecDoc, RelationDoc (attributes)",
+     "to": "StoreAPI"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "SpecSync",
+     "group": "loop for each spec",
+     "index": 8,
+     "kind": "sync",
+     "message": "rebuild_edges() / check_edges()",
+     "to": "StoreAPI"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "StoreAPI",
+     "group": "loop for each spec",
+     "index": 9,
+     "kind": "reply",
+     "message": "edge errors",
+     "to": "SpecSync"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "SpecSync",
+     "group": "loop for each spec",
+     "index": 10,
+     "kind": "reply",
+     "message": "SyncReport",
+     "to": "CLI"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "CLI",
+     "group": null,
+     "index": 11,
+     "kind": "reply",
+     "message": "one line per spec; exit 1 if --strict and problems",
+     "to": "User"
+    }
+   ],
+   "participants": [
+    {
+     "__type__": "Participant",
+     "id": "User",
+     "kind": "actor"
+    },
+    {
+     "__type__": "Participant",
+     "id": "CLI",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "SpecSync",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "Loader",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "NotationSync",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "StoreAPI",
+     "kind": "boundary"
+    }
+   ],
+   "title": "diagram sync call chain"
+  }
+ },
+ "docs/architecture/spec2viz/state-diagram-sync-lifecycle.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "StateIR",
+   "entity": "Spec sync",
+   "initial": "idle",
+   "states": [
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "failed",
+     "label": "Failed"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "idle",
+     "label": "Idle"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "indexing",
+     "label": "Rebuilding the edge index"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "synced",
+     "label": "Synced"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": [
+      "indexing",
+      "validating",
+      "writing"
+     ],
+     "id": "syncing",
+     "label": "Syncing against the store"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "validating",
+     "label": "Validating the spec"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "writing",
+     "label": "Writing documents"
+    }
+   ],
+   "title": "Ciclo de un `diagram sync`",
+   "transitions": [
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "failed",
+     "guard": null,
+     "on": "fix the spec",
+     "to": "idle"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "idle",
+     "guard": null,
+     "on": "diagram sync <spec>",
+     "to": "validating"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "indexing",
+     "guard": "--strict and errors",
+     "on": "check_edges",
+     "to": "failed"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "indexing",
+     "guard": "no errors",
+     "on": "check_edges",
+     "to": "synced"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "synced",
+     "guard": null,
+     "on": "next spec",
+     "to": "idle"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "validating",
+     "guard": "spec invalid",
+     "on": "load() raises",
+     "to": "failed"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "validating",
+     "guard": null,
+     "on": "load() ok",
+     "to": "writing"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "writing",
+     "guard": null,
+     "on": "documents upserted",
+     "to": "indexing"
+    }
+   ]
+  }
+ },
+ "docs/architecture/spec2viz/state-diagram-type-lifecycle.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "StateIR",
+   "entity": "Diagram Spec",
+   "initial": "raw_yaml",
+   "states": [
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "compiled_ir",
+     "label": "IR Dataclass"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "error",
+     "label": "Error State"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "parsed_dict",
+     "label": "Python Dict"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "raw_yaml",
+     "label": "Raw YAML File"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "rendered_output",
+     "label": "Rendered Output"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "semantically_valid",
+     "label": "Semantically Valid Model"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "validated_model",
+     "label": "Pydantic DiagramModel"
+    }
+   ],
+   "title": "Diagram Spec Lifecycle",
+   "transitions": [
+    {
+     "__type__": "Transition",
+     "action": "raise ParseError",
+     "from_": "parsed_dict",
+     "guard": "schema mismatch",
+     "on": "TypeAdapter.validate_python()",
+     "to": "error"
+    },
+    {
+     "__type__": "Transition",
+     "action": "raise ParseError",
+     "from_": "raw_yaml",
+     "guard": "malformed YAML",
+     "on": "yaml.safe_load()",
+     "to": "error"
+    },
+    {
+     "__type__": "Transition",
+     "action": "raise RenderError",
+     "from_": "compiled_ir",
+     "guard": "no renderer",
+     "on": "render()",
+     "to": "error"
+    },
+    {
+     "__type__": "Transition",
+     "action": "raise ValidationError",
+     "from_": "validated_model",
+     "guard": "broken refs",
+     "on": "validate()",
+     "to": "error"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "compiled_ir",
+     "guard": null,
+     "on": "render()",
+     "to": "rendered_output"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "parsed_dict",
+     "guard": "schema matches",
+     "on": "TypeAdapter.validate_python()",
+     "to": "validated_model"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "raw_yaml",
+     "guard": "valid YAML syntax",
+     "on": "yaml.safe_load()",
+     "to": "parsed_dict"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "semantically_valid",
+     "guard": null,
+     "on": "compile_ir()",
+     "to": "compiled_ir"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "validated_model",
+     "guard": "references resolve",
+     "on": "validate()",
+     "to": "semantically_valid"
+    }
+   ]
+  }
+ },
+ "examples/activity/example.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ActivityIR",
+   "end": "end",
+   "groups": {},
+   "start": "validate_input",
+   "steps": [
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "validate_input",
+     "kind": "action",
+     "label": "Validate input",
+     "next": "check_auth",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "no": "show_auth_error",
+      "yes": "load_data"
+     },
+     "detail": null,
+     "group": null,
+     "id": "check_auth",
+     "kind": "decision",
+     "label": "Is user authenticated?",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "show_auth_error",
+     "kind": "action",
+     "label": "Show auth error",
+     "next": "end",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "load_data",
+     "kind": "action",
+     "label": "Load data",
+     "next": "check_data",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "no": "show_data_error",
+      "yes": "save_result"
+     },
+     "detail": null,
+     "group": null,
+     "id": "check_data",
+     "kind": "decision",
+     "label": "Is data valid?",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "save_result",
+     "kind": "action",
+     "label": "Save result",
+     "next": "end",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "show_data_error",
+     "kind": "action",
+     "label": "Show data error",
+     "next": "end",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    }
+   ],
+   "style_kinds": {},
+   "title": "Complex Activity"
+  }
+ },
+ "examples/activity/validation.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ActivityIR",
+   "end": "end",
+   "groups": {},
+   "start": "load_basket",
+   "steps": [
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "load_basket",
+     "kind": "action",
+     "label": "Load basket",
+     "next": "calculate_price",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "calculate_price",
+     "kind": "action",
+     "label": "Calculate price",
+     "next": "check_validity",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "no": "show_errors",
+      "yes": "export_summary"
+     },
+     "detail": null,
+     "group": null,
+     "id": "check_validity",
+     "kind": "decision",
+     "label": "Is quotation valid?",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "export_summary",
+     "kind": "action",
+     "label": "Export summary",
+     "next": "end",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "show_errors",
+     "kind": "action",
+     "label": "Show validation errors",
+     "next": "end",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    }
+   ],
+   "style_kinds": {},
+   "title": "Validate Quotation"
+  }
+ },
+ "examples/catalog/leaves/sample-component.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ComponentIR",
+   "edges": [
+    {
+     "__type__": "ComponentEdge",
+     "from_": "api",
+     "label": null,
+     "relation": "syncs",
+     "to": "crm"
+    }
+   ],
+   "nodes": [
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "api",
+     "kind": "service",
+     "label": "API"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "crm",
+     "kind": "integration",
+     "label": "CRM"
+    }
+   ],
+   "style_kinds": {},
+   "title": "Sample Component"
+  }
+ },
+ "examples/class/runtime.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ClassIR",
+   "classes": [
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "spec",
+       "static": false,
+       "type": "NodeSpec",
+       "visibility": "private"
+      }
+     ],
+     "id": "DataNode",
+     "kind": "record",
+     "label": "DataNode",
+     "methods": [
+      {
+       "__type__": "ClassMethodIR",
+       "abstract": false,
+       "name": "execute",
+       "parameters": [
+        {
+         "__type__": "ClassParameterIR",
+         "name": "context",
+         "type": "ExecutionContext"
+        },
+        {
+         "__type__": "ClassParameterIR",
+         "name": "input",
+         "type": "PortValues"
+        }
+       ],
+       "returns": "ExecutionResult",
+       "static": false,
+       "visibility": "public"
+      }
+     ]
+    },
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [],
+     "id": "ExecutableNode",
+     "kind": "protocol",
+     "label": "ExecutableNode",
+     "methods": [
+      {
+       "__type__": "ClassMethodIR",
+       "abstract": true,
+       "name": "execute",
+       "parameters": [
+        {
+         "__type__": "ClassParameterIR",
+         "name": "context",
+         "type": "ExecutionContext"
+        },
+        {
+         "__type__": "ClassParameterIR",
+         "name": "input",
+         "type": "PortValues"
+        }
+       ],
+       "returns": "ExecutionResult",
+       "static": false,
+       "visibility": "public"
+      }
+     ]
+    },
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "id",
+       "static": false,
+       "type": "NodeId",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "inputs",
+       "static": false,
+       "type": "List<InputPort>",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "outputs",
+       "static": false,
+       "type": "List<OutputPort>",
+       "visibility": "public"
+      }
+     ],
+     "id": "NodeSpec",
+     "kind": "record",
+     "label": "NodeSpec",
+     "methods": []
+    }
+   ],
+   "direction": "LR",
+   "packages": [],
+   "relations": [
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "DataNode",
+     "from_multiplicity": null,
+     "label": "spec",
+     "relation": "association",
+     "to": "NodeSpec",
+     "to_multiplicity": "1"
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "DataNode",
+     "from_multiplicity": null,
+     "label": null,
+     "relation": "realization",
+     "to": "ExecutableNode",
+     "to_multiplicity": null
+    }
+   ],
+   "style_kinds": {},
+   "title": "Executable node contract"
+  }
+ },
+ "examples/component/example.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ComponentIR",
+   "edges": [
+    {
+     "__type__": "ComponentEdge",
+     "from_": "PricingEngine",
+     "label": "fetch_prices",
+     "relation": "reads",
+     "to": "SQLDatabase"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "QuotationFlow",
+     "label": "interaction",
+     "relation": "reads_writes",
+     "to": "Store"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "QuotationFlow",
+     "label": "save_state",
+     "relation": "persists",
+     "to": "Persistence"
+    }
+   ],
+   "nodes": [
+    {
+     "__type__": "ComponentNode",
+     "contains": [
+      "Basket",
+      "BasketItem"
+     ],
+     "href": null,
+     "id": "BasketManager",
+     "kind": "core",
+     "label": "Basket Manager"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [
+      "AddressValidator",
+      "ClientSelection"
+     ],
+     "href": null,
+     "id": "ClientService",
+     "kind": "core",
+     "label": "Client Management"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [
+      "SQLDatabase"
+     ],
+     "href": null,
+     "id": "Persistence",
+     "kind": "boundary",
+     "label": "Data Persistence"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "PricingEngine",
+     "kind": "core",
+     "label": "Pricing Engine"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [
+      "BasketManager",
+      "ClientService",
+      "PricingEngine"
+     ],
+     "href": null,
+     "id": "QuotationFlow",
+     "kind": "core",
+     "label": "Quotation Flow Engine"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "SQLDatabase",
+     "kind": "database",
+     "label": "SQL Database"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "Store",
+     "kind": "boundary",
+     "label": "Retail Store"
+    }
+   ],
+   "style_kinds": {},
+   "title": "Quotation System Components"
+  }
+ },
+ "examples/deployment/example.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "DeploymentIR",
+   "artifacts": [
+    {
+     "__type__": "DeploymentArtifact",
+     "id": "quotation_api",
+     "kind": "backend",
+     "label": "Quotation API"
+    },
+    {
+     "__type__": "DeploymentArtifact",
+     "id": "quotation_ui",
+     "kind": "frontend",
+     "label": "Quotation UI"
+    }
+   ],
+   "connections": [
+    {
+     "__type__": "DeploymentConnection",
+     "from_": "quotation_ui",
+     "kind": "communication",
+     "label": null,
+     "protocol": "HTTPS",
+     "to": "quotation_api"
+    }
+   ],
+   "nodes": [
+    {
+     "__type__": "DeploymentNode",
+     "contains": [
+      "quotation_api"
+     ],
+     "id": "app_server",
+     "kind": "server",
+     "label": "App Server"
+    },
+    {
+     "__type__": "DeploymentNode",
+     "contains": [
+      "quotation_ui"
+     ],
+     "id": "browser",
+     "kind": "client",
+     "label": "Browser"
+    }
+   ],
+   "style_kinds": {},
+   "title": "Runtime Deployment"
+  }
+ },
+ "examples/fixtures/canonical.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ComponentIR",
+   "edges": [
+    {
+     "__type__": "ComponentEdge",
+     "from_": "api",
+     "label": null,
+     "relation": "uses",
+     "to": "core"
+    }
+   ],
+   "nodes": [
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "api",
+     "kind": "boundary",
+     "label": "API"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "core",
+     "kind": "internal",
+     "label": "Core"
+    }
+   ],
+   "style_kinds": {},
+   "title": "Canonical Architecture"
+  }
+ },
+ "examples/matrix/example.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "MatrixIR",
+   "rows": [
+    {
+     "__type__": "Row",
+     "depth": 0,
+     "id": "QuotationSystem",
+     "label": "QuotationSystem",
+     "row": 0
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "Frontend",
+     "label": "Frontend",
+     "row": 1
+    },
+    {
+     "__type__": "Row",
+     "depth": 2,
+     "id": "WebUI",
+     "label": "WebUI",
+     "row": 2
+    },
+    {
+     "__type__": "Row",
+     "depth": 2,
+     "id": "MobileApp",
+     "label": "MobileApp",
+     "row": 3
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "Backend",
+     "label": "Backend",
+     "row": 4
+    },
+    {
+     "__type__": "Row",
+     "depth": 2,
+     "id": "OrderService",
+     "label": "OrderService",
+     "row": 5
+    },
+    {
+     "__type__": "Row",
+     "depth": 3,
+     "id": "BasketManager",
+     "label": "BasketManager",
+     "row": 6
+    },
+    {
+     "__type__": "Row",
+     "depth": 3,
+     "id": "ValidationEngine",
+     "label": "ValidationEngine",
+     "row": 7
+    },
+    {
+     "__type__": "Row",
+     "depth": 2,
+     "id": "AdminService",
+     "label": "AdminService",
+     "row": 8
+    },
+    {
+     "__type__": "Row",
+     "depth": 3,
+     "id": "UserStore",
+     "label": "UserStore",
+     "row": 9
+    },
+    {
+     "__type__": "Row",
+     "depth": 3,
+     "id": "AuditLog",
+     "label": "AuditLog",
+     "row": 10
+    },
+    {
+     "__type__": "Row",
+     "depth": 2,
+     "id": "Database",
+     "label": "Database",
+     "row": 11
+    }
+   ],
+   "spans": [
+    {
+     "__type__": "Span",
+     "component": "AdminService",
+     "end": 9,
+     "kind": "service",
+     "row": 8,
+     "start": 5
+    },
+    {
+     "__type__": "Span",
+     "component": "AuditLog",
+     "end": 9,
+     "kind": "database",
+     "row": 10,
+     "start": 8
+    },
+    {
+     "__type__": "Span",
+     "component": "Backend",
+     "end": 5,
+     "kind": "core",
+     "row": 4,
+     "start": 2
+    },
+    {
+     "__type__": "Span",
+     "component": "Backend",
+     "end": 9,
+     "kind": "core",
+     "row": 4,
+     "start": 6
+    },
+    {
+     "__type__": "Span",
+     "component": "BasketManager",
+     "end": 3,
+     "kind": "core",
+     "row": 6,
+     "start": 2
+    },
+    {
+     "__type__": "Span",
+     "component": "Database",
+     "end": 5,
+     "kind": "database",
+     "row": 11,
+     "start": 4
+    },
+    {
+     "__type__": "Span",
+     "component": "Frontend",
+     "end": 3,
+     "kind": "boundary",
+     "row": 1,
+     "start": 0
+    },
+    {
+     "__type__": "Span",
+     "component": "MobileApp",
+     "end": 2,
+     "kind": "ui",
+     "row": 3,
+     "start": 0
+    },
+    {
+     "__type__": "Span",
+     "component": "OrderService",
+     "end": 5,
+     "kind": "service",
+     "row": 5,
+     "start": 2
+    },
+    {
+     "__type__": "Span",
+     "component": "QuotationSystem",
+     "end": 5,
+     "kind": "core",
+     "row": 0,
+     "start": 0
+    },
+    {
+     "__type__": "Span",
+     "component": "QuotationSystem",
+     "end": 9,
+     "kind": "core",
+     "row": 0,
+     "start": 5
+    },
+    {
+     "__type__": "Span",
+     "component": "UserStore",
+     "end": 8,
+     "kind": "database",
+     "row": 9,
+     "start": 7
+    },
+    {
+     "__type__": "Span",
+     "component": "ValidationEngine",
+     "end": 4,
+     "kind": "core",
+     "row": 7,
+     "start": 3
+    },
+    {
+     "__type__": "Span",
+     "component": "WebUI",
+     "end": 3,
+     "kind": "ui",
+     "row": 2,
+     "start": 0
+    }
+   ],
+   "stages": [
+    {
+     "__type__": "Stage",
+     "id": "browse",
+     "index": 0,
+     "label": "browse",
+     "view": "Quotation View"
+    },
+    {
+     "__type__": "Stage",
+     "id": "client",
+     "index": 1,
+     "label": "client",
+     "view": "Quotation View"
+    },
+    {
+     "__type__": "Stage",
+     "id": "basket",
+     "index": 2,
+     "label": "basket",
+     "view": "Quotation View"
+    },
+    {
+     "__type__": "Stage",
+     "id": "validation",
+     "index": 3,
+     "label": "validation",
+     "view": "Quotation View"
+    },
+    {
+     "__type__": "Stage",
+     "id": "completed",
+     "index": 4,
+     "label": "completed",
+     "view": "Quotation View"
+    },
+    {
+     "__type__": "Stage",
+     "id": "setup",
+     "index": 5,
+     "label": "setup",
+     "view": "Administration Panel"
+    },
+    {
+     "__type__": "Stage",
+     "id": "config",
+     "index": 6,
+     "label": "config",
+     "view": "Administration Panel"
+    },
+    {
+     "__type__": "Stage",
+     "id": "users",
+     "index": 7,
+     "label": "users",
+     "view": "Administration Panel"
+    },
+    {
+     "__type__": "Stage",
+     "id": "logs",
+     "index": 8,
+     "label": "logs",
+     "view": "Administration Panel"
+    }
+   ],
+   "title": "Quotation Flow - Component View Matrix"
+  }
+ },
+ "examples/reflection/canonical.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "EnforcementArtifact",
+   "facts": [
+    {
+     "__type__": "EnforcementFact",
+     "context": {},
+     "relation": "uses",
+     "source": "api",
+     "target": "core"
+    },
+    {
+     "__type__": "EnforcementFact",
+     "context": {},
+     "relation": "is_kind",
+     "source": "core",
+     "target": "internal"
+    },
+    {
+     "__type__": "EnforcementFact",
+     "context": {},
+     "relation": "is_kind",
+     "source": "api",
+     "target": "boundary"
+    }
+   ],
+   "fingerprint": "1c8a387f61b55a8337dc871c73141d63f49d12f16946f462531f3e02c1615b2a"
+  }
+ },
+ "examples/sequence/example.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "SequenceIR",
+   "messages": [
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "User",
+     "group": null,
+     "index": 0,
+     "kind": "sync",
+     "message": "open quotation flow",
+     "to": "QuotationFlow"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "QuotationFlow",
+     "group": null,
+     "index": 1,
+     "kind": "sync",
+     "message": "load catalog",
+     "to": "Store"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "User",
+     "group": null,
+     "index": 2,
+     "kind": "sync",
+     "message": "add item",
+     "to": "QuotationFlow"
+    }
+   ],
+   "participants": [
+    {
+     "__type__": "Participant",
+     "id": "User",
+     "kind": "actor"
+    },
+    {
+     "__type__": "Participant",
+     "id": "QuotationFlow",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "Store",
+     "kind": "boundary"
+    }
+   ],
+   "title": "Create Quotation"
+  }
+ },
+ "examples/state/example.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "StateIR",
+   "entity": "Quotation",
+   "initial": "browsing",
+   "states": [
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "browsing",
+     "label": "Browsing"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "client_selected",
+     "label": "Client Selected"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "completed",
+     "label": "Completed"
+    }
+   ],
+   "title": "Quotation State Machine",
+   "transitions": [
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "browsing",
+     "guard": null,
+     "on": "select_client",
+     "to": "client_selected"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "client_selected",
+     "guard": "all validations passed",
+     "on": "complete",
+     "to": "completed"
+    }
+   ]
+  }
+ },
+ "tests/fixtures/activity.complex.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ActivityIR",
+   "end": "end",
+   "groups": {},
+   "start": "validate_input",
+   "steps": [
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "validate_input",
+     "kind": "action",
+     "label": "Validate input",
+     "next": "check_auth",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "no": "show_auth_error",
+      "yes": "load_data"
+     },
+     "detail": null,
+     "group": null,
+     "id": "check_auth",
+     "kind": "decision",
+     "label": "Is user authenticated?",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "show_auth_error",
+     "kind": "action",
+     "label": "Show auth error",
+     "next": "end",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "load_data",
+     "kind": "action",
+     "label": "Load data",
+     "next": "check_data",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "no": "show_data_error",
+      "yes": "save_result"
+     },
+     "detail": null,
+     "group": null,
+     "id": "check_data",
+     "kind": "decision",
+     "label": "Is data valid?",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "save_result",
+     "kind": "action",
+     "label": "Save result",
+     "next": "end",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "show_data_error",
+     "kind": "action",
+     "label": "Show data error",
+     "next": "end",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    }
+   ],
+   "style_kinds": {},
+   "title": "Complex Activity"
+  }
+ },
+ "tests/fixtures/activity.groups.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ActivityIR",
+   "end": "end",
+   "groups": {
+    "admission": {
+     "__type__": "ActivityGroup",
+     "detail": "Se valida la solicitud antes de derivarla al análisis.",
+     "id": "admission",
+     "label": "Admisión",
+     "tone": "info"
+    },
+    "analysis": {
+     "__type__": "ActivityGroup",
+     "detail": "Reglas de negocio aplicadas sobre la solicitud admitida.",
+     "id": "analysis",
+     "label": "Análisis",
+     "tone": "warning"
+    }
+   },
+   "start": "intake",
+   "steps": [
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": "La solicitud llega desde el portal y se registra con su folio.",
+     "group": "admission",
+     "id": "intake",
+     "kind": "action",
+     "label": "Recibir solicitud",
+     "next": "check_docs",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "no": "request_docs",
+      "sí": "classify"
+     },
+     "detail": null,
+     "group": "admission",
+     "id": "check_docs",
+     "kind": "decision",
+     "label": "¿Documentos completos?",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": "admission",
+     "id": "request_docs",
+     "kind": "action",
+     "label": "Pedir documentos faltantes",
+     "next": "wait_docs",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": "admission",
+     "id": "wait_docs",
+     "kind": "action",
+     "label": "Esperar respuesta",
+     "next": "check_docs",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "classify",
+     "kind": "action",
+     "label": "Clasificar solicitud",
+     "next": "evaluate",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": "Cada regla produce una marca y se conserva la peor.",
+     "group": "analysis",
+     "id": "evaluate",
+     "kind": "action",
+     "label": "Evaluar reglas",
+     "next": "decide",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "no": "review",
+      "sí": "approve"
+     },
+     "detail": null,
+     "group": "analysis",
+     "id": "decide",
+     "kind": "decision",
+     "label": "¿Cumple todas las reglas?",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": "analysis",
+     "id": "approve",
+     "kind": "action",
+     "label": "Aprobar",
+     "next": "notify",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": "analysis",
+     "id": "review",
+     "kind": "action",
+     "label": "Revisar manualmente",
+     "next": "notify",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "notify",
+     "kind": "action",
+     "label": "Notificar resultado",
+     "next": "end",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    }
+   ],
+   "style_kinds": {},
+   "title": "Subprocesos con detalle"
+  }
+ },
+ "tests/fixtures/activity.lanes.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ActivityIR",
+   "end": "end",
+   "groups": {},
+   "start": "open_pr",
+   "steps": [
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "open_pr",
+     "kind": "action",
+     "label": "Open pull request",
+     "next": "review",
+     "notes": null,
+     "partition": "Dev",
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "no": "rework",
+      "yes": "deploy"
+     },
+     "detail": null,
+     "group": null,
+     "id": "review",
+     "kind": "decision",
+     "label": "Approve?",
+     "next": null,
+     "notes": "Two approvals for production",
+     "partition": "Approver",
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "rework",
+     "kind": "action",
+     "label": "Address review",
+     "next": "joined",
+     "notes": null,
+     "partition": "Dev",
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "deploy",
+     "kind": "action",
+     "label": "Deploy",
+     "next": "joined",
+     "notes": null,
+     "partition": "Script",
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "joined",
+     "kind": "merge",
+     "label": "",
+     "next": "verify",
+     "notes": null,
+     "partition": "Script",
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "verify",
+     "kind": "action",
+     "label": "Verify in cloud",
+     "next": "end",
+     "notes": null,
+     "partition": "AWS",
+     "tone": null
+    }
+   ],
+   "style_kinds": {},
+   "title": "Release approval"
+  }
+ },
+ "tests/fixtures/activity.mepu-decision.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ActivityIR",
+   "end": "end",
+   "groups": {},
+   "start": "linea",
+   "steps": [
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "linea",
+     "kind": "action",
+     "label": "Una línea de una OC abierta (4 o 5) de Laboratorio Chile",
+     "next": "r1",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "no": "revisar_r1",
+      "sí": "r2"
+     },
+     "detail": null,
+     "group": null,
+     "id": "r1",
+     "kind": "decision",
+     "label": "R1 · ¿Producto identificado? (SKU del maestro 70.12 o lectura de la línea)",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "revisar_r1",
+     "kind": "action",
+     "label": "Revisar: problema de homologación (decisión del CTO 2026-10-13)",
+     "next": "oc",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "parcial": "parcial",
+      "sin stock": "no_aceptar_r2",
+      "sin stock, ingreso confirmado a tiempo": "pendiente_stock",
+      "suficiente": "r3"
+     },
+     "detail": null,
+     "group": null,
+     "id": "r2",
+     "kind": "decision",
+     "label": "R2 · Stock libre del SKU (sumando lotes; un lote vencido no cuenta)",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "parcial",
+     "kind": "action",
+     "label": "Aceptar + PARTIAL_STOCK: se acepta y se avisa qué falta (pendiente Karina)",
+     "next": "r3",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "pendiente_stock",
+     "kind": "action",
+     "label": "Aceptar + PENDIENTE_STOCK: sin stock hoy, ingreso confirmado a tiempo en el informe PEND (DEC-128, REG-4)",
+     "next": "r3",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "no_aceptar_r2",
+     "kind": "action",
+     "label": "No aceptar (todavía): sin stock y sin ingreso confirmado a tiempo (decisión del 2026-10-22)",
+     "next": "oc",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "no": "revisar_r3",
+      "sí": "r4"
+     },
+     "detail": null,
+     "group": null,
+     "id": "r3",
+     "kind": "decision",
+     "label": "R3 · ¿Vence en más de 12 meses calendario? (sin fecha de vencimiento → Revisar)",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "revisar_r3",
+     "kind": "action",
+     "label": "Revisar (Comercial): negociar con el cliente, sin descuento automático",
+     "next": "r4",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "de otro cliente": "revisar_r4",
+      "del mismo cliente": "misma",
+      "institucional": "revisar_insti",
+      "sin reserva": "r5"
+     },
+     "detail": null,
+     "group": null,
+     "id": "r4",
+     "kind": "decision",
+     "label": "R4 · ¿El stock que cubre está reservado (cautela)?",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "misma",
+     "kind": "action",
+     "label": "Aceptar + CAUTELA_SAME_CLIENT",
+     "next": "r5",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "revisar_insti",
+     "kind": "action",
+     "label": "Revisar (Customer Service) + RESERVA_INSTITUCIONAL: usa reserva institucional, requiere autorización (REG-3)",
+     "next": "r5",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "revisar_r4",
+     "kind": "action",
+     "label": "Revisar (Customer Service): nunca No aceptar por una reserva ajena",
+     "next": "r5",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "no": "revisar_r5",
+      "sin collective o sin precio": "peor",
+      "sí": "peor"
+     },
+     "detail": null,
+     "group": null,
+     "id": "r5",
+     "kind": "decision",
+     "label": "R5 · ¿El precio calza con el collective number del cliente? En la misma unidad (por caja o por unidad mínima) y sin redondear",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "revisar_r5",
+     "kind": "action",
+     "label": "Revisar (Comercial) (PROVISIONAL: la fuente dice por definir)",
+     "next": "peor",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "peor",
+     "kind": "action",
+     "label": "La línea toma el peor resultado de sus reglas",
+     "next": "oc",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "oc",
+     "kind": "action",
+     "label": "La OC toma el peor veredicto de sus líneas: Aceptar · Revisar (a quién) · No aceptar; más sus alertas",
+     "next": "end",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    }
+   ],
+   "style_kinds": {},
+   "title": "MEPU · Cómo se decide una línea (R1–R5) y la OC"
+  }
+ },
+ "tests/fixtures/activity.validation.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ActivityIR",
+   "end": "end",
+   "groups": {},
+   "start": "load_basket",
+   "steps": [
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "load_basket",
+     "kind": "action",
+     "label": "Load basket",
+     "next": "calculate_price",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "calculate_price",
+     "kind": "action",
+     "label": "Calculate price",
+     "next": "check_validity",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {
+      "no": "show_errors",
+      "yes": "export_summary"
+     },
+     "detail": null,
+     "group": null,
+     "id": "check_validity",
+     "kind": "decision",
+     "label": "Is quotation valid?",
+     "next": null,
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "export_summary",
+     "kind": "action",
+     "label": "Export summary",
+     "next": "end",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    },
+    {
+     "__type__": "ActivityStep",
+     "branches": {},
+     "detail": null,
+     "group": null,
+     "id": "show_errors",
+     "kind": "action",
+     "label": "Show validation errors",
+     "next": "end",
+     "notes": null,
+     "partition": null,
+     "tone": null
+    }
+   ],
+   "style_kinds": {},
+   "title": "Validate Quotation"
+  }
+ },
+ "tests/fixtures/class.packages.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ClassIR",
+   "classes": [
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "event",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      }
+     ],
+     "id": "AuditLog",
+     "kind": "class",
+     "label": "AuditLog",
+     "methods": []
+    },
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "id",
+       "static": false,
+       "type": "int",
+       "visibility": "public"
+      },
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "total",
+       "static": false,
+       "type": "Decimal",
+       "visibility": "public"
+      }
+     ],
+     "id": "Invoice",
+     "kind": "class",
+     "label": "Invoice",
+     "methods": []
+    },
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "invoice_id",
+       "static": false,
+       "type": "int",
+       "visibility": "public"
+      }
+     ],
+     "id": "Payment",
+     "kind": "class",
+     "label": "Payment",
+     "methods": []
+    },
+    {
+     "__type__": "ClassNodeIR",
+     "attributes": [
+      {
+       "__type__": "ClassAttributeIR",
+       "name": "email",
+       "static": false,
+       "type": "str",
+       "visibility": "public"
+      }
+     ],
+     "id": "User",
+     "kind": "class",
+     "label": "User",
+     "methods": []
+    }
+   ],
+   "direction": "LR",
+   "packages": [
+    {
+     "__type__": "ClassPackageIR",
+     "contains": [
+      "Invoice",
+      "Payment"
+     ],
+     "id": "billing",
+     "kind": "billing",
+     "label": "Billing"
+    },
+    {
+     "__type__": "ClassPackageIR",
+     "contains": [
+      "billing",
+      "identity"
+     ],
+     "id": "core",
+     "kind": "domain",
+     "label": "Core"
+    },
+    {
+     "__type__": "ClassPackageIR",
+     "contains": [
+      "User"
+     ],
+     "id": "identity",
+     "kind": "identity",
+     "label": "Identity"
+    },
+    {
+     "__type__": "ClassPackageIR",
+     "contains": [
+      "AuditLog"
+     ],
+     "id": "shared",
+     "kind": "package",
+     "label": "Shared"
+    }
+   ],
+   "relations": [
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "AuditLog",
+     "from_multiplicity": null,
+     "label": null,
+     "relation": "dependency",
+     "to": "User",
+     "to_multiplicity": null
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "Invoice",
+     "from_multiplicity": null,
+     "label": "billed to",
+     "relation": "association",
+     "to": "User",
+     "to_multiplicity": null
+    },
+    {
+     "__type__": "ClassRelationIR",
+     "from_": "Payment",
+     "from_multiplicity": null,
+     "label": "pays",
+     "relation": "association",
+     "to": "Invoice",
+     "to_multiplicity": null
+    }
+   ],
+   "style_kinds": {
+    "billing": {
+     "fill": {
+      "dark": "#3d3200",
+      "light": "#fff1c2"
+     },
+     "stroke": "#7a5c00"
+    },
+    "identity": {
+     "fill": "database-fill",
+     "stroke": "database-stroke"
+    }
+   },
+   "title": "Tables by domain"
+  }
+ },
+ "tests/fixtures/component.kinds.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ComponentIR",
+   "edges": [
+    {
+     "__type__": "ComponentEdge",
+     "from_": "api",
+     "label": null,
+     "relation": "reads",
+     "to": "db"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "web",
+     "label": null,
+     "relation": "calls",
+     "to": "api"
+    }
+   ],
+   "nodes": [
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "api",
+     "kind": "backend",
+     "label": "API"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "db",
+     "kind": "database",
+     "label": "Store"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "web",
+     "kind": "frontend",
+     "label": "Web"
+    }
+   ],
+   "style_kinds": {
+    "backend": {
+     "icon": "cpu",
+     "stroke": "backend-stroke"
+    },
+    "core": {
+     "plantuml": {
+      "background": "#112233"
+     }
+    },
+    "database": {
+     "fill": "#ffeecc"
+    }
+   },
+   "title": "Kinds with style"
+  }
+ },
+ "tests/fixtures/component.quotation.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ComponentIR",
+   "edges": [
+    {
+     "__type__": "ComponentEdge",
+     "from_": "QuotationFlow",
+     "label": "persists",
+     "relation": "persists",
+     "to": "Persistence"
+    },
+    {
+     "__type__": "ComponentEdge",
+     "from_": "QuotationFlow",
+     "label": "reads/writes",
+     "relation": "reads_writes",
+     "to": "Store"
+    }
+   ],
+   "nodes": [
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "Persistence",
+     "kind": "boundary",
+     "label": "Persistence"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [
+      "Basket",
+      "ClientSelection"
+     ],
+     "href": null,
+     "id": "QuotationFlow",
+     "kind": "core",
+     "label": "QuotationFlow"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "Store",
+     "kind": "boundary",
+     "label": "Store"
+    }
+   ],
+   "style_kinds": {},
+   "title": "Quotation Components"
+  }
+ },
+ "tests/fixtures/component.styled.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "ComponentIR",
+   "edges": [
+    {
+     "__type__": "ComponentEdge",
+     "from_": "App",
+     "label": null,
+     "relation": "uses",
+     "to": "Boundary"
+    }
+   ],
+   "nodes": [
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "App",
+     "kind": "core",
+     "label": "App"
+    },
+    {
+     "__type__": "ComponentNode",
+     "contains": [],
+     "href": null,
+     "id": "Boundary",
+     "kind": "boundary",
+     "label": "Boundary"
+    }
+   ],
+   "style_kinds": {
+    "core": {
+     "plantuml": {
+      "background": "#112233",
+      "border": "#445566",
+      "font": "#778899"
+     }
+    }
+   },
+   "title": "Styled Components"
+  }
+ },
+ "tests/fixtures/deployment.nested.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "DeploymentIR",
+   "artifacts": [
+    {
+     "__type__": "DeploymentArtifact",
+     "id": "api_image",
+     "kind": "image",
+     "label": "api image"
+    },
+    {
+     "__type__": "DeploymentArtifact",
+     "id": "api_service",
+     "kind": "container",
+     "label": "api service"
+    }
+   ],
+   "connections": [
+    {
+     "__type__": "DeploymentConnection",
+     "from_": "api_image",
+     "kind": "deploy",
+     "label": null,
+     "protocol": null,
+     "to": "cluster"
+    },
+    {
+     "__type__": "DeploymentConnection",
+     "from_": "api_image",
+     "kind": "manifest",
+     "label": null,
+     "protocol": null,
+     "to": "api_service"
+    },
+    {
+     "__type__": "DeploymentConnection",
+     "from_": "cluster",
+     "kind": "communication",
+     "label": "queries",
+     "protocol": ":5432",
+     "to": "db"
+    },
+    {
+     "__type__": "DeploymentConnection",
+     "from_": "edge",
+     "kind": "communication",
+     "label": null,
+     "protocol": "HTTPS",
+     "to": "cluster"
+    }
+   ],
+   "nodes": [
+    {
+     "__type__": "DeploymentNode",
+     "contains": [
+      "api_service"
+     ],
+     "id": "cluster",
+     "kind": "cluster",
+     "label": "ECS cluster"
+    },
+    {
+     "__type__": "DeploymentNode",
+     "contains": [],
+     "id": "db",
+     "kind": "database",
+     "label": "Postgres"
+    },
+    {
+     "__type__": "DeploymentNode",
+     "contains": [],
+     "id": "edge",
+     "kind": "external",
+     "label": "CDN"
+    },
+    {
+     "__type__": "DeploymentNode",
+     "contains": [
+      "cluster",
+      "db"
+     ],
+     "id": "subnet",
+     "kind": "subnet",
+     "label": "Private subnet"
+    },
+    {
+     "__type__": "DeploymentNode",
+     "contains": [
+      "subnet"
+     ],
+     "id": "vpc",
+     "kind": "network",
+     "label": "VPC"
+    }
+   ],
+   "style_kinds": {},
+   "title": "Nested cloud deployment"
+  }
+ },
+ "tests/fixtures/deployment.runtime.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "DeploymentIR",
+   "artifacts": [
+    {
+     "__type__": "DeploymentArtifact",
+     "id": "quotation_api",
+     "kind": "backend",
+     "label": "Quotation API"
+    },
+    {
+     "__type__": "DeploymentArtifact",
+     "id": "quotation_ui",
+     "kind": "frontend",
+     "label": "Quotation UI"
+    }
+   ],
+   "connections": [
+    {
+     "__type__": "DeploymentConnection",
+     "from_": "quotation_ui",
+     "kind": "communication",
+     "label": null,
+     "protocol": "HTTPS",
+     "to": "quotation_api"
+    }
+   ],
+   "nodes": [
+    {
+     "__type__": "DeploymentNode",
+     "contains": [
+      "quotation_api"
+     ],
+     "id": "app_server",
+     "kind": "server",
+     "label": "App Server"
+    },
+    {
+     "__type__": "DeploymentNode",
+     "contains": [
+      "quotation_ui"
+     ],
+     "id": "browser",
+     "kind": "client",
+     "label": "Browser"
+    }
+   ],
+   "style_kinds": {},
+   "title": "Runtime Deployment"
+  }
+ },
+ "tests/fixtures/invalid/bad_activity.yml": {
+  "error": [
+   "UnknownReferenceError",
+   "Step 'load_basket' next 'nonexistent_step' unknown in activity.bad"
+  ],
+  "ir": null
+ },
+ "tests/fixtures/invalid/bad_deployment.yml": {
+  "error": [
+   "UnknownReferenceError",
+   "Node 'browser' contains unknown node or artifact 'missing_artifact' in deployment.bad"
+  ],
+  "ir": null
+ },
+ "tests/fixtures/invalid/bad_schema.yml": {
+  "error": [
+   "ParseError",
+   "Invalid diagram schema in tests/fixtures/invalid/bad_schema.yml (type sequence): unknown key 'data.messages.0.unknown_field'. Every key must be part of the schema of its type (`spec2viz diagram schema` exports them)."
+  ],
+  "ir": null
+ },
+ "tests/fixtures/invalid/bad_sequence.yml": {
+  "error": [
+   "ValidationError",
+   "Message 'to' references unknown participant 'GhostComponent' in sequence.bad"
+  ],
+  "ir": null
+ },
+ "tests/fixtures/invalid/bad_state.yml": {
+  "error": [
+   "ValidationError",
+   "Transition 'to' references unknown state 'nonexistent_state' in state.bad"
+  ],
+  "ir": null
+ },
+ "tests/fixtures/invalid/malformed.yml": {
+  "error": [
+   "ParseError",
+   "YAML parse error in tests/fixtures/invalid/malformed.yml: while parsing a flow sequence\n  in \"<unicode string>\", line 2, column 8:\n    title: [unclosed bracket\n           ^\nexpected ',' or ']', but got ':'\n  in \"<unicode string>\", line 3, column 5:\n    type: sequence\n        ^"
+  ],
+  "ir": null
+ },
+ "tests/fixtures/invalid/unknown_node.yml": {
+  "error": [
+   "ValidationError",
+   "Edge 'to' references unknown node 'MissingNode' in component.bad"
+  ],
+  "ir": null
+ },
+ "tests/fixtures/invalid/unknown_stage.yml": {
+  "error": [
+   "ValidationError",
+   "Component 'Foo' references unknown stage 'nonexistent_stage' in view 'quotation' in matrix.bad"
+  ],
+  "ir": null
+ },
+ "tests/fixtures/matrix.quotation-view.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "MatrixIR",
+   "rows": [
+    {
+     "__type__": "Row",
+     "depth": 0,
+     "id": "QuotationFlow",
+     "label": "QuotationFlow",
+     "row": 0
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "Store",
+     "label": "Store",
+     "row": 1
+    },
+    {
+     "__type__": "Row",
+     "depth": 1,
+     "id": "Basket",
+     "label": "Basket",
+     "row": 2
+    },
+    {
+     "__type__": "Row",
+     "depth": 2,
+     "id": "BasketItem",
+     "label": "BasketItem",
+     "row": 3
+    }
+   ],
+   "spans": [
+    {
+     "__type__": "Span",
+     "component": "Basket",
+     "end": 4,
+     "kind": "core",
+     "row": 2,
+     "start": 2
+    },
+    {
+     "__type__": "Span",
+     "component": "BasketItem",
+     "end": 4,
+     "kind": "core",
+     "row": 3,
+     "start": 2
+    },
+    {
+     "__type__": "Span",
+     "component": "QuotationFlow",
+     "end": 5,
+     "kind": "core",
+     "row": 0,
+     "start": 0
+    },
+    {
+     "__type__": "Span",
+     "component": "Store",
+     "end": 3,
+     "kind": "boundary",
+     "row": 1,
+     "start": 0
+    }
+   ],
+   "stages": [
+    {
+     "__type__": "Stage",
+     "id": "browse",
+     "index": 0,
+     "label": "browse",
+     "view": "Quotation View"
+    },
+    {
+     "__type__": "Stage",
+     "id": "client",
+     "index": 1,
+     "label": "client",
+     "view": "Quotation View"
+    },
+    {
+     "__type__": "Stage",
+     "id": "basket",
+     "index": 2,
+     "label": "basket",
+     "view": "Quotation View"
+    },
+    {
+     "__type__": "Stage",
+     "id": "validation",
+     "index": 3,
+     "label": "validation",
+     "view": "Quotation View"
+    },
+    {
+     "__type__": "Stage",
+     "id": "completed",
+     "index": 4,
+     "label": "completed",
+     "view": "Quotation View"
+    }
+   ],
+   "title": "Quotation Flow - Component View Matrix"
+  }
+ },
+ "tests/fixtures/sequence.create-quotation.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "SequenceIR",
+   "messages": [
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "User",
+     "group": null,
+     "index": 0,
+     "kind": "sync",
+     "message": "open quotation flow",
+     "to": "QuotationFlow"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "QuotationFlow",
+     "group": null,
+     "index": 1,
+     "kind": "sync",
+     "message": "load catalog",
+     "to": "Store"
+    },
+    {
+     "__type__": "Message",
+     "condition": null,
+     "from_": "User",
+     "group": null,
+     "index": 2,
+     "kind": "sync",
+     "message": "add item",
+     "to": "QuotationFlow"
+    }
+   ],
+   "participants": [
+    {
+     "__type__": "Participant",
+     "id": "User",
+     "kind": "actor"
+    },
+    {
+     "__type__": "Participant",
+     "id": "QuotationFlow",
+     "kind": "component"
+    },
+    {
+     "__type__": "Participant",
+     "id": "Store",
+     "kind": "boundary"
+    }
+   ],
+   "title": "Create Quotation"
+  }
+ },
+ "tests/fixtures/state.quotation.yml": {
+  "error": null,
+  "ir": {
+   "__type__": "StateIR",
+   "entity": "Quotation",
+   "initial": "browsing",
+   "states": [
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "browsing",
+     "label": "Browsing"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "client_selected",
+     "label": "Client Selected"
+    },
+    {
+     "__type__": "StateNode",
+     "contains": null,
+     "id": "completed",
+     "label": "Completed"
+    }
+   ],
+   "title": "Quotation State Machine",
+   "transitions": [
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "browsing",
+     "guard": null,
+     "on": "select_client",
+     "to": "client_selected"
+    },
+    {
+     "__type__": "Transition",
+     "action": null,
+     "from_": "client_selected",
+     "guard": "all validations passed",
+     "on": "complete",
+     "to": "completed"
+    }
+   ]
+  }
+ }
+}

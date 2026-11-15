@@ -1,0 +1,26 @@
+id: activity.validation
+title: Validate Quotation
+type: activity
+version: "0.1"
+data:
+  start: load_basket
+  steps:
+    load_basket:
+      label: Load basket
+      next: calculate_price
+    calculate_price:
+      label: Calculate price
+      next: check_validity
+    check_validity:
+      label: Is quotation valid?
+      kind: decision
+      branches:
+        "yes": export_summary
+        "no": show_errors
+    export_summary:
+      label: Export summary
+      next: end
+    show_errors:
+      label: Show validation errors
+      next: end
+  end: end

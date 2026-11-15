@@ -1,0 +1,27 @@
+id: component.quotation
+title: Quotation Components
+type: component
+version: "0.1"
+data:
+  nodes:
+    QuotationFlow:
+      label: QuotationFlow
+      kind: core
+      contains:
+        - ClientSelection
+        - Basket
+    Store:
+      label: Store
+      kind: boundary
+    Persistence:
+      label: Persistence
+      kind: boundary
+  edges:
+    - from: QuotationFlow
+      to: Store
+      relation: reads_writes
+      label: reads/writes
+    - from: QuotationFlow
+      to: Persistence
+      relation: persists
+      label: persists

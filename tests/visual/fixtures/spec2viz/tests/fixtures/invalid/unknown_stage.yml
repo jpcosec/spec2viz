@@ -1,0 +1,17 @@
+id: matrix.bad
+title: Bad Matrix
+type: component_view_matrix
+version: "0.1"
+data:
+  views:
+    - id: quotation
+      label: Quotation
+      stages:
+        - id: browse
+          label: browse
+  components:
+    - name: Foo
+      kind: core
+      stages:
+        quotation:
+          - nonexistent_stage

@@ -1,0 +1,114 @@
+id: component.spec2viz-architecture
+title: "spec2viz Module Dependency Graph"
+type: component
+version: "0.1"
+
+data:
+  nodes:
+    cli:
+      label: CLI
+      kind: boundary
+
+    facade:
+      label: API Facade
+      kind: core
+
+    loader:
+      label: Loader
+      kind: core
+
+    models:
+      label: Pydantic Models
+      kind: core
+
+    validator:
+      label: Validator
+      kind: core
+
+    compilers:
+      label: Compiler Dispatch
+      kind: core
+
+    ir:
+      label: Intermediate Repr
+      kind: core
+
+    renderers:
+      label: Renderer Dispatch
+      kind: core
+      refs:
+        - AtomDoc:atom-multi-backend-renderers-what
+        - AtomDoc:atom-multi-backend-renderers-how_not
+
+    schema_mod:
+      label: Schema Export
+      kind: core
+
+    deskops:
+      label: Deskops Builder
+      kind: boundary
+
+    exceptions:
+      label: Exception Hierarchy
+      kind: core
+
+  edges:
+    - from: cli
+      to: facade
+      relation: uses
+      label: "render / validate commands"
+
+    - from: cli
+      to: deskops
+      relation: uses
+      label: "build command"
+
+    - from: cli
+      to: schema_mod
+      relation: uses
+      label: "schema command"
+
+    - from: facade
+      to: loader
+      relation: uses
+      label: "load(path)"
+
+    - from: facade
+      to: validator
+      relation: uses
+      label: "validate(diagram)"
+
+    - from: facade
+      to: compilers
+      relation: uses
+      label: "compile_ir(diagram)"
+
+    - from: facade
+      to: renderers
+      relation: uses
+      label: "render(ir, name)"
+
+    - from: loader
+      to: models
+      relation: uses
+      label: "TypeAdapter(AnyDiagram).validate_python()"
+
+    - from: validator
+      to: models
+      relation: uses
+      label: "inspect references"
+
+    - from: compilers
+      to: models
+      relation: reads
+      label: "read model fields"
+
+    - from: compilers
+      to: ir
+      relation: uses
+      label: "emit IR dataclasses"
+
+    - from: renderers
+      to: ir
+      relation: reads
+      label: "consume IR dataclasses"

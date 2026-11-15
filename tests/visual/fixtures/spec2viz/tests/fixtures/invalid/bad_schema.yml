@@ -1,0 +1,13 @@
+id: schema.bad
+title: Bad Schema
+type: sequence
+version: "0.1"
+data:
+  participants:
+    - id: User
+      kind: actor
+  messages:
+    - from: User
+      to: Other
+      message: hello
+      unknown_field: this should be rejected

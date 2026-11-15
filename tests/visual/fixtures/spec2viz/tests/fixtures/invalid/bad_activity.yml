@@ -1,0 +1,11 @@
+id: activity.bad
+title: Bad Activity
+type: activity
+version: "0.1"
+data:
+  start: load_basket
+  steps:
+    load_basket:
+      label: Load basket
+      next: nonexistent_step
+  end: end

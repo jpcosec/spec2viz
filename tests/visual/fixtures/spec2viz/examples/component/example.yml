@@ -1,0 +1,62 @@
+id: component.quotation
+title: Quotation System Components
+type: component
+version: "0.1"
+
+data:
+  nodes:
+    QuotationFlow:
+      label: Quotation Flow Engine
+      kind: core
+      contains:
+        - ClientService
+        - PricingEngine
+        - BasketManager
+
+    ClientService:
+      label: Client Management
+      kind: core
+      contains:
+        - ClientSelection
+        - AddressValidator
+
+    BasketManager:
+      label: Basket Manager
+      kind: core
+      contains:
+        - Basket
+        - BasketItem
+
+    PricingEngine:
+      label: Pricing Engine
+      kind: core
+
+    Store:
+      label: Retail Store
+      kind: boundary
+
+    Persistence:
+      label: Data Persistence
+      kind: boundary
+      contains:
+        - SQLDatabase
+
+    SQLDatabase:
+      label: SQL Database
+      kind: database
+
+  edges:
+    - from: QuotationFlow
+      to: Store
+      relation: reads_writes
+      label: interaction
+
+    - from: QuotationFlow
+      to: Persistence
+      relation: persists
+      label: save_state
+
+    - from: PricingEngine
+      to: SQLDatabase
+      relation: reads
+      label: fetch_prices

@@ -1,0 +1,72 @@
+id: state.diagram-type-lifecycle
+title: "Diagram Spec Lifecycle"
+type: state
+version: "0.1"
+
+data:
+  entity: Diagram Spec
+  initial: raw_yaml
+
+  states:
+    - id: raw_yaml
+      label: Raw YAML File
+    - id: parsed_dict
+      label: Python Dict
+    - id: validated_model
+      label: Pydantic DiagramModel
+    - id: semantically_valid
+      label: Semantically Valid Model
+    - id: compiled_ir
+      label: IR Dataclass
+    - id: rendered_output
+      label: Rendered Output
+    - id: error
+      label: Error State
+
+  transitions:
+    - from: raw_yaml
+      to: parsed_dict
+      "on": "yaml.safe_load()"
+      guard: "valid YAML syntax"
+
+    - from: raw_yaml
+      to: error
+      "on": "yaml.safe_load()"
+      guard: "malformed YAML"
+      action: "raise ParseError"
+
+    - from: parsed_dict
+      to: validated_model
+      "on": "TypeAdapter.validate_python()"
+      guard: "schema matches"
+
+    - from: parsed_dict
+      to: error
+      "on": "TypeAdapter.validate_python()"
+      guard: "schema mismatch"
+      action: "raise ParseError"
+
+    - from: validated_model
+      to: semantically_valid
+      "on": "validate()"
+      guard: "references resolve"
+
+    - from: validated_model
+      to: error
+      "on": "validate()"
+      guard: "broken refs"
+      action: "raise ValidationError"
+
+    - from: semantically_valid
+      to: compiled_ir
+      "on": "compile_ir()"
+
+    - from: compiled_ir
+      to: rendered_output
+      "on": "render()"
+
+    - from: compiled_ir
+      to: error
+      "on": "render()"
+      guard: "no renderer"
+      action: "raise RenderError"

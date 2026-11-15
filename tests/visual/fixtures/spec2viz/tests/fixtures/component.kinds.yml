@@ -1,0 +1,32 @@
+id: component.kinds
+title: Kinds with style
+type: component
+version: "0.1"
+style:
+  kinds:
+    database:
+      fill: "#ffeecc"
+    backend:
+      stroke: backend-stroke
+      icon: cpu
+    core:
+      plantuml:
+        background: "#112233"
+data:
+  nodes:
+    api:
+      label: API
+      kind: backend
+    db:
+      label: Store
+      kind: database
+    web:
+      label: Web
+      kind: frontend
+  edges:
+    - from: web
+      to: api
+      relation: calls
+    - from: api
+      to: db
+      relation: reads

@@ -1,0 +1,65 @@
+id: activity.groups
+title: "Subprocesos con detalle"
+type: activity
+version: "0.1"
+metadata:
+  description: "Ejemplo con grupos que se dibujan como subprocesos colapsados."
+data:
+  start: intake
+  groups:
+    admission:
+      label: "Admisión"
+      tone: info
+      detail: "Se valida la solicitud antes de derivarla al análisis."
+    analysis:
+      label: "Análisis"
+      tone: warning
+      detail: "Reglas de negocio aplicadas sobre la solicitud admitida."
+  steps:
+    intake:
+      label: "Recibir solicitud"
+      group: admission
+      detail: "La solicitud llega desde el portal y se registra con su folio."
+      next: check_docs
+    check_docs:
+      label: "¿Documentos completos?"
+      kind: decision
+      group: admission
+      branches:
+        "sí": classify
+        "no": request_docs
+    request_docs:
+      label: "Pedir documentos faltantes"
+      group: admission
+      next: wait_docs
+    wait_docs:
+      label: "Esperar respuesta"
+      group: admission
+      next: check_docs
+    classify:
+      label: "Clasificar solicitud"
+      next: evaluate
+    evaluate:
+      label: "Evaluar reglas"
+      group: analysis
+      detail: "Cada regla produce una marca y se conserva la peor."
+      next: decide
+    decide:
+      label: "¿Cumple todas las reglas?"
+      kind: decision
+      group: analysis
+      branches:
+        "sí": approve
+        "no": review
+    approve:
+      label: "Aprobar"
+      group: analysis
+      next: notify
+    review:
+      label: "Revisar manualmente"
+      group: analysis
+      next: notify
+    notify:
+      label: "Notificar resultado"
+      next: end
+  end: end

@@ -1,0 +1,13 @@
+id: component.bad
+title: Bad Component
+type: component
+version: "0.1"
+data:
+  nodes:
+    Foo:
+      label: Foo
+      kind: core
+  edges:
+    - from: Foo
+      to: MissingNode
+      relation: calls

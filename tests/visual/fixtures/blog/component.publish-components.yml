@@ -1,0 +1,32 @@
+# The components of "publish a post" of the example blog (tests/fixtures/blog_chain.yaml), authored
+# as a spec: the curated view of what the graph already has. Every element is anchored to its
+# entity with `refs:` (docs/decisiones/fuente-de-verdad-del-diagrama.md); its ids are the ones
+# `sldb notations from-graph` (D2) gives the same documents, so the projection of
+# ViewDoc:publish-components compiles to the same IR (tests/visual/test_visual_projections.py).
+id: publish-components
+title: Componentes de publicar
+type: component
+version: "1.0"
+data:
+  nodes:
+    document_InterfaceControlDoc_publish_button:
+      {label: PublishButton, kind: InterfaceControlDoc, refs: ["InterfaceControlDoc:publish-button"]}
+    document_InterfaceActionDoc_publish_action:
+      {label: PublishAction, kind: InterfaceActionDoc, refs: ["InterfaceActionDoc:publish-action"]}
+    document_ApiOperationDoc_publish_post_endpoint:
+      {label: "POST /posts/{id}/publish", kind: ApiOperationDoc, refs: ["ApiOperationDoc:publish-post-endpoint"]}
+    document_HandlerDoc_publish_handler:
+      {label: publish handler, kind: HandlerDoc, refs: ["HandlerDoc:publish-handler"]}
+    document_DomainOperationDoc_publish_post:
+      {label: PublishPost, kind: DomainOperationDoc, refs: ["DomainOperationDoc:publish-post"]}
+    document_DomainEntityDoc_post:
+      {label: Post, kind: DomainEntityDoc, refs: ["DomainEntityDoc:post"]}
+    document_TableDoc_posts:
+      {label: posts, kind: TableDoc, refs: ["TableDoc:posts"]}
+  edges:
+    - {from: document_InterfaceControlDoc_publish_button, to: document_InterfaceActionDoc_publish_action, relation: triggers}
+    - {from: document_InterfaceActionDoc_publish_action, to: document_ApiOperationDoc_publish_post_endpoint, relation: invokes}
+    - {from: document_ApiOperationDoc_publish_post_endpoint, to: document_HandlerDoc_publish_handler, relation: handled_by}
+    - {from: document_HandlerDoc_publish_handler, to: document_DomainOperationDoc_publish_post, relation: executes}
+    - {from: document_DomainOperationDoc_publish_post, to: document_TableDoc_posts, relation: writes}
+    - {from: document_DomainEntityDoc_post, to: document_TableDoc_posts, relation: persisted_in}

@@ -1,0 +1,35 @@
+id: class.runtime
+title: Executable node contract
+type: class
+version: "0.1"
+data:
+  direction: LR
+  classes:
+    ExecutableNode:
+      kind: protocol
+      methods:
+        - name: execute
+          parameters:
+            - {name: context, type: ExecutionContext}
+            - {name: input, type: PortValues}
+          returns: ExecutionResult
+          abstract: true
+    DataNode:
+      kind: record
+      attributes:
+        - {name: spec, type: NodeSpec, visibility: private}
+      methods:
+        - name: execute
+          parameters:
+            - {name: context, type: ExecutionContext}
+            - {name: input, type: PortValues}
+          returns: ExecutionResult
+    NodeSpec:
+      kind: record
+      attributes:
+        - {name: id, type: NodeId}
+        - {name: inputs, type: 'List<InputPort>'}
+        - {name: outputs, type: 'List<OutputPort>'}
+  relations:
+    - {from: DataNode, to: ExecutableNode, relation: realization}
+    - {from: DataNode, to: NodeSpec, relation: association, label: spec, to_multiplicity: '1'}

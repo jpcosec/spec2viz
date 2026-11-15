@@ -1,0 +1,37 @@
+id: activity.lanes
+title: Release approval
+type: activity
+version: "0.1"
+data:
+  start: open_pr
+  steps:
+    open_pr:
+      label: Open pull request
+      partition: Dev
+      next: review
+    review:
+      label: Approve?
+      kind: decision
+      partition: Approver
+      notes: Two approvals for production
+      branches:
+        "yes": deploy
+        "no": rework
+    rework:
+      label: Address review
+      partition: Dev
+      next: joined
+    deploy:
+      label: Deploy
+      partition: Script
+      next: joined
+    joined:
+      label: ""
+      kind: merge
+      partition: Script
+      next: verify
+    verify:
+      label: Verify in cloud
+      partition: AWS
+      next: end
+  end: end

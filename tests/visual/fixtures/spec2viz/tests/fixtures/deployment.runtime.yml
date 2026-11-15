@@ -1,0 +1,27 @@
+id: deployment.runtime
+title: Runtime Deployment
+type: deployment
+version: "0.1"
+data:
+  nodes:
+    browser:
+      label: Browser
+      kind: client
+      contains:
+        - quotation_ui
+    app_server:
+      label: App Server
+      kind: server
+      contains:
+        - quotation_api
+  artifacts:
+    quotation_ui:
+      label: Quotation UI
+      kind: frontend
+    quotation_api:
+      label: Quotation API
+      kind: backend
+  connections:
+    - from: quotation_ui
+      to: quotation_api
+      protocol: HTTPS
