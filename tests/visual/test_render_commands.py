@@ -263,4 +263,11 @@ def test_render_to_file_writes_what_spec2viz_writes_but_the_command_it_names(tmp
     for name in os.listdir(theirs):
         expected = (theirs / name).read_text(encoding="utf-8").replace("spec2viz: generated from", "specir: generated from")
         expected = expected.replace("`spec2viz diagram validate", "`specir diagram validate")
-        assert (ours / name).read_text(encoding="utf-8") == expected, name
+        actual = (ours / name).read_text(encoding="utf-8")
+        if renderer == "vega":
+            # spec2viz built the kindColor domain from a set (order depends on PYTHONHASHSEED,
+            # SV-C05): compare the scale as a kind -> color mapping, everything else exactly.
+            wrap = lambda text: render_parity.comparable({"vega": {"out": json.loads(text)}})  # noqa: E731
+            assert wrap(actual) == wrap(expected), name
+            continue
+        assert actual == expected, name
