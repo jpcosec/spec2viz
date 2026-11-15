@@ -6,3 +6,4 @@
 {"task_id": "task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
 {"task_id": "task-ir13c-notaciones-y-paletas-expuestas-desde-specir", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "superseded", "commit": null}
 {"task_id": "task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
+{"task_id": "task-espejo-sldb-sldb-mcp-servidor-mcp-gen\u00e9rico-a", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}

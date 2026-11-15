@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T21:19:12Z'
+  at: '2026-11-15T21:21:06Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -21,7 +21,6 @@ tasks:
 - desk/tasks/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos.md
 - desk/tasks/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual.md
 - desk/tasks/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas.md
-- desk/tasks/task-espejo-sldb-sldb-mcp-servidor-mcp-genérico-a.md
 - desk/tasks/task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer.md
 - desk/tasks/task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2.md
 - desk/tasks/task-espejo-sldb-graph-path-y-graph-paths-explicados-b3.md
@@ -72,7 +71,6 @@ _Generated from the task references above._
 - IR13b Catálogos, anotaciones y emparejamiento de átomos [draft] - specIR construye, sincroniza, valida y sirve catálogos de diagramas con anotaciones, y empareja átomos con elementos de diagrama usando sldb.api.matching (D4); el catálogo se sirve con sldb serve si alcanza. specIR conserva solo la parte visual del catálogo.
 - IR13d CLI, API Python y habilidad de agente de la capa visual [draft] - specIR ofrece un comando, una API Python pública y una habilidad de agente que cubren cada entrada pública de spec2viz.
 - IR04b Deshacer por MCP: adaptador sobre el lote inverso de sldb [draft] - Una tool MCP undo_changes, montada sobre sldb mcp por el punto de extensión, que deshace los últimos lotes de la sesión reaplicando con sldb.api.apply_batch el lote inverso con guardas que sldb devuelve al aplicar cada uno. Bloqueada hasta que sldb entregue sldb mcp y el lote inverso (tareas espejo de sldb: servidor MCP genérico y lote inverso).
-- Espejo sldb: sldb mcp servidor MCP genérico (A) [draft] - Disponer de sldb mcp (servidor MCP genérico con niveles, propose/apply, log de señales y punto de extensión) para que specIR monte sus tools de dominio encima.
 - Espejo sldb: apply_batch devuelve el lote inverso (deshacer) [draft] - Disponer en sldb del lote inverso con guardas en el resultado de apply_batch, base del deshacer por MCP.
 - Espejo sldb: readers y facts TSX, TS y SQL (B2) [draft] - Disponer en sldb de los readers y facts de TSX, TS y SQL con anclas sobre tree-sitter, que specIR mapea a su dominio.
 - Espejo sldb: graph_path y graph_paths explicados (B3) [draft] - Disponer en sldb de caminos explicados en el recorrido del grafo, con la procedencia de cada tramo, para el impacto de specIR.
