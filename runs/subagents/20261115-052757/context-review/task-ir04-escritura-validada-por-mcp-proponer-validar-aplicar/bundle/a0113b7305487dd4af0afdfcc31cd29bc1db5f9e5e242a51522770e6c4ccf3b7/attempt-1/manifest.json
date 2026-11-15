@@ -1,0 +1,108 @@
+{
+  "key": "task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/bundle",
+  "input_sha256": "a0113b7305487dd4af0afdfcc31cd29bc1db5f9e5e242a51522770e6c4ccf3b7",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261115-052757/context-review/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/bundle/a0113b7305487dd4af0afdfcc31cd29bc1db5f9e5e242a51522770e6c4ccf3b7/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar.md",
+      "sha256": "bd0e4cc2e7ce2487384f5e4bc31125a34fb934ee96cf09e3337fd5c1ec086fc1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/phase.md",
+      "sha256": "cc7f0b52d4153679b69fa0dccee57ec4ac915602a6dbd8d2ff226764c90a2e5f",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/execution.md",
+      "sha256": "a16c7c317f4eec9ce8659464625ae18b5fe94d790e3fdd3755296dcc51898bdc",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/testing.md",
+      "sha256": "e5b616e2d90b009c2cbac612d281727dbb0f13ad23fdd62a5dd8a6dbbb08aca6",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/closeout.md",
+      "sha256": "b8eed83052f326b72b3a33f4523e8f70068c7eb76bd270691425519019ca88c1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md",
+      "sha256": "4b48dc0685cc3b457dfc02102855266f1c1fb6e13bcea74758c908562e28ba37",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md",
+      "sha256": "aecd844c7ddd17f0b5cc0d541e28362e0ae2fb69e7cbeeb3c6f5496d0059df19",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir.md",
+      "sha256": "bf086abc0fc0e8176ec30c0fa01d4c2e33b6dfbe00c2e8a39825f0f4c3cb1bc5",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-specir-depende-solo-de-la-api-pública-de-sldb.md",
+      "sha256": "f2d8b7f31c3332a9cb45045467a73135c5be7de6dbb76090f05c11d26f1ee0a7",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/mcp/write_tools.py",
+      "sha256": "70a35440bcc3c5a05774da2fdc59aa66996b89543924ccd3c1049f0cd5fafbce",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/mcp/changes.py",
+      "sha256": "db067aa98108343eec9792b86d5786ff45120658f84a8a33099c953ffb966f9b",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/mcp/mutability.py",
+      "sha256": "d2933d1c5d190e9f27c99a2b65faced7ca170334b1c4037753b8839501c0677c",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/mcp/test_write_tools.py",
+      "sha256": "bb4d0aecd3a7ca9352ae3043feec6d582ddb1d14518df3ca65a956d4330dc3e5",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/mcp/test_dry_run.py",
+      "sha256": "bc4bc4261256cc4d1271142c03ae3874fb20995674f5a17f086f45c8ce32b00c",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/mcp/test_mutability.py",
+      "sha256": "d5cdf39e7f4a7709d11ff63acabfd4f9be4cebdcc45790ce3b47ce69c0379e4c",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-15T05:27:57.588381+00:00",
+  "finished": "2026-11-15T05:28:14.529423+00:00",
+  "retry_reason": "El input cambió de verdad: IR02 se cerró (7aba0e0) con atoms de contrato nuevos y se actualizó el atom de seguridad que la tarea cita; bundle-2 quedó stale."
+}

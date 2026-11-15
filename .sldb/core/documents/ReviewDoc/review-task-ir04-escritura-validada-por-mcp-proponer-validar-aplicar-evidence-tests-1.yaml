@@ -1,0 +1,36 @@
+name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-evidence-tests-1
+path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/evidence-tests-1.md
+source_hash: 7f6bbda0f25806a884296e375de401ab7da42f68a667ffb899c0687c6198104d
+content_hash: 4110cb9f15885134c0103e99543d1f38402b168d822432f1ecca380418967fec
+field_hashes:
+  id: 9ad7efdffe9e6356fba43e9bd3f69f85ad69ed93d2d5a332d54137f0a7272eaf
+  title: 53ba9d6a4ed1f8b6ff57815cdf3ba1a21e4ed629e7c1c81924cc06591ba2d153
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: 5f3300bcec4449c9402621cc0de517cb112ad15f3ec18e5061bc8fad91566b9f
+  subject: 641d2b4ed7078215120aa2f88e3cb983f37fdba41137dc7284b443282f1f72c5
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: df8f3db454419dd18a64f337e6411cc2554667312a5123f9364e35912dac3cda
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 97e97a071755a73d2e992e853e665fec9d5038119c143ed418c35687fadf384a
+  created_at: 9074533ebb3578aa02094e21854cfe22505909d6d24d932f2d17faff3c284b95
+  disposed_at: 9074533ebb3578aa02094e21854cfe22505909d6d24d932f2d17faff3c284b95
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 73ca42ed033152e0d6a85fdb41e2d0be8da869f2ee8fbcdf6ddbe6bd52754be6
+  disposition: 5616d64bda45fd8266a917cd28bdbf4a0ca70c3a37aed16cd3d749b258a273c1
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-15T05:38:57Z'
+  authority: generated
+  via: save_document_payload

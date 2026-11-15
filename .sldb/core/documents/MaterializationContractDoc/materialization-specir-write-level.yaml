@@ -1,0 +1,26 @@
+name: materialization-specir-write-level
+path: desk/materializations/materialization-specir-write-level.md
+source_hash: a7695d767fe28d2586083079801a7a589af6e696b0cacec22a7ea6cf57e6f22c
+content_hash: e4ce43458c98eaab8846e7a82bae5e6077a6beaa44c565c56d03a58e557ae5ea
+field_hashes:
+  id: 9feb77d5d2dea5ea0d4c896f8dad1ecdb5e686582c849e46ab6d48213adc798e
+  title: af45bff001ff90dbaaf922b9f028b872b885979c450fbedebe3ee8296c43a6ef
+  source_atoms: e8bb0d51c90e8ad365e95ff427242eb19c1c1415b0cc3dc8df31c8d311452a5f
+  target_kind: 208cd4edf0b7fbeb4360ff271a609eef3e6b5a8a9d13c2c9a79b346c998bd7c5
+  target_identity: 30eb1e7ca4165899ef5fccfa461c82c9fb0876c0be5f9dabfdd5a3752fa6b920
+  intent: 2ea4386841f7c746055e8fb7b41a8e0ec391f16b2be3f12a4fc5e9fef3bb9903
+  validation: ea6041db79ba6571cfdb7dabd362fd50e46722c078c2c18464fdb6fba9912e5a
+  tags: 26f4064aa1513c77593cf59f359de5438ca4b1fa62a405c93fcfdb820d26f73d
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:materialization
+- topic:mcp
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-15T05:29:04Z'
+  authority: generated
+  via: create_document

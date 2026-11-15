@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T05:26:48Z'
+  at: '2026-11-15T05:39:19Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -10,7 +10,6 @@ id: board-001
 scope: desk
 # List of task-xxx paths
 tasks:
-- desk/tasks/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar.md
 - desk/tasks/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog.md
 - desk/tasks/task-ir08-extractor-estático-django-drf-y-sql.md
 - desk/tasks/task-ir09-extractor-estático-react-tsx-y-contratos-de-api.md
@@ -55,7 +54,6 @@ Diecisiete tareas de specIR autoradas desde el drawer, todas en borrador: ningun
 
 _Generated from the task references above._
 
-- IR04 Escritura validada por MCP: proponer, validar, aplicar [draft] - Tools MCP de escritura con las que un agente propone, valida y aplica cambios al store, con el mecanismo decidido en la tarea de contrato de escritura.
 - IR06 Tipos de dominio transversales y cadena de prueba del blog [draft] - Los tipos de dominio transversales de specIR y un store de prueba con la cadena de publicar un post del blog de ejemplo (React, Django REST Framework, PostgreSQL), recorrible por MCP.
 - IR08 Extractor estático Django/DRF y SQL [draft] - Un extractor estático que, a partir de una aplicación Django REST Framework y su esquema SQL, produce documentos y relaciones de los tipos de dominio de specIR, cada uno con su evidencia de origen.
 - IR09 Extractor estático React/TSX y contratos de API [draft] - Un extractor estático que, a partir de código React (JSX y TSX) y de los contratos de API disponibles, produce los elementos de interfaz del grafo de specIR y los vincula a las operaciones de backend, con evidencia de origen.

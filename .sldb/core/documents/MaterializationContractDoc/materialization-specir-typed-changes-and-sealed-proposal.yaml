@@ -1,0 +1,26 @@
+name: materialization-specir-typed-changes-and-sealed-proposal
+path: desk/materializations/materialization-specir-typed-changes-and-sealed-proposal.md
+source_hash: 355a50b631357cb4f55b5c96039079c8404742fa2fd49a1cec562892966d2e4a
+content_hash: 85a439a01e59f3dfd93f5a716ba2b3c65354886cd20752948433f538eb5b5832
+field_hashes:
+  id: 9d68132a465ebde4dd424c67ae130e6e8eadaedbe369a5cd846eeb5d75fca978
+  title: 508223012cf4c4eed8c927cef5cdad3082749c02c79b744a02d8cac9da12e59f
+  source_atoms: 79a76cc3dfaed487f2450b114783a68d0aa31695e68bfcf72e619badd90c9448
+  target_kind: 208cd4edf0b7fbeb4360ff271a609eef3e6b5a8a9d13c2c9a79b346c998bd7c5
+  target_identity: 43faaab0a444236cf9dccf9aa66889eaad0450a89d895a7a20f86bc3b6ef231f
+  intent: f0272d394265d363bde41d6aac2270518d5b8fb5dbabb608fa945c395fc0e4cf
+  validation: ea6041db79ba6571cfdb7dabd362fd50e46722c078c2c18464fdb6fba9912e5a
+  tags: 26f4064aa1513c77593cf59f359de5438ca4b1fa62a405c93fcfdb820d26f73d
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:specir
+- topic:materialization
+- topic:mcp
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-15T05:29:01Z'
+  authority: generated
+  via: create_document
