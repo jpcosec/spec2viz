@@ -1,0 +1,9 @@
+{
+  "key": "task-ir11-compiladores-y-proyecciones-de-spec2viz/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "86c6d77546da27b015fb8b96ae083b93d8c6b1f07eba8bc6804883b2b4b94c61",
+  "output_sha256": "d17730032cda7fe6aff18c23522c6718d43fed032d8d3aa00490e4096d846606",
+  "start": "2026-11-15T22:35:26.357029+00:00",
+  "end": "2026-11-15T22:35:45.020691+00:00"
+}

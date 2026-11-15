@@ -1,7 +1,7 @@
 name: task-ir11-compiladores-y-proyecciones-de-spec2viz
 path: desk/tasks/task-ir11-compiladores-y-proyecciones-de-spec2viz.md
-source_hash: a27fede9b929b7634b0d8b887069a9024544447728b341dc0d4fa430a790a8c4
-content_hash: c5f6bd05da90b439fceac08c5eb2b67efd31ec9cad0b4a4bb7c71de8e37e50f5
+source_hash: e942766a08e6d462a401f42bd48f4b009001cb309decfc01bb3f8da95954fb56
+content_hash: 555ed242790f1795892fabea4b0f5c432e41fe32c2c21881c4ae088bdf71d7a1
 field_hashes:
   title: d9dd96470daf76e1edd6a6470ba8f539ad48b9cf2e8275903cc62a5be56f7f0b
   id: 1f40f8af64eaffffddd78a4842acdd6506dafebdce340152ef4b466b88eae1d7
@@ -16,8 +16,8 @@ field_hashes:
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   depends_on: d8b329c92b93b8b1c2842bb41cadf61d7529f4408c9f35fe863b05a146407f2f
   pills: 4646693546d631bc326d394a766ac84a7c860ee563d0014f03de033a15c217e1
-  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 82faf351f8805d6de31c58619beb65b3b54f913c5b8975c969096ab41a04c3bf
+  files: 83c9d9d4a2f59599bf49b909e45b54530cb076ae8474e212a01b49195559b4bf
+  implementation_path: 482a9a494106dc95c17f72cce403426efdcaac165a19e3fb5f33e5fded46f9a0
   validation: 8bf0a32e78fd071edc3db9cfc4af802f98be8ffc0b14cf311d6804c5748014b5
   done_when: f83156f00603a23ba395fb001b81abd7a0233a6d29706f27182269c3ee12a9e5
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-15T16:55:28Z'
+  at: '2026-11-15T22:36:05Z'
   authority: generated
   via: save_document_payload
