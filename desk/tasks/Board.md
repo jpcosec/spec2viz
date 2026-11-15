@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T05:39:19Z'
+  at: '2026-11-15T15:32:13Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -22,6 +22,7 @@ tasks:
 - desk/tasks/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos.md
 - desk/tasks/task-ir13c-notaciones-y-paletas-expuestas-desde-specir.md
 - desk/tasks/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual.md
+- desk/tasks/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -66,3 +67,4 @@ _Generated from the task references above._
 - IR13b Catálogos, anotaciones y emparejamiento de átomos [draft] - specIR construye, sincroniza, valida y sirve catálogos de diagramas, con anotaciones y con los átomos emparejados a cada elemento, cubriendo lo que hace spec2viz.
 - IR13c Notaciones y paletas expuestas desde specIR [draft] - specIR expone las operaciones de notaciones y paletas de spec2viz delegando en la API pública de SLDB, sin redefinir sus modelos.
 - IR13d CLI, API Python y habilidad de agente de la capa visual [draft] - specIR ofrece un comando, una API Python pública y una habilidad de agente que cubren cada entrada pública de spec2viz.
+- IR04b Deshacer por MCP: lote inverso con guardas [draft] - Una tool MCP de deshacer que, para un lote aplicado en la sesión, construye y aplica su lote inverso con sldb.api.apply_batch, protegido por guardas, y rechaza diciéndolo si el store cambió desde entonces.
