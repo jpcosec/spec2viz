@@ -1,12 +1,12 @@
 name: atom-el-deshacer-del-mcp-es-un-lote-inverso-con-guardas
 path: desk/atoms/atom-el-deshacer-del-mcp-es-un-lote-inverso-con-guardas.md
-source_hash: 2dc5b6b6ee8dea9ab692d7c9716d73dfa2abec68bd5496f451b739d84308508b
-content_hash: 75bed2415350952377ce9bb9af64015e7c0a8741c6aad9d6050fd3ecdf375d24
+source_hash: e4c6dab23122748b8c4e26590cc870445d4978c329833d61475a930418a8581e
+content_hash: d7051368039cb93b01dc4c706443ee67c9e8ff9bc5ce270705b4e656c7badbfb
 field_hashes:
   id: 5d689f17b7d36169c098a37a200d1aacdfaa65b88a28a87c474d06d5843712f0
   title: dfaafed6698616e14cd52e047e258c4ef32f13358efb627515c1ca737c3ea112
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
-  answer: 4e30470e03373f6ec7a48075e19374fb01517d27b8b635bdc4389d71b663f393
+  answer: 8cb6545c85a80ff10a09cf11198c8309d179086084caa4e4bae9b2671a2a82f0
   tags: 22129faf8f65ae58291a144c2e2642cae27ae91a84a72cb5af861724c1edc81a
   provenance: 28618bb9e04205ef3684013a53613155389241bdfe9b33c83aa0d174ae780e1e
 semantic_tags:
@@ -19,6 +19,6 @@ semantic_tags:
 - workspace.desk.atoms
 provenance:
   by: agent
-  at: '2026-11-15T05:02:55Z'
+  at: '2026-11-15T15:39:28Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

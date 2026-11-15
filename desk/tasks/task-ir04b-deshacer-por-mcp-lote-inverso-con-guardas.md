@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T15:32:35Z'
+  at: '2026-11-15T15:39:12Z'
   authority: generated
   via: save_document_payload
 id: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
@@ -28,7 +28,7 @@ atoms:
 - atom-specir-depende-solo-de-la-api-pública-de-sldb
 ---
 
-# IR04b Deshacer por MCP: lote inverso con guardas
+# IR04b Deshacer por MCP: adaptador sobre el lote inverso de sldb
 
 ## Rationale
 
@@ -40,19 +40,19 @@ IR02 decidió (D4) que el deshacer del MCP es un lote inverso con guardas para l
 
 _Describe the concrete result this task must produce._
 
-Una tool MCP de deshacer que, para un lote aplicado en la sesión, construye y aplica su lote inverso con sldb.api.apply_batch, protegido por guardas, y rechaza diciéndolo si el store cambió desde entonces.
+Una tool MCP undo_changes que deshace los últimos lotes de la sesión reaplicando, con sldb.api.apply_batch, el lote inverso que sldb devolvió al aplicar cada uno. Bloqueada hasta que sldb entregue ese lote inverso (sldb:20261115-123855-suggestion-specir-apply-batch-devuelve-el-lote-inverso-con-guardas-deshacer-en-sldb).
 
 ## Scope
 
 _State what is in scope and what is out of scope._
 
-Dentro: registrar en memoria de la sesión del servidor el lote aplicado y el estado previo de lo que tocó; tool undo_changes disponible en niveles 1 y 2 que deshace los últimos lotes de la sesión en orden inverso; guardas expected_source_hash sobre el estado posterior al lote; rechazo stale nombrando el documento que cambió. Fuera: deshacer entre sesiones o tras reiniciar el servidor (git queda como historia durable), deshacer de nivel 3, cualquier mecanismo de reversión propio fuera de apply_batch.
+Dentro: guardar en memoria de la sesión los lotes inversos que devuelve apply_batch; tool undo_changes en niveles 1 y 2 que los reaplica en orden inverso; traducir el rechazo de sldb (ConflictError) a stale nombrando el documento. Fuera: construir lotes inversos, calcular guardas o restaurar estado en specIR (es de sldb, decisión de JP 2026-11-15); deshacer entre sesiones; nivel 3. Si sldb no lo entrega, la tarea no se ejecuta: no hay sustituto en specIR.
 
 ## Implementation Path
 
 _Outline the expected implementation route or affected surface._
 
-Ampliar src/specir/mcp/write_tools.py y changes.py de IR04. El lote inverso se arma con las mismas formas tipadas de propose_changes y se aplica con apply_batch; specIR no escribe archivos ni restaura bytes. Si sldb publica un deshacer nativo (nota sldb:20261114-074447, fila 11 de IR01), se usa ese y esta tool queda como adaptador.
+Esperar a que sldb cierre sldb:20261115-123855-suggestion-specir-apply-batch-devuelve-el-lote-inverso-con-guardas-deshacer-en-sldb. Luego ampliar src/specir/mcp/write_tools.py: apply_changes guarda report.inverse en la pila de la sesión; undo_changes llama apply_batch(inverse). Sin lógica de inversión ni de guardas en specIR.
 
 ## Validation
 
