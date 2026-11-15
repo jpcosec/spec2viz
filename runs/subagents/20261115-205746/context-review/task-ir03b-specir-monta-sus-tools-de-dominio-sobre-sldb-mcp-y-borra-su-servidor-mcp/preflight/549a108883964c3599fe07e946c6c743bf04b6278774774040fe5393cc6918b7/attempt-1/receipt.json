@@ -1,0 +1,9 @@
+{
+  "key": "task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "549a108883964c3599fe07e946c6c743bf04b6278774774040fe5393cc6918b7",
+  "output_sha256": "1f0e61ef6f881929208fe043aea126f380803f63f800aa849eb675e923fdef75",
+  "start": "2026-11-15T20:57:46.676582+00:00",
+  "end": "2026-11-15T20:57:59.245667+00:00"
+}

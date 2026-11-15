@@ -161,7 +161,7 @@ def test_a_relation_between_types_not_allowed_is_reported_by_its_relation_type(b
     assert blog.call("check_integrity")["ok"] is True
 
 
-@pytest.mark.xfail(strict=True, reason="SLDB checks an edge against its RelationTypeDoc only after the write (check_edges); asked by note sldb:20261115-022655 (IR04), see write_tools.PENDING['edge_validation_before_write']")
+@pytest.mark.xfail(strict=True, reason="SLDB checks an edge against its RelationTypeDoc only after the write (check_edges); asked by note sldb:20261115-022655 (IR04), see the pending of sldb mcp (sldb.mcp.write.pending)")
 def test_a_relation_between_types_not_allowed_is_refused_before_writing(blog) -> None:
     wrong = {"action": "assert_edge", "name": "ir06-button-writes-table-refused", "path": "blog/edges/ir06-button-writes-table-refused.md",
              "source": "InterfaceControlDoc:publish-button", "target": "TableDoc:posts", "relation_type": "writes",

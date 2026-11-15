@@ -1,0 +1,9 @@
+{
+  "key": "task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "c65a6b1d1dea08c1dab184be9989487afe595895be7746af4423a5ee45f306f0",
+  "output_sha256": "f00510df35b0a782ae970b04e6ac253b73b603d75350a6b6274f687e95225221",
+  "start": "2026-11-15T21:11:49.571216+00:00",
+  "end": "2026-11-15T21:12:07.883593+00:00"
+}

@@ -1,7 +1,7 @@
 [project]
 name = "specir"
 version = "0.1.0"
-description = "specIR: an MCP surface and cross-layer domain types over an SLDB store, built on sldb.api"
+description = "specIR: cross-layer domain types over an SLDB store, built on sldb.api, and its tools on the MCP server of sldb (sldb mcp --extension specir.mcp_extension:register)"
 requires-python = ">=3.12"
 dependencies = [
     "structuredLanguageDB",
@@ -9,17 +9,17 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+# The extension (specir.mcp_extension) runs on the MCP server of sldb.
 mcp = [
-    "mcp>=2.2",
+    "structuredLanguageDB[mcp]",
 ]
 test = [
-    "mcp>=2.2",
+    "structuredLanguageDB[mcp]",
     "pytest>=8",
     "pyyaml>=6.0",
 ]
 
 [project.scripts]
-specir-mcp = "specir.mcp.server:main"
 specir-install = "specir.install:main"
 
 [build-system]

@@ -1,4 +1,8 @@
-"""specIR imports SLDB only through its public API (`sldb.api`), and never pron or spec2viz."""
+"""specIR imports SLDB only through its public API (`sldb.api`), and never pron or spec2viz.
+
+The one exception is specIR's extension of the MCP server of sldb (`specir.mcp_extension`): it
+is the only module that reaches `sldb.mcp` (the extension contract of `sldb mcp --extension`)
+or `mcp`. specIR implements no MCP server of its own."""
 
 from __future__ import annotations
 
@@ -7,6 +11,12 @@ from pathlib import Path
 
 PACKAGE = Path(__file__).resolve().parents[1] / "src" / "specir"
 FORBIDDEN = ("pron", "spec2viz")
+#: The only module allowed to reach the MCP server of sldb and the MCP SDK.
+EXTENSION = PACKAGE / "mcp_extension.py"
+
+
+def is_mcp(module: str) -> bool:
+    return module.split(".")[0] == "mcp" or module == "sldb.mcp" or module.startswith("sldb.mcp.")
 
 
 def imported_modules(path: Path) -> list[str]:
@@ -29,6 +39,8 @@ def test_package_imports_only_the_public_sldb_api() -> None:
     for path in sources:
         for module in imported_modules(path):
             root = module.split(".")[0]
+            if path == EXTENSION and is_mcp(module):
+                continue
             if root in FORBIDDEN or (root == "sldb" and module != "sldb.api" and not module.startswith("sldb.api.")):
                 offending.append(f"{path.relative_to(PACKAGE.parent)}: {module}")
     assert not offending, offending
@@ -37,3 +49,18 @@ def test_package_imports_only_the_public_sldb_api() -> None:
 def test_sldb_is_reached_only_through_sldb_api() -> None:
     for path in sorted(PACKAGE.rglob("*.py")):
         assert "sldb" not in {m for m in imported_modules(path)}, f"{path}: bare `import sldb`"
+
+
+def test_only_the_extension_reaches_mcp() -> None:
+    reaching = {str(path.relative_to(PACKAGE.parent)) for path in sorted(PACKAGE.rglob("*.py")) if any(is_mcp(m) for m in imported_modules(path))}
+    assert reaching == {str(EXTENSION.relative_to(PACKAGE.parent))}, reaching
+
+
+def test_specir_has_no_mcp_server_of_its_own() -> None:
+    assert not (PACKAGE / "mcp").exists(), "src/specir/mcp was migrated to sldb (sldb.mcp)"
+    for path in sorted(PACKAGE.rglob("*.py")):
+        text = path.read_text(encoding="utf-8")
+        for server in ("MCPServer", "FastMCP", "build_server", ".run(\"stdio\")"):
+            assert server not in text, f"{path}: {server}"
+    pyproject = (PACKAGE.parents[1] / "pyproject.toml").read_text(encoding="utf-8")
+    assert "specir-mcp" not in pyproject and "specir.mcp." not in pyproject

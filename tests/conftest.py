@@ -1,5 +1,6 @@
 """Fixtures of the specIR tests: an isolated copy of this repo's real store, mounted with
-SLDB's public CLI, and the real MCP server over stdio with the real MCP client.
+SLDB's public CLI, and the real MCP server of sldb (`sldb mcp`) with specIR's extension
+(`specir.mcp_extension:register`) over stdio, driven by the real MCP client.
 
 Nothing is fabricated: the copy holds this repo's `.sldb/`, `sldb/` and `desk/` as they
 are; the deskops and spec2viz stores are linked in place and only read."""
@@ -23,6 +24,8 @@ COPIED = (".sldb", "sldb", "desk")
 FEDERATED = {"deskops": WORKSPACE / "deskops" / ".sldb", "spec2viz": WORKSPACE / "spec2viz" / ".sldb"}
 CACHE = ".sldb_cache"
 TOOL_TIMEOUT = 300
+#: specIR's tools on the server of sldb (`sldb mcp --extension`).
+EXTENSION = "specir.mcp_extension:register"
 
 
 def tree_digest(*roots: Path) -> dict[str, str]:
@@ -93,7 +96,7 @@ def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[s
 
 
 class McpSession:
-    """The real MCP client, connected over stdio to the real specIR server, driven from sync tests."""
+    """The real MCP client, connected over stdio to the real `sldb mcp` server, driven from sync tests."""
 
     def __init__(self, portal: Any, client: Any) -> None:
         self.portal = portal
@@ -124,13 +127,14 @@ def copy_digest_before(store_copy: Path) -> dict[str, str]:
 
 @contextmanager
 def served(root: Path, *options: str) -> Iterator[McpSession]:
-    """A session with `python -m specir.mcp.server --store <root>/.sldb <options>`, launched by stdio."""
+    """A session with `python -m sldb mcp --store <root>/.sldb --extension specir.mcp_extension:register
+    <options>`, launched by stdio."""
     from anyio.from_thread import start_blocking_portal
     from mcp import Client, StdioServerParameters
 
     params = StdioServerParameters(
         command=sys.executable,
-        args=["-m", "specir.mcp.server", "--store", str(root / ".sldb"), *options],
+        args=["-m", "sldb", "mcp", "--store", str(root / ".sldb"), "--extension", EXTENSION, *options],
         cwd=str(root),
         env={**os.environ},
     )
@@ -143,30 +147,6 @@ def served(root: Path, *options: str) -> Iterator[McpSession]:
 def mcp(store_copy: Path, copy_digest_before: dict[str, str]) -> Iterator[McpSession]:
     """The read-only server (level 0, the default) over the read copy."""
     with served(store_copy) as session:
-        yield session
-
-
-#: Who the write tests' server says it is; every document it writes must carry it.
-WRITER = "agent:specir-ir04-tests"
-
-
-@pytest.fixture(scope="session")
-def write_copy(tmp_path_factory: pytest.TempPathFactory) -> Path:
-    """A second copy, the one the write tools write to."""
-    return mount_copy(tmp_path_factory, "specir-write-store")
-
-
-@pytest.fixture(scope="session")
-def writer(write_copy: Path) -> Iterator[McpSession]:
-    """The server at write level 2 (content and rules as data) over the write copy."""
-    with served(write_copy, "--level", "2", "--actor", WRITER) as session:
-        yield session
-
-
-@pytest.fixture(scope="session")
-def content_writer(write_copy: Path) -> Iterator[McpSession]:
-    """The server at write level 1 (content only) over the write copy."""
-    with served(write_copy, "--level", "1", "--actor", WRITER) as session:
         yield session
 
 

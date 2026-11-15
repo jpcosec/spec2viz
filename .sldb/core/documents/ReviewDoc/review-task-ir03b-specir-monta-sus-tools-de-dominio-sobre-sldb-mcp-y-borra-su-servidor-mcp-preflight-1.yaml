@@ -1,0 +1,36 @@
+name: review-task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp-preflight-1
+path: desk/reviews/task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp/preflight-1.md
+source_hash: ca5c2a5c2d8819820881b74514bbb9d696cf16667be8998ee6355691afabead0
+content_hash: 06890f43bc71eff02aa8e09bc2c0f31caa31b7f8da55818db7e03a5b7d8805e6
+field_hashes:
+  id: fca9a7af1ab13d7d57b2c81b490fb56867e11ab05d0399e95b2c9b12cd377023
+  title: a645579d01821c6d697a4ea9a9c98a10e71debd816837d7dec47c06557115dbe
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 3b2c8b8fa1d7a810543a8ed7ca3786d7602bc9516d83b835d0b353d4270168c1
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: a3343fb6ea63f64a4833c181f18d3b7d0642e02656016406b5495cb0f89f0618
+  input_sha256: 753d3b9bbce71e83854d0210769ece34c887f150c0ce92d5e127e84e4328adfc
+  output_sha256: 60d1b025a35d45e2523fbde858fef686fbabc39f5ec19695aec4884c97c8a77a
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 935c3f09da418f756d0ced8627f6428853e3874e4872ac193e80f54716e6647e
+  created_at: e4d5a6a6ee0d8e9feaf6dabeef6e756b78bd613d816515ab3119c4b40f7ee25f
+  disposed_at: a69a46574c4d6629af719404fc7776c01411e248b0eb84f49ce83fcb0f03e90b
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: b5c5a8ba5f018ac9c6f6debb128b1c94c70c3cfd6b251407e00bb09f8f463cf1
+  disposition: 20a418a5792caa85b474212ef522dc0ad4cccd70fa4fa18eecbe43f960b1ebcc
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-15T20:58:48Z'
+  authority: generated
+  via: save_document_payload
