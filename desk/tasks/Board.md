@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T22:19:22Z'
+  at: '2026-11-15T22:20:27Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -25,7 +25,6 @@ tasks:
 - desk/tasks/task-espejo-sldb-graph-path-y-graph-paths-explicados-b3.md
 - desk/tasks/task-espejo-sldb-specsync-en-sldb-api-notations-d1.md
 - desk/tasks/task-espejo-sldb-generador-de-spec-desde-grafo-y-ast-d2.md
-- desk/tasks/task-espejo-sldb-modelos-de-spec-por-tipo-de-diagrama-d3.md
 - desk/tasks/task-espejo-sldb-emparejamiento-de-átomos-en-sldb-api-matching-d4.md
 # List of pill-xxx paths
 pills:
@@ -74,5 +73,4 @@ _Generated from the task references above._
 - Espejo sldb: graph_path y graph_paths explicados (B3) [draft] - Disponer en sldb de caminos explicados en el recorrido del grafo, con la procedencia de cada tramo, para el impacto de specIR.
 - Espejo sldb: SpecSync en sldb.api.notations (D1) [draft] - Disponer en sldb de la sincronización de specs al store junto a NotationSync y PaletteSync.
 - Espejo sldb: generador de spec desde grafo y AST (D2) [draft] - Disponer en sldb del generador de spec de componentes desde un grafo y desde el AST de Python.
-- Espejo sldb: modelos de spec por tipo de diagrama (D3) [draft] - Disponer en sldb de los modelos de spec por tipo de diagrama, con carga y validación, junto a SpecDoc.
 - Espejo sldb: emparejamiento de átomos en sldb.api.matching (D4) [draft] - Disponer en sldb del emparejamiento de átomos con elementos de diagrama, explícito y difuso.

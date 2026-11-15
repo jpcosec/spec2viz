@@ -8,3 +8,4 @@
 {"task_id": "task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
 {"task_id": "task-espejo-sldb-sldb-mcp-servidor-mcp-gen\u00e9rico-a", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
 {"task_id": "task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
+{"task_id": "task-espejo-sldb-modelos-de-spec-por-tipo-de-diagrama-d3", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
