@@ -15,7 +15,8 @@ mcp = [
     "structuredLanguageDB[mcp]",
 ]
 test = [
-    "structuredLanguageDB[mcp]",
+    # `code` brings tree-sitter, which sldb's Python AST spec generator (D2) needs (IR13a's tests).
+    "structuredLanguageDB[mcp,code]",
     "pytest>=8",
     "pyyaml>=6.0",
 ]

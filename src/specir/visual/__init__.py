@@ -5,7 +5,10 @@ render, lint and schema commands are in `specir.visual.renderers`, `lint_mermaid
 
 The spec models of the eight diagram types are sldb's (D3) and are only re-exported here for the
 visual layer's callers; nothing of them is defined in specIR. `load_spec` and `validate_spec` are
-used from `sldb.api.notations` directly, without a wrapper."""
+used from `sldb.api.notations` directly, without a wrapper. So are syncing a spec to the store
+(`SpecSync`, `sync_spec`; `sldb notations sync --spec`, D1) and generating a component spec from a
+graph, a snapshot or the Python AST (`component_spec_from_graph`, `component_spec_from_python`,
+`write_component_spec`; `sldb notations from-graph`, D2): specIR defines none of them (IR13a)."""
 
 from specir.visual.compilers import compile_ir
 from specir.visual.compilers.activity import ActivityCompiler

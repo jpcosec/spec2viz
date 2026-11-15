@@ -7,7 +7,10 @@ module that imports them from `sldb.notations` (and only from there).
 
 The one exception is specIR's extension of the MCP server of sldb (`specir.mcp_extension`): it
 is the only module that reaches `sldb.mcp` (the extension contract of `sldb mcp --extension`)
-or `mcp`. specIR implements no MCP server of its own."""
+or `mcp`. specIR implements no MCP server of its own.
+
+SpecSync and the component spec generator (from a graph, a snapshot or the Python AST) are sldb's
+(D1, D2): specIR calls them from `sldb.api.notations` and defines none of them (IR13a)."""
 
 from __future__ import annotations
 
@@ -99,3 +102,23 @@ def test_only_spec_models_reaches_the_diagram_spec_models() -> None:
 def test_only_notation_style_reaches_sldb_notations() -> None:
     reaching = {str(path.relative_to(PACKAGE.parent)) for path in sorted(PACKAGE.rglob("*.py")) if any(is_notations(m) for m in imported_modules(path))}
     assert reaching == {str(NOTATION_STYLE.relative_to(PACKAGE.parent))}, reaching
+
+
+#: What D1 and D2 migrated to `sldb.api.notations` (IR13a): specIR calls it there and defines none of it.
+MIGRATED_TO_SLDB = (
+    "SpecSync", "sync_spec", "sync_catalog", "check_catalog", "catalog_entries", "spec_elements", "spec_edges",
+    "format_report", "component_spec_from_graph", "component_spec_from_python", "write_component_spec",
+    "load_node_link", "load_node_link_graph", "load_store_index", "index_graph", "generate_python_ast_spec",
+)
+
+
+def test_specir_defines_no_spec_sync_and_no_spec_generator() -> None:
+    defined = []
+    for path in sorted(PACKAGE.rglob("*.py")):
+        tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef, ast.Assign)):
+                names = [t.id for t in getattr(node, "targets", []) if isinstance(t, ast.Name)] or [getattr(node, "name", "")]
+                defined += [f"{path.relative_to(PACKAGE.parent)}: {name}" for name in names if name in MIGRATED_TO_SLDB]
+    assert not defined, defined
+    assert not (PACKAGE / "visual" / "generators").exists() and not (PACKAGE / "visual" / "sync.py").exists()
