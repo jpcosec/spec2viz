@@ -1,1 +1,10 @@
-Error: No artifact.board file found for selector 'board-001'
+Board: board-001
+Title: IR Board
+status: 
+summary: 
+scope: desk
+purpose: Route the active execution set for IR.
+tasks: desk/tasks/task-ir08-extractor-estático-django-drf-y-sql.md, desk/tasks/task-ir09-extractor-estático-react-tsx-y-contratos-de-api.md, desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md, desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md, desk/tasks/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas.md, desk/tasks/task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer.md, desk/tasks/task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2.md, desk/tasks/task-espejo-sldb-graph-path-y-graph-paths-explicados-b3.md, desk/tasks/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a.md, desk/tasks/task-ir-gitignore-ignora-egg-info-y-pycache.md, desk/tasks/task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5.md
+pills: desk/contexts/pills.md
+rituals: desk/rituals/phase.md, desk/rituals/execution.md, desk/rituals/testing.md, desk/rituals/closeout.md
+notes: Diecisiete tareas de specIR autoradas desde el drawer, todas en borrador: ninguna se ha ejecutado. Dos ramas: MCP y modelado (IR01 a IR06, IR08 a IR10) y cobertura y retiro de spec2viz (IR07, IR11, IR12, IR13a a IR13d, IR13). Las dependencias están en el campo depends_on de cada tarea.
