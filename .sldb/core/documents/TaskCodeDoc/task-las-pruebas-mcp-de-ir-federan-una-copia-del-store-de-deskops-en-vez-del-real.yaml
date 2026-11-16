@@ -1,0 +1,39 @@
+name: task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real
+path: desk/tasks/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real.md
+source_hash: ad11fcef81b188da570d13011307c77fac40387897446ba0259da723922d3b44
+content_hash: 60fd9e26ea13114644b0055e8a49a7136264282defcc523f089953b48bb2c66d
+field_hashes:
+  title: dd0a9b93ef6ee7c3a90dc6442dc29ee0538138c25f35293c9bfb65289c90fa8d
+  id: 86ed120eab34fe0c769069fc4881266fedff32981f1dd0a931a904b7126ba5d3
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: cdc41ecb0faeea4fd54d89a0af9704fa317051793e9578e08cc68ba3342d3caa
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 319149921316c61de5308994cabf08111c6c6c2ab08ed63be817095e2669aa80
+  goal: 10a7522bccafd4740e124844a2f2005fa8b5e57f2208d673a97a8e899480b30e
+  scope: 3d49c67eba3c4e11a20f3cd6d181bf0e023e036e7ae06ca765de9e1d1a156fb9
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 4720707df36587653ec493bf1dc6e8a99cb2b6261bd8aada621044b880862993
+  pills: cf92c9d1b2e40f546526468e6e62854fc9f0c3c5ae795332270135faff2aca36
+  files: 910ad3312a7489220922e8f05393794c030cd07b67f17b2d7279831d9dbb68a8
+  implementation_path: 9803fb24b2dcb8f766a0c67af87d12c351df9f96f2447e12dc4bf7805ef0c669
+  validation: b6ef8c821ccb8e46a477517a63b55a3f0c1d996ca513f9516c74a92d0b7ff597
+  done_when: fd2b71cfeeaa9a8e018a5bfcc252915672328ac4f4217d1c495192e4a6ee6535
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- artifact:task
+- host:robocop2
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T21:42:49Z'
+  authority: generated
+  via: save_document_payload
