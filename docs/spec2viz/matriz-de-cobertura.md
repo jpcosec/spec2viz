@@ -507,7 +507,7 @@ Lista comprobable. spec2viz solo se retira cuando **todos** los ítems se cumple
   `import spec2viz`/`from spec2viz`, cero dependencias declaradas (pyproject, requirements, CI), cero
   invocaciones del comando `spec2viz` en código, scripts o configuración ejecutable, y ninguna habilidad de
   agente que instruya a invocarlo. El comprobador de IR13 sale con código distinto de cero si encuentra una.
-  Estado IR13: **abierto**. `specir retirement check` lista dependencias en graph_ui, deskops, pron, sldb y en las pruebas de paridad de IR (acta).
+  Estado IR13: **abierto**. `specir retirement check` (corrida del 2026-11-16 de IR13h, acta) lista 63 dependencias: sldb 1, las pruebas de paridad de IR 43 y el store `spec2viz/.sldb` 19 (G5); graph_ui, deskops y pron salen con 0.
 - [ ] **G5. Stores.** Ningún store del universo registra modelos `spec2viz.sldb_models` en su
   `store.yaml`, su `store_index.yaml` ni sus `core/models/*.yaml`.
   Estado IR13: **abierto**. `spec2viz/.sldb` registra los 7 modelos de `spec2viz.sldb_models` (19 registros).
