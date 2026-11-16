@@ -1,0 +1,9 @@
+{
+  "key": "task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/bundle",
+  "technical_ok": false,
+  "returncode": null,
+  "input_sha256": "89945dfa8a62cd85d2cb4799c7145941519bb75ee0d728e1b745fdab334c9bd3",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "start": "2026-11-16T22:50:30.069959+00:00",
+  "end": "2026-11-16T23:05:30.204936+00:00"
+}

@@ -1,0 +1,9 @@
+{
+  "key": "task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/preflight",
+  "technical_ok": false,
+  "returncode": null,
+  "input_sha256": "c8863e034269e225ca376cc958e07edda5964e84e9866a5b67c0885686c496ff",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "start": "2026-11-16T22:34:19.829110+00:00",
+  "end": "2026-11-16T22:49:19.961886+00:00"
+}
