@@ -1,0 +1,27 @@
+name: role-ir-executor
+path: desk/roles/role-ir-executor.md
+source_hash: acdea8ea8c50a0724c9eddd8026e3cbe7e9fd5c3d14d25391a067293250e78f6
+content_hash: fc5f5e458159511d430e202efc11759536cdd0960c83c11205dcb79fb04e4a34
+field_hashes:
+  id: 1a14751309100ef43bf34a6a88fc17173dcc24798183103643591d00a2be7887
+  name: eca1a9f9c1912ef446b2a8e0e86b1687ce162e32338249d4e3358bcbeaba0ab0
+  description: ebc2afbdd4e6fe19ecad0f083ea014e189150b4a15638321fb38a6973e5c52d2
+  kind: 389432cbf83f3d1b64029a75864ec96f8fd06451b4c99d7b28385d395d480bfa
+  model: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  fallback_models: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  tools: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  system_prompt_mode: 197d1a176b127ea0b453175db9de47e38f6168ab692a8621f4d4fed58fb7e5ff
+  inherit_project_context: b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b
+  inherit_skills: b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b
+  default_context: b1e5780cb6ded9edcf5bac26c937adb4aa3023ab34d951398d5b4bed5ae4e115
+  body: 6221c37c4bf7754a04038040ed154b7f6cdf1fef3a733d81cd5af583d5b6c78e
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.role
+- workspace.desk.roles
+provenance:
+  by: agent
+  at: '2026-11-16T00:51:28Z'
+  authority: generated
+  via: create_document

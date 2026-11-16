@@ -1,0 +1,34 @@
+name: runtime-claude-en-scion
+path: desk/runtimes/runtime-claude-en-scion.md
+source_hash: d13a7328c5e8c8183c8d16e5ce1fda4da62bcfd91f027864d89bb6b0faeb8f91
+content_hash: 7e72fa696840af26b432a7a2ecf579a4a67177c7f5b523961d9a7094ef8ddb36
+field_hashes:
+  title: 67425d5abb92bba80a956689c3bf14b6c0c8aa1171036a21e77429da5ee9698d
+  id: 4dfe617896144451841f3f984468ff65fc8ee6f50cd289dd1e828aa162157c22
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
+  summary: 3732e13d9a9561f9c4a81fe6485084236ac77b577a736d81b5089afe69fba7d4
+  tags: 8151eb3c8b328650b58d55c1690cada0c30ec0ebeffda6b0d80eab1e68909aa5
+  kind: 389432cbf83f3d1b64029a75864ec96f8fd06451b4c99d7b28385d395d480bfa
+  binary: 389432cbf83f3d1b64029a75864ec96f8fd06451b4c99d7b28385d395d480bfa
+  model_flag: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  fallback_models_flag: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  fallback_models_join: 1ed9862d8909bdf796ab434e52f41d749443cd41841b342cd346f3d2189e5473
+  tools_flag: 0116e4db92193f25dca36bf350ae1cf5ebc8e2ea9c4066e276c9d740eb373baf
+  tools_join: 1ed9862d8909bdf796ab434e52f41d749443cd41841b342cd346f3d2189e5473
+  system_prompt_flag: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  system_prompt_delivery: 4d8c6647700a08a582b5c054dec6eab54b312e997df2dc355fbcc8e33a6b6912
+  session_flag: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  extra_args: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  unsupported_role_fields: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  notes: 108f9a717fa3955402dbd38173a6a1e68f9d506f1fe7808ec740b4081aacea7e
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:deskops
+- type.workflow.runtime_profile
+- workspace.desk.runtimes
+provenance:
+  by: agent
+  at: '2026-11-16T00:51:33Z'
+  authority: generated
+  via: create_document

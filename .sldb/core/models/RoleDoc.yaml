@@ -2,11 +2,11 @@ name: RoleDoc
 model_ref: deskops.models:RoleDoc
 path: ''
 documents_index: .sldb/core/documents/RoleDoc.yaml
-sections_index: ''
-model_hash: a236f70351f39050ff47246e8611f644fe7e121953ce186239b119dee2768640
-roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+sections_index: .sldb/runtime/sections/RoleDoc.yaml
+model_hash: b305be8f6c5854d49fa48cbd47537acc5074591be11a17d9903f5e62e3f69ec0
+roster_hash: 26a00cd6eece91e49b93042b2f849f2e9978cf155b0a4224a98239e4c5732639
 contract_hash: 0133498aec7921a98513106e1893442b6dd39484b2ec2b5ea700ec6ed837705f
-documents_count: 0
+documents_count: 1
 version: 1
 canonical: false
 family: null
