@@ -1,0 +1,13 @@
+REFORMULACION
+Es una tarea de código ejecutable, no un agregado. Propósito: migrar a specIR la parte visual del catálogo de spec2viz —registro de vistas y stores jerárquicos, HTML autocontenido, inyección de átomos y anotaciones— apoyándose en sldb para lo general. Resultado: `specir.visual.catalog` y sus pruebas, con paridad demostrada contra spec2viz; validación y sincronización del catálogo se usan de sldb (`check_catalog`, `sync_catalog`, `sldb notations sync --catalog`), la vista resuelta de `resolve_view` con `view_to_mermaid` de IR12, el emparejamiento y la cobertura de `sldb.api.matching` (D4) y el autoguardado con `sldb serve`, sin servidor propio. Repo: specIR (`/mnt/ssd/proyectos/SLDB_1/IR`). Límites: solo capa visual; nada de emparejamiento, regla de rutas ni sync propios; sin CLI ni alias (IR13d); sin mocks; no marcar filas de la matriz; depende de IR13a, IR12 y la tarea espejo D4.
+
+AMBIGUEDADES
+1. «las filas de catálogo y de emparejamiento de átomos de la matriz de cobertura tienen su condición de retiro cumplida» (Done When) frente a «IR13b cita en ellas sus pruebas sin marcarlas cumplidas; eso lo hace IR13» (Precisiones 7). Obligaría a inventar si el cierre exige acreditar filas o solo citarlas.
+2. «El paquete no importa spec2viz» (Validation) frente a los oráculos de paridad que sí lo importan («importorskip("spec2viz")», `test_catalog_parity.py`). Obligaría a inventar si «paquete» excluye `tests/`.
+3. «Paridad medida con pruebas de specIR que comparan con las de spec2viz … como oráculo de desarrollo» (Implementation Path) y el marcador que se omite sin spec2viz. Obligaría a inventar si el cierre es posible sin spec2viz instalado.
+
+DRY-RUN
+Un ejecutor futuro leería TaskDoc, pills, átomos, matriz y los módulos/pruebas listados; verificaría el estado de `specir.visual.catalog` y completaría lo que falte sin redefinir lo de sldb. Cambios previstos: `loader`, `sections`, `views`, `fragments`, `atoms`, `annotations`, `build`, plantilla JS, pruebas y filas de matriz (solo citas). Dependencias: `sldb.api.notations` (`catalog_paths`, `check_catalog`, `sync_catalog`, `resolve_view`, `SpecSync`, `find_store`), `sldb.api.matching`, `view_to_mermaid` de IR12, `sldb serve --cors`, `node` y spec2viz como oráculo. Validaciones futuras: `tests/visual/test_catalog.py`, `test_catalog_parity.py`, `test_catalog_annotations.py`, `test_imports.py`, `test_visual_names.py`, `test_resources.py` y apertura del HTML sin recursos externos. Nada se ejecuta aquí.
+
+FUTURO
+IR13d define CLI y alias; IR13 marca las filas y evalúa el gate; el desk de sldb decide sobre `label_key` con guion bajo y exportaciones de API; D4/IR13a/IR12 aportan lo ya migrado; JP decide la cuestión del YAML si aplica.

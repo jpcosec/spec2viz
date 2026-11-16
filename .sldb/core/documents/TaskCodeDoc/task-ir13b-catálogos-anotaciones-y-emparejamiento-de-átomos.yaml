@@ -1,7 +1,7 @@
 name: task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos
 path: desk/tasks/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos.md
-source_hash: 0fd5030119add27588bc01e3e202e4f2420f1e38135653582fc1eed10eb75b39
-content_hash: 586b6c6f5130f9be9eae3ce4fe72fe072d7d1a570a9fc4e6d47cb54cc031e5f7
+source_hash: 9d64c4b3bf7de1a03461845c0b929f1334053bcc44e128b79f87edeabb5c8398
+content_hash: aec245fb874df333f87408bac273107cec42c36dfc24bc7d1e09255ac74a57aa
 field_hashes:
   title: 935c87dde27a04c5a5249067b8ca8ab17a78c4c2599e10135ed62f5c709b117e
   id: 7762009fa636e24cd3e4a264d3d3e345315a94ed86d18c888dd40ae428a544fc
@@ -16,8 +16,8 @@ field_hashes:
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   depends_on: 6939dad6d78f4718fec605e56334ffb12251d9440a29229564d74589d6d026f2
   pills: 4646693546d631bc326d394a766ac84a7c860ee563d0014f03de033a15c217e1
-  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: e6a46ccb93130cc536e04cbf891bfd00632949fb6bb180e57522aa3538481d5e
+  files: 565c2cba0ddc27214dbfb990464d5fd240da53e63179b24086cd2cdbdff9f65c
+  implementation_path: d02770aeb504abd0c42bc2b5f9bc7e7b1a75aeb7c3e0ae8ba917c8aa437f6834
   validation: 5a456ca03d7d8226e130bcd2e2c1672fe91495aeeba5c23fc57a88361fe769e0
   done_when: 6487cbb893b738be81d271dbf59882c039609f3aa8fdb896a56a3f58e55d6dd8
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-15T16:54:47Z'
+  at: '2026-11-16T00:53:31Z'
   authority: generated
   via: save_document_payload

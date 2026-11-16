@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T16:54:47Z'
+  at: '2026-11-16T00:53:31Z'
   authority: generated
   via: save_document_payload
 id: task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos
@@ -24,7 +24,26 @@ pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
 - desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md
-files: []
+files:
+- src/specir/visual/catalog/__init__.py
+- src/specir/visual/catalog/loader.py
+- src/specir/visual/catalog/sections.py
+- src/specir/visual/catalog/views.py
+- src/specir/visual/catalog/fragments.py
+- src/specir/visual/catalog/atoms.py
+- src/specir/visual/catalog/annotations.py
+- src/specir/visual/catalog/build.py
+- src/specir/visual/templates/annotations-sldb.js
+- src/specir/visual/notation_style.py
+- src/specir/visual/__init__.py
+- tests/visual/test_catalog.py
+- tests/visual/test_catalog_parity.py
+- tests/visual/test_catalog_annotations.py
+- tests/test_imports.py
+- tests/visual/test_visual_names.py
+- tests/visual/test_resources.py
+- docs/spec2viz/matriz-de-cobertura.md
+- pyproject.toml
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
@@ -59,6 +78,22 @@ Dentro: registro de vistas (vistas.yml) y stores jerárquicos de diagramas; cons
 _Outline the expected implementation route or affected surface._
 
 Capa delgada en el paquete specIR (specir.visual) sobre la sincronización de IR13a, los renderers de IR12, sldb.api.matching y sldb serve. Paridad medida con pruebas de specIR que comparan con las de spec2viz de catálogo, rutas de catálogo, vistas resueltas y emparejamiento de átomos como oráculo de desarrollo. Depende de la tarea espejo D4.
+
+Precisiones (preflight):
+
+1. «Alcanza»: D4 comprobó que `sldb serve` lee un documento por id (`GET /document?id=`) y lo escribe con guarda optimista (`POST /save` con `changes[].expected` igual al payload leído; 409 si cambió). Eso alcanza para el autoguardado: specIR no levanta servidor propio. El catálogo HTML se abre como archivo y su JS habla con `sldb serve --cors`.
+2. Pedido a sldb: no hace falta para el servidor. Cualquier carencia que aparezca (por ejemplo nombres que `sldb.api` no exporta) se envía con `deskops message send --to sldb` y se cita en el informe de la tarea.
+3. Límite visual. Quedan en specIR: el cargador del registro de vistas y de los stores jerárquicos (vistas, categorías, anchors, tags, `project.yml`), el HTML del catálogo (secciones, navegación, filtros, tableros desde la vista resuelta con el `view_mermaid` de IR12), el adaptador de una vista del catálogo a `SpecView` con el descubrimiento del store de la vista, la inyección de átomos en el HTML (`split_shared_atoms`), el modelo del store que guarda las anotaciones de un catálogo y el JS que las guarda en `sldb serve`. Se usan de sldb, sin envoltorio: la regla de rutas (`sldb.api.notations.catalog_paths`), `check_catalog`, `sync_catalog` y `sldb notations sync --catalog [--check]`, `resolve_view`, `SpecSync` y todo `sldb.api.matching`.
+4. «Mismos errores tipados»: por cada entrada que devuelve `check_catalog`, la vista, el spec, el nombre de la clase de la excepción y su mensaje, comparados con `check_catalog` de spec2viz sobre los registros de las pruebas de rutas y notaciones de catálogo de spec2viz y sobre su propio registro de arquitectura (el vistas.yml de su carpeta de documentación).
+5. «Mismo contenido» y «mismas vistas»: en el store, los documentos (modelo, nombre y payload) normalizados como en IR13a. En el catálogo, extraídos del HTML: secciones (anchor, id de vista, título, categoría, tipo, proyecto y tags, en orden), bloques de categoría, enlaces de navegación (href y texto, en orden), filtros y tableros. En los átomos, `ATOMS_DB`, `ATOMS_BY_VIEW`, `ATOMS_EXPLICIT`, `ATOMS_LINKED`, `REFS_EXPLICIT` y `COVERAGE_BY_VIEW` iguales como JSON.
+6. Modo estricto: el parámetro `strict_atoms` de la construcción del catálogo (el `--strict-atoms` de spec2viz), que lanza `UnknownAtomError` de sldb. Sin él, el aviso queda en el HTML y en stderr.
+7. Matriz: `docs/spec2viz/matriz-de-cobertura.md`, filas SV-G01 a SV-G08 y SV-I01 a SV-I05. IR13b cita en ellas sus pruebas sin marcarlas cumplidas; eso lo hace IR13. La CLI (`catalog build`, el alias `build` y lo que reemplaza a `catalog serve`) es de IR13d: los casos de build del módulo de pruebas test_cli de spec2viz se portan sobre la API de specIR.
+
+Precisiones (bundle):
+
+1. Cierre frente a la matriz: IR13b cierra con sus pruebas en verde y citadas en las filas SV-G01 a SV-G08 y SV-I01 a SV-I05, cuya condición de retiro esas pruebas acreditan. La marca de fila cumplida la pone solo IR13, como dice la matriz. El «Done When» se lee así.
+2. «El paquete» es `src/specir` (lo comprueba `tests/test_imports.py`). Bajo tests/ importan spec2viz solo los oráculos de paridad que lista `tests/visual/test_visual_names.py` (ORACLES), al que se suma `tests/visual/test_catalog_parity.py`.
+3. El cierre se verifica con spec2viz instalado (IR/.venv lo trae editable): las pruebas `parity` corren y pasan. Sin spec2viz se omiten y quedan las portadas (`tests/visual/test_catalog.py` y `tests/visual/test_catalog_annotations.py`), que no lo usan. El catálogo no tiene goldens: tras el retiro, la paridad queda acreditada por la corrida que cita el informe de la tarea.
 
 ## Validation
 
