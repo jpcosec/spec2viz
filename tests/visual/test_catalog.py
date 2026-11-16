@@ -519,7 +519,6 @@ def test_label_key_of_sldb_is_the_template_s_norm_key():
 
 
 @needs_node
-@pytest.mark.xfail(strict=True, reason="sldb's label_key keeps '_' (\\w) and normKey does not: asked to sldb's desk (matching/label-key-underscore)")
 def test_label_key_of_sldb_splits_underscores_like_norm_key():
     """An element without a label is drawn with its id: `post_published` must key the same in both."""
     from sldb.api.matching import label_key
