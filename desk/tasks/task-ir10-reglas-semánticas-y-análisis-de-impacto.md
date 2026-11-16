@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T16:54:11Z'
+  at: '2026-11-16T05:05:35Z'
   authority: generated
   via: save_document_payload
 id: task-ir10-reglas-semánticas-y-análisis-de-impacto
@@ -12,6 +12,7 @@ tags:
 - artifact:task
 - system:specir
 - topic:impacto
+- host:robocop2
 current_node: ritual-execution
 history: []
 references: []

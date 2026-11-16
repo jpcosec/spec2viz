@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T16:53:35Z'
+  at: '2026-11-16T05:05:24Z'
   authority: generated
   via: save_document_payload
 id: task-ir08-extractor-estático-django-drf-y-sql
@@ -12,6 +12,7 @@ tags:
 - artifact:task
 - system:specir
 - topic:extractores
+- host:robocop2
 current_node: ritual-execution
 history: []
 references: []

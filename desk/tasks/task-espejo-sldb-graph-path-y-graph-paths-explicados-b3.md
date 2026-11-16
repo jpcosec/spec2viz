@@ -1,15 +1,16 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T16:51:33Z'
+  at: '2026-11-16T05:05:04Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-espejo-sldb-graph-path-y-graph-paths-explicados-b3
 status: draft
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
+- host:robocop2
 current_node: ritual-execution
 history: []
 references: []

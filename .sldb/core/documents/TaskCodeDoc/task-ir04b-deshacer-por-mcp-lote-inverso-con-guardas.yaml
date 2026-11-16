@@ -1,13 +1,13 @@
 name: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
 path: desk/tasks/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas.md
-source_hash: 6e846218202225ea0baa7e4cdb83054ed56ca33e43097d743530a90778f9549b
-content_hash: eb4ad72f0d5a2d5224c5696c52426f6a32d136a6161953a2108349aea522c89f
+source_hash: 2b8bd8d7556af793ea90dec6ad37654b948e1e0e7098b8c21ddf508205d6b472
+content_hash: 824f67f872cc6ef4814c87efab6ffcf1a1b1817e9c728ec1e2286854cda6773d
 field_hashes:
   title: 23dd8cf93df143e429a80fd29d18f3c14a879fe858cd7cbac6c844e622e2db61
   id: 505050d1000deb7af48cd481b64d8c527030e85c2415b05f9db1c24765a13a44
   status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
   summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  tags: 9e7e8be2998f87dfcbb538781d827f202722ef7dad630b93bca343e20f247db8
+  tags: cdc41ecb0faeea4fd54d89a0af9704fa317051793e9578e08cc68ba3342d3caa
   current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
   history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   why: 5eb69c288ec7a7ccfc32e501a309594d4f93670ae42bca485a283ed4858623b1
@@ -26,6 +26,7 @@ field_hashes:
   atoms: 41e1c5cfe4615ceafc1a35a993d2b22a54dcba57381ab28c99768a77d9059067
 semantic_tags:
 - artifact:task
+- host:robocop2
 - representation.markdown
 - source.document.markdown
 - type.workflow.task
@@ -33,6 +34,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-15T16:53:19Z'
+  at: '2026-11-16T05:05:16Z'
   authority: generated
   via: save_document_payload

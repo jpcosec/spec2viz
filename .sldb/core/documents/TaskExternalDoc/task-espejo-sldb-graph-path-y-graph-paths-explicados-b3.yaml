@@ -1,13 +1,13 @@
 name: task-espejo-sldb-graph-path-y-graph-paths-explicados-b3
 path: desk/tasks/task-espejo-sldb-graph-path-y-graph-paths-explicados-b3.md
-source_hash: 2581579d2039e74394cb9d6c3fe00269a420b78c1dec887c5a18461a621c37bb
-content_hash: 06f048330bcfd051421ef63bc7d48fa6ca0b160154a1d83bdbd4f8f3cd943cb1
+source_hash: d726e680d440c26a4b10f5a709f2347cc8f069ebb7ff82e02244a48d9762fb6a
+content_hash: e5425de19f4766ef61b08c03697f7d5aedb332ce215affe2c951bdfed1ba8620
 field_hashes:
   title: 9954e4271fc46b237e182f9acbf7f231c8dcb60ed798f69429ecc876c7c21930
   id: b660ae58bbbb17e07dc6f348cacf34191083e82c3d9383dca75ddbdad434d3cc
   status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
   summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  tags: 9e7e8be2998f87dfcbb538781d827f202722ef7dad630b93bca343e20f247db8
+  tags: cdc41ecb0faeea4fd54d89a0af9704fa317051793e9578e08cc68ba3342d3caa
   current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
   history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   why: 8f61b66a0cafecb3283238cdf51e706ae3862ae307bb0a5c6ca0e2b317ed91e9
@@ -26,6 +26,7 @@ field_hashes:
   atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - artifact:task
+- host:robocop2
 - representation.markdown
 - source.document.markdown
 - type.workflow.task
@@ -33,6 +34,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-15T16:51:33Z'
+  at: '2026-11-16T05:05:04Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

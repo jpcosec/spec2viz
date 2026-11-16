@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T16:53:19Z'
+  at: '2026-11-16T05:05:16Z'
   authority: generated
   via: save_document_payload
 id: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
@@ -10,6 +10,7 @@ summary: ''
 tags:
 - workspace:desk
 - artifact:task
+- host:robocop2
 current_node: ritual-execution
 history: []
 references: []

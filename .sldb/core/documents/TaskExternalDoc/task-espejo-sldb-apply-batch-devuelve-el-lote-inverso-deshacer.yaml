@@ -1,13 +1,13 @@
 name: task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer
 path: desk/tasks/task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer.md
-source_hash: 796b9dfd26e809e1418acce056b6fd3e7e02d93f68a6aaeb1c5b9b6afadfc91c
-content_hash: bf94ff142d7de13804f5266daf34108ed2289d0b1e97f5ffd131d7bf60f8e90e
+source_hash: c88ea75dd7bb9e4bb2d6799b5de3a8f2319c4856788d1da072f2d7501226ab1f
+content_hash: f3e8bea10857573edaaa37b8e3d07d06c4bf51b61ab46d256ed9af559eb34504
 field_hashes:
   title: 16b9e79f05544700e2b771ce03c8d40f123eab8b2056dc1fe2f179bf5024e8b9
   id: 2c8cd07ac4e07af5101c9a8302d8c2ca2b9be28d6de5acba2a01637b8bc8ad28
   status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
   summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  tags: 9e7e8be2998f87dfcbb538781d827f202722ef7dad630b93bca343e20f247db8
+  tags: cdc41ecb0faeea4fd54d89a0af9704fa317051793e9578e08cc68ba3342d3caa
   current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
   history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   why: 8f61b66a0cafecb3283238cdf51e706ae3862ae307bb0a5c6ca0e2b317ed91e9
@@ -26,6 +26,7 @@ field_hashes:
   atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - artifact:task
+- host:robocop2
 - representation.markdown
 - source.document.markdown
 - type.workflow.task
@@ -33,6 +34,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-15T16:51:26Z'
+  at: '2026-11-16T05:05:00Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

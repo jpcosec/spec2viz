@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T02:31:59Z'
+  at: '2026-11-16T05:05:43Z'
   authority: generated
   via: save_document_payload
 id: task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz
@@ -13,6 +13,7 @@ tags:
 - system:specir
 - system:spec2viz
 - topic:migracion
+- host:robocop2
 current_node: ritual-execution
 history: []
 references: []
