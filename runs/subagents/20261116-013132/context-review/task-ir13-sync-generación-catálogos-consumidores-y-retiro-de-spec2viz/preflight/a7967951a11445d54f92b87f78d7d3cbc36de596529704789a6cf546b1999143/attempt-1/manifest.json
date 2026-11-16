@@ -1,0 +1,38 @@
+{
+  "key": "task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/preflight",
+  "input_sha256": "a7967951a11445d54f92b87f78d7d3cbc36de596529704789a6cf546b1999143",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261116-013132/context-review/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/preflight/a7967951a11445d54f92b87f78d7d3cbc36de596529704789a6cf546b1999143/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md",
+      "sha256": "102e85a83d2099b7b32faaf5e148d112d62c6722e0b2d3a5bb6681115961ba8a",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-16T01:31:32.740567+00:00",
+  "finished": "2026-11-16T01:31:51.758047+00:00",
+  "retry_reason": "La TaskDoc se reescribió el 2026-11-15 (e48e012: specIR adaptador de sldb, IR13c retirada) después de preflight-2 del 2026-11-12"
+}

@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T16:55:06Z'
+  at: '2026-11-16T01:53:50Z'
   authority: generated
   via: save_document_payload
 id: task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz
@@ -30,8 +30,10 @@ files:
 - src/specir/visual/retirement.py
 - src/specir/cli.py
 - tests/visual/test_retirement_gate.py
+- tests/visual/test_refs_models.py
 - docs/spec2viz/acta-de-retiro.md
 - docs/spec2viz/matriz-de-cobertura.md
+- docs/spec2viz/gate-de-retiro.md
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
@@ -68,6 +70,15 @@ Fuera: implementar capacidades de spec2viz, que corresponden a las tareas de com
 _Outline the expected implementation route or affected surface._
 
 Módulo src/specir/visual/retirement.py con el comprobador, expuesto como subcomando del comando de specIR; lee del inventario de la matriz de cobertura la lista de repos consumidores y de stores a revisar y recibe por argumento solo la ruta local de cada uno; no escribe en ellos. Si el gate falla, el acta registra las dependencias remanentes con su ruta y línea y deja el retiro como no declarado. Los cambios en otros repos se piden con deskops message send --to <repo> y se registran en docs/spec2viz/acta-de-retiro.md con la referencia al cambio que los resolvió. La matriz docs/spec2viz/matriz-de-cobertura.md se actualiza con la prueba que acredita cada fila. Propiedad de archivos compartidos: docs/spec2viz/matriz-de-cobertura.md ya existe cuando esta tarea empieza: la crea la tarea de cobertura (IR07). Aquí solo se actualiza, añadiendo por fila la prueba y la evidencia de cumplimiento, después de cerradas IR13a, IR13b, IR13c e IR13d; no se cambian los modos ni las condiciones de retiro que fijó IR07 sin registrarlo en el acta. Propiedad de archivo compartido: src/specir/cli.py lo crea la tarea IR13d con la base del comando y sus subcomandos; esta tarea agrega ahí solo el subcomando del gate de retiro, después de cerrada IR13d, de la que depende, sin modificar los subcomandos existentes.
+
+Precisiones (preflight-3, resueltas por el worker de IR13 el 2026-11-15):
+1. IR13c se retiró (sus filas pasaron a «usar sldb directamente»); no bloquea. Las dependencias son las del frontmatter.
+2. El subcomando es `specir retirement check [--matrix docs/spec2viz/matriz-de-cobertura.md] --path NOMBRE=RUTA ...`. El inventario es la tabla «Inventario de consumidores» de la matriz: la primera palabra de la primera columna es el repo y `store `<ruta>`` es un store (su carpeta `.sldb`). El repo de specIR es el que contiene la matriz y no necesita `--path`. Si se da un nombre que no está en el inventario o falta uno que sí está, es un error de uso (código 2). Con alguna dependencia o fila sin acreditar sale con 1; si no hay ninguna, con 0.
+3. Detección: Python por AST (`import`/`from spec2viz…`, `importorskip`/`import_module("spec2viz…")`, llamadas cuyo primer argumento es el comando `spec2viz` o una lista que empieza por él, salvo métodos de cadena); requisitos en `pyproject.toml`, `setup.cfg`, `setup.py`, `requirements*.txt` y CI; `spec2viz <subcomando>` en sh, Makefile y CI; habilidades (`SKILL.md` y `references/` de una skill) que nombran `spec2viz <subcomando>` como código o se llaman como spec2viz; `spec2viz.sldb_models` en `store.yaml`, `core/store_index.yaml` y `core/models/*.yaml`. No se miran `.git`, entornos, `build`, `dist`, `.sldb` ni archivos de texto.
+4. La acreditación es la sección «Acreditación (IR13)» de la matriz: una fila por SV-* con estado (cumplida o abierta), la prueba que la acredita y lo que falta. Una fila cumplida debe citar al menos un `tests/….py`. Los modos y las condiciones de IR07 no cambian.
+5. Paridad (G2): una fila se cumple si las pruebas citadas en su condición pasan, contra specIR o contra sldb (portadas). Lo que no está portado deja la fila abierta.
+
+Estado (IR13, 2026-11-15): gate no cumplido; retiro no declarado (`docs/spec2viz/acta-de-retiro.md`). Comprobador y pruebas hechos. 75 filas cumplidas y 30 abiertas. G6 cumplido; G1, G2, G3, G4, G5 y G7 abiertos. `specir retirement check` sobre el universo real sale con rc 1: 122 dependencias y 30 filas abiertas. Se enviaron los pedidos a deskops, graph_ui, pron, sldb y spec2viz, y la medición de `catalog build` a sldb. La tarea sigue abierta hasta que se cumpla el gate.
 
 ## Validation
 
