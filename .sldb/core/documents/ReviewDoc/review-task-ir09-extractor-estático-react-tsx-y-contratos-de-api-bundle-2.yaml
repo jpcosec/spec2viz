@@ -1,0 +1,36 @@
+name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-bundle-2
+path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/bundle-2.md
+source_hash: 348c971dbbd7beeceffa48232f2e4babf2ce9a9452b0165b9c0eb0c35819fd54
+content_hash: e24028de0229e0b8e5b3d22766ba3014e449d382c026b3aadebfd8d0002824f9
+field_hashes:
+  id: d14570ed5f3924eae6c3cc2afeb322a996a5ddf3ac2003cb29e3ed255d4ddd45
+  title: def23bb273ded8be73229da6a048c34b8246b455ece98dda9595fd8a2b82a274
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 97133f3dc41f4f7bdb45a9c09b7f0c4a54d2066d3d679da21a3ce59550503bd1
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: b55ec4becd623c1efff9569fdf9b60cbaf5f4ebebef7e7774e82756e7ebeb00a
+  input_sha256: a18d98bb158f810546481af8475a77eefce16e11582311c5107812b4bdf98b9a
+  output_sha256: e807034efa0f05b5e8f7ef93005a34183c2e3a7e919cfd11abab40ec4ba32a11
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 490b58effc587a8d13d7768dcfcc11f46759a3ea023e70ace651fab9034a9090
+  created_at: 228f50234bdcb8b72e4e64cd7bccd24931f7e64afc74ed370d723f71908d24ce
+  disposed_at: a9491742d8ebe4b991e6e0b0551279a87d6bc9e17f8968312be30e84dc34a1ff
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: ae9107b40fac9115ee4238ed2b6ba261d56be2e6d94c839f71a7f85120ba9a13
+  disposition: 865859d382aead08f19cbb1f7c14502c644014df068a075b630c68fd3aed16de
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T20:27:40Z'
+  authority: generated
+  via: save_document_payload

@@ -1,7 +1,7 @@
 name: task-ir09-extractor-estático-react-tsx-y-contratos-de-api
 path: desk/tasks/task-ir09-extractor-estático-react-tsx-y-contratos-de-api.md
-source_hash: 87a9fb2ca439be41b25891f493903ff12ad6412b87fb4f29f0c39fe8dcaf6dbd
-content_hash: c458c4dad569639f33b9352b1569c71b4e4ccc50d09cdb7664f4ab006dcae36f
+source_hash: d294e4e0f158d2c37e025eeb61be050d1cde3f3ec0a74f95fea20c297abc7b3c
+content_hash: e5f9187bc0710538322128f992f6ab002199a493c33da8c7f486cd907fe5071a
 field_hashes:
   title: e72ae2288b4b597d10bdc3bc5e662a136b10fdd4d25706587ceb0ae3321a0be6
   id: 7ebb097d3e6e5c39e68cfad9904c1dfb47fea1853488215bddf1a61d39243ded
@@ -11,15 +11,15 @@ field_hashes:
   current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
   history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   why: 7984b51394f587dbcdea653000a5db2ad2a854cb986a6c4c6b4172a5eb1a679f
-  goal: 19a900be6e5e6328e3cb2d125d09a8f0d662a641b5ff3e627a42fec06bafdc0b
-  scope: be562ed078c9a9883519568729fcd29623388f4e4a27c6792609e3c19f2aa922
+  goal: ae330c094c1797a015f7072c8d5bb9d4e3d097230579f59a06fe4da84752c0f6
+  scope: e2797939f178f411cb1b0f7ded19231762338252bc18fb1f8467e08c57c1f2d3
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   depends_on: b299189f1a12ccc5eb1612a997b0def6925be4694cd2b06d605d89fd11aa00e3
   pills: 857633de51d8431f8d4b794fa4a05fd81ea9e127b0c5ef4219e8aa85a7d2a327
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 419347b4b4f5ddae559bc7196f4ec24f50255c02747d4f446ff28c09fd59cb9c
-  validation: ffa3b4eac96608ef2a1e0de8c9f263e41fdaaf2ea41650d974c3bda3e4946874
-  done_when: 4e8e376cdfa34d1d61b990968baba32e55cd6194a34f557f511f3d9dc247144e
+  implementation_path: e04bdd79f3f24698a9e46d2e391f7d06947d90c448af9c133ba77bc6f59ddbf3
+  validation: b27883cbdfff520c1e4e76f618940645cfba9b84e31f50eca3e8d6d59d5c0cff
+  done_when: 30d8a629f070fef3a55f512f639a8c7e36f8837b177e7d917bb9330c35f91cb5
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-16T05:05:29Z'
+  at: '2026-11-16T20:05:09Z'
   authority: generated
   via: save_document_payload

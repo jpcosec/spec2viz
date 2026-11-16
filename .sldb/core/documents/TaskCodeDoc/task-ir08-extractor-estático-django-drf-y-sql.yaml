@@ -1,7 +1,7 @@
 name: task-ir08-extractor-estático-django-drf-y-sql
 path: desk/tasks/task-ir08-extractor-estático-django-drf-y-sql.md
-source_hash: 3a22b09eca67c2613b8ae5c851bf0f562735a718b670fd461ed0624d0bfc8721
-content_hash: c197e5d3f5eee75c4d36b672044b05fd63209b60544b9ff7cd1a09f1e4d801ed
+source_hash: e45dc3664abf872329428f6a80a1af628442b63614bcc2d2fcc53deabc31eecf
+content_hash: fee51464d9f4c1e988ad4f86eaa5f87030b84953da7865122992f5cd3af10ff5
 field_hashes:
   title: ad7800e8142992538794d0e7ab91fb6d4e61fcda0e2d661022cbd2a28ff15358
   id: 69d505b1bbea82b207df04a92ee89d3a9db0c4d5919fdd139834bffd175bd7a1
@@ -12,13 +12,13 @@ field_hashes:
   history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   why: b99db0dae913f3525b2ee03306f03cb22e7300bc3e5a5a4c05d27fe25523a941
   goal: f38fbda753224bb7203cadb2d8eaa6236602749ae3dd26ccc63d04c08a9eaa61
-  scope: e5b023d7db9e02a7cfd1865dda4afee5addc6f2ac6e906c4dc30a24e1903412b
+  scope: 36d3286a51bf4907a83b2259619242c063c241f0aa67313262700f1ebea303a4
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   depends_on: b299189f1a12ccc5eb1612a997b0def6925be4694cd2b06d605d89fd11aa00e3
   pills: 857633de51d8431f8d4b794fa4a05fd81ea9e127b0c5ef4219e8aa85a7d2a327
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: d7912e2d7fe06505aa3b409289aaf2a5e712391edbba19ccececac596b16eb88
-  validation: d86a034a7607d8cd2a8a470eac71a3cc339c073302af47a557e36576dfabdd4e
+  implementation_path: 3128d7d91d3513ff0770a6a6f572537b0415e8e140132407e5d4d8d135a50e75
+  validation: 9fc31e089c9d03a39957a898ee69a228f2a778e875201d717c96c0f468ac8697
   done_when: 69552816b763fa4f6bdf4dc54ec0b10a5b6eff4d2f1002594a76f10c578390ec
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-16T05:05:24Z'
+  at: '2026-11-16T20:04:24Z'
   authority: generated
   via: save_document_payload
