@@ -1,0 +1,110 @@
+$ grep -nE 'WORKSPACE / "spec2viz"|\.\./spec2viz' tests/conftest.py tests/test_mcp_extension.py
+rc=1
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py
+...F.                                                                    [100%]
+=================================== FAILURES ===================================
+_____ test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server ______
+
+mcp = <conftest.McpSession object at 0x74d33d5c9be0>
+spec_store = PosixPath('/dev/shm/pytest-of-robocop/pytest-427/spec-store0/.sldb')
+
+    def test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server(mcp, spec_store: Path) -> None:
+        store = spec_store
+        indexed = store / "core" / "documents" / "SpecDoc" / f"{SPEC}.yaml"
+        assert indexed.is_file(), f"the {SPEC_STORE} store has no SpecDoc {SPEC}: {indexed}"
+        export_id = f"{SPEC_STORE}:SpecDoc:{SPEC}"
+        assert export_id in {v["view"] for v in every_page(mcp, "list_views") if v["kind"] == "spec"}
+        entry = yaml.safe_load(indexed.read_text(encoding="utf-8").split("\n---", 1)[0])
+        document = mcp.call("read_document", ref=export_id)
+        assert document["found"] and document["store"] == SPEC_STORE and document["address"] == f"sldb://document/{export_id}"
+        assert document["path"] == entry["path"] and document["version"] == entry["content_hash"]
+        for key, value in front_matter(store.parent / entry["path"]).items():
+>           assert document["payload"][key] == value, key
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: 'sldb'
+
+tests/test_mcp_extension.py:81: KeyError
+1 failed, 4 passed in 72.66s (0:01:12)
+rc=1
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_imports.py
+.........                                                                [100%]
+9 passed in 0.69s
+rc=0
+
+$ grep -lE 'mount_copy|store_copy|spec_store|federated_digest|original_digest' -r tests --include=*.py
+tests/conftest.py
+tests/test_mcp_extension.py
+tests/visual/test_visual_projections.py
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/visual/test_visual_projections.py
+.........                                                                [100%]
+9 passed in 13.41s
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/models/test_blog_chain.py
+....x...x                                                                [100%]
+7 passed, 2 xfailed in 13.30s
+rc=0
+
+$ git diff --stat
+ .sldb/core/models/RunDoc.yaml |  6 ++--
+ .sldb/core/store_index.yaml   |  2 +-
+ tests/conftest.py             | 65 ++++++++++++++++++++++++++++++++++---------
+ tests/test_mcp_extension.py   | 15 +++++-----
+ 4 files changed, 64 insertions(+), 24 deletions(-)
+rc=0
+
+$ deskops graph missing --root .
+No missing graph references found.
+rc=0
+
+
+### Segunda pasada, tras ajustar la fuente del payload esperado (ver result-summary.md)
+
+$ grep -nE 'WORKSPACE / "spec2viz"|\.\./spec2viz' tests/conftest.py tests/test_mcp_extension.py
+rc=1
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py
+.....                                                                    [100%]
+5 passed in 70.23s (0:01:10)
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_imports.py
+.........                                                                [100%]
+9 passed in 0.68s
+rc=0
+
+$ grep -lE 'mount_copy|store_copy|spec_store|federated_digest|original_digest' -r tests --include=*.py
+tests/conftest.py
+tests/test_mcp_extension.py
+tests/visual/test_visual_projections.py
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/visual/test_visual_projections.py
+.........                                                                [100%]
+9 passed in 13.30s
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/models/test_blog_chain.py
+....x...x                                                                [100%]
+7 passed, 2 xfailed in 13.64s
+rc=0
+
+$ git diff --stat
+ .sldb/core/models/RunDoc.yaml |  6 ++--
+ .sldb/core/store_index.yaml   |  2 +-
+ tests/conftest.py             | 65 ++++++++++++++++++++++++++++++++++---------
+ tests/test_mcp_extension.py   | 29 +++++++++----------
+ 4 files changed, 71 insertions(+), 31 deletions(-)
+rc=0
+
+$ deskops graph missing --root .
+No missing graph references found.
+rc=0
+
+0 0
+/dev/shm/pytest-of-robocop/pytest-443/spec-store0/.sldb 126 md: 58
+(nota: el «0 0» anterior corresponde a /dev/shm/pytest-of-robocop/pytest-427, que pytest ya había rotado; la línea siguiente usa un store recién construido con build_spec_store: 126 archivos digeridos, 58 .md. Ese directorio temporal, pytest-443, se borró después.)

@@ -1,0 +1,5 @@
+ .sldb/core/models/RunDoc.yaml |  6 ++--
+ .sldb/core/store_index.yaml   |  2 +-
+ tests/conftest.py             | 65 ++++++++++++++++++++++++++++++++++---------
+ tests/test_mcp_extension.py   | 29 +++++++++----------
+ 4 files changed, 71 insertions(+), 31 deletions(-)

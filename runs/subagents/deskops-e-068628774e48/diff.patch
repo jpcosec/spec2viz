@@ -1,0 +1,199 @@
+diff --git a/tests/conftest.py b/tests/conftest.py
+index 1539fdd..68cb5ea 100644
+--- a/tests/conftest.py
++++ b/tests/conftest.py
+@@ -3,8 +3,10 @@ SLDB's public CLI, and the real MCP server of sldb (`sldb mcp`) with specIR's ex
+ (`specir.mcp_extension:register`) over stdio, driven by the real MCP client.
+ 
+ Nothing is fabricated: the copy holds this repo's `.sldb/`, `sldb/` and `desk/` as they
+-are, plus every `runs/subagents/*/run.md` at its own relative path; the deskops and spec2viz
+-stores are linked in place and only read."""
++are, plus every `runs/subagents/*/run.md` at its own relative path; the deskops store is linked
++in place and only read. The store linked as `spec2viz` is not spec2viz's: it is a new sldb store
++in a temporary directory, built with `sldb.api` from a spec fixture of this repo
++(`spec_store`), and also only read."""
+ 
+ from __future__ import annotations
+ 
+@@ -24,7 +26,11 @@ WORKSPACE = REPO.parent
+ COPIED = (".sldb", "sldb", "desk")
+ #: The store registers RunDocs, which live outside `.sldb/` and `desk/`.
+ RUN_DOCS = "runs/subagents/*/run.md"
+-FEDERATED = {"deskops": WORKSPACE / "deskops" / ".sldb", "spec2viz": WORKSPACE / "spec2viz" / ".sldb"}
++FEDERATED = {"deskops": WORKSPACE / "deskops" / ".sldb"}
++#: The spec synced into the temporary specs store (`spec_store`), at the same relative path
++#: under that store's project as under the fixture root.
++SPEC_FIXTURES = REPO / "tests" / "visual" / "fixtures" / "spec2viz"
++SPEC_FIXTURE = "docs/architecture/spec2viz/class-sldb-models.yml"
+ CACHE = ".sldb_cache"
+ TOOL_TIMEOUT = 300
+ #: specIR's tools on the server of sldb (`sldb mcp --extension`).
+@@ -64,14 +70,47 @@ def sldb(*args: str, cwd: Path) -> subprocess.CompletedProcess:
+     return done
+ 
+ 
++def spec_store_digest(spec_store: Path) -> dict[str, str]:
++    """The specs store's `.sldb/` tree and the documents of its project (not a git repo, so
++    every `.md` under it, outside the cache)."""
++    digest = tree_digest(spec_store)
++    for path in sorted(spec_store.parent.rglob("*.md")):
++        if path.is_file() and CACHE not in path.parts:
++            digest[str(path)] = hashlib.sha256(path.read_bytes()).hexdigest()
++    return digest
++
++
++def build_spec_store(tmp_path_factory: pytest.TempPathFactory) -> Path:
++    """A new sldb store, outside any mounted copy, with the SpecDoc of this repo's spec fixture
++    synced by `sldb.api` (as tests/visual/test_notations_parity.py does); its `.sldb` path."""
++    from sldb.api import init_store
++    from sldb.api.notations import SpecSync
++
++    project = tmp_path_factory.mktemp("spec-store")
++    spec = project / SPEC_FIXTURE
++    spec.parent.mkdir(parents=True)
++    shutil.copy2(SPEC_FIXTURES / SPEC_FIXTURE, spec)
++    init_store(project)
++    store = project / ".sldb"
++    SpecSync(store).sync(spec)
++    return store
++
++
++@pytest.fixture(scope="session")
++def spec_store(tmp_path_factory: pytest.TempPathFactory) -> Path:
++    """The `.sldb` of the temporary specs store linked as `spec2viz` in every mounted copy."""
++    return build_spec_store(tmp_path_factory)
++
++
+ @pytest.fixture(scope="session")
+ def original_digest() -> dict[str, str]:
+     """This repo's `.sldb/` and `desk/` before any test ran."""
+     return tree_digest(REPO / ".sldb", REPO / "desk")
+ 
+ 
+-def mount_copy(tmp_path_factory: pytest.TempPathFactory, name: str) -> Path:
+-    """The project root of a new isolated copy of this repo's store, mounted and checked."""
++def mount_copy(tmp_path_factory: pytest.TempPathFactory, name: str, spec_store: Path) -> Path:
++    """The project root of a new isolated copy of this repo's store, mounted and checked, with
++    the deskops store and the specs store `spec_store` (as `spec2viz`) linked."""
+     for alias, store in FEDERATED.items():
+         if not (store / "core").is_dir():
+             pytest.fail(f"the {alias} store is missing: {store}")
+@@ -84,22 +123,22 @@ def mount_copy(tmp_path_factory: pytest.TempPathFactory, name: str) -> Path:
+         target.parent.mkdir(parents=True, exist_ok=True)
+         shutil.copy2(run_doc, target)
+     sldb("stores", "add", str(FEDERATED["deskops"]), "--name", "deskops", "--replace", "--store", ".sldb", cwd=root)
+-    sldb("stores", "add", str(FEDERATED["spec2viz"]), "--name", "spec2viz", "--store", ".sldb", cwd=root)
++    sldb("stores", "add", str(spec_store), "--name", "spec2viz", "--store", ".sldb", cwd=root)
+     sldb("stores", "update", "--store", ".sldb", cwd=root)
+     sldb("edges", "rebuild", "--store", ".sldb", cwd=root)
+     sldb("stores", "check", "--store", ".sldb", cwd=root)
+     return root
+ 
+ 
+-def copy_digest(root: Path) -> dict[str, str]:
+-    """A mounted copy and the linked stores, file by file."""
+-    return {**tree_digest(*(root / name for name in COPIED)), **federated_digest()}
++def copy_digest(root: Path, spec_store: Path) -> dict[str, str]:
++    """A mounted copy and the linked stores (FEDERATED's and the specs store), file by file."""
++    return {**tree_digest(*(root / name for name in COPIED)), **federated_digest(), **spec_store_digest(spec_store)}
+ 
+ 
+ @pytest.fixture(scope="session")
+-def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
++def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str], spec_store: Path) -> Path:
+     """The copy the read tools are served from; nothing writes to it."""
+-    return mount_copy(tmp_path_factory, "specir-store")
++    return mount_copy(tmp_path_factory, "specir-store", spec_store)
+ 
+ 
+ class McpSession:
+@@ -127,9 +166,9 @@ class McpSession:
+ 
+ 
+ @pytest.fixture(scope="session")
+-def copy_digest_before(store_copy: Path) -> dict[str, str]:
++def copy_digest_before(store_copy: Path, spec_store: Path) -> dict[str, str]:
+     """The mounted copy and the linked stores before the server reads them."""
+-    return copy_digest(store_copy)
++    return copy_digest(store_copy, spec_store)
+ 
+ 
+ @contextmanager
+diff --git a/tests/test_mcp_extension.py b/tests/test_mcp_extension.py
+index 3bcf13a..a6f3e0d 100644
+--- a/tests/test_mcp_extension.py
++++ b/tests/test_mcp_extension.py
+@@ -1,7 +1,8 @@
+ """specIR on the MCP server of sldb: the real `sldb mcp --extension specir.mcp_extension:register`,
+ reached by the real MCP client over stdio, over an isolated copy of this repo's store (with the
+-deskops and spec2viz stores linked in place). At level 0 there is no write tool, and reading
+-through every tool, sldb's and specIR's, changes no file of any store."""
++deskops store linked in place, and a temporary specs store built from this repo's spec fixture
++linked as `spec2viz`). At level 0 there is no write tool, and reading through every tool, sldb's
++and specIR's, changes no file of any store."""
+ 
+ from __future__ import annotations
+ 
+@@ -9,8 +10,9 @@ from pathlib import Path
+ from typing import Any
+ 
+ import yaml
++from sldb.api import extract_document_payload
+ 
+-from conftest import COPIED, FEDERATED, REPO, federated_digest, tree_digest
++from conftest import REPO, copy_digest, tree_digest
+ 
+ #: sldb's read surface (sldb.mcp.registry.READ_TOOLS) and its signal log.
+ SLDB_READ = {
+@@ -25,12 +27,6 @@ SPEC_STORE = "spec2viz"
+ SPEC = "class.sldb-models"
+ 
+ 
+-def front_matter(path: Path) -> dict[str, Any]:
+-    text = path.read_text(encoding="utf-8")
+-    assert text.startswith("---\n"), f"{path} has no front matter"
+-    return yaml.safe_load(text.split("\n---", 1)[0][4:]) or {}
+-
+-
+ def every_page(mcp, tool: str, limit: int = 50, **arguments: Any) -> list[Any]:
+     """Every item of a paged answer, following `next_offset`."""
+     items: list[Any] = []
+@@ -66,8 +62,8 @@ def test_specir_types_over_a_store_without_them(mcp) -> None:
+     assert nodes["total"] == 0 and nodes["explanation"]
+ 
+ 
+-def test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server(mcp) -> None:
+-    store = FEDERATED[SPEC_STORE]
++def test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server(mcp, spec_store: Path) -> None:
++    store = spec_store
+     indexed = store / "core" / "documents" / "SpecDoc" / f"{SPEC}.yaml"
+     assert indexed.is_file(), f"the {SPEC_STORE} store has no SpecDoc {SPEC}: {indexed}"
+     export_id = f"{SPEC_STORE}:SpecDoc:{SPEC}"
+@@ -76,11 +72,16 @@ def test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server(mcp) ->
+     document = mcp.call("read_document", ref=export_id)
+     assert document["found"] and document["store"] == SPEC_STORE and document["address"] == f"sldb://document/{export_id}"
+     assert document["path"] == entry["path"] and document["version"] == entry["content_hash"]
+-    for key, value in front_matter(store.parent / entry["path"]).items():
++    assert (store.parent / entry["path"]).is_file()
++    #: The payload sldb extracts from the temporary store itself (the document's front matter also
++    #: carries sldb's provenance block `sldb:`, which is not a field of the payload).
++    expected = extract_document_payload(store, None, SPEC)
++    assert expected["id"] == SPEC
++    for key, value in expected.items():
+         assert document["payload"][key] == value, key
+ 
+ 
+-def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy: Path, copy_digest_before: dict[str, str], original_digest: dict[str, str]) -> None:
++def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy: Path, spec_store: Path, copy_digest_before: dict[str, str], original_digest: dict[str, str]) -> None:
+     task = mcp.call("select_documents", model="TaskDoc", limit=1)["items"][0]["export_id"]
+     calls = [
+         ("list_models", {}),
+@@ -104,7 +105,7 @@ def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy
+     for tool, arguments in calls:
+         mcp.call(tool, **arguments)
+     assert {tool for tool, _ in calls} == {t.name for t in mcp.list_tools()}
+-    after = {**tree_digest(*(store_copy / name for name in COPIED)), **federated_digest()}
++    after = copy_digest(store_copy, spec_store)
+     changed = sorted(path for path in set(copy_digest_before) | set(after) if copy_digest_before.get(path) != after.get(path))
+     assert not changed, f"reading wrote to: {changed}"
+     now = tree_digest(REPO / ".sldb", REPO / "desk")

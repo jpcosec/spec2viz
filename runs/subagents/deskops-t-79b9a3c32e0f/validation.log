@@ -1,0 +1,99 @@
+### V1a grep
+$ grep -nE 'WORKSPACE / "spec2viz"|\.\./spec2viz' tests/conftest.py tests/test_mcp_extension.py
+rc=1 (1 = sin coincidencias)
+### extra grep spec2viz en tests/ (contexto)
+tests/test_mcp_extension.py:4:linked as `spec2viz`). At level 0 there is no write tool, and reading through every tool, sldb's
+tests/test_mcp_extension.py:26:SPEC_STORE = "spec2viz"
+tests/test_mcp_extension.py:65:def test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server(mcp, spec_store: Path) -> None:
+tests/conftest.py:7:in place and only read. The store linked as `spec2viz` is not spec2viz's: it is a new sldb store
+tests/conftest.py:32:SPEC_FIXTURES = REPO / "tests" / "visual" / "fixtures" / "spec2viz"
+tests/conftest.py:33:SPEC_FIXTURE = "docs/architecture/spec2viz/class-sldb-models.yml"
+tests/conftest.py:101:    """The `.sldb` of the temporary specs store linked as `spec2viz` in every mounted copy."""
+tests/conftest.py:113:    the deskops store and the specs store `spec_store` (as `spec2viz`) linked."""
+tests/conftest.py:126:    sldb("stores", "add", str(spec_store), "--name", "spec2viz", "--store", ".sldb", cwd=root)
+### V4 snapshot ../spec2viz/.sldb ANTES (mtime-list sha, content sha)
+14d066f2c7dc5ff8a6ac2e79216c8c9e8dfdc6248bf24500feb74fab14a72486  -
+941051c6e60a70d452ba35fe6b71d302f2dc0104e3989eaf78bef7387af227f3  -
+### V1b test_mcp_extension.py -rs bajo strace (file accesses a spec2viz/.sldb)
+$ TMPDIR=/dev/shm strace -f -e trace=%file -o /dev/shm/strace-t79.log .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py
+.....                                                                    [100%]
+5 passed in 218.20s (0:03:38)
+rc=0
+### strace: accesos que mencionan spec2viz/.sldb (ruta real)
+12561
+1433759 lstat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+1433759 stat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb/core/store_index.yaml", {st_mode=S_IFREG|0600, st_size=11253, ...}) = 0
+1433759 lstat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+1433759 lstat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+1433759 lstat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+1433759 stat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb/core/store_index.yaml", {st_mode=S_IFREG|0600, st_size=11253, ...}) = 0
+1433759 stat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb/core/store_index.yaml", {st_mode=S_IFREG|0600, st_size=11253, ...}) = 0
+1433759 stat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb/core/store_index.yaml", {st_mode=S_IFREG|0600, st_size=11253, ...}) = 0
+1433759 openat(AT_FDCWD, "/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb/core/store_index.yaml", O_RDONLY|O_CLOEXEC) = 3
+1433759 lstat("/mnt/ssd/herramientas/spec2viz/.sldb", 0x7ffcce536008) = -1 ENOENT (No such file or directory)
+1433759 stat("/mnt/ssd/herramientas/spec2viz/.sldb/core/store_index.yaml", 0x7ffcce535fb8) = -1 ENOENT (No such file or directory)
+1433759 stat("/mnt/ssd/herramientas/spec2viz/.sldb/store_index.yaml", 0x7ffcce535fb8) = -1 ENOENT (No such file or directory)
+1433759 stat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb/core/store_index.yaml", {st_mode=S_IFREG|0600, st_size=11253, ...}) = 0
+1435554 lstat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+1435554 stat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb/core/store_index.yaml", {st_mode=S_IFREG|0600, st_size=11253, ...}) = 0
+1435554 lstat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+1435554 lstat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+1435554 lstat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+1435554 stat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb/core/store_index.yaml", {st_mode=S_IFREG|0600, st_size=11253, ...}) = 0
+1435554 stat("/mnt/ssd/proyectos/SLDB_1/spec2viz/.sldb/core/store_index.yaml", {st_mode=S_IFREG|0600, st_size=11253, ...}) = 0
+### V4 snapshot DESPUES
+14d066f2c7dc5ff8a6ac2e79216c8c9e8dfdc6248bf24500feb74fab14a72486  -
+941051c6e60a70d452ba35fe6b71d302f2dc0104e3989eaf78bef7387af227f3  -
+### strace análisis: pid 1433759 = sldb stores check en la copia montada (1 openat en ../spec2viz/.sldb/core/store_index.yaml); pid 1435554 = hijo de sldb mcp (1233 openat en ../spec2viz/.sldb y .sldb_cache, incluido SpecDoc/class.sldb-models.yaml). Ninguna escritura (O_WRONLY/O_RDWR/O_CREAT/rename/unlink: 0). Causa: deskops/.sldb/core/store_index.yaml enlaza spec2viz -> ../spec2viz/.sldb (federación transitiva).
+content_hash real=d0a8bcef... temp=c64366dd...; read_document devolvió version == temp (la prueba lo afirma y pasó) => la respuesta sale del store temporal.
+### payload: front matter sin sldb ⊆ extract_document_payload e iguales: True; extras en payload: description, title (aserción más fuerte)
+$ SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/visual/test_visual_projections.py
+.........                                                                [100%]
+9 passed in 19.94s
+rc=0
+$ SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/models/test_blog_chain.py
+....x...x                                                                [100%]
+7 passed, 2 xfailed in 23.44s
+rc=0
+### V2 suite completa
+Mem:              31          20           0           2          12          10
+$ SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm timeout 9000 flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/
+            ("select_documents", {"model": "AtomDoc", "include_linked": True}),
+            ("neighbors", {"node": task, "direction": "outgoing"}),
+            ("neighbors", {"node": task, "direction": "incoming"}),
+            ("neighborhood", {"node": task, "direction": "both", "depth": 2}),
+            ("list_views", {}),
+            ("resolve_view", {"view": f"{SPEC_STORE}:SpecDoc:{SPEC}"}),
+            ("resolve_view", {"view": "board"}),
+            ("check_integrity", {}),
+            ("list_signals", {}),
+            ("specir_types", {}),
+            ("specir_nodes", {"layer": "api"}),
+        ]
+        for tool, arguments in calls:
+            mcp.call(tool, **arguments)
+        assert {tool for tool, _ in calls} == {t.name for t in mcp.list_tools()}
+        after = copy_digest(store_copy, spec_store)
+        changed = sorted(path for path in set(copy_digest_before) | set(after) if copy_digest_before.get(path) != after.get(path))
+>       assert not changed, f"reading wrote to: {changed}"
+E       AssertionError: reading wrote to: ['/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/TaskCodeDoc/task-los-selectores-de-deskops-aceptan-una-ruta-desk-y-el-error-explica-que-formas-acepta.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/TaskCodeDoc.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/store_index.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/tasks/task-los-selectores-de-deskops-aceptan-una-ruta-desk-y-el-error-explica-que-formas-acepta.md']
+E       assert not ['/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/TaskCodeDoc/task-los-selectores-de-deskops-aceptan-una-ruta-d...LDB_1/deskops/desk/tasks/task-los-selectores-de-deskops-aceptan-una-ruta-desk-y-el-error-explica-que-formas-acepta.md']
+
+tests/test_mcp_extension.py:110: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_mcp_extension.py::test_reading_through_every_tool_leaves_every_store_untouched
+1 failed, 746 passed, 4 xfailed in 423.63s (0:07:03)
+rc=1
+### V2 análisis corrida 1: el FAIL lista solo archivos del store REAL de deskops (FEDERATED). deskops commit 4b4ebaa1 "closeout: task-los-selectores-de-deskops-..." a las 2026-11-16 12:13:45 -0300; mtimes deskops/.sldb/core/store_index.yaml 12:13:41, models/TaskCodeDoc.yaml 12:13:40; la corrida terminó 12:15:46 (7 min). Escritor externo concurrente, no la lectura por MCP. Corrida invalidada; se reencola.
+### V2 corrida 2
+Mem:              31          19           4           1           8          11
+.................................................x...................... [ 67%]
+........................................................................ [ 76%]
+........................................................................ [ 86%]
+........................................................................ [ 95%]
+...............................                                          [100%]
+747 passed, 4 xfailed in 299.27s (0:04:59)
+rc=0
+### V3 deskops graph missing --root . -> rc=0 ("No missing graph references found.")
+### V4 simulación de archivo de spec2viz (copia de deskops/.sldb+desk en /dev/shm/t79-sim, hermanos sldb/pron/scion por symlink, sin spec2viz): sldb stores add/update/check en un store nuevo que enlaza deskops -> rc 0/0/0 PASS; control con spec2viz -> rc 0 PASS. El enlace transitivo colgante no rompe stores check.
+### git diff --stat fuera de desk/.sldb/runs: tests/conftest.py, tests/test_mcp_extension.py. Untracked fuera de esos: src/specir.egg-info (2026-11-16 02:20, previo al ejecutor) y __pycache__ (artefactos de corrida).

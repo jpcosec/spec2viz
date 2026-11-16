@@ -1,0 +1,10 @@
+Task: task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a
+Title: Las pruebas de MCP dejan de federar el store real spec2viz/.sldb (G5, opción A)
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Effective pills:
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+- desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
