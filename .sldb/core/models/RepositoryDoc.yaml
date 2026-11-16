@@ -2,11 +2,11 @@ name: RepositoryDoc
 model_ref: deskops.models:RepositoryDoc
 path: ''
 documents_index: .sldb/core/documents/RepositoryDoc.yaml
-sections_index: ''
-model_hash: d9e11efc0c6a94cd47d6698fe77daa61f38ea4db866e4e1dedfa9ae4f61a4bea
-roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+sections_index: .sldb/runtime/sections/RepositoryDoc.yaml
+model_hash: 6bb2f78c40e4ca87375a30441dd7ba880d69d993286fcd4cf16ea40ae86e6e71
+roster_hash: f6aad532927a7180c0a79d415007a2ae5513c443d862b458e4293387ea5f5716
 contract_hash: 4e3d7ee7a6c1475b5bd6a9cce0510dfc1b7d7e3ede1f63f68f797108a5a817cc
-documents_count: 0
+documents_count: 1
 version: 1
 canonical: false
 family: null

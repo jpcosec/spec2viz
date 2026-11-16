@@ -1,7 +1,7 @@
 name: task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a
 path: desk/tasks/task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a.md
-source_hash: 4fe9838ca02de7d3594f8f82dba241cc01e5bd013213addfb2930a74e5444528
-content_hash: 6c24e96b6a59a9db71e59442533bc36304738b24fe5db92b35cf5e48c812c5a4
+source_hash: ac613c891971b5233b8d207ba9805eb689f5bb092222e1951b3ee82504867431
+content_hash: a00d6752784ff238f3994f396ee0f556e729f1f7815e7365ac556830d07d7afd
 field_hashes:
   title: 69fb3eef0b79e862fc63ea2c21655955e80d010c76d910071451d3e40b1f045d
   id: 1ef4debd56203584c7d0a43b4711b0f9e59086c5be68029cc254de14dc305e03
@@ -23,7 +23,7 @@ field_hashes:
   task_type: a4df8849de4c7c42dff3bfe95bbeb8759b5ca37238136b51e418b9d2f5ef311c
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
-  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atoms: 31ec5d2953881eeb85580640a244c0925f24de9d1ae8590381d455f9602e2025
 semantic_tags:
 - artifact:task
 - representation.markdown
@@ -33,6 +33,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-16T04:10:52Z'
+  at: '2026-11-16T05:13:55Z'
   authority: generated
   via: save_document_payload

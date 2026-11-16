@@ -1,0 +1,23 @@
+name: atom-decisión-de-jp-2026-11-16-g5-el-store-spec2viz-sldb-se-archiva-con-el-repo
+path: desk/atoms/atom-decisión-de-jp-2026-11-16-g5-el-store-spec2viz-sldb-se-archiva-con-el-repo.md
+source_hash: 970272207c589a5dc741bdf36a0702d1300787debabc6942bad13358eea6b069
+content_hash: f8d961a44a91811fef4a7a2745dd695d81841fc08c0b44002d20c0fbf5b96521
+field_hashes:
+  id: 8e2d7ab71ccd52d6f0fedda14409e3be2df018f7a821d02317da91fd274683b9
+  title: d8cd73712f41cb87f6ad2c1697d890598aa7aeedddea6ac9ad97cb4124b79e34
+  five_wh_one_plus: 1566d618b9ad05f5d6636ef68875b058a3311f288ab671709bb72d36b5dd1a5c
+  answer: f49af064cdcf676a00dda4e6d0bf123e8bce42507965a26df852f1c199c28645
+  tags: 7cf5dee812efa8f8bbb22af4f788e5be35f8cb3119594561152324b01579e386
+  provenance: 3a3b41fde8667a4944a3fc8ab88c96534a303ce9325858162a2ad976dc852821
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- topic:retiro
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-16T05:13:39Z'
+  authority: generated
+  via: create_document

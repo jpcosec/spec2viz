@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T04:10:52Z'
+  at: '2026-11-16T05:13:55Z'
   authority: generated
   via: save_document_payload
 id: task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a
@@ -22,7 +22,8 @@ files:
 task_type: task.decision
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-decisión-de-jp-2026-11-16-g5-el-store-spec2viz-sldb-se-archiva-con-el-repo
 ---
 
 # Decisión de JP (G5 del retiro): archivar el store spec2viz/.sldb con el repo o reapuntar sus 7 modelos a sldb
