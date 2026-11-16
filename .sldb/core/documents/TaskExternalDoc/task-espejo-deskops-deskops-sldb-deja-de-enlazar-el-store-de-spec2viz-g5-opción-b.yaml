@@ -1,0 +1,39 @@
+name: task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b
+path: desk/tasks/task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b.md
+source_hash: 1fbb2d91cf3af2e31fc565f4887c54ea8fcf2ba3ae5e95b2be757d90ffbdbf5d
+content_hash: e41ec042ac42e73c2df90650df85f5052c5ebb5fcde102f5d67ba4165ae6336f
+field_hashes:
+  title: c0f5a8eb749466ce08ed100d0ff975acd89c17e6bb88978c5d1d53be7f4b3954
+  id: e711d0c79d9faa58ae85a6f0c1ba3bbf949a6b71a279784c7ddbfc0ae3bcebf2
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: cdc41ecb0faeea4fd54d89a0af9704fa317051793e9578e08cc68ba3342d3caa
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 5d7fa634b5edde578c40d3dbcc216ade90fb2c15c246704a9c13e36f94a4e496
+  goal: 05f60251519cface8d7b62266654aa84675a7139da1d361cf49f4ba7a7333e0e
+  scope: 55fbad9cd7cd5698445220d6998a15565d474bed7c79e95c4e5b0224a31a426a
+  references: 853208136fa942640c03aa941caf5f59f497dcfa5427987d0d43124ed6b0eb05
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 67477eb1632ddd1d1c1560bf389b5c684394796f07b562268ea22d7d165f806a
+  validation: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  done_when: 18ade61ad3ac1bd30b54bebf4e18c30db15a95d24088ba13bb4b0adbd4e525cc
+  task_type: 5619d24174620ad487a0abcf96f8cf76f2194860f28794d1d441226cd2d613dd
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- artifact:task
+- host:robocop2
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T15:46:03Z'
+  authority: generated
+  via: save_document_payload

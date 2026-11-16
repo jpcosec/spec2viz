@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T10:44:15Z'
+  at: '2026-11-16T15:46:11Z'
   authority: generated
   via: save_document_payload
 id: task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a
@@ -20,6 +20,7 @@ references:
 - desk/inbox/20261116-021430-suggestion-g5-decisi-n-de-jp-sobre-spec2viz-sldb.md
 depends_on:
 - task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents
+- task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b
 pills:
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md

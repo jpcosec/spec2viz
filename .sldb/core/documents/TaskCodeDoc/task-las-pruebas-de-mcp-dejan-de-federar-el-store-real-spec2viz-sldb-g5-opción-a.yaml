@@ -1,7 +1,7 @@
 name: task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a
 path: desk/tasks/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a.md
-source_hash: e6549d50c34a323a0c74e2dbc9c3bf24a553f07524e03351cca20be5399c2b85
-content_hash: 077db83d19ed100010f7176c4f275800011e940e72ca9f5ed355a8d3644f4a05
+source_hash: 153ecb0586c75e04e2ae691a5136a7b0bd07c9b57ef70f02f4341418043f7fc0
+content_hash: 0b66cfebb82e0ae574eaa2f610c4a6fca23cf0e9aa23d518b7fb3c98a0101047
 field_hashes:
   title: 488f0daf7eb18425154ae786e0cfb453605c8c4b53334c6594e9c2d6f4e2ec4f
   id: 866216c421b0c62ea3c50b14c6470e81f030f23b7ef96c4516ca0e3ed7be924f
@@ -14,7 +14,7 @@ field_hashes:
   goal: 7bcc5074b0d94a8d693b94fac2af815315920dd8d1782ff5cc35c8aaed672578
   scope: 5cfb6b2f87de65a02dea356f7ed1dc865f72f7a0fa44351870659a48abb0af0e
   references: d953b3d97370171cce213e81bfa2af90f0c322dcbddd54e37a13714f10df74da
-  depends_on: 39750031aec0ac72bfde7137c2583d9bd5e4eca39fd9140d4eb90e445e612d43
+  depends_on: 2a94943678971c1b539d4b3a78a35826dea88317db110437ad107ce10a504d25
   pills: 1528ac8b4096eac21da3f82c70a7a34140edef684d149679168147c2c41f06f0
   files: 910ad3312a7489220922e8f05393794c030cd07b67f17b2d7279831d9dbb68a8
   implementation_path: b583a049e6046c12b199a90953df6795fcac87f1e178aaf8149835002fce7086
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-16T10:44:15Z'
+  at: '2026-11-16T15:46:11Z'
   authority: generated
   via: save_document_payload

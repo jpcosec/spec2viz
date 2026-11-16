@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T15:31:56Z'
+  at: '2026-11-16T15:45:49Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -20,6 +20,7 @@ tasks:
 - desk/tasks/task-espejo-sldb-graph-path-y-graph-paths-explicados-b3.md
 - desk/tasks/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a.md
 - desk/tasks/task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5.md
+- desk/tasks/task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -62,3 +63,4 @@ _Generated from the task references above._
 - Espejo sldb: graph_path y graph_paths explicados (B3) [draft] - Disponer en sldb de caminos explicados en el recorrido del grafo, con la procedencia de cada tramo, para el impacto de specIR.
 - Las pruebas de MCP dejan de federar el store real spec2viz/.sldb (G5, opción A) [draft] - Las pruebas de IR siguen probando la lectura de una spec de un store enlazado a través del servidor MCP, pero contra un store de specs que se construye en un directorio temporal a partir de una fixture que ya está en IR, sin leer ni enlazar ../spec2viz/.sldb.
 - IR13f Anotar en el acta de retiro la resolución de pron (4224186) y la decisión de JP sobre G5 [draft] - El acta registra a pron como resuelto, con su commit y la evidencia, y registra en G5 la decisión de JP (opción A) y lo que queda pendiente en IR por esa decisión.
+- Espejo deskops: deskops/.sldb deja de enlazar el store de spec2viz (G5, opción b) [draft] - Que el store de deskops deje de enlazar el store de spec2viz, para que las pruebas MCP de IR, que federan el store real de deskops, ya no lean el store de spec2viz de forma transitiva.
