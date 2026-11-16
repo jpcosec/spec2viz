@@ -1,0 +1,168 @@
+$ grep -n specir ../pron/docs/spec2viz/build.py
+22:        run('specir', 'diagram', 'validate', *specs)
+23:        run('specir', 'diagram', 'render', *specs, '--backend', 'mermaid', '--out', 'out/mermaid')
+24:        run('specir', 'catalog', 'build', '--config', 'catalog.yml', '--out', 'index.html')
+rc=0
+
+$ git -C ../pron merge-base --is-ancestor 4224186 HEAD
+rc=0
+
+$ git -C ../pron log -1 --format='%H %s' 4224186
+4224186527a894da6a7842ffa03c313292437425 IR13: docs/spec2viz/build.py usa specir en vez de spec2viz
+rc=0
+
+$ git -C ../pron rev-parse --short HEAD
+39ea972
+rc=0
+
+$ ls ../spec2viz/desk/atoms/ | grep g5
+atom-decisión-de-jp-2026-11-16-g5-el-store-spec2viz-sldb-se-archiva-con-el-repo.md
+rc=0
+
+$ ls ../spec2viz/desk/tasks/ | grep g5
+task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a.md
+rc=0
+
+$ timeout 300 .venv/bin/specir retirement check --path graph_ui=../UIs/graph_ui --path deskops=../deskops --path pron=../pron --path sldb=../sldb --path spec2viz/.sldb=../spec2viz/.sldb
+audited repos: graph_ui, deskops, pron, sldb, IR
+audited stores: spec2viz/.sldb
+dependencies: 85
+  deskops	.claude/skills/deskops-workflow/SKILL.md:27	habilidad de agente	(`spec2viz diagram render` / `spec2viz catalog build`) derive from specs and decisions. Atoms
+  deskops	.claude/skills/deskops-workflow/SKILL.md:59	habilidad de agente	re-run `spec2viz diagram render` / `spec2viz catalog build`. Validate before rendering:
+  deskops	.claude/skills/deskops-workflow/SKILL.md:60	habilidad de agente	`spec2viz diagram validate <spec.yml>`.
+  deskops	.claude/skills/deskops-workflow/SKILL.md:101	habilidad de agente	| Validate a diagram spec | `spec2viz diagram validate <spec.yml>` |
+  deskops	.claude/skills/deskops-workflow/SKILL.md:102	habilidad de agente	| Render a diagram | `spec2viz diagram render <spec.yml> --out <dir> [--renderer mermaid\|plantuml\|vega\|d2\|antonia-html\|json]` |
+  deskops	.claude/skills/deskops-workflow/SKILL.md:103	habilidad de agente	| Build a diagram catalog | `spec2viz catalog build --config <catalog.yml> --out <out.html>` |
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:8	habilidad de agente	commands (`spec2viz render`, `spec2viz validate`, `spec2viz schema`, `spec2viz lint`) remain as
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:13	habilidad de agente	- `spec2viz diagram validate <spec.yml> [<spec2.yml> ...]` — validate one or more diagram specs
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:15	habilidad de agente	- `spec2viz diagram render <spec.yml> [<spec2.yml> ...] --out <dir> \
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:19	habilidad de agente	- `spec2viz diagram schema [--type sequence|state|component|activity|deployment|matrix] [--out <file>]`
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:21	habilidad de agente	- `spec2viz diagram generate` — generate a component spec from Python source AST (reverse
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:23	habilidad de agente	- `spec2viz diagram lint <spec-or-mmd> [...]` — lint rendered Mermaid for browser-breaking syntax.
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:27	habilidad de agente	- `spec2viz catalog build --config <vistas.yml-or-diagram-store.yml> --out <out.html> \
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:33	habilidad de agente	- `spec2viz catalog schema [--out <file>]` — JSON Schema for diagram-store / `project.yml` configs.
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:34	habilidad de agente	- `spec2viz catalog serve` — serve a built catalog locally with auto-save for viewer annotations
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:80	habilidad de agente	- `spec2viz render <spec.yml> --out <dir> [--renderer ...]` == `spec2viz diagram render`
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:81	habilidad de agente	- `spec2viz validate <spec.yml>` == `spec2viz diagram validate`
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:82	habilidad de agente	- `spec2viz schema [--type ...] [--out ...]` == `spec2viz diagram schema` (also accepts
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:84	habilidad de agente	- `spec2viz lint <spec-or-mmd>` == `spec2viz diagram lint`
+  deskops	.opencode/skills/use-spec2viz/SKILL.md:2	habilidad de agente	name: use-spec2viz
+  deskops	desk/drawer/plans/workspace-documental/render_diagram.py:7	invocación del comando	subprocess.run(['spec2viz','diagram','validate',str(B/'dag.diagram.yaml')],check=True)
+  deskops	desk/drawer/plans/workspace-documental/render_diagram.py:9	invocación del comando	subprocess.run(['spec2viz','diagram','render',str(B/'dag.diagram.yaml'),'--renderer',renderer,'--out',str(B)],check=True)
+  sldb	runs/subagents/20261116-exec-oraculo-d2/gen_golden.py:5	importación	from spec2viz.generators import python_ast
+  IR	tests/test_matriz_cobertura_spec2viz.py:31	importación	main = importlib.import_module("spec2viz.cli").main
+  IR	tests/visual/parity.py:52	importación	from spec2viz.compilers import compile_ir
+  IR	tests/visual/parity.py:53	importación	from spec2viz.loader import load
+  IR	tests/visual/parity.py:54	importación	from spec2viz.validator import validate
+  IR	tests/visual/render_parity.py:74	importación	from spec2viz.compilers import compile_ir
+  IR	tests/visual/render_parity.py:75	importación	from spec2viz.loader import load
+  IR	tests/visual/render_parity.py:76	importación	from spec2viz.renderers import render
+  IR	tests/visual/render_parity.py:77	importación	from spec2viz.renderers.bpmn import render_bpmn_html
+  IR	tests/visual/render_parity.py:87	importación	from spec2viz.cli import DIAGRAM_RENDERERS
+  IR	tests/visual/render_parity.py:88	importación	from spec2viz.renderers import DEFAULT_RENDERER, EXT_MAP
+  IR	tests/visual/render_parity.py:94	importación	from spec2viz.renderers.view_mermaid import view_to_mermaid
+  IR	tests/visual/render_parity.py:100	importación	from spec2viz.linters.mermaid import lint_mermaid
+  IR	tests/visual/render_parity.py:106	importación	from spec2viz.schema import json_schema
+  IR	tests/visual/render_parity.py:112	importación	from spec2viz import render_to_file
+  IR	tests/visual/render_parity.py:119	importación	import spec2viz
+  IR	tests/visual/render_parity.py:190	importación	from spec2viz.linters.mermaid import lint_mermaid
+  IR	tests/visual/render_parity.py:191	importación	from spec2viz.schema import json_schema
+  IR	tests/visual/test_catalog_parity.py:39	importación	spec2viz = pytest.importorskip("spec2viz")
+  IR	tests/visual/test_catalog_parity.py:49	importación	from spec2viz.sldb_sync import check_catalog as oracle
+  IR	tests/visual/test_catalog_parity.py:102	importación	from spec2viz.sldb_sync import SpecSync as OracleSync
+  IR	tests/visual/test_catalog_parity.py:103	importación	from spec2viz.sldb_sync import sync_catalog as oracle_sync
+  IR	tests/visual/test_catalog_parity.py:122	importación	from spec2viz.cli import main
+  IR	tests/visual/test_catalog_parity.py:154	importación	from spec2viz.deskops import render_deskops
+  IR	tests/visual/test_catalog_parity.py:203	importación	from spec2viz.deskops import render_deskops
+  IR	tests/visual/test_lint_mermaid.py:86	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_cases.py:314	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_commands.py:251	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_parity.py:53	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_parity.py:59	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_parity.py:83	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_resources.py:62	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_schema.py:44	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:105	importación	spec2viz = pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:117	importación	from spec2viz.sldb_sync import SpecSync as Spec2VizSync
+  IR	tests/visual/test_sync_generation_parity.py:201	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:229	importación	import spec2viz.graph_import as oracle
+  IR	tests/visual/test_sync_generation_parity.py:258	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:259	importación	from spec2viz.graph_import import component_spec_from_graph as oracle_from_graph
+  IR	tests/visual/test_sync_generation_parity.py:260	importación	from spec2viz.graph_import import load_store_index
+  IR	tests/visual/test_sync_generation_parity.py:302	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:303	importación	from spec2viz.generators.python_ast import generate_python_ast_spec
+  IR	tests/visual/test_visual_parity.py:35	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_visual_parity.py:43	importación	pytest.importorskip("spec2viz")
+  spec2viz/.sldb	store.yaml:44	modelo registrado	model_ref: spec2viz.sldb_models:SpecDoc
+  spec2viz/.sldb	store.yaml:47	modelo registrado	model_ref: spec2viz.sldb_models:SpecNodeDoc
+  spec2viz/.sldb	store.yaml:50	modelo registrado	model_ref: spec2viz.sldb_models:NotationDoc
+  spec2viz/.sldb	store.yaml:53	modelo registrado	model_ref: spec2viz.sldb_models:GlyphDoc
+  spec2viz/.sldb	store.yaml:56	modelo registrado	model_ref: spec2viz.sldb_models:LinkDoc
+  spec2viz/.sldb	core/store_index.yaml:141	modelo registrado	model_ref: spec2viz.sldb_models:SpecDoc
+  spec2viz/.sldb	core/store_index.yaml:154	modelo registrado	model_ref: spec2viz.sldb_models:SpecNodeDoc
+  spec2viz/.sldb	core/store_index.yaml:167	modelo registrado	model_ref: spec2viz.sldb_models:NotationDoc
+  spec2viz/.sldb	core/store_index.yaml:180	modelo registrado	model_ref: spec2viz.sldb_models:GlyphDoc
+  spec2viz/.sldb	core/store_index.yaml:193	modelo registrado	model_ref: spec2viz.sldb_models:LinkDoc
+  spec2viz/.sldb	core/store_index.yaml:246	modelo registrado	model_ref: spec2viz.sldb_models:ViewDoc
+  spec2viz/.sldb	core/store_index.yaml:259	modelo registrado	model_ref: spec2viz.sldb_models:PaletteDoc
+  spec2viz/.sldb	core/models/GlyphDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:GlyphDoc
+  spec2viz/.sldb	core/models/LinkDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:LinkDoc
+  spec2viz/.sldb	core/models/NotationDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:NotationDoc
+  spec2viz/.sldb	core/models/PaletteDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:PaletteDoc
+  spec2viz/.sldb	core/models/SpecDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:SpecDoc
+  spec2viz/.sldb	core/models/SpecNodeDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:SpecNodeDoc
+  spec2viz/.sldb	core/models/ViewDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:ViewDoc
+rows not accredited: 11
+  SV-A17: abierta
+  SV-H01: abierta
+  SV-H03: abierta
+  SV-K09: abierta
+  SV-K16: abierta
+  SV-K18: abierta
+  SV-K21: abierta
+  SV-K22: abierta
+  SV-K23: abierta
+  SV-K26: abierta
+  SV-K29: abierta
+gate: failed, the retirement is not declared
+rc=1
+
+$ git diff --stat
+ .sldb/core/models/RunDoc.yaml   |  6 ++--
+ .sldb/core/store_index.yaml     |  2 +-
+ docs/spec2viz/acta-de-retiro.md | 23 +++++++++++----
+ tests/conftest.py               | 65 ++++++++++++++++++++++++++++++++---------
+ tests/test_mcp_extension.py     | 29 +++++++++---------
+ 5 files changed, 89 insertions(+), 36 deletions(-)
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_matriz_cobertura_spec2viz.py tests/visual/test_retirement_gate.py
+...........x                                                             [100%]
+11 passed, 1 xfailed in 5.31s
+rc=0
+
+$ grep -n 'pron' docs/spec2viz/acta-de-retiro.md
+27:  --path graph_ui=../UIs/graph_ui --path deskops=../deskops --path pron=../pron \
+45:bajado a 119 porque no aparecen las 3 invocaciones de pron (`docs/spec2viz/build.py:22` a `:24`). La prueba
+51:(`task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5`),
+53:rutas sin commitear en su árbol), deskops `4e3f657d`, pron `39ea972` y spec2viz `91ba1d0`. Por repo o
+54:store: deskops 22, sldb 1, IR 43, `spec2viz/.sldb` 19, graph_ui 0 (solo por su árbol sin commitear) y pron
+55:0 (no hay filas de pron; su HEAD contiene `4224186`, ver «Consumidores»). Sin cambios en el recuento respecto
+76:| pron | 3 invocaciones (`docs/spec2viz/build.py:22`, `:23`, `:24`), corrida del 2026-11-15; 0 desde la del 2026-11-16 | `pron/desk/inbox/20261115-224816-suggestion-ir13-pide-pasar-docs-spec2viz-build-py-de-pron-de-spec2viz-a-specir.md` | resuelto: pron `4224186527a894da6a7842ffa03c313292437425` (master, pusheado; nota `desk/inbox/20261116-040635-suggestion-pron-ir13-resuelto-4224186.md`): `docs/spec2viz/build.py` usa specir en las tres llamadas de las líneas 22 a 24 (`diagram validate`, `diagram render`, `catalog build`). Su tester independiente verificó build.py rc 0 con specir y `specir retirement check` sin filas de pron. Comprobado desde IR el 2026-11-16 (IR13f): `grep -n specir ../pron/docs/spec2viz/build.py` muestra las líneas 22 a 24, `git -C ../pron merge-base --is-ancestor 4224186 HEAD` rc 0 (HEAD `39ea972`) y la corrida de IR13f no tiene filas de pron |
+81:Para enviar los mensajes se registraron en `desk/registry` de IR los repos deskops, pron, graph_ui (id
+193:1. Consumidores (G4): que graph_ui, deskops y sldb resuelvan sus pedidos y respondan con el commit (pron
+rc=0
+
+$ grep -n 'G5' docs/spec2viz/acta-de-retiro.md
+66:| G5 Stores | decidido; pendiente de ejecución en IR | `spec2viz/.sldb` registra los 7 modelos de `spec2viz.sldb_models` (19 registros). Es el único store del universo que lo hace. Decisión de JP del 2026-11-16 (transmitida por el supervisor; nota de spec2viz `desk/inbox/20261116-021430-suggestion-g5-decisi-n-de-jp-sobre-spec2viz-sldb.md`): opción A, el store `spec2viz/.sldb` se archiva junto con el repo spec2viz cuando `specir retirement check` dé 0, y no se reapuntan sus 7 modelos. Registro en spec2viz: atom `atom-decisión-de-jp-2026-11-16-g5-el-store-spec2viz-sldb-se-archiva-con-el-repo` y task.decision `task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a`. Pendiente en IR: (a) quitar `spec2viz/.sldb` del universo de `specir retirement check` al declarar el retiro (IR13); (b) dejar de federar ese store en las pruebas (`task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a`), hoy bloqueada: las pruebas MCP todavía leen `../spec2viz/.sldb` de forma transitiva porque `deskops/.sldb` enlaza spec2viz; pedido a deskops en la nota de inbox 20261116-122447. |
+195:2. Store (G5): decidido por JP el 2026-11-16 (opción A): `spec2viz/.sldb` se archiva con el repo spec2viz
+202:   (solo G5), SV-H03 y su dependiente SV-K22 (solo G4 de graph_ui), y SV-K18 y SV-K23 (dependen de SV-K21,
+rc=0
+
+$ deskops graph missing --root .
+No missing graph references found.
+rc=0
+
+$ grep -cP "^\s+pron\t" runs/subagents/deskops-e-fa630485b00c/retirement-check.out   # filas de dependencia de pron
+0
+rc=1 (1 = sin coincidencias: no hay filas de pron)

@@ -1,0 +1,16 @@
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .sldb/core/models/RunDoc.yaml
+	modified:   .sldb/core/store_index.yaml
+	modified:   docs/spec2viz/acta-de-retiro.md
+	modified:   tests/conftest.py
+	modified:   tests/test_mcp_extension.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.sldb/core/documents/RunDoc/run-deskops-e-fa630485b00c.yaml
+	runs/subagents/deskops-e-fa630485b00c/
+
+no changes added to commit (use "git add" and/or "git commit -a")

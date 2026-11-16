@@ -1,0 +1,36 @@
+name: review-task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5-evidence-tests-1
+path: desk/reviews/task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5/evidence-tests-1.md
+source_hash: 52077f159ffe7889493bfed2c4f1ae478a56c22e7906df166684942350bc4968
+content_hash: 407ede22c085946fbd13192eaed1e267b8531884ac83e5a4bef1159f18eb299c
+field_hashes:
+  id: f1aca3a47c1e045dbeec4ed509d386b96317ffecb46a450616a7e3566eb41dc2
+  title: c2283c5ae9bea963dcdc8509905c11ba58827c83810667af46e80a32537050bd
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: 04b3daf9eab1a74fc19340d60c73655f5ce055ef7919478630d94cef9e689137
+  subject: 2d049f0ea74bedb461f2fa4b8909d3e850a607fa1c6f203daeeb3b6686d7d764
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: c09696522df37c364f90b469ec534376b9b00ae13094522a332a49ecbf3612c4
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: d68dabb67067ffedc990e67c272be55011b6a10fe84f951534f25b51a402ec06
+  created_at: 244c24544e8553f17bd36d4a3b85f4700aa7551cb1f6773ecf268c0c78ce4cff
+  disposed_at: 244c24544e8553f17bd36d4a3b85f4700aa7551cb1f6773ecf268c0c78ce4cff
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 3dec57af923e9430c9f1e94dbc12f75cf5e27cee8005dd041dcc7a24b57fda5f
+  disposition: 4269131b4f9c57480b3ff6fe4f8a3e4ce0a5ebf6c8fbfd68762040655079b842
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T16:01:33Z'
+  authority: generated
+  via: save_document_payload

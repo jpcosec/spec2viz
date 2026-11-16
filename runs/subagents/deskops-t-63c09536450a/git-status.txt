@@ -1,0 +1,19 @@
+## main
+ M .sldb/core/documents/BoardDoc/Board.yaml
+ M ".sldb/core/documents/TaskCodeDoc/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opci\303\263n-a.yaml"
+ M .sldb/core/models/BoardDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/models/TaskExternalDoc.yaml
+ M .sldb/core/store_index.yaml
+ M desk/tasks/Board.md
+ M "desk/tasks/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opci\303\263n-a.md"
+ M docs/spec2viz/acta-de-retiro.md
+ M tests/conftest.py
+ M tests/test_mcp_extension.py
+?? .sldb/core/documents/RunDoc/run-deskops-e-fa630485b00c.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-t-63c09536450a.yaml
+?? ".sldb/core/documents/TaskExternalDoc/task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opci\303\263n-b.yaml"
+?? "desk/tasks/task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opci\303\263n-b.md"
+?? runs/subagents/deskops-e-fa630485b00c/
+?? runs/subagents/deskops-t-63c09536450a/
