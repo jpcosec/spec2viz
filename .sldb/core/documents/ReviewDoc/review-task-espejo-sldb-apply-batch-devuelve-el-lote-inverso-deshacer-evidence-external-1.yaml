@@ -1,0 +1,36 @@
+name: review-task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer-evidence-external-1
+path: desk/reviews/task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer/evidence-external-1.md
+source_hash: ed90ccd6bdb617133f111d8d2c7cdbc38419f9e2ba6ab148059aa9e7b53fe64f
+content_hash: 8f9d35a3d7fe2510e83d69946f4bfc7cfbe408e83ea61f3dfb52bd3000808f3b
+field_hashes:
+  id: f79211ff4d17e7c93265b8e978d3729f3b6f1872bd0a0e1fbf74ef8f44d6103c
+  title: f736c16fc4a49493ce3ed265f3aa2ab5e1f56d38cd06714c614c4ff3fe611425
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: ee080af1a91e2ac0b1a3e90232b58afc809221288b8b3555033d4deb77dcf3f9
+  value: 1892963aa1707fed13b69dcaf679d25055b3811331788af44379912daf05309e
+  subject: 73d3dd3d3053c978fec5b63a0215bc0db9ac2d729aa477646d459cb094f2793b
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 4e974cd8585f32eabc161938bd25df18feab53af5dde9e7d79d3285b3b9ac137
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 3a2d4cef0b265fd9379ec00b71046eaaed232434c79813bc2c827857f6b6e987
+  created_at: 8b980fc9f2e7e2bb37fbd0e823382f8017c1eb48ba133722ee97631cd278999d
+  disposed_at: 8b980fc9f2e7e2bb37fbd0e823382f8017c1eb48ba133722ee97631cd278999d
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: e3bbd2187d4bf35f363cbc12d2d4d861bd72d8fe5fb208f35169186141e75608
+  disposition: 312129d7f651a4b36958fa4577a2f1e6230581364df627b7e6fddce9b70acece
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T21:44:05Z'
+  authority: generated
+  via: create_document
