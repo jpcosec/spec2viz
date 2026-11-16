@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T01:53:50Z'
+  at: '2026-11-16T02:02:45Z'
   authority: generated
   via: save_document_payload
 id: task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz
@@ -79,6 +79,11 @@ Precisiones (preflight-3, resueltas por el worker de IR13 el 2026-11-15):
 5. Paridad (G2): una fila se cumple si las pruebas citadas en su condición pasan, contra specIR o contra sldb (portadas). Lo que no está portado deja la fila abierta.
 
 Estado (IR13, 2026-11-15): gate no cumplido; retiro no declarado (`docs/spec2viz/acta-de-retiro.md`). Comprobador y pruebas hechos. 75 filas cumplidas y 30 abiertas. G6 cumplido; G1, G2, G3, G4, G5 y G7 abiertos. `specir retirement check` sobre el universo real sale con rc 1: 122 dependencias y 30 filas abiertas. Se enviaron los pedidos a deskops, graph_ui, pron, sldb y spec2viz, y la medición de `catalog build` a sldb. La tarea sigue abierta hasta que se cumpla el gate.
+
+Precisiones (bundle-2):
+1. «Equivalente declarado» es la entrada de la fila en «Acreditación (IR13)» de la matriz: estado cumplida y la prueba que pasa, sea portada a specIR o a sldb o la prueba de equivalencia de una fila en modo reemplazar. La declara IR13; sin esa entrada, la fila queda abierta.
+2. Portar las pruebas de las filas «usar sldb directamente» no es implementar capacidades, es aportar evidencia, y le corresponde a IR13 o a una tarea derivada. En esta corrida no se portaron; esas filas quedan abiertas con lo que falta.
+3. El acta registra la salida del comprobador con cualquier rc. Solo se declara el retiro si la salida es rc 0. Con rc 1 el acta dice «no declarado» y la tarea sigue abierta.
 
 ## Validation
 

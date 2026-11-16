@@ -1,7 +1,7 @@
 name: task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz
 path: desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
-source_hash: d8acad6ddfbcd76bab3876fad00b531ce3565ec43f2e7fddc86f71986c2284d6
-content_hash: 4ddf014373cbaf7a882ecb3b28d9ea6e9a44b062e426cedc7ef90703bd1eb340
+source_hash: 3837a592d290bf2d73678b3d9226b1a1d3582737ca518af8e52fa9504bc1167b
+content_hash: 58602e19151750c54c9cef5fea1f6b1e453947f25c83ec533883ea09860add95
 field_hashes:
   title: cf9c94522168bb6e7c082db14eae2572b0c047e5c3769309efa2fa3e192cabf0
   id: a756f28cd89b002c7d8fe254b8942093f4562b7776364aeaddf284a460baa62f
@@ -17,7 +17,7 @@ field_hashes:
   depends_on: a542facc346cc87629b0db45eaac95b6f265b8d6d2d233b99f52ee70f7e09898
   pills: a5e0d7c93f464a0b2bd602c58d763a46f8725153d1dc605cd113f83fe0c387f9
   files: f68e6ac27405099745c8776dc594c0381881436ec907f4d5ddcc21131760fb48
-  implementation_path: 611f78b46f7a895477d3fd7b0bbc33d640211bc00a5c7f51014bb46a82e23788
+  implementation_path: 75c568c011baa55dac267a6d83c2b7c56480f87fd43076a9f76e1a8613a97320
   validation: 13acba994fb2fe2304bee178f5b45bc539d2b04cba9244d4b026efd9eca81998
   done_when: a808fc853a0908366882af52a7f02be2201924a4a01fa90706dc0b62354ed244
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-16T01:53:50Z'
+  at: '2026-11-16T02:02:45Z'
   authority: generated
   via: save_document_payload
