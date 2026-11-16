@@ -1,0 +1,36 @@
+name: review-task-ir-gitignore-ignora-egg-info-y-pycache-evidence-atom-2
+path: desk/reviews/task-ir-gitignore-ignora-egg-info-y-pycache/evidence-atom-2.md
+source_hash: f8695be6eefea769dd0bb12b128f49d0b2042f2bcd85e406b62f0fe2cf34c5bb
+content_hash: e914b29f67cf0921bbac4da23c565338a4c80c1c4826a64f9327a0070abb3f7e
+field_hashes:
+  id: 1a2d00a24ad961e747117a2806519d62a5a5c33c3607e9949b365ea0eed4a596
+  title: f43131195bcf7f091f063842bd59e587760ae9400de54ffca50fd8c28cfaea69
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: c833c202b5b45ac10909767bb422916db457ddd48188a4ee591f0618893df0ba
+  value: 0001ec3fb575d0d9a4df2df242e10b2835222ccd4ca5005ea25f846d6f2e2022
+  subject: ef95ff686de35f8acb25afdceaeb102e95dd0bc076d6a48710b6ac0fee28397e
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 9971d916db302c3ca12d72266b2a70b4f98364222ff0a2a3c5e03212a75c0f0b
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe
+  reason: 60d6089a2f250c430e3a32efa4d5534eab29af2da56b3dfb4f1ff46d1487e103
+  created_at: 5c8d552a5f2899bdd143f360a113c1386be0ec6db89dc206609f35432c4a9b01
+  disposed_at: 5c8d552a5f2899bdd143f360a113c1386be0ec6db89dc206609f35432c4a9b01
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 649ced104ea355896872dad0bc15cd5c897aa915de81efd7f4dc7a7c1d2b8c39
+  disposition: e8b8b423503b1cfe621a4ba3747fbb66106cd4b107a0ead6e4966bf0922b8255
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T15:30:48Z'
+  authority: generated
+  via: save_document_payload

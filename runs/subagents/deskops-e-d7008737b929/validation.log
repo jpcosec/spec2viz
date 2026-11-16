@@ -1,0 +1,29 @@
+$ git diff .gitignore
+diff --git a/.gitignore b/.gitignore
+index 9dc9fd9..12e732a 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,3 +1,5 @@
+ .sldb_cache/
+ .deskops.log
+ runs/subagents/*/session.jsonl
++*.egg-info/
++__pycache__/
+rc=0
+
+$ git check-ignore -q src/specir.egg-info
+rc=0
+
+$ git check-ignore -q tests/__pycache__
+rc=0
+
+$ git status --porcelain | grep -E 'egg-info|__pycache__'
+rc=1
+
+$ git ls-files | grep -E 'egg-info/|__pycache__/'
+rc=1
+
+$ deskops graph missing --root .
+No missing graph references found.
+rc=0
+

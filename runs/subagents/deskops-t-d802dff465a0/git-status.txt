@@ -1,0 +1,10 @@
+## main
+ M .gitignore
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/store_index.yaml
+ M tests/conftest.py
+ M tests/test_mcp_extension.py
+?? .sldb/core/documents/RunDoc/run-deskops-e-d7008737b929.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-t-d802dff465a0.yaml
+?? runs/subagents/deskops-e-d7008737b929/
+?? runs/subagents/deskops-t-d802dff465a0/

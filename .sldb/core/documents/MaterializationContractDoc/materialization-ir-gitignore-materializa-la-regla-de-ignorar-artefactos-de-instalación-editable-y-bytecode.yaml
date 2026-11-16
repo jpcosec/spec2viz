@@ -1,0 +1,25 @@
+name: materialization-ir-gitignore-materializa-la-regla-de-ignorar-artefactos-de-instalación-editable-y-bytecode
+path: desk/materializations/materialization-ir-gitignore-materializa-la-regla-de-ignorar-artefactos-de-instalación-editable-y-bytecode.md
+source_hash: 17430d626bfb595f4b3100156aa980ba76e341aa991ff0deeca2b318a3119a47
+content_hash: fc9ff10d9a394a013276ebda893ed03557812c0e9d41573dec812d85cc0b81d2
+field_hashes:
+  id: d0268b8ef4a278aadaa7d0e3222f8a6f11b354ae3fd12db8be19dbe348b35061
+  title: 671561a7e8f7d5de65b692cfa1d1b03c2b78d032a90aec8a1ced44750a75fba6
+  source_atoms: 4af57ddcf1e215d9ae5771894f7e3e460992c2eed14c7c4af9e54eb007202949
+  target_kind: 4b4d371cc5c9631b7ea1fd9cb9abb655c67714fbe777fa817600a39fcdadc95c
+  target_identity: b5eb0c667b752689fd8665df29ac9a1d4a3f79261ed5f4b6f715d56bcdd64a4d
+  intent: 1ff625b975deb167981767363d3eb1b65c0a5af07d23fc9ed598b3cc4fc2ea56
+  validation: 008a084c4f77da5b90354b2dbddcaab9102708bf16fa866e20a52c4d2331b035
+  tags: 6ed220888e547b046262b653a9a0689e3e09f8f4d65ade71b24b65d8122161f6
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:git
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-16T15:31:27Z'
+  authority: generated
+  via: create_document
