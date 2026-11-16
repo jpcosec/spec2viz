@@ -332,7 +332,7 @@ def check(matrix: Path, paths: dict[str, Path]) -> Report:
     return Report(repos, stores, dependencies, open_rows(text))
 
 
-def format_report(report: Report) -> str:
+def format_gate_report(report: Report) -> str:
     lines = [f"audited repos: {', '.join(report.repos)}", f"audited stores: {', '.join(report.stores) or '-'}"]
     lines += [f"dependencies: {len(report.dependencies)}"] + [f"  {dep}" for dep in report.dependencies]
     lines += [f"rows not accredited: {len(report.open_rows)}"] + [f"  {row}" for row in report.open_rows]
@@ -340,5 +340,5 @@ def format_report(report: Report) -> str:
     return "\n".join(lines)
 
 
-__all__ = ["Dependency", "InventoryError", "Report", "accreditation", "check", "format_report", "inventory",
+__all__ = ["Dependency", "InventoryError", "Report", "accreditation", "check", "format_gate_report", "inventory",
            "matrix_rows", "open_rows", "scan_repo", "scan_store"]

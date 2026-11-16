@@ -194,7 +194,7 @@ def retirement_check(matrix: Path, paths: tuple[str, ...]):
     """Report every remaining dependency on spec2viz (repo or store, path, line and kind) and every row
     of the matrix not accredited; exit 1 when there is one, 0 when the retirement can be declared.
     Nothing is written."""
-    from specir.visual.retirement import InventoryError, check, format_report
+    from specir.visual.retirement import InventoryError, check, format_gate_report
 
     given: dict[str, Path] = {}
     for item in paths:
@@ -206,7 +206,7 @@ def retirement_check(matrix: Path, paths: tuple[str, ...]):
         report = check(matrix, given)
     except InventoryError as exc:
         raise click.UsageError(str(exc)) from exc
-    click.echo(format_report(report))
+    click.echo(format_gate_report(report))
     sys.exit(0 if report.ok else 1)
 
 
