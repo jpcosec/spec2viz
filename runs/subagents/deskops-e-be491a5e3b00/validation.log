@@ -1,0 +1,142 @@
+$ git -C ../UIs/graph_ui merge-base --is-ancestor 79d63ee HEAD
+rc=0
+
+$ git -C ../UIs/graph_ui rev-parse --short HEAD; git -C ../UIs/graph_ui log --oneline -1 c9b09f7; git -C ../UIs/graph_ui merge-base --is-ancestor c9b09f7 HEAD; echo c9b09f7-ancestor-rc=$?
+824c135
+c9b09f7 closeout: IR13 graph_ui migra de spec2viz a sldb.api.notations (79d63ee)
+c9b09f7-ancestor-rc=0
+rc=0
+
+$ git -C ../UIs/graph_ui grep -nE 'from spec2viz|import spec2viz|spec2viz>=' HEAD
+HEAD:desk/inbox/20261115-224814-suggestion-ir13-pide-migrar-graph-ui-de-spec2viz-a-sldb-resolve-view-sync-de-specs-viewdoc-pilotos.md:29:1. Importación en código de producción: `frontends/mindmap/sldb_adapter.py:245` (`from spec2viz.notation_view import ViewError, resolve_view`) y `:437` (`... resolve_documents`) -> `sldb.api.notations.resolve_view`, `resolve_documents` y `ViewError` (fila SV-H03 de `IR/docs/spec2viz/matriz-de-cobertura.md`).
+HEAD:desk/inbox/20261115-224814-suggestion-ir13-pide-migrar-graph-ui-de-spec2viz-a-sldb-resolve-view-sync-de-specs-viewdoc-pilotos.md:30:2. Dependencia declarada: `pyproject.toml:19` (extra `notation = ["spec2viz>=0.1.0"]`) y `:24` (extra de test) -> quitar, sldb ya es dependencia; `.github/requirements-suite.txt:10` (`-e git+...spec2viz@master#egg=spec2viz`, el CI lo usa para leer los specs piloto) -> copiar los pilotos que se usan como fixtures propios.
+HEAD:desk/materializations/materialization-backend-y-vista-specs-de-mindmap-resuelven-con-sldb-api-notations.md:14:- '! grep -rnE ''from spec2viz|import spec2viz'' frontends'
+HEAD:desk/reviews/task-ir13-migrar-graph-ui-de-spec2viz-a-sldb-api-notations-resolve-view-sync-de-specs-viewdoc-pilotos-com/bundle-1.md:30:  spec2viz, así que (1) ''from spec2viz.notation_view import resolve_view'' pasa a
+HEAD:desk/reviews/task-ir13-migrar-graph-ui-de-spec2viz-a-sldb-api-notations-resolve-view-sync-de-specs-viewdoc-pilotos-com/bundle-1.md:56:Verdict accepted: Reformulación y dry-run fieles al contrato y a los archivos. Las 3 dudas se resuelven con el contrato: el goal y el grep negativo prohíben todo import de spec2viz, así que (1) 'from spec2viz.notation_view import resolve_view' pasa a sldb.api.notations.resolve_view, con la misma firma; (2) ACTIVITY apunta a tests/fixtures/notation-pilots/activity-render-error-handling.yml, uno de los 10 pilotos del alcance; (3) el importorskip de spec2viz.sldb_models.ViewDoc pasa a importar sldb.models.notation.view_doc.ViewDoc, como dice el alcance (5).
+HEAD:runs/subagents/20261116-gate-findings-tester-a1/result-summary.md:13:- Venv `uv venv /dev/shm/venv-gt1` con `-e ../../sldb -e ../../pron -e ../../spec2viz -e /dev/shm/gt1-ci/deskops -e /dev/shm/gt1-ci/UIs/graph_ui[test]`. spec2viz hizo falta porque graph_ui[test] depende de `spec2viz>=0.1.0`, y la CI también lo instala editable fuera del árbol. Playwright chromium está en /dev/shm/pw-gt1.
+HEAD:runs/subagents/20261116-ir13-tester-a2/diff.patch:166:-            from spec2viz.notation_view import ViewError, resolve_view
+HEAD:runs/subagents/20261116-ir13-tester-a2/diff.patch:180:-    from spec2viz.notation_view import ViewError, resolve_documents
+HEAD:runs/subagents/20261116-ir13-tester-a2/diff.patch:358:-notation = ["spec2viz>=0.1.0"]
+HEAD:runs/subagents/20261116-ir13-tester-a2/diff.patch:363:-    "spec2viz>=0.1.0",
+HEAD:runs/subagents/20261116-ir13-tester-a2/diff.patch:576:-A temporary store is built from spec2viz's pilots (``SpecNodeDoc`` documents joined by
+HEAD:runs/subagents/20261116-ir13-tester-a2/diff.patch:674:-from spec2viz.notation_view import resolve_view  # noqa: E402
+HEAD:runs/subagents/20261116-ir13-tester-a2/diff.patch:726:-The stores are built with ``spec2viz diagram sync`` from spec2viz's own pilots: ``SpecNodeDoc``
+HEAD:runs/subagents/20261116-ir13-tester-a2/import-spec2viz.txt:3:    import spec2viz
+HEAD:runs/subagents/20261116-ir13-tester-a2/result-summary.md:18:| `python -c "import spec2viz"` (venv con el diff) | ModuleNotFoundError (import-spec2viz.txt) | 1 (esperado) |
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:26:  sldb	runs/subagents/20261116-exec-oraculo-d2/gen_golden.py:5	importación	from spec2viz.generators import python_ast
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:28:  IR	tests/visual/parity.py:52	importación	from spec2viz.compilers import compile_ir
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:29:  IR	tests/visual/parity.py:53	importación	from spec2viz.loader import load
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:30:  IR	tests/visual/parity.py:54	importación	from spec2viz.validator import validate
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:31:  IR	tests/visual/render_parity.py:74	importación	from spec2viz.compilers import compile_ir
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:32:  IR	tests/visual/render_parity.py:75	importación	from spec2viz.loader import load
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:33:  IR	tests/visual/render_parity.py:76	importación	from spec2viz.renderers import render
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:34:  IR	tests/visual/render_parity.py:77	importación	from spec2viz.renderers.bpmn import render_bpmn_html
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:35:  IR	tests/visual/render_parity.py:87	importación	from spec2viz.cli import DIAGRAM_RENDERERS
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:36:  IR	tests/visual/render_parity.py:88	importación	from spec2viz.renderers import DEFAULT_RENDERER, EXT_MAP
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:37:  IR	tests/visual/render_parity.py:94	importación	from spec2viz.renderers.view_mermaid import view_to_mermaid
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:38:  IR	tests/visual/render_parity.py:100	importación	from spec2viz.linters.mermaid import lint_mermaid
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:39:  IR	tests/visual/render_parity.py:106	importación	from spec2viz.schema import json_schema
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:40:  IR	tests/visual/render_parity.py:112	importación	from spec2viz import render_to_file
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:41:  IR	tests/visual/render_parity.py:119	importación	import spec2viz
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:42:  IR	tests/visual/render_parity.py:190	importación	from spec2viz.linters.mermaid import lint_mermaid
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:43:  IR	tests/visual/render_parity.py:191	importación	from spec2viz.schema import json_schema
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:45:  IR	tests/visual/test_catalog_parity.py:49	importación	from spec2viz.sldb_sync import check_catalog as oracle
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:46:  IR	tests/visual/test_catalog_parity.py:102	importación	from spec2viz.sldb_sync import SpecSync as OracleSync
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:47:  IR	tests/visual/test_catalog_parity.py:103	importación	from spec2viz.sldb_sync import sync_catalog as oracle_sync
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:48:  IR	tests/visual/test_catalog_parity.py:122	importación	from spec2viz.cli import main
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:49:  IR	tests/visual/test_catalog_parity.py:154	importación	from spec2viz.deskops import render_deskops
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:50:  IR	tests/visual/test_catalog_parity.py:203	importación	from spec2viz.deskops import render_deskops
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:60:  IR	tests/visual/test_sync_generation_parity.py:117	importación	from spec2viz.sldb_sync import SpecSync as Spec2VizSync
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:62:  IR	tests/visual/test_sync_generation_parity.py:229	importación	import spec2viz.graph_import as oracle
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:64:  IR	tests/visual/test_sync_generation_parity.py:259	importación	from spec2viz.graph_import import component_spec_from_graph as oracle_from_graph
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:65:  IR	tests/visual/test_sync_generation_parity.py:260	importación	from spec2viz.graph_import import load_store_index
+HEAD:runs/subagents/20261116-ir13-tester-a2/v4-specir-5paths.txt:67:  IR	tests/visual/test_sync_generation_parity.py:303	importación	from spec2viz.generators.python_ast import generate_python_ast_spec
+rc=0
+
+$ git -C ../UIs/graph_ui status --short | wc -l
+39
+rc=0
+
+$ git -C ../UIs/graph_ui grep -n -- '--src' HEAD -- .github/workflows/ci.yml
+HEAD:.github/workflows/ci.yml:47:        run: python -m pip install --src "$RUNNER_TEMP/suite-src" -r .github/requirements-suite.txt -e ".[test]"
+HEAD:.github/workflows/ci.yml:112:        run: python -m pip install --src "$RUNNER_TEMP/suite-src" -r .github/requirements-suite.txt -e ".[test]"
+rc=0
+
+$ git -C ../UIs/graph_ui grep -nE 'from spec2viz|import spec2viz|spec2viz>=' HEAD -- . ':!desk' ':!runs'; echo 'grep fuera de desk/ y runs/: rc 1 = sin coincidencias'
+grep fuera de desk/ y runs/: rc 1 = sin coincidencias
+rc=0
+
+$ git -C ../UIs/graph_ui grep -n spec2viz HEAD -- pyproject.toml .github/requirements-suite.txt
+rc=1
+
+$ git -C ../UIs/graph_ui grep -n 'notation_view\|import spec2viz' HEAD -- frontends tests
+HEAD:frontends/mindmap/persistence.py:58:    def notation_view(self, spec_ref):
+HEAD:frontends/mindmap/persistence.py:60:        return self.adapter.notation_view(spec_ref)
+HEAD:frontends/mindmap/serve.py:131:    def _api_notation_view(self):
+HEAD:frontends/mindmap/serve.py:143:            self.json_response(self.editor_store.notation_view(spec))
+HEAD:frontends/mindmap/serve.py:330:            self._api_notation_view()
+HEAD:frontends/mindmap/sldb_adapter.py:235:    def notation_view(self, spec_ref: str) -> dict[str, Any]:
+HEAD:tests/fixtures/notation-pilots/matrix-pipeline-coverage.yml:78:        - name: notation_view
+HEAD:tests/fixtures/notation-pilots/matrix-pipeline-coverage.yml:80:          label: notation_view.py
+HEAD:tests/fixtures/notation-view-matrix-coverage.json:472:      "doc": "SpecNodeDoc:matrix.pipeline-coverage.notation_view",
+HEAD:tests/fixtures/notation-view-matrix-coverage.json:473:      "element": "notation_view",
+HEAD:tests/fixtures/notation-view-matrix-coverage.json:474:      "title": "notation_view.py",
+HEAD:tests/fixtures/notation-view-matrix-coverage.json:487:      "label": "notation_view.py",
+HEAD:tests/fixtures/notation-view-matrix-coverage.json:640:      "target": "SpecNodeDoc:matrix.pipeline-coverage.notation_view",
+HEAD:tests/fixtures/notation-view-matrix-coverage.json:1149:      "source": "SpecNodeDoc:matrix.pipeline-coverage.notation_view",
+HEAD:tests/fixtures/notation-view-matrix-coverage.json:1153:      "doc": "RelationDoc:matrix.pipeline-coverage.29-notation_view__occupies__sync__view",
+rc=0
+
+$ TMPDIR=/dev/shm timeout 600 .venv/bin/python -m pytest -q -rxX -p no:cacheprovider tests/visual/test_notations_parity.py
+.....................x.................................................. [ 80%]
+.................                                                        [100%]
+=========================== short test summary info ============================
+XFAIL tests/visual/test_notations_parity.py::test_invalid_notations_are_rejected[changes1-not a spec2viz diagram type] - sldb rejects the unknown diagram_type with another message: "diagram_type 'mindmap' is not a valid diagram type" (sldb/notations/notation_spec.py), where spec2viz said "not a spec2viz diagram type"; reported to sldb's desk
+88 passed, 1 xfailed in 67.25s (0:01:07)
+rc=0
+
+$ TMPDIR=/dev/shm timeout 600 .venv/bin/python -m pytest -q -rxX -p no:cacheprovider tests/visual/test_notations_parity.py -k 'test_pure_helpers or test_class_view_picks_glyphs or test_state_view_nests or test_repo_pilot_with_a_composite or test_fragments_group or test_repo_sequence_pilot or test_view_errors or test_every_catalog_spec_resolves or test_component_wildcard_link_and_sequence or test_activity_and_matrix_views or test_no_placeholder_reaches or test_deployment_keyword_interpolates or test_resolve_documents_is_public' -v 2>&1 | grep -E 'PASSED|FAILED|XFAIL|XPASS|ERROR|passed|failed'
+====================== 19 passed, 70 deselected in 59.84s ======================
+rc=0
+
+$ timeout 300 .venv/bin/specir retirement check --path graph_ui=../UIs/graph_ui --path deskops=../deskops --path pron=../pron --path sldb=../sldb --path spec2viz/.sldb=../spec2viz/.sldb   (corrida previa a editar: retirement-check-antes.txt, rc 1, 85 dep., 11 filas)
+audited repos: graph_ui, deskops, pron, sldb, IR
+audited stores: spec2viz/.sldb
+dependencies: 85
+rows not accredited: 9
+  SV-A17: abierta
+  SV-H01: abierta
+  SV-K09: abierta
+  SV-K16: abierta
+  SV-K18: abierta
+  SV-K21: abierta
+  SV-K23: abierta
+  SV-K26: abierta
+  SV-K29: abierta
+gate: failed, the retirement is not declared
+deps IR 43
+deps deskops 22
+deps spec2viz/.sldb 19
+deps sldb 1
+graph_ui deps: 0; pron deps: 0
+rc=1
+
+$ git diff --stat -- . ':!desk' ':!.sldb' ':!runs'
+ docs/spec2viz/acta-de-retiro.md      | 32 ++++++++++++------
+ docs/spec2viz/matriz-de-cobertura.md | 26 ++++++++++-----
+ tests/conftest.py                    | 65 ++++++++++++++++++++++++++++--------
+ tests/test_mcp_extension.py          | 29 ++++++++--------
+ 4 files changed, 107 insertions(+), 45 deletions(-)
+rc=0
+
+$ TMPDIR=/dev/shm timeout 900 .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_matriz_cobertura_spec2viz.py tests/visual/test_retirement_gate.py
+...........x                                                             [100%]
+11 passed, 1 xfailed in 3.34s
+rc=0
+
+$ deskops graph missing --root .
+No missing graph references found.
+rc=0
+
+Nota: en el diff --stat aparecen tests/conftest.py y tests/test_mcp_extension.py: son los cambios ajenos sin commitear de la tarea bloqueada que el brief anuncia; este ejecutor no los tocó (git diff docs/spec2viz/ = diff.patch).
+El xfail de tests/visual/test_retirement_gate.py es el estricto test_the_real_universe_has_no_dependency_and_every_row_is_accredited (el universo real aún tiene 85 dependencias y 9 filas).

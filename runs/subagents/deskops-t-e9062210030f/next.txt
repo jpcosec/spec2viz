@@ -1,0 +1,23 @@
+Task: task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee
+Title: IR13g Acreditar en la matriz y el acta que graph_ui ya no depende de spec2viz (79d63ee)
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Phase: execution
+Required ritual:
+- desk/rituals/execution.md
+Required pills:
+- desk/contexts/pills.md
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+- desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
+Next actions:
+1. Make the active task, scope, touched files, and validation targets explicit.
+2. Run a fresh-context subagent review.
+3. Bind matching board and task pills.
+4. Start implementation only after the initialization gate is satisfied.
+Advance when:
+- Execution gate obligations are recorded or satisfied.
+Sources:
+- task: desk/tasks/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee.md
+- board: desk/tasks/Board.md
+- workflow: deskops/spec/workflows/task_lifecycle.yaml

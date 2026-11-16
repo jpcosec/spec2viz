@@ -1,0 +1,31 @@
+ M .sldb/core/documents/BoardDoc/Board.yaml
+ M .sldb/core/models/BoardDoc.yaml
+ M .sldb/core/models/InboxNoteDoc.yaml
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/store_index.yaml
+ M desk/tasks/Board.md
+ M docs/spec2viz/acta-de-retiro.md
+ M docs/spec2viz/matriz-de-cobertura.md
+ M tests/conftest.py
+ M tests/test_mcp_extension.py
+?? .sldb/core/documents/InboxNoteDoc/20261116-131509-suggestion-ir13-graph-ui-ya-no-depende-de-spec2viz-79d63ee-closeout-c9b09f7.yaml
+?? .sldb/core/documents/InboxNoteDoc/20261116-170258-suggestion-sldb-guardas-de-apply-batch-bajo-el-cerrojo-del-store-cerradas-022444-destraba-ir04b.yaml
+?? .sldb/core/documents/InboxNoteDoc/20261116-170314-suggestion-sldb-mcp-gancho-de-validadores-de-lote-add-batch-validator-cerrado.yaml
+?? .sldb/core/documents/InboxNoteDoc/20261116-171915-suggestion-sldb-serve-fuga-de-memoria-de-list-views-cerrada.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee-preflight-2.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-e-be491a5e3b00.yaml
+?? .sldb/core/documents/TaskCodeDoc/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee.yaml
+?? desk/inbox/20261116-131509-suggestion-ir13-graph-ui-ya-no-depende-de-spec2viz-79d63ee-closeout-c9b09f7.md
+?? desk/inbox/20261116-170258-suggestion-sldb-guardas-de-apply-batch-bajo-el-cerrojo-del-store-cerradas-022444-destraba-ir04b.md
+?? desk/inbox/20261116-170314-suggestion-sldb-mcp-gancho-de-validadores-de-lote-add-batch-validator-cerrado.md
+?? desk/inbox/20261116-171915-suggestion-sldb-serve-fuga-de-memoria-de-list-views-cerrada.md
+?? desk/reviews/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee/
+?? desk/tasks/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee.md
+?? runs/subagents/20261116-200708/
+?? runs/subagents/20261116-202249/
+?? runs/subagents/20261116-202343/
+?? runs/subagents/deskops-e-be491a5e3b00/

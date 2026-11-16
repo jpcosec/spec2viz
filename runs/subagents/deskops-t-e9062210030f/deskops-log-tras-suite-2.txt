@@ -1,0 +1,6 @@
+ee9bc3cd 2026-11-16T17:55:18-03:00 desk: recibos evidence del cierre de las skills de IR13 y nota de seguimiento [skip c
+2421ca29 2026-11-16T17:55:03-03:00 closeout: task-las-skills-y-el-script-de-diagramas-de-deskops-dejan-de-invocar-spec2v
+ce66f69e 2026-11-16T17:54:29-03:00 Las skills y el script de diagramas de deskops dejan de invocar spec2viz y usan speci
+0b277930 2026-11-16T17:46:14-03:00 desk: recibos evidence del cierre de la regla de desk_graph (IR13) [skip ci]
+b716bf85 2026-11-16T17:46:08-03:00 closeout: task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce
+42b752ea 2026-11-16T17:45:35-03:00 La regla de specs del grafo del desk reconoce docs/architecture y deja de nombrar spe

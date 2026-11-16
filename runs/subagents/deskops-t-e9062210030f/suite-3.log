@@ -1,0 +1,59 @@
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  9%]
+.........x.....x........................................................ [ 19%]
+........................................................................ [ 28%]
+..............................F..............................x.......... [ 38%]
+........................................................................ [ 47%]
+........................................................................ [ 57%]
+........................................................................ [ 67%]
+..........................x............................................. [ 76%]
+........................................................................ [ 86%]
+........................................................................ [ 95%]
+...............................                                          [100%]
+=================================== FAILURES ===================================
+_________ test_reading_through_every_tool_leaves_every_store_untouched _________
+[gw0] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+mcp = <conftest.McpSession object at 0x70c756a18690>
+store_copy = PosixPath('/dev/shm/pytest-of-robocop/pytest-823/popen-gw0/specir-store0/IR')
+spec_store = PosixPath('/dev/shm/pytest-of-robocop/pytest-823/popen-gw0/spec-store0/.sldb')
+copy_digest_before = {'/dev/shm/pytest-of-robocop/pytest-823/popen-gw0/specir-store0/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-20...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy: Path, spec_store: Path, copy_digest_before: dict[str, str], original_digest: dict[str, str]) -> None:
+        task = mcp.call("select_documents", model="TaskDoc", limit=1)["items"][0]["export_id"]
+        calls = [
+            ("list_models", {}),
+            ("describe_model", {"model": "TaskDoc"}),
+            ("list_relation_types", {}),
+            ("describe_relation_type", {"name": "references"}),
+            ("read_document", {"ref": task}),
+            ("read_document", {"ref": task, "field": "status"}),
+            ("select_documents", {"model": "AtomDoc", "include_linked": True}),
+            ("neighbors", {"node": task, "direction": "outgoing"}),
+            ("neighbors", {"node": task, "direction": "incoming"}),
+            ("neighborhood", {"node": task, "direction": "both", "depth": 2}),
+            ("list_views", {}),
+            ("resolve_view", {"view": f"{SPEC_STORE}:SpecDoc:{SPEC}"}),
+            ("resolve_view", {"view": "board"}),
+            ("check_integrity", {}),
+            ("list_signals", {}),
+            ("specir_types", {}),
+            ("specir_nodes", {"layer": "api"}),
+        ]
+        for tool, arguments in calls:
+            mcp.call(tool, **arguments)
+        assert {tool for tool, _ in calls} == {t.name for t in mcp.list_tools()}
+        after = copy_digest(store_copy, spec_store)
+        changed = sorted(path for path in set(copy_digest_before) | set(after) if copy_digest_before.get(path) != after.get(path))
+>       assert not changed, f"reading wrote to: {changed}"
+E       AssertionError: reading wrote to: ['/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/BoardDoc/Board.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/ReviewDoc/review-task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb-bundle-1.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/ReviewDoc/review-task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb-preflight-1.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/TaskCodeDoc/task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/BoardDoc.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/ReviewDoc.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/TaskCodeDoc.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/store_index.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/store.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/tasks/Board.md']
+E       assert not ['/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/BoardDoc/Board.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sld..._1/deskops/.sldb/core/models/BoardDoc.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/ReviewDoc.yaml', ...]
+
+tests/test_mcp_extension.py:110: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_mcp_extension.py::test_reading_through_every_tool_leaves_every_store_untouched
+1 failed, 746 passed, 4 xfailed in 461.02s (0:07:41)
+rc=1

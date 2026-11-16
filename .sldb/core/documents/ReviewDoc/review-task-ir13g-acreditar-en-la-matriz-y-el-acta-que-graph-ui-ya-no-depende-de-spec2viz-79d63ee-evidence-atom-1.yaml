@@ -1,0 +1,36 @@
+name: review-task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee-evidence-atom-1
+path: desk/reviews/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee/evidence-atom-1.md
+source_hash: f27416eb561911dd07fe715abe3e4c980d47eb93832731c5a3681d1a9d5779e7
+content_hash: 62014f95f65db7970f3f67b53b666504f0efc9a61f68d30f2336d35924dd27b1
+field_hashes:
+  id: 00ced78f9fbc5d5ba2d330763fe821a9bdaf1458d9ca02ba8a9045122e7a7766
+  title: 89d0b267eb7b52306045cb31606d93c5ddf7031c395843dabbb776af56409300
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: c833c202b5b45ac10909767bb422916db457ddd48188a4ee591f0618893df0ba
+  value: 1d2211761dbb3ee229d5b266d32dc2fedc0583a6477f175899338acd09143e83
+  subject: 1c2ceb8fcfb74342797a7ebe57672ac20758cbd29e8cf7dce7243973aa2ecfbe
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: f4aaee747812edae7b8046aad0d5d04f8c7335d613aa766068e7d21ff254850b
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 1a401a5dca3466a40da964ae2a7b8a06949e1d953e5ba5cff8794778bed46ab1
+  created_at: 33f1227465989e861c141e99eb8797a55e53a7608bd0c7ca9916bc9dd14ea377
+  disposed_at: 33f1227465989e861c141e99eb8797a55e53a7608bd0c7ca9916bc9dd14ea377
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: eb03f619e090f4c4a74d65b0e504e07c2c98fd4ff125faa49160bfe1720c79e8
+  disposition: e9d1e46ce2b7e4db627a1623e795b8899b074854f0a2c026a5469cf427d71396
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T21:42:57Z'
+  authority: generated
+  via: create_document

@@ -22,3 +22,4 @@
 {"task_id": "task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb", "run_id": null, "run_dir": "runs/subagents/deskops-t-c8a1e07fdf14-a2", "session_sha256": null, "commit": null}
 {"task_id": "task-ir-gitignore-ignora-egg-info-y-pycache", "run_id": null, "run_dir": "runs/subagents/deskops-t-d802dff465a0", "session_sha256": null, "commit": null}
 {"task_id": "task-ir13f-anotar-en-el-acta-de-retiro-la-resoluci\u00f3n-de-pron-4224186-y-la-decisi\u00f3n-de-jp-sobre-g5", "run_id": null, "run_dir": "runs/subagents/deskops-t-63c09536450a", "session_sha256": null, "commit": null}
+{"task_id": "task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee", "run_id": null, "run_dir": "runs/subagents/deskops-t-e9062210030f", "session_sha256": null, "commit": null}

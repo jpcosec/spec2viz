@@ -1,0 +1,6 @@
+afc89576 2026-11-16T17:40:31-03:00 desk: recibos evidence y materialización del cierre de las claves legacy [skip ci]
+87d0a7d6 2026-11-16T17:40:23-03:00 closeout: task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatt
+e4a98712 2026-11-16T17:39:08-03:00 desk: recibos evidence, átomo y materializaciones del cierre de spec2viz; contrato y
+74ffdb63 2026-11-16T17:38:57-03:00 closeout: task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-op
+421d6a27 2026-11-16T17:37:45-03:00 deskops quita el enlace federado al store de spec2viz de su .sldb (G5 opción b de JP
+aa25fdb0 2026-11-16T17:18:47-03:00 desk update migra las claves legacy checklists y routine del frontmatter de las tarea

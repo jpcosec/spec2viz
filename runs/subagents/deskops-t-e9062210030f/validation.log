@@ -1,0 +1,158 @@
+### $ git -C ../UIs/graph_ui merge-base --is-ancestor 79d63ee HEAD
+rc=0
+
+### $ git -C ../UIs/graph_ui merge-base --is-ancestor c9b09f7 HEAD
+rc=0
+
+### $ git -C ../UIs/graph_ui rev-parse --short HEAD
+824c135
+rc=0
+
+### $ git -C ../UIs/graph_ui log -1 --format='%h %s' 79d63ee
+79d63ee IR13: graph_ui deja spec2viz y usa sldb.api.notations (resolve_view, sync de specs, ViewDoc, pilotos como fixtures)
+rc=0
+
+### $ git -C ../UIs/graph_ui log -1 --format='%h %s' c9b09f7
+c9b09f7 closeout: IR13 graph_ui migra de spec2viz a sldb.api.notations (79d63ee)
+rc=0
+
+### $ git -C ../UIs/graph_ui grep -nE 'from spec2viz|import spec2viz|spec2viz>=' HEAD | cut -d: -f2 | awk -F/ '{print $1}' | sort | uniq -c
+      5 desk
+     38 runs
+rc=0
+
+### $ git -C ../UIs/graph_ui grep -nE 'from spec2viz|import spec2viz|spec2viz>=' HEAD -- ':!desk' ':!runs'
+rc=1
+
+### $ git -C ../UIs/graph_ui grep -n spec2viz HEAD -- pyproject.toml .github
+rc=1
+
+### $ git -C ../UIs/graph_ui status --porcelain | wc -l
+39
+rc=0
+
+### $ git diff --stat
+ .sldb/core/documents/BoardDoc/Board.yaml |  8 ++--
+ .sldb/core/models/BoardDoc.yaml          |  4 +-
+ .sldb/core/models/InboxNoteDoc.yaml      |  6 +--
+ .sldb/core/models/ReviewDoc.yaml         |  6 +--
+ .sldb/core/models/RunDoc.yaml            |  6 +--
+ .sldb/core/models/TaskCodeDoc.yaml       |  6 +--
+ .sldb/core/store_index.yaml              |  2 +-
+ desk/tasks/Board.md                      |  4 +-
+ docs/spec2viz/acta-de-retiro.md          | 32 +++++++++++-----
+ docs/spec2viz/matriz-de-cobertura.md     | 26 +++++++++----
+ tests/conftest.py                        | 65 +++++++++++++++++++++++++-------
+ tests/test_mcp_extension.py              | 29 +++++++-------
+ 12 files changed, 129 insertions(+), 65 deletions(-)
+rc=0
+
+### $ git status --porcelain -- . ':!desk' ':!.sldb' ':!runs'
+ M docs/spec2viz/acta-de-retiro.md
+ M docs/spec2viz/matriz-de-cobertura.md
+ M tests/conftest.py
+ M tests/test_mcp_extension.py
+rc=0
+
+### $ git diff -- tests/conftest.py tests/test_mcp_extension.py | sha256sum; grep -c '' runs/subagents/deskops-e-068628774e48/diff.patch; git diff -- tests/conftest.py tests/test_mcp_extension.py | diff - <(filterdiff -i '*tests/*' runs/subagents/deskops-e-068628774e48/diff.patch 2>/dev/null || cat runs/subagents/deskops-e-068628774e48/diff.patch) | head -20
+d1bcee6cac687cd40ff27bc0296a5dfc6266ff5e834c4019ba8bfcdbaef29a1b  -
+199
+rc=0
+
+### $ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rxX -p no:cacheprovider tests/visual/test_notations_parity.py 2>&1 | tail -8
+.....................x.................................................. [ 80%]
+.................                                                        [100%]
+=========================== short test summary info ============================
+XFAIL tests/visual/test_notations_parity.py::test_invalid_notations_are_rejected[changes1-not a spec2viz diagram type] - sldb rejects the unknown diagram_type with another message: "diagram_type 'mindmap' is not a valid diagram type" (sldb/notations/notation_spec.py), where spec2viz said "not a spec2viz diagram type"; reported to sldb's desk
+88 passed, 1 xfailed in 58.15s
+rc=0
+
+### $ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_matriz_cobertura_spec2viz.py tests/visual/test_retirement_gate.py 2>&1 | tail -6
+...........x                                                             [100%]
+11 passed, 1 xfailed in 3.50s
+rc=0
+
+### $ TMPDIR=/dev/shm timeout 300 .venv/bin/specir retirement check --path graph_ui=../UIs/graph_ui --path deskops=../deskops --path pron=../pron --path sldb=../sldb --path spec2viz/.sldb=../spec2viz/.sldb > runs/subagents/deskops-t-e9062210030f/retirement-check.txt 2>&1
+rc=1
+
+### $ deskops graph missing --root . | tail -5
+No missing graph references found.
+rc=0
+
+### recuento propio de la tabla Acreditación (IR13)
+      9 abierta
+     96 cumplida
+abiertas:
+SV-A17 SV-H01 SV-K09 SV-K16 SV-K18 SV-K21 SV-K23 SV-K26 SV-K29 
+no acreditadas del comprobador:
+SV-A17 SV-H01 SV-K09 SV-K16 SV-K18 SV-K21 SV-K23 SV-K26 SV-K29 
+105
+### $ pytest SV-H03 (13 pruebas) -rxX -k ...
+...................                                                      [100%]
+19 passed, 70 deselected in 64.12s (0:01:04)
+rc=0
+### suite completa intento 1 (2026-11-16T17:34:41-03:00 2026-11-16T17:42:39-03:00)
+1 failed, 746 passed, 4 xfailed in 259.00s (0:04:19)
+rc=1
+FAILED tests/test_mcp_extension.py::test_reading_through_every_tool_leaves_every_store_untouched
+deskops commits en la ventana:
+afc89576 2026-11-16T17:40:31-03:00 desk: recibos evidence y materialización del cierre de las claves legacy [skip ci]
+87d0a7d6 2026-11-16T17:40:23-03:00 closeout: task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatt
+e4a98712 2026-11-16T17:39:08-03:00 desk: recibos evidence, átomo y materializaciones del cierre de spec2viz; contrato y
+74ffdb63 2026-11-16T17:38:57-03:00 closeout: task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-op
+421d6a27 2026-11-16T17:37:45-03:00 deskops quita el enlace federado al store de spec2viz de su .sldb (G5 opción b de JP
+aa25fdb0 2026-11-16T17:18:47-03:00 desk update migra las claves legacy checklists y routine del frontmatter de las tarea
+
+### suite completa intento 2, reencolada (2026-11-16T17:42:56-03:00 2026-11-16T17:57:33-03:00)
+1 failed, 746 passed, 4 xfailed in 267.07s (0:04:27)
+rc=1
+FAILED tests/test_mcp_extension.py::test_reading_through_every_tool_leaves_every_store_untouched
+deskops commits en la ventana:
+ee9bc3cd 2026-11-16T17:55:18-03:00 desk: recibos evidence del cierre de las skills de IR13 y nota de seguimiento [skip c
+2421ca29 2026-11-16T17:55:03-03:00 closeout: task-las-skills-y-el-script-de-diagramas-de-deskops-dejan-de-invocar-spec2v
+ce66f69e 2026-11-16T17:54:29-03:00 Las skills y el script de diagramas de deskops dejan de invocar spec2viz y usan speci
+0b277930 2026-11-16T17:46:14-03:00 desk: recibos evidence del cierre de la regla de desk_graph (IR13) [skip ci]
+b716bf85 2026-11-16T17:46:08-03:00 closeout: task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce
+42b752ea 2026-11-16T17:45:35-03:00 La regla de specs del grafo del desk reconoce docs/architecture y deja de nombrar spe
+
+### specir retirement check tras los commits de deskops (HEAD ee9bc3cd), informativo
+audited repos: graph_ui, deskops, pron, sldb, IR
+audited stores: spec2viz/.sldb
+dependencies: 63
+rows not accredited: 9
+gate: failed, the retirement is not declared
+rc=1
+
+### Corrida 3: suite completa bajo el lock, pedida por el coordinador (2026-11-16T18:01:15-03:00 2026-11-16T18:38:59-03:00; pytest 461 s, aprox. 18:31:18-18:38:59)
+$ SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm timeout 9000 flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/
+antes: 2026-11-16T18:01:11-03:00
+ee9bc3cd 2026-11-16T17:55:18-03:00 desk: recibos evidence del cierre de las skills de IR13 y nota de seguimiento [skip ci]
+después: 2026-11-16T18:38:59-03:00
+7801327f 2026-11-16T18:24:21-03:00 desk: recibos evidence del cierre de la evidencia de commit de otro repo [skip ci]
+1 failed, 746 passed, 4 xfailed in 461.02s (0:07:41)
+rc=1
+FAILED tests/test_mcp_extension.py::test_reading_through_every_tool_leaves_every_store_untouched
+rutas que «cambiaron» (mtime ruta):
+2026-11-16 18:32:42.907494720 -0300 /mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/TaskCodeDoc.yaml
+2026-11-16 18:32:42.950122548 -0300 /mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/TaskCodeDoc/task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb.yaml
+2026-11-16 18:32:54.733297855 -0300 /mnt/ssd/proyectos/SLDB_1/deskops/desk/tasks/Board.md
+2026-11-16 18:32:54.787360722 -0300 /mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/BoardDoc/Board.yaml
+2026-11-16 18:32:54.915363302 -0300 /mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/BoardDoc.yaml
+2026-11-16 18:34:13.501964005 -0300 /mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/ReviewDoc/review-task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb-preflight-1.yaml
+2026-11-16 18:34:52.008759671 -0300 /mnt/ssd/proyectos/SLDB_1/deskops/.sldb/store.yaml
+2026-11-16 18:35:12.823192596 -0300 /mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/ReviewDoc/review-task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb-bundle-1.yaml
+2026-11-16 18:35:12.847473105 -0300 /mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/ReviewDoc.yaml
+2026-11-16 18:35:14.813234088 -0300 /mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/store_index.yaml
+deskops git status --short (sin commitear):
+ M .sldb/core/documents/BoardDoc/Board.yaml
+ M .sldb/core/models/BoardDoc.yaml
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/store_index.yaml
+ M .sldb/store.yaml
+ M desk/tasks/Board.md
+?? .sldb/core/documents/ReviewDoc/review-task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb-preflight-1.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-e-d62639bcf100.yaml
+?? .sldb/core/documents/TaskCodeDoc/task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb.yaml

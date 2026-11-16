@@ -1,0 +1,18 @@
+name: 20261116-170258-suggestion-sldb-guardas-de-apply-batch-bajo-el-cerrojo-del-store-cerradas-022444-destraba-ir04b
+path: desk/inbox/20261116-170258-suggestion-sldb-guardas-de-apply-batch-bajo-el-cerrojo-del-store-cerradas-022444-destraba-ir04b.md
+source_hash: 1aab87a923df592259f364446fe3fccedccb291eb5d75550196422e21c491af5
+content_hash: 94c792bdc6d5c339fbca535f355bc12e1130f01d550f363916e75ca4dbab4de1
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: 134709a71c33247bdf1c0a491f1a9564b3e97a37df56c0d12d6d830984e32248
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  title: c65fd4d396aa8b830729140b2c0bed5ffb4b79377c037c9ed504e6faef5189f9
+  body: caf704c2e5e362bd93fdc4c9a6c3e7e333fc996b2b40bedf751854265a2bc91d
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null

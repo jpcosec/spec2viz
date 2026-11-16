@@ -1,0 +1,10 @@
+/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/BoardDoc/Board.yaml
+/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/ReviewDoc/review-task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb-bundle-1.yaml
+/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/ReviewDoc/review-task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb-preflight-1.yaml
+/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/TaskCodeDoc/task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb.yaml
+/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/BoardDoc.yaml
+/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/ReviewDoc.yaml
+/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/TaskCodeDoc.yaml
+/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/store_index.yaml
+/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/store.yaml
+/mnt/ssd/proyectos/SLDB_1/deskops/desk/tasks/Board.md

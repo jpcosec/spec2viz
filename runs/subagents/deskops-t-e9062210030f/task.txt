@@ -1,0 +1,10 @@
+Task: task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee
+Title: IR13g Acreditar en la matriz y el acta que graph_ui ya no depende de spec2viz (79d63ee)
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Effective pills:
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+- desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]

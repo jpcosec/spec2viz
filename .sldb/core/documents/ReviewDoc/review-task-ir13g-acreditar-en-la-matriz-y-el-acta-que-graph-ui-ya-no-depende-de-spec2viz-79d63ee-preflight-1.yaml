@@ -1,0 +1,36 @@
+name: review-task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee-preflight-1
+path: desk/reviews/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee/preflight-1.md
+source_hash: cfe78636a23031ef3f617f5d0f2b94bd7b0b73d040024d4ec77902e8490be05d
+content_hash: a53969e7ee08e167a288dd28c9549f7ef2726565a25af6124b7850987629dcb5
+field_hashes:
+  id: 719fb4bbbb5355e56ef248156b89df9beaba4338393752a511ea41eccd22901e
+  title: 5c5f18c412fedbed026e44b523a4b2715bc7f74c428e71256926e496534840c1
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 6f287e711901e3a88abf2403bab1a0bd2d77d8708df258e65c26101ec678bf22
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 6e4ab4a056d88979f6f526420068ad9bdc2a9c9578d8577fcfdc58fedc81ff3f
+  input_sha256: c11564c7d8a8891155904360c547c52f29088c3945b62186294462bee333be60
+  output_sha256: e5281b51292bd3cbef018089a55b062e51d8661d4170e8db9712bb6fc5abc02c
+  verdict: d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe
+  reason: efff1580fa23db7989a1736e02d5437c6d3922555533e019ab7666f604908adc
+  created_at: 3d1b2bbf955067a6c7536709c5489976e26fcc359e0dfabf0e0d83e90332e113
+  disposed_at: 567b857e59ffe3f448a001f4ef2bab6106bbc033f36b02f0a346a4506c26af8d
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 0831e1456ed13858ff78b29f82d2c18878f6a2b0120d823a58d5f401c7b2bb45
+  disposition: 5bf772f6e15b00b19622259ebdae123201c316dd56f6aba39c97479e776bfd12
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T20:08:08Z'
+  authority: generated
+  via: save_document_payload

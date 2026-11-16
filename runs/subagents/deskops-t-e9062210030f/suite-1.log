@@ -1,0 +1,59 @@
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  9%]
+.........x....x......................................................... [ 19%]
+......................................................................F. [ 28%]
+............................................x........................... [ 38%]
+........................................................................ [ 47%]
+........................................................................ [ 57%]
+........................................................................ [ 67%]
+..............................x......................................... [ 76%]
+........................................................................ [ 86%]
+........................................................................ [ 95%]
+...............................                                          [100%]
+=================================== FAILURES ===================================
+_________ test_reading_through_every_tool_leaves_every_store_untouched _________
+[gw1] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+mcp = <conftest.McpSession object at 0x7a3b732002d0>
+store_copy = PosixPath('/dev/shm/pytest-of-robocop/pytest-740/popen-gw1/specir-store0/IR')
+spec_store = PosixPath('/dev/shm/pytest-of-robocop/pytest-740/popen-gw1/spec-store0/.sldb')
+copy_digest_before = {'/dev/shm/pytest-of-robocop/pytest-740/popen-gw1/specir-store0/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-20...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy: Path, spec_store: Path, copy_digest_before: dict[str, str], original_digest: dict[str, str]) -> None:
+        task = mcp.call("select_documents", model="TaskDoc", limit=1)["items"][0]["export_id"]
+        calls = [
+            ("list_models", {}),
+            ("describe_model", {"model": "TaskDoc"}),
+            ("list_relation_types", {}),
+            ("describe_relation_type", {"name": "references"}),
+            ("read_document", {"ref": task}),
+            ("read_document", {"ref": task, "field": "status"}),
+            ("select_documents", {"model": "AtomDoc", "include_linked": True}),
+            ("neighbors", {"node": task, "direction": "outgoing"}),
+            ("neighbors", {"node": task, "direction": "incoming"}),
+            ("neighborhood", {"node": task, "direction": "both", "depth": 2}),
+            ("list_views", {}),
+            ("resolve_view", {"view": f"{SPEC_STORE}:SpecDoc:{SPEC}"}),
+            ("resolve_view", {"view": "board"}),
+            ("check_integrity", {}),
+            ("list_signals", {}),
+            ("specir_types", {}),
+            ("specir_nodes", {"layer": "api"}),
+        ]
+        for tool, arguments in calls:
+            mcp.call(tool, **arguments)
+        assert {tool for tool, _ in calls} == {t.name for t in mcp.list_tools()}
+        after = copy_digest(store_copy, spec_store)
+        changed = sorted(path for path in set(copy_digest_before) | set(after) if copy_digest_before.get(path) != after.get(path))
+>       assert not changed, f"reading wrote to: {changed}"
+E       AssertionError: reading wrote to: ['/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/BoardDoc/Board.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/MaterializationContractDoc/materialization-tests-de-la-migracion-de-estados-y-claves-legacy-de-taskdoc.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/ReviewDoc/review-task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe-evidence-atom-1.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/ReviewDoc/review-task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe-evidence-commit-1.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/ReviewDoc/review-task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe-evidence-materialization-1.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/ReviewDoc/review-task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe-evidence-materialization-2.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/ReviewDoc/review-task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe-evidence-tests-1.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/TaskCodeDoc/task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/BoardDoc.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/MaterializationContractDoc.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/ReviewDoc.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/models/TaskCodeDoc.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/store_index.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/store.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/atoms/atom-el-store-de-deskops-no-federa-el-store-de-spec2viz.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/inbox/20261116-151745-unclear-closeout-verify-no-escribe-el-recibo-accepted-si-ya-hay-uno-rejected-con-el-mismo-input.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/inbox/20261116-163831-suggestion-closeout-resolved-by-y-gates-los-calificadores-repo-id-solo-leen-desk-registry-del-propio-desk-no-el-registro-del-ecosistema.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/inbox/20261116-165008-unclear-deskops-edit-task-y-message-send-fallan-con-templatesyntaxerror-si-el-texto-trae-dos-llaves-de-apertura-seguidas.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/materializations/materialization-declaracion-del-store-sin-spec2viz.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/materializations/materialization-indice-del-store-sin-spec2viz.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/materializations/materialization-tests-de-la-migracion-de-estados-y-claves-legacy-de-taskdoc.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/reviews/task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe/evidence-atom-1.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/reviews/task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe/evidence-commit-1.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/reviews/task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe/evidence-materialization-1.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/reviews/task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe/evidence-materialization-2.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/reviews/task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe/evidence-tests-1.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/reviews/task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp/evidence-atom-1.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/reviews/task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp/evidence-commit-1.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/reviews/task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp/evidence-materialization-1.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/reviews/task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp/evidence-tests-1.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/reviews/task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados/bundle-1.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/reviews/task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados/preflight-1.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/tasks/Board.md', '/mnt/ssd/proyectos/SLDB_1/deskops/desk/tasks/task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe.md', '/mnt/ssd/proyectos/SLDB_1/deskops/runs/subagents/exec-deskops-e-79646a51295e/brief.md', '/mnt/ssd/proyectos/SLDB_1/deskops/runs/subagents/exec-deskops-e-79646a51295e/result-summary.md', '/mnt/ssd/proyectos/SLDB_1/deskops/runs/subagents/exec-deskops-e-79646a51295e/run.md', '/mnt/ssd/proyectos/SLDB_1/deskops/runs/subagents/test-deskops-t-ce38955d8076/brief.md', '/mnt/ssd/proyectos/SLDB_1/deskops/runs/subagents/test-deskops-t-ce38955d8076/run.md', '/mnt/ssd/proyectos/SLDB_1/deskops/runs/subagents/test-deskops-t-ce38955d8076/verdict.md']
+E       assert not ['/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/BoardDoc/Board.yaml', '/mnt/ssd/proyectos/SLDB_1/deskops/.sld...s-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe-evidence-materialization-2.yaml', ...]
+
+tests/test_mcp_extension.py:110: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_mcp_extension.py::test_reading_through_every_tool_leaves_every_store_untouched
+1 failed, 746 passed, 4 xfailed in 259.00s (0:04:19)
+rc=1

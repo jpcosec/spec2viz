@@ -1,0 +1,4 @@
+antes: 2026-11-16T18:01:11-03:00
+ee9bc3cd 2026-11-16T17:55:18-03:00 desk: recibos evidence del cierre de las skills de IR13 y nota de seguimiento [skip ci]
+después: 2026-11-16T18:38:59-03:00
+7801327f 2026-11-16T18:24:21-03:00 desk: recibos evidence del cierre de la evidencia de commit de otro repo [skip ci]
