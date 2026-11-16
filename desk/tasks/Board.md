@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T23:39:06Z'
+  at: '2026-11-16T00:27:44Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -20,7 +20,6 @@ tasks:
 - desk/tasks/task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer.md
 - desk/tasks/task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2.md
 - desk/tasks/task-espejo-sldb-graph-path-y-graph-paths-explicados-b3.md
-- desk/tasks/task-espejo-sldb-emparejamiento-de-átomos-en-sldb-api-matching-d4.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -63,4 +62,3 @@ _Generated from the task references above._
 - Espejo sldb: apply_batch devuelve el lote inverso (deshacer) [draft] - Disponer en sldb del lote inverso con guardas en el resultado de apply_batch, base del deshacer por MCP.
 - Espejo sldb: readers y facts TSX, TS y SQL (B2) [draft] - Disponer en sldb de los readers y facts de TSX, TS y SQL con anclas sobre tree-sitter, que specIR mapea a su dominio.
 - Espejo sldb: graph_path y graph_paths explicados (B3) [draft] - Disponer en sldb de caminos explicados en el recorrido del grafo, con la procedencia de cada tramo, para el impacto de specIR.
-- Espejo sldb: emparejamiento de átomos en sldb.api.matching (D4) [draft] - Disponer en sldb del emparejamiento de átomos con elementos de diagrama, explícito y difuso.
