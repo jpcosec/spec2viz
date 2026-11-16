@@ -1,7 +1,7 @@
 name: task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual
 path: desk/tasks/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual.md
-source_hash: 6dbe613fcc486a897a95fc1d2788f8871ca6708947a4a50c2349dd590c4ae261
-content_hash: 19cacd5e486725b8df6aaef6f5a04caf7ab9ea85c075ae989afe91616dde2394
+source_hash: 4c4c93f3d59bf332afb1192624ba3288ed42fae53eb7d8e35556d9698c152a83
+content_hash: a535d3409dcf94a60ea1a7c1d75a2a4ec7e23e9cffa0a02f8d67ebe9dbbc38e0
 field_hashes:
   title: 48bc77c79c77b16b3db0d50b260c9ea7b5c9248ce9f4acb66bf01a925b268de6
   id: 670afe9871f5c0f0527760585b4155f3c20e31003cc7eff60772c2a2e72a5aa7
@@ -16,8 +16,8 @@ field_hashes:
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   depends_on: cc70d9707e4899f13ad7dd199d0361420777b89534da481fe7e3c784c58db4f3
   pills: 4646693546d631bc326d394a766ac84a7c860ee563d0014f03de033a15c217e1
-  files: 84f13efcde0a0f0357aed8b87271824fc54cd6330cc5356dbeb164af13ab7a96
-  implementation_path: e73d611661b9388b51571a6a8705f1a876af4f2d06c742cf5d469a722f38b959
+  files: 7128694f6c47f86fbfb6544278380645e40daabc925735a6b279fee392c9db85
+  implementation_path: d5e9c22688dd5e8eafac671b1d6ed1f628b5ab3b0436cbb901c3cdb6d0005cb5
   validation: 5fff613d0dff13ce9d93f4d757e5500313b3cb3cde38b25cb1ccd390f5077a66
   done_when: 1525fc32843d711a84f823bda1aa637d8206b87fdd06aac889ce3a53db22a4c2
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-15T16:54:51Z'
+  at: '2026-11-16T01:21:03Z'
   authority: generated
   via: save_document_payload

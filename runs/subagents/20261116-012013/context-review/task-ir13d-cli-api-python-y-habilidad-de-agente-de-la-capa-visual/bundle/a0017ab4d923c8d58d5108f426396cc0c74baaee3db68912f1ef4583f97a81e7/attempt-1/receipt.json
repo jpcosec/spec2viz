@@ -1,0 +1,9 @@
+{
+  "key": "task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "a0017ab4d923c8d58d5108f426396cc0c74baaee3db68912f1ef4583f97a81e7",
+  "output_sha256": "2c54a6664b21dee71f47289acf0550d9e5ef1b4e2a88712de8c39759534592f9",
+  "start": "2026-11-16T01:20:14.028368+00:00",
+  "end": "2026-11-16T01:20:49.960818+00:00"
+}

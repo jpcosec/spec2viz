@@ -1,0 +1,157 @@
+{
+  "key": "task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual/bundle",
+  "input_sha256": "a0017ab4d923c8d58d5108f426396cc0c74baaee3db68912f1ef4583f97a81e7",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261116-012013/context-review/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual/bundle/a0017ab4d923c8d58d5108f426396cc0c74baaee3db68912f1ef4583f97a81e7/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual.md",
+      "sha256": "6df4062e056ddbd265903d77e55d03361680e83e20056ab3f6010ba62d0d4fcf",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/phase.md",
+      "sha256": "cc7f0b52d4153679b69fa0dccee57ec4ac915602a6dbd8d2ff226764c90a2e5f",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/execution.md",
+      "sha256": "a16c7c317f4eec9ce8659464625ae18b5fe94d790e3fdd3755296dcc51898bdc",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/testing.md",
+      "sha256": "e5b616e2d90b009c2cbac612d281727dbb0f13ad23fdd62a5dd8a6dbbb08aca6",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/closeout.md",
+      "sha256": "b8eed83052f326b72b3a33f4523e8f70068c7eb76bd270691425519019ca88c1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md",
+      "sha256": "4b48dc0685cc3b457dfc02102855266f1c1fb6e13bcea74758c908562e28ba37",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md",
+      "sha256": "aecd844c7ddd17f0b5cc0d541e28362e0ae2fb69e7cbeeb3c6f5496d0059df19",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md",
+      "sha256": "1e506d60129a5e8581506f1ac4b58aef645417948a7e2da697625943afff1db0",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-specir-reemplaza-a-spec2viz-y-cubre-todas-sus-funciones.md",
+      "sha256": "3099bda4a2859795482fc5c847ddbd34f48d6c714d3b3c6629c46628b588fd03",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-specir-depende-solo-de-la-api-pública-de-sldb.md",
+      "sha256": "f2d8b7f31c3332a9cb45045467a73135c5be7de6dbb76090f05c11d26f1ee0a7",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/cli.py",
+      "sha256": "b8e840ea9b54edbf1784dda79dcd77f37a108d14e21341a2c08eeefd47d161c8",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/__init__.py",
+      "sha256": "ca9a517e27165c3e6ca9eef9be1ed1901ffc3b96128f52a549b7505f11f7ea1d",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/commands.py",
+      "sha256": "e6cb3200b12f5d4f6cbf04afda5c07e99cf811bde86a5395fb2e5e1ab8b8ed20",
+      "projection": "whole_file"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "697a1ebbe37d47cb684738d7908b9425c15663262b75a4a247da699ff19cfd69",
+      "projection": "whole_file"
+    },
+    {
+      "path": "skills/use-specir/SKILL.md",
+      "sha256": "2879fe98b27095808a8bef34464d41c733449b9d70df8a1247521f8f7c7b5df5",
+      "projection": "whole_file"
+    },
+    {
+      "path": "docs/spec2viz/correspondencia-cli.md",
+      "sha256": "f2c08a469eccceb23931c3bb325f3de9ef950ba2ebd3c868419122dcebee1135",
+      "projection": "whole_file"
+    },
+    {
+      "path": "docs/spec2viz/matriz-de-cobertura.md",
+      "sha256": "f44c563da93cd0f8deb0182bca927df376c1b6eb0abb347c5c24829682b1f6a0",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_cli.py",
+      "sha256": "c743e99cabfa4728e1175e5aa6ba081044cfcfabd69b9426edf34896f98e654a",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_api.py",
+      "sha256": "1415aa30e48f6f8e3923b05bed81bf65f371c51c3651a8020af6b8df17637a49",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_packaging.py",
+      "sha256": "26b892dea890739f6b99aa02fa8d8b0c86e3af0534393e3f0040d1da3f06d3a1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_render_commands.py",
+      "sha256": "663a1ba0ae88ce8f6c6023502942ef3863b27c59edb555b9418b2b6b38413345",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_schema.py",
+      "sha256": "ec30f9e9f0a74192bccec7de9536721b0c56ae10584b4116d8bf2b5ad70f88ec",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_lint_mermaid.py",
+      "sha256": "32cf254896b46813a2ba40c414cb6565065429687b6f6a5b0d7a1f27005cfec9",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_render_cases.py",
+      "sha256": "d3c2a92c9c1ed2e1b4b3251865142dd6ff033ceb68b94fa238bc1410904804a4",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_bpmn.py",
+      "sha256": "f42d1d967d3eeff23b3aa29da4821bcd4eb0337d31afdc2070acda0c9734683a",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-16T01:20:14.028368+00:00",
+  "finished": "2026-11-16T01:20:49.960818+00:00"
+}

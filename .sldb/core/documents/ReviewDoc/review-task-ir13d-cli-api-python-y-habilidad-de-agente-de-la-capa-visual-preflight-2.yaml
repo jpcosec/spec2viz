@@ -1,0 +1,36 @@
+name: review-task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual-preflight-2
+path: desk/reviews/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual/preflight-2.md
+source_hash: 0f0d8f71ca194fb7f1bb3ba0a68f8c9e9b3247a9f31545ca247f134e897db753
+content_hash: b4f75483a4cc5ac641b97cb13a57f5641467a2124bf9f2bb2a3b9293d8701db3
+field_hashes:
+  id: 866cc06c487bdcfac2afbe98559f77354001be2b5f127eb5dc927e411bcb2831
+  title: 9fb9aa343bf7bffa0970d484d2a2496fd810f3d8808cd1b8adbc8c8e9113f45c
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: d95a77acc26a3b89097ad00b31d71234d7412f3057ebc5164fc732708b5e4e6a
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: bcc00e33ad9a4d3f3e141f426e840a98c31d018f1d3ee7af4380ecfd91d6a92e
+  input_sha256: f30a6948e64209bcb8d54b69dbcb1c1d52546a20c0993e5c367910fb8e635d12
+  output_sha256: df78ec2f315d32d1c38fe0a277dc44b72b53602b377f3c6242b01471d5108053
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 6a611a0791a9dde67358787b6bf8335b60ac28b3dab96918bbbdc2ce0c350a03
+  created_at: a9474cea24c60d45da875ebf3766b0902a7dd3ddd0673c29a9c5841311831bb5
+  disposed_at: 94e507a8cf1d5b50170bed74b109fc4aefc60d2f214cf16ac9d0490dc3d502b9
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: d91850060557e545962e5b22d93c41e67b4d97d30950add21bac86697362d3b0
+  disposition: a9016c86b5f8893fc24121edc3bb3007f518d1cf07a2c2c5d956e9c133dc0640
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T01:08:34Z'
+  authority: generated
+  via: save_document_payload
