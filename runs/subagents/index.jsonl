@@ -26,3 +26,4 @@
 {"task_id": "task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opci\u00f3n-b", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
 {"task_id": "task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
 {"task_id": "task-espejo-sldb-graph-path-y-graph-paths-explicados-b3", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
+{"task_id": "task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opci\u00f3n-a", "run_id": null, "run_dir": "runs/subagents/deskops-t-79b9a3c32e0f-a2", "session_sha256": null, "commit": null}

@@ -1,0 +1,169 @@
+## 0. diff coincide con el del ejecutor
+$ git diff tests/conftest.py tests/test_mcp_extension.py | cmp - runs/subagents/deskops-e-068628774e48/diff.patch
+rc=0
+
+## 1a. greps de la Validation
+$ grep -nE 'WORKSPACE / "spec2viz"|\.\./spec2viz' tests/conftest.py tests/test_mcp_extension.py
+rc=1 (1 = sin coincidencias)
+$ grep -nE "spec2viz.*\.sldb|WORKSPACE / " tests/conftest.py tests/test_mcp_extension.py
+tests/conftest.py:29:FEDERATED = {"deskops": WORKSPACE / "deskops" / ".sldb"}
+tests/conftest.py:126:    sldb("stores", "add", str(spec_store), "--name", "spec2viz", "--store", ".sldb", cwd=root)
+rc=0
+
+## 1b. git diff --stat
+ .sldb/core/models/ReviewDoc.yaml |  6 ++--
+ .sldb/core/models/RunDoc.yaml    |  6 ++--
+ .sldb/core/store_index.yaml      |  2 +-
+ tests/conftest.py                | 65 ++++++++++++++++++++++++++++++++--------
+ tests/test_mcp_extension.py      | 29 +++++++++---------
+ 5 files changed, 74 insertions(+), 34 deletions(-)
+rc=0
+ M tests/conftest.py
+ M tests/test_mcp_extension.py
+(fuera de desk/.sldb/runs) rc=0
+
+## 4. deskops store_index ya no enlaza spec2viz
+308:  - system.spec2viz
+rc=0 (1 = sin coincidencias)
+7801327f desk: recibos evidence del cierre de la evidencia de commit de otro repo [skip ci]
+8583ea84 closeout: task-la-evidencia-de-commit-de-otro-repo-repo-id-sha-resuelve-el-repo-id-tambien-en-el-registro-del-ecosi
+f3282fd2 La evidencia de commit <repo-id>:<sha> resuelve el repo-id también en el registro del ecosistema
+commit 421d6a2760745468f1f5c1a617d86cb47f42c767
+Author: robocop server <juanpablo.ruiz.r@gmail.com>
+Date:   Mon Nov 16 17:37:45 2026 -0300
+
+    deskops quita el enlace federado al store de spec2viz de su .sldb (G5 opción b de JP)
+    
+    sldb stores remove spec2viz + sldb stores declare --write: el enlace ../spec2viz/.sldb sale
+    de store.yaml y de store_index.yaml; sldb, pron y scion siguen. Una sesión que federa el
+    store de deskops ya no abre archivos del store real de spec2viz (0 frente a ~1233).
+    Ejecutor deskops-e-e1719ad4ee0d; tester deskops-t-16e62e0d9f56 APROBADO.
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+ .sldb/core/store_index.yaml |  4 +---
+ .sldb/store.yaml            | 14 ++++++++++++--
+ 2 files changed, 13 insertions(+), 5 deletions(-)
+$ sed -n 300,312p ../deskops/.sldb/core/store_index.yaml
+  models_index: .sldb/core/models/ViewDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.presentation
+  - representation.markdown
+  - source.document.markdown
+  - system.spec2viz
+  - type.view
+predicates:
+- name: has_model
+  axis: WHAT
+$ grep -n "spec2viz/.sldb\|\.\./spec2viz" ../deskops/.sldb/core/store_index.yaml ../deskops/.sldb/store.yaml
+rc=1 (1 = ningún enlace a spec2viz)
+$ grep -nA3 "^stores\|^federat\|^links" ../deskops/.sldb/store.yaml
+2:links:
+3-- name: sldb
+4-  path: ../sldb/.sldb
+5-- name: pron
+6-  path: ../pron/.sldb
+7-- name: scion
+8-  path: ../scion/.sldb
+9-models:
+10-- name: AtomDoc
+
+## 1c+4a. test_mcp_extension.py -rs bajo strace (aperturas bajo ../spec2viz)
+antes: digest/mtime-max de ../spec2viz/.sldb
+941051c6e60a70d452ba35fe6b71d302f2dc0104e3989eaf78bef7387af227f3  -
+1794806061.2086507620
+atime-max:
+1794806061.0614220340
+$ TMPDIR=/dev/shm strace -f -e trace=open,openat,openat2,stat,newfstatat,statx,access,faccessat2,readlink,getdents64 .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py
+.....                                                                    [100%]
+5 passed in 142.38s (0:02:22)
+rc=0
+después:
+941051c6e60a70d452ba35fe6b71d302f2dc0104e3989eaf78bef7387af227f3  -
+1794806061.2086507620
+atime-max:
+1794806061.0614220340
+líneas strace totales: 324697
+syscalls con 'spec2viz/.sldb': 0
+syscalls con '/proyectos/SLDB_1/spec2viz' o '../spec2viz': 0
+syscalls al store temporal spec-store: 16406
+$ pytest --co -q tests/test_mcp_extension.py (los 5 que pasaron)
+tests/test_mcp_extension.py::test_the_server_of_sldb_serves_its_tools_and_specirs
+tests/test_mcp_extension.py::test_at_level_0_no_write_tool_exists
+tests/test_mcp_extension.py::test_specir_types_over_a_store_without_them
+tests/test_mcp_extension.py::test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server
+tests/test_mcp_extension.py::test_reading_through_every_tool_leaves_every_store_untouched
+
+5 tests collected in 0.58s
+rc=0
+strace: rutas con 'spec2viz' fuera del store temporal y de tests/visual/fixtures (únicas):
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/AtomDoc/atom-specir-reemplaza-a-spec2viz-y-cubre-todas-sus-funciones.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/InboxNoteDoc/20261116-021430-suggestion-g5-decisi-n-de-jp-sobre-spec2viz-sldb.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/InboxNoteDoc/20261116-131509-suggestion-ir13-graph-ui-ya-no-depende-de-spec2viz-79d63ee-closeout-c9b09f7.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/PillDoc/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/RepositoryDoc/repo-spec2viz.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir01-node-1.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir01-node-2.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir02-node-1.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir02-node-2.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir03-node-1.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir03-node-2.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir04-node-1.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir04-node-2.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir05-node-1.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir05-node-2.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir06-node-1.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir06-node-2.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir07-node-1.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir07-node-2.yaml"
+"/dev/shm/pytest-of-robocop/pytest-867/specir-store0/IR/.sldb/core/documents/ReviewDoc/review-specir-reemplazo-spec2viz-sobre-sldb-ir08-node-1.yaml"
+(fin)
+
+## 1d. tests/visual/test_visual_projections.py y tests/models/test_blog_chain.py
+$ SPECIR_MMDC=... TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/visual/test_visual_projections.py
+.........                                                                [100%]
+9 passed in 18.40s
+rc=0
+$ SPECIR_MMDC=... TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/models/test_blog_chain.py
+....x...x                                                                [100%]
+7 passed, 2 xfailed in 17.07s
+rc=0
+
+## 4d. chequeo independiente: front matter del SpecDoc vs extract_document_payload (store temporal construido igual que la fixture)
+index entry path: docs/architecture/spec2viz/sldb/class.sldb-models/class.sldb-models.md content_hash: c64366ddce612e888822d759e6a0c859d8d134c7825facc9367304ea13832de3
+front matter keys: ['category', 'diagram_type', 'id', 'nav', 'nodes', 'notation', 'sha256', 'sldb', 'spec_path', 'summary', 'version']
+payload keys: ['category', 'description', 'diagram_type', 'id', 'nav', 'nodes', 'notation', 'sha256', 'spec_path', 'summary', 'title', 'version']
+fm keys not in payload: ['sldb']
+payload keys not in fm: ['description', 'title']
+fm keys (minus sldb) whose value differs from payload: []
+rc=0
+
+## 3. deskops graph missing --root .
+No missing graph references found.
+rc=0
+
+## 2. suite completa bajo flock
+free -g antes:
+               total        used        free      shared  buff/cache   available
+Mem:              31          16           5           2          11          14
+$ SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm timeout 9000 flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  9%]
+......x.......x......................................................... [ 19%]
+..................................................................x..... [ 28%]
+........................................................................ [ 38%]
+........................................................................ [ 47%]
+........................................................................ [ 57%]
+........................................................................ [ 67%]
+.........................x.............................................. [ 76%]
+........................................................................ [ 86%]
+........................................................................ [ 95%]
+...............................                                          [100%]
+747 passed, 4 xfailed in 371.90s (0:06:11)
+rc=0
+deskops HEAD antes/después: 7801327fcb4ee11041bddc9d618a8eafcef4c637 2026-11-16T18:24:21-03:00 / 7801327fcb4ee11041bddc9d618a8eafcef4c637 2026-11-16T18:24:21-03:00

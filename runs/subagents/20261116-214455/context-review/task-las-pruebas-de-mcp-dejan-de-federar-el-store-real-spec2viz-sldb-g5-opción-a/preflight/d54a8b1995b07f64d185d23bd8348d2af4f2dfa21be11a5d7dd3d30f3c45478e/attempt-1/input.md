@@ -1,3 +1,4 @@
+FILE:desk/tasks/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a.md
 ---
 sldb:
   by: agent
@@ -74,3 +75,7 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 Ninguna prueba de IR lee ni enlaza ../spec2viz/.sldb. La lectura de una spec de un store enlazado por MCP se sigue probando contra un store temporal construido desde la fixture de IR, el chequeo de que los stores no se tocan lo cubre, y la suite completa pasa.
+
+FILE:instruccion
+Preflight solo-TaskDoc de la tarea task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a: reformula el encargo tal como lo leería un ejecutor sin ningún otro contexto, lista ambigüedades con cita textual del input y da el DRY-RUN sin ejecutar nada. No ejecutes nada.
+

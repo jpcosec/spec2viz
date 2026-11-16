@@ -1,0 +1,9 @@
+{
+  "key": "task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "d54a8b1995b07f64d185d23bd8348d2af4f2dfa21be11a5d7dd3d30f3c45478e",
+  "output_sha256": "034481ef764eb547b3f22d2312ce888b97dc21909038cb596ba8b4426c591a08",
+  "start": "2026-11-16T21:44:55.761872+00:00",
+  "end": "2026-11-16T21:45:14.705022+00:00"
+}

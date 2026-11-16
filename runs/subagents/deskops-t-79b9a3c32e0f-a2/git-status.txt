@@ -1,0 +1,15 @@
+## main
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/store_index.yaml
+ M tests/conftest.py
+ M tests/test_mcp_extension.py
+?? ".sldb/core/documents/ReviewDoc/review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opci\303\263n-a-bundle-4.yaml"
+?? ".sldb/core/documents/ReviewDoc/review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opci\303\263n-a-bundle-5.yaml"
+?? .sldb/core/documents/RunDoc/run-deskops-t-79b9a3c32e0f-a2.yaml
+?? "desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opci\303\263n-a/bundle-4.md"
+?? "desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opci\303\263n-a/bundle-5.md"
+?? runs/subagents/20261116-214455/
+?? runs/subagents/20261116-214556/
+?? runs/subagents/20261116-220217/
+?? runs/subagents/deskops-t-79b9a3c32e0f-a2/
