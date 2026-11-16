@@ -7,7 +7,7 @@ agent_instructions: agents.md
 system_prompt: system-prompt.md
 default_harness_config: claude
 model: medium
-auth_selectedType: auth-file
+auth_selectedType: oauth-token
 max_turns: 200
 max_duration: 2h
 # Runtime context from --context-file (absolute paths, no secrets):
