@@ -1,3 +1,5 @@
 .sldb_cache/
 .deskops.log
 runs/subagents/*/session.jsonl
+*.egg-info/
+__pycache__/
