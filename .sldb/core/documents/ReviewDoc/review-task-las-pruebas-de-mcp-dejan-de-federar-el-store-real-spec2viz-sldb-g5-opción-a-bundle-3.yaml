@@ -1,0 +1,36 @@
+name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-bundle-3
+path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/bundle-3.md
+source_hash: b89845b31d0b9eaf73f1f169aa751b6f51a9bc9da5648c075a58242a4e108e11
+content_hash: f8c094100b0c3e1f28d685e9fda6028865d5b1e6bb2bd72908b33e814b0dbee5
+field_hashes:
+  id: 26d708aa0a30e7417b52cd955de03ce1ffc1118e6d5dafe6c2d0bf83a2b6e063
+  title: 84998b291654484cbb1068654fd91f6e3eeefb9ef64860faec869ea3fa8e8eb8
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: effa9bd4a9125b77eaf78830c6b5c07e0793d41336efdf2b6479e1e982f6d469
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: ede4f3298dc40870874a6b7ff231882dbd301fc878b2cb4f8fdb1065e2eaed53
+  input_sha256: 30c124982b716789c24e9ddd9f3ca872c6447f8b3f891a4ca76329de95e32201
+  output_sha256: 0027d82effad3733fa83fef009c62cb0a781c33b57112e0270c82d88d15a214a
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: da7f1c3937b9870810d66ad7a3c43ba05a2db19042959b4a7870207ec8d8d0ca
+  created_at: 7e8256505d06adfab6efecb297f4d7447ae044848d7de0a200550c748699dd80
+  disposed_at: 1e1a669d6825bdca8d0db7c145f39705992bc62cac92af65d61134b2c6f74c67
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 329d43548dd7f6e398afd9a7661e4fed8475dc887f88beb2ca03160d5d8061ee
+  disposition: 5750a0731996e3562cd581d27995d4c5f2e590c143bbaacc7eded92ca4c5ac54
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T13:55:48Z'
+  authority: generated
+  via: save_document_payload

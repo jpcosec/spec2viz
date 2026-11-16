@@ -1,0 +1,2 @@
+usage: deskops show board [-h] [--root ROOT] [--format {text,json}] doc_id
+deskops show board: error: the following arguments are required: doc_id

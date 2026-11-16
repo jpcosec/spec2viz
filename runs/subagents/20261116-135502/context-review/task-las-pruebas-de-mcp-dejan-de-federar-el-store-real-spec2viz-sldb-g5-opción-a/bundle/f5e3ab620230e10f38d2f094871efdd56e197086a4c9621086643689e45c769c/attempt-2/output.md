@@ -1,0 +1,12 @@
+## REFORMULACION
+Tarea de código ejecutable, no agregado. Propósito: desacoplar las pruebas MCP de IR del store real `../spec2viz/.sldb`, manteniendo la cobertura de lectura de una spec de un store enlazado vía MCP. Resultado: `FEDERATED` solo enlaza deskops; un fixture de sesión construye un store temporal real desde la fixture de IR; `mount_copy` lo enlaza con alias `spec2viz`; los digests de “untouched” lo cubren; se actualizan docstrings. Repo: `/mnt/ssd/proyectos/SLDB_1/IR`. Límites: solo `tests/conftest.py` y `tests/test_mcp_extension.py`; fuera acta/matriz, retirement check, `tests/visual/test_api.py:45`, spec2viz y sldb; sin mocks; detenerse si `SpecSync` no construye fuera de git o falta API pública.
+
+## AMBIGUEDADES
+1. “Devuelve la ruta de su `.sldb`” y “`sldb stores add <ruta>/.sldb --name spec2viz`”: no queda fijado si `spec_store` apunta al proyecto temporal o ya a su `.sldb`. Obligaría a inventar si `<ruta>/.sldb` duplica `.sldb`.
+2. “`federated_digest` sigue cubriendo los stores de `FEDERATED` (solo deskops). El store de specs se digiere con `tree_digest(spec_store)`…”: no dice dónde se combina ese digest ni con qué nombre/función. Obligaría a inventar si se extiende `copy_digest`, se crea otra función o se compara inline.
+
+## DRY-RUN
+Lecturas: `tests/conftest.py`, `tests/test_mcp_extension.py`, `tests/visual/test_notations_parity.py` para calcar `init_store`/`SpecSync`, y el YAML `tests/visual/fixtures/spec2viz/docs/architecture/spec2viz/class-sldb-models.yml`. Cambios previstos: quitar spec2viz de `FEDERATED`; añadir `build_spec_store(tmp_path_factory) -> Path` y fixture de sesión `spec_store`; pasar `spec_store` a `mount_copy` y enlazar el store temporal; ajustar digests para incluir `tree_digest(spec_store)` y sha256 de `.md` bajo `spec_store.parent`; hacer que la prueba lea el SpecDoc desde `spec_store`; actualizar docstrings. Dependencias: `sldb.api.init_store`, `sldb.api.notations.SpecSync`, CLI `sldb`, pytest, fixture YAML real. Si `SpecSync` no funciona fuera de git o falta API, detenerse. Validaciones futuras: grep indicado, pytest de `test_mcp_extension.py`, `git diff --stat`, suite completa con `flock`, y `deskops graph missing --root .`. Nada se ejecuta ahora.
+
+## FUTURO
+El nodo ejecutor implementa el diff y corre las validaciones; closeout actualiza el Board y prepara commit. IR13 decide retirar spec2viz del retirement check. Un humano revisa el resultado.

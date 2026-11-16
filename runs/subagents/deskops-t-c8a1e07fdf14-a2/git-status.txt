@@ -1,0 +1,26 @@
+## main
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/store_index.yaml
+ M docs/spec2viz/acta-de-retiro.md
+ M docs/spec2viz/matriz-de-cobertura.md
+ M src/specir/visual/notation_style.py
+?? ".sldb/core/documents/ReviewDoc/review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opci\303\263n-a-bundle-3.yaml"
+?? .sldb/core/documents/RunDoc/run-deskops-e-3db2821b1604-a2.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-t-c8a1e07fdf14-a2.yaml
+?? "desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opci\303\263n-a/bundle-3.md"
+?? runs/subagents/20261116-135502/
+?? runs/subagents/deskops-e-3db2821b1604-a2/
+?? runs/subagents/deskops-t-c8a1e07fdf14-a2/
+?? src/specir.egg-info/
+?? src/specir/__pycache__/
+?? src/specir/models/__pycache__/
+?? src/specir/visual/__pycache__/
+?? src/specir/visual/catalog/__pycache__/
+?? src/specir/visual/compilers/__pycache__/
+?? src/specir/visual/renderers/__pycache__/
+?? tests/__pycache__/
+?? tests/models/__pycache__/
+?? tests/visual/__pycache__/
+?? tests/visual/fixtures/spec2viz-notations/
+?? tests/visual/test_notations_parity.py

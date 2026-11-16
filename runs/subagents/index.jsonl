@@ -19,3 +19,4 @@
 {"task_id": "task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
 {"task_id": "task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02", "run_id": null, "run_dir": "runs/subagents/deskops-t-c6d27c1b855b", "session_sha256": null, "commit": null}
 {"task_id": "task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents", "run_id": null, "run_dir": "runs/subagents/deskops-t-8825fdd278af-a2", "session_sha256": null, "commit": null}
+{"task_id": "task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb", "run_id": null, "run_dir": "runs/subagents/deskops-t-c8a1e07fdf14-a2", "session_sha256": null, "commit": null}

@@ -1,0 +1,22 @@
+$ SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm timeout 9000 flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  9%]
+.........x....x......................................................... [ 19%]
+....................................................x................... [ 28%]
+........................................................................ [ 38%]
+........................................................................ [ 47%]
+........................................................................ [ 57%]
+.........................................x.............................. [ 67%]
+........................................................................ [ 76%]
+........................................................................ [ 86%]
+........................................................................ [ 95%]
+...............................                                          [100%]
+=========================== short test summary info ============================
+XFAIL tests/models/test_blog_chain.py::test_a_declared_edge_is_authored - An edge is a RelationDoc, whose model's authority is generated; SLDB lets no write set authored (IR04 note sldb:20261115-022655, point 4)
+XFAIL tests/models/test_blog_chain.py::test_a_relation_between_types_not_allowed_is_refused_before_writing - SLDB checks an edge against its RelationTypeDoc only after the write (check_edges); asked by note sldb:20261115-022655 (IR04), see the pending of sldb mcp (sldb.mcp.write.pending)
+XFAIL tests/visual/test_notations_parity.py::test_invalid_notations_are_rejected[changes1-not a spec2viz diagram type] - sldb rejects the unknown diagram_type with another message: "diagram_type 'mindmap' is not a valid diagram type" (sldb/notations/notation_spec.py), where spec2viz said "not a spec2viz diagram type"; reported to sldb's desk
+XFAIL tests/visual/test_retirement_gate.py::test_the_real_universe_has_no_dependency_and_every_row_is_accredited - consumers still depend on spec2viz and rows remain open: docs/spec2viz/acta-de-retiro.md
+747 passed, 4 xfailed in 311.18s (0:05:11)
+rc=0

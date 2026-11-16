@@ -1,0 +1,105 @@
+| `SV-A01` | cumplida | sldb `tests/notations/test_spec_class_diagram.py` (17 passed) y `tests/notations/test_spec_class_packages.py` (7 passed), con los seis casos nombrados; IR `tests/visual/test_visual_names.py` (4 passed): specIR no define el modelo. | - |
+| `SV-A02` | cumplida | sldb `tests/notations/test_spec_models_sequence.py` (3 passed); IR `tests/visual/test_visual_names.py` (4 passed). | - |
+| `SV-A03` | cumplida | sldb `tests/notations/test_spec_models_state.py` (3 passed); IR `tests/visual/test_visual_names.py`. | - |
+| `SV-A04` | cumplida | sldb `tests/notations/test_spec_models_component.py` (3 passed); IR `tests/visual/test_visual_names.py`. | - |
+| `SV-A05` | cumplida | sldb `tests/notations/test_spec_models_activity.py` (3 passed); IR `tests/visual/test_visual_names.py`. | - |
+| `SV-A06` | cumplida | sldb `tests/notations/test_spec_models_deployment.py` (4 passed); IR `tests/visual/test_visual_names.py`. | - |
+| `SV-A07` | cumplida | sldb `tests/notations/test_spec_models_matrix.py` (4 passed); IR `tests/visual/test_visual_names.py`. | - |
+| `SV-A08` | cumplida | IR `tests/visual/test_visual_parity.py` (90 passed): sldb y spec2viz dan el mismo error (clase y texto) sobre los 44 specs del corpus, `examples/reflection/` incluido. | - |
+| `SV-A09` | cumplida | sldb `tests/notations/test_spec_base_model.py` (3 passed). | - |
+| `SV-A10` | cumplida | IR `tests/visual/test_catalog_parity.py` (29 passed: `check_catalog` y la página sobre `examples/catalog/` y `docs/architecture/vistas.yml` iguales a spec2viz) y `tests/visual/test_catalog.py` (67 passed). | - |
+| `SV-A11` | cumplida | sldb `tests/notations/test_spec_loader.py` (20 passed, incluye los 16 de spec2viz). | - |
+| `SV-A12` | cumplida | sldb `tests/notations/test_spec_validator.py` (19 passed). | - |
+| `SV-A13` | cumplida | sldb `tests/notations/test_spec_exceptions.py` (2 passed). | - |
+| `SV-A14` | cumplida | IR `tests/visual/test_visual_compilers.py` (28 passed, `CompileError`/`Spec2VizError`), `tests/visual/test_renderers.py` (56 passed) y `tests/visual/test_bpmn.py` (26 passed, `RenderError`). | - |
+| `SV-A15` | cumplida | IR `tests/visual/test_schema.py` (13 passed), `tests/visual/test_api.py` (31 passed), `tests/visual/test_cli.py` (44 passed). | - |
+| `SV-A16` | cumplida | IR `tests/visual/test_cli.py` (test_schema_diagram_store_stdout, test_catalog_schema_stdout). | - |
+| `SV-A17` | abierta | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): test_defaults_and_shape, test_invalid y test_view_doc_in_a_store_references_its_notation, con `ViewDoc` de `sldb.api`. | Solo G5: `spec2viz/.sldb` registra `spec2viz.sldb_models` (pedido al desk de spec2viz, nota 20261115-225013; fuera de IR13e). |
+| `SV-B01` | cumplida | IR `tests/visual/test_visual_ir.py` (3 passed). | - |
+| `SV-B02` | cumplida | IR `tests/visual/test_visual_compilers.py` (28 passed), `tests/visual/test_api.py` (31 passed) y `tests/visual/test_visual_parity.py` (90 passed). | - |
+| `SV-B03` | cumplida | IR `tests/visual/test_visual_compilers.py` (28 passed) y `tests/visual/test_render_cases.py` (30 passed, 0 skipped con `SPECIR_MMDC` apuntando a mermaid-cli real: test_real_mermaid_engine_accepts_members_kinds_and_all_relations y test_real_mermaid_engine_accepts_the_packages en verde). | - |
+| `SV-B04` | cumplida | IR `tests/visual/test_visual_compilers.py` (28 passed) y `tests/visual/test_visual_parity.py` (90 passed). | - |
+| `SV-B05` | cumplida | IR `tests/visual/test_visual_compilers.py` y `tests/visual/test_visual_parity.py`. | - |
+| `SV-B06` | cumplida | IR `tests/visual/test_visual_compilers.py` y `tests/visual/test_visual_parity.py`. | - |
+| `SV-B07` | cumplida | IR `tests/visual/test_visual_compilers.py`, `tests/visual/test_render_cases.py` (carriles de actividad) y `tests/visual/test_visual_parity.py`. | - |
+| `SV-B08` | cumplida | IR `tests/visual/test_visual_compilers.py`, `tests/visual/test_render_cases.py` (despliegue anidado) y `tests/visual/test_visual_parity.py`. | - |
+| `SV-B09` | cumplida | IR `tests/visual/test_visual_compilers.py` y `tests/visual/test_visual_parity.py`. | - |
+| `SV-B10` | cumplida | IR `tests/visual/test_visual_compilers.py` (test_reflection_*). | - |
+| `SV-C01` | cumplida | IR `tests/visual/test_api.py` (31 passed), `tests/visual/test_cli.py` (44 passed), `tests/visual/test_render_commands.py` (33 passed). | - |
+| `SV-C02` | cumplida | IR `tests/visual/test_renderers.py` (56 passed), `tests/visual/test_render_parity.py` (81 passed), `tests/visual/test_render_cases.py` (27 passed). | - |
+| `SV-C03` | cumplida | IR `tests/visual/test_renderers.py`, `tests/visual/test_render_parity.py`, `tests/visual/test_render_cases.py`. | - |
+| `SV-C04` | cumplida | IR `tests/visual/test_renderers.py`, `tests/visual/test_render_parity.py`, `tests/visual/test_render_cases.py`, `tests/visual/test_cli.py` (test_render_d2). | - |
+| `SV-C05` | cumplida | IR `tests/visual/test_renderers.py`, `tests/visual/test_render_parity.py` (escala `kindColor` como correspondencia), `tests/visual/test_api.py` (test_render_to_file_vega). | - |
+| `SV-C06` | cumplida | IR `tests/visual/test_bpmn.py` (26 passed). Decisión (coordinador, aceptada por JP el 2026-11-15): mientras dure la paridad el XML mantiene `exporter="spec2viz"` y `targetNamespace="http://spec2viz/bpmn"`; al retirar spec2viz pasan a specir con goldens nuevos (paso del acta). | - |
+| `SV-C07` | cumplida | IR `tests/visual/test_bpmn.py` y `tests/visual/test_resources.py` (7 passed). | - |
+| `SV-C08` | cumplida | IR `tests/visual/test_bpmn.py`. | - |
+| `SV-C09` | cumplida | IR `tests/visual/test_renderers.py`. | - |
+| `SV-C10` | cumplida | IR `tests/visual/test_renderers.py`, `tests/visual/test_api.py` y `tests/visual/test_resources.py`. | - |
+| `SV-C11` | cumplida | IR `tests/visual/test_renderers.py` y `tests/visual/test_cli.py` (test_render_antonia_html). | - |
+| `SV-C12` | cumplida | IR `tests/visual/test_cli.py` y `tests/visual/test_render_commands.py` (test_render_json_reflection_artifact). | - |
+| `SV-C13` | cumplida | IR `tests/visual/test_renderers.py` (56 passed) y `tests/visual/test_render_cases.py` (30 passed, 0 skipped con `SPECIR_MMDC` apuntando a mermaid-cli real: los casos de clases con el motor real en verde). | - |
+| `SV-C14` | cumplida | IR `tests/visual/test_render_cases.py` (30 passed, 0 skipped con `SPECIR_MMDC` apuntando a mermaid-cli real: test_view_to_mermaid_is_accepted_by_the_real_engine y test_view_to_mermaid_matches_spec2viz_on_the_same_resolved_view en verde; los 4 casos `view_to_mermaid` de `tests/test_catalog_resolved_views.py`) y `tests/visual/test_catalog.py` (sus casos de `catalog build`). | - |
+| `SV-C15` | cumplida | IR `tests/visual/test_render_commands.py` (caso de `tests/test_rendering_bug.py`). | - |
+| `SV-D01` | cumplida | IR `tests/visual/test_lint_mermaid.py` (15 passed, 0 skipped con `SPECIR_MMDC` apuntando a mermaid-cli real: los 4 casos de `tests/test_mermaid_mmdc.py` y los demás de mmdc en verde) y `tests/visual/test_render_parity.py` (82 passed con mmdc, incluido el render de la proyección de estados con ids con guion). | - |
+| `SV-E01` | cumplida | sldb `tests/notations/test_spec_sync.py` (16 passed); IR `tests/visual/test_sync_generation_parity.py` (22 passed). | - |
+| `SV-E02` | cumplida | sldb `tests/notations/test_spec_sync.py` (casos de notación y paleta de `tests/test_sldb_sync.py`); IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): test_notation_sync_writes_docs_and_edges, test_notation_sync_is_idempotent_and_prunes, test_notation_naming_an_unregistered_model_is_reported, test_wildcard_link_leaves_no_dangling_relation_type, test_styled_notation_syncs_its_palette_and_view_carries_resolved_style_and_legend y test_unstyled_notation_writes_no_palette_and_no_style, contra `NotationSync`/`SpecSync` de `sldb.api.notations` y store real. | - |
+| `SV-F01` | cumplida | sldb `tests/notations/test_component_spec_graph.py` (16 passed) y `tests/notations/test_notations_from_graph_cli.py` (6 passed); IR `tests/visual/test_sync_generation_parity.py` (22 passed). | - |
+| `SV-F02` | cumplida | sldb `tests/notations/test_component_spec_python.py` (4 passed); IR `tests/visual/test_sync_generation_parity.py`. Diferencia declarada; la pérdida de imports anidados sigue pedida a sldb (nota 20261115-203456). | - |
+| `SV-G01` | cumplida | IR `tests/visual/test_catalog.py` (67 passed), `tests/visual/test_catalog_parity.py` (29 passed), `tests/visual/test_cli.py` (44 passed). | - |
+| `SV-G02` | cumplida | IR `tests/visual/test_catalog.py` (los 9 de `tests/test_catalog_paths.py`). | - |
+| `SV-G03` | cumplida | IR `tests/visual/test_catalog.py` (68 passed con `SPECIR_MMDC` apuntando a mermaid-cli real), `tests/visual/test_catalog_parity.py` y `tests/visual/test_render_cases.py` (caso con el motor real de `tests/test_catalog_resolved_views.py` en verde, compartido con SV-C14). | - |
+| `SV-G04` | cumplida | sldb `tests/notations/test_spec_catalog_sync.py` (8 passed); IR `tests/visual/test_catalog_parity.py` y `tests/visual/test_catalog.py`. | - |
+| `SV-G05` | cumplida | sldb `tests/notations/test_spec_catalog_sync.py`; IR `tests/visual/test_catalog_parity.py`. | - |
+| `SV-G06` | cumplida | IR `tests/visual/test_catalog_annotations.py` (5 passed, con `sldb serve --cors` real). Decisión (coordinador, aceptada por JP el 2026-11-15): la página mantiene la clave `spec2viz.catalog.annotations.v1` de `localStorage` mientras dure la paridad; al retirar spec2viz pasa a una clave de specir con migración de las anotaciones guardadas (paso del acta). | - |
+| `SV-G07` | cumplida | IR `tests/visual/test_catalog.py` y `tests/visual/test_catalog_parity.py`. | - |
+| `SV-G08` | cumplida | IR `tests/visual/test_catalog.py` (68 passed, sin xfailed ni xpassed con `SPECIR_MMDC` apuntando a mermaid-cli real): los casos de emparejamiento en el navegador, de markdown de átomos y test_tabs_follow_the_target_atom, y test_label_key_of_sldb_is_the_template_s_norm_key y test_label_key_of_sldb_splits_underscores_like_norm_key sin xfail (sldb arregló `label_key` con `_` en `06dbcf02`, nota 20261115-214942; el xfail se quitó en `4dc8946`). | - |
+| `SV-H01` | abierta | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): test_builtins_load_and_cover_every_diagram_type, test_wildcard_link_and_free_relations, test_uml_class_notation_matches_the_class_spec_vocabulary, test_statechart_nests_contains_and_marks_the_initial_state, test_minimal_notation_defaults, test_free_relation_diagram_types_accept_any_relation, test_load_notation_from_path_and_unknown_name y test_notation_load_gives_typed_errors (7 casos: parte no CLI de test_notation_validate_gives_typed_errors de `tests/test_style_palette.py`, errores tipados de `load_notation` de sldb) pasan; test_invalid_notations_are_rejected pasa en 14 de sus 15 casos. Los 2 casos CLI de `tests/test_notation.py` son de las filas K. | xfail estricto test_invalid_notations_are_rejected[changes1-not a spec2viz diagram type]: sldb rechaza `diagram_type: mindmap` con «diagram_type 'mindmap' is not a valid diagram type» donde spec2viz decía «not a spec2viz diagram type»; pedido a sldb (nota 20261116-022332). |
+| `SV-H02` | cumplida | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): test_spec2viz_notation_validates_the_same_as_the_sldb_builtin (8 casos: activity, component, component-view-matrix, deployment, reflection, statechart, uml-class, uml-sequence; cada notación copiada de spec2viz `b624b75` carga con sldb, está en `builtin_notations()` y su `model_dump()` es igual al de la builtin de sldb) y test_builtin_notations_still_validate_and_are_unstyled. | - |
+| `SV-H03` | abierta | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): las 10 no CLI de `tests/test_notation_view.py`, las 2 de `tests/test_view_contract_resolved.py` y test_resolve_documents_is_public_and_filters_relations, contra `resolve_view`/`resolve_documents` de `sldb.api.notations`. | Solo G4: graph_ui aún importa `spec2viz.notation_view` (`frontends/mindmap/sldb_adapter.py:245`, `:437`, `tests/test_mindmap_notation.py:21`); pedido a graph_ui (`UIs/graph_ui/desk/inbox/20261115-224814-…`). Fuera de IR13e. |
+| `SV-H04` | cumplida | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): test_new_builtin_shapes_are_accepted, test_default_palette_is_accessible_and_distinguishable_without_colour, test_color_pair_is_validated_typed, test_single_hex_is_the_same_in_both_themes_and_a_pair_is_not y test_palette_check_is_typed (6 casos: parte no CLI de test_palette_validation_is_typed, `check_palette(PaletteSpec.model_validate(raw))` de sldb con su error tipado y su mensaje), contra `sldb.notations` (vía `specir.visual.notation_style`). | - |
+| `SV-H05` | cumplida | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): test_spec2viz_default_palette_validates_the_same_as_the_sldb_builtin (la paleta `default` copiada de spec2viz `b624b75` carga y valida con `load_palette` de sldb y su `model_dump()` es igual al de la builtin `default` de sldb). | - |
+| `SV-H06` | cumplida | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): test_precedence_glyph_over_spec_over_palette, test_spec_style_kinds_are_validated_typed, test_pair_reaches_the_view_per_theme_for_glyph_link_and_spec, test_mermaid_class_defs_from_style_kinds_and_plantuml_block_untouched y test_mermaid_takes_the_light_side_of_a_spec_pair (las dos de mermaid contra `src/specir/visual/renderers/mermaid.py`, que usa la precedencia de sldb). | - |
+| `SV-I01` | cumplida | sldb `tests/matching/test_matching_explicit.py` (10 passed); IR `tests/visual/test_catalog.py`, `tests/visual/test_catalog_parity.py` y `tests/test_imports.py` (9 passed). | - |
+| `SV-I02` | cumplida | sldb `tests/matching/test_matching_fuzzy.py` (3 passed) y SV-G08 cumplida (IR `tests/visual/test_catalog.py`, 68 passed: test_label_key_of_sldb_is_the_template_s_norm_key y test_label_key_of_sldb_splits_underscores_like_norm_key sin xfail). | - |
+| `SV-I03` | cumplida | sldb `tests/matching/test_matching_refs.py` (10 passed: los 9 de resolución y aristas de `tests/test_refs.py`); IR `tests/visual/test_refs_models.py` (12 passed: los 3 de modelos y schema, portados por IR13), `tests/visual/test_catalog_parity.py` (store de la vista) y `tests/test_imports.py`. | - |
+| `SV-I04` | cumplida | sldb `tests/matching/test_matching_coverage.py` (3 passed); IR `tests/visual/test_catalog_parity.py` y `tests/visual/test_catalog.py`. | - |
+| `SV-I05` | cumplida | IR `tests/visual/test_catalog_parity.py` (mismo resultado que `SldbAtomResolver` con `find_store` y `StoreReader` de sldb). | - |
+| `SV-J01` | cumplida | IR `tests/visual/test_api.py` (test_load_*, test_validate_* contra `load_spec`/`validate_spec` de sldb). | - |
+| `SV-J02` | cumplida | IR `tests/visual/test_api.py` (31 passed). | - |
+| `SV-J03` | cumplida | IR `tests/visual/test_api.py`, `tests/visual/test_cli.py` y `tests/visual/test_render_commands.py`. | - |
+| `SV-J04` | cumplida | IR `tests/visual/test_bpmn.py`, `tests/visual/test_resources.py` (test_examples_render_successfully) y `tests/visual/test_packaging.py` (3 passed). | - |
+| `SV-J05` | cumplida | IR `tests/visual/test_resources.py` (la wheel lleva la plantilla) y `tests/visual/test_catalog.py` (la plantilla corrida con node). | - |
+| `SV-J06` | cumplida | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed) (SV-H02 y SV-H05 cumplidas: las notaciones y la paleta son las builtin de sldb); specIR no empaqueta notaciones ni paletas. | - |
+| `SV-J07` | cumplida | IR `tests/visual/test_packaging.py` (venv limpio sin spec2viz). | - |
+| `SV-J08` | cumplida | IR `tests/visual/test_cli.py`. | - |
+| `SV-J09` | cumplida | IR `tests/visual/test_cli.py` (test_the_skill_names_only_commands_that_exist, test_the_skill_names_no_spec2viz_command). | - |
+| `SV-K01` | cumplida | IR `tests/visual/test_cli.py`. | - |
+| `SV-K02` | cumplida | IR `tests/visual/test_cli.py`. | - |
+| `SV-K03` | cumplida | IR `tests/visual/test_cli.py`; SV-K04 a SV-K08 cumplidas. | - |
+| `SV-K04` | cumplida | IR `tests/visual/test_cli.py`. | - |
+| `SV-K05` | cumplida | IR `tests/visual/test_cli.py`. | - |
+| `SV-K06` | cumplida | IR `tests/visual/test_cli.py` y `tests/visual/test_catalog_annotations.py`. | - |
+| `SV-K07` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_spec_catalog_sync.py`. | - |
+| `SV-K08` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_spec_catalog_sync.py`. | - |
+| `SV-K09` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-K16 (SV-K12 ya cumplida). |
+| `SV-K10` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_notations_from_graph_cli.py` (6 passed). | - |
+| `SV-K11` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_component_spec_python.py`. | - |
+| `SV-K12` | cumplida | IR `tests/visual/test_cli.py` (44 passed con `SPECIR_MMDC` apuntando a mermaid-cli real; test_lint_alias_matches_diagram_lint) y SV-D01 cumplida. | - |
+| `SV-K13` | cumplida | IR `tests/visual/test_cli.py` y `tests/visual/test_render_commands.py`. | - |
+| `SV-K14` | cumplida | IR `tests/visual/test_cli.py` y `tests/visual/test_schema.py`. | - |
+| `SV-K15` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_notations_sync_spec_cli.py` (4 passed) y `tests/notations/test_spec_sync.py`. | - |
+| `SV-K16` | abierta | IR `tests/visual/test_cli.py` (test_validate_*, test_diagram_validate_*). | `specir diagram validate` es provisional: falta el comando de sldb que valide un spec (nota 20261115-192054) y retirar el de specIR. |
+| `SV-K17` | cumplida | IR `tests/visual/test_cli.py` (44 passed con `SPECIR_MMDC` apuntando a mermaid-cli real; test_lint_alias_matches_diagram_lint, test_every_alias_stands_for_a_group_command_with_the_same_parameters) y SV-K12 cumplida. | - |
+| `SV-K18` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-K21 y SV-K22 (SV-K19 y SV-K20 ya cumplidas). |
+| `SV-K19` | cumplida | IR `tests/visual/test_cli.py` y SV-H02 cumplida (IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed)). | - |
+| `SV-K20` | cumplida | IR `tests/visual/test_cli.py` y SV-E02 cumplida (IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed)). | - |
+| `SV-K21` | abierta | IR `tests/visual/test_cli.py` (invoca `load_notation`). | Depende de SV-H01; falta el comando de sldb que valide una notación (nota 20261115-192054). |
+| `SV-K22` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-H03 (sus pruebas pasan en `tests/visual/test_notations_parity.py`; falta solo G4 de graph_ui). |
+| `SV-K23` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-K26 (SV-K24 y SV-K25 ya cumplidas). |
+| `SV-K24` | cumplida | IR `tests/visual/test_cli.py` y SV-H05 cumplida (IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed)). | - |
+| `SV-K25` | cumplida | IR `tests/visual/test_cli.py` y SV-E02 cumplida (IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed)). | - |
+| `SV-K26` | abierta | IR `tests/visual/test_cli.py` (invoca `load_palette`). | Depende de SV-H04; falta el comando de sldb que valide una paleta (nota 20261115-192054). |
+| `SV-K27` | cumplida | IR `tests/visual/test_cli.py`. | - |
+| `SV-K28` | cumplida | IR `tests/visual/test_cli.py`. | - |
+| `SV-K29` | abierta | IR `tests/visual/test_cli.py`. | Igual que SV-K16. |
+| `SV-K30` | cumplida | IR `tests/visual/test_cli.py`. | - |

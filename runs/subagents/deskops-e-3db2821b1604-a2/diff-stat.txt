@@ -1,0 +1,7 @@
+ .sldb/core/models/ReviewDoc.yaml     |  6 +--
+ .sldb/core/models/RunDoc.yaml        |  6 +--
+ .sldb/core/store_index.yaml          |  2 +-
+ docs/spec2viz/acta-de-retiro.md      | 84 +++++++++++++-----------------------
+ docs/spec2viz/matriz-de-cobertura.md | 64 ++++++++++++++++-----------
+ src/specir/visual/notation_style.py  | 25 ++++++++++-
+ 6 files changed, 101 insertions(+), 86 deletions(-)
