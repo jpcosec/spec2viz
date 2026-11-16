@@ -1,0 +1,18 @@
+name: 20261115-225013-suggestion-ir13-el-store-de-spec2viz-es-el-nico-que-registra-spec2viz-sldb-models-gate-g5
+path: desk/inbox/20261115-225013-suggestion-ir13-el-store-de-spec2viz-es-el-nico-que-registra-spec2viz-sldb-models-gate-g5.md
+source_hash: 9e52184437d4bd670d2d45f7d2c42aa3b0e0ca3b5a616497ee60689c4d07c862
+content_hash: 2322dd603e09a7f5f1168a92c9fb23726042af508c292a2506db353e39a226c2
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: bee92d810f69f470b60e4f5a66fa84be4fa69823fdfdc23605c3b298e3787f68
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  title: 9b771ab8f9c1e66df7033806dbaea614af8ebed0819d13b424b631b5965e144d
+  body: d8b5914851190b57bd6d903b5f9dea6971e3ff434002bfcf22843542f6ffb7c8
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null
