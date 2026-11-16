@@ -1,0 +1,54 @@
+# Notacion builtin de spec2viz: diagrama de secuencia sobre un spec `type: sequence`.
+# Los participantes son carriles (layout lanes); cada mensaje es una arista ordenada
+# (`order` en la vista) cuya relacion sale del `kind` del mensaje: sends, sends_async, returns.
+name: uml-sequence
+title: UML sequence diagram
+diagram_type: sequence
+level: instances
+projection: all
+layout: {kind: lanes, direction: LR}
+
+glyphs:
+  - id: actor
+    title: Actor
+    model: SpecNodeDoc
+    where: kind = "actor"
+    shape: stick-figure
+    label: "{title}"
+    function: actor
+  - id: boundary
+    title: Boundary
+    model: SpecNodeDoc
+    where: kind = "boundary"
+    shape: boundary-lifeline
+    label: "{title}"
+    function: boundary
+  - id: participant
+    title: Participant
+    model: SpecNodeDoc
+    shape: lifeline
+    label: "{title}"
+    function: participant
+
+links:
+  - id: sync
+    title: Synchronous message
+    relation: sends
+    draw: line
+    line: solid
+    target_end: filled-arrow
+    label: "{notes}"
+  - id: async
+    title: Asynchronous message
+    relation: sends_async
+    draw: line
+    line: solid
+    target_end: open-arrow
+    label: "{notes}"
+  - id: return
+    title: Return
+    relation: returns
+    draw: line
+    line: dashed
+    target_end: open-arrow
+    label: "{notes}"

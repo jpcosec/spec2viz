@@ -1,0 +1,47 @@
+# Notacion builtin de spec2viz: statechart sobre un spec `type: state`.
+#
+# Los estados son SpecNodeDoc; `contains` (aristas `contains` del store) dibuja el estado
+# compuesto como contenedor, no como arista. El estado inicial lleva `data.initial: true` y
+# lo apunta la marca `initial` (los `where` se evaluan sobre el payload con `data` aplanado
+# encima). Las transiciones son RelationDoc `transitions_to` con el
+# evento y la guarda en `notes`.
+name: statechart
+title: Statechart
+diagram_type: state
+level: both
+projection: all
+layout: {kind: graph, direction: LR}
+
+markers:
+  - id: initial
+    shape: filled-circle
+    model: SpecNodeDoc
+    where: has(initial)
+
+glyphs:
+  - id: composite
+    title: Composite state
+    model: SpecNodeDoc
+    where: nonempty(contains)
+    shape: rounded-container
+    label: "{title}"
+    function: state
+  - id: state
+    title: State
+    model: SpecNodeDoc
+    shape: rounded-box
+    label: "{title}"
+    function: state
+
+links:
+  - id: substate
+    title: Substate
+    relation: contains
+    draw: nest
+  - id: transition
+    title: Transition
+    relation: transitions_to
+    draw: line
+    line: solid
+    target_end: open-arrow
+    label: "{notes}"

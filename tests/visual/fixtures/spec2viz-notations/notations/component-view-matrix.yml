@@ -1,0 +1,43 @@
+# Notacion builtin de spec2viz: matriz componente x etapa sobre un spec `type: component_view_matrix`.
+# Las filas son componentes (anidados por `contains`), las columnas son etapas de una vista
+# (`collection = "stages"`, con `data.view` y `data.order`) y cada celda es una arista `occupies`.
+name: component-view-matrix
+title: Component view matrix
+diagram_type: component_view_matrix
+level: types
+projection: all
+layout: {kind: grid}
+
+glyphs:
+  - id: stage
+    title: Stage column
+    model: SpecNodeDoc
+    where: collection = "stages"
+    shape: column-header
+    label: "{title}"
+    function: column
+  - id: boundary
+    title: Boundary component
+    model: SpecNodeDoc
+    where: kind = "boundary"
+    shape: row-header
+    label_style: italic
+    label: "{title}"
+    function: row
+  - id: component
+    title: Component
+    model: SpecNodeDoc
+    shape: row-header
+    label: "{title}"
+    function: row
+
+links:
+  - id: contains
+    title: Child component
+    relation: contains
+    draw: nest
+  - id: occupies
+    title: Occupies stage
+    relation: occupies
+    draw: cell
+    label: "{notes}"
