@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T21:43:10Z'
+  at: '2026-11-16T21:43:49Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -19,7 +19,6 @@ tasks:
 - desk/tasks/task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2.md
 - desk/tasks/task-espejo-sldb-graph-path-y-graph-paths-explicados-b3.md
 - desk/tasks/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a.md
-- desk/tasks/task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b.md
 - desk/tasks/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real.md
 # List of pill-xxx paths
 pills:
@@ -62,5 +61,4 @@ _Generated from the task references above._
 - Espejo sldb: readers y facts TSX, TS y SQL (B2) [draft] - Disponer en sldb de los readers y facts de TSX, TS y SQL con anclas sobre tree-sitter, que specIR mapea a su dominio.
 - Espejo sldb: graph_path y graph_paths explicados (B3) [draft] - Disponer en sldb de caminos explicados en el recorrido del grafo, con la procedencia de cada tramo, para el impacto de specIR.
 - Las pruebas de MCP dejan de federar el store real spec2viz/.sldb (G5, opción A) [draft] - Las pruebas de IR siguen probando la lectura de una spec de un store enlazado a través del servidor MCP, pero contra un store de specs que se construye en un directorio temporal a partir de una fixture que ya está en IR, sin leer ni enlazar ../spec2viz/.sldb.
-- Espejo deskops: deskops/.sldb deja de enlazar el store de spec2viz (G5, opción b) [draft] - Que el store de deskops deje de enlazar el store de spec2viz, para que las pruebas MCP de IR, que federan el store real de deskops, ya no lean el store de spec2viz de forma transitiva.
 - Las pruebas MCP de IR federan una copia del store de deskops en vez del real [draft] - La suite completa de IR es reproducible con independencia de lo que hagan otros desks: las pruebas MCP enlazan y digieren una copia del store de deskops tomada al inicio de la sesión, no el store real.
