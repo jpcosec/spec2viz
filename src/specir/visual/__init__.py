@@ -1,14 +1,19 @@
 """specIR's visual layer: the intermediate representation, its compilers and the projections of
 the graph to it (IR11); its renderers, mermaid linter, JSON Schema export, packaged resources and the
 render, lint and schema commands are in `specir.visual.renderers`, `lint_mermaid`, `schema`,
-`templates/`, `render_file` and `commands` (IR12). IR13d extends this module with the full public API of the layer.
+`templates/`, `render_file` and `commands` (IR12); the HTML catalog of diagrams, its atoms and its
+annotations saved with `sldb serve` are in `specir.visual.catalog` (IR13b). IR13d extends this module
+with the full public API of the layer.
 
 The spec models of the eight diagram types are sldb's (D3) and are only re-exported here for the
 visual layer's callers; nothing of them is defined in specIR. `load_spec` and `validate_spec` are
 used from `sldb.api.notations` directly, without a wrapper. So are syncing a spec to the store
 (`SpecSync`, `sync_spec`; `sldb notations sync --spec`, D1) and generating a component spec from a
 graph, a snapshot or the Python AST (`component_spec_from_graph`, `component_spec_from_python`,
-`write_component_spec`; `sldb notations from-graph`, D2): specIR defines none of them (IR13a)."""
+`write_component_spec`; `sldb notations from-graph`, D2): specIR defines none of them (IR13a). So are
+the matching of atoms with diagram elements and the coverage per view (`sldb.api.matching`, D4) and
+the catalog's path rule, validation and sync (`sldb.api.notations`, `sldb notations sync --catalog`,
+D1)."""
 
 from specir.visual.compilers import compile_ir
 from specir.visual.compilers.activity import ActivityCompiler

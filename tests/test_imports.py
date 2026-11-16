@@ -10,7 +10,12 @@ is the only module that reaches `sldb.mcp` (the extension contract of `sldb mcp 
 or `mcp`. specIR implements no MCP server of its own.
 
 SpecSync and the component spec generator (from a graph, a snapshot or the Python AST) are sldb's
-(D1, D2): specIR calls them from `sldb.api.notations` and defines none of them (IR13a)."""
+(D1, D2): specIR calls them from `sldb.api.notations` and defines none of them (IR13a).
+
+The matching of atoms with diagram elements and the coverage per view are sldb's (D4,
+`sldb.api.matching`); the catalog's path rule, validation and sync too (D1). specIR's catalog
+(IR13b) calls them and defines none of them, and runs no HTTP server: annotations are saved with
+`sldb serve`."""
 
 from __future__ import annotations
 
@@ -122,3 +127,29 @@ def test_specir_defines_no_spec_sync_and_no_spec_generator() -> None:
                 defined += [f"{path.relative_to(PACKAGE.parent)}: {name}" for name in names if name in MIGRATED_TO_SLDB]
     assert not defined, defined
     assert not (PACKAGE / "visual" / "generators").exists() and not (PACKAGE / "visual" / "sync.py").exists()
+
+
+#: What D4 migrated to `sldb.api.matching` and D1 to `sldb.api.notations` for catalogs (IR13b).
+MATCHING_IN_SLDB = (
+    "SldbAtomResolver", "AtomBuildWarning", "CoverageBuildWarning", "UnknownAtomError", "SpecView", "StoreReader",
+    "parse_atoms", "label_key", "filter_atoms_payload", "build_atoms_by_view", "raw_atoms_by_view", "build_explicit_atoms",
+    "build_explicit_refs", "attach_atom_edges", "collect_explicit_atoms", "collect_explicit_refs", "build_coverage_by_view",
+    "atom_index", "rank_atoms", "edges_of", "resolve_ref", "resolve_catalog_path", "repo_root", "candidates", "split_fragment",
+    "resolve_view", "find_store",
+)
+
+
+def test_specir_defines_no_atom_matching_and_no_catalog_path_rule() -> None:
+    defined = []
+    for path in sorted(PACKAGE.rglob("*.py")):
+        tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)) and node.name in MATCHING_IN_SLDB:
+                defined.append(f"{path.relative_to(PACKAGE.parent)}: {node.name}")
+    assert not defined, defined
+
+
+def test_the_catalog_runs_no_server_of_its_own() -> None:
+    for path in sorted((PACKAGE / "visual").rglob("*.py")):
+        modules = set(imported_modules(path))
+        assert not modules & {"http.server", "socketserver", "aiohttp", "flask", "fastapi"}, path

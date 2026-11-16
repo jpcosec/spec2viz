@@ -34,6 +34,8 @@ FIXTURES = CORPUS / "tests" / "fixtures"
 EXAMPLES = CORPUS / "examples"
 VENDOR = ("LICENSE", "README.md", "bpmn-js.css", "bpmn-navigated-viewer.production.min.js", "diagram-js.css")
 RESOURCES = ("templates/default.html", *(f"templates/vendor/bpmn-js/{name}" for name in VENDOR))
+#: specIR's own resources, which spec2viz did not have: the catalog's annotation saving with sldb serve (IR13b).
+SPECIR_RESOURCES = ("templates/annotations-sldb.js",)
 #: What would make a page fetch something to open: a script by URL, a stylesheet or font link, a CSS
 #: import, a CSS url() to the network, or any `src` (image, frame) to the network. A link the reader
 #: may follow (`<a href>`, like bpmn.io's watermark inside bpmn-js) fetches nothing.
@@ -45,7 +47,7 @@ def _resource(rel: str):
 
 
 def test_the_installed_package_reads_its_resources():
-    for rel in RESOURCES:
+    for rel in (*RESOURCES, *SPECIR_RESOURCES):
         assert _resource(rel).is_file(), rel
         assert _resource(rel).read_bytes(), rel
     assert Path(str(_resource("templates/vendor/bpmn-js"))) == VENDOR_DIR
@@ -77,7 +79,7 @@ def test_a_wheel_of_the_project_carries_the_resources(tmp_path):
     assert result.returncode == 0, result.stderr[-800:]
     wheel = next((tmp_path / "dist").glob("specir-*.whl"))
     names = set(zipfile.ZipFile(wheel).namelist())
-    for rel in RESOURCES:
+    for rel in (*RESOURCES, *SPECIR_RESOURCES):
         assert f"specir/visual/{rel}" in names, rel
 
 

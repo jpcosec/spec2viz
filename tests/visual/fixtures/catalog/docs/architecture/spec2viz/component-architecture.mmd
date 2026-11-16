@@ -1,0 +1,25 @@
+%% spec2viz: generated from docs/architecture/spec2viz/component-architecture.yml; do not edit, run `spec2viz diagram validate docs/architecture/spec2viz/component-architecture.yml` and re-render
+graph TD
+    cli["CLI"]
+    facade["API Facade"]
+    loader["Loader"]
+    models["Pydantic Models"]
+    validator["Validator"]
+    compilers["Compiler Dispatch"]
+    ir["Intermediate Repr"]
+    renderers["Renderer Dispatch"]
+    schema_mod["Schema Export"]
+    deskops["Deskops Builder"]
+    exceptions["Exception Hierarchy"]
+    cli -->|"render / validate commands"| facade
+    cli -->|"build command"| deskops
+    cli -->|"schema command"| schema_mod
+    facade -->|"load(path)"| loader
+    facade -->|"validate(diagram)"| validator
+    facade -->|"compile_ir(diagram)"| compilers
+    facade -->|"render(ir, name)"| renderers
+    loader -->|"TypeAdapter(AnyDiagram).validate_python()"| models
+    validator -->|"inspect references"| models
+    compilers -->|"read model fields"| models
+    compilers -->|"emit IR dataclasses"| ir
+    renderers -->|"consume IR dataclasses"| ir

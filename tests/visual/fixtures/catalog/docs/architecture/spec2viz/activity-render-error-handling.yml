@@ -1,0 +1,68 @@
+id: activity.render-error-handling
+title: "CLI Render Command Error Handling"
+type: activity
+version: "0.1"
+
+data:
+  start: receive_paths
+
+  steps:
+    receive_paths:
+      label: Receive SPEC paths from CLI args
+      next: iterate_path
+
+    iterate_path:
+      label: For each path
+      kind: decision
+      branches:
+        "has_next": try_render
+        "empty": done
+
+    try_render:
+      label: Call render_to_file(path, out, renderer)
+      next: load_step
+
+    load_step:
+      label: "load(path): YAML parse + Pydantic validate"
+      kind: decision
+      branches:
+        "ok": validate_step
+        "ParseError": catch_error
+
+    validate_step:
+      label: "validate(diagram): check cross-references"
+      kind: decision
+      branches:
+        "ok": compile_step
+        "ValidationError": catch_error
+
+    compile_step:
+      label: "compile_ir(diagram): pattern-match compiler"
+      kind: decision
+      branches:
+        "ok": render_step
+        "CompileError": catch_error
+
+    render_step:
+      label: "render(ir, renderer): dispatch to backend"
+      kind: decision
+      branches:
+        "ok": write_output
+        "RenderError": catch_error
+
+    write_output:
+      label: Write result to disk
+      next: echo_success
+
+    echo_success:
+      label: "echo 'Rendered X -> Y'"
+      next: iterate_path
+
+    catch_error:
+      label: echo error to stderr + sys.exit(1)
+      next: done
+
+    done:
+      label: Exit
+
+  end: done

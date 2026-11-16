@@ -25,8 +25,10 @@ from specir.visual.spec_models import SPEC_MODELS, BaseDiagram, EnforcementArtif
 REPO = Path(__file__).resolve().parents[2]
 PACKAGE = REPO / "src" / "specir"
 TESTS = REPO / "tests"
-#: The modules that reach spec2viz as the development oracle (IR11, IR12 and IR13a's sync and generation parity).
-ORACLES = {TESTS / "visual" / "parity.py", TESTS / "visual" / "render_parity.py", TESTS / "visual" / "test_sync_generation_parity.py"}
+#: The modules that reach spec2viz as the development oracle (IR11, IR12, IR13a's sync and generation
+#: parity and IR13b's catalog parity).
+ORACLES = {TESTS / "visual" / "parity.py", TESTS / "visual" / "render_parity.py", TESTS / "visual" / "test_sync_generation_parity.py",
+           TESTS / "visual" / "test_catalog_parity.py"}
 EIGHT = {"ClassDiagram", "SequenceDiagram", "StateDiagram", "ComponentDiagram", "ActivityDiagram",
          "DeploymentDiagram", "MatrixDiagram", "ReflectionDiagram"}
 

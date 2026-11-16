@@ -1,0 +1,79 @@
+id: component.exception-hierarchy
+title: "Exception Hierarchy and Pipeline Stages"
+type: component
+version: "0.1"
+
+data:
+  nodes:
+    spec2viz_error:
+      label: Spec2VizError
+      kind: core
+
+    parse_error:
+      label: ParseError
+      kind: core
+
+    validation_error:
+      label: ValidationError
+      kind: core
+
+    compile_error:
+      label: CompileError
+      kind: core
+
+    render_error:
+      label: RenderError
+      kind: core
+
+    loader_mod:
+      label: loader.py
+      kind: boundary
+
+    validator_mod:
+      label: validator.py
+      kind: boundary
+
+    compilers_mod:
+      label: compilers/
+      kind: boundary
+
+    renderers_mod:
+      label: renderers/
+      kind: boundary
+
+  edges:
+    - from: parse_error
+      to: spec2viz_error
+      relation: inherits
+
+    - from: validation_error
+      to: spec2viz_error
+      relation: inherits
+
+    - from: compile_error
+      to: spec2viz_error
+      relation: inherits
+
+    - from: render_error
+      to: spec2viz_error
+      relation: inherits
+
+    - from: loader_mod
+      to: parse_error
+      relation: uses
+      label: raises
+
+    - from: validator_mod
+      to: validation_error
+      relation: uses
+      label: raises
+
+    - from: compilers_mod
+      to: compile_error
+      relation: uses
+      label: raises
+
+    - from: renderers_mod
+      to: render_error
+      relation: uses
+      label: raises

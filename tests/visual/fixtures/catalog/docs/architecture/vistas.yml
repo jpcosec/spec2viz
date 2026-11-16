@@ -1,0 +1,99 @@
+vistas:
+  - id: component-architecture
+    category: Arquitectura de Módulos
+    title: Grafo de Dependencias de Módulos
+    nav: Módulos
+    desc: Dependencias reales entre CLI, API Facade, Loader, Validator, Compilers, IR, Renderers, Schema Export y Deskops Builder.
+    src: spec2viz/component-architecture.mmd
+    specs:
+      - docs/architecture/spec2viz/component-architecture.yml
+
+  - id: component-type-system
+    category: Arquitectura de Módulos
+    title: Sistema de Tipos y Dispatch
+    nav: Tipos
+    desc: "Jerarquía de 7 tipos de diagrama (BaseDiagram), sus compiladores, IR y compatibilidad con 6 renderers."
+    src: spec2viz/component-type-system.mmd
+    specs:
+      - docs/architecture/spec2viz/component-type-system.yml
+
+  - id: component-exception-hierarchy
+    category: Arquitectura de Módulos
+    title: Jerarquía de Excepciones
+    nav: Excepciones
+    desc: "Spec2VizError y sus subclases: ParseError (loader), ValidationError (validator), CompileError (compilers), RenderError (renderers)."
+    src: spec2viz/component-exception-hierarchy.mmd
+    specs:
+      - docs/architecture/spec2viz/component-exception-hierarchy.yml
+
+  - id: sequence-render-pipeline
+    category: Pipelines de Ejecución
+    title: Pipeline de Render
+    nav: Render
+    desc: "Traza completa de llamadas para spec2viz render: CLI → Facade → load() → validate() → compile_ir() → render() → write_text()."
+    src: spec2viz/sequence-render-pipeline.mmd
+    specs:
+      - docs/architecture/spec2viz/sequence-render-pipeline.yml
+
+  - id: sequence-build-pipeline
+    category: Pipelines de Ejecución
+    title: Pipeline de Build Deskops
+    nav: Build
+    desc: "Traza completa para spec2viz build: CLI → Deskops → parse_atoms() → render_deskops() → write_text()."
+    src: spec2viz/sequence-build-pipeline.mmd
+    specs:
+      - docs/architecture/spec2viz/sequence-build-pipeline.yml
+
+  - id: sequence-sync-pipeline
+    category: Pipelines de Ejecución
+    title: Cadena de llamadas de diagram sync
+    nav: Sync
+    desc: "Qué llama a qué cuando `spec2viz diagram sync` escribe un spec al store: un loop por spec y un alt según el tipo de diagrama tenga notación. Piloto de fragmentos de secuencia para graph_ui."
+    src: spec2viz/sequence-sync-pipeline.mmd
+    specs:
+      - docs/architecture/spec2viz/sequence-sync-pipeline.yml
+
+  - id: state-diagram-type-lifecycle
+    category: Modelos de Estado
+    title: Ciclo de Vida de una Spec
+    nav: Lifecycle
+    desc: "Máquina de estados de un archivo YAML: Raw → Dict → DiagramModel → Validated → IR → Output, con transiciones de error."
+    src: spec2viz/state-diagram-type-lifecycle.mmd
+    specs:
+      - docs/architecture/spec2viz/state-diagram-type-lifecycle.yml
+
+  - id: class-sldb-models
+    category: Modelos de Estado
+    title: Documentos de spec2viz en el store sldb
+    nav: Store
+    desc: "Clases de los documentos que spec2viz escribe en el store: el spec como namespace (SpecDoc, SpecNodeDoc, RelationDoc) y la notación declarativa (NotationDoc, GlyphDoc, LinkDoc). Sincronizado con la notación uml-class."
+    src: spec2viz/class-sldb-models.mmd
+    specs:
+      - docs/architecture/spec2viz/class-sldb-models.yml
+
+  - id: state-diagram-sync-lifecycle
+    category: Modelos de Estado
+    title: Ciclo de un diagram sync
+    nav: Sync
+    desc: "Estados de `spec2viz diagram sync`: el trabajo contra el store es un estado compuesto (validar, escribir, indexar) y un fallo sale de él. Piloto de la notación statechart con nest."
+    src: spec2viz/state-diagram-sync-lifecycle.mmd
+    specs:
+      - docs/architecture/spec2viz/state-diagram-sync-lifecycle.yml
+
+  - id: matrix-pipeline-coverage
+    category: Arquitectura de Módulos
+    title: Cobertura de módulos por etapa
+    nav: Matriz
+    desc: "Qué módulos participan en cada etapa del pipeline de render y del sync al store. Piloto de la notación component-view-matrix (grilla) para graph_ui."
+    src: spec2viz/matrix-pipeline-coverage.vega.json
+    specs:
+      - docs/architecture/spec2viz/matrix-pipeline-coverage.yml
+
+  - id: activity-render-error-handling
+    category: Flujos de Actividad
+    title: Manejo de Errores en Render
+    nav: Errores
+    desc: "Flujo de decisiones del CLI render: para cada path, intenta load → validate → compile → render, con catch de excepciones por etapa."
+    src: spec2viz/activity-render-error-handling.mmd
+    specs:
+      - docs/architecture/spec2viz/activity-render-error-handling.yml

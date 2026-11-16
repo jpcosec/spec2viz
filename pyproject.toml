@@ -34,7 +34,7 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 
 [tool.setuptools.package-data]
-specir = ["data/*.yaml", "visual/templates/*.html", "visual/templates/vendor/bpmn-js/*"]
+specir = ["data/*.yaml", "visual/templates/*.html", "visual/templates/*.js", "visual/templates/vendor/bpmn-js/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

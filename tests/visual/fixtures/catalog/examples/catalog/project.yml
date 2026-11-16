@@ -1,0 +1,11 @@
+diagram_store:
+  kind: diagram-store
+  template: template.html
+  title: Example Repo Diagram Catalog
+  brand_name: Example Diagram Catalog
+  project_name: examples/catalog
+  stores:
+    - path: leaves/architecture-vistas.yml
+      project: examples/architecture
+      tags:
+        - domain:architecture

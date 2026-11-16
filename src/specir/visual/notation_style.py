@@ -4,7 +4,10 @@ The renderers color elements with the one precedence that sldb owns (glyph > `st
 spec > palette, `sldb.notations.resolve_style`) and write text in the ink of sldb's builtin
 `default` palette (`sldb.notations.load_palette`). The commands report sldb's loading and
 validation errors (`sldb.notations.NotationError`, the root of `ParseError` and `ValidationError`).
-`sldb.api` does not export these three yet (asked to sldb's desk), so this module is the only one of
+The catalog (IR13b) reports the typed errors of the catalog path rule (`AmbiguousPathError`,
+`UnknownReferenceError`, `UnknownNotationError`) and picks a view's notation with
+`DEFAULT_NOTATIONS` and `builtin_notations`.
+`sldb.api` does not export these yet (asked to sldb's desk), so this module is the only one of
 specIR that reaches `sldb.notations` (tests/test_imports.py allows it here and nowhere else). When
 sldb exports them from `sldb.api.notations`, only these imports change."""
 
@@ -12,7 +15,16 @@ from __future__ import annotations
 
 from functools import lru_cache
 
-from sldb.notations import NotationError, load_palette, resolve_style
+from sldb.notations import (
+    DEFAULT_NOTATIONS,
+    AmbiguousPathError,
+    NotationError,
+    UnknownNotationError,
+    UnknownReferenceError,
+    builtin_notations,
+    load_palette,
+    resolve_style,
+)
 
 
 @lru_cache(maxsize=1)
@@ -21,4 +33,7 @@ def default_ink() -> dict[str, str]:
     return load_palette().ink.model_dump()
 
 
-__all__ = ["NotationError", "default_ink", "resolve_style"]
+__all__ = [
+    "DEFAULT_NOTATIONS", "AmbiguousPathError", "NotationError", "UnknownNotationError", "UnknownReferenceError",
+    "builtin_notations", "default_ink", "resolve_style",
+]

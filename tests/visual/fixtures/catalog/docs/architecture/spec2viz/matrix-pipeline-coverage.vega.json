@@ -1,0 +1,638 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Module coverage across the render pipeline",
+  "width": 1640,
+  "height": 498,
+  "padding": 5,
+  "signals": [
+    {
+      "name": "left",
+      "value": 220
+    },
+    {
+      "name": "top",
+      "value": 70
+    },
+    {
+      "name": "cellWidth",
+      "value": 140
+    },
+    {
+      "name": "rowHeight",
+      "value": 34
+    },
+    {
+      "name": "barPadding",
+      "value": 6
+    }
+  ],
+  "data": [
+    {
+      "name": "stages",
+      "values": [
+        {
+          "id": "load",
+          "index": 0,
+          "label": "load",
+          "view": "Render pipeline"
+        },
+        {
+          "id": "validate",
+          "index": 1,
+          "label": "validate",
+          "view": "Render pipeline"
+        },
+        {
+          "id": "compile",
+          "index": 2,
+          "label": "compile",
+          "view": "Render pipeline"
+        },
+        {
+          "id": "render",
+          "index": 3,
+          "label": "render",
+          "view": "Render pipeline"
+        },
+        {
+          "id": "lint",
+          "index": 4,
+          "label": "lint",
+          "view": "Render pipeline"
+        },
+        {
+          "id": "extract",
+          "index": 5,
+          "label": "extract",
+          "view": "Store sync"
+        },
+        {
+          "id": "notation",
+          "index": 6,
+          "label": "notation",
+          "view": "Store sync"
+        },
+        {
+          "id": "write",
+          "index": 7,
+          "label": "write",
+          "view": "Store sync"
+        },
+        {
+          "id": "index",
+          "index": 8,
+          "label": "index",
+          "view": "Store sync"
+        },
+        {
+          "id": "view",
+          "index": 9,
+          "label": "view",
+          "view": "Store sync"
+        }
+      ]
+    },
+    {
+      "name": "views",
+      "source": "stages",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "view"
+          ],
+          "fields": [
+            "index",
+            "index"
+          ],
+          "ops": [
+            "min",
+            "max"
+          ],
+          "as": [
+            "minIdx",
+            "maxIdx"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "viewBoundaries",
+      "source": "views",
+      "transform": [
+        {
+          "type": "formula",
+          "expr": "[datum.minIdx, datum.maxIdx + 1]",
+          "as": "indices"
+        },
+        {
+          "type": "flatten",
+          "fields": [
+            "indices"
+          ]
+        },
+        {
+          "type": "aggregate",
+          "groupby": [
+            "indices"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "stageBoundaries",
+      "values": [
+        {
+          "index": 0
+        },
+        {
+          "index": 1
+        },
+        {
+          "index": 2
+        },
+        {
+          "index": 3
+        },
+        {
+          "index": 4
+        },
+        {
+          "index": 5
+        },
+        {
+          "index": 6
+        },
+        {
+          "index": 7
+        },
+        {
+          "index": 8
+        },
+        {
+          "index": 9
+        },
+        {
+          "index": 10
+        }
+      ]
+    },
+    {
+      "name": "rows",
+      "values": [
+        {
+          "id": "cli",
+          "label": "cli.py",
+          "row": 0,
+          "depth": 0
+        },
+        {
+          "id": "core",
+          "label": "core",
+          "row": 1,
+          "depth": 0
+        },
+        {
+          "id": "loader",
+          "label": "loader.py",
+          "row": 2,
+          "depth": 1
+        },
+        {
+          "id": "validator",
+          "label": "validator.py",
+          "row": 3,
+          "depth": 1
+        },
+        {
+          "id": "compilers",
+          "label": "compilers/",
+          "row": 4,
+          "depth": 1
+        },
+        {
+          "id": "renderers",
+          "label": "renderers/",
+          "row": 5,
+          "depth": 1
+        },
+        {
+          "id": "linters",
+          "label": "linters/mermaid.py",
+          "row": 6,
+          "depth": 1
+        },
+        {
+          "id": "store",
+          "label": "store layer",
+          "row": 7,
+          "depth": 0
+        },
+        {
+          "id": "sldb_sync",
+          "label": "sldb_sync.py",
+          "row": 8,
+          "depth": 1
+        },
+        {
+          "id": "notation",
+          "label": "notation.py",
+          "row": 9,
+          "depth": 1
+        },
+        {
+          "id": "notation_view",
+          "label": "notation_view.py",
+          "row": 10,
+          "depth": 1
+        },
+        {
+          "id": "sldb_models",
+          "label": "sldb_models.py",
+          "row": 11,
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "name": "spans",
+      "values": [
+        {
+          "component": "cli",
+          "row": 0,
+          "start": 0,
+          "end": 5,
+          "kind": "boundary",
+          "depth": 0
+        },
+        {
+          "component": "cli",
+          "row": 0,
+          "start": 5,
+          "end": 10,
+          "kind": "boundary",
+          "depth": 0
+        },
+        {
+          "component": "core",
+          "row": 1,
+          "start": 0,
+          "end": 4,
+          "kind": "core",
+          "depth": 0
+        },
+        {
+          "component": "loader",
+          "row": 2,
+          "start": 0,
+          "end": 1,
+          "kind": "core",
+          "depth": 1
+        },
+        {
+          "component": "validator",
+          "row": 3,
+          "start": 1,
+          "end": 2,
+          "kind": "core",
+          "depth": 1
+        },
+        {
+          "component": "compilers",
+          "row": 4,
+          "start": 2,
+          "end": 3,
+          "kind": "core",
+          "depth": 1
+        },
+        {
+          "component": "renderers",
+          "row": 5,
+          "start": 3,
+          "end": 4,
+          "kind": "core",
+          "depth": 1
+        },
+        {
+          "component": "linters",
+          "row": 6,
+          "start": 4,
+          "end": 5,
+          "kind": "core",
+          "depth": 1
+        },
+        {
+          "component": "store",
+          "row": 7,
+          "start": 5,
+          "end": 10,
+          "kind": "core",
+          "depth": 0
+        },
+        {
+          "component": "sldb_sync",
+          "row": 8,
+          "start": 5,
+          "end": 6,
+          "kind": "core",
+          "depth": 1
+        },
+        {
+          "component": "sldb_sync",
+          "row": 8,
+          "start": 7,
+          "end": 9,
+          "kind": "core",
+          "depth": 1
+        },
+        {
+          "component": "notation",
+          "row": 9,
+          "start": 6,
+          "end": 7,
+          "kind": "core",
+          "depth": 1
+        },
+        {
+          "component": "notation_view",
+          "row": 10,
+          "start": 9,
+          "end": 10,
+          "kind": "core",
+          "depth": 1
+        },
+        {
+          "component": "sldb_models",
+          "row": 11,
+          "start": 7,
+          "end": 8,
+          "kind": "boundary",
+          "depth": 1
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "kindColor",
+      "type": "ordinal",
+      "domain": [
+        "boundary",
+        "core"
+      ],
+      "range": [
+        "#60A5FA",
+        "#F59E0B"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "text",
+      "from": {
+        "data": "views"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "left + (datum.minIdx + datum.maxIdx + 1) * cellWidth / 2"
+          },
+          "y": {
+            "value": 15
+          },
+          "text": {
+            "field": "view"
+          },
+          "align": {
+            "value": "center"
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "fontSize": {
+            "value": 15
+          },
+          "fill": {
+            "value": "#475569"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "stages"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "left + datum.index * cellWidth + cellWidth / 2"
+          },
+          "y": {
+            "value": 40
+          },
+          "text": {
+            "field": "label"
+          },
+          "align": {
+            "value": "center"
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "fontSize": {
+            "value": 13
+          },
+          "fill": {
+            "value": "#475569"
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "from": {
+        "data": "stageBoundaries"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "left + datum.index * cellWidth"
+          },
+          "y": {
+            "signal": "top - 20"
+          },
+          "y2": {
+            "signal": "top + 12 * rowHeight + 10"
+          },
+          "stroke": {
+            "value": "#CBD5E1"
+          },
+          "strokeDash": {
+            "value": [
+              4,
+              4
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "from": {
+        "data": "viewBoundaries"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "left + datum.indices * cellWidth"
+          },
+          "y": {
+            "signal": "top - 40"
+          },
+          "y2": {
+            "signal": "top + 12 * rowHeight + 20"
+          },
+          "stroke": {
+            "value": "#475569"
+          },
+          "strokeWidth": {
+            "value": 2.5
+          },
+          "strokeOpacity": {
+            "value": 0.6
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "rows"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "value": 0
+          },
+          "x2": {
+            "signal": "width"
+          },
+          "y": {
+            "signal": "top + datum.row * rowHeight"
+          },
+          "height": {
+            "signal": "rowHeight"
+          },
+          "fill": {
+            "signal": "datum.depth === 0 ? (datum.row % 2 === 0 ? '#475569' : '#94A3B8') : (datum.row % 2 === 0 ? '#CBD5E1' : '#E2E8F0')"
+          },
+          "fillOpacity": {
+            "value": 0.15
+          }
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "from": {
+        "data": "rows"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "12 + datum.depth * 18"
+          },
+          "x2": {
+            "signal": "12 + datum.depth * 18"
+          },
+          "y": {
+            "signal": "top + datum.row * rowHeight + 2"
+          },
+          "y2": {
+            "signal": "top + datum.row * rowHeight + rowHeight - 2"
+          },
+          "stroke": {
+            "signal": "datum.depth === 0 ? '#475569' : '#94A3B8'"
+          },
+          "strokeWidth": {
+            "signal": "datum.depth === 0 ? 3 : 1.5"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "rows"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "20 + datum.depth * 18"
+          },
+          "y": {
+            "signal": "top + datum.row * rowHeight + rowHeight / 2"
+          },
+          "text": {
+            "field": "label"
+          },
+          "align": {
+            "value": "left"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fontSize": {
+            "value": 13
+          },
+          "fill": {
+            "value": "#111827"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "spans"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "left + datum.start * cellWidth + 4"
+          },
+          "x2": {
+            "signal": "left + datum.end * cellWidth - 4"
+          },
+          "y": {
+            "signal": "top + datum.row * rowHeight + barPadding"
+          },
+          "height": {
+            "signal": "rowHeight - barPadding * 2"
+          },
+          "cornerRadius": {
+            "value": 7
+          },
+          "fill": {
+            "scale": "kindColor",
+            "field": "kind"
+          },
+          "fillOpacity": {
+            "signal": "max(0.3, 1 - (datum.depth * 0.25))"
+          },
+          "stroke": {
+            "scale": "kindColor",
+            "field": "kind"
+          },
+          "strokeOpacity": {
+            "value": 0.7
+          },
+          "strokeWidth": {
+            "value": 1.5
+          }
+        }
+      }
+    }
+  ]
+}
