@@ -1,0 +1,9 @@
+{
+  "key": "task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "43ea7f56e41b6b3fd68541187b71aa09e6f160659353bf558f897045cf5ff638",
+  "output_sha256": "798e77558d6fb03e996c6a4ced946a8ff802b953ab748997df09f3c933603f52",
+  "start": "2026-11-16T10:21:43.642252+00:00",
+  "end": "2026-11-16T10:21:52.064174+00:00"
+}

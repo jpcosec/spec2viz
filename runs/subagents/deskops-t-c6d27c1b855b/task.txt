@@ -1,0 +1,9 @@
+Task: task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02
+Title: Quitar el xfail obsoleto de label_key en test_catalog tras el arreglo de sldb 06dbcf02
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Effective pills:
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]

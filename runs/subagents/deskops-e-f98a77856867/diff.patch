@@ -1,0 +1,34 @@
+diff --git a/tests/conftest.py b/tests/conftest.py
+index 388ac53..1539fdd 100644
+--- a/tests/conftest.py
++++ b/tests/conftest.py
+@@ -3,7 +3,8 @@ SLDB's public CLI, and the real MCP server of sldb (`sldb mcp`) with specIR's ex
+ (`specir.mcp_extension:register`) over stdio, driven by the real MCP client.
+ 
+ Nothing is fabricated: the copy holds this repo's `.sldb/`, `sldb/` and `desk/` as they
+-are; the deskops and spec2viz stores are linked in place and only read."""
++are, plus every `runs/subagents/*/run.md` at its own relative path; the deskops and spec2viz
++stores are linked in place and only read."""
+ 
+ from __future__ import annotations
+ 
+@@ -21,6 +22,8 @@ import pytest
+ REPO = Path(__file__).resolve().parents[1]
+ WORKSPACE = REPO.parent
+ COPIED = (".sldb", "sldb", "desk")
++#: The store registers RunDocs, which live outside `.sldb/` and `desk/`.
++RUN_DOCS = "runs/subagents/*/run.md"
+ FEDERATED = {"deskops": WORKSPACE / "deskops" / ".sldb", "spec2viz": WORKSPACE / "spec2viz" / ".sldb"}
+ CACHE = ".sldb_cache"
+ TOOL_TIMEOUT = 300
+@@ -76,6 +79,10 @@ def mount_copy(tmp_path_factory: pytest.TempPathFactory, name: str) -> Path:
+     root.mkdir()
+     for name in COPIED:
+         shutil.copytree(REPO / name, root / name, ignore=shutil.ignore_patterns(CACHE), symlinks=True)
++    for run_doc in sorted(REPO.glob(RUN_DOCS)):
++        target = root / run_doc.relative_to(REPO)
++        target.parent.mkdir(parents=True, exist_ok=True)
++        shutil.copy2(run_doc, target)
+     sldb("stores", "add", str(FEDERATED["deskops"]), "--name", "deskops", "--replace", "--store", ".sldb", cwd=root)
+     sldb("stores", "add", str(FEDERATED["spec2viz"]), "--name", "spec2viz", "--store", ".sldb", cwd=root)
+     sldb("stores", "update", "--store", ".sldb", cwd=root)

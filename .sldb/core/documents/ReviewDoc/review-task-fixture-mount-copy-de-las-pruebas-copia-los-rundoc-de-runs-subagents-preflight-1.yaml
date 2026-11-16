@@ -1,0 +1,36 @@
+name: review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-preflight-1
+path: desk/reviews/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/preflight-1.md
+source_hash: cbe809d2280fae9fec555f8c63540645d80e7381f0af87e8c328cd7a379f5399
+content_hash: 7ef65d7bb63785b6ea86026e4fcdd1fc4587577294586c7d7352a46220551117
+field_hashes:
+  id: 7393c80a4b7093d4d71fe5edfb50db737de7a06646d49b1eb925742860f290de
+  title: 5681044f18b512cf125e00f30454727e063c03ff0f27576d75e7eaa0b526431c
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 8088949d2c81e68b2f7e59d6f4534fb49dee7777ab875e9e2df0dc3995dce25d
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: eb722189d1567beaf43daa8bbc36dc2fb3dcc7218b83f0f1a5735b59ceb84ea2
+  input_sha256: 048e854fdf9f2640cf14506eacec1204b624f1ce3c854753344e922aebef3b69
+  output_sha256: afa96c8d2ff925edb938ab8729dd74055ce557db33df58b0e9b63b170d10153e
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 3f5a66c7d3af99c1992087c5ef6cb836bec136d94cd75e0ac1f30d1df1516678
+  created_at: b8eb20eca6a4e35feb04a0d45117c71b6caf348376682760cf635a19f665cdf7
+  disposed_at: 8fb51f4347ccd6710b2d82d5d0cd0c9e1fb6c33db677d4eebfbda3571a7a396f
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 990b712fa270a0b4b3c71ac424d36ec7669e6ce3813883ae60f34110a359d0db
+  disposition: 9205905fb787f2e1a3c24c8d4a6035528cf9cb7595ee2f4edb2b0fa2c1648b77
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T08:29:43Z'
+  authority: generated
+  via: save_document_payload

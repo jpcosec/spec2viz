@@ -1,0 +1,212 @@
+               total        used        free      shared  buff/cache   available
+Mem:              31          10          10           1          11          20
+Swap:             15          10           5
+### $ SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/
+bringing up nodes...
+bringing up nodes...
+
+.......................x.........................x...................... [  9%]
+.....x.........................................EEEEE.................... [ 19%]
+..........x............................................................. [ 29%]
+........................................................................ [ 39%]
+........................................................................ [ 48%]
+........................................................................ [ 58%]
+....................................x................................... [ 68%]
+........................................................................ [ 78%]
+........................................................................ [ 87%]
+........................................................................ [ 97%]
+..................                                                       [100%]
+==================================== ERRORS ====================================
+____ ERROR at setup of test_the_server_of_sldb_serves_its_tools_and_specirs ____
+[gw1] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+tmp_path_factory = TempPathFactory(_given_basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _trace=<pluggy._tracing....>, _basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _retention_count=3, _retention_policy='all')
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    @pytest.fixture(scope="session")
+    def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
+        """The copy the read tools are served from; nothing writes to it."""
+>       return mount_copy(tmp_path_factory, "specir-store")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:81: in mount_copy
+    sldb("stores", "update", "--store", ".sldb", cwd=root)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cwd = PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR')
+args = ('stores', 'update', '--store', '.sldb')
+
+    def sldb(*args: str, cwd: Path) -> subprocess.CompletedProcess:
+        """Run the public `sldb` CLI of this environment; fail the test with its output on error."""
+        command = [str(Path(sys.executable).with_name("sldb")), *args]
+        done = subprocess.run(command, cwd=cwd, capture_output=True, text=True)
+        if done.returncode != 0:
+>           pytest.fail(f"{' '.join(args)} failed ({done.returncode}):\n{done.stdout}\n{done.stderr}")
+E           Failed: stores update --store .sldb failed (1):
+E           Updated store at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/.sldb
+E           Skipped missing documents: run-deskops-e-31500ac1cfa1, run-deskops-t-5a39cc2dfbf8
+E           Semantic index: 278 processed, 2 missing
+E           Sections index: 278 processed, 2 missing, 0 empty, 0 unparseable headings
+E           
+E           [warning] Sections rebuild: doc 'run-deskops-e-31500ac1cfa1' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-e-31500ac1cfa1/run.md
+E           [warning] Sections rebuild: doc 'run-deskops-t-5a39cc2dfbf8' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-t-5a39cc2dfbf8/run.md
+
+tests/conftest.py:60: Failed
+____________ ERROR at setup of test_at_level_0_no_write_tool_exists ____________
+[gw1] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+tmp_path_factory = TempPathFactory(_given_basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _trace=<pluggy._tracing....>, _basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _retention_count=3, _retention_policy='all')
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    @pytest.fixture(scope="session")
+    def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
+        """The copy the read tools are served from; nothing writes to it."""
+>       return mount_copy(tmp_path_factory, "specir-store")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:81: in mount_copy
+    sldb("stores", "update", "--store", ".sldb", cwd=root)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cwd = PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR')
+args = ('stores', 'update', '--store', '.sldb')
+
+    def sldb(*args: str, cwd: Path) -> subprocess.CompletedProcess:
+        """Run the public `sldb` CLI of this environment; fail the test with its output on error."""
+        command = [str(Path(sys.executable).with_name("sldb")), *args]
+        done = subprocess.run(command, cwd=cwd, capture_output=True, text=True)
+        if done.returncode != 0:
+>           pytest.fail(f"{' '.join(args)} failed ({done.returncode}):\n{done.stdout}\n{done.stderr}")
+E           Failed: stores update --store .sldb failed (1):
+E           Updated store at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/.sldb
+E           Skipped missing documents: run-deskops-e-31500ac1cfa1, run-deskops-t-5a39cc2dfbf8
+E           Semantic index: 278 processed, 2 missing
+E           Sections index: 278 processed, 2 missing, 0 empty, 0 unparseable headings
+E           
+E           [warning] Sections rebuild: doc 'run-deskops-e-31500ac1cfa1' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-e-31500ac1cfa1/run.md
+E           [warning] Sections rebuild: doc 'run-deskops-t-5a39cc2dfbf8' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-t-5a39cc2dfbf8/run.md
+
+tests/conftest.py:60: Failed
+________ ERROR at setup of test_specir_types_over_a_store_without_them _________
+[gw1] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+tmp_path_factory = TempPathFactory(_given_basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _trace=<pluggy._tracing....>, _basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _retention_count=3, _retention_policy='all')
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    @pytest.fixture(scope="session")
+    def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
+        """The copy the read tools are served from; nothing writes to it."""
+>       return mount_copy(tmp_path_factory, "specir-store")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:81: in mount_copy
+    sldb("stores", "update", "--store", ".sldb", cwd=root)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cwd = PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR')
+args = ('stores', 'update', '--store', '.sldb')
+
+    def sldb(*args: str, cwd: Path) -> subprocess.CompletedProcess:
+        """Run the public `sldb` CLI of this environment; fail the test with its output on error."""
+        command = [str(Path(sys.executable).with_name("sldb")), *args]
+        done = subprocess.run(command, cwd=cwd, capture_output=True, text=True)
+        if done.returncode != 0:
+>           pytest.fail(f"{' '.join(args)} failed ({done.returncode}):\n{done.stdout}\n{done.stderr}")
+E           Failed: stores update --store .sldb failed (1):
+E           Updated store at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/.sldb
+E           Skipped missing documents: run-deskops-e-31500ac1cfa1, run-deskops-t-5a39cc2dfbf8
+E           Semantic index: 278 processed, 2 missing
+E           Sections index: 278 processed, 2 missing, 0 empty, 0 unparseable headings
+E           
+E           [warning] Sections rebuild: doc 'run-deskops-e-31500ac1cfa1' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-e-31500ac1cfa1/run.md
+E           [warning] Sections rebuild: doc 'run-deskops-t-5a39cc2dfbf8' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-t-5a39cc2dfbf8/run.md
+
+tests/conftest.py:60: Failed
+_ ERROR at setup of test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server _
+[gw1] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+tmp_path_factory = TempPathFactory(_given_basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _trace=<pluggy._tracing....>, _basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _retention_count=3, _retention_policy='all')
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    @pytest.fixture(scope="session")
+    def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
+        """The copy the read tools are served from; nothing writes to it."""
+>       return mount_copy(tmp_path_factory, "specir-store")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:81: in mount_copy
+    sldb("stores", "update", "--store", ".sldb", cwd=root)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cwd = PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR')
+args = ('stores', 'update', '--store', '.sldb')
+
+    def sldb(*args: str, cwd: Path) -> subprocess.CompletedProcess:
+        """Run the public `sldb` CLI of this environment; fail the test with its output on error."""
+        command = [str(Path(sys.executable).with_name("sldb")), *args]
+        done = subprocess.run(command, cwd=cwd, capture_output=True, text=True)
+        if done.returncode != 0:
+>           pytest.fail(f"{' '.join(args)} failed ({done.returncode}):\n{done.stdout}\n{done.stderr}")
+E           Failed: stores update --store .sldb failed (1):
+E           Updated store at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/.sldb
+E           Skipped missing documents: run-deskops-e-31500ac1cfa1, run-deskops-t-5a39cc2dfbf8
+E           Semantic index: 278 processed, 2 missing
+E           Sections index: 278 processed, 2 missing, 0 empty, 0 unparseable headings
+E           
+E           [warning] Sections rebuild: doc 'run-deskops-e-31500ac1cfa1' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-e-31500ac1cfa1/run.md
+E           [warning] Sections rebuild: doc 'run-deskops-t-5a39cc2dfbf8' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-t-5a39cc2dfbf8/run.md
+
+tests/conftest.py:60: Failed
+_ ERROR at setup of test_reading_through_every_tool_leaves_every_store_untouched _
+[gw1] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+tmp_path_factory = TempPathFactory(_given_basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _trace=<pluggy._tracing....>, _basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _retention_count=3, _retention_policy='all')
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    @pytest.fixture(scope="session")
+    def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
+        """The copy the read tools are served from; nothing writes to it."""
+>       return mount_copy(tmp_path_factory, "specir-store")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:81: in mount_copy
+    sldb("stores", "update", "--store", ".sldb", cwd=root)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cwd = PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR')
+args = ('stores', 'update', '--store', '.sldb')
+
+    def sldb(*args: str, cwd: Path) -> subprocess.CompletedProcess:
+        """Run the public `sldb` CLI of this environment; fail the test with its output on error."""
+        command = [str(Path(sys.executable).with_name("sldb")), *args]
+        done = subprocess.run(command, cwd=cwd, capture_output=True, text=True)
+        if done.returncode != 0:
+>           pytest.fail(f"{' '.join(args)} failed ({done.returncode}):\n{done.stdout}\n{done.stderr}")
+E           Failed: stores update --store .sldb failed (1):
+E           Updated store at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/.sldb
+E           Skipped missing documents: run-deskops-e-31500ac1cfa1, run-deskops-t-5a39cc2dfbf8
+E           Semantic index: 278 processed, 2 missing
+E           Sections index: 278 processed, 2 missing, 0 empty, 0 unparseable headings
+E           
+E           [warning] Sections rebuild: doc 'run-deskops-e-31500ac1cfa1' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-e-31500ac1cfa1/run.md
+E           [warning] Sections rebuild: doc 'run-deskops-t-5a39cc2dfbf8' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-t-5a39cc2dfbf8/run.md
+
+tests/conftest.py:60: Failed
+=========================== short test summary info ============================
+ERROR tests/test_mcp_extension.py::test_the_server_of_sldb_serves_its_tools_and_specirs
+ERROR tests/test_mcp_extension.py::test_at_level_0_no_write_tool_exists - Fai...
+ERROR tests/test_mcp_extension.py::test_specir_types_over_a_store_without_them
+ERROR tests/test_mcp_extension.py::test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server
+ERROR tests/test_mcp_extension.py::test_reading_through_every_tool_leaves_every_store_untouched
+728 passed, 5 xfailed, 5 errors in 243.02s (0:04:03)
+rc=1

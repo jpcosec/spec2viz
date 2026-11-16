@@ -1,0 +1,14 @@
+ .sldb/core/documents/BoardDoc/Board.yaml           |  8 ++--
+ ...41logos-consumidores-y-retiro-de-spec2viz.yaml" |  8 ++--
+ .sldb/core/models/BoardDoc.yaml                    |  4 +-
+ .sldb/core/models/InboxNoteDoc.yaml                |  6 +--
+ .sldb/core/models/ReviewDoc.yaml                   |  6 +--
+ .sldb/core/models/RunDoc.yaml                      |  8 ++--
+ .sldb/core/models/TaskCodeDoc.yaml                 |  6 +--
+ .sldb/core/store_index.yaml                        |  2 +-
+ desk/tasks/Board.md                                |  4 +-
+ ...\241logos-consumidores-y-retiro-de-spec2viz.md" |  3 +-
+ docs/spec2viz/acta-de-retiro.md                    | 33 +++++++-------
+ docs/spec2viz/matriz-de-cobertura.md               | 52 +++++++++++++---------
+ src/specir/visual/notation_style.py                | 25 ++++++++++-
+ 13 files changed, 102 insertions(+), 63 deletions(-)

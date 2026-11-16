@@ -1,0 +1,118 @@
+{
+  "key": "task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/bundle",
+  "input_sha256": "af982011b1cf3b0cad281a738a594cf61a06a3d50cb09cf940c0c97187c2d8d1",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261116-102502/context-review/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/bundle/af982011b1cf3b0cad281a738a594cf61a06a3d50cb09cf940c0c97187c2d8d1/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb.md",
+      "sha256": "961d190c009913bbe3d0fd7091b7337b76eecdcc127c5ea6edda69a50ebc28f7",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/phase.md",
+      "sha256": "cc7f0b52d4153679b69fa0dccee57ec4ac915602a6dbd8d2ff226764c90a2e5f",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/execution.md",
+      "sha256": "a16c7c317f4eec9ce8659464625ae18b5fe94d790e3fdd3755296dcc51898bdc",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/testing.md",
+      "sha256": "e5b616e2d90b009c2cbac612d281727dbb0f13ad23fdd62a5dd8a6dbbb08aca6",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/rituals/closeout.md",
+      "sha256": "b8eed83052f326b72b3a33f4523e8f70068c7eb76bd270691425519019ca88c1",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md",
+      "sha256": "4b48dc0685cc3b457dfc02102855266f1c1fb6e13bcea74758c908562e28ba37",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md",
+      "sha256": "aecd844c7ddd17f0b5cc0d541e28362e0ae2fb69e7cbeeb3c6f5496d0059df19",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md",
+      "sha256": "29cff042e91d7b973c448f91c31ae71409e44b054119b1471d18797c23a34d8e",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md",
+      "sha256": "1e506d60129a5e8581506f1ac4b58aef645417948a7e2da697625943afff1db0",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-specir-reemplaza-a-spec2viz-y-cubre-todas-sus-funciones.md",
+      "sha256": "3099bda4a2859795482fc5c847ddbd34f48d6c714d3b3c6629c46628b588fd03",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-el-vocabulario-visual-y-el-resolvedor-de-vistas-ya-viven-en-sldb.md",
+      "sha256": "9912e4c0539e907ef5cb2ced8705b938763773eab5c4e788e289bc766719b14e",
+      "projection": "whole_file"
+    },
+    {
+      "path": "desk/atoms/atom-specir-depende-solo-de-la-api-pública-de-sldb.md",
+      "sha256": "f2d8b7f31c3332a9cb45045467a73135c5be7de6dbb76090f05c11d26f1ee0a7",
+      "projection": "whole_file"
+    },
+    {
+      "path": "tests/visual/test_notations_parity.py",
+      "sha256": "fa530a0f60671f55720b2a4a4ab077c8bc6da785ae5a7b93bebaa3e9f2ac758d",
+      "projection": "whole_file"
+    },
+    {
+      "path": "src/specir/visual/notation_style.py",
+      "sha256": "475af75ea19d92c15ffebc8410b36f314932ca417008d7f0e85e1bc437d5f476",
+      "projection": "whole_file"
+    },
+    {
+      "path": "docs/spec2viz/acta-de-retiro.md",
+      "sha256": "ffaa35215c4371969d909e8192fdeb6f853b9cd4379f770f57a5f8c3ac5344bf",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [
+    {
+      "path": "tests/visual/fixtures/spec2viz-notations/",
+      "reason": "directory"
+    },
+    {
+      "path": "docs/spec2viz/matriz-de-cobertura.md",
+      "reason": "size>=60000",
+      "size": 85239
+    }
+  ],
+  "started": "2026-11-16T10:25:02.647315+00:00",
+  "finished": "2026-11-16T10:25:35.946170+00:00",
+  "retry_reason": "El contrato cambió en el ciclo de corrección 1 (ver preflight-3)."
+}

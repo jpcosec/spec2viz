@@ -1,0 +1,54 @@
+$ git diff --stat tests/conftest.py
+ tests/conftest.py | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+rc=0
+
+$ git diff tests/conftest.py | grep RUN_DOCS
++RUN_DOCS = "runs/subagents/*/run.md"
++    for run_doc in sorted(REPO.glob(RUN_DOCS)):
+rc=0
+
+$ git -C ../sldb merge-base --is-ancestor 06dbcf02 HEAD
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider 'tests/visual/test_catalog.py::test_label_key_of_sldb_splits_underscores_like_norm_key'
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_label_key_of_sldb_splits_underscores_like_norm_key ____________
+[XPASS(strict)] sldb's label_key keeps '_' (\w) and normKey does not: asked to sldb's desk (matching/label-key-underscore)
+=========================== short test summary info ============================
+FAILED tests/visual/test_catalog.py::test_label_key_of_sldb_splits_underscores_like_norm_key
+1 failed in 0.59s
+rc=1
+
+# edición: borrada la línea 522 (único @pytest.mark.xfail del archivo; el brief decía 521, desfase de una línea)
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider 'tests/visual/test_catalog.py::test_label_key_of_sldb_splits_underscores_like_norm_key'
+.                                                                        [100%]
+1 passed in 0.72s
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider -rxX tests/visual/test_catalog.py
+....................................................................     [100%]
+68 passed in 77.82s (0:01:17)
+rc=0
+
+$ git diff tests/visual/test_catalog.py
+diff --git a/tests/visual/test_catalog.py b/tests/visual/test_catalog.py
+index 81b3012..9a6d78f 100644
+--- a/tests/visual/test_catalog.py
++++ b/tests/visual/test_catalog.py
+@@ -519,7 +519,6 @@ def test_label_key_of_sldb_is_the_template_s_norm_key():
+ 
+ 
+ @needs_node
+-@pytest.mark.xfail(strict=True, reason="sldb's label_key keeps '_' (\\w) and normKey does not: asked to sldb's desk (matching/label-key-underscore)")
+ def test_label_key_of_sldb_splits_underscores_like_norm_key():
+     """An element without a label is drawn with its id: `post_published` must key the same in both."""
+     from sldb.api.matching import label_key
+rc=0
+
+$ deskops graph missing --root .
+No missing graph references found.
+rc=0
+

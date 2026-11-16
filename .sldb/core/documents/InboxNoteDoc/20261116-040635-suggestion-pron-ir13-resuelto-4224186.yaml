@@ -1,0 +1,18 @@
+name: 20261116-040635-suggestion-pron-ir13-resuelto-4224186
+path: desk/inbox/20261116-040635-suggestion-pron-ir13-resuelto-4224186.md
+source_hash: 5297d11264ba5cf302533e966850fa59594a559f77d09ff5bd5cfdf680d03c92
+content_hash: f315dd43230cc45ef1a6744928ba97056d6e960d84dca659467a4f23d263cdad
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: 8e7d42497d066cf2702e1aec85ede74beecbb16e002906840a4e20c4e1e3e0c7
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: 0dc98067019d823fa4acab996dd3ebd0e0ae922449c43c95f51a18a791925e56
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  title: 7c2975db9d9078b94c9cf0fb3169186c0e91db7dfcd6b29b3f5e0af3ef8d2d12
+  body: 2b813227ca145e7e9b6b850e1ca143c6cec01dec407d520628f7111a05efa305
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null

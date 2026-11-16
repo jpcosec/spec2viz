@@ -1,0 +1,449 @@
+### $ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/visual/test_notations_parity.py -rxXs
+.....................x.................................................. [ 94%]
+....                                                                     [100%]
+=========================== short test summary info ============================
+XFAIL tests/visual/test_notations_parity.py::test_invalid_notations_are_rejected[changes1-not a spec2viz diagram type] - sldb rejects the unknown diagram_type with another message: "diagram_type 'mindmap' is not a valid diagram type" (sldb/notations/notation_spec.py), where spec2viz said "not a spec2viz diagram type"; reported to sldb's desk
+75 passed, 1 xfailed in 59.36s
+rc=0
+
+### $ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_imports.py
+.........                                                                [100%]
+9 passed in 0.72s
+rc=0
+
+### $ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_matriz_cobertura_spec2viz.py
+.....                                                                    [100%]
+5 passed in 0.20s
+rc=0
+
+### $ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/visual/test_retirement_gate.py
+......x                                                                  [100%]
+6 passed, 1 xfailed in 5.84s
+rc=0
+
+### $ grep -rnE '^(from|import) spec2viz' tests/visual/test_notations_parity.py
+rc=1 (1 = sin coincidencias)
+### $ grep -rnE 'from sldb\.(notations|models|store|core)' tests/visual/test_notations_parity.py
+rc=1 (1 = sin coincidencias)
+### extra: grep -nE 'spec2viz|import sldb|from sldb' (any form)
+36:import sldb.api as sldb_api
+38:from sldb.api import ViewDoc
+39:from sldb.api.notations import (
+51:from sldb.api.notations import load_spec as load
+52:from sldb.api.notations import validate_spec as validate
+504:    from sldb.api.notations import sync_catalog
+
+### $ timeout 300 .venv/bin/specir retirement check --path graph_ui=../UIs/graph_ui --path deskops=../deskops --path pron=../pron --path sldb=../sldb --path spec2viz/.sldb=../spec2viz/.sldb
+audited repos: graph_ui, deskops, pron, sldb, IR
+audited stores: spec2viz/.sldb
+dependencies: 119
+  graph_ui	.github/requirements-suite.txt:10	dependencia declarada	-e git+https://github.com/jpcosec/spec2viz@master#egg=spec2viz
+  graph_ui	frontends/mindmap/sldb_adapter.py:245	importación	from spec2viz.notation_view import ViewError, resolve_view
+  graph_ui	frontends/mindmap/sldb_adapter.py:437	importación	from spec2viz.notation_view import ViewError, resolve_documents
+  graph_ui	pyproject.toml:19	dependencia declarada	notation = ["spec2viz>=0.1.0"]
+  graph_ui	pyproject.toml:24	dependencia declarada	"spec2viz>=0.1.0",
+  graph_ui	tests/e2e_mindmap_notation.py:27	importación	spec2viz = pytest.importorskip("spec2viz")
+  graph_ui	tests/e2e_mindmap_notation.py:42	invocación del comando	if not all(p.exists() for p in pilots) or not shutil.which("spec2viz"):
+  graph_ui	tests/e2e_mindmap_notation.py:48	invocación del comando	subprocess.run(["spec2viz", "diagram", "sync", *(p.name for p in pilots), "--store", ".sldb"],
+  graph_ui	tests/e2e_notation_activity.py:121	invocación del comando	if not shutil.which("spec2viz"):
+  graph_ui	tests/e2e_notation_activity.py:128	invocación del comando	subprocess.run(["spec2viz", "diagram", "sync", *[s.name for s in specs], "--store", ".sldb"], cwd=root, check=True, capture_output=True)
+  graph_ui	tests/e2e_notation_class.py:51	invocación del comando	if not shutil.which("spec2viz"):
+  graph_ui	tests/e2e_notation_class.py:58	invocación del comando	subprocess.run(["spec2viz", "diagram", "sync", *[s.name for s in specs], "--store", ".sldb"], cwd=root, check=True, capture_output=True)
+  graph_ui	tests/e2e_notation_deployment.py:85	invocación del comando	if not shutil.which("spec2viz"):
+  graph_ui	tests/e2e_notation_deployment.py:92	invocación del comando	subprocess.run(["spec2viz", "diagram", "sync", *[s.name for s in specs], "--store", ".sldb"], cwd=root, check=True, capture_output=True)
+  graph_ui	tests/e2e_notation_legibility.py:38	importación	spec2viz = pytest.importorskip("spec2viz")
+  graph_ui	tests/e2e_notation_legibility.py:169	invocación del comando	if not ACTIVITY.exists() or not shutil.which("spec2viz"):
+  graph_ui	tests/e2e_notation_legibility.py:175	invocación del comando	subprocess.run(["spec2viz", "diagram", "sync", FIXTURE.name, DENSE.name, ACTIVITY.name, "--store", ".sldb"], cwd=root, check=True, capture_output=True)
+  graph_ui	tests/e2e_notation_sequence.py:101	invocación del comando	if not shutil.which("spec2viz"):
+  graph_ui	tests/e2e_notation_sequence.py:108	invocación del comando	subprocess.run(["spec2viz", "diagram", "sync", *[s.name for s in specs], "--store", ".sldb"], cwd=root, check=True, capture_output=True)
+  graph_ui	tests/e2e_notation_style.py:141	invocación del comando	if not shutil.which("spec2viz"):
+  graph_ui	tests/e2e_notation_style.py:147	invocación del comando	subprocess.run(["spec2viz", "diagram", "sync", "component-infra.yml", "--notation", "infra.yml", "--store", ".sldb"],
+  graph_ui	tests/e2e_review_workbench_views.py:40	importación	spec2viz = pytest.importorskip("spec2viz")
+  graph_ui	tests/e2e_review_workbench_views.py:76	invocación del comando	subprocess.run(["spec2viz", "diagram", "sync", *pilots, "--store", ".sldb"], cwd=root, check=True, capture_output=True)
+  graph_ui	tests/e2e_review_workbench_views.py:86	invocación del comando	if not all((PILOTS / p).exists() for p in HERE + THERE) or not shutil.which("spec2viz"):
+  graph_ui	tests/e2e_review_workbench_views.py:96	invocación del comando	subprocess.run(["spec2viz", "diagram", "sync", "component-infra.yml", "--notation", "infra.yml", "--store", ".sldb"],
+  graph_ui	tests/test_mindmap_notation.py:20	importación	spec2viz = pytest.importorskip("spec2viz")
+  graph_ui	tests/test_mindmap_notation.py:21	importación	from spec2viz.notation_view import resolve_view  # noqa: E402
+  graph_ui	tests/test_mindmap_notation.py:40	invocación del comando	if not all(p.exists() for p in pilots) or not shutil.which("spec2viz"):
+  graph_ui	tests/test_mindmap_notation.py:45	invocación del comando	subprocess.run(["spec2viz", "diagram", "sync", *(p.name for p in pilots), "--store", ".sldb"],
+  graph_ui	tests/test_projection_views.py:18	importación	spec2viz = pytest.importorskip("spec2viz")
+  graph_ui	tests/test_projection_views.py:28	invocación del comando	if not all((PILOTS / p).exists() for p in pilots) or not shutil.which("spec2viz"):
+  graph_ui	tests/test_projection_views.py:33	invocación del comando	subprocess.run(["spec2viz", "diagram", "sync", *pilots, "--store", ".sldb"], cwd=root, check=True, capture_output=True)
+  graph_ui	tests/test_projection_views.py:82	invocación del comando	subprocess.run(["spec2viz", "diagram", "sync", "component-infra.yml", "--notation", "infra.yml", "--store", ".sldb"],
+  graph_ui	tests/test_projection_views.py:167	importación	pytest.importorskip("spec2viz.sldb_models").ViewDoc  # task a: the model lives in spec2viz
+  deskops	.claude/skills/deskops-workflow/SKILL.md:27	habilidad de agente	(`spec2viz diagram render` / `spec2viz catalog build`) derive from specs and decisions. Atoms
+  deskops	.claude/skills/deskops-workflow/SKILL.md:59	habilidad de agente	re-run `spec2viz diagram render` / `spec2viz catalog build`. Validate before rendering:
+  deskops	.claude/skills/deskops-workflow/SKILL.md:60	habilidad de agente	`spec2viz diagram validate <spec.yml>`.
+  deskops	.claude/skills/deskops-workflow/SKILL.md:101	habilidad de agente	| Validate a diagram spec | `spec2viz diagram validate <spec.yml>` |
+  deskops	.claude/skills/deskops-workflow/SKILL.md:102	habilidad de agente	| Render a diagram | `spec2viz diagram render <spec.yml> --out <dir> [--renderer mermaid\|plantuml\|vega\|d2\|antonia-html\|json]` |
+  deskops	.claude/skills/deskops-workflow/SKILL.md:103	habilidad de agente	| Build a diagram catalog | `spec2viz catalog build --config <catalog.yml> --out <out.html>` |
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:8	habilidad de agente	commands (`spec2viz render`, `spec2viz validate`, `spec2viz schema`, `spec2viz lint`) remain as
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:13	habilidad de agente	- `spec2viz diagram validate <spec.yml> [<spec2.yml> ...]` — validate one or more diagram specs
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:15	habilidad de agente	- `spec2viz diagram render <spec.yml> [<spec2.yml> ...] --out <dir> \
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:19	habilidad de agente	- `spec2viz diagram schema [--type sequence|state|component|activity|deployment|matrix] [--out <file>]`
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:21	habilidad de agente	- `spec2viz diagram generate` — generate a component spec from Python source AST (reverse
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:23	habilidad de agente	- `spec2viz diagram lint <spec-or-mmd> [...]` — lint rendered Mermaid for browser-breaking syntax.
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:27	habilidad de agente	- `spec2viz catalog build --config <vistas.yml-or-diagram-store.yml> --out <out.html> \
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:33	habilidad de agente	- `spec2viz catalog schema [--out <file>]` — JSON Schema for diagram-store / `project.yml` configs.
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:34	habilidad de agente	- `spec2viz catalog serve` — serve a built catalog locally with auto-save for viewer annotations
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:80	habilidad de agente	- `spec2viz render <spec.yml> --out <dir> [--renderer ...]` == `spec2viz diagram render`
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:81	habilidad de agente	- `spec2viz validate <spec.yml>` == `spec2viz diagram validate`
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:82	habilidad de agente	- `spec2viz schema [--type ...] [--out ...]` == `spec2viz diagram schema` (also accepts
+  deskops	.claude/skills/deskops-workflow/references/spec2viz-cli.md:84	habilidad de agente	- `spec2viz lint <spec-or-mmd>` == `spec2viz diagram lint`
+  deskops	.opencode/skills/use-spec2viz/SKILL.md:2	habilidad de agente	name: use-spec2viz
+  deskops	desk/drawer/plans/workspace-documental/render_diagram.py:7	invocación del comando	subprocess.run(['spec2viz','diagram','validate',str(B/'dag.diagram.yaml')],check=True)
+  deskops	desk/drawer/plans/workspace-documental/render_diagram.py:9	invocación del comando	subprocess.run(['spec2viz','diagram','render',str(B/'dag.diagram.yaml'),'--renderer',renderer,'--out',str(B)],check=True)
+  sldb	tests/notations/test_component_spec_python.py:43	importación	python_ast = pytest.importorskip("spec2viz.generators.python_ast")
+  IR	tests/test_matriz_cobertura_spec2viz.py:31	importación	main = importlib.import_module("spec2viz.cli").main
+  IR	tests/visual/parity.py:52	importación	from spec2viz.compilers import compile_ir
+  IR	tests/visual/parity.py:53	importación	from spec2viz.loader import load
+  IR	tests/visual/parity.py:54	importación	from spec2viz.validator import validate
+  IR	tests/visual/render_parity.py:74	importación	from spec2viz.compilers import compile_ir
+  IR	tests/visual/render_parity.py:75	importación	from spec2viz.loader import load
+  IR	tests/visual/render_parity.py:76	importación	from spec2viz.renderers import render
+  IR	tests/visual/render_parity.py:77	importación	from spec2viz.renderers.bpmn import render_bpmn_html
+  IR	tests/visual/render_parity.py:87	importación	from spec2viz.cli import DIAGRAM_RENDERERS
+  IR	tests/visual/render_parity.py:88	importación	from spec2viz.renderers import DEFAULT_RENDERER, EXT_MAP
+  IR	tests/visual/render_parity.py:94	importación	from spec2viz.renderers.view_mermaid import view_to_mermaid
+  IR	tests/visual/render_parity.py:100	importación	from spec2viz.linters.mermaid import lint_mermaid
+  IR	tests/visual/render_parity.py:106	importación	from spec2viz.schema import json_schema
+  IR	tests/visual/render_parity.py:112	importación	from spec2viz import render_to_file
+  IR	tests/visual/render_parity.py:119	importación	import spec2viz
+  IR	tests/visual/render_parity.py:190	importación	from spec2viz.linters.mermaid import lint_mermaid
+  IR	tests/visual/render_parity.py:191	importación	from spec2viz.schema import json_schema
+  IR	tests/visual/test_catalog_parity.py:39	importación	spec2viz = pytest.importorskip("spec2viz")
+  IR	tests/visual/test_catalog_parity.py:49	importación	from spec2viz.sldb_sync import check_catalog as oracle
+  IR	tests/visual/test_catalog_parity.py:102	importación	from spec2viz.sldb_sync import SpecSync as OracleSync
+  IR	tests/visual/test_catalog_parity.py:103	importación	from spec2viz.sldb_sync import sync_catalog as oracle_sync
+  IR	tests/visual/test_catalog_parity.py:122	importación	from spec2viz.cli import main
+  IR	tests/visual/test_catalog_parity.py:154	importación	from spec2viz.deskops import render_deskops
+  IR	tests/visual/test_catalog_parity.py:203	importación	from spec2viz.deskops import render_deskops
+  IR	tests/visual/test_lint_mermaid.py:86	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_cases.py:314	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_commands.py:251	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_parity.py:53	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_parity.py:59	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_parity.py:83	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_resources.py:62	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_schema.py:44	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:105	importación	spec2viz = pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:117	importación	from spec2viz.sldb_sync import SpecSync as Spec2VizSync
+  IR	tests/visual/test_sync_generation_parity.py:201	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:229	importación	import spec2viz.graph_import as oracle
+  IR	tests/visual/test_sync_generation_parity.py:258	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:259	importación	from spec2viz.graph_import import component_spec_from_graph as oracle_from_graph
+  IR	tests/visual/test_sync_generation_parity.py:260	importación	from spec2viz.graph_import import load_store_index
+  IR	tests/visual/test_sync_generation_parity.py:302	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:303	importación	from spec2viz.generators.python_ast import generate_python_ast_spec
+  IR	tests/visual/test_visual_parity.py:35	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_visual_parity.py:43	importación	pytest.importorskip("spec2viz")
+  spec2viz/.sldb	store.yaml:44	modelo registrado	model_ref: spec2viz.sldb_models:SpecDoc
+  spec2viz/.sldb	store.yaml:47	modelo registrado	model_ref: spec2viz.sldb_models:SpecNodeDoc
+  spec2viz/.sldb	store.yaml:50	modelo registrado	model_ref: spec2viz.sldb_models:NotationDoc
+  spec2viz/.sldb	store.yaml:53	modelo registrado	model_ref: spec2viz.sldb_models:GlyphDoc
+  spec2viz/.sldb	store.yaml:56	modelo registrado	model_ref: spec2viz.sldb_models:LinkDoc
+  spec2viz/.sldb	core/store_index.yaml:141	modelo registrado	model_ref: spec2viz.sldb_models:SpecDoc
+  spec2viz/.sldb	core/store_index.yaml:154	modelo registrado	model_ref: spec2viz.sldb_models:SpecNodeDoc
+  spec2viz/.sldb	core/store_index.yaml:167	modelo registrado	model_ref: spec2viz.sldb_models:NotationDoc
+  spec2viz/.sldb	core/store_index.yaml:180	modelo registrado	model_ref: spec2viz.sldb_models:GlyphDoc
+  spec2viz/.sldb	core/store_index.yaml:193	modelo registrado	model_ref: spec2viz.sldb_models:LinkDoc
+  spec2viz/.sldb	core/store_index.yaml:246	modelo registrado	model_ref: spec2viz.sldb_models:ViewDoc
+  spec2viz/.sldb	core/store_index.yaml:259	modelo registrado	model_ref: spec2viz.sldb_models:PaletteDoc
+  spec2viz/.sldb	core/models/GlyphDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:GlyphDoc
+  spec2viz/.sldb	core/models/LinkDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:LinkDoc
+  spec2viz/.sldb	core/models/NotationDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:NotationDoc
+  spec2viz/.sldb	core/models/PaletteDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:PaletteDoc
+  spec2viz/.sldb	core/models/SpecDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:SpecDoc
+  spec2viz/.sldb	core/models/SpecNodeDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:SpecNodeDoc
+  spec2viz/.sldb	core/models/ViewDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:ViewDoc
+rows not accredited: 13
+  SV-A17: abierta
+  SV-G08: abierta
+  SV-H01: abierta
+  SV-H03: abierta
+  SV-I02: abierta
+  SV-K09: abierta
+  SV-K16: abierta
+  SV-K18: abierta
+  SV-K21: abierta
+  SV-K22: abierta
+  SV-K23: abierta
+  SV-K26: abierta
+  SV-K29: abierta
+gate: failed, the retirement is not declared
+rc=1
+
+### $ deskops graph missing --root .
+No missing graph references found.
+rc=0
+
+### Comprobaciones de contrato (tester)
+$ git -C ../spec2viz rev-parse --short HEAD -> 91ba1d0; sldb HEAD 9307d485; IR HEAD 37f41ee
+$ git -C ../spec2viz diff --stat b624b75 91ba1d0 -- spec2viz tests docs/architecture (vacío = sin cambios de código/fixtures):
+rc=0
+-- pruebas de spec2viz b624b75 (5 archivos): 46; citadas en docstrings: 40 (únicas 40); def test_ en archivo nuevo: 42
+-- en spec2viz y no portadas:
+test_notation::test_cli_list_and_validate
+test_notation::test_cli_notation_sync
+test_notation_view::test_cli_view
+test_style_palette::test_notation_validate_gives_typed_errors
+test_style_palette::test_palette_cli_sync_writes_the_store_document
+test_style_palette::test_palette_validation_is_typed
+-- portadas que no existen en spec2viz:
+(fin)
+-- fixtures nuevas vs git -C ../spec2viz show b624b75:<ruta>:
+IDENTICAL notations/activity.yml
+IDENTICAL notations/component-view-matrix.yml
+IDENTICAL notations/component.yml
+IDENTICAL notations/deployment.yml
+IDENTICAL notations/reflection.yml
+IDENTICAL notations/statechart.yml
+IDENTICAL notations/uml-class.yml
+IDENTICAL notations/uml-sequence.yml
+IDENTICAL palettes/default.yml
+-- archivos no-desk/.sldb/runs cambiados (git status):
+ M ".sldb/core/documents/TaskCodeDoc/task-ir13-sync-generaci\303\263n-cat\303\241logos-consumidores-y-retiro-de-spec2viz.yaml"
+ M docs/spec2viz/acta-de-retiro.md
+ M docs/spec2viz/matriz-de-cobertura.md
+ M src/specir/visual/notation_style.py
+?? src/specir.egg-info/
+?? src/specir/__pycache__/
+?? src/specir/models/__pycache__/
+?? src/specir/visual/__pycache__/
+?? src/specir/visual/catalog/__pycache__/
+?? src/specir/visual/compilers/__pycache__/
+?? src/specir/visual/renderers/__pycache__/
+?? tests/__pycache__/
+?? tests/models/__pycache__/
+?? tests/visual/__pycache__/
+?? tests/visual/fixtures/spec2viz-notations/
+?? tests/visual/test_notations_parity.py
+-- deps acta vs check: iguales (119 líneas)
+-- filas abiertas en matriz «Acreditación (IR13)»: SV-A17 SV-G08 SV-H01 SV-H03 SV-I02 SV-K09 SV-K16 SV-K18 SV-K21 SV-K22 SV-K23 SV-K26 SV-K29 
+-- no acreditadas por el check: SV-A17 SV-G08 SV-H01 SV-H03 SV-I02 SV-K09 SV-K16 SV-K18 SV-K21 SV-K22 SV-K23 SV-K26 SV-K29 
+-- nota a sldb: 20261116-022332-suggestion-ir13e-mensaje-de-notationspec-ante-un-diagram-type-desconocido-difiere-del-de-spec2viz.md
+
+
+               total        used        free      shared  buff/cache   available
+Mem:              31          10          10           1          11          20
+Swap:             15          10           5
+### $ SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/
+bringing up nodes...
+bringing up nodes...
+
+.......................x.........................x...................... [  9%]
+.....x.........................................EEEEE.................... [ 19%]
+..........x............................................................. [ 29%]
+........................................................................ [ 39%]
+........................................................................ [ 48%]
+........................................................................ [ 58%]
+....................................x................................... [ 68%]
+........................................................................ [ 78%]
+........................................................................ [ 87%]
+........................................................................ [ 97%]
+..................                                                       [100%]
+==================================== ERRORS ====================================
+____ ERROR at setup of test_the_server_of_sldb_serves_its_tools_and_specirs ____
+[gw1] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+tmp_path_factory = TempPathFactory(_given_basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _trace=<pluggy._tracing....>, _basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _retention_count=3, _retention_policy='all')
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    @pytest.fixture(scope="session")
+    def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
+        """The copy the read tools are served from; nothing writes to it."""
+>       return mount_copy(tmp_path_factory, "specir-store")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:81: in mount_copy
+    sldb("stores", "update", "--store", ".sldb", cwd=root)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cwd = PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR')
+args = ('stores', 'update', '--store', '.sldb')
+
+    def sldb(*args: str, cwd: Path) -> subprocess.CompletedProcess:
+        """Run the public `sldb` CLI of this environment; fail the test with its output on error."""
+        command = [str(Path(sys.executable).with_name("sldb")), *args]
+        done = subprocess.run(command, cwd=cwd, capture_output=True, text=True)
+        if done.returncode != 0:
+>           pytest.fail(f"{' '.join(args)} failed ({done.returncode}):\n{done.stdout}\n{done.stderr}")
+E           Failed: stores update --store .sldb failed (1):
+E           Updated store at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/.sldb
+E           Skipped missing documents: run-deskops-e-31500ac1cfa1, run-deskops-t-5a39cc2dfbf8
+E           Semantic index: 278 processed, 2 missing
+E           Sections index: 278 processed, 2 missing, 0 empty, 0 unparseable headings
+E           
+E           [warning] Sections rebuild: doc 'run-deskops-e-31500ac1cfa1' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-e-31500ac1cfa1/run.md
+E           [warning] Sections rebuild: doc 'run-deskops-t-5a39cc2dfbf8' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-t-5a39cc2dfbf8/run.md
+
+tests/conftest.py:60: Failed
+____________ ERROR at setup of test_at_level_0_no_write_tool_exists ____________
+[gw1] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+tmp_path_factory = TempPathFactory(_given_basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _trace=<pluggy._tracing....>, _basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _retention_count=3, _retention_policy='all')
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    @pytest.fixture(scope="session")
+    def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
+        """The copy the read tools are served from; nothing writes to it."""
+>       return mount_copy(tmp_path_factory, "specir-store")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:81: in mount_copy
+    sldb("stores", "update", "--store", ".sldb", cwd=root)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cwd = PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR')
+args = ('stores', 'update', '--store', '.sldb')
+
+    def sldb(*args: str, cwd: Path) -> subprocess.CompletedProcess:
+        """Run the public `sldb` CLI of this environment; fail the test with its output on error."""
+        command = [str(Path(sys.executable).with_name("sldb")), *args]
+        done = subprocess.run(command, cwd=cwd, capture_output=True, text=True)
+        if done.returncode != 0:
+>           pytest.fail(f"{' '.join(args)} failed ({done.returncode}):\n{done.stdout}\n{done.stderr}")
+E           Failed: stores update --store .sldb failed (1):
+E           Updated store at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/.sldb
+E           Skipped missing documents: run-deskops-e-31500ac1cfa1, run-deskops-t-5a39cc2dfbf8
+E           Semantic index: 278 processed, 2 missing
+E           Sections index: 278 processed, 2 missing, 0 empty, 0 unparseable headings
+E           
+E           [warning] Sections rebuild: doc 'run-deskops-e-31500ac1cfa1' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-e-31500ac1cfa1/run.md
+E           [warning] Sections rebuild: doc 'run-deskops-t-5a39cc2dfbf8' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-t-5a39cc2dfbf8/run.md
+
+tests/conftest.py:60: Failed
+________ ERROR at setup of test_specir_types_over_a_store_without_them _________
+[gw1] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+tmp_path_factory = TempPathFactory(_given_basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _trace=<pluggy._tracing....>, _basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _retention_count=3, _retention_policy='all')
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    @pytest.fixture(scope="session")
+    def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
+        """The copy the read tools are served from; nothing writes to it."""
+>       return mount_copy(tmp_path_factory, "specir-store")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:81: in mount_copy
+    sldb("stores", "update", "--store", ".sldb", cwd=root)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cwd = PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR')
+args = ('stores', 'update', '--store', '.sldb')
+
+    def sldb(*args: str, cwd: Path) -> subprocess.CompletedProcess:
+        """Run the public `sldb` CLI of this environment; fail the test with its output on error."""
+        command = [str(Path(sys.executable).with_name("sldb")), *args]
+        done = subprocess.run(command, cwd=cwd, capture_output=True, text=True)
+        if done.returncode != 0:
+>           pytest.fail(f"{' '.join(args)} failed ({done.returncode}):\n{done.stdout}\n{done.stderr}")
+E           Failed: stores update --store .sldb failed (1):
+E           Updated store at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/.sldb
+E           Skipped missing documents: run-deskops-e-31500ac1cfa1, run-deskops-t-5a39cc2dfbf8
+E           Semantic index: 278 processed, 2 missing
+E           Sections index: 278 processed, 2 missing, 0 empty, 0 unparseable headings
+E           
+E           [warning] Sections rebuild: doc 'run-deskops-e-31500ac1cfa1' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-e-31500ac1cfa1/run.md
+E           [warning] Sections rebuild: doc 'run-deskops-t-5a39cc2dfbf8' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-t-5a39cc2dfbf8/run.md
+
+tests/conftest.py:60: Failed
+_ ERROR at setup of test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server _
+[gw1] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+tmp_path_factory = TempPathFactory(_given_basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _trace=<pluggy._tracing....>, _basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _retention_count=3, _retention_policy='all')
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    @pytest.fixture(scope="session")
+    def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
+        """The copy the read tools are served from; nothing writes to it."""
+>       return mount_copy(tmp_path_factory, "specir-store")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:81: in mount_copy
+    sldb("stores", "update", "--store", ".sldb", cwd=root)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cwd = PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR')
+args = ('stores', 'update', '--store', '.sldb')
+
+    def sldb(*args: str, cwd: Path) -> subprocess.CompletedProcess:
+        """Run the public `sldb` CLI of this environment; fail the test with its output on error."""
+        command = [str(Path(sys.executable).with_name("sldb")), *args]
+        done = subprocess.run(command, cwd=cwd, capture_output=True, text=True)
+        if done.returncode != 0:
+>           pytest.fail(f"{' '.join(args)} failed ({done.returncode}):\n{done.stdout}\n{done.stderr}")
+E           Failed: stores update --store .sldb failed (1):
+E           Updated store at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/.sldb
+E           Skipped missing documents: run-deskops-e-31500ac1cfa1, run-deskops-t-5a39cc2dfbf8
+E           Semantic index: 278 processed, 2 missing
+E           Sections index: 278 processed, 2 missing, 0 empty, 0 unparseable headings
+E           
+E           [warning] Sections rebuild: doc 'run-deskops-e-31500ac1cfa1' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-e-31500ac1cfa1/run.md
+E           [warning] Sections rebuild: doc 'run-deskops-t-5a39cc2dfbf8' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-t-5a39cc2dfbf8/run.md
+
+tests/conftest.py:60: Failed
+_ ERROR at setup of test_reading_through_every_tool_leaves_every_store_untouched _
+[gw1] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+tmp_path_factory = TempPathFactory(_given_basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _trace=<pluggy._tracing....>, _basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1'), _retention_count=3, _retention_policy='all')
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    @pytest.fixture(scope="session")
+    def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
+        """The copy the read tools are served from; nothing writes to it."""
+>       return mount_copy(tmp_path_factory, "specir-store")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/conftest.py:95: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:81: in mount_copy
+    sldb("stores", "update", "--store", ".sldb", cwd=root)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cwd = PosixPath('/dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR')
+args = ('stores', 'update', '--store', '.sldb')
+
+    def sldb(*args: str, cwd: Path) -> subprocess.CompletedProcess:
+        """Run the public `sldb` CLI of this environment; fail the test with its output on error."""
+        command = [str(Path(sys.executable).with_name("sldb")), *args]
+        done = subprocess.run(command, cwd=cwd, capture_output=True, text=True)
+        if done.returncode != 0:
+>           pytest.fail(f"{' '.join(args)} failed ({done.returncode}):\n{done.stdout}\n{done.stderr}")
+E           Failed: stores update --store .sldb failed (1):
+E           Updated store at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/.sldb
+E           Skipped missing documents: run-deskops-e-31500ac1cfa1, run-deskops-t-5a39cc2dfbf8
+E           Semantic index: 278 processed, 2 missing
+E           Sections index: 278 processed, 2 missing, 0 empty, 0 unparseable headings
+E           
+E           [warning] Sections rebuild: doc 'run-deskops-e-31500ac1cfa1' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-e-31500ac1cfa1/run.md
+E           [warning] Sections rebuild: doc 'run-deskops-t-5a39cc2dfbf8' missing at /dev/shm/pytest-of-robocop/pytest-130/popen-gw1/specir-store0/IR/runs/subagents/deskops-t-5a39cc2dfbf8/run.md
+
+tests/conftest.py:60: Failed
+=========================== short test summary info ============================
+ERROR tests/test_mcp_extension.py::test_the_server_of_sldb_serves_its_tools_and_specirs
+ERROR tests/test_mcp_extension.py::test_at_level_0_no_write_tool_exists - Fai...
+ERROR tests/test_mcp_extension.py::test_specir_types_over_a_store_without_them
+ERROR tests/test_mcp_extension.py::test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server
+ERROR tests/test_mcp_extension.py::test_reading_through_every_tool_leaves_every_store_untouched
+728 passed, 5 xfailed, 5 errors in 243.02s (0:04:03)
+rc=1
+
+### Repro en árbol limpio (git archive HEAD 37f41ee + los 5 archivos del ejecutor, sin el estado sin commitear de desk/.sldb/runs del coordinador) en /dev/shm/tester-5a39-clean/IR
+$ SPECIR_MMDC=... TMPDIR=/dev/shm flock /dev/shm/sldb1-tests.lock /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_mcp_extension.py
+rc=124
+
+### Reintento (el anterior agotó 1200 s esperando el lock, rc 124 sin correr pytest); espera del lock sin tope, pytest con timeout 1200
+$ flock /dev/shm/sldb1-tests.lock timeout 1200 .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_mcp_extension.py   (cwd árbol limpio)
+.....                                                                    [100%]
+5 passed in 83.47s (0:01:23)
+rc=0
+

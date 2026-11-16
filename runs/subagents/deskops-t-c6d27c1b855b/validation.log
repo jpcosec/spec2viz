@@ -1,0 +1,75 @@
+### V1 2026-11-16T07:27:27-03:00: git -C ../sldb merge-base --is-ancestor 06dbcf02 HEAD
+rc=0
+06dbcf02 matching: label_key trata el guion bajo como separador, igual que normKey del catálogo
+f515d91c1ca8c1086005b06a8dd7dbfe04cb02e9
+### V2 2026-11-16T07:27:27-03:00: git diff tests/visual/test_catalog.py
+diff --git a/tests/visual/test_catalog.py b/tests/visual/test_catalog.py
+index 81b3012..9a6d78f 100644
+--- a/tests/visual/test_catalog.py
++++ b/tests/visual/test_catalog.py
+@@ -519,7 +519,6 @@ def test_label_key_of_sldb_is_the_template_s_norm_key():
+ 
+ 
+ @needs_node
+-@pytest.mark.xfail(strict=True, reason="sldb's label_key keeps '_' (\\w) and normKey does not: asked to sldb's desk (matching/label-key-underscore)")
+ def test_label_key_of_sldb_splits_underscores_like_norm_key():
+     """An element without a label is drawn with its id: `post_published` must key the same in both."""
+     from sldb.api.matching import label_key
+rc=0
+ tests/visual/test_catalog.py | 1 -
+ 1 file changed, 1 deletion(-)
+### V3 2026-11-16T07:27:27-03:00: pytest test_catalog.py
+....................................................................     [100%]
+68 passed in 102.12s (0:01:42)
+rc=0
+### V3b 2026-11-16T07:29:14-03:00: sldb instalado desde
+/mnt/ssd/proyectos/SLDB_1/sldb/src/sldb/__init__.py
+post published
+rc=0
+ tests/conftest.py | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+2
+### V4 free -g
+               total        used        free      shared  buff/cache   available
+Mem:              31          13           7           1          12          17
+Swap:             15           9           6
+### V4 2026-11-16T07:29:19-03:00: suite completa
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  9%]
+.........x....x......................................................... [ 19%]
+........................................................x............... [ 29%]
+........................................................................ [ 39%]
+........................................................................ [ 48%]
+........................................................................ [ 58%]
+....................................................x................... [ 68%]
+........................................................................ [ 78%]
+........................................................................ [ 87%]
+........................................................................ [ 97%]
+..................                                                       [100%]
+=========================== short test summary info ============================
+XFAIL tests/models/test_blog_chain.py::test_a_declared_edge_is_authored - An edge is a RelationDoc, whose model's authority is generated; SLDB lets no write set authored (IR04 note sldb:20261115-022655, point 4)
+XFAIL tests/models/test_blog_chain.py::test_a_relation_between_types_not_allowed_is_refused_before_writing - SLDB checks an edge against its RelationTypeDoc only after the write (check_edges); asked by note sldb:20261115-022655 (IR04), see the pending of sldb mcp (sldb.mcp.write.pending)
+XFAIL tests/visual/test_notations_parity.py::test_invalid_notations_are_rejected[changes1-not a spec2viz diagram type] - sldb rejects the unknown diagram_type with another message: "diagram_type 'mindmap' is not a valid diagram type" (sldb/notations/notation_spec.py), where spec2viz said "not a spec2viz diagram type"; reported to sldb's desk
+XFAIL tests/visual/test_retirement_gate.py::test_the_real_universe_has_no_dependency_and_every_row_is_accredited - consumers still depend on spec2viz and rows remain open: docs/spec2viz/acta-de-retiro.md
+734 passed, 4 xfailed in 235.95s (0:03:55)
+rc=0  (salida completa en suite.log) 2026-11-16T07:35:03-03:00
+### V5 2026-11-16T07:35:13-03:00: deskops graph missing --root .
+No missing graph references found.
+rc=0
+### V6 2026-11-16T07:35:14-03:00: superficie tocada (sin desk/, .sldb/, runs/, __pycache__, egg-info) vs git-status de e-f98a77856867 y e-31500ac1cfa1
+git diff --stat (fuera de desk/.sldb):
+ docs/spec2viz/acta-de-retiro.md      | 33 ++++++++++++-----------
+ docs/spec2viz/matriz-de-cobertura.md | 52 ++++++++++++++++++++++--------------
+ src/specir/visual/notation_style.py  | 25 +++++++++++++++--
+ tests/conftest.py                    |  9 ++++++-
+ tests/visual/test_catalog.py         |  1 -
+ 5 files changed, 81 insertions(+), 39 deletions(-)
+untracked fuera de desk/.sldb/runs:
+?? tests/visual/fixtures/spec2viz-notations/
+?? tests/visual/test_notations_parity.py
+unica entrada nueva frente a la union de ambos snapshots: ' M tests/visual/test_catalog.py'
+conftest vs deskops-e-f98a77856867/diff.patch:
+identico rc=0
+IR13e: diff-stat actual 33/52/25 = runs/subagents/deskops-e-31500ac1cfa1/diff-stat.txt; mtimes de archivos ajenos <= 05:31, test_catalog.py 07:24

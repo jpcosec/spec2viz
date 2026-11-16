@@ -1,0 +1,40 @@
+## main
+ M .sldb/core/documents/BoardDoc/Board.yaml
+ M ".sldb/core/documents/TaskCodeDoc/task-ir13-sync-generaci\303\263n-cat\303\241logos-consumidores-y-retiro-de-spec2viz.yaml"
+ M .sldb/core/models/BoardDoc.yaml
+ M .sldb/core/models/InboxNoteDoc.yaml
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/store_index.yaml
+ M desk/tasks/Board.md
+ M "desk/tasks/task-ir13-sync-generaci\303\263n-cat\303\241logos-consumidores-y-retiro-de-spec2viz.md"
+ M docs/spec2viz/acta-de-retiro.md
+ M docs/spec2viz/matriz-de-cobertura.md
+ M src/specir/visual/notation_style.py
+?? .sldb/core/documents/InboxNoteDoc/
+?? .sldb/core/documents/ReviewDoc/review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-preflight-2.yaml
+?? .sldb/core/documents/RunDoc/
+?? .sldb/core/documents/TaskCodeDoc/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb.yaml
+?? desk/inbox/
+?? desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/
+?? desk/tasks/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb.md
+?? runs/subagents/20261116-050927/
+?? runs/subagents/20261116-051100/
+?? runs/subagents/20261116-051139/
+?? runs/subagents/deskops-e-31500ac1cfa1/
+?? runs/subagents/deskops-t-5a39cc2dfbf8/
+?? src/specir.egg-info/
+?? src/specir/__pycache__/
+?? src/specir/models/__pycache__/
+?? src/specir/visual/__pycache__/
+?? src/specir/visual/catalog/__pycache__/
+?? src/specir/visual/compilers/__pycache__/
+?? src/specir/visual/renderers/__pycache__/
+?? tests/__pycache__/
+?? tests/models/__pycache__/
+?? tests/visual/__pycache__/
+?? tests/visual/fixtures/spec2viz-notations/
+?? tests/visual/test_notations_parity.py

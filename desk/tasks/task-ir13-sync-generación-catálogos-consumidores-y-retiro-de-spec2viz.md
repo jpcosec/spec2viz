@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T05:05:43Z'
+  at: '2026-11-16T05:09:00Z'
   authority: generated
   via: save_document_payload
 id: task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz
@@ -22,6 +22,7 @@ depends_on:
 - task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos
 - task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual
 - task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro
+- task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md

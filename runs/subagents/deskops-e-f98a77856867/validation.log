@@ -1,0 +1,43 @@
+### 1. TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_mcp_extension.py
+free -g:
+               total        used        free      shared  buff/cache   available
+Mem:              31          12           7           2          13          18
+Swap:             15           9           6
+.....                                                                    [100%]
+5 passed in 74.29s (0:01:14)
+rc=0
+
+### 2. SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/
+free -g:
+               total        used        free      shared  buff/cache   available
+Mem:              31          11           8           1          13          19
+Swap:             15           9           6
+Mon Nov 16 08:32:32 UTC 2026
+bringing up nodes...
+bringing up nodes...
+
+.......................x................................................ [  9%]
+.........x....x......................................................... [ 19%]
+........................................................................ [ 29%]
+.............x.......................................................... [ 39%]
+........................................................................ [ 48%]
+........................................................................ [ 58%]
+...................................................................x.... [ 68%]
+........................................................................ [ 78%]
+........................................................................ [ 87%]
+........................................................................ [ 97%]
+..................                                                       [100%]
+733 passed, 5 xfailed in 244.01s (0:04:04)
+rc=0
+Mon Nov 16 09:27:11 UTC 2026
+
+### 3. deskops graph missing --root .
+No missing graph references found.
+rc=0
+
+### git diff --stat (fuera de desk/.sldb/runs)
+ docs/spec2viz/acta-de-retiro.md      | 33 ++++++++++++-----------
+ docs/spec2viz/matriz-de-cobertura.md | 52 ++++++++++++++++++++++--------------
+ src/specir/visual/notation_style.py  | 25 +++++++++++++++--
+ tests/conftest.py                    |  9 ++++++-
+ 4 files changed, 81 insertions(+), 38 deletions(-)

@@ -1,0 +1,203 @@
+$ git diff --stat
+ .sldb/core/documents/BoardDoc/Board.yaml           |  8 ++--
+ ...41logos-consumidores-y-retiro-de-spec2viz.yaml" |  8 ++--
+ .sldb/core/models/BoardDoc.yaml                    |  4 +-
+ .sldb/core/models/InboxNoteDoc.yaml                |  6 +--
+ .sldb/core/models/ReviewDoc.yaml                   |  6 +--
+ .sldb/core/models/RunDoc.yaml                      |  8 ++--
+ .sldb/core/models/TaskCodeDoc.yaml                 |  6 +--
+ .sldb/core/store_index.yaml                        |  2 +-
+ desk/tasks/Board.md                                |  6 ++-
+ ...\241logos-consumidores-y-retiro-de-spec2viz.md" |  3 +-
+ docs/spec2viz/acta-de-retiro.md                    | 33 +++++++-------
+ docs/spec2viz/matriz-de-cobertura.md               | 52 +++++++++++++---------
+ src/specir/visual/notation_style.py                | 25 ++++++++++-
+ tests/conftest.py                                  |  9 +++-
+ 14 files changed, 112 insertions(+), 64 deletions(-)
+rc=0
+
+$ git diff tests/conftest.py
+diff --git a/tests/conftest.py b/tests/conftest.py
+index 388ac53..1539fdd 100644
+--- a/tests/conftest.py
++++ b/tests/conftest.py
+@@ -3,7 +3,8 @@ SLDB's public CLI, and the real MCP server of sldb (`sldb mcp`) with specIR's ex
+ (`specir.mcp_extension:register`) over stdio, driven by the real MCP client.
+ 
+ Nothing is fabricated: the copy holds this repo's `.sldb/`, `sldb/` and `desk/` as they
+-are; the deskops and spec2viz stores are linked in place and only read."""
++are, plus every `runs/subagents/*/run.md` at its own relative path; the deskops and spec2viz
++stores are linked in place and only read."""
+ 
+ from __future__ import annotations
+ 
+@@ -21,6 +22,8 @@ import pytest
+ REPO = Path(__file__).resolve().parents[1]
+ WORKSPACE = REPO.parent
+ COPIED = (".sldb", "sldb", "desk")
++#: The store registers RunDocs, which live outside `.sldb/` and `desk/`.
++RUN_DOCS = "runs/subagents/*/run.md"
+ FEDERATED = {"deskops": WORKSPACE / "deskops" / ".sldb", "spec2viz": WORKSPACE / "spec2viz" / ".sldb"}
+ CACHE = ".sldb_cache"
+ TOOL_TIMEOUT = 300
+@@ -76,6 +79,10 @@ def mount_copy(tmp_path_factory: pytest.TempPathFactory, name: str) -> Path:
+     root.mkdir()
+     for name in COPIED:
+         shutil.copytree(REPO / name, root / name, ignore=shutil.ignore_patterns(CACHE), symlinks=True)
++    for run_doc in sorted(REPO.glob(RUN_DOCS)):
++        target = root / run_doc.relative_to(REPO)
++        target.parent.mkdir(parents=True, exist_ok=True)
++        shutil.copy2(run_doc, target)
+     sldb("stores", "add", str(FEDERATED["deskops"]), "--name", "deskops", "--replace", "--store", ".sldb", cwd=root)
+     sldb("stores", "add", str(FEDERATED["spec2viz"]), "--name", "spec2viz", "--store", ".sldb", cwd=root)
+     sldb("stores", "update", "--store", ".sldb", cwd=root)
+rc=0
+
+$ git status --short --branch
+## main
+ M .sldb/core/documents/BoardDoc/Board.yaml
+ M ".sldb/core/documents/TaskCodeDoc/task-ir13-sync-generaci\303\263n-cat\303\241logos-consumidores-y-retiro-de-spec2viz.yaml"
+ M .sldb/core/models/BoardDoc.yaml
+ M .sldb/core/models/InboxNoteDoc.yaml
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/store_index.yaml
+ M desk/tasks/Board.md
+ M "desk/tasks/task-ir13-sync-generaci\303\263n-cat\303\241logos-consumidores-y-retiro-de-spec2viz.md"
+ M docs/spec2viz/acta-de-retiro.md
+ M docs/spec2viz/matriz-de-cobertura.md
+ M src/specir/visual/notation_style.py
+ M tests/conftest.py
+?? .sldb/core/documents/InboxNoteDoc/
+?? .sldb/core/documents/ReviewDoc/review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-preflight-2.yaml
+?? .sldb/core/documents/RunDoc/
+?? .sldb/core/documents/TaskCodeDoc/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents.yaml
+?? .sldb/core/documents/TaskCodeDoc/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb.yaml
+?? desk/inbox/
+?? desk/reviews/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/
+?? desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/
+?? desk/tasks/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents.md
+?? desk/tasks/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb.md
+?? runs/subagents/20261116-050927/
+?? runs/subagents/20261116-051100/
+?? runs/subagents/20261116-051139/
+?? runs/subagents/20261116-082922/
+?? runs/subagents/20261116-082944/
+?? runs/subagents/deskops-e-31500ac1cfa1/
+?? runs/subagents/deskops-e-f98a77856867/
+?? runs/subagents/deskops-t-5a39cc2dfbf8/
+?? runs/subagents/deskops-t-8825fdd278af/
+?? src/specir.egg-info/
+?? src/specir/__pycache__/
+?? src/specir/models/__pycache__/
+?? src/specir/visual/__pycache__/
+?? src/specir/visual/catalog/__pycache__/
+?? src/specir/visual/compilers/__pycache__/
+?? src/specir/visual/renderers/__pycache__/
+?? tests/__pycache__/
+?? tests/models/__pycache__/
+?? tests/visual/__pycache__/
+?? tests/visual/fixtures/spec2viz-notations/
+?? tests/visual/test_notations_parity.py
+rc=0
+
+$ ls runs/subagents/*/run.md
+runs/subagents/deskops-e-31500ac1cfa1/run.md
+runs/subagents/deskops-e-f98a77856867/run.md
+runs/subagents/deskops-t-5a39cc2dfbf8/run.md
+runs/subagents/deskops-t-8825fdd278af/run.md
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_mcp_extension.py
+.....                                                                    [100%]
+5 passed in 67.75s (0:01:07)
+rc=0
+
+$ deskops graph missing --root .
+No missing graph references found.
+rc=0
+
+$ free -g
+               total        used        free      shared  buff/cache   available
+Mem:              31          12           8           1          12          18
+Swap:             15           9           6
+rc=0
+
+$ SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/
+2026-11-16T09:30:56Z
+bringing up nodes...
+bringing up nodes...
+
+....................F................................................... [  9%]
+.........x....x......................................................... [ 19%]
+...................................................................x.... [ 29%]
+........................................................................ [ 39%]
+........................................................................ [ 48%]
+........................................................................ [ 58%]
+.................................x...................................... [ 68%]
+........................................................................ [ 78%]
+........................................................................ [ 87%]
+........................................................................ [ 97%]
+..................                                                       [100%]
+=================================== FAILURES ===================================
+___________ test_label_key_of_sldb_splits_underscores_like_norm_key ____________
+[gw3] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+[XPASS(strict)] sldb's label_key keeps '_' (\w) and normKey does not: asked to sldb's desk (matching/label-key-underscore)
+=========================== short test summary info ============================
+FAILED tests/visual/test_catalog.py::test_label_key_of_sldb_splits_underscores_like_norm_key
+1 failed, 733 passed, 4 xfailed in 226.43s (0:03:46)
+rc=1
+2026-11-16T10:16:39Z
+
+## Análisis del FAIL de la suite completa (XPASS strict ajeno a esta tarea)
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider "tests/visual/test_catalog.py::test_label_key_of_sldb_splits_underscores_like_norm_key"
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___________ test_label_key_of_sldb_splits_underscores_like_norm_key ____________
+[XPASS(strict)] sldb's label_key keeps '_' (\w) and normKey does not: asked to sldb's desk (matching/label-key-underscore)
+=========================== short test summary info ============================
+FAILED tests/visual/test_catalog.py::test_label_key_of_sldb_splits_underscores_like_norm_key
+1 failed in 0.60s
+rc=1
+
+$ git -C ../sldb log -2 --format="%h %ci %s" -- src/sldb/api/matching/
+06dbcf02 2026-11-16 06:38:02 -0300 matching: label_key trata el guion bajo como separador, igual que normKey del catálogo
+a25874d0 2026-11-15 20:23:38 -0300 D4: emparejamiento de átomos con elementos de diagrama migrado de spec2viz.deskops a sldb.api.matching
+rc=0
+
+$ git log -1 --format="%h %ci" -- tests/visual/test_catalog.py
+2d28453 2026-11-15 21:52:31 -0300
+rc=0
+
+$ git diff --quiet -- tests/visual/test_catalog.py; echo "test_catalog.py sin cambios locales: rc=$?"
+test_catalog.py sin cambios locales: rc=0
+rc=0
+
+$ grep -n "mount_copy\|store_copy\|federated" tests/visual/test_catalog.py
+rc=1
+
+$ grep -n "@pytest.fixture" -A1 tests/conftest.py
+67:@pytest.fixture(scope="session")
+68-def original_digest() -> dict[str, str]:
+--
+99:@pytest.fixture(scope="session")
+100-def store_copy(tmp_path_factory: pytest.TempPathFactory, original_digest: dict[str, str]) -> Path:
+--
+129:@pytest.fixture(scope="session")
+130-def copy_digest_before(store_copy: Path) -> dict[str, str]:
+--
+153:@pytest.fixture(scope="session")
+154-def mcp(store_copy: Path, copy_digest_before: dict[str, str]) -> Iterator[McpSession]:
+--
+164:@pytest.fixture(scope="session")
+165-def blog_root(tmp_path_factory: pytest.TempPathFactory) -> Path:
+--
+172:@pytest.fixture(scope="session")
+173-def blog(blog_root: Path) -> Iterator[McpSession]:
+rc=0
+

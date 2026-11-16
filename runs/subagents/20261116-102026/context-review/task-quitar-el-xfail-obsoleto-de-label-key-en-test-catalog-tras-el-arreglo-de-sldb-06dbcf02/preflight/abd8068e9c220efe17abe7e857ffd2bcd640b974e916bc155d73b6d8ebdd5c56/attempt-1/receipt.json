@@ -1,0 +1,9 @@
+{
+  "key": "task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "abd8068e9c220efe17abe7e857ffd2bcd640b974e916bc155d73b6d8ebdd5c56",
+  "output_sha256": "6523d947843133a16d077d34f334cd00747dbb840ddca2d3798e631855888d0e",
+  "start": "2026-11-16T10:20:26.758676+00:00",
+  "end": "2026-11-16T10:20:44.933415+00:00"
+}

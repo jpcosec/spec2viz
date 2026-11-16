@@ -1,0 +1,36 @@
+name: review-task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02-evidence-atom-1
+path: desk/reviews/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/evidence-atom-1.md
+source_hash: 05319a0e167bee33e4838d717c0da247ff88938a7c403b0f699221eee3fb54ad
+content_hash: d3142c20bf862ead702b2c0f1199aa6c110184de829388bc346f07456907851b
+field_hashes:
+  id: 7dd26ccd4c7aadc2d06a56b6146b47cb0b5b9454e717461b817042b37d9b79f6
+  title: 5ae8d7a71245156e217b218c3a1dba9c7a411f482e4aba7aa384fe11f3f308fb
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: c833c202b5b45ac10909767bb422916db457ddd48188a4ee591f0618893df0ba
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: ac5c453ccaf3e083a0c85ab8143248206d069483bbf3dfddbffa45cfa0faa865
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: f406a59ee2ff9a76b94ff21341d092ccd80fe74f45fcc5ef04f37c5057dad661
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe
+  reason: 60d6089a2f250c430e3a32efa4d5534eab29af2da56b3dfb4f1ff46d1487e103
+  created_at: 67c1ef62aadda8fde5119c74d72cdfbab49efe51f65e3a6fbee20c18815b2d8f
+  disposed_at: 67c1ef62aadda8fde5119c74d72cdfbab49efe51f65e3a6fbee20c18815b2d8f
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 016f5a0cf03b34eb1aa4d02cbfa2b17923078d23a98f4afe96d522682afeefec
+  disposition: e8b8b423503b1cfe621a4ba3747fbb66106cd4b107a0ead6e4966bf0922b8255
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T10:36:57Z'
+  authority: generated
+  via: save_document_payload

@@ -1,0 +1,9 @@
+{
+  "key": "task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "619c6cca6fe10cabd985fedff4cf3327a9def782d1a7c7bb6c1ef656a4f44d2f",
+  "output_sha256": "062abe9f23695cdad49ee20791f3e72a3da424160514b468253b2de76d746b9d",
+  "start": "2026-11-16T08:29:44.942539+00:00",
+  "end": "2026-11-16T08:30:09.899519+00:00"
+}

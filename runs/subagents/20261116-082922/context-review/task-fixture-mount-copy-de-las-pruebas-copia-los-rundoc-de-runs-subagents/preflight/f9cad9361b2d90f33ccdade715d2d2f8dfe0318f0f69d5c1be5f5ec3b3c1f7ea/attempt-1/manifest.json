@@ -1,0 +1,37 @@
+{
+  "key": "task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/preflight",
+  "input_sha256": "f9cad9361b2d90f33ccdade715d2d2f8dfe0318f0f69d5c1be5f5ec3b3c1f7ea",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261116-082922/context-review/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/preflight/f9cad9361b2d90f33ccdade715d2d2f8dfe0318f0f69d5c1be5f5ec3b3c1f7ea/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents.md",
+      "sha256": "1b062f5c4594a9cd282a6618fb29f2ee83cbe93dbb5b355525ff7cc7cb7fbd6c",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-16T08:29:23.125309+00:00",
+  "finished": "2026-11-16T08:29:30.610083+00:00"
+}

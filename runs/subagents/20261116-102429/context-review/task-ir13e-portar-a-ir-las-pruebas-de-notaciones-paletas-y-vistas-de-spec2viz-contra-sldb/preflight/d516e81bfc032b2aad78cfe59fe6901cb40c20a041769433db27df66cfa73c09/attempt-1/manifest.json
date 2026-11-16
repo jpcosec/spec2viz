@@ -1,0 +1,38 @@
+{
+  "key": "task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/preflight",
+  "input_sha256": "d516e81bfc032b2aad78cfe59fe6901cb40c20a041769433db27df66cfa73c09",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261116-102429/context-review/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/preflight/d516e81bfc032b2aad78cfe59fe6901cb40c20a041769433db27df66cfa73c09/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb.md",
+      "sha256": "961d190c009913bbe3d0fd7091b7337b76eecdcc127c5ea6edda69a50ebc28f7",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-16T10:24:30.212913+00:00",
+  "finished": "2026-11-16T10:24:46.407600+00:00",
+  "retry_reason": "Ciclo de corrección 1. Cambia el contrato: (1) se porta la parte no CLI de dos pruebas tipadas (SV-H01 y SV-H04), (2) se suman las filas SV-G08 y SV-I02 tras el arreglo de sldb 06dbcf02, (3) depends_on suma la tarea del fixture y la del xfail, y (4) se arregla la Validation (ítem de la suite que estaba serializado como dict y totales 42+9)."
+}

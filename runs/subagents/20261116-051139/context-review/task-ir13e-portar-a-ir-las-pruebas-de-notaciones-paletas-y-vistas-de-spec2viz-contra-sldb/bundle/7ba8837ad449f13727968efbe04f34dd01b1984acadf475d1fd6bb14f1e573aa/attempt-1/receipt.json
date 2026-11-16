@@ -1,0 +1,9 @@
+{
+  "key": "task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "7ba8837ad449f13727968efbe04f34dd01b1984acadf475d1fd6bb14f1e573aa",
+  "output_sha256": "cc7b2292c3558fdeb8b2cab311506b245193ba865b08c6449720f1ec53586856",
+  "start": "2026-11-16T05:11:40.337099+00:00",
+  "end": "2026-11-16T05:11:57.707253+00:00"
+}

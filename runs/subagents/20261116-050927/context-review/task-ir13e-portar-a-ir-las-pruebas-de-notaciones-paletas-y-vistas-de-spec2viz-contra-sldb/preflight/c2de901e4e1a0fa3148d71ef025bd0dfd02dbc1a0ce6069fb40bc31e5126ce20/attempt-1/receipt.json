@@ -1,0 +1,9 @@
+{
+  "key": "task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "c2de901e4e1a0fa3148d71ef025bd0dfd02dbc1a0ce6069fb40bc31e5126ce20",
+  "output_sha256": "dd4c2cc81bf67a8b25ac3b22d609d1d180325e1155d00dc23d392a4925c22d2a",
+  "start": "2026-11-16T05:09:28.432851+00:00",
+  "end": "2026-11-16T05:09:51.745360+00:00"
+}

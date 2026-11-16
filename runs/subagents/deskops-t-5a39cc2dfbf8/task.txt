@@ -1,0 +1,16 @@
+Task: task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb
+Title: IR13e Portar a IR las pruebas de notaciones, paletas y vistas de spec2viz contra sldb
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Effective pills:
+- desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+- desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
+- desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md
+Effective atoms:
+- atom-specir-reemplaza-a-spec2viz-y-cubre-todas-sus-funciones
+- atom-el-vocabulario-visual-y-el-resolvedor-de-vistas-ya-viven-en-sldb
+- atom-specir-depende-solo-de-la-api-pública-de-sldb
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]

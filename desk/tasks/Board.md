@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T01:28:43Z'
+  at: '2026-11-16T10:20:00Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -18,6 +18,9 @@ tasks:
 - desk/tasks/task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer.md
 - desk/tasks/task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2.md
 - desk/tasks/task-espejo-sldb-graph-path-y-graph-paths-explicados-b3.md
+- desk/tasks/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb.md
+- desk/tasks/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents.md
+- desk/tasks/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -58,3 +61,6 @@ _Generated from the task references above._
 - Espejo sldb: apply_batch devuelve el lote inverso (deshacer) [draft] - Disponer en sldb del lote inverso con guardas en el resultado de apply_batch, base del deshacer por MCP.
 - Espejo sldb: readers y facts TSX, TS y SQL (B2) [draft] - Disponer en sldb de los readers y facts de TSX, TS y SQL con anclas sobre tree-sitter, que specIR mapea a su dominio.
 - Espejo sldb: graph_path y graph_paths explicados (B3) [draft] - Disponer en sldb de caminos explicados en el recorrido del grafo, con la procedencia de cada tramo, para el impacto de specIR.
+- IR13e Portar a IR las pruebas de notaciones, paletas y vistas de spec2viz contra sldb [draft] - Un archivo de pruebas de IR que ejecuta, contra sldb, 40 casos de las pruebas de spec2viz de notaciones, paletas y vistas, más 9 comparaciones «valida igual» (8 notaciones y la paleta default de spec2viz frente a las builtin de sldb), y la matriz de cobertura actualizada: cada fila listada queda cumplida citando esas pruebas o sigue abierta con la diferencia concreta y la nota enviada al desk de sldb.
+- Fixture mount_copy de las pruebas copia los RunDoc de runs/subagents [draft] - La copia aislada del store que arma mount_copy contiene también cada runs/subagents/*/run.md del repo, en la misma ruta relativa, y tests/test_mcp_extension.py pasa con RunDocs registrados en el store.
+- Quitar el xfail obsoleto de label_key en test_catalog tras el arreglo de sldb 06dbcf02 [draft] - test_label_key_of_sldb_splits_underscores_like_norm_key corre como prueba normal (sin xfail) y pasa contra el sldb actual, y la suite completa de IR vuelve a salir con rc 0.
