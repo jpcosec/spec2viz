@@ -1,10 +1,13 @@
 # Fuente de verdad del diagrama: el grafo de SLDB y el papel del YAML de spec
 
-**Estado: propuesta, pendiente de decisión de JP.** No está aceptada. El atom que la registra en el desk
-es `atom-propuesta-pendiente-de-jp-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al`;
-el modelo de atom de deskops no tiene campo de estado, así que el
-estado va en el título y en la respuesta. Cuando JP decida, se actualiza este documento y el atom, y el
-ítem G7 del gate de retiro (`docs/spec2viz/matriz-de-cobertura.md`) pasa a comprobable.
+**Estado: aceptada por JP el 2026-11-15** (transmitida por el supervisor con autorización explícita). El
+YAML del spec queda como formato de autoría e intercambio subordinado al grafo, en los términos de la
+sección «Decisión» de abajo. El atom que la registra en el desk es
+`atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al`;
+la propuesta de IR07 (`atom-propuesta-pendiente-de-jp-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al`)
+se fusionó en él con `deskops atoms merge` y queda como redirección. El modelo de atom de deskops no tiene
+campo de estado, así que el estado va en el título y en la respuesta. Con esto el ítem G7 del gate de
+retiro (`docs/spec2viz/matriz-de-cobertura.md`) queda cumplido.
 
 ## Contexto
 
@@ -19,7 +22,7 @@ Conviven dos modelos de diagrama:
 Dado que la fuente semántica es el grafo (premisa fijada por la tarea IR07), queda por decidir el papel
 del YAML de spec, cómo se dibuja lo que aún no existe en el grafo y qué pasa con los specs existentes.
 
-## Recomendación
+## Decisión
 
 1. **El YAML de spec se conserva de forma permanente como formato de autoría e intercambio, subordinado
    al grafo.** Es la forma revisable en un diff de autorar una vista o un diseño. No es fuente de las

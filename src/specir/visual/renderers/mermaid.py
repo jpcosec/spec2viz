@@ -1,4 +1,5 @@
 from __future__ import annotations
+import re
 from specir.visual.ir import SequenceIR, StateIR, ComponentIR, ActivityIR, DeploymentIR
 from specir.visual.exceptions import RenderError
 from specir.visual.ir import ANY_STATE, ClassIR
@@ -78,6 +79,35 @@ def _flowchart(direction: str = "TD") -> list[str]:
 #: The id of the pseudostate that the transitions without a source state (`ANY_STATE`) leave.
 ANY_STATE_ID = "__any_state"
 
+_UNSAFE_STATE_ID = re.compile(r"[^A-Za-z0-9_]")
+
+
+def _state_ids(ir: StateIR) -> dict[str, str]:
+    """Map each state id to one the real mermaid engine (mmdc) accepts in `stateDiagram-v2`.
+
+    mermaid's state lexer reads a '-' inside an id as the start of an arrow, so `post-draft` breaks
+    `[*] --> post-draft`. Ids made only of letters, digits and '_' stay as they are (the spec2viz
+    corpus keeps its output); any other character becomes '_', with a numeric suffix if two ids
+    would collide. The label keeps the original text.
+    """
+    ids = [s.id for s in ir.states]
+    ids += [c for s in ir.states for c in (s.contains or [])]
+    ids += [ir.initial] if ir.initial else []
+    ids += [t.from_ for t in ir.transitions if t.from_ != ANY_STATE] + [t.to for t in ir.transitions]
+    taken = {i for i in ids if not _UNSAFE_STATE_ID.search(i)} | {ANY_STATE_ID}
+    mapping: dict[str, str] = {}
+    for original in dict.fromkeys(ids):
+        if not _UNSAFE_STATE_ID.search(original):
+            mapping[original] = original
+            continue
+        base = _UNSAFE_STATE_ID.sub("_", original)
+        candidate, n = base, 2
+        while candidate in taken:
+            candidate, n = f"{base}_{n}", n + 1
+        taken.add(candidate)
+        mapping[original] = candidate
+    return mapping
+
 
 class MermaidRenderer:
     def render(self, ir) -> str:
@@ -114,13 +144,14 @@ class MermaidRenderer:
 
     def _state(self, ir: StateIR) -> str:
         lines = ["stateDiagram-v2"]
-        
+        sid = _state_ids(ir)
+
         state_map = {s.id: s for s in ir.states}
         children_ids = {child for s in ir.states if s.contains for child in s.contains}
         root_states = [s for s in ir.states if s.id not in children_ids]
         
         def render_state(s, indent="    "):
-            lines.append(f'{indent}state "{_esc_label(s.label)}" as {s.id}' + (' {' if s.contains else ''))
+            lines.append(f'{indent}state "{_esc_label(s.label)}" as {sid[s.id]}' + (' {' if s.contains else ''))
             if s.contains:
                 for child_id in s.contains:
                     if child_id in state_map:
@@ -136,13 +167,13 @@ class MermaidRenderer:
             lines.append(f"    classDef anyState stroke-dasharray:4 4")
             lines.append(f"    class {ANY_STATE_ID} anyState")
         if ir.initial:
-            lines.append(f"    [*] --> {ir.initial}")
+            lines.append(f"    [*] --> {sid[ir.initial]}")
         for t in ir.transitions:
             label = t.on or ""
             if t.guard:
                 label += f" [{t.guard}]"
-            source = ANY_STATE_ID if t.from_ == ANY_STATE else t.from_
-            lines.append(f"    {source} --> {t.to} : {_esc_message(label)}")
+            source = ANY_STATE_ID if t.from_ == ANY_STATE else sid[t.from_]
+            lines.append(f"    {source} --> {sid[t.to]} : {_esc_message(label)}")
         return "\n".join(lines)
 
     def _component(self, ir: ComponentIR) -> str:

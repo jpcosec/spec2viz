@@ -16,8 +16,10 @@ prueba que la acredita y lo que falta. Los modos y las condiciones de retiro de 
   conserva la capa visual (compiladores en IR11, renderers en IR12).
 - La decisión sobre el papel del YAML de spec frente al grafo está en
   `docs/decisiones/fuente-de-verdad-del-diagrama.md` y en el atom
-  `atom-propuesta-pendiente-de-jp-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al`. Es una **propuesta pendiente de JP**;
-  ninguna fila de esta matriz depende de que se acepte en un sentido u otro salvo las marcadas con †.
+  `atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al`.
+  **Aceptada por JP el 2026-11-15** (vía supervisor): el YAML del spec queda como formato de autoría e
+  intercambio subordinado al grafo. La propuesta de IR07 (`atom-propuesta-pendiente-de-jp-…`) se fusionó en
+  ese atom y queda como redirección. Solo las filas marcadas con † dependían de ella.
 - El procedimiento del gate está en `docs/spec2viz/gate-de-retiro.md`; la lista comprobable está al final
   de este documento.
 
@@ -282,12 +284,12 @@ el 2026-11-15 sobre los repos con `.git` bajo `SLDB_1/` (`IR`, `deskops`, `pron`
 | graph_ui | `UIs/graph_ui/tests/test_projection_views.py:18` (importorskip), `:33` y `:82` (`spec2viz diagram sync`), `:167` (`spec2viz.sldb_models` ViewDoc) | importación e invocación | `sldb notations sync --spec` (SV-E01), `ViewDoc` de sldb (SV-A17) |
 | graph_ui | `UIs/graph_ui/tests/test_mindmap_notation.py:20-21` (`from spec2viz.notation_view import resolve_view`) y `:45` (`spec2viz diagram sync`) | importación e invocación | SV-H03, SV-E01 |
 | graph_ui | `UIs/graph_ui/tests/e2e_notation_class.py:58`, `e2e_notation_sequence.py:108`, `e2e_notation_deployment.py:92`, `e2e_notation_activity.py:128`, `e2e_notation_style.py:147`, `e2e_notation_legibility.py:38` y `:175`, `e2e_mindmap_notation.py:27` y `:48`, `e2e_review_workbench_views.py:40`, `:76` y `:96` (`spec2viz diagram sync` e importorskip) | importación e invocación | SV-E01 |
-| deskops | `deskops/deskops/graph/desk_graph.py:75` (regla de rutas `FileRule(kind="spec", path_prefixes=("spec", "docs/architecture/spec2viz"))`) | regla de rutas del grafo del desk | decidir la ruta de specs según la decisión del YAML (†); pedido al desk de deskops |
+| deskops | `deskops/deskops/graph/desk_graph.py:75` (regla de rutas `FileRule(kind="spec", path_prefixes=("spec", "docs/architecture/spec2viz"))`) | regla de rutas del grafo del desk | (†) decidido (coordinador, aceptado por JP el 2026-11-15): la regla deja de nombrar spec2viz y reconoce los specs YAML como artefactos de autoría sincronizados con `sldb notations sync`; lo hace el desk de deskops |
 | deskops | `deskops/desk/drawer/plans/workspace-documental/render_diagram.py:7` y `:9` (`spec2viz diagram validate` y `diagram render`) | invocación | comandos de specIR (SV-K13, SV-K16) |
 | deskops | `deskops/docs/diagrams/README.md` y los `.md`/`.mmd` de `deskops/docs/diagrams/` que nombran a spec2viz | documentación de diagramas (no cuenta como dependencia para IR13; se regenera con specIR) | renderers de specIR |
 | deskops | `deskops/.opencode/skills/use-spec2viz/SKILL.md`; `deskops/.claude/skills/deskops-workflow/SKILL.md` y `references/spec2viz-cli.md` (instruyen a agentes a invocar `spec2viz`) | habilidad de agente | `skills/use-specir/SKILL.md` (SV-J09) |
 | pron | `pron/docs/spec2viz/build.py:22-24` (`spec2viz diagram validate`, `diagram render --backend mermaid`, `catalog build`) | invocación | comandos de specIR (SV-K13, SV-K16, SV-K04) |
-| sldb | `sldb/docs/architecture/spec2viz/vistas.yml` y sus specs (`current-*.yml`, `python-ast.yml`) | registro de catálogo que construye `spec2viz catalog build` | catálogo de specIR (SV-G01) |
+| sldb | `sldb/docs/architecture/spec2viz/vistas.yml` y sus specs (`current-*.yml`, `python-ast.yml`) | registro de catálogo que construye `spec2viz catalog build` | decidido (coordinador, aceptado por JP el 2026-11-15): los specs se quedan como fixtures durante la paridad; el catálogo se construye con `specir catalog build` (SV-G01) y se sincroniza con `sldb notations sync --catalog`; lo hace el desk de sldb |
 | sldb | `sldb/contracts/identity.toml:299` (`consumers = [..., "spec2viz", ...]`) | configuración de contrato | quitar spec2viz de la lista al retirarlo |
 | IR (specIR) | `IR/tests/conftest.py:24` y `:80` (federa el store `spec2viz/.sldb`), `IR/tests/test_mcp_extension.py:24` (`SPEC_STORE = "spec2viz"`) | lectura del store de spec2viz en pruebas | store con modelos de sldb (G5) o fixture propio |
 | store `spec2viz/.sldb` | `spec2viz/.sldb/store.yaml:44-57`, `spec2viz/.sldb/core/store_index.yaml:141-194`, `spec2viz/.sldb/core/models/{SpecDoc,SpecNodeDoc,NotationDoc,GlyphDoc,LinkDoc,PaletteDoc,ViewDoc}.yaml` | modelos `spec2viz.sldb_models` registrados | `sldb.models.notation.*` (SV-A17) |
@@ -298,7 +300,8 @@ Specs YAML existentes que afecta la decisión del YAML (†): `spec2viz` (44: `t
 `docs/architecture/spec2viz/`, `examples/`), `sldb` (46: `tests/fixtures/`, `docs/architecture/`),
 `UIs/graph_ui` (24: `tests/fixtures/`, `docs/representacion/`), `pron` (4: `docs/spec2viz/specs/`),
 `deskops` (1: `desk/drawer/plans/workspace-documental/`). Conteo de archivos con `type:` de uno de los
-ocho tipos en la raíz, sin `.sldb/`, `build/` ni entornos.
+ocho tipos en la raíz, sin `.sldb/`, `build/` ni entornos. Alineados con la decisión aceptada (G7): se
+quedan donde están; durante la paridad son fixtures y después cada repo decide por su desk.
 
 ## Pendientes de derivación
 
@@ -322,7 +325,13 @@ Lo que esta matriz deja abierto y debe convertirse en tarea o pedido (no lo resu
 6. Consumidores: IR13 envió los pedidos de migración a los desks de deskops, graph_ui, pron, sldb y
    spec2viz (store); las notas y su estado están en `docs/spec2viz/acta-de-retiro.md`.
 7. Filas con pruebas de mmdc (SV-B03, SV-C13, SV-C14, SV-D01, SV-G03 y, por dependencia, SV-K09, SV-K12 y
-   SV-K17): falta una corrida con mermaid-cli instalado. IR13 no pudo hacerla.
+   SV-K17): resuelto el 2026-11-15 con mermaid-cli 12.2 sobre Chrome headless
+   (`SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc`, ver «Acreditación (IR13)»). SV-K09 sigue
+   abierta por SV-K16.
+8. Exporter de BPMN y clave de `localStorage` del catálogo (SV-C06, SV-G06): decidido por el coordinador y
+   aceptado por JP. Mientras dure la paridad se mantienen `exporter="spec2viz"`,
+   `targetNamespace="http://spec2viz/bpmn"` y la clave `spec2viz.catalog.annotations.v1`; en el momento
+   del retiro pasan a specir con goldens nuevos y migración de anotaciones (paso del acta de retiro).
 
 ## Acreditación (IR13)
 
@@ -330,8 +339,19 @@ Evaluada por IR13 el 2026-11-15 sobre IR `dc5496a` y sldb `d4aeb4b1`, cada archi
 separado con `TMPDIR=/dev/shm` (las de sldb con el entorno de IR, que instala sldb editable desde
 `sldb/src`). Una fila es **cumplida** solo si su condición de retiro se cumple entera y la prueba citada
 pasa; si depende de otra fila abierta, queda abierta. `specir retirement check` exige que cada fila esté
-cumplida y cite al menos una prueba (`tests/….py`). Resumen: 75 cumplidas, 30 abiertas; el detalle por
+cumplida y cite al menos una prueba (`tests/….py`). Resumen: 82 cumplidas, 23 abiertas; el detalle por
 gate y por consumidor está en `docs/spec2viz/acta-de-retiro.md`.
+
+Corrida con motor real de mermaid (2026-11-15, decisiones de JP): `@mermaid-js/mermaid-cli` instalado en
+`/mnt/ssd/herramientas/mermaid-cli` con el Chrome del sistema en headless (envoltorio `mmdc` de ese
+directorio) y `SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc`. Ningún caso de mmdc se salta:
+`tests/visual/test_lint_mermaid.py` 15 passed (antes 8 passed, 7 skipped), `tests/visual/test_render_cases.py`
+30 passed (antes 27 passed, 3 skipped; se arregló que dos casos llamaban a `mmdc` del PATH en lugar de
+`mmdc_path()`), `tests/visual/test_render_parity.py` 82 passed. El motor real rechazaba los ids con guion de
+la proyección de estados (`[*] --> post-draft`): el renderer mermaid de estados escribe ahora ids con solo
+letras, dígitos y `_` (`post_draft`), sin tocar los que ya lo eran (la paridad con spec2viz no cambia); el
+pseudoestado `*` (`__any_state`) lo acepta el motor. Con eso pasan a cumplidas SV-B03, SV-C13, SV-C14,
+SV-D01, SV-G03, SV-K12 y SV-K17; SV-K09 sigue abierta por SV-K16.
 
 | Fila | Estado | Prueba que la acredita | Falta |
 |---|---|---|---|
@@ -354,7 +374,7 @@ gate y por consumidor está en `docs/spec2viz/acta-de-retiro.md`.
 | `SV-A17` | abierta | - | `tests/test_view_doc.py` (3) no está portado contra `ViewDoc` de sldb (era de IR13c, retirada); y G5: `spec2viz/.sldb` registra `spec2viz.sldb_models` (pedido al desk de spec2viz, nota 20261115-225013). |
 | `SV-B01` | cumplida | IR `tests/visual/test_visual_ir.py` (3 passed). | - |
 | `SV-B02` | cumplida | IR `tests/visual/test_visual_compilers.py` (28 passed), `tests/visual/test_api.py` (31 passed) y `tests/visual/test_visual_parity.py` (90 passed). | - |
-| `SV-B03` | abierta | IR `tests/visual/test_visual_compilers.py`, `tests/visual/test_render_cases.py` (27 passed, 3 skipped). | Dos casos de render con el motor real (test_real_mermaid_engine_accepts_members_kinds_and_all_relations, test_real_mermaid_engine_accepts_the_packages) se saltan sin mmdc; falta una corrida con mermaid-cli. |
+| `SV-B03` | cumplida | IR `tests/visual/test_visual_compilers.py` (28 passed) y `tests/visual/test_render_cases.py` (30 passed, 0 skipped con `SPECIR_MMDC` apuntando a mermaid-cli real: test_real_mermaid_engine_accepts_members_kinds_and_all_relations y test_real_mermaid_engine_accepts_the_packages en verde). | - |
 | `SV-B04` | cumplida | IR `tests/visual/test_visual_compilers.py` (28 passed) y `tests/visual/test_visual_parity.py` (90 passed). | - |
 | `SV-B05` | cumplida | IR `tests/visual/test_visual_compilers.py` y `tests/visual/test_visual_parity.py`. | - |
 | `SV-B06` | cumplida | IR `tests/visual/test_visual_compilers.py` y `tests/visual/test_visual_parity.py`. | - |
@@ -367,27 +387,27 @@ gate y por consumidor está en `docs/spec2viz/acta-de-retiro.md`.
 | `SV-C03` | cumplida | IR `tests/visual/test_renderers.py`, `tests/visual/test_render_parity.py`, `tests/visual/test_render_cases.py`. | - |
 | `SV-C04` | cumplida | IR `tests/visual/test_renderers.py`, `tests/visual/test_render_parity.py`, `tests/visual/test_render_cases.py`, `tests/visual/test_cli.py` (test_render_d2). | - |
 | `SV-C05` | cumplida | IR `tests/visual/test_renderers.py`, `tests/visual/test_render_parity.py` (escala `kindColor` como correspondencia), `tests/visual/test_api.py` (test_render_to_file_vega). | - |
-| `SV-C06` | cumplida | IR `tests/visual/test_bpmn.py` (26 passed). | - |
+| `SV-C06` | cumplida | IR `tests/visual/test_bpmn.py` (26 passed). Decisión (coordinador, aceptada por JP el 2026-11-15): mientras dure la paridad el XML mantiene `exporter="spec2viz"` y `targetNamespace="http://spec2viz/bpmn"`; al retirar spec2viz pasan a specir con goldens nuevos (paso del acta). | - |
 | `SV-C07` | cumplida | IR `tests/visual/test_bpmn.py` y `tests/visual/test_resources.py` (7 passed). | - |
 | `SV-C08` | cumplida | IR `tests/visual/test_bpmn.py`. | - |
 | `SV-C09` | cumplida | IR `tests/visual/test_renderers.py`. | - |
 | `SV-C10` | cumplida | IR `tests/visual/test_renderers.py`, `tests/visual/test_api.py` y `tests/visual/test_resources.py`. | - |
 | `SV-C11` | cumplida | IR `tests/visual/test_renderers.py` y `tests/visual/test_cli.py` (test_render_antonia_html). | - |
 | `SV-C12` | cumplida | IR `tests/visual/test_cli.py` y `tests/visual/test_render_commands.py` (test_render_json_reflection_artifact). | - |
-| `SV-C13` | abierta | IR `tests/visual/test_renderers.py`, `tests/visual/test_render_cases.py` (27 passed, 3 skipped). | Los casos de clases con el motor real de mermaid se saltan sin mmdc (ver SV-B03). |
-| `SV-C14` | abierta | IR `tests/visual/test_render_cases.py` (test_view_to_mermaid_matches_spec2viz_on_the_same_resolved_view en verde). | test_view_to_mermaid_is_accepted_by_the_real_engine se salta sin mmdc; `tests/test_catalog_resolved_views.py` no queda entero en verde. |
+| `SV-C13` | cumplida | IR `tests/visual/test_renderers.py` (56 passed) y `tests/visual/test_render_cases.py` (30 passed, 0 skipped con `SPECIR_MMDC` apuntando a mermaid-cli real: los casos de clases con el motor real en verde). | - |
+| `SV-C14` | cumplida | IR `tests/visual/test_render_cases.py` (30 passed, 0 skipped con `SPECIR_MMDC` apuntando a mermaid-cli real: test_view_to_mermaid_is_accepted_by_the_real_engine y test_view_to_mermaid_matches_spec2viz_on_the_same_resolved_view en verde; los 4 casos `view_to_mermaid` de `tests/test_catalog_resolved_views.py`) y `tests/visual/test_catalog.py` (sus casos de `catalog build`). | - |
 | `SV-C15` | cumplida | IR `tests/visual/test_render_commands.py` (caso de `tests/test_rendering_bug.py`). | - |
-| `SV-D01` | abierta | IR `tests/visual/test_lint_mermaid.py` (8 passed, 7 skipped). | Los 4 casos de `tests/test_mermaid_mmdc.py` y los demás que usan mmdc se saltan: falta una corrida con mermaid-cli instalado. |
+| `SV-D01` | cumplida | IR `tests/visual/test_lint_mermaid.py` (15 passed, 0 skipped con `SPECIR_MMDC` apuntando a mermaid-cli real: los 4 casos de `tests/test_mermaid_mmdc.py` y los demás de mmdc en verde) y `tests/visual/test_render_parity.py` (82 passed con mmdc, incluido el render de la proyección de estados con ids con guion). | - |
 | `SV-E01` | cumplida | sldb `tests/notations/test_spec_sync.py` (16 passed); IR `tests/visual/test_sync_generation_parity.py` (22 passed). | - |
 | `SV-E02` | abierta | sldb `tests/notations/test_spec_sync.py` (casos de notación y paleta de `tests/test_sldb_sync.py`). | Los casos que sincronizan de `tests/test_style_palette.py` no están portados contra la API de sldb (era de IR13c, retirada). |
 | `SV-F01` | cumplida | sldb `tests/notations/test_component_spec_graph.py` (16 passed) y `tests/notations/test_notations_from_graph_cli.py` (6 passed); IR `tests/visual/test_sync_generation_parity.py` (22 passed). | - |
 | `SV-F02` | cumplida | sldb `tests/notations/test_component_spec_python.py` (4 passed); IR `tests/visual/test_sync_generation_parity.py`. Diferencia declarada; la pérdida de imports anidados sigue pedida a sldb (nota 20261115-203456). | - |
 | `SV-G01` | cumplida | IR `tests/visual/test_catalog.py` (67 passed), `tests/visual/test_catalog_parity.py` (29 passed), `tests/visual/test_cli.py` (44 passed). | - |
 | `SV-G02` | cumplida | IR `tests/visual/test_catalog.py` (los 9 de `tests/test_catalog_paths.py`). | - |
-| `SV-G03` | abierta | IR `tests/visual/test_catalog.py`, `tests/visual/test_catalog_parity.py`. | Comparte `tests/test_catalog_resolved_views.py` con SV-C14: su caso con el motor real se salta sin mmdc. |
+| `SV-G03` | cumplida | IR `tests/visual/test_catalog.py` (67 passed, 1 xfailed de SV-G08 con `SPECIR_MMDC` apuntando a mermaid-cli real), `tests/visual/test_catalog_parity.py` y `tests/visual/test_render_cases.py` (caso con el motor real de `tests/test_catalog_resolved_views.py` en verde, compartido con SV-C14). | - |
 | `SV-G04` | cumplida | sldb `tests/notations/test_spec_catalog_sync.py` (8 passed); IR `tests/visual/test_catalog_parity.py` y `tests/visual/test_catalog.py`. | - |
 | `SV-G05` | cumplida | sldb `tests/notations/test_spec_catalog_sync.py`; IR `tests/visual/test_catalog_parity.py`. | - |
-| `SV-G06` | cumplida | IR `tests/visual/test_catalog_annotations.py` (5 passed, con `sldb serve --cors` real). | - |
+| `SV-G06` | cumplida | IR `tests/visual/test_catalog_annotations.py` (5 passed, con `sldb serve --cors` real). Decisión (coordinador, aceptada por JP el 2026-11-15): la página mantiene la clave `spec2viz.catalog.annotations.v1` de `localStorage` mientras dure la paridad; al retirar spec2viz pasa a una clave de specir con migración de las anotaciones guardadas (paso del acta). | - |
 | `SV-G07` | cumplida | IR `tests/visual/test_catalog.py` y `tests/visual/test_catalog_parity.py`. | - |
 | `SV-G08` | abierta | IR `tests/visual/test_catalog.py` (67 passed, 1 xfailed). | `label_key` de sldb no separa `_` como `normKey` (xfail estricto test_label_key_of_sldb_splits_underscores_like_norm_key); pedido a sldb `matching/label-key-underscore` (nota 20261115-214942). |
 | `SV-H01` | abierta | - | Los casos de `tests/test_notation.py` (14) no están portados contra `sldb.notations` (IR13c retirada). sldb prueba esas funciones con casos propios (`tests/notations/test_notation_models_and_builtins.py`, 15 passed), no con los de spec2viz. |
@@ -418,15 +438,15 @@ gate y por consumidor está en `docs/spec2viz/acta-de-retiro.md`.
 | `SV-K06` | cumplida | IR `tests/visual/test_cli.py` y `tests/visual/test_catalog_annotations.py`. | - |
 | `SV-K07` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_spec_catalog_sync.py`. | - |
 | `SV-K08` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_spec_catalog_sync.py`. | - |
-| `SV-K09` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-K12 y SV-K16. |
+| `SV-K09` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-K16 (SV-K12 ya cumplida). |
 | `SV-K10` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_notations_from_graph_cli.py` (6 passed). | - |
 | `SV-K11` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_component_spec_python.py`. | - |
-| `SV-K12` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-D01 (mmdc). |
+| `SV-K12` | cumplida | IR `tests/visual/test_cli.py` (44 passed con `SPECIR_MMDC` apuntando a mermaid-cli real; test_lint_alias_matches_diagram_lint) y SV-D01 cumplida. | - |
 | `SV-K13` | cumplida | IR `tests/visual/test_cli.py` y `tests/visual/test_render_commands.py`. | - |
 | `SV-K14` | cumplida | IR `tests/visual/test_cli.py` y `tests/visual/test_schema.py`. | - |
 | `SV-K15` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_notations_sync_spec_cli.py` (4 passed) y `tests/notations/test_spec_sync.py`. | - |
 | `SV-K16` | abierta | IR `tests/visual/test_cli.py` (test_validate_*, test_diagram_validate_*). | `specir diagram validate` es provisional: falta el comando de sldb que valide un spec (nota 20261115-192054) y retirar el de specIR. |
-| `SV-K17` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-K12. |
+| `SV-K17` | cumplida | IR `tests/visual/test_cli.py` (44 passed con `SPECIR_MMDC` apuntando a mermaid-cli real; test_lint_alias_matches_diagram_lint, test_every_alias_stands_for_a_group_command_with_the_same_parameters) y SV-K12 cumplida. | - |
 | `SV-K18` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-K19 a SV-K22. |
 | `SV-K19` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-H02. |
 | `SV-K20` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-E02. |
@@ -449,11 +469,11 @@ Lista comprobable. spec2viz solo se retira cuando **todos** los ítems se cumple
 - [ ] **G1. Filas cumplidas.** Toda fila SV-* de esta matriz tiene su condición de retiro cumplida y la
   prueba que lo acredita citada por IR13 en la fila (ninguna fila sin prueba; ninguna dice descartado ni
   fuera de alcance).
-  Estado IR13: **abierto**. 30 filas abiertas (sección «Acreditación (IR13)»).
+  Estado IR13: **abierto**. 23 filas abiertas (sección «Acreditación (IR13)»; la corrida con mmdc del 2026-11-15 acreditó 7).
 - [ ] **G2. Suite de spec2viz.** Cada caso de cada archivo de `spec2viz/tests/` pasa contra specIR o
   contra sldb (portado), o pertenece a una fila en modo reemplazar cuya prueba equivalente está declarada y
   pasa. La tabla «Pruebas de spec2viz por fila» no deja archivo sin fila.
-  Estado IR13: **abierto**. Faltan por portar `tests/test_notation.py`, `tests/test_notation_view.py`, `tests/test_view_contract_resolved.py`, `tests/test_style_palette.py` y `tests/test_view_doc.py`; los casos de mmdc se saltan; el caso de `label_key` es un xfail estricto. La tabla no deja archivo sin fila (`tests/test_matriz_cobertura_spec2viz.py`).
+  Estado IR13: **abierto**. Faltan por portar `tests/test_notation.py`, `tests/test_notation_view.py`, `tests/test_view_contract_resolved.py`, `tests/test_style_palette.py` y `tests/test_view_doc.py`; los casos de mmdc ya corren con mermaid-cli real (0 skipped); el caso de `label_key` es un xfail estricto. La tabla no deja archivo sin fila (`tests/test_matriz_cobertura_spec2viz.py`).
 - [ ] **G3. CLI.** Cada comando y subgrupo de la ayuda de spec2viz (filas SV-K*) tiene equivalente que
   existe y una prueba lo invoca (`docs/spec2viz/correspondencia-cli.md` de IR13d).
   Estado IR13: **abierto**. Los 30 equivalentes existen y `test_every_equivalent_of_the_table_answers_its_help` los invoca, pero SV-K21 y SV-K26 no tienen comando en sldb y SV-K16/SV-K29 son provisionales en specIR.
@@ -468,7 +488,11 @@ Lista comprobable. spec2viz solo se retira cuando **todos** los ítems se cumple
 - [x] **G6. specIR limpio.** Ningún módulo bajo `src/specir/` importa spec2viz (prueba de imports) y specIR
   no define envoltorios de lo que se usa de sldb directamente.
   Estado IR13: **cumplido**. `tests/test_imports.py` (9 passed); specIR no define comandos de lo que es de sldb (`test_specir_defines_no_command_the_table_gives_to_sldb`).
-- [ ] **G7. Decisión del YAML.** La decisión sobre el YAML de spec frente al grafo
+- [x] **G7. Decisión del YAML.** La decisión sobre el YAML de spec frente al grafo
   (`docs/decisiones/fuente-de-verdad-del-diagrama.md`) está aceptada por JP y las filas marcadas con †
   están alineadas con ella.
-  Estado IR13: **abierto**. La decisión sigue como propuesta pendiente de JP.
+  Estado: **cumplido**. JP aceptó la decisión el 2026-11-15 (vía supervisor): el YAML del spec queda como
+  formato de autoría e intercambio subordinado al grafo (`docs/decisiones/fuente-de-verdad-del-diagrama.md`,
+  atom `atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al`).
+  Las filas con † quedan alineadas: la regla de rutas de deskops y los specs existentes (inventario de
+  consumidores).

@@ -157,11 +157,11 @@ def test_without_packages_the_output_is_unchanged():
     assert "namespace" not in out and "classDef" not in out
 
 
-@pytest.mark.skipif(shutil.which("mmdc") is None, reason="mmdc not installed")
+@requires_mmdc
 def test_real_mermaid_engine_accepts_the_packages(tmp_path):
     source = tmp_path / "p.mmd"
     source.write_text(render_mermaid_class(_valid_ir(PACKAGES)), encoding="utf-8")
-    result = subprocess.run(["mmdc", "-i", str(source), "-o", str(tmp_path / "p.svg"), "-q"], capture_output=True, text=True, timeout=120)
+    result = subprocess.run([mmdc_path(), "-i", str(source), "-o", str(tmp_path / "p.svg"), "-q"], capture_output=True, text=True, timeout=120)
     assert result.returncode == 0, result.stderr[-400:]
 
 
@@ -303,7 +303,7 @@ def test_view_to_mermaid_is_accepted_by_the_real_engine(tmp_path):
     for name, spec in (("dep", NESTED), ("cls", PACKAGES), ("act", LANES)):
         source = tmp_path / f"{name}.mmd"
         source.write_text(view_to_mermaid(resolved_view(tmp_path / name, spec, _notation(tmp_path) if name == "dep" else None)), encoding="utf-8")
-        result = subprocess.run(["mmdc", "-i", str(source), "-o", str(tmp_path / f"{name}.svg"), "-q"], capture_output=True, text=True, timeout=120)
+        result = subprocess.run([mmdc_path(), "-i", str(source), "-o", str(tmp_path / f"{name}.svg"), "-q"], capture_output=True, text=True, timeout=120)
         assert result.returncode == 0, (name, result.stderr[-300:])
 
 

@@ -116,6 +116,22 @@ def test_plantuml_and_d2_draw_any_state_as_one_dashed_pseudostate():
     assert f'{ANY_STATE_ID}: "*" {{style.stroke-dash: 3}}' in d2 and f"{ANY_STATE_ID} -> published: PublishPost" in d2
 
 
+def test_mermaid_state_ids_with_a_hyphen_become_ids_the_real_engine_accepts():
+    ir = StateIR(
+        title="Post", entity="Post", initial="post-draft",
+        states=[StateNode(id="post-draft", label="Draft"), StateNode(id="post-published", label="Published"),
+                StateNode(id="post_published", label="Taken")],
+        transitions=[Transition(from_=ANY_STATE, to="post-published", on="PublishPost"),
+                     Transition(from_="post-published", to="post-draft", on="Unpublish")],
+    )
+    lines = [l.strip() for l in render(ir, "mermaid").splitlines()]
+    assert 'state "Draft" as post_draft' in lines and 'state "Taken" as post_published' in lines
+    assert 'state "Published" as post_published_2' in lines  # no collision with an id already safe
+    assert "[*] --> post_draft" in lines and f"{ANY_STATE_ID} --> post_published_2 : PublishPost" in lines
+    assert "post_published_2 --> post_draft : Unpublish" in lines
+    assert lint_mermaid("\n".join(lines)) == []
+
+
 def test_without_any_state_or_initial_nothing_extra_is_drawn():
     ir = _any_state_ir(initial="")
     ir.transitions = [Transition(from_="draft", to="published", on="PublishPost")]
@@ -132,7 +148,9 @@ def test_the_projected_states_of_the_blog_render(blog, blog_root: Path):
     ir = state_from_view(blog_root / ".sldb", "ViewDoc:post-states")
     assert [t.from_ for t in ir.transitions] == [ANY_STATE]
     mermaid = render(ir, "mermaid")
-    assert f"{ANY_STATE_ID} --> post-published : PublishPost" in mermaid and "[*] --> post-draft" in mermaid
+    # mermaid's state lexer does not accept '-' in an id: the renderer writes post_published (mmdc)
+    assert f"{ANY_STATE_ID} --> post_published : PublishPost" in mermaid and "[*] --> post_draft" in mermaid
+    assert 'state "*" as __any_state' in mermaid and "post-" not in mermaid.split("\n", 1)[1].replace('"', "")
     assert lint_mermaid(mermaid) == []
     assert f"{ANY_STATE_ID} --> post-published : PublishPost" in render(ir, "plantuml")
     assert f"{ANY_STATE_ID} -> post-published: PublishPost" in render(ir, "d2")

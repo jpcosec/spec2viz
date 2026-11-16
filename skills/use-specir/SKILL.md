@@ -96,6 +96,24 @@ viewer). Do not document a renderer list that disagrees with `RENDERER_MAP`.
 specir diagram validate -> specir diagram render -> specir diagram lint -> specir catalog build -> HTML
 ```
 
+### Real mermaid engine (mmdc)
+
+`specir diagram lint` (and `lint_mermaid`/`assert_mermaid_ok`) adds a pass with the real mermaid parser
+when mermaid-cli is available; without it only the regex heuristics run, and the tests that need the
+engine skip. The binary is `mmdc` on the PATH, or the one `SPECIR_MMDC` points to (`SPEC2VIZ_MMDC`
+still works); `SPECIR_MMDC=0` turns the engine pass off.
+
+On this machine mermaid-cli lives outside any repo, in `/mnt/ssd/herramientas/mermaid-cli` (npm install
+with `PUPPETEER_SKIP_DOWNLOAD=1`, no bundled Chromium). Its `mmdc` there is a wrapper that runs the system
+Chrome (`/usr/bin/google-chrome`, `PUPPETEER_EXECUTABLE_PATH`) headless with `puppeteer-config.json`,
+puts the Chrome profile in a temporary `/dev/shm/irjp-mmdc.*` directory that it deletes on exit, and caps
+each render with `timeout` (`MMDC_TIMEOUT`, 55 s by default):
+
+```bash
+export SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc
+specir diagram lint <rendered.mmd>
+```
+
 And into a store, with sldb:
 
 ```bash
