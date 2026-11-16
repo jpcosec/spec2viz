@@ -1,13 +1,15 @@
 name: 20261116-021430-suggestion-g5-decisi-n-de-jp-sobre-spec2viz-sldb
 path: desk/inbox/20261116-021430-suggestion-g5-decisi-n-de-jp-sobre-spec2viz-sldb.md
-source_hash: 54f9eb8250b6fb4255d3c714740b4c449898fb2822e3e1efe49360e8a74d1230
-content_hash: 39f0f8332bf87cfda7f83f4cdc6d27bb31a3d221bc2777be1b69dfc5793f883e
+source_hash: a51f7513e7edbb1427d8c6b7a62e616a37905a594ff945c8b641cff6011e8e9c
+content_hash: 9fd947013ea4593cfd526eb6ebab856893e54f597bcad069c73be59e538413a7
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
   target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   created_at: 1168d0bd836f71114ac13506b51104c647477f69ae0ec83cfaa22f99b0c25943
-  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: 32f6d8bf4a56f6b0a84056e4d1bfa0e1c835c9597d22cf5187cd4ad0047e32e6
   title: be2a3dff1e9c8fe4b742cb45b2473a5b158134b70e774992ddc99ea735733fa5
   body: d507f02fd2a5191ed61a3b25aa6edb38adab0a2496c83604b5b5fb890f624b72
 semantic_tags:
@@ -15,4 +17,8 @@ semantic_tags:
 - source.document.markdown
 - type.desk.inbox-note
 - workspace.desk.inbox
-provenance: null
+provenance:
+  by: agent
+  at: '2026-11-16T10:40:47Z'
+  authority: generated
+  via: save_document_payload

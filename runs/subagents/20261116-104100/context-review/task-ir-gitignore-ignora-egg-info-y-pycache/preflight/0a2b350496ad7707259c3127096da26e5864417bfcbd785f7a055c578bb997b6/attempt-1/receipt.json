@@ -1,0 +1,9 @@
+{
+  "key": "task-ir-gitignore-ignora-egg-info-y-pycache/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "0a2b350496ad7707259c3127096da26e5864417bfcbd785f7a055c578bb997b6",
+  "output_sha256": "adba484dd78fac2b87680510485ddabbba3721c5bbc90f6c008734f624751f48",
+  "start": "2026-11-16T10:41:01.061639+00:00",
+  "end": "2026-11-16T10:41:14.191818+00:00"
+}

@@ -1,0 +1,9 @@
+{
+  "key": "task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "f75f910ca8bbfa7534b70b9471fa6a648167ded6ac8562ff976bac6476013f5f",
+  "output_sha256": "5ce30d2774d38feeb4b0364b5f2ba7618174b0c5c237b9209197eb34da7cec12",
+  "start": "2026-11-16T10:41:33.092715+00:00",
+  "end": "2026-11-16T10:41:47.026895+00:00"
+}

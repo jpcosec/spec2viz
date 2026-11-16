@@ -1,0 +1,42 @@
+name: task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5
+path: desk/tasks/task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5.md
+source_hash: efd818413b8d33600c4b5feccb9db08ead486aa80f251d9ea2930c3855b81bcd
+content_hash: 9a7b9bcae1667241e393a2d707259d3a0120401d9c55e1bdd49a2173b36d84de
+field_hashes:
+  title: ba3897f00f7a97d6ef1dad4b4d74a46df90f51ff928f8e3d68df50d7c058e902
+  id: ae44e81243711c19d9a8e3e3ccfd3be3821d95738c3ddf13628ad0a07044facc
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 44c62cc123fbeebe9b6979e11c878afcd2c37e1de683f7d33b5ada3d113f3b23
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: c7d3e3b8592fcac168e05fdc060265d85974be3ea7dc686c59cd4511c57cf092
+  goal: e0165409dca21e401584d7ce8910e14c47286d81211658ff5e4d08f9c0050df6
+  scope: 2708ec95953088eafc65588ec08512f1470313edf8bb9d7c78174465da634369
+  references: a17eba80720cf4961ab0d443bf1b6b9e2cbd448dd5b6c7d75f978b03e88ba8d6
+  depends_on: d1309ef6ddf22e5b7d187914c3db85e2785bd8a57324a042149ddc1ffc638e7e
+  pills: 97245de048b7606c0410958f7cc03c79c3d8618cbab6f5a3e7ec6edca3e76cab
+  files: 1322759fa4e729c1b5eb8d8e5c94dd049cc3763190fb5ff5b6a60d59e39e9c33
+  implementation_path: 85d1c2446934a5b4006b31d2f96eaec43e00110f36471b56f9c0952a0f9c33f5
+  validation: 50e614254fd70bf24fb2a92671aa9748174af8e3e66f68423d2e5a0811ee49e1
+  done_when: 4cd8610ad09d8761bda544364684ac6ac74a26bc41ab8e32eb148a387b41f671
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- artifact:task
+- host:robocop2
+- representation.markdown
+- source.document.markdown
+- system:spec2viz
+- system:specir
+- topic:migracion
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T10:40:23Z'
+  authority: generated
+  via: save_document_payload

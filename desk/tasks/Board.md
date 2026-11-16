@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T10:38:27Z'
+  at: '2026-11-16T10:39:08Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -20,6 +20,9 @@ tasks:
 - desk/tasks/task-espejo-sldb-graph-path-y-graph-paths-explicados-b3.md
 - desk/tasks/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb.md
 - desk/tasks/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents.md
+- desk/tasks/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a.md
+- desk/tasks/task-ir-gitignore-ignora-egg-info-y-pycache.md
+- desk/tasks/task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -62,3 +65,6 @@ _Generated from the task references above._
 - Espejo sldb: graph_path y graph_paths explicados (B3) [draft] - Disponer en sldb de caminos explicados en el recorrido del grafo, con la procedencia de cada tramo, para el impacto de specIR.
 - IR13e Portar a IR las pruebas de notaciones, paletas y vistas de spec2viz contra sldb [draft] - Un archivo de pruebas de IR que ejecuta, contra sldb, 40 casos de las pruebas de spec2viz de notaciones, paletas y vistas, más 9 comparaciones «valida igual» (8 notaciones y la paleta default de spec2viz frente a las builtin de sldb), y la matriz de cobertura actualizada: cada fila listada queda cumplida citando esas pruebas o sigue abierta con la diferencia concreta y la nota enviada al desk de sldb.
 - Fixture mount_copy de las pruebas copia los RunDoc de runs/subagents [draft] - La copia aislada del store que arma mount_copy contiene también cada runs/subagents/*/run.md del repo, en la misma ruta relativa, y tests/test_mcp_extension.py pasa con RunDocs registrados en el store.
+- Las pruebas de MCP dejan de federar el store real spec2viz/.sldb (G5, opción A) [draft] - Las pruebas de IR siguen probando la lectura de una spec de un store enlazado a través del servidor MCP, pero contra un store de specs que se construye en un directorio temporal a partir de una fixture que ya está en IR, sin leer ni enlazar ../spec2viz/.sldb.
+- IR/.gitignore ignora *.egg-info/ y __pycache__/ [draft] - git status de IR deja de listar src/specir.egg-info/ y los directorios __pycache__/.
+- IR13f Anotar en el acta de retiro la resolución de pron (4224186) y la decisión de JP sobre G5 [draft] - El acta registra a pron como resuelto, con su commit y la evidencia, y registra en G5 la decisión de JP (opción A) y lo que queda pendiente en IR por esa decisión.
