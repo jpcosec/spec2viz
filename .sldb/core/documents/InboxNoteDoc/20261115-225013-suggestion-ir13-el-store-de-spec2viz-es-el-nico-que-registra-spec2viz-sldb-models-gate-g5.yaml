@@ -1,13 +1,15 @@
 name: 20261115-225013-suggestion-ir13-el-store-de-spec2viz-es-el-nico-que-registra-spec2viz-sldb-models-gate-g5
 path: desk/inbox/20261115-225013-suggestion-ir13-el-store-de-spec2viz-es-el-nico-que-registra-spec2viz-sldb-models-gate-g5.md
-source_hash: 9e52184437d4bd670d2d45f7d2c42aa3b0e0ca3b5a616497ee60689c4d07c862
-content_hash: 2322dd603e09a7f5f1168a92c9fb23726042af508c292a2506db353e39a226c2
+source_hash: a88040edabc05721f84720128c9f390765f74e65eaf3a42403ba68b1f3bcb874
+content_hash: c844f8a1d4a7f9f861edd3592cb7feba73ee4b46a191095b45a87da8b2107e37
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
   created_at: bee92d810f69f470b60e4f5a66fa84be4fa69823fdfdc23605c3b298e3787f68
-  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  acknowledged_at: 6ff06b9ecd8e2b961e074ee397401385d914c336e36ef1ba7a80568628e6bb92
   title: 9b771ab8f9c1e66df7033806dbaea614af8ebed0819d13b424b631b5965e144d
   body: d8b5914851190b57bd6d903b5f9dea6971e3ff434002bfcf22843542f6ffb7c8
 semantic_tags:
@@ -15,4 +17,8 @@ semantic_tags:
 - source.document.markdown
 - type.desk.inbox-note
 - workspace.desk.inbox
-provenance: null
+provenance:
+  by: agent
+  at: '2026-11-16T03:47:53Z'
+  authority: generated
+  via: save_document_payload

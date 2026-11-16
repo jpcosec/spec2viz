@@ -1,0 +1,36 @@
+name: review-task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a-preflight-2
+path: desk/reviews/task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a/preflight-2.md
+source_hash: 5e8a8ed7b4b199316d14a2cfc31969b7e2c693c9844147aea0f38d89fbacb8e6
+content_hash: c6cff3e31378de4e1119c753f9cb1da682e14121d174513b3c516d0310c0c5d2
+field_hashes:
+  id: 32fd039deb7650b9037a3e568aba3cc4494784a06e649a6bb6054f6ffd43cd74
+  title: 43e68f53d1d983936bc22a293dea383ffc927d33c373366bec41b829901e9242
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 3e32bb329695d5ca939b81999b156c1646a37d6556608aacc29a0374fd74f2d0
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  run_dir: a858753d19c4040ea4f9fbadbad2116912635afdf67e22d2f540b28a1ec1f2c8
+  input_sha256: badfa9138376f2ea46daabd74ab2b1db9eead81e6b0adedcb2fdd56975895fd8
+  output_sha256: 14ae926d4aa2134218fc0526153e3a1b142df3b451dfb9b5381d5c2b176196bf
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 49e214861d78158c88e218ef1ccd2d1036d20df058006c50c72d305c9192af36
+  created_at: c9d052bb5af2b9c807f9a4541a759a02eb23b42f28cee684cfbf3bd46c9a27d8
+  disposed_at: 2db1c6dc9f4d19bf6aef086a5b3b805a2dca5ae536e9aaf382f84f7ab4d4da4a
+  disposed_by: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  summary: 2035a12f909437a7f2cdc49fb74f2642bb2e13f25f3e68e98f9d3ce78a166723
+  disposition: 223cd9e0fa56f6ac82367382291e30cd2a07e826a789c699287f09cd2c8a53f5
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T03:55:08Z'
+  authority: generated
+  via: save_document_payload

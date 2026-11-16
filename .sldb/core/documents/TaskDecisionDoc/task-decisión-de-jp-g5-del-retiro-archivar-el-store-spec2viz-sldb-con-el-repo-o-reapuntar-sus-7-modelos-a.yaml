@@ -1,0 +1,38 @@
+name: task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a
+path: desk/tasks/task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a.md
+source_hash: 4fe9838ca02de7d3594f8f82dba241cc01e5bd013213addfb2930a74e5444528
+content_hash: 6c24e96b6a59a9db71e59442533bc36304738b24fe5db92b35cf5e48c812c5a4
+field_hashes:
+  title: 69fb3eef0b79e862fc63ea2c21655955e80d010c76d910071451d3e40b1f045d
+  id: 1ef4debd56203584c7d0a43b4711b0f9e59086c5be68029cc254de14dc305e03
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 9e7e8be2998f87dfcbb538781d827f202722ef7dad630b93bca343e20f247db8
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 14a2d9780f74b7498e53083baddb11f28b216b01f33eb235c89ba309a27269da
+  goal: 726a14b314c7c1ffec24012bf76d66cf2041e6463ae3548d1eb8de8bb9c38fe9
+  scope: 85e04cde43d2ef654feacabb4fb677b8df48e88e137d69393655629359f8eb3e
+  references: af4b7ed4e3c78f940c7e0c80c6ad024156060f8142f16614b8ef494ee7a36a12
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 7fca513f2cd2589589934424612cff074e5522ba897ca7da83921fa5a9e6a1e8
+  implementation_path: 853f902f01bcf00e71cb44b13922eefd7766840a6feb0ac7739c030b82a255f8
+  validation: 47dd54f98ffeaf78ccb74e1a963560e47e9c2f22409a619d80448fc9b3db59b3
+  done_when: c68714bdfcb5d338b2bb97144475ede4d2026d38f7bfeb67447b41729796f23c
+  task_type: a4df8849de4c7c42dff3bfe95bbeb8759b5ca37238136b51e418b9d2f5ef311c
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T04:10:52Z'
+  authority: generated
+  via: save_document_payload

@@ -1,4 +1,9 @@
 ---
+sldb:
+  by: agent
+  at: '2026-11-16T03:47:53Z'
+  authority: generated
+  via: save_document_payload
 # unclear | suggestion
 kind: suggestion
 # e.g., other_repo
@@ -8,9 +13,11 @@ target_project: spec2viz
 # ISO 8601 timestamp
 created_at: '2026-11-15T22:50:13'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: spec2viz
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-11-16T00:47:52'
 ---
 
 # IR13: el store de spec2viz es el único que registra spec2viz.sldb_models (gate G5)

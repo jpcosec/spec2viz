@@ -8,9 +8,11 @@ target_project: spec2viz
 # ISO 8601 timestamp
 created_at: '2026-11-04T23:36:58'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: spec2viz
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-11-16T00:47:55'
 ---
 
 # sldb: el store pasa a .sldb versionado y .sldb_cache ignorada; journal retirado

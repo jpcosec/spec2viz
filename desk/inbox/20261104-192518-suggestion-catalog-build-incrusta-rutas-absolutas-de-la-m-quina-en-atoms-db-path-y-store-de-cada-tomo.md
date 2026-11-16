@@ -1,4 +1,9 @@
 ---
+sldb:
+  by: agent
+  at: '2026-11-16T03:48:00Z'
+  authority: generated
+  via: save_document_payload
 # unclear | suggestion
 kind: suggestion
 # e.g., other_repo
@@ -8,9 +13,11 @@ target_project: spec2viz
 # ISO 8601 timestamp
 created_at: '2026-11-04T19:25:18'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: spec2viz
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-11-16T00:47:58'
 ---
 
 # catalog build incrusta rutas absolutas de la máquina en ATOMS_DB (path y store de cada átomo)

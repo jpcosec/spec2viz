@@ -556,6 +556,19 @@ include:
 - model: BoardDoc
   paths:
   - desk/tasks/Board.md
+- model: TaskDecisionDoc
+  paths:
+  - desk/tasks/task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a.md
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a/preflight-1.md
+    name: review-task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a-preflight-1
+  - path: desk/reviews/task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a/preflight-2.md
+    name: review-task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a-preflight-2
+  - path: desk/reviews/task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a/bundle-1.md
+    name: review-task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a-bundle-1
+  - path: desk/reviews/task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a/bundle-2.md
+    name: review-task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a-bundle-2
 graph_backend: networkx
 policy: {}
 tag_models:
