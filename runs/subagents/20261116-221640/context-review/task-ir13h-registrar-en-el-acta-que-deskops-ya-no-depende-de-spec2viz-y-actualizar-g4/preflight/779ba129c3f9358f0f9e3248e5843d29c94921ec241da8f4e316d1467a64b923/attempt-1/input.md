@@ -1,3 +1,4 @@
+FILE:desk/tasks/task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4.md
 ---
 sldb:
   by: agent
@@ -71,3 +72,7 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 El acta registra a deskops como resuelto con sus commits y trae la corrida nueva; G4 en el acta y en la matriz ya no nombra a graph_ui, deskops ni pron como consumidores pendientes.
+
+FILE:instruccion
+Preflight solo-TaskDoc de la tarea task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4: reformula el encargo tal como lo leería un ejecutor sin ningún otro contexto, lista ambigüedades con cita textual del input y da el DRY-RUN sin ejecutar nada. No ejecutes nada.
+

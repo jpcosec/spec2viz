@@ -1,0 +1,381 @@
+$ git -C ../deskops fetch -q origin
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor 2421ca29 origin/main
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor 74ffdb63 origin/main
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor b716bf85 origin/main
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor 421d6a27 origin/main
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor 42b752ea origin/main
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor ce66f69e origin/main
+rc=0
+
+$ git -C ../deskops rev-parse --short origin/main
+ee9bc3cd
+rc=0
+
+$ git -C ../deskops log --oneline -1 ee9bc3cd
+ee9bc3cd desk: recibos evidence del cierre de las skills de IR13 y nota de seguimiento [skip ci]
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor ee9bc3cd origin/main
+rc=0
+
+$ grep -n spec2viz ../deskops/.sldb/core/store_index.yaml
+308:  - system.spec2viz
+rc=0
+
+$ timeout 300 .venv/bin/specir retirement check --path graph_ui=../UIs/graph_ui --path deskops=../deskops --path pron=../pron --path sldb=../sldb --path spec2viz/.sldb=../spec2viz/.sldb
+audited repos: graph_ui, deskops, pron, sldb, IR
+audited stores: spec2viz/.sldb
+dependencies: 63
+  sldb	runs/subagents/20261116-exec-oraculo-d2/gen_golden.py:5	importación	from spec2viz.generators import python_ast
+  IR	tests/test_matriz_cobertura_spec2viz.py:31	importación	main = importlib.import_module("spec2viz.cli").main
+  IR	tests/visual/parity.py:52	importación	from spec2viz.compilers import compile_ir
+  IR	tests/visual/parity.py:53	importación	from spec2viz.loader import load
+  IR	tests/visual/parity.py:54	importación	from spec2viz.validator import validate
+  IR	tests/visual/render_parity.py:74	importación	from spec2viz.compilers import compile_ir
+  IR	tests/visual/render_parity.py:75	importación	from spec2viz.loader import load
+  IR	tests/visual/render_parity.py:76	importación	from spec2viz.renderers import render
+  IR	tests/visual/render_parity.py:77	importación	from spec2viz.renderers.bpmn import render_bpmn_html
+  IR	tests/visual/render_parity.py:87	importación	from spec2viz.cli import DIAGRAM_RENDERERS
+  IR	tests/visual/render_parity.py:88	importación	from spec2viz.renderers import DEFAULT_RENDERER, EXT_MAP
+  IR	tests/visual/render_parity.py:94	importación	from spec2viz.renderers.view_mermaid import view_to_mermaid
+  IR	tests/visual/render_parity.py:100	importación	from spec2viz.linters.mermaid import lint_mermaid
+  IR	tests/visual/render_parity.py:106	importación	from spec2viz.schema import json_schema
+  IR	tests/visual/render_parity.py:112	importación	from spec2viz import render_to_file
+  IR	tests/visual/render_parity.py:119	importación	import spec2viz
+  IR	tests/visual/render_parity.py:190	importación	from spec2viz.linters.mermaid import lint_mermaid
+  IR	tests/visual/render_parity.py:191	importación	from spec2viz.schema import json_schema
+  IR	tests/visual/test_catalog_parity.py:39	importación	spec2viz = pytest.importorskip("spec2viz")
+  IR	tests/visual/test_catalog_parity.py:49	importación	from spec2viz.sldb_sync import check_catalog as oracle
+  IR	tests/visual/test_catalog_parity.py:102	importación	from spec2viz.sldb_sync import SpecSync as OracleSync
+  IR	tests/visual/test_catalog_parity.py:103	importación	from spec2viz.sldb_sync import sync_catalog as oracle_sync
+  IR	tests/visual/test_catalog_parity.py:122	importación	from spec2viz.cli import main
+  IR	tests/visual/test_catalog_parity.py:154	importación	from spec2viz.deskops import render_deskops
+  IR	tests/visual/test_catalog_parity.py:203	importación	from spec2viz.deskops import render_deskops
+  IR	tests/visual/test_lint_mermaid.py:86	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_cases.py:314	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_commands.py:251	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_parity.py:53	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_parity.py:59	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_render_parity.py:83	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_resources.py:62	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_schema.py:44	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:105	importación	spec2viz = pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:117	importación	from spec2viz.sldb_sync import SpecSync as Spec2VizSync
+  IR	tests/visual/test_sync_generation_parity.py:201	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:229	importación	import spec2viz.graph_import as oracle
+  IR	tests/visual/test_sync_generation_parity.py:258	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:259	importación	from spec2viz.graph_import import component_spec_from_graph as oracle_from_graph
+  IR	tests/visual/test_sync_generation_parity.py:260	importación	from spec2viz.graph_import import load_store_index
+  IR	tests/visual/test_sync_generation_parity.py:302	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_sync_generation_parity.py:303	importación	from spec2viz.generators.python_ast import generate_python_ast_spec
+  IR	tests/visual/test_visual_parity.py:35	importación	pytest.importorskip("spec2viz")
+  IR	tests/visual/test_visual_parity.py:43	importación	pytest.importorskip("spec2viz")
+  spec2viz/.sldb	store.yaml:44	modelo registrado	model_ref: spec2viz.sldb_models:SpecDoc
+  spec2viz/.sldb	store.yaml:47	modelo registrado	model_ref: spec2viz.sldb_models:SpecNodeDoc
+  spec2viz/.sldb	store.yaml:50	modelo registrado	model_ref: spec2viz.sldb_models:NotationDoc
+  spec2viz/.sldb	store.yaml:53	modelo registrado	model_ref: spec2viz.sldb_models:GlyphDoc
+  spec2viz/.sldb	store.yaml:56	modelo registrado	model_ref: spec2viz.sldb_models:LinkDoc
+  spec2viz/.sldb	core/store_index.yaml:141	modelo registrado	model_ref: spec2viz.sldb_models:SpecDoc
+  spec2viz/.sldb	core/store_index.yaml:154	modelo registrado	model_ref: spec2viz.sldb_models:SpecNodeDoc
+  spec2viz/.sldb	core/store_index.yaml:167	modelo registrado	model_ref: spec2viz.sldb_models:NotationDoc
+  spec2viz/.sldb	core/store_index.yaml:180	modelo registrado	model_ref: spec2viz.sldb_models:GlyphDoc
+  spec2viz/.sldb	core/store_index.yaml:193	modelo registrado	model_ref: spec2viz.sldb_models:LinkDoc
+  spec2viz/.sldb	core/store_index.yaml:246	modelo registrado	model_ref: spec2viz.sldb_models:ViewDoc
+  spec2viz/.sldb	core/store_index.yaml:259	modelo registrado	model_ref: spec2viz.sldb_models:PaletteDoc
+  spec2viz/.sldb	core/models/GlyphDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:GlyphDoc
+  spec2viz/.sldb	core/models/LinkDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:LinkDoc
+  spec2viz/.sldb	core/models/NotationDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:NotationDoc
+  spec2viz/.sldb	core/models/PaletteDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:PaletteDoc
+  spec2viz/.sldb	core/models/SpecDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:SpecDoc
+  spec2viz/.sldb	core/models/SpecNodeDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:SpecNodeDoc
+  spec2viz/.sldb	core/models/ViewDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:ViewDoc
+rows not accredited: 9
+  SV-A17: abierta
+  SV-H01: abierta
+  SV-K09: abierta
+  SV-K16: abierta
+  SV-K18: abierta
+  SV-K21: abierta
+  SV-K23: abierta
+  SV-K26: abierta
+  SV-K29: abierta
+gate: failed, the retirement is not declared
+rc=1
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_matriz_cobertura_spec2viz.py tests/visual/test_retirement_gate.py
+...........x                                                             [100%]
+11 passed, 1 xfailed in 4.85s
+rc=0
+
+$ deskops graph missing --root .
+No missing graph references found.
+rc=0
+
+$ git diff --stat
+ ...copia-del-store-de-deskops-en-vez-del-real.yaml | 10 ++---
+ .sldb/core/models/ReviewDoc.yaml                   |  6 +--
+ .sldb/core/models/RunDoc.yaml                      |  6 +--
+ .sldb/core/models/TaskCodeDoc.yaml                 |  4 +-
+ .sldb/core/store_index.yaml                        |  2 +-
+ ...a-copia-del-store-de-deskops-en-vez-del-real.md | 11 ++---
+ docs/spec2viz/acta-de-retiro.md                    | 52 ++++++++++------------
+ docs/spec2viz/matriz-de-cobertura.md               |  2 +-
+ 8 files changed, 45 insertions(+), 48 deletions(-)
+rc=0
+
+$ git rev-parse --short HEAD
+4f1e108
+rc=0
+
+$ git -C ../sldb rev-parse --short HEAD
+12e9b191
+rc=0
+
+$ git -C ../UIs/graph_ui rev-parse --short HEAD; git -C ../UIs/graph_ui status --short | wc -l
+824c135
+39
+rc=0
+
+$ git -C ../deskops rev-parse --short HEAD; git -C ../deskops rev-list --left-right --count HEAD...origin/main; git -C ../deskops status --short | head
+12c5c2ce
+9	0
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/store_index.yaml
+ M .sldb/store.yaml
+ M deskops/cli/commands/closeout.py
+ M deskops/cli/registry.py
+ M deskops/services/closure.py
+ M tests/test_closeout_declared_evidence.py
+?? .sldb/core/documents/RunDoc/run-deskops-e-a6a9943b2333.yaml
+?? runs/subagents/20261116-170649/
+?? runs/subagents/20261116-170855/
+rc=0
+
+$ git -C ../pron rev-parse --short HEAD
+39ea972
+rc=0
+
+$ git -C ../spec2viz rev-parse --short HEAD
+91ba1d0
+rc=0
+
+$ grep -nE '^ *- *(path|name|store)|stores:|links:|federat' ../deskops/.sldb/core/store_index.yaml | head -30; grep -n -A12 -iE '^(links|federat|stores)' ../deskops/.sldb/store.yaml
+1:stores:
+2:- name: sldb
+4:- name: pron
+6:- name: scion
+9:- name: AtomDoc
+17:- name: RepositoryDoc
+25:- name: TaskDoc
+33:- name: RoleDoc
+41:- name: RuntimeProfileDoc
+51:- name: RunDoc
+61:- name: ProtoAtomDoc
+71:- name: CrossroadDoc
+81:- name: PillDoc
+93:- name: StepDoc
+105:- name: RitualDoc
+117:- name: InboxNoteDoc
+129:- name: BoardDoc
+141:- name: MaterializationContractDoc
+153:- name: RelationTypeDoc
+165:- name: RelationDoc
+177:- name: DeskFAQDoc
+189:- name: TaskCodeDoc
+201:- name: TaskDocsDoc
+213:- name: TaskDebugDoc
+225:- name: TaskRefactorDoc
+237:- name: TaskDecisionDoc
+249:- name: TaskAggregateDoc
+261:- name: TaskExternalDoc
+273:- name: ReviewDoc
+285:- name: RuleDoc
+2:links:
+3-- name: sldb
+4-  path: ../sldb/.sldb
+5-- name: pron
+6-  path: ../pron/.sldb
+7-- name: scion
+8-  path: ../scion/.sldb
+9-models:
+10-- name: AtomDoc
+11-  model_ref: deskops.models:AtomDoc
+12-  path: deskops/models/atom.py
+13-- name: RepositoryDoc
+14-  model_ref: deskops.models:RepositoryDoc
+rc=0
+
+$ ls ../deskops/.opencode/skills/use-spec2viz/ && cat ../deskops/.opencode/skills/use-spec2viz/SKILL.md | head -20
+SKILL.md
+---
+name: use-specir
+description: Remission. spec2viz is retired (IR13); diagram specs, renderers, the catalog and generated diagram projections are now handled with specIR's `specir` command and sldb. Load the use-specir skill of the IR repo.
+---
+
+# use-spec2viz → use-specir
+
+spec2viz is retired (IR13). This file stays only so that whoever loads the old `use-spec2viz` path
+finds where the guidance went. The skill to use is `use-specir`, in the IR repo:
+`skills/use-specir/SKILL.md` (sibling checkout: `../IR/skills/use-specir/SKILL.md`). The
+command-by-command correspondence is `docs/spec2viz/correspondencia-cli.md` in that repo.
+
+Short map:
+
+- render / validate / lint / schema of a spec → `specir diagram render|validate|lint|schema`
+- catalog HTML → `specir catalog build`
+- catalog sync / check → `sldb notations sync --catalog [--check]`
+- serving the catalog's annotations → `sldb serve`
+- spec from a graph or Python source → `sldb notations from-graph`
+
+rc=0
+
+$ sed -n 1,12p ../deskops/.sldb/core/store_index.yaml
+stores:
+- name: sldb
+  path: ../sldb/.sldb
+- name: pron
+  path: ../pron/.sldb
+- name: scion
+  path: ../scion/.sldb
+models:
+- name: AtomDoc
+  model_ref: deskops.models:AtomDoc
+  path: deskops/models/atom.py
+  models_index: .sldb/core/models/AtomDoc.yaml
+rc=0
+
+$ git -C ../deskops diff --stat .sldb/store.yaml .sldb/core/store_index.yaml; git -C ../deskops diff .sldb/store.yaml | head -30
+ .sldb/core/store_index.yaml | 2 +-
+ .sldb/store.yaml            | 2 ++
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+diff --git a/.sldb/store.yaml b/.sldb/store.yaml
+index 083ebe9d..4452ad43 100644
+--- a/.sldb/store.yaml
++++ b/.sldb/store.yaml
+@@ -379,6 +379,8 @@ include:
+     name: run-deskops-e-af97f091952a
+   - path: runs/subagents/test-deskops-t-b9835a9a1e2c/run.md
+     name: run-deskops-t-b9835a9a1e2c
++  - path: runs/subagents/exec-deskops-e-a6a9943b2333/run.md
++    name: run-deskops-e-a6a9943b2333
+ - model: ReviewDoc
+   paths:
+   - path: desk/reviews/task-cc30-limpieza-previa-operations-py-como-fachada-y-fuera-los-spec-yaml-duplicados/preflight-1.md
+rc=0
+
+$ git -C ../deskops show origin/main:.sldb/store.yaml | grep -n spec2viz; git -C ../deskops show origin/main:.sldb/core/store_index.yaml | grep -n spec2viz
+322:  - desk/materializations/materialization-declaracion-del-store-sin-spec2viz.md
+323:  - desk/materializations/materialization-indice-del-store-sin-spec2viz.md
+659:  - path: desk/reviews/task-las-skills-y-el-script-de-diagramas-de-deskops-dejan-de-invocar-spec2viz-y-usan-specir-ir13/preflight-1.md
+660:    name: review-task-las-skills-y-el-script-de-diagramas-de-deskops-dejan-de-invocar-spec2viz-y-usan-specir-ir13-preflight-1
+721:  - path: desk/reviews/task-las-skills-y-el-script-de-diagramas-de-deskops-dejan-de-invocar-spec2viz-y-usan-specir-ir13/preflight-2.md
+722:    name: review-task-las-skills-y-el-script-de-diagramas-de-deskops-dejan-de-invocar-spec2viz-y-usan-specir-ir13-preflight-2
+889:  - path: desk/reviews/task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp/preflight-1.md
+890:    name: review-task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp-preflight-1
+893:  - path: desk/reviews/task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp/bundle-1.md
+894:    name: review-task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp-bundle-1
+909:  - path: desk/reviews/task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados/preflight-1.md
+910:    name: review-task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados-preflight-1
+911:  - path: desk/reviews/task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados/bundle-1.md
+912:    name: review-task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados-bundle-1
+913:  - path: desk/reviews/task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp/evidence-tests-1.md
+914:    name: review-task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp-evidence-tests-1
+915:  - path: desk/reviews/task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp/evidence-commit-1.md
+916:    name: review-task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp-evidence-commit-1
+917:  - path: desk/reviews/task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp/evidence-atom-1.md
+918:    name: review-task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp-evidence-atom-1
+919:  - path: desk/reviews/task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp/evidence-materialization-1.md
+920:    name: review-task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp-evidence-materialization-1
+931:  - path: desk/reviews/task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados/evidence-tests-1.md
+932:    name: review-task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados-evidence-tests-1
+933:  - path: desk/reviews/task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados/evidence-commit-1.md
+934:    name: review-task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados-evidence-commit-1
+935:  - path: desk/reviews/task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados/evidence-atom-1.md
+936:    name: review-task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados-evidence-atom-1
+937:  - path: desk/reviews/task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados/evidence-materialization-1.md
+938:    name: review-task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados-evidence-materialization-1
+939:  - path: desk/reviews/task-las-skills-y-el-script-de-diagramas-de-deskops-dejan-de-invocar-spec2viz-y-usan-specir-ir13/evidence-commit-1.md
+940:    name: review-task-las-skills-y-el-script-de-diagramas-de-deskops-dejan-de-invocar-spec2viz-y-usan-specir-ir13-evidence-commit-1
+941:  - path: desk/reviews/task-las-skills-y-el-script-de-diagramas-de-deskops-dejan-de-invocar-spec2viz-y-usan-specir-ir13/evidence-document-1.md
+942:    name: review-task-las-skills-y-el-script-de-diagramas-de-deskops-dejan-de-invocar-spec2viz-y-usan-specir-ir13-evidence-document-1
+308:  - system.spec2viz
+rc=0
+
+$ git -C ../deskops grep -nE 'spec2viz (diagram|catalog|render|validate)|from spec2viz|import spec2viz' origin/main -- . ':!desk' ':!runs' | head
+origin/main:README.md:141:spec2viz validate <diagram-spec.yaml>
+origin/main:README.md:142:spec2viz render <diagram-spec.yaml> --backend mermaid --out <output-dir>
+origin/main:README.md:143:spec2viz render <diagram-spec.yaml> --out <output-dir>
+rc=0
+
+$ git -C ../deskops log --oneline -12 origin/main
+ee9bc3cd desk: recibos evidence del cierre de las skills de IR13 y nota de seguimiento [skip ci]
+2421ca29 closeout: task-las-skills-y-el-script-de-diagramas-de-deskops-dejan-de-invocar-spec2viz-y-usan-specir-ir13
+ce66f69e Las skills y el script de diagramas de deskops dejan de invocar spec2viz y usan specir (IR13)
+0b277930 desk: recibos evidence del cierre de la regla de desk_graph (IR13) [skip ci]
+b716bf85 closeout: task-la-regla-de-desk-graph-sobre-specs-deja-de-nombrar-spec2viz-y-reconoce-los-specs-yaml-sincronizados
+42b752ea La regla de specs del grafo del desk reconoce docs/architecture y deja de nombrar spec2viz (IR13)
+afc89576 desk: recibos evidence y materialización del cierre de las claves legacy [skip ci]
+87d0a7d6 closeout: task-desk-update-migra-las-claves-legacy-checklists-y-routine-del-frontmatter-de-las-tareas-para-que-supe
+e4a98712 desk: recibos evidence, átomo y materializaciones del cierre de spec2viz; contrato y recibos de la regla de desk_graph; notas de inbox entrantes [skip ci]
+74ffdb63 closeout: task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp
+421d6a27 deskops quita el enlace federado al store de spec2viz de su .sldb (G5 opción b de JP)
+aa25fdb0 desk update migra las claves legacy checklists y routine del frontmatter de las tareas
+rc=0
+
+$ git -C ../deskops log --oneline origin/main..HEAD
+12c5c2ce desk: recibos evidence del cierre de los tests de subject pinneado [skip ci]
+2e3c37d8 closeout: task-los-tests-de-review-esperan-el-subject-pinneado-que-ahora-escribe-create-document-de-sldb
+7eb46b4c Los tests de review esperan el subject pinneado que ahora escribe create_document de sldb
+d6937574 desk: recibos, átomo y materialización del cierre de atoms citations; tarea nueva de los tests de subject pinneado con sus recibos [skip ci]
+8b0aae02 closeout: task-deskops-atoms-citations-escanea-las-citas-codigo-atomo-reporta-citas-rotas-y-atomos-sin-cita-y-las-l
+996becef deskops atoms citations escanea las citas código→átomo, reporta citas rotas y átomos sin cita y las registra como cited_by
+7801327f desk: recibos evidence del cierre de la evidencia de commit de otro repo [skip ci]
+8583ea84 closeout: task-la-evidencia-de-commit-de-otro-repo-repo-id-sha-resuelve-el-repo-id-tambien-en-el-registro-del-ecosi
+f3282fd2 La evidencia de commit <repo-id>:<sha> resuelve el repo-id también en el registro del ecosistema
+rc=0
+
+$ diff <bloque «Salida del comprobador» del acta> <líneas de dependencias de specir retirement check (sin sangría)>
+rc=0
+   63 /dev/shm/acta-salida.txt
+   63 /dev/shm/run-salida.txt
+  126 total
+
+$ git log --oneline -6
+4f1e108 closeout: task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a
+b16aab7 tests: las pruebas MCP dejan de federar el store real spec2viz/.sldb; store de specs temporal desde la fixture de IR (G5)
+4ab6c35 closeout: task-espejo-sldb-graph-path-y-graph-paths-explicados-b3
+5e58159 closeout: task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer
+f064795 closeout: task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b
+ec6629d closeout: task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee
+rc=0
+
+$ ls desk/tasks desk/drawer/tasks desk/archive 2>/dev/null | grep -n 'dejan-de-federar'; grep -rln 'task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5' desk/tasks/Board.md && grep -n 'dejan-de-federar' desk/tasks/Board.md
+rc=1
+
+$ grep -n 'spec2viz' tests/conftest.py | head
+7:in place and only read. The store linked as `spec2viz` is not spec2viz's: it is a new sldb store
+32:SPEC_FIXTURES = REPO / "tests" / "visual" / "fixtures" / "spec2viz"
+33:SPEC_FIXTURE = "docs/architecture/spec2viz/class-sldb-models.yml"
+101:    """The `.sldb` of the temporary specs store linked as `spec2viz` in every mounted copy."""
+113:    the deskops store and the specs store `spec_store` (as `spec2viz`) linked."""
+126:    sldb("stores", "add", str(spec_store), "--name", "spec2viz", "--store", ".sldb", cwd=root)
+rc=0
+
+$ SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm timeout 9000 flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/   (salida completa en suite-1.log)
+inicio 2026-11-16T19:38:27-03:00
+747 passed, 4 xfailed in 317.88s (0:05:17)
+rc=0
+2026-11-16T20:05:00-03:00
+

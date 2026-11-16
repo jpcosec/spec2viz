@@ -1,0 +1,9 @@
+{
+  "key": "task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "b3811445bdb2f81bd5cbd4bf75c7a89e4b75690750fa961c10d6e5efd5804aad",
+  "output_sha256": "fb4c435c5ab1a7d8757b0b5c648ed06589e911f059f1cfaca419054bd1377c6a",
+  "start": "2026-11-16T22:32:19.893732+00:00",
+  "end": "2026-11-16T22:32:34.134097+00:00"
+}

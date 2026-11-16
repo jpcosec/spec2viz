@@ -1,0 +1,180 @@
+$ git -C ../deskops fetch origin
+rc=0
+
+$ git -C ../deskops rev-parse origin/main HEAD
+ee9bc3cd72728b9279d3f304e9f497b78bc4de47
+12c5c2cec64843ec3705b0e2dab050e29c64fd71
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor 2421ca29 origin/main
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor 74ffdb63 origin/main
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor b716bf85 origin/main
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor 421d6a27 origin/main
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor 42b752ea origin/main
+rc=0
+
+$ git -C ../deskops merge-base --is-ancestor ce66f69e origin/main
+rc=0
+
+$ grep -n spec2viz ../deskops/.sldb/core/store_index.yaml
+308:  - system.spec2viz
+rc=0
+
+$ git -C . rev-parse --short HEAD
+4f1e108
+rc=0
+
+$ git -C ../sldb rev-parse --short HEAD
+12e9b191
+rc=0
+
+$ git -C ../UIs/graph_ui rev-parse --short HEAD
+824c135
+rc=0
+
+$ git -C ../pron rev-parse --short HEAD
+39ea972
+rc=0
+
+$ git -C ../spec2viz rev-parse --short HEAD
+91ba1d0
+rc=0
+
+$ git -C ../UIs/graph_ui status --porcelain | wc -l
+39
+rc=0
+
+2026-11-16T19:33:38-03:00
+$ timeout 300 .venv/bin/specir retirement check --path graph_ui=../UIs/graph_ui --path deskops=../deskops --path pron=../pron --path sldb=../sldb --path spec2viz/.sldb=../spec2viz/.sldb > runs/subagents/deskops-e-5d20e77cfc47/check.out 2> runs/subagents/deskops-e-5d20e77cfc47/check.err
+rc=1
+
+2026-11-16T19:33:42-03:00
+$ sed -n 1,8p ../deskops/.sldb/core/store_index.yaml
+stores:
+- name: sldb
+  path: ../sldb/.sldb
+- name: pron
+  path: ../pron/.sldb
+- name: scion
+  path: ../scion/.sldb
+models:
+rc=0
+
+$ grep -n -B8 'system.spec2viz' ../deskops/.sldb/core/store_index.yaml | grep -E 'name:|model_ref:|system.spec2viz'
+308:  - system.spec2viz
+rc=0
+
+$ git -C ../deskops rev-parse --short HEAD
+12c5c2ce
+rc=0
+
+$ grep -cE '^(graph_ui|deskops|pron)\b' runs/subagents/deskops-e-5d20e77cfc47/check.out
+0
+rc=1
+
+$ cut -f1 runs/subagents/deskops-e-5d20e77cfc47/check.out | grep -E '^(IR|sldb|spec2viz/.sldb|deskops|graph_ui|pron)$' | sort | uniq -c
+rc=0
+
+$ grep -E 'abierta' runs/subagents/deskops-e-5d20e77cfc47/check.out
+  SV-A17: abierta
+  SV-H01: abierta
+  SV-K09: abierta
+  SV-K16: abierta
+  SV-K18: abierta
+  SV-K21: abierta
+  SV-K23: abierta
+  SV-K26: abierta
+  SV-K29: abierta
+rc=0
+
+$ grep -E '^\| `SV-[A-Z0-9]+` \| abierta' docs/spec2viz/matriz-de-cobertura.md | cut -d'|' -f2
+ `SV-A17` 
+ `SV-H01` 
+ `SV-K09` 
+ `SV-K16` 
+ `SV-K18` 
+ `SV-K21` 
+ `SV-K23` 
+ `SV-K26` 
+ `SV-K29` 
+rc=0
+
+$ awk -F'\t' 'NF>=4{gsub(/^ +/,"",$1); print $1}' runs/subagents/deskops-e-5d20e77cfc47/check.out | sort | uniq -c
+     43 IR
+      1 sldb
+     19 spec2viz/.sldb
+rc=0
+
+$ sed -n 297,309p ../deskops/.sldb/core/store_index.yaml
+- name: ViewDoc
+  model_ref: sldb.models.notation_models:ViewDoc
+  path: /dev/shm/integ-deskops/venv/lib/python3.13/site-packages/sldb/models/notation/view_doc.py
+  models_index: .sldb/core/models/ViewDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.presentation
+  - representation.markdown
+  - source.document.markdown
+  - system.spec2viz
+  - type.view
+rc=0
+
+$ sed -n 1,8p ../deskops/.sldb/core/store_index.yaml
+stores:
+- name: sldb
+  path: ../sldb/.sldb
+- name: pron
+  path: ../pron/.sldb
+- name: scion
+  path: ../scion/.sldb
+models:
+rc=0
+
+$ git -C ../deskops grep -n spec2viz origin/main -- deskops/graph/desk_graph.py .claude/skills .opencode/skills desk/drawer/plans/workspace-documental/render_diagram.py
+origin/main:.claude/skills/deskops-workflow/SKILL.md:3:description: This skill should be used when a repository has a top-level desk/ directory, or when the user asks to "add a task", "check the board", "advance a task", "create a pill", "create an atom", "promote from the drawer", "create or update a diagram spec", "render a diagram", "validate a spec", "build the architecture catalog", "agregar tarea", "revisar el board", "avanzar tarea", "crear un pill", "crear un atom", "promover del drawer", "renderizar diagrama", "validar spec", or otherwise mentions deskops, specir, spec2viz, sldb, desk/, atoms, pills, routines, the desk board, or a diagram/spec YAML source. It forces use of the `deskops` and `specir` CLIs instead of hand-editing desk/ files or generated diagram outputs, and enforces following the spec -> atoms|diagrams -> tasks|pills -> code|documental-projection pipeline instead of ad hoc workflow habits.
+origin/main:.claude/skills/deskops-workflow/SKILL.md:14:tasks, routines, pills, atoms, drawer, and board. `specir` (which replaces the retired spec2viz) owns diagrams the same way: a YAML
+origin/main:.claude/skills/deskops-workflow/SKILL.md:111:- `references/spec2viz-cli.md` — remission: spec2viz is retired; points to the IR repo's
+origin/main:.claude/skills/deskops-workflow/SKILL.md:112:  `skills/use-specir/SKILL.md` and its spec2viz → specir/sldb correspondence table.
+origin/main:.claude/skills/deskops-workflow/SKILL.md:114:  pill-vs-atom lifecycle, and the spec2viz mirror-of-sldb relationship, for when the mental model
+origin/main:.claude/skills/deskops-workflow/references/spec2viz-cli.md:1:# spec2viz CLI reference (retired)
+origin/main:.claude/skills/deskops-workflow/references/spec2viz-cli.md:3:spec2viz is retired (IR13). Its command reference no longer lives here: diagrams are rendered,
+origin/main:.claude/skills/deskops-workflow/references/spec2viz-cli.md:11:- `docs/spec2viz/correspondencia-cli.md` — every old spec2viz command and its equivalent.
+origin/main:.claude/skills/deskops-workflow/references/vocabulary.md:1:# deskops + spec2viz vocabulary
+origin/main:.claude/skills/deskops-workflow/references/vocabulary.md:14:- **spec2viz** is the diagram-domain mirror of the same idea: a diagram's YAML spec plus its
+origin/main:.opencode/skills/use-deskops/SKILL.md:159:- Load `use-specir` (IR repo, `skills/use-specir/SKILL.md`; replaces the retired `use-spec2viz`) for structured diagram specs and generated diagram projections.
+origin/main:.opencode/skills/use-spec2viz/SKILL.md:3:description: Remission. spec2viz is retired (IR13); diagram specs, renderers, the catalog and generated diagram projections are now handled with specIR's `specir` command and sldb. Load the use-specir skill of the IR repo.
+origin/main:.opencode/skills/use-spec2viz/SKILL.md:6:# use-spec2viz → use-specir
+origin/main:.opencode/skills/use-spec2viz/SKILL.md:8:spec2viz is retired (IR13). This file stays only so that whoever loads the old `use-spec2viz` path
+origin/main:.opencode/skills/use-spec2viz/SKILL.md:11:command-by-command correspondence is `docs/spec2viz/correspondencia-cli.md` in that repo.
+rc=0
+
+$ git -C ../deskops grep -n -c specir origin/main -- desk/drawer/plans/workspace-documental/render_diagram.py .claude/skills/deskops-workflow/SKILL.md
+origin/main:.claude/skills/deskops-workflow/SKILL.md:13
+origin/main:desk/drawer/plans/workspace-documental/render_diagram.py:3
+rc=0
+
+$ git diff --stat -- . ':!desk' ':!.sldb' ':!runs'
+ docs/spec2viz/acta-de-retiro.md      | 52 +++++++++++++++++-------------------
+ docs/spec2viz/matriz-de-cobertura.md |  2 +-
+ 2 files changed, 25 insertions(+), 29 deletions(-)
+rc=0
+
+$ TMPDIR=/dev/shm timeout 600 .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_matriz_cobertura_spec2viz.py tests/visual/test_retirement_gate.py
+...........x                                                             [100%]
+11 passed, 1 xfailed in 4.29s
+rc=0
+
+$ timeout 300 deskops graph missing --root .
+No missing graph references found.
+rc=0
+

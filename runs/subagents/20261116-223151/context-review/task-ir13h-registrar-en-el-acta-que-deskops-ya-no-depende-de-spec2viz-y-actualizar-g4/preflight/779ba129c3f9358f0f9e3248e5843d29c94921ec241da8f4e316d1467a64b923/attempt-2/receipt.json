@@ -1,0 +1,9 @@
+{
+  "key": "task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "779ba129c3f9358f0f9e3248e5843d29c94921ec241da8f4e316d1467a64b923",
+  "output_sha256": "71723b93d858b32784685224a95ce6f8f668ecd555bf62bf4ca9f8156717bd66",
+  "start": "2026-11-16T22:31:51.524835+00:00",
+  "end": "2026-11-16T22:32:02.038863+00:00"
+}

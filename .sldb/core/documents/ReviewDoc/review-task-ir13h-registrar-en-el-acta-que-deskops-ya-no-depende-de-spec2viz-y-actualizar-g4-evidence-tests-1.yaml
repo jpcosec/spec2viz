@@ -1,0 +1,36 @@
+name: review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-evidence-tests-1
+path: desk/reviews/task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/evidence-tests-1.md
+source_hash: 37cbbd5139753cab7cdf429aebcaff638ff4e7af57289adb037d8fa188b7c63e
+content_hash: a279a48be50c506de41e841b96bfd64eba2b1f056517543330162fc99963a913
+field_hashes:
+  id: da3e3e7005d1de96e421a2b47d7a2124be38002a21d4b3bfbd9802c37f106991
+  title: 7745febb4b7298f3b2c3ab839c80bed1e3bfd03238cdf4c98b6a76c4bf5d00d8
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: 04b3daf9eab1a74fc19340d60c73655f5ce055ef7919478630d94cef9e689137
+  subject: db8da6d9cdd31b217e04d471fd2485825bfdfae26f79eecabc46c9b6df0a3f45
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: c09696522df37c364f90b469ec534376b9b00ae13094522a332a49ecbf3612c4
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: d68dabb67067ffedc990e67c272be55011b6a10fe84f951534f25b51a402ec06
+  created_at: 037fb5e9d133a525bc4bd53373746ceb810a6242c003314d7ddf79ff85cc411e
+  disposed_at: 037fb5e9d133a525bc4bd53373746ceb810a6242c003314d7ddf79ff85cc411e
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 3dec57af923e9430c9f1e94dbc12f75cf5e27cee8005dd041dcc7a24b57fda5f
+  disposition: 4269131b4f9c57480b3ff6fe4f8a3e4ce0a5ebf6c8fbfd68762040655079b842
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T23:07:40Z'
+  authority: generated
+  via: create_document

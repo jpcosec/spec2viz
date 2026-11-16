@@ -1,0 +1,24 @@
+## main
+ M .sldb/core/documents/TaskCodeDoc/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real.yaml
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/store_index.yaml
+ M desk/tasks/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real.md
+ M docs/spec2viz/acta-de-retiro.md
+ M docs/spec2viz/matriz-de-cobertura.md
+?? .sldb/core/documents/ReviewDoc/review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-preflight-2.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-preflight-1.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-e-5d20e77cfc47.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-t-fb41c88d0a4a.yaml
+?? desk/reviews/task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/
+?? desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/
+?? runs/subagents/20261116-221640/
+?? runs/subagents/20261116-223151/
+?? runs/subagents/20261116-223219/
+?? runs/subagents/20261116-223319/
+?? runs/subagents/20261116-223419/
+?? runs/subagents/deskops-e-5d20e77cfc47/
+?? runs/subagents/deskops-t-fb41c88d0a4a/

@@ -1,0 +1,36 @@
+name: review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-bundle-1
+path: desk/reviews/task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/bundle-1.md
+source_hash: 81b66610115e604d23ac21fd4a4d8eeb8e367661d582bc74b46d4d2c8392ac91
+content_hash: a7ce665c919ef61e0b5953823f98d0034d3e45056bcb8d0e40cee5f4b886dfc7
+field_hashes:
+  id: d728af7a47f74f57e3e1e40cf3daeefe0ce5a4ab375f0246a1a9ae87b01451a0
+  title: e741b1dd54de1989ea7c4d2d150e0ad060347db464b2075ccd841f47d8ee7274
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: db8da6d9cdd31b217e04d471fd2485825bfdfae26f79eecabc46c9b6df0a3f45
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 84f15d372e3c8d68379704dc941225da3cd3177128bb85d4df1466a60d835bcd
+  input_sha256: 763f11cd804f6b20dc2743d56ee4cae46f6175f8c6cd509a919588129745bf9d
+  output_sha256: d314d0b971d7ceb3142f06937e181f9100c3ad117a4a2889ad177a6086e2d130
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 99d9a37619141b32e36ed8cd48e0079a2397da1bd16d105767d56676443af24d
+  created_at: cf662037987dc2768991326fc444bd4bd03e9f9e7c0716674ed2dee01d65e701
+  disposed_at: 7526e77553c8570f6037a5aedb8edd2c3e14d792a1574ef4eadcfd701b3c7fbc
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 3d597d8b08b8bfba55d5e4e6b49eb43ae1b630f0d5ae92b264e6d7bd57dde41c
+  disposition: 16c24311782045534160c0bf22177cfc95bc7a4e268c716e78bd5870663024de
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T22:32:59Z'
+  authority: generated
+  via: save_document_payload
