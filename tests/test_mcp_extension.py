@@ -1,7 +1,8 @@
 """specIR on the MCP server of sldb: the real `sldb mcp --extension specir.mcp_extension:register`,
 reached by the real MCP client over stdio, over an isolated copy of this repo's store (with the
-deskops and spec2viz stores linked in place). At level 0 there is no write tool, and reading
-through every tool, sldb's and specIR's, changes no file of any store."""
+deskops store linked in place, and a temporary specs store built from this repo's spec fixture
+linked as `spec2viz`). At level 0 there is no write tool, and reading through every tool, sldb's
+and specIR's, changes no file of any store."""
 
 from __future__ import annotations
 
@@ -9,8 +10,9 @@ from pathlib import Path
 from typing import Any
 
 import yaml
+from sldb.api import extract_document_payload
 
-from conftest import COPIED, FEDERATED, REPO, federated_digest, tree_digest
+from conftest import REPO, copy_digest, tree_digest
 
 #: sldb's read surface (sldb.mcp.registry.READ_TOOLS) and its signal log.
 SLDB_READ = {
@@ -23,12 +25,6 @@ SLDB_WRITE = {"propose_changes", "apply_changes"}
 DOMAIN = {"specir_types", "specir_nodes"}
 SPEC_STORE = "spec2viz"
 SPEC = "class.sldb-models"
-
-
-def front_matter(path: Path) -> dict[str, Any]:
-    text = path.read_text(encoding="utf-8")
-    assert text.startswith("---\n"), f"{path} has no front matter"
-    return yaml.safe_load(text.split("\n---", 1)[0][4:]) or {}
 
 
 def every_page(mcp, tool: str, limit: int = 50, **arguments: Any) -> list[Any]:
@@ -66,8 +62,8 @@ def test_specir_types_over_a_store_without_them(mcp) -> None:
     assert nodes["total"] == 0 and nodes["explanation"]
 
 
-def test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server(mcp) -> None:
-    store = FEDERATED[SPEC_STORE]
+def test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server(mcp, spec_store: Path) -> None:
+    store = spec_store
     indexed = store / "core" / "documents" / "SpecDoc" / f"{SPEC}.yaml"
     assert indexed.is_file(), f"the {SPEC_STORE} store has no SpecDoc {SPEC}: {indexed}"
     export_id = f"{SPEC_STORE}:SpecDoc:{SPEC}"
@@ -76,11 +72,16 @@ def test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server(mcp) -> 
     document = mcp.call("read_document", ref=export_id)
     assert document["found"] and document["store"] == SPEC_STORE and document["address"] == f"sldb://document/{export_id}"
     assert document["path"] == entry["path"] and document["version"] == entry["content_hash"]
-    for key, value in front_matter(store.parent / entry["path"]).items():
+    assert (store.parent / entry["path"]).is_file()
+    #: The payload sldb extracts from the temporary store itself (the document's front matter also
+    #: carries sldb's provenance block `sldb:`, which is not a field of the payload).
+    expected = extract_document_payload(store, None, SPEC)
+    assert expected["id"] == SPEC
+    for key, value in expected.items():
         assert document["payload"][key] == value, key
 
 
-def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy: Path, copy_digest_before: dict[str, str], original_digest: dict[str, str]) -> None:
+def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy: Path, spec_store: Path, copy_digest_before: dict[str, str], original_digest: dict[str, str]) -> None:
     task = mcp.call("select_documents", model="TaskDoc", limit=1)["items"][0]["export_id"]
     calls = [
         ("list_models", {}),
@@ -104,7 +105,7 @@ def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy
     for tool, arguments in calls:
         mcp.call(tool, **arguments)
     assert {tool for tool, _ in calls} == {t.name for t in mcp.list_tools()}
-    after = {**tree_digest(*(store_copy / name for name in COPIED)), **federated_digest()}
+    after = copy_digest(store_copy, spec_store)
     changed = sorted(path for path in set(copy_digest_before) | set(after) if copy_digest_before.get(path) != after.get(path))
     assert not changed, f"reading wrote to: {changed}"
     now = tree_digest(REPO / ".sldb", REPO / "desk")
