@@ -21,7 +21,7 @@ sys.path.insert(0, str(HERE))
 
 import render_parity  # noqa: E402
 
-from specir.visual.commands import main  # noqa: E402
+from specir.cli import main  # noqa: E402
 from specir.visual.exceptions import RenderError  # noqa: E402
 from specir.visual.lint_mermaid import MermaidLintError, assert_mermaid_ok, lint_mermaid, mmdc_path  # noqa: E402
 

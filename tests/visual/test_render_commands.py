@@ -20,7 +20,7 @@ import pytest
 from click.testing import CliRunner
 from sldb.api.notations import load_spec as load
 
-from specir.visual.commands import main
+from specir.cli import main
 from specir.visual.compilers import compile_ir
 from specir.visual.render_file import provenance_header, render_to_file
 from specir.visual.renderers import render

@@ -23,8 +23,8 @@ test = [
 
 [project.scripts]
 specir-install = "specir.install:main"
-# The visual layer's render, lint and schema commands (IR12); IR13d gives `specir` its full taxonomy.
-specir = "specir.visual.commands:main"
+# The visual layer's command (IR13d): diagram, catalog, the top-level aliases and about.
+specir = "specir.cli:main"
 
 [build-system]
 requires = ["setuptools>=61.0"]

@@ -95,7 +95,7 @@ def test_cli_schema_validate_and_render(tmp_path, monkeypatch):
     """`test_cli_schema_validate_render_and_catalog` without its `catalog build` step (IR13b)."""
     from click.testing import CliRunner
 
-    from specir.visual.commands import main
+    from specir.cli import main
 
     monkeypatch.setenv("SPECIR_MMDC", "0")
     runner = CliRunner()

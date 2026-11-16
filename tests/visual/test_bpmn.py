@@ -17,7 +17,7 @@ import yaml
 from click.testing import CliRunner
 from sldb.api.notations import load_spec as load
 
-from specir.visual.commands import main
+from specir.cli import main
 from specir.visual.compilers import compile_ir
 from specir.visual.exceptions import RenderError
 from specir.visual.ir import ActivityGroup, ActivityIR, ActivityStep, ComponentIR

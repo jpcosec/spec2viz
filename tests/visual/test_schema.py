@@ -24,7 +24,7 @@ sys.path.insert(0, str(HERE))
 
 import render_parity  # noqa: E402
 
-from specir.visual.commands import main  # noqa: E402
+from specir.cli import main  # noqa: E402
 from specir.visual.schema import json_schema, write_json_schema  # noqa: E402
 
 SCHEMAS = HERE / "fixtures" / "spec2viz" / "examples" / "schema"

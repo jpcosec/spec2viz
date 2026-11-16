@@ -2,9 +2,11 @@
 
 `diagram render|lint|schema` and `catalog schema` keep spec2viz's arguments, options (`--renderer`
 with its alias `--backend` and its nine values) and output. `diagram validate` runs sldb's
-`load_spec`/`validate_spec` (D3) and is the command the provenance header of a projection names.
-`main` is the `specir` command until IR13d gives it its full taxonomy (`src/specir/cli.py`), which
-mounts these two groups; the top-level aliases and the rest of spec2viz's commands are IR13d's."""
+`load_spec`/`validate_spec` (D3) and is the command the provenance header of a projection names
+(SV-K16: sldb has no command that validates a spec yet; when it has one, this one goes).
+The `specir` command is `specir.cli` (IR13d): it mounts these two groups, adds `catalog build`, the
+top-level aliases and `about`. The helpers `_render_paths`, `_validate_paths`, `_lint_paths` and
+`_write_schema` are what a group command and its top-level alias share."""
 
 from __future__ import annotations
 
@@ -88,17 +90,12 @@ def _write_schema(diagram_type: str | None, out: Path | None):
         click.echo(json.dumps(json_schema(diagram_type), indent=2))
 
 
-@click.group(help="specIR's visual layer: render, lint and export the schema of diagram specs.")
-def main():
-    pass
-
-
-@main.group(help="Work with semantic diagram specs.")
+@click.group(help="Work with semantic diagram specs.")
 def diagram():
     pass
 
 
-@main.group(help="Work with diagram catalogs, vistas registries, and hierarchical stores.")
+@click.group(help="Work with diagram catalogs, vistas registries, and hierarchical stores.")
 def catalog():
     pass
 
@@ -152,4 +149,4 @@ def catalog_schema(out: Path | None):
     _write_schema("diagram-store", out)
 
 
-__all__ = ["DIAGRAM_RENDERERS", "catalog", "diagram", "main"]
+__all__ = ["DIAGRAM_RENDERERS", "ERRORS", "catalog", "diagram"]
