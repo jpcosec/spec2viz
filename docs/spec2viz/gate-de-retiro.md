@@ -20,9 +20,9 @@ orden y qué pasa si falla.
 3. **G1, G2 y G3** (filas, suite y CLI): por cada fila, ejecutar la prueba citada; la tabla «Pruebas de
    spec2viz por fila» no puede dejar un archivo de `spec2viz/tests/` sin fila ni un caso sin portar o sin
    prueba equivalente declarada.
-4. **G4 y G5** (consumidores y stores): el comprobador de IR13 recorre en solo lectura exactamente el
-   universo del «Inventario de consumidores» de la matriz más el repo de specIR, y lista cada dependencia
-   remanente con repo o store, ruta, línea y clase.
+4. **G4 y G5** (consumidores y stores): el comprobador de IR13 (`specir retirement check`) recorre en solo
+   lectura exactamente el universo del «Inventario de consumidores» de la matriz más el repo de specIR, y
+   lista cada dependencia remanente con repo o store, ruta, línea y clase.
 
 ## Si falla
 

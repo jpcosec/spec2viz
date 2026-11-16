@@ -4,6 +4,8 @@
   (`specir.visual.commands`); this module mounts them and adds `catalog build` (IR13b's page, with
   the option to save its annotations through `sldb serve`), the top-level aliases `render`,
   `validate`, `lint`, `schema` and `build`, and `about`.
+- `retirement check` (IR13) is the retirement gate of spec2viz (`specir.visual.retirement`): it audits,
+  read-only, the inventory of the coverage matrix plus specIR's repo, and the matrix's accreditation.
 - What spec2viz's CLI did that is sldb's has no command here, by design (JP: no wrapper over sldb's
   CLI or API): syncing a spec, a notation, a palette or a catalog (`sldb notations sync --spec`,
   `--notation`, `--palette`, `--catalog [--check]`), generating a spec from a graph or from Python
@@ -176,6 +178,36 @@ def lint_cmd(paths: list[Path]):
 def schema(diagram_type: str | None, out: Path | None):
     """Legacy schema entrypoint for diagram specs and diagram stores."""
     _write_schema(diagram_type, out)
+
+
+@main.group("retirement", short_help="The retirement gate of spec2viz (IR13).")
+def retirement():
+    """The retirement gate of spec2viz: `docs/spec2viz/gate-de-retiro.md`."""
+
+
+@retirement.command("check", short_help="Audit the consumers and stores of the inventory and the matrix's accreditation.")
+@click.option("--matrix", default=str(Path("docs") / "spec2viz" / "matriz-de-cobertura.md"), show_default=True,
+              type=click.Path(exists=True, dir_okay=False, path_type=Path), help="The coverage matrix; its repo is specIR's.")
+@click.option("--path", "paths", multiple=True, metavar="NAME=PATH",
+              help="Local path of each repo and store of the matrix's inventory (a store's path is its .sldb folder).")
+def retirement_check(matrix: Path, paths: tuple[str, ...]):
+    """Report every remaining dependency on spec2viz (repo or store, path, line and kind) and every row
+    of the matrix not accredited; exit 1 when there is one, 0 when the retirement can be declared.
+    Nothing is written."""
+    from specir.visual.retirement import InventoryError, check, format_report
+
+    given: dict[str, Path] = {}
+    for item in paths:
+        name, sep, value = item.partition("=")
+        if not sep or not name or not value:
+            raise click.UsageError(f"--path takes NAME=PATH, not {item!r}")
+        given[name] = Path(value)
+    try:
+        report = check(matrix, given)
+    except InventoryError as exc:
+        raise click.UsageError(str(exc)) from exc
+    click.echo(format_report(report))
+    sys.exit(0 if report.ok else 1)
 
 
 __all__ = ["ALIASES", "main"]
