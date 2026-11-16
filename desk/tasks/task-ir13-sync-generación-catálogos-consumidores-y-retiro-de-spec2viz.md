@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T02:02:45Z'
+  at: '2026-11-16T02:31:59Z'
   authority: generated
   via: save_document_payload
 id: task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz
@@ -84,6 +84,8 @@ Precisiones (bundle-2):
 1. «Equivalente declarado» es la entrada de la fila en «Acreditación (IR13)» de la matriz: estado cumplida y la prueba que pasa, sea portada a specIR o a sldb o la prueba de equivalencia de una fila en modo reemplazar. La declara IR13; sin esa entrada, la fila queda abierta.
 2. Portar las pruebas de las filas «usar sldb directamente» no es implementar capacidades, es aportar evidencia, y le corresponde a IR13 o a una tarea derivada. En esta corrida no se portaron; esas filas quedan abiertas con lo que falta.
 3. El acta registra la salida del comprobador con cualquier rc. Solo se declara el retiro si la salida es rc 0. Con rc 1 el acta dice «no declarado» y la tarea sigue abierta.
+
+Estado (decisiones de JP, 2026-11-15): G7 cumplido (JP aceptó el YAML del spec como formato de autoría e intercambio subordinado al grafo; atom `atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al`, la propuesta quedó como redirección). Corrida con mermaid-cli real (`SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc`, Chrome headless): se arreglaron los ids con guion de la proyección de estados en mermaid y quedaron cumplidas SV-B03, C13, C14, D01, G03, K12 y K17. 82 filas cumplidas y 23 abiertas. Decididos y anotados en el acta: exporter BPMN y clave de localStorage se mantienen durante la paridad y pasan a specir al retirar; regla de rutas de deskops y `docs/architecture/spec2viz` de sldb (los ejecutan sus desks); spec2viz se archiva cuando `specir retirement check` salga con 0. `specir retirement check`: rc 1, 122 dependencias y 23 filas abiertas. La tarea sigue abierta hasta que se cumpla el gate.
 
 ## Validation
 
