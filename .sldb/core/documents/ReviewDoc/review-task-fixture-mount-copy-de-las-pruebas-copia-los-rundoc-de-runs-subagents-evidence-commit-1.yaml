@@ -1,0 +1,36 @@
+name: review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-evidence-commit-1
+path: desk/reviews/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/evidence-commit-1.md
+source_hash: 97f6204e0b4aebad8ea0f24a555262a37798d242bed8e5a96ef63e9ee7e79f41
+content_hash: 28815c19b33afc619519e89cecc3e0ec128631a7cd0e6cf1f497712fa6621517
+field_hashes:
+  id: 79582f7796bb463bca96b278453d721c8620ffc95d673c98b474ac36c40ae14f
+  title: b4fc5f02a34ebee1d17c0bd2e8c6f5b1572cd96412a4903018a7269bfbf73b85
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 5ea9c58673a69c87d0e5540a6f9978aad8f8e0a0b9ce3471cff139c730d97888
+  value: 5944633b5d1e4623e4b19b11291c203fd1ecd5db4f58800d45628f47b1bae562
+  subject: 8088949d2c81e68b2f7e59d6f4534fb49dee7777ab875e9e2df0dc3995dce25d
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 97ebb0d5e5775c59db7396b921cad8f0fe14c6a81de94dae5add6fdabde45aec
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 0d1beb7753b47438ee4d7c3648391d9d561bf8e6499119602e4c6aec1f181757
+  created_at: 2b1069f44f46d521e8c44cdbaa4b383a0ade59b12f5aef0a13038026353f7578
+  disposed_at: 2b1069f44f46d521e8c44cdbaa4b383a0ade59b12f5aef0a13038026353f7578
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 6b7dabbf075d21158fe18635cdc7347f7c89e4aeb399c51db2c9d98e5773be76
+  disposition: ab77a4a128e9ba99b60196b4024a3677b5889a8ce11a3920982398a065f66391
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-16T13:53:38Z'
+  authority: generated
+  via: save_document_payload

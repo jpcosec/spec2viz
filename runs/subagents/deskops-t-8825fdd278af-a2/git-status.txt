@@ -1,0 +1,21 @@
+## main
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/store_index.yaml
+ M docs/spec2viz/acta-de-retiro.md
+ M docs/spec2viz/matriz-de-cobertura.md
+ M src/specir/visual/notation_style.py
+ M tests/conftest.py
+?? .sldb/core/documents/RunDoc/run-deskops-t-8825fdd278af-a2.yaml
+?? runs/subagents/deskops-t-8825fdd278af-a2/
+?? src/specir.egg-info/
+?? src/specir/__pycache__/
+?? src/specir/models/__pycache__/
+?? src/specir/visual/__pycache__/
+?? src/specir/visual/catalog/__pycache__/
+?? src/specir/visual/compilers/__pycache__/
+?? src/specir/visual/renderers/__pycache__/
+?? tests/__pycache__/
+?? tests/models/__pycache__/
+?? tests/visual/__pycache__/
+?? tests/visual/fixtures/spec2viz-notations/
+?? tests/visual/test_notations_parity.py

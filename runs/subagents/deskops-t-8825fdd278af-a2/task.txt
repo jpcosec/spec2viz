@@ -1,0 +1,9 @@
+Task: task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents
+Title: Fixture mount_copy de las pruebas copia los RunDoc de runs/subagents
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Effective pills:
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]

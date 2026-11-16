@@ -1,0 +1,123 @@
+## 1. 2026-11-16T08:16:30-03:00 TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_mcp_extension.py
+.....                                                                    [100%]
+5 passed in 65.78s (0:01:05)
+rc=0
+
+## RunDocs en el store al correr: run-deskops-e-31500ac1cfa1.yaml run-deskops-e-f5f68a7aa648.yaml run-deskops-e-f98a77856867.yaml run-deskops-t-5a39cc2dfbf8.yaml run-deskops-t-8825fdd278af-a2.yaml run-deskops-t-8825fdd278af.yaml run-deskops-t-c6d27c1b855b.yaml 
+## run.md en repo: runs/subagents/deskops-e-31500ac1cfa1/run.md runs/subagents/deskops-e-f5f68a7aa648/run.md runs/subagents/deskops-e-f98a77856867/run.md runs/subagents/deskops-t-5a39cc2dfbf8/run.md runs/subagents/deskops-t-8825fdd278af-a2/run.md runs/subagents/deskops-t-8825fdd278af/run.md runs/subagents/deskops-t-c6d27c1b855b/run.md 
+
+## 2. 2026-11-16T08:17:45-03:00 free -g
+               total        used        free      shared  buff/cache   available
+Mem:              31          11           8           1          13          19
+Swap:             15           9           6
+
+## 2. SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/
+rc=124
+## NOTA: rc=124 arriba = timeout 3000 s vencido esperando /dev/shm/sldb1-tests.lock (holder pid 181097, otra suite, +2 en cola a 2026-11-16T09:08:02-03:00); pytest nunca arrancó. No cuenta como corrida.
+
+## 2b. 2026-11-16T09:08:02-03:00 free -g
+               total        used        free      shared  buff/cache   available
+Mem:              31          20           0           1          10          10
+Swap:             15           9           6
+## 2b. (reintento, timeout 9000 sobre espera+comando) SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/
+## lock obtenido 2026-11-16T10:47:09-03:00
+               total        used        free      shared  buff/cache   available
+Mem:              31          13          10           4          12          18
+Swap:             15           8           7
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  9%]
+..x............x........................................................ [ 19%]
+............................................................x........... [ 29%]
+........................................................................ [ 39%]
+........................................................................ [ 48%]
+........................................................................ [ 58%]
+.............................x.......................................... [ 68%]
+........................................................................ [ 78%]
+........................................................................ [ 87%]
+........................................................................ [ 97%]
+..................                                                       [100%]
+734 passed, 4 xfailed in 253.83s (0:04:13)
+rc=0
+## fin 2026-11-16T10:51:23-03:00
+
+## 3. 2026-11-16T10:51:35-03:00 deskops graph missing --root .
+No missing graph references found.
+rc=0
+
+## 4. git diff tests/conftest.py (y comparación con runs/subagents/deskops-e-f98a77856867/diff.patch)
+diff --git a/tests/conftest.py b/tests/conftest.py
+index 388ac53..1539fdd 100644
+--- a/tests/conftest.py
++++ b/tests/conftest.py
+@@ -3,7 +3,8 @@ SLDB's public CLI, and the real MCP server of sldb (`sldb mcp`) with specIR's ex
+ (`specir.mcp_extension:register`) over stdio, driven by the real MCP client.
+ 
+ Nothing is fabricated: the copy holds this repo's `.sldb/`, `sldb/` and `desk/` as they
+-are; the deskops and spec2viz stores are linked in place and only read."""
++are, plus every `runs/subagents/*/run.md` at its own relative path; the deskops and spec2viz
++stores are linked in place and only read."""
+ 
+ from __future__ import annotations
+ 
+@@ -21,6 +22,8 @@ import pytest
+ REPO = Path(__file__).resolve().parents[1]
+ WORKSPACE = REPO.parent
+ COPIED = (".sldb", "sldb", "desk")
++#: The store registers RunDocs, which live outside `.sldb/` and `desk/`.
++RUN_DOCS = "runs/subagents/*/run.md"
+ FEDERATED = {"deskops": WORKSPACE / "deskops" / ".sldb", "spec2viz": WORKSPACE / "spec2viz" / ".sldb"}
+ CACHE = ".sldb_cache"
+ TOOL_TIMEOUT = 300
+@@ -76,6 +79,10 @@ def mount_copy(tmp_path_factory: pytest.TempPathFactory, name: str) -> Path:
+     root.mkdir()
+     for name in COPIED:
+         shutil.copytree(REPO / name, root / name, ignore=shutil.ignore_patterns(CACHE), symlinks=True)
++    for run_doc in sorted(REPO.glob(RUN_DOCS)):
++        target = root / run_doc.relative_to(REPO)
++        target.parent.mkdir(parents=True, exist_ok=True)
++        shutil.copy2(run_doc, target)
+     sldb("stores", "add", str(FEDERATED["deskops"]), "--name", "deskops", "--replace", "--store", ".sldb", cwd=root)
+     sldb("stores", "add", str(FEDERATED["spec2viz"]), "--name", "spec2viz", "--store", ".sldb", cwd=root)
+     sldb("stores", "update", "--store", ".sldb", cwd=root)
+diff-vs-patch rc=0 (0 = idéntico)
+## 4. grep de mock/monkeypatch en conftest:
+grep rc=1 (1 = sin coincidencias)
+## 4. hunks que tocan original_digest/copy_digest/FEDERATED:
+grep rc=1 (1 = ninguno)
+
+## 5. 2026-11-16T10:51:37-03:00 git diff --stat; git status --short (sin __pycache__/egg-info)
+ .sldb/core/models/RunDoc.yaml        |  6 ++---
+ .sldb/core/store_index.yaml          |  2 +-
+ docs/spec2viz/acta-de-retiro.md      | 33 ++++++++++++-----------
+ docs/spec2viz/matriz-de-cobertura.md | 52 ++++++++++++++++++++++--------------
+ src/specir/visual/notation_style.py  | 25 +++++++++++++++--
+ tests/conftest.py                    |  9 ++++++-
+ 6 files changed, 85 insertions(+), 42 deletions(-)
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/store_index.yaml
+ M docs/spec2viz/acta-de-retiro.md
+ M docs/spec2viz/matriz-de-cobertura.md
+ M src/specir/visual/notation_style.py
+ M tests/conftest.py
+?? .sldb/core/documents/RunDoc/run-deskops-t-8825fdd278af-a2.yaml
+?? runs/subagents/deskops-t-8825fdd278af-a2/
+?? tests/visual/fixtures/spec2viz-notations/
+?? tests/visual/test_notations_parity.py
+rc=0
+## 5. diff-stat de IR13e (runs/subagents/deskops-e-31500ac1cfa1/diff-stat.txt):
+ .sldb/core/documents/BoardDoc/Board.yaml           |  8 ++--
+ ...41logos-consumidores-y-retiro-de-spec2viz.yaml" |  8 ++--
+ .sldb/core/models/BoardDoc.yaml                    |  4 +-
+ .sldb/core/models/InboxNoteDoc.yaml                |  6 +--
+ .sldb/core/models/ReviewDoc.yaml                   |  6 +--
+ .sldb/core/models/RunDoc.yaml                      |  8 ++--
+ .sldb/core/models/TaskCodeDoc.yaml                 |  6 +--
+ .sldb/core/store_index.yaml                        |  2 +-
+ desk/tasks/Board.md                                |  4 +-
+ ...\241logos-consumidores-y-retiro-de-spec2viz.md" |  3 +-
+ docs/spec2viz/acta-de-retiro.md                    | 33 +++++++-------
+ docs/spec2viz/matriz-de-cobertura.md               | 52 +++++++++++++---------
+ src/specir/visual/notation_style.py                | 25 ++++++++++-
+ 13 files changed, 102 insertions(+), 63 deletions(-)
