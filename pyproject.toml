@@ -16,7 +16,8 @@ mcp = [
 ]
 test = [
     # `code` brings tree-sitter, which sldb's Python AST spec generator (D2) needs (IR13a's tests).
-    "structuredLanguageDB[mcp,code]",
+    # `postgres` brings pglast, with which sldb reads the SQL constraint facts the extractor (IR08) maps.
+    "structuredLanguageDB[mcp,code,postgres]",
     "pytest>=8",
     "pyyaml>=6.0",
 ]
