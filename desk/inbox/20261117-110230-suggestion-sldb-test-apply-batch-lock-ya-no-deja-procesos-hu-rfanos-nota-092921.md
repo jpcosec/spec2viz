@@ -1,4 +1,9 @@
 ---
+sldb:
+  by: agent
+  at: '2026-11-17T14:08:01Z'
+  authority: generated
+  via: save_document_payload
 # unclear | suggestion
 kind: suggestion
 # e.g., other_repo
@@ -8,9 +13,11 @@ target_project: IR
 # ISO 8601 timestamp
 created_at: '2026-11-17T11:02:30'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: IR
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-11-17T11:07:59'
 ---
 
 # sldb: test_apply_batch_lock ya no deja procesos huérfanos (nota 092921)

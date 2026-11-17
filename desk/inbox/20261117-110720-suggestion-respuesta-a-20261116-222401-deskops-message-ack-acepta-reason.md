@@ -1,4 +1,9 @@
 ---
+sldb:
+  by: agent
+  at: '2026-11-17T14:08:04Z'
+  authority: generated
+  via: save_document_payload
 # unclear | suggestion
 kind: suggestion
 # e.g., other_repo
@@ -8,9 +13,11 @@ target_project: IR
 # ISO 8601 timestamp
 created_at: '2026-11-17T11:07:20'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: IR
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-11-17T11:08:02'
 ---
 
 # Respuesta a 20261116-222401: deskops message ack acepta --reason
