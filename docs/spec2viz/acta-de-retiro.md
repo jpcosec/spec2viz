@@ -5,8 +5,9 @@ Tarea IR13 (`task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec
 `docs/spec2viz/matriz-de-cobertura.md`.
 
 **Retiro: no declarado.** El comprobador `specir retirement check` sale con código 1: quedan 63
-dependencias de spec2viz en el universo auditado y 9 filas de la matriz sin acreditar (corrida del
-2026-11-16 de IR13h, con 0 dependencias de deskops tras su migración a specir; la de IR13g acreditó
+dependencias de spec2viz en el universo auditado y 8 filas de la matriz sin acreditar (corrida del
+2026-11-17 de IR13j, que acreditó SV-H01 con el mensaje de sldb para un `diagram_type` desconocido; eran 9
+en la del 2026-11-16 de IR13h, con 0 dependencias de deskops tras su migración a specir; la de IR13g acreditó
 SV-H03 y SV-K22 tras la migración de graph_ui en `79d63ee`; eran 11
 tras el ciclo de corrección 1 de IR13e, que portó contra sldb las pruebas de notaciones, paletas y vistas
 y acreditó SV-G08 y SV-I02; antes de IR13e eran 23, y 30 antes de las decisiones de JP y la corrida con mermaid-cli real). Archivar o borrar
@@ -82,12 +83,25 @@ merge-base --is-ancestor` de `2421ca29`, `74ffdb63` y `b716bf85` contra `origin/
 enlace de store; ver «Consumidores»). Las dependencias bajan de 85 a 63 porque desaparecen las 22 de
 deskops; las 63 son las de la salida de abajo.
 
+rc 1; 63 dependencias; 8 filas no acreditadas (SV-A17, K09, K16, K18, K21, K23, K26 y K29), las mismas
+que quedan abiertas en «Acreditación (IR13)» de la matriz. Corrida del 2026-11-17 a las 01:23 (-03:00),
+IR13j
+(`task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s`),
+con el mismo comando y `timeout 300`, sobre IR `c1a1a46` (con la prueba, el acta y la matriz de IR13j sin
+commitear), sldb `472f1c80`, graph_ui `440a5683` (44 rutas sin commitear en su árbol), deskops `cfda261b`,
+pron `39ea972` y spec2viz `91ba1d0`. Por repo o store: deskops 0, sldb 1, IR 43, `spec2viz/.sldb` 19,
+graph_ui 0 y pron 0. sldb conserva como contrato su mensaje, «diagram_type 'mindmap' is not a valid
+diagram type» (nota de inbox 20261116-232335, respuesta a la 20261116-022332 de IR13e): el caso changes1 de
+test_invalid_notations_are_rejected lo espera sin xfail y `tests/visual/test_notations_parity.py` sale con
+89 passed, sin xfailed ni xpassed. Las 63 dependencias son las mismas de la salida de abajo; las filas bajan
+de 9 a 8 porque SV-H01 pasa a cumplida.
+
 ## Gate G1 a G7
 
 | Ítem | Estado | Evidencia |
 |---|---|---|
-| G1 Filas cumplidas | abierto | 96 cumplidas y 9 abiertas en «Acreditación (IR13)» de la matriz. IR13g (2026-11-16) acreditó SV-H03 y SV-K22, al resolverse G4 de graph_ui (`79d63ee`). IR13e (2026-11-16) acreditó SV-E02, SV-H02, SV-H04, SV-H05, SV-H06, SV-J06, SV-K19, SV-K20, SV-K24 y SV-K25, y en su ciclo de corrección 1 SV-G08 y SV-I02 (`tests/visual/test_catalog.py`, 68 passed, sin xfail de `label_key`); la corrida con mermaid-cli real del 2026-11-15 acreditó SV-B03, SV-C13, SV-C14, SV-D01, SV-G03, SV-K12 y SV-K17. |
-| G2 Suite de spec2viz | abierto | Portadas contra sldb por IR13e en `tests/visual/test_notations_parity.py` (88 passed, 1 xfailed): 42 pruebas de `tests/test_view_doc.py`, `test_notation.py`, `test_notation_view.py`, `test_view_contract_resolved.py` y `test_style_palette.py`, más 9 comparaciones «valida igual» (51); la parte de CLI de las 6 que invocan el CLI de spec2viz tiene su equivalente en las filas K, y la validación tipada sin CLI de dos de ellas está portada (test_notation_load_gives_typed_errors, 7 casos; test_palette_check_is_typed, 6 casos). xfail estricto: el mensaje de `diagram_type` desconocido de test_invalid_notations_are_rejected (SV-H01, nota a sldb 20261116-022332). Los casos de mmdc (`test_mermaid_mmdc.py` y los de motor real de `test_class_diagram.py`, `test_class_packages.py` y `test_catalog_resolved_views.py`) ya corren con mermaid-cli real y pasan (2026-11-15). `label_key` frente a `normKey` (`test_atoms_matching.py`): ya no es xfail (sldb `06dbcf02`, IR `4dc8946`; `tests/visual/test_catalog.py` 68 passed). Los 38 archivos tienen fila (`tests/test_matriz_cobertura_spec2viz.py`, 5 passed). |
+| G1 Filas cumplidas | abierto | 97 cumplidas y 8 abiertas en «Acreditación (IR13)» de la matriz. IR13j (2026-11-17) acreditó SV-H01: el caso de `diagram_type` desconocido de test_invalid_notations_are_rejected espera el mensaje de sldb, sin xfail (nota 20261116-232335); SV-K21, que dependía de ella, sigue abierta por el comando de sldb que valide una notación. IR13g (2026-11-16) acreditó SV-H03 y SV-K22, al resolverse G4 de graph_ui (`79d63ee`). IR13e (2026-11-16) acreditó SV-E02, SV-H02, SV-H04, SV-H05, SV-H06, SV-J06, SV-K19, SV-K20, SV-K24 y SV-K25, y en su ciclo de corrección 1 SV-G08 y SV-I02 (`tests/visual/test_catalog.py`, 68 passed, sin xfail de `label_key`); la corrida con mermaid-cli real del 2026-11-15 acreditó SV-B03, SV-C13, SV-C14, SV-D01, SV-G03, SV-K12 y SV-K17. |
+| G2 Suite de spec2viz | abierto | Portadas contra sldb por IR13e en `tests/visual/test_notations_parity.py` (89 passed desde IR13j, sin xfailed ni xpassed): 42 pruebas de `tests/test_view_doc.py`, `test_notation.py`, `test_notation_view.py`, `test_view_contract_resolved.py` y `test_style_palette.py`, más 9 comparaciones «valida igual» (51); la parte de CLI de las 6 que invocan el CLI de spec2viz tiene su equivalente en las filas K, y la validación tipada sin CLI de dos de ellas está portada (test_notation_load_gives_typed_errors, 7 casos; test_palette_check_is_typed, 6 casos). El caso de `diagram_type` desconocido de test_invalid_notations_are_rejected ya no es xfail: espera el mensaje de sldb, que sldb conserva como contrato (SV-H01, IR13j, nota 20261116-232335). Los casos de mmdc (`test_mermaid_mmdc.py` y los de motor real de `test_class_diagram.py`, `test_class_packages.py` y `test_catalog_resolved_views.py`) ya corren con mermaid-cli real y pasan (2026-11-15). `label_key` frente a `normKey` (`test_atoms_matching.py`): ya no es xfail (sldb `06dbcf02`, IR `4dc8946`; `tests/visual/test_catalog.py` 68 passed). Los 38 archivos tienen fila (`tests/test_matriz_cobertura_spec2viz.py`, 5 passed). |
 | G3 CLI | abierto | Los 30 equivalentes existen y los invoca `test_every_equivalent_of_the_table_answers_its_help` (`tests/visual/test_cli.py`, 44 passed). Faltan los comandos de sldb para validar notación y paleta (SV-K21, SV-K26) y el de validar un spec, que hoy da specIR de forma provisional (SV-K16, SV-K29). Nota de sldb `20261115-192054`. |
 | G4 Consumidores | abierto | 63 dependencias (abajo; corrida del 2026-11-16 de IR13h): sldb 1 (`runs/subagents/20261116-exec-oraculo-d2/gen_golden.py:5`), IR 43 (los oráculos de paridad en pruebas, que se retiran al declarar) y `spec2viz/.sldb` 19 (G5). graph_ui (`79d63ee`), pron (`4224186`) y deskops (`ee9bc3cd`; closeouts `74ffdb63`, `b716bf85` y `2421ca29`) están resueltos y salen con 0 (ver «Consumidores»). |
 | G5 Stores | decidido; pendiente de ejecución en IR | `spec2viz/.sldb` registra los 7 modelos de `spec2viz.sldb_models` (19 registros). Es el único store del universo que lo hace. Decisión de JP del 2026-11-16 (transmitida por el supervisor; nota de spec2viz `desk/inbox/20261116-021430-suggestion-g5-decisi-n-de-jp-sobre-spec2viz-sldb.md`): opción A, el store `spec2viz/.sldb` se archiva junto con el repo spec2viz cuando `specir retirement check` dé 0, y no se reapuntan sus 7 modelos. Registro en spec2viz: atom `atom-decisión-de-jp-2026-11-16-g5-el-store-spec2viz-sldb-se-archiva-con-el-repo` y task.decision `task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a`. Resuelta en IR: las pruebas ya no federan ese store (`task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a`, código `b16aab7`, closeout `4f1e108`), después de que deskops quitara su enlace al store de spec2viz (`421d6a27`, closeout `74ffdb63`; pedido en la nota de inbox 20261116-122447). Pendiente: quitar `spec2viz/.sldb` del universo de `specir retirement check` al declarar el retiro (IR13) y archivar el store con el repo spec2viz. |
@@ -207,9 +221,10 @@ Es de sldb, no de specIR: specIR solo usa la API pública. Pedido en
    `74ffdb63`; pedido en la nota 20261116-122447). Queda quitarlo del universo del comprobador al declarar
    el retiro y archivarlo con el repo.
 3. Filas «usar sldb directamente»: portadas por IR13e (`tests/visual/test_notations_parity.py`). Quedan
-   SV-H01 (sldb da otro mensaje ante un `diagram_type` desconocido; nota a sldb 20261116-022332), SV-A17
-   (solo G5), y SV-K18 y SV-K23 (dependen de SV-K21 y SV-K26). SV-H03 y su dependiente SV-K22 quedaron
-   cumplidas en IR13g (graph_ui `79d63ee`).
+   SV-A17 (solo G5), y SV-K18 y SV-K23 (dependen de SV-K21 y SV-K26). SV-H03 y su dependiente SV-K22
+   quedaron cumplidas en IR13g (graph_ui `79d63ee`), y SV-H01 en IR13j (el caso de `diagram_type`
+   desconocido espera el mensaje de sldb, nota 20261116-232335); SV-K21, que dependía de SV-H01, sigue
+   abierta por el comando de sldb (punto 4).
 4. sldb: comando para validar spec, notación y paleta (SV-K16, K21, K26, K29; después hay que retirar
    `specir diagram validate`/`validate`). El `label_key` con `_` (SV-G08 y SV-I02) quedó resuelto
    (sldb `06dbcf02`, IR `4dc8946`).

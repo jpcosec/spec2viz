@@ -339,7 +339,7 @@ Evaluada por IR13 el 2026-11-15 sobre IR `dc5496a` y sldb `d4aeb4b1`, cada archi
 separado con `TMPDIR=/dev/shm` (las de sldb con el entorno de IR, que instala sldb editable desde
 `sldb/src`). Una fila es **cumplida** solo si su condición de retiro se cumple entera y la prueba citada
 pasa; si depende de otra fila abierta, queda abierta. `specir retirement check` exige que cada fila esté
-cumplida y cite al menos una prueba (`tests/….py`). Resumen: 96 cumplidas, 9 abiertas (tras IR13g); el detalle
+cumplida y cite al menos una prueba (`tests/….py`). Resumen: 97 cumplidas, 8 abiertas (tras IR13j); el detalle
 por gate y por consumidor está en `docs/spec2viz/acta-de-retiro.md`.
 
 Corrida con motor real de mermaid (2026-11-15, decisiones de JP): `@mermaid-js/mermaid-cli` instalado en
@@ -378,6 +378,16 @@ spec2viz|spec2viz>=' HEAD` no encuentra nada fuera de `desk/` y `runs/` (solo no
 de graph_ui. `tests/visual/test_notations_parity.py` sale con 88 passed, 1 xfailed (el de mindmap de
 SV-H01); las 13 pruebas de SV-H03 (19 casos) pasan sin xfail. Pasan a cumplidas SV-H03 y SV-K22. SV-K18
 sigue abierta: depende de SV-K21.
+
+IR13j (`task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s`,
+2026-11-17, IR `c1a1a46`, sldb `472f1c80`): sldb respondió (nota de inbox de IR 20261116-232335, a la nota
+20261116-022332 de IR13e) que conserva como contrato su mensaje, «diagram_type 'mindmap' is not a valid
+diagram type», y que el de spec2viz («not a spec2viz diagram type») no vuelve. Comprobado con
+`load_notation` y `NotationSpec` de sldb (vía `specir.visual.notation_style`): ambos rechazan
+`diagram_type: mindmap` con ese texto. El caso changes1 de test_invalid_notations_are_rejected espera ahora
+el mensaje de sldb, sin xfail; `tests/visual/test_notations_parity.py` sale con 89 passed, sin xfailed ni
+xpassed. Pasa a cumplida SV-H01, cuyo único faltante era ese xfail. SV-K21 sigue abierta: le falta el
+comando de sldb que valide una notación; y con ella SV-K18.
 
 | Fila | Estado | Prueba que la acredita | Falta |
 |---|---|---|---|
@@ -436,7 +446,7 @@ sigue abierta: depende de SV-K21.
 | `SV-G06` | cumplida | IR `tests/visual/test_catalog_annotations.py` (5 passed, con `sldb serve --cors` real). Decisión (coordinador, aceptada por JP el 2026-11-15): la página mantiene la clave `spec2viz.catalog.annotations.v1` de `localStorage` mientras dure la paridad; al retirar spec2viz pasa a una clave de specir con migración de las anotaciones guardadas (paso del acta). | - |
 | `SV-G07` | cumplida | IR `tests/visual/test_catalog.py` y `tests/visual/test_catalog_parity.py`. | - |
 | `SV-G08` | cumplida | IR `tests/visual/test_catalog.py` (68 passed, sin xfailed ni xpassed con `SPECIR_MMDC` apuntando a mermaid-cli real): los casos de emparejamiento en el navegador, de markdown de átomos y test_tabs_follow_the_target_atom, y test_label_key_of_sldb_is_the_template_s_norm_key y test_label_key_of_sldb_splits_underscores_like_norm_key sin xfail (sldb arregló `label_key` con `_` en `06dbcf02`, nota 20261115-214942; el xfail se quitó en `4dc8946`). | - |
-| `SV-H01` | abierta | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): test_builtins_load_and_cover_every_diagram_type, test_wildcard_link_and_free_relations, test_uml_class_notation_matches_the_class_spec_vocabulary, test_statechart_nests_contains_and_marks_the_initial_state, test_minimal_notation_defaults, test_free_relation_diagram_types_accept_any_relation, test_load_notation_from_path_and_unknown_name y test_notation_load_gives_typed_errors (7 casos: parte no CLI de test_notation_validate_gives_typed_errors de `tests/test_style_palette.py`, errores tipados de `load_notation` de sldb) pasan; test_invalid_notations_are_rejected pasa en 14 de sus 15 casos. Los 2 casos CLI de `tests/test_notation.py` son de las filas K. | xfail estricto test_invalid_notations_are_rejected[changes1-not a spec2viz diagram type]: sldb rechaza `diagram_type: mindmap` con «diagram_type 'mindmap' is not a valid diagram type» donde spec2viz decía «not a spec2viz diagram type»; pedido a sldb (nota 20261116-022332). |
+| `SV-H01` | cumplida | IR `tests/visual/test_notations_parity.py` (IR13j: 89 passed, sin xfailed ni xpassed): test_builtins_load_and_cover_every_diagram_type, test_wildcard_link_and_free_relations, test_uml_class_notation_matches_the_class_spec_vocabulary, test_statechart_nests_contains_and_marks_the_initial_state, test_minimal_notation_defaults, test_free_relation_diagram_types_accept_any_relation, test_load_notation_from_path_and_unknown_name y test_notation_load_gives_typed_errors (7 casos: parte no CLI de test_notation_validate_gives_typed_errors de `tests/test_style_palette.py`, errores tipados de `load_notation` de sldb) pasan; test_invalid_notations_are_rejected pasa en sus 15 casos: el de `diagram_type: mindmap` espera el mensaje de sldb, «diagram_type 'mindmap' is not a valid diagram type», que sldb conserva como contrato (nota 20261116-232335, respuesta a la 20261116-022332). Los 2 casos CLI de `tests/test_notation.py` son de las filas K. | - |
 | `SV-H02` | cumplida | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): test_spec2viz_notation_validates_the_same_as_the_sldb_builtin (8 casos: activity, component, component-view-matrix, deployment, reflection, statechart, uml-class, uml-sequence; cada notación copiada de spec2viz `b624b75` carga con sldb, está en `builtin_notations()` y su `model_dump()` es igual al de la builtin de sldb) y test_builtin_notations_still_validate_and_are_unstyled. | - |
 | `SV-H03` | cumplida | IR `tests/visual/test_notations_parity.py` (IR13g: 88 passed, 1 xfailed, el de SV-H01): las 10 no CLI de `tests/test_notation_view.py`, las 2 de `tests/test_view_contract_resolved.py` y test_resolve_documents_is_public_and_filters_relations (19 casos, sin xfail), contra `resolve_view`/`resolve_documents` de `sldb.api.notations`. G4 de graph_ui resuelto: master `79d63ee` (closeout `c9b09f7`, nota 20261116-131509) usa `sldb.api.notations` y no importa ni declara spec2viz. | - |
 | `SV-H04` | cumplida | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): test_new_builtin_shapes_are_accepted, test_default_palette_is_accessible_and_distinguishable_without_colour, test_color_pair_is_validated_typed, test_single_hex_is_the_same_in_both_themes_and_a_pair_is_not y test_palette_check_is_typed (6 casos: parte no CLI de test_palette_validation_is_typed, `check_palette(PaletteSpec.model_validate(raw))` de sldb con su error tipado y su mensaje), contra `sldb.notations` (vía `specir.visual.notation_style`). | - |
@@ -476,7 +486,7 @@ sigue abierta: depende de SV-K21.
 | `SV-K18` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-K21 (SV-K19, SV-K20 y SV-K22 ya cumplidas). |
 | `SV-K19` | cumplida | IR `tests/visual/test_cli.py` y SV-H02 cumplida (IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed)). | - |
 | `SV-K20` | cumplida | IR `tests/visual/test_cli.py` y SV-E02 cumplida (IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed)). | - |
-| `SV-K21` | abierta | IR `tests/visual/test_cli.py` (invoca `load_notation`). | Depende de SV-H01; falta el comando de sldb que valide una notación (nota 20261115-192054). |
+| `SV-K21` | abierta | IR `tests/visual/test_cli.py` (invoca `load_notation`) y SV-H01 cumplida (IR `tests/visual/test_notations_parity.py` (IR13j: 89 passed)). | Falta el comando de sldb que valide una notación (nota 20261115-192054). |
 | `SV-K22` | cumplida | IR `tests/visual/test_cli.py` y SV-H03 cumplida (IR `tests/visual/test_notations_parity.py` (IR13g: 88 passed, 1 xfailed)). | - |
 | `SV-K23` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-K26 (SV-K24 y SV-K25 ya cumplidas). |
 | `SV-K24` | cumplida | IR `tests/visual/test_cli.py` y SV-H05 cumplida (IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed)). | - |
@@ -495,11 +505,11 @@ Lista comprobable. spec2viz solo se retira cuando **todos** los ítems se cumple
 - [ ] **G1. Filas cumplidas.** Toda fila SV-* de esta matriz tiene su condición de retiro cumplida y la
   prueba que lo acredita citada por IR13 en la fila (ninguna fila sin prueba; ninguna dice descartado ni
   fuera de alcance).
-  Estado IR13: **abierto**. 9 filas abiertas (sección «Acreditación (IR13)»; la corrida con mmdc del 2026-11-15 acreditó 7, IR13e, el 2026-11-16, otras 12, SV-G08 y SV-I02 incluidas, e IR13g, el mismo día, SV-H03 y SV-K22).
+  Estado IR13: **abierto**. 8 filas abiertas (sección «Acreditación (IR13)»; la corrida con mmdc del 2026-11-15 acreditó 7, IR13e, el 2026-11-16, otras 12, SV-G08 y SV-I02 incluidas, IR13g, el mismo día, SV-H03 y SV-K22, e IR13j, el 2026-11-17, SV-H01).
 - [ ] **G2. Suite de spec2viz.** Cada caso de cada archivo de `spec2viz/tests/` pasa contra specIR o
   contra sldb (portado), o pertenece a una fila en modo reemplazar cuya prueba equivalente está declarada y
   pasa. La tabla «Pruebas de spec2viz por fila» no deja archivo sin fila.
-  Estado IR13: **abierto**. IR13e portó contra sldb 42 pruebas de `tests/test_notation.py`, `tests/test_notation_view.py`, `tests/test_view_contract_resolved.py`, `tests/test_style_palette.py` y `tests/test_view_doc.py` (`tests/visual/test_notations_parity.py`; la parte de CLI de las 6 que invocan el CLI tiene su equivalente en las filas K, y la validación tipada sin CLI de dos de ellas está portada), con un xfail estricto en test_invalid_notations_are_rejected (SV-H01, nota a sldb 20261116-022332); los casos de mmdc ya corren con mermaid-cli real (0 skipped); el caso de `label_key` ya no es xfail (sldb `06dbcf02`, IR `4dc8946`). La tabla no deja archivo sin fila (`tests/test_matriz_cobertura_spec2viz.py`).
+  Estado IR13: **abierto**. IR13e portó contra sldb 42 pruebas de `tests/test_notation.py`, `tests/test_notation_view.py`, `tests/test_view_contract_resolved.py`, `tests/test_style_palette.py` y `tests/test_view_doc.py` (`tests/visual/test_notations_parity.py`; la parte de CLI de las 6 que invocan el CLI tiene su equivalente en las filas K, y la validación tipada sin CLI de dos de ellas está portada), sin xfail: el caso de `diagram_type` desconocido de test_invalid_notations_are_rejected espera desde IR13j el mensaje de sldb (SV-H01, nota 20261116-232335); los casos de mmdc ya corren con mermaid-cli real (0 skipped); el caso de `label_key` ya no es xfail (sldb `06dbcf02`, IR `4dc8946`). La tabla no deja archivo sin fila (`tests/test_matriz_cobertura_spec2viz.py`).
 - [ ] **G3. CLI.** Cada comando y subgrupo de la ayuda de spec2viz (filas SV-K*) tiene equivalente que
   existe y una prueba lo invoca (`docs/spec2viz/correspondencia-cli.md` de IR13d).
   Estado IR13: **abierto**. Los 30 equivalentes existen y `test_every_equivalent_of_the_table_answers_its_help` los invoca, pero SV-K21 y SV-K26 no tienen comando en sldb y SV-K16/SV-K29 son provisionales en specIR.

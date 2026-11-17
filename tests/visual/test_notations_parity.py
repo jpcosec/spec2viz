@@ -226,13 +226,7 @@ def test_minimal_notation_defaults():
     "changes, message",
     [
         ({"name": "Mini Notation"}, "notation name"),
-        pytest.param(
-            {"diagram_type": "mindmap"}, "not a spec2viz diagram type",
-            marks=pytest.mark.xfail(strict=True, reason=(
-                "sldb rejects the unknown diagram_type with another message: \"diagram_type 'mindmap' is not a "
-                "valid diagram type\" (sldb/notations/notation_spec.py), where spec2viz said \"not a spec2viz "
-                "diagram type\"; reported to sldb's desk")),
-        ),
+        ({"diagram_type": "mindmap"}, "diagram_type 'mindmap' is not a valid diagram type"),
         ({"level": "all"}, "level"),
         ({"layout": {"kind": "force"}}, "layout.kind"),
         ({"layout": {"kind": "graph", "direction": "UP"}}, "layout.direction"),
@@ -249,7 +243,11 @@ def test_minimal_notation_defaults():
     ],
 )
 def test_invalid_notations_are_rejected(changes, message):
-    """spec2viz tests/test_notation.py::test_invalid_notations_are_rejected."""
+    """spec2viz tests/test_notation.py::test_invalid_notations_are_rejected.
+
+    The unknown diagram_type case (`mindmap`) expects sldb's message, "diagram_type 'mindmap' is not
+    a valid diagram type", not spec2viz's "not a spec2viz diagram type": sldb keeps its message as the
+    contract (sldb's answer in IR's inbox note 20261116-232335, to IR13e's note 20261116-022332)."""
     with pytest.raises(Exception) as excinfo:
         NotationSpec.model_validate(_with(**changes))
     assert message in str(excinfo.value)
