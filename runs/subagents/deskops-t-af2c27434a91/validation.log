@@ -1,0 +1,190 @@
+$ grep -nE 'WORKSPACE / "deskops"|\.\./deskops' tests/conftest.py tests/test_mcp_extension.py
+tests/conftest.py:60:    source = WORKSPACE / "deskops"
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py
+.....F                                                                   [100%]
+=================================== FAILURES ===================================
+_________ test_reading_through_every_tool_leaves_every_store_untouched _________
+
+mcp = <conftest.McpSession object at 0x76edb99f0590>
+store_copy = PosixPath('/dev/shm/pytest-of-robocop/pytest-1002/specir-store0/IR')
+spec_store = PosixPath('/dev/shm/pytest-of-robocop/pytest-1002/spec-store0/.sldb')
+federated = {'deskops': PosixPath('/dev/shm/pytest-of-robocop/pytest-1002/deskops-copy0/deskops/.sldb')}
+copy_digest_before = {'/dev/shm/pytest-of-robocop/pytest-1002/specir-store0/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+original_digest = {'/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/AtomDoc/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-...del-mcp-se-fija-al-arrancar-el-servidor.yaml': '11ad1a3f85f7a82806a16f4ee82f35966833dab9b982e8459264d529491a1753', ...}
+
+    def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy: Path, spec_store: Path, federated: dict[str, Path], copy_digest_before: dict[str, str], original_digest: dict[str, str]) -> None:
+        task = mcp.call("select_documents", model="TaskDoc", limit=1)["items"][0]["export_id"]
+        calls = [
+            ("list_models", {}),
+            ("describe_model", {"model": "TaskDoc"}),
+            ("list_relation_types", {}),
+            ("describe_relation_type", {"name": "references"}),
+            ("read_document", {"ref": task}),
+            ("read_document", {"ref": task, "field": "status"}),
+            ("select_documents", {"model": "AtomDoc", "include_linked": True}),
+            ("neighbors", {"node": task, "direction": "outgoing"}),
+            ("neighbors", {"node": task, "direction": "incoming"}),
+            ("neighborhood", {"node": task, "direction": "both", "depth": 2}),
+            ("list_views", {}),
+            ("resolve_view", {"view": f"{SPEC_STORE}:SpecDoc:{SPEC}"}),
+            ("resolve_view", {"view": "board"}),
+            ("check_integrity", {}),
+            ("list_signals", {}),
+            ("specir_types", {}),
+            ("specir_nodes", {"layer": "api"}),
+        ]
+        for tool, arguments in calls:
+            mcp.call(tool, **arguments)
+        assert {tool for tool, _ in calls} == {t.name for t in mcp.list_tools()}
+        after = copy_digest(store_copy, spec_store, federated)
+        changed = sorted(path for path in set(copy_digest_before) | set(after) if copy_digest_before.get(path) != after.get(path))
+        assert not changed, f"reading wrote to: {changed}"
+        now = tree_digest(REPO / ".sldb", REPO / "desk")
+        moved = sorted(path for path in set(original_digest) | set(now) if original_digest.get(path) != now.get(path))
+>       assert not moved, f"the repo's own store changed during the tests: {moved}"
+E       AssertionError: the repo's own store changed during the tests: ['/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/InboxNoteDoc/20261116-202707-suggestion-sldb-code-lee-sql-de-postgres-y-migraciones-de-sqlmigrate-b2-sql-ir09-destrabado.yaml', '/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/models/InboxNoteDoc.yaml', '/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/store_index.yaml', '/mnt/ssd/proyectos/SLDB_1/IR/desk/inbox/20261116-202707-suggestion-sldb-code-lee-sql-de-postgres-y-migraciones-de-sqlmigrate-b2-sql-ir09-destrabado.md']
+E       assert not ['/mnt/ssd/proyectos/SLDB_1/IR/.sldb/core/documents/InboxNoteDoc/20261116-202707-suggestion-sldb-code-lee-sql-de-postg.../inbox/20261116-202707-suggestion-sldb-code-lee-sql-de-postgres-y-migraciones-de-sqlmigrate-b2-sql-ir09-destrabado.md']
+
+tests/test_mcp_extension.py:120: AssertionError
+1 failed, 5 passed in 136.29s (0:02:16)
+rc=1
+
+$ deskops graph missing --root .
+No missing graph references found.
+rc=0
+
+# Nota: la corrida 1 falló en la 2ª aserción (store propio de IR) porque otro desk dejó a las 20:27:07 -0300 una InboxNote en IR (desk/inbox/20261116-202707-...md + su yaml + store_index + models/InboxNoteDoc), en mitad de la corrida (20:26–20:28). No es deskops. Re-corrida:
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py   (corrida 2)
+......                                                                   [100%]
+6 passed in 74.60s (0:01:14)
+rc=0
+
+$ (copia montada por la corrida 2: /dev/shm/pytest-of-robocop/pytest-1010/specir-store0/IR) alias del store_index y su resolución
+deskops ../../deskops-copy0/deskops/.sldb -> /dev/shm/pytest-of-robocop/pytest-1010/deskops-copy0/deskops/.sldb
+spec2viz ../../spec-store0/.sldb -> /dev/shm/pytest-of-robocop/pytest-1010/spec-store0/.sldb
+rc=0
+$ cd /dev/shm/pytest-of-robocop/pytest-1010/specir-store0/IR && sldb stores list --store .sldb
+Federated stores in /dev/shm/pytest-of-robocop/pytest-1010/specir-store0/IR/.sldb:
+- deskops -> ../../deskops-copy0/deskops/.sldb
+- spec2viz -> ../../spec-store0/.sldb
+rc=0
+$ ls -la /dev/shm/pytest-of-robocop/pytest-1010/deskops-copy0
+total 0
+drwx------  3 robocop robocop 120 Nov 16 20:28 .
+drwx------  5 robocop robocop 160 Nov 16 20:29 ..
+drwxr-xr-x 15 robocop robocop 420 Nov 16 20:28 deskops
+lrwxrwxrwx  1 robocop robocop  30 Nov 16 20:28 pron -> /mnt/ssd/proyectos/SLDB_1/pron
+lrwxrwxrwx  1 robocop robocop  31 Nov 16 20:28 scion -> /mnt/ssd/proyectos/SLDB_1/scion
+lrwxrwxrwx  1 robocop robocop  30 Nov 16 20:28 sldb -> /mnt/ssd/proyectos/SLDB_1/sldb
+
+$ contenido de la copia (pytest-1010) vs fuente deskops (git -c core.quotepath=off)
+directorios .sldb_cache en la copia: 0
+archivos en copia: 19018; esperados ahora (ls-files ∪ .sldb sin caché): 18979
+en copia y no esperados ahora:
+deskops/__pycache__/__init__.cpython-313.pyc
+deskops/__pycache__/atom_tags.cpython-313.pyc
+deskops/__pycache__/config.cpython-313.pyc
+deskops/__pycache__/constants.cpython-313.pyc
+deskops/__pycache__/desk_paths.cpython-313.pyc
+deskops/__pycache__/doc_access.cpython-313.pyc
+deskops/__pycache__/doc_readability.cpython-313.pyc
+deskops/__pycache__/errors.cpython-313.pyc
+deskops/__pycache__/lifecycle.cpython-313.pyc
+deskops/__pycache__/paths.cpython-313.pyc
+deskops/__pycache__/workspace.cpython-313.pyc
+deskops/cli/__pycache__/__init__.cpython-313.pyc
+deskops/cli/__pycache__/model_introspection.cpython-313.pyc
+deskops/models/__pycache__/__init__.cpython-313.pyc
+deskops/models/__pycache__/atom.cpython-313.pyc
+deskops/models/__pycache__/base.cpython-313.pyc
+deskops/models/__pycache__/board.cpython-313.pyc
+deskops/models/__pycache__/crossroad.cpython-313.pyc
+deskops/models/__pycache__/faq.cpython-313.pyc
+deskops/models/__pycache__/inbox.cpython-313.pyc
+deskops/models/__pycache__/materialization.cpython-313.pyc
+deskops/models/__pycache__/pill.cpython-313.pyc
+deskops/models/__pycache__/protoatom.cpython-313.pyc
+deskops/models/__pycache__/repository.cpython-313.pyc
+deskops/models/__pycache__/review.cpython-313.pyc
+deskops/models/__pycache__/ritual.cpython-313.pyc
+deskops/models/__pycache__/role.cpython-313.pyc
+deskops/models/__pycache__/run.cpython-313.pyc
+deskops/models/__pycache__/runtime_profile.cpython-313.pyc
+deskops/models/__pycache__/step.cpython-313.pyc
+deskops/models/__pycache__/task.cpython-313.pyc
+deskops/models/__pycache__/task_lifecycle.cpython-313.pyc
+deskops/models/__pycache__/task_types.cpython-313.pyc
+deskops/models/__pycache__/validation.cpython-313.pyc
+deskops/runtime/__pycache__/__init__.cpython-313.pyc
+deskops/runtime/__pycache__/herdr.cpython-313.pyc
+deskops/runtime/__pycache__/task.cpython-313.pyc
+deskops/specs/__pycache__/__init__.cpython-313.pyc
+deskops/specs/__pycache__/compiler.cpython-313.pyc
+esperados ahora y no en copia:
+untracked de deskops fuera de .sldb/ presentes en la copia:
+(fin)
+
+$ TMPDIR=/dev/shm strace -f -tt -qq -e trace=execve,openat,open,stat,newfstatat,statx,access,readlink,getdents64,unlink,rename,renameat2,mkdir,mkdirat -o /dev/shm/t-af2c-strace.txt .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py
+6 passed in 233.11s; rc=0 (tmp: /dev/shm/pytest-of-robocop/pytest-1011)
+# accesos (sin ENOENT) a /mnt/ssd/proyectos/SLDB_1/deskops por pid:
+  91486 395810
+  18403 400960
+     20 396580
+      7 399388
+# 395810 = pytest (proceso principal): primer y último acceso (ventana de la copia):
+395810 20:30:39.469754 stat("/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core", {st_mode=S_IFDIR|0775, st_size=4096, ...}) = 0
+395810 20:30:55.245777 stat("/mnt/ssd/proyectos/SLDB_1/deskops/tests/view_desk.py", {st_mode=S_IFREG|0644, st_size=5816, ...}) = 0
+# 396580 = git ls-files de build_deskops_copy (copia)
+# 399388 = sldb stores check en mount_copy; lee /mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/store_index.yaml:
+399388 20:31:24.176693 openat(AT_FDCWD, "/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/store_index.yaml", O_RDONLY|O_CLOEXEC) = 3
+# 400960 = servidor sldb mcp de la sesión MCP. Ventana de accesos a /mnt/ssd/proyectos/SLDB_1/deskops:
+20:31:33.308002
+20:34:09.441107
+# syscalls de 400960 sobre /mnt/ssd/proyectos/SLDB_1/deskops:
+   1973 openat
+  16455 stat
+# flags de openat (ninguna escritura):
+   1721 O_RDONLY|O_CLOEXEC
+     10 O_RDONLY|O_NOFOLLOW|O_CLOEXEC
+    243 O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY
+# archivos distintos abiertos por 400960 bajo /mnt/ssd/proyectos/SLDB_1/deskops: 1761
+# por directorio (top):
+   5355 "/mnt/ssd/proyectos/SLDB_1/deskops/.sldb_cache/edges/ReviewDoc
+   2907 "/mnt/ssd/proyectos/SLDB_1/deskops/.sldb_cache/edges/AtomDoc
+   1938 "/mnt/ssd/proyectos/SLDB_1/deskops/.sldb_cache/edges/MaterializationContractDoc
+   1379 "/mnt/ssd/proyectos/SLDB_1/deskops/.sldb_cache/edges
+   1309 "/mnt/ssd/proyectos/SLDB_1/deskops/.sldb_cache/edges/InboxNoteDoc
+    945 "/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/ReviewDoc
+    532 "/mnt/ssd/proyectos/SLDB_1/deskops/.sldb_cache/edges/RunDoc
+    513 "/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/documents/AtomDoc
+# camino: lo que 400960 leyó justo antes del primer acceso a deskops real:
+"/dev/shm/pytest-of-robocop/pytest-1011/deskops-copy0/scion"
+"/mnt/ssd/proyectos/SLDB_1/scion"
+"/mnt/ssd/proyectos/SLDB_1/scion/.sldb/core/store_index.yaml"
+"/dev/shm/pytest-of-robocop/pytest-1011/deskops-copy0/scion"
+"/mnt/ssd/proyectos/SLDB_1/scion"
+"/dev/shm/pytest-of-robocop/pytest-1011/spec-store0/.sldb/core/store_index.yaml"
+"/mnt/ssd/proyectos/SLDB_1/sldb/.sldb/core/store_index.yaml"
+"/mnt/ssd/proyectos/SLDB_1/deskops/.sldb/core/store_index.yaml"
+# store_index reales que federan deskops:
+/mnt/ssd/proyectos/SLDB_1/pron/.sldb/core/store_index.yaml-- name: deskops
+/mnt/ssd/proyectos/SLDB_1/pron/.sldb/core/store_index.yaml:  path: ../../../herramientas/deskops/.sldb
+/mnt/ssd/proyectos/SLDB_1/sldb/.sldb/core/store_index.yaml-- name: deskops
+/mnt/ssd/proyectos/SLDB_1/sldb/.sldb/core/store_index.yaml:  path: ../deskops/.sldb
+/mnt/ssd/proyectos/SLDB_1/scion/.sldb/core/store_index.yaml-- name: deskops
+/mnt/ssd/proyectos/SLDB_1/scion/.sldb/core/store_index.yaml:  path: ../deskops/.sldb
+
+$ (obs. 2 del ejecutor) cd <pytest-1010>/deskops-copy0/deskops && sldb stores check --store .sldb
+error: [store/missing] RunDoc:run-deskops-e-a6a9943b2333: missing: tracked at runs/subagents/exec-deskops-e-a6a9943b2333/run.md, not on disk
+error: [store/missing] RunDoc:run-deskops-t-23c03e37fed7: missing: tracked at runs/subagents/test-deskops-t-23c03e37fed7/run.md, not on disk
+rc=1
+# en deskops real esos run.md existen pero están sin rastrear:
+
+# (resultado vacío: a las 20:37:17 esos run.md ya están rastreados; deskops los commiteó en 36c44b92 'closeout: task-closeout-verify-anticipa-...' después de la copia de las 20:28)
+
+$ SPECIR_MMDC=... TMPDIR=/dev/shm timeout 9000 flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/  (inicio 20:35:30)
+rc=143 (fin 21:06:10)
+# no corrida: quedó en cola del lock de 20:35:30 a 21:06:10 sin llegar a arrancar pytest; cancelada por el coordinador (kill del flock propio, pid 426281). Veredicto decidido por D2.
+

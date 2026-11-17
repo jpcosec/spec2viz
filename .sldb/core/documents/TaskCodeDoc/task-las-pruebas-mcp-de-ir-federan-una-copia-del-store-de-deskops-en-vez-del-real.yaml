@@ -1,7 +1,7 @@
 name: task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real
 path: desk/tasks/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real.md
-source_hash: 1d19894312de7976ca4d2e54633fcbfc7a2fd7e0d18c9cc8f3bf0ba864c90fef
-content_hash: a8264065224f668896b713cbea557cb3fbc5f1157d61dc739b5067e53615e59a
+source_hash: 0eb74cfb65b2f31c16d5d853140501447f5f8a60dfc54b487fe234046a0688fd
+content_hash: 49190338011674faf1c84cd63355af7d4808311fc709160ec72cebb102157dee
 field_hashes:
   title: dd0a9b93ef6ee7c3a90dc6442dc29ee0538138c25f35293c9bfb65289c90fa8d
   id: 86ed120eab34fe0c769069fc4881266fedff32981f1dd0a931a904b7126ba5d3
@@ -17,8 +17,8 @@ field_hashes:
   depends_on: 4720707df36587653ec493bf1dc6e8a99cb2b6261bd8aada621044b880862993
   pills: cf92c9d1b2e40f546526468e6e62854fc9f0c3c5ae795332270135faff2aca36
   files: 910ad3312a7489220922e8f05393794c030cd07b67f17b2d7279831d9dbb68a8
-  implementation_path: e20f6fb44539474269ceef57b37b7be3754663dc9c5f448f29ede9e5e5f0e55c
-  validation: f8d5a487ba01c582deeae6846dceb312611826ad65e25cd7ebb713684a9c70ae
+  implementation_path: edd19b7cadaec9fb00cf5f52f7e1031a3e729642f17423b45e11e2b138b0c70d
+  validation: b4f8741f0c5cb170ae5df7f935a25001414a0acdaa51664564377027055a800b
   done_when: fd2b71cfeeaa9a8e018a5bfcc252915672328ac4f4217d1c495192e4a6ee6535
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
@@ -34,6 +34,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-16T22:34:10Z'
+  at: '2026-11-17T00:08:00Z'
   authority: generated
   via: save_document_payload

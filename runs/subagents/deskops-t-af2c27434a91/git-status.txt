@@ -1,0 +1,24 @@
+## main
+ M .sldb/core/documents/BoardDoc/Board.yaml
+ M .sldb/core/models/BoardDoc.yaml
+ M .sldb/core/models/InboxNoteDoc.yaml
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/store_index.yaml
+ M desk/tasks/Board.md
+ M tests/conftest.py
+ M tests/test_mcp_extension.py
+?? .sldb/core/documents/InboxNoteDoc/20261116-202707-suggestion-sldb-code-lee-sql-de-postgres-y-migraciones-de-sqlmigrate-b2-sql-ir09-destrabado.yaml
+?? ".sldb/core/documents/ReviewDoc/review-task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federaci\303\263n-de-las-pruebas-m-bundle-1.yaml"
+?? ".sldb/core/documents/ReviewDoc/review-task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federaci\303\263n-de-las-pruebas-m-preflight-1.yaml"
+?? .sldb/core/documents/RunDoc/run-deskops-e-473333353dce.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-t-af2c27434a91.yaml
+?? ".sldb/core/documents/TaskCodeDoc/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federaci\303\263n-de-las-pruebas-m.yaml"
+?? desk/inbox/20261116-202707-suggestion-sldb-code-lee-sql-de-postgres-y-migraciones-de-sqlmigrate-b2-sql-ir09-destrabado.md
+?? "desk/reviews/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federaci\303\263n-de-las-pruebas-m/"
+?? "desk/tasks/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federaci\303\263n-de-las-pruebas-m.md"
+?? runs/subagents/20261116-230908/
+?? runs/subagents/20261116-230947/
+?? runs/subagents/deskops-e-473333353dce/
+?? runs/subagents/deskops-t-af2c27434a91/

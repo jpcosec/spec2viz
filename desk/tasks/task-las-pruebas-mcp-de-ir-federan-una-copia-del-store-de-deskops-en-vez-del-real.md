@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T22:34:10Z'
+  at: '2026-11-17T00:08:00Z'
   authority: generated
   via: save_document_payload
 id: task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real
@@ -51,7 +51,7 @@ Dentro: tests/conftest.py y tests/test_mcp_extension.py. El fixture que enlaza d
 
 _Outline the expected implementation route or affected surface._
 
-Empezar con task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a integrada (closeout 4f1e108 en main de IR). Seguir su patrón: build_spec_store construye un store temporal y el digest cubre ese store temporal. Si copiar el store de deskops rompe la resolución de sus enlaces a sldb, pron o scion, detenerse y anotarlo como bloqueo en result-summary.md. Precisiones (preflight-1): (a) Una función auxiliar build_deskops_copy(tmp_path_factory) -> Path, llamada desde un fixture de pytest con scope="session", hace la copia una vez, al montarse el fixture y antes de cualquier prueba que lo use. Crea <tmp>/deskops con el .sldb de deskops (sin la caché) y los archivos que lista git -C <deskops> ls-files, y devuelve <tmp>/deskops/.sldb. (b) Enlaces: el store_index de deskops enlaza ../sldb/.sldb, ../pron/.sldb y ../scion/.sldb con rutas relativas. En <tmp> se crean symlinks sldb, pron y scion a los repos reales del workspace, para que esas rutas resuelvan sin reescribir el store copiado; esos stores enlazados solo se leen y no se digieren, igual que hoy. (c) FEDERATED pasa a recibir esa copia, por fixture y no como constante con la ruta real. federated_digest digiere la copia, con el mismo criterio de hoy: el árbol .sldb más los .md listados por git ls-files del proyecto real, leídos en la copia. mount_copy enlaza la copia con sldb stores add <copia> --name deskops. (d) La prueba de untouched es tests/test_mcp_extension.py::test_reading_through_every_tool_leaves_every_store_untouched; sus aserciones no se relajan.
+Empezar con task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a integrada (closeout 4f1e108 en main de IR). Seguir su patrón: build_spec_store construye un store temporal y el digest cubre ese store temporal. Si copiar el store de deskops rompe la resolución de sus enlaces a sldb, pron o scion, detenerse y anotarlo como bloqueo en result-summary.md. Precisiones (preflight-1): (a) Una función auxiliar build_deskops_copy(tmp_path_factory) -> Path, llamada desde un fixture de pytest con scope="session", hace la copia una vez, al montarse el fixture y antes de cualquier prueba que lo use. Crea <tmp>/deskops con el .sldb de deskops (sin la caché) y los archivos que lista git -C <deskops> ls-files, y devuelve <tmp>/deskops/.sldb. (b) Enlaces (corregida en el ciclo de corrección 1, tras el FAIL D2 del tester deskops-t-af2c27434a91): la copia no debe permitir que la sesión salga de <tmp>. Los symlinks a los repos reales quedan prohibidos, porque los stores de sldb y scion federan de vuelta ../deskops/.sldb, y así la sesión MCP leía el store real. Primera opción: quitar de la copia los enlaces a sldb, pron y scion con la CLI pública (sldb stores remove, con --store sobre la copia). Si sldb rechaza quitar un enlace porque un modelo de deskops depende de él, la segunda opción es copiar ese store enlazado igual que el de deskops (su .sldb sin caché más los archivos de su git ls-files) a <tmp>/<nombre>. Así sus enlaces relativos de vuelta a ../deskops resuelven a la copia. Un enlace de esas copias que apunte fuera de <tmp> se quita con sldb stores remove. Si sldb también rechaza eso, se detiene y se reporta. Esos stores copiados solo se leen y no se digieren. (c) FEDERATED pasa a recibir esa copia, por fixture y no como constante con la ruta real. federated_digest digiere la copia, con el mismo criterio de hoy: el árbol .sldb más los .md listados por git ls-files del proyecto real, leídos en la copia. mount_copy enlaza la copia con sldb stores add <copia> --name deskops. (d) La prueba de untouched es tests/test_mcp_extension.py::test_reading_through_every_tool_leaves_every_store_untouched; sus aserciones no se relajan.
 
 ## Validation
 
@@ -60,6 +60,7 @@ _List the checks required before this task can close._
 - grep -nE 'WORKSPACE / "deskops"|\.\./deskops' tests/conftest.py tests/test_mcp_extension.py solo encuentra, si encuentra algo, el origen de la copia dentro de build_deskops_copy; ninguna prueba ni digest usa la ruta real.
 - TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py sale con rc 0 y sin skipped.
 - En la copia montada, sldb stores list (o el store_index de la copia) muestra el alias deskops apuntando a un directorio temporal, no a ../deskops del workspace.
+- strace -f sobre la corrida de tests/test_mcp_extension.py: pasada la ventana de la copia, ningún proceso (pytest, sldb mcp, sldb stores) abre archivos bajo SLDB_1/deskops/ del workspace.
 - Suite completa una vez bajo flock /dev/shm/sldb1-tests.lock con rc 0.
 - deskops graph missing --root . (desde la raíz de IR) sale con rc 0.
 

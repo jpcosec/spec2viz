@@ -1,0 +1,9 @@
+Task: task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real
+Title: Las pruebas MCP de IR federan una copia del store de deskops en vez del real
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Effective pills:
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]

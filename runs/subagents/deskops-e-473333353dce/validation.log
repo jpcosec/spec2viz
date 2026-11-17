@@ -1,0 +1,39 @@
+$ grep -nE 'WORKSPACE / "deskops"|\.\./deskops' tests/conftest.py tests/test_mcp_extension.py
+tests/conftest.py:60:    source = WORKSPACE / "deskops"
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py
+......                                                                   [100%]
+6 passed in 177.76s (0:02:57)
+rc=0
+
+$ grep -lE 'FEDERATED|federated_digest|mount_copy|store_copy|deskops_copy' -r tests
+tests/conftest.py
+tests/test_mcp_extension.py
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider --basetemp=/dev/shm/e473-basetemp tests/test_mcp_extension.py::test_the_deskops_store_linked_is_the_session_copy
+.                                                                        [100%]
+1 passed in 123.84s (0:02:03)
+rc=0
+$ grep -A1 'name: deskops' /dev/shm/e473-basetemp/specir-store0/IR/.sldb/core/store_index.yaml; realpath of that path
+- name: deskops
+  path: ../../deskops-copy0/deskops/.sldb
+/dev/shm/e473-basetemp/deskops-copy0/deskops/.sldb
+$ ls -l /dev/shm/e473-basetemp/deskops-copy0
+total 0
+drwxr-xr-x 15 robocop robocop 420 Nov 16 20:20 deskops
+lrwxrwxrwx  1 robocop robocop  30 Nov 16 20:19 pron -> /mnt/ssd/proyectos/SLDB_1/pron
+lrwxrwxrwx  1 robocop robocop  31 Nov 16 20:19 scion -> /mnt/ssd/proyectos/SLDB_1/scion
+lrwxrwxrwx  1 robocop robocop  30 Nov 16 20:19 sldb -> /mnt/ssd/proyectos/SLDB_1/sldb
+$ sldb stores check en la copia de deskops
+    fix     : create a model that inherits it and declares those sections as optrev fields
+alert: [store/structural-noise] AtomDoc:atom-desk-repair-is-owned-by-deskops: 4 heading(s) the model does not declare: ## Owned Operations, ## Not Owned, ## Evidence, ## Tags
+    fix     : create a model that inherits it and declares those sections as optrev fields
+rc=1
+
+$ deskops stores-check-on-deskops-copy (manual, fuera del flujo de la prueba): FAIL 2 errores store/missing RunDoc run-deskops-e-a6a9943b2333 y run-deskops-t-23c03e37fed7: sus run.md existen en deskops pero no están rastreados (git ls-files), y la disposición los excluye; rc=1
+
+$ deskops graph missing --root .
+No missing graph references found.
+rc=0
