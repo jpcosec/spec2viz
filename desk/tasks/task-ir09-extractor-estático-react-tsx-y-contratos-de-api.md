@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-17T11:10:55Z'
+  at: '2026-11-17T14:34:31Z'
   authority: generated
   via: save_document_payload
 id: task-ir09-extractor-estático-react-tsx-y-contratos-de-api
@@ -22,6 +22,8 @@ depends_on:
 - task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2
 - task-espejo-sldb-sldb-api-expone-los-facts-de-código-que-necesitan-los-extractores-c1-c5
 - task-espejo-sldb-sldb-code-publica-facts-genéricos-de-ts-tsx-js-y-jsx-c3-de-ir-parte-ts-js-para-ir09
+- task-ir08-extractor-estático-django-drf-y-sql
+- task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
@@ -48,31 +50,34 @@ El problema que motiva specIR es la pérdida de coherencia cuando un cambio atra
 
 _Describe the concrete result this task must produce._
 
-Un mapeo de dominio que, a partir de los hechos que los readers de sldb extraen del código del frontend (TypeScript, TSX y JavaScript, React incluido) y de los contratos de API disponibles, produce los elementos de interfaz del grafo de specIR y los vincula a las operaciones de backend, con evidencia de origen. specIR no escribe extractores: mapea hechos de sldb a su dominio.
+Un mapeo de dominio que, sobre los facts genéricos que sldb.api.code.code_facts da del frontend (TS, TSX, JS y JSX: attrs.calls con name canónico, first_arg y canonical, y attrs.handlers con element, attribute y handler), produce los elementos de interfaz del grafo de specIR (InterfaceControlDoc, InterfaceActionDoc) y los vincula con triggers e invokes a las operaciones de API que ya hay en el grafo, con anclas por fact. Reparto acordado con sldb (nota 211648 y C3 TS en 0590ed11/3b3c51fe): sldb publica la sintaxis de forma genérica y specIR interpreta React, fetch y axios sobre esos hechos. specIR no lee código.
 
 ## Scope
 
 _State what is in scope and what is out of scope._
 
-Dentro: mapeo de los facts de sldb sobre archivos TS, TSX y JS del frontend (componentes y propiedades, controles, handlers de eventos, estados locales declarados, llamadas HTTP) a controles, acciones, estados y las relaciones triggers e invokes hacia operaciones de API; resolución de cada llamada contra los contratos de API disponibles (por ejemplo OpenAPI) y contra las operaciones ya presentes en el grafo; evidencia de origen por nodo y relación con archivo, línea y hash, tomada de las anclas de sldb; idempotencia. Fuera: leer o analizar código TS, TSX o JS (es de sldb: readers y facts, tarea espejo B2); observación del DOM o de eventos en ejecución; comportamiento dinámico que no se deduce del código, que no se afirma: se marca como inferido o se deja como desconocido; generación o modificación de código de interfaz. Si un reader o un fact no existe en sldb, se pide por el desk de sldb y no se reimplementa en specIR.
+Dentro: interpretar en specIR, sobre los facts genéricos de sldb, los componentes React y sus handlers JSX (attrs.handlers: onClick y similares, hacia una función del componente), las llamadas HTTP (attrs.calls canónicas a fetch, axios.<método> o un cliente de API, con first_arg literal como URL) y su resolución contra las ApiOperationDoc que ya están en el grafo (las de IR08, por método y ruta normalizada); InterfaceControlDoc por elemento con handler, InterfaceActionDoc por handler, triggers control -> acción e invokes acción -> operación; anclas con archivo, línea y source_hash del fact; idempotencia; un fixture de frontend React real y mínimo del blog en tests/fixtures/blog_frontend, con el botón de publicar que llama a POST /posts/{id}/publish, escrito en TSX y con al menos un .ts y un .js si el caso lo pide. Fuera: leer o parsear código (tree-sitter, ast, regex sobre fuentes, lectura de bytes de fuentes); observación del DOM o de eventos en ejecución; OpenAPI (no hay contratos de API en el fixture); generación de código de interfaz; cambios en specir.extract de backend salvo lo que el frontend comparta (helpers de anclas y escritura). Si falta un fact genérico en sldb, se pide por el desk de sldb y la tarea se detiene.
 
 ## Implementation Path
 
 _Outline the expected implementation route or affected surface._
 
-Módulo de mapeo en el paquete specIR (specir.extract) que consume solo la API pública de sldb: los facts y anclas del reader de frontend de sldb/code y las operaciones validadas de escritura de sldb. Ese reader se apoya en TypeScript (indicación de JP del 2026-11-16: es fácil y cubre todo el frontend), así que da facts de archivos TS, TSX y JS con la misma forma, y el mapeo no distingue por extensión. Sin analizador propio de TS, TSX, JSX ni JS en specIR. Los vínculos a backend se resuelven contra las operaciones de API que ya están en el grafo (pobladas a mano o por el mapeo de backend). Fixture: el frontend React del blog de ejemplo. Depende de la tarea espejo B2.
+Módulo de frontend dentro de specir.extract que reutiliza sus helpers de anclas, procedencia y escritura (write_anchor, apply_batch, el informe creados, sin cambios, cambiados y no derivados de IR08) y consume solo sldb.api. Procedencia según IR05 (docs/decisiones/procedencia-y-divergencia.md) y src/specir/models/domain.py: lo leído tal cual de un fact es observado (el control, el handler) y lo armado por regla es derivado (triggers, invokes); nunca inferido ni declarado; siempre sin_verificar; evidencia vacía; la regla se nombra en la descripción. Las llamadas con canonical false, sin first_arg literal o con una URL que no casa con ninguna ApiOperationDoc del grafo no crean relación: van a not_derived con su motivo (hueco declarado o brecha hacia un endpoint ausente). La comprobación de anclas no lee bytes de fuentes (ver la tarea de seguimiento D1 de IR08): usa solo sldb.api. Pruebas en tests/extract/. El grafo de backend lo da la extracción de IR08 sobre tests/fixtures/blog_app en el mismo store de prueba. sldb mínimo en origin main: C3 TS en 0590ed11. Dependencias: IR05, IR06, espejos B2, C1–C5 y C3 TS.
 
 ## Validation
 
 _List the checks required before this task can close._
 
-- Sobre el fixture del blog, el extractor produce PublishButton, PublishAction y su relación con la operación de API de publicar, con los tipos de la tarea de tipos de dominio.
-- Los facts de archivos .ts, .tsx y .js del fixture se mapean con el mismo código, sin ramas por extensión; si el fixture no tiene alguna de esas extensiones, la prueba lo declara en vez de suponerlo.
-- Cada nodo y relación extraído lleva archivo, línea y hash del fragmento fuente.
-- Una llamada HTTP cuya URL no se resuelve estáticamente produce una relación marcada como inferida o un hueco declarado, nunca una relación observada.
-- Una llamada a un endpoint que no existe en el grafo queda registrada como brecha, no se descarta ni se inventa la operación.
+- Sobre tests/fixtures/blog_frontend, con el backend de tests/fixtures/blog_app extraído en el mismo store, el extractor produce PublishButton (InterfaceControlDoc), PublishAction (InterfaceActionDoc), triggers entre ellos e invokes hacia la ApiOperationDoc POST /posts/{id}/publish, con los tipos y relaciones de tests/models/blog.py.
+- Los facts de .ts, .tsx y .js del fixture se mapean con el mismo código, sin ramas por extensión; si el fixture no tiene alguna de esas extensiones, la prueba lo declara.
+- Cada nodo y relación extraído lleva anclas con archivo, línea y source_hash iguales a los de code_facts, origen observado o derivado y verificacion sin_verificar.
+- Una llamada HTTP con URL no literal (template con expresiones o canonical false) no crea relación y queda en not_derived como hueco declarado.
+- Una llamada a un endpoint que no existe en el grafo queda en not_derived como brecha, sin inventar la operación.
 - Ejecutar el extractor dos veces sobre el mismo código deja el store idéntico.
-- Las relaciones extraídas pasan la validación de sus RelationTypeDoc.
+- Las relaciones extraídas pasan sldb edges check y sldb rules check sin hallazgos de nivel error.
+- grep -rnE "tree_sitter|import ast|from ast|pglast|read_bytes|read_text|sldb\\.code\\b|spec2viz" src/specir/extract no devuelve nada nuevo respecto de lo que deja la tarea de seguimiento D1.
+- TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider tests/extract tests/models/test_blog_chain.py tests/test_imports.py sale con rc 0.
+- deskops graph missing --root . sale con rc 0.
 
 ## Done When
 

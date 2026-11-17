@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-17T03:09:58Z'
+  at: '2026-11-17T14:35:02Z'
   authority: generated
   via: save_document_payload
 id: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
@@ -59,16 +59,17 @@ Dentro: pruebas de specIR que, sobre una copia montada del store, aplican lotes 
 
 _Outline the expected implementation route or affected surface._
 
-Esperar a que cierre el espejo task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesión. Después, escribir las pruebas en un archivo de prueba nuevo bajo tests/, dedicado al deshacer, usando los fixtures de tests/conftest.py (mount_copy, store_copy y la sesión mcp) contra el sldb mcp real. Sin mocks. La única lógica nueva en specIR, si hace falta, es la que su extensión necesite para que el deshacer pase por sus validadores; ni inversión ni guardas.
+Esperar a que cierre el espejo task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesión. Después, escribir las pruebas en un archivo de prueba nuevo bajo tests/, dedicado al deshacer, usando los fixtures de tests/conftest.py (mount_copy, store_copy y la sesión mcp) contra el sldb mcp real. Sin mocks. La única lógica nueva en specIR, si hace falta, es la que su extensión necesite para que el deshacer pase por sus validadores; ni inversión ni guardas. Precisiones (preflight-1 y bundle-1): (a) los tres espejos de depends_on están cerrados (undo_changes en sldb d0ee07a3/02ea724e, en origin). (b) Niveles de sldb mcp, en sldb/src/sldb/mcp/mutability.py: 0 read, 1 content y 2 rules (RelationTypeDoc y RuleDoc); el 3 no se sirve. Se prueban 0, 1 y 2: con 2 se deshace un lote que tocó RelationTypeDoc o RuleDoc. (c) La copia escribible es la de mount_copy de tests/conftest.py, con su sesión MCP de escritura arrancada con el nivel de cada caso; el store_copy de solo lectura no sirve. La huella es tree_digest de la copia. (d) Las tools y respuestas son las de sldb mcp: apply_changes y undo_changes(steps), con rechazo {applied: false, rejected: stale, document, written: false}. Revertir el cambio ajeno es aplicar otro lote que devuelve el documento a su contenido anterior. (e) Hoy src/specir/mcp_extension.py no registra validadores de lote (add_batch_validator): lo que se comprueba es que tras undo_changes el store pasa sldb rules check y sldb edges check, y se deja escrito como aserción y en result-summary.md. Si el deshacer deja reglas rotas, es un hallazgo para sldb. (f) Cuenta como implementación propia una def, una tool registrada o una estructura que guarde lotes; las menciones en docstrings y las llamadas a la tool de sldb no cuentan. (g) La prueba va en un módulo nuevo de la carpeta de pruebas, llamado test_mcp_undo; deskops graph missing se corre desde la raíz de IR.
 
 ## Validation
 
 _List the checks required before this task can close._
 
 - Con un cliente MCP real sobre una copia montada del store, aplicar un lote de creación, edición y arista y deshacerlo con undo_changes deja la copia idéntica a antes (sha256 de los .md y del store).
-- Si un documento del lote cambió después de aplicarlo, undo_changes se rechaza como conflicto nombrando ese documento, no escribe nada y el lote sigue en la pila.
-- Con nivel 0 no hay herramientas de escritura ni undo_changes; con nivel 1 no se deshace un lote que tocó RelationTypeDoc o RuleDoc.
-- specIR no define undo_changes ni guarda lotes inversos: grep -nE 'undo_changes|inverse' src/specir no encuentra una implementación propia.
+- Si un documento del lote cambió después de aplicarlo, undo_changes responde applied false, rejected stale y document con ese documento, sin escribir nada, y el lote sigue en la pila (un undo_changes posterior, una vez revertido el cambio ajeno, lo deshace).
+- Con nivel 0 no hay herramientas de escritura ni undo_changes; con nivel 1 no se deshace un lote que tocó RelationTypeDoc o RuleDoc (si sldb mcp lo permitiera, es un hallazgo para sldb: se registra y la tarea se detiene, no se implementa en specIR).
+- Si el lote deshecho pasó por los validadores de dominio de specIR (add_batch_validator), se comprueba qué hace undo_changes con ellos (sldb lo aplica con sldb.api.apply_batch directo) y el resultado queda escrito; si el deshacer deja el store en un estado que esos validadores rechazarían, es un hallazgo para sldb.
+- specIR no define undo_changes ni guarda lotes inversos: grep -nE "undo_changes|inverse" src/specir no encuentra una implementación propia.
 - deskops graph missing --root . sale con rc 0.
 
 ## Done When

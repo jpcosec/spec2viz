@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-15T15:39:28Z'
+  at: '2026-11-17T14:09:44Z'
   authority: generated
   via: save_document_payload
 id: atom-el-deshacer-del-mcp-es-un-lote-inverso-con-guardas
@@ -18,4 +18,4 @@ provenance: docs/decisiones/contrato-de-escritura-mcp.md
 
 ## Answer
 
-La superficie MCP de specIR deshace escrituras de nivel 1 y 2 reaplicando, por sldb.api.apply_batch, el lote inverso que sldb devuelve al aplicar cada lote (create se borra, update vuelve al estado previo, delete se recrea), con guardas expected_source_hash del estado que dejó la aplicación: si alguien escribió después, sldb lo rechaza con ConflictError y no se escribe nada. specIR solo guarda esos inversos en la sesión del servidor y los reaplica en orden inverso; no construye inversos ni calcula guardas. Cubre los últimos lotes de la sesión; el nivel 3 no se deshace; la historia durable es git. Enmienda del 2026-11-15 (JP): construir el lote inverso es de sldb, no de specIR; antes decía que lo guardaba y armaba el servidor.
+El deshacer del MCP lo sirve sldb mcp con su tool undo_changes (sldb d0ee07a3, closeout 02ea724e). Cada apply_changes que se aplica apila su lote inverso, el que devuelve sldb.api.apply_batch, en una pila de la sesión del servidor, en memoria. undo_changes(steps) reaplica esos inversos del más reciente al más antiguo con las guardas expected_source_hash del estado que dejó la aplicación. Si alguien escribió después, responde rejected stale con el documento, no escribe nada y el lote queda en la pila; si no hay nada que deshacer, responde nothing_to_undo. Cubre los últimos lotes de la sesión en niveles 1 y 2; el nivel 3 no se sirve, y la historia durable es git. specIR no registra la tool, no guarda la pila ni construye inversos: con su extensión montada, solo verifica que el deshacer funciona (IR04b). Enmiendas: 2026-11-15 (JP), construir el lote inverso es de sldb; 2026-11-16 (nota de sldb 232335), la pila y la tool también son de sldb mcp.
