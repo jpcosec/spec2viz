@@ -1,7 +1,7 @@
 name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-evidence-commit-1
 path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/evidence-commit-1.md
 source_hash: cddb4d97a0218ffe4d38b42a372f1ba58862aca160cff69524b93cdc29d7bde8
-content_hash: c4d922757d05015ff3ae001708ca73075cbb88139bef05b96c0d638ade207580
+content_hash: d735c6b427e4c1023879109cfb007ac4c5d977675d9581c6c7ec84cc17fa3fa7
 field_hashes:
   id: 2271d921c13dfb5dabcd2459f37404b04b62a84c307a8f23f0687388400b1c3e
   title: c68e9bfa16024c5a3f8185b9ed93f1dc022fc2bc804f4cf16a13cc193296d217
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: b7c86632e27cdcf9a39eca7e1d316cab93024e78ac15823879eafd2a662c80aa
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe
   reason: 37f12813de3a21eb08f379861e020e0d5dc1cee541085b193b180be4125763b9

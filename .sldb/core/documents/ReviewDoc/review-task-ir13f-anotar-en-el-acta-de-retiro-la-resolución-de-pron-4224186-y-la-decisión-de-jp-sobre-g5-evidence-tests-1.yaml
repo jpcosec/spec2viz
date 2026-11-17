@@ -1,7 +1,7 @@
 name: review-task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5-evidence-tests-1
 path: desk/reviews/task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5/evidence-tests-1.md
 source_hash: 52077f159ffe7889493bfed2c4f1ae478a56c22e7906df166684942350bc4968
-content_hash: 407ede22c085946fbd13192eaed1e267b8531884ac83e5a4bef1159f18eb299c
+content_hash: 725a3b3ad90daa2fa0c58ef0b71439497271f5ce9250467651e8b2b6e73add91
 field_hashes:
   id: f1aca3a47c1e045dbeec4ed509d386b96317ffecb46a450616a7e3566eb41dc2
   title: c2283c5ae9bea963dcdc8509905c11ba58827c83810667af46e80a32537050bd
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: c09696522df37c364f90b469ec534376b9b00ae13094522a332a49ecbf3612c4
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: d68dabb67067ffedc990e67c272be55011b6a10fe84f951534f25b51a402ec06

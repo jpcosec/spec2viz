@@ -1,7 +1,7 @@
 name: review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-preflight-3
 path: desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/preflight-3.md
 source_hash: c2b511ee477ef0f040f94b992707fb2f627cd01ee19ef0b895d8732493c87b64
-content_hash: 00eb9f8925704187b4b2c3baaf94df52b9fd37d58d4734d297cb953a8b3ec635
+content_hash: 6cb4827389624b8e2f0e1fcf88fb7b3c4b6bf55faf69e9d4018b7801d5331d7c
 field_hashes:
   id: 58c5c3ffe9e2141f3e5a90cd776dc126d9fa8710bb2cfd83cd8a518bfc26c34c
   title: 373a818300e7eb93249d540091a88103ba493ad1153c4480199f94c4dc558c74
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: f42b3f86cfa9629be62ed673ce37b513e2076740cce00b7a340de0f9788b403e
   input_sha256: e546b7aa8aadca95e94891a04c2a397c739d745396dd6e395591d7e19ec3df8a
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 6ea86c66194fd7478c42e70a172ced37fb35147f8d91262e1b6e5ba8ea63ee19
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 9b66d267b3ff57b52ba33f8b53dbbb6cd11139164d5dd1d524d5208df319d2e6

@@ -1,7 +1,7 @@
 name: review-task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp-preflight-1
 path: desk/reviews/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp/preflight-1.md
 source_hash: 51d63ad9167e16c8df06f55c60d2974508370209113437f0174fab3ac03d3eb1
-content_hash: 99dfe22e6fbc0b94f307a0e11c16bd880053d95262d6ac9138b72905b942e3d0
+content_hash: 744eb669ba6d0ad9d86231198bd7bee036085633a76d4d58c281b8d2c8df7ab9
 field_hashes:
   id: 786fc6e0c41262a4af132d525a226a9295408f232b8b3f1bf8fcd581162f8f13
   title: 24791af5dbd6a950fefa06db754c77f6d20a3b86b690629b250a33ab0c413c48
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 6eeab76f9571a642c62ddb4606f62bc084866915777c91d51eb2683bda7f7ba3
   input_sha256: 0c8d20b47476d75997694f0217d19b4d9692ec40b2358c376ef16573e411229e
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: dfc13da850b5f85896beac8c2c4390730dc75655b14ad5ab10683febd2bf5051
   verdict: b93e167bbe964a29c927882c2bc868922a912d6e74592730258b222da98b8c6c
   reason: ea10b29e6e33a06c69669bfb5b7858297fa9a92e430565ede996d8f56229dc5b

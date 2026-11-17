@@ -1,7 +1,7 @@
 name: review-task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee-bundle-1
 path: desk/reviews/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee/bundle-1.md
 source_hash: 26196016d18ecb93ddd675d3468ccfb09d3323da3d800e7e24cbde1f80f9f68d
-content_hash: f1372a6ab80f72363b5a063540bbad7e46e36b4728dc58c382590e3dacd37264
+content_hash: a640bd92f5e5c7c36f4040f566ba8f0fd774128478e661798a7cf98ed2aaacee
 field_hashes:
   id: 213409f4ad5d1152d06847cc2b7400a1a5766fba4b07d2a25325b3830b793f35
   title: a36126f351db2cf59830dcba3e2b30444b44a5dcf1affa42f704edc1001c1fbb
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: d5e8e2d2f9da63193b7f24f1b28c6dc5fe239b38b9f73368d9b9e65e20f3fad5
   input_sha256: 0e9bfa33e19b8e7e1cacd52e39ea1dacc4c172aacbec800d8f085fab5ac75daa
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: b7b04afa108e693f417a18a327cf2d98dbf032801e623d177ed6164674b23a91
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: dcf4bd4915df0b94be670465066447f338646834f34cdd66e6c4c9d88ca9ab14

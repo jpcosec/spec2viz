@@ -1,7 +1,7 @@
 name: review-task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo-preflight-1
 path: desk/reviews/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo/preflight-1.md
 source_hash: c54022234635670b18670b6e2e1445f2f102a4c3b5e7f6b0afbc210136462cdf
-content_hash: 6d21314448b2bebcf8a7d59d97c389016baaa2ef118a71dccc43cba7e5c19d75
+content_hash: 0297a0affb3c7b9ea904bd8010eb8695e7f17ab5f9779c586f57dc126cbcfbcc
 field_hashes:
   id: 9cef223edfbd044324e2e386927769c8d927139c605ca26a3ca082ae23965b9f
   title: 677a238355faa1ff19a2521de39de6538bde1a99a985cebe72f3e32d6b0e4c35
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: a5fa6b463d90ffca732b473999bd3ea7e50703c9487e29fd4c9bde87850fde89
   input_sha256: e755d5029ae345de8942f0749fab18fcda43948956cc352d4fc8c21ce09834ba
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: b1c0fe2be43da60ae90085e13fecd057bd9a9ad554a880af1448664a0e67728e
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 9b3ea4e9fd9eedfe89f1800902ff902de164b9b93c9f7ec8257498c9d897b778

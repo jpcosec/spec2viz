@@ -1,7 +1,7 @@
 name: review-task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs-bundle-2
 path: desk/reviews/task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs/bundle-2.md
 source_hash: 831344287e974485c6e8926a7d37aa3ba8ae556b90fbe3b3664658cf4426ba43
-content_hash: bd0db0640dc9a3e679a87c250317bf66be4e8effd7629c60120f461929d23de4
+content_hash: 40775e640b05b279ea648cbd4a971b433ddc2e7c48a618d55f5103c1d5391edd
 field_hashes:
   id: 34afa0f285f2252a287778bc58537c4af2c19e42c03e4a5cdffbe40eae20d57f
   title: 20fc30dc6c7037f1711e8c3dd89c3a182240c963d61d5d89799ffda149d5b063
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 6edff29967254495c2da88bf976a2d2e852c3fdbaa3ada3c8d4f33d38f556f1f
   input_sha256: 36108affc3ddee616375f2eda26fc06cf2499fdc72baab26e7227b44b57452d7
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 38275df2d5ab26e92a828dd963dc3844a278408645fa5f16abcce3e951407e87
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 759013233d5b11a2d43197446a04272298daa7603a8b1e34c25abb0f41632d98

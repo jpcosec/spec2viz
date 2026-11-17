@@ -1,7 +1,7 @@
 name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-bundle-2
 path: desk/reviews/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/bundle-2.md
 source_hash: a2da368684ca77048fd8cd61afb193acb14d008462742a95b6daf4fff20cc4b8
-content_hash: f69ca50d73162c8b740b13e594df80fa1245d6e9dab6185dd3e628d886512d99
+content_hash: 93f71e4c14dae40be52e1ff0ab19b18805ee8dea9db0f9cd994918eba8980177
 field_hashes:
   id: 28313b854ad7cae07a429ab908f8e2cbfade3830a6e163e245c7100c0b0f20ed
   title: 1db1d83d4c361a462285268d71fca9975e97f3660a7e5ff1591bc924c2060413
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 8bc0631fb44b0a0737096d48880fe3975a7c2e3a4ca304969b16b3c68a9618cf
   input_sha256: 882eaa5d5f0e1a6a9f306b6dca7c1299907562ddd3c78cac34bb83b689f962d1
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 1225c59899721bb4293b43a32d60c0547b780c74644535376c55a48205d76e3e
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: d9d88bf693cc460c218871386e5e0a380982173b1f7b4c58750fa9bdb6ec673d

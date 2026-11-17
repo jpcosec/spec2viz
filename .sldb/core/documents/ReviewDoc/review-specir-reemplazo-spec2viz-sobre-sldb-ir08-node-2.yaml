@@ -1,7 +1,7 @@
 name: review-specir-reemplazo-spec2viz-sobre-sldb-ir08-node-2
 path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir08/node-2.md
 source_hash: f7db2f678ade1cd2bd55e047019f4a6c21452cb4197aca927e514534e9766f16
-content_hash: f57238667ad3d14e8a96627e47ee753f65cb59b87cd0a602066432c5c956402b
+content_hash: 14df35122ab528c2e5f84666f54073ead5f81e9d86b585b00c7b03ffd4c11078
 field_hashes:
   id: 8db1d64e9b0d5c43eb1cd0718c341bcd80ef5cba8174bcd60a92ab8b44a20bef
   title: fe74aa686b659a432f1c2e398629da6b566dfdb291078c4b950de74d9af09fc7
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: ac96b180e0f685f04892c07c7ab18cd37ff087e1ea6c81953d78223e2682ef3e
   input_sha256: d0147f5aaf7e6926bfdd5ecf43f90ef4d4ebe2ab8967b0e58d01695c3b91ed11
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 3acaf622fd661e43022228e2a8ae349aad50ffc5e0961ffd346cbebe081a8a09
   verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
   reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126

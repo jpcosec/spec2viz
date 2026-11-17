@@ -1,7 +1,7 @@
 name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-bundle-3
 path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/bundle-3.md
 source_hash: 1f781bc13ca0f675f4cc2f29978e2023d67ef2f3a072ed4b7fbdf31faa7c00ba
-content_hash: d9f9e9a23e6e8e066cdfdead0e36833830f417e9a072668505771c0ed8df77e9
+content_hash: c56f41cac68ba82576ff631db723f69034e1a1645f4f99eebfcdba2415ed11c1
 field_hashes:
   id: 61400bd1bf42cfed3051da72f7f65f874aa3be6922d906cc912c8813d6698355
   title: 50893d1ed66190e69eb21db1ea2e4e280d2266a89d5f9b13a8128ddbe55f0c21
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: f1b676303205b009e320aa34e8ea391e7f24eb8994172236e0a2f9d89ae815db
   input_sha256: f07d205c3f4e0e62f0d5483e49db434d59d34abcd5cceebbd9df5c9b7e74ab53
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: b4b16dad390bac4c7ce42014c594fa668910b49ec1b7771a17891c187d71e0ab
   verdict: b93e167bbe964a29c927882c2bc868922a912d6e74592730258b222da98b8c6c
   reason: 99949703a4cd3798543f647bacc9d068375b8e83c02f1a5c088abaa65fe5f63a

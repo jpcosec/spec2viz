@@ -1,7 +1,7 @@
 name: review-task-ir11-compiladores-y-proyecciones-de-spec2viz-preflight-4
 path: desk/reviews/task-ir11-compiladores-y-proyecciones-de-spec2viz/preflight-4.md
 source_hash: 34779a897a19538dcc7022546f5fd2afcc38015ddc69bc65f31f10ad25714eeb
-content_hash: 34dc0e068da1db43810ff4d9a97ce3e09ff65e68685d205e718209bf402b123c
+content_hash: 4557b2c7c815ce0e113dfd530c8e019e1dadcd211fa0eb1fe965aa31569c38c2
 field_hashes:
   id: ef3bfc3d9d8283288ede002aa73d050edbb45eb874400c91a8560c3d9ace1ba9
   title: 94de641e6084b3d9a0c608292295b2fbc5d1a631f402c4ca27b20e0a2dbefb72
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: ba9bcb57fa10b162bbd2f117f674abd73291923e028b52e721e0b7274ebb71ba
   input_sha256: 24647bedc54645c0acc1801c77bf59e7d93fdbaa747f53ac7f814c3db159cb02
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: a924fdca29c33f31e3114018ab5f635080ea11e5971149ca0408491258bd8db9
   verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
   reason: 749a3cd19a3e493cc484bee7333d3b46c258278dd40e0f6431a8525e7a062bb5

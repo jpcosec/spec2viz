@@ -1,7 +1,7 @@
 name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-preflight-2
 path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/preflight-2.md
 source_hash: 4d2c13aec91970ba9d123ea7dbb14f55f27b093395ff451d61c944636d782a7e
-content_hash: bc7eb6a05796c5583aa28bfe1aed8ca780a4084c31fa17d0f625e6736335f564
+content_hash: 047d8898ee6e9b8fd22fa4f0cb2316e16427d532ffe0feee7c32fcfd04f3d528
 field_hashes:
   id: 819c2d18d5ed6f028d1c171db8868fde2d9a7ae6e222112639bc39352a644650
   title: 589e0a726180af51ed3a8ecd9281bfd30ae33ebc69a286d7f03b5523ef00d68e
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 0c83be3cfcfa3a88b59e7acd73b9c6632411a196d11fb0fbee5162b6e046c165
   input_sha256: 35b7c532f6afa912755b160c0a49dfc5f378017469bcc7a0ce9b62a29e6c6f08
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 8d23342d704e9982abb07f19b7bf21c8be016942af6d5fd33b9fe0a324061e5d
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: e819b8c41088e7053f7ebee9657eaa4bd1743ee2bdca68488266f40e0bd13ed5

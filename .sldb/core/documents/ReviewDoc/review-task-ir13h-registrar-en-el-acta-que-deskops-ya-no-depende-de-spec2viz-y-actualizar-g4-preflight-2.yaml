@@ -1,7 +1,7 @@
 name: review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-preflight-2
 path: desk/reviews/task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/preflight-2.md
 source_hash: 398601db9c241838ec08d87f604527fcb9dcbf8cd3101d775ecb86bf357c31ca
-content_hash: c199fdbb87bb226a45ed1ae2b1e4eb64c273aef8805daa663c183439dd6c0e3d
+content_hash: b6fba0f96f8b1dd676588d061205dd505724b365a31d9d1d5f255c8ff6d6b577
 field_hashes:
   id: dd3d5cf9028893eabda64c8110f193feaac387049f013f7d8e0f74f610cb2e26
   title: d3d9f03d5be36a0f026cc85fbf7214a626277ba9ababa3477cc841d94146213e
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 97775f2be190fe6c876e6aa54e72fd17a906d56b5cc3d22a0e2a9859c6a328ac
   input_sha256: 605831dd3df84d378005f5be5676e55d1a67874332de7fe560e36431cb75c735
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 57cdbcf2ed9c18f4cc26f43a6243bfc5e874d6bed10bbb9de37e73961c9bba7d
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: fb56c94e41567f5162b5aa2b5a94b5830e13b6b5eb3966fe8f7e089311521309

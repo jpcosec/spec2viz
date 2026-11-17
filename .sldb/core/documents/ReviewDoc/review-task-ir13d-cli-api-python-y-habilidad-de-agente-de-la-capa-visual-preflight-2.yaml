@@ -1,7 +1,7 @@
 name: review-task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual-preflight-2
 path: desk/reviews/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual/preflight-2.md
 source_hash: 0f0d8f71ca194fb7f1bb3ba0a68f8c9e9b3247a9f31545ca247f134e897db753
-content_hash: b4f75483a4cc5ac641b97cb13a57f5641467a2124bf9f2bb2a3b9293d8701db3
+content_hash: d1555b0dfc6149deccaef8e5195f00cfa759708f861932db55c9fb62d5fedf56
 field_hashes:
   id: 866cc06c487bdcfac2afbe98559f77354001be2b5f127eb5dc927e411bcb2831
   title: 9fb9aa343bf7bffa0970d484d2a2496fd810f3d8808cd1b8adbc8c8e9113f45c
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: bcc00e33ad9a4d3f3e141f426e840a98c31d018f1d3ee7af4380ecfd91d6a92e
   input_sha256: f30a6948e64209bcb8d54b69dbcb1c1d52546a20c0993e5c367910fb8e635d12
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: df78ec2f315d32d1c38fe0a277dc44b72b53602b377f3c6242b01471d5108053
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 6a611a0791a9dde67358787b6bf8335b60ac28b3dab96918bbbdc2ce0c350a03

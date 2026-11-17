@@ -1,7 +1,7 @@
 name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-evidence-materialization-1
 path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/evidence-materialization-1.md
 source_hash: 4993f20ef448a490305a39b6b58126a4019e453697719327750ec25c2e0e44cb
-content_hash: 64ab37bac2f0fd0dcbeba6e046aa6f50b6f96f680edc8ec1891f5f7d9eaa2f07
+content_hash: 9d3d87e3351e66edfc7e3ec7418795d576b3266acd214b7a5670044fefc91671
 field_hashes:
   id: 60b815d67d8b2f6e6ec6e6698e0b9fc0027af45e46b73e833600a8bfaeef88f8
   title: 2d4fa6ce762f4fae6e45d08a325c2410557ac857240951484e38497db308ccb4
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: 1f8df99b1e395cfbccd0748bbb5006339a4f8622a338281a10f4a2cdb5ad3b17
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe
   reason: 60d6089a2f250c430e3a32efa4d5534eab29af2da56b3dfb4f1ff46d1487e103

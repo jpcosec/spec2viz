@@ -1,7 +1,7 @@
 name: review-task-ir-gitignore-ignora-egg-info-y-pycache-bundle-1
 path: desk/reviews/task-ir-gitignore-ignora-egg-info-y-pycache/bundle-1.md
 source_hash: 70ca449f1ac9b50c299db75736d80d86beedc72a2855e7ff771cf979f4aff82c
-content_hash: 70d3ea61b91c47b52e3d1879a63bf4175dfc85038d833f4870c949dca02a6747
+content_hash: b2c0ee230789e11dcf1c0bd7eef9c48dc22f0f739d9ca32c1d453ae86a23b898
 field_hashes:
   id: cf3d3a33cf024572cae496a6f322044983aa78b15775b12869c326b0c58b24b7
   title: 4e3e3629013cc936f11be465c7c0d8a998980cb98be332e50e6ef0ff73dba972
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 08a52597115d095d2f70bcf20047b6d40799394311d2f68faf6ca694401d50d6
   input_sha256: 27d5377c07eb968c6923ec5f605a189c56a09254ecafd0807096d1f4d759fec1
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: d0c2193dd1f419c1ad6e69169f4086f324321e079d9087a20a0f82eb505b51d7
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 80e4ff46c440d8c87d0e31a8e0b4c437a585db7528201712d4b2b3c46af70999

@@ -1,7 +1,7 @@
 name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-evidence-materialization-1
 path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/evidence-materialization-1.md
 source_hash: 24bbe90269eff6c3c2494c25361d2b34502b1a671d20c23ca8227927d601858a
-content_hash: 037bd86cb12c8038173e58f70323fa6f01cbfd61f997707ff7dde7dd27b242b3
+content_hash: 36987bb24ac8dfe4205e5f5df2623d04e31b609c7279a0d3febfed32f60a9bc8
 field_hashes:
   id: e60d9be90a26cf7d42a5a158a365ffef71590a9674621e2dc6e45832c3329854
   title: af00fef53983f6daa6db53b27f1a616dc625a6281e248cad2e1b1db3c7468a19
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: 6a3351232dd31afc6d5c2c2663ddc21216af3c642e1683f72cbc0309f87dfbd3
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 4b2b2ae03d001a580f9cb7f73d32f5dfc3b82c9deceb56fe520269f464a8f952

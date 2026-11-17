@@ -1,7 +1,7 @@
 name: review-task-ir13c-notaciones-y-paletas-expuestas-desde-specir-preflight-1
 path: desk/reviews/task-ir13c-notaciones-y-paletas-expuestas-desde-specir/preflight-1.md
 source_hash: 88a4b90e06e050e4f42e7a2b4c6a24bdbaf5e9d1c2a1c0534c4a4e9d5c58fb16
-content_hash: 18b9107f9c5dc997f11b2e55251912cbef6d746d1e6c8d58b7446a06bfe80978
+content_hash: ac1de0a5ef17f94320d018e6f3a3ad122c6d1c985c6c2b8a40b14b82fe9906e7
 field_hashes:
   id: 57f1d59bbc694aadd0bc8ffd6918b03968b775defba31abc7df234738c56d486
   title: 904d1184ddb54166731ee6ec6671e6240bc110a1977420ca7d1b670206bf1740
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: b87e59d6daf1e3edd067a3720c29325a5cc6f2543a8aaf566e08e895361367af
   input_sha256: 25e5696bbb39d9fda98fcedd188acc6808542cb7e6f8aed8df1e31833fb3165d
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: c010d2aa5b2f7baa033569cefc0e949642cc8a17475d9a5c926b487c3160d852
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 9b3ea4e9fd9eedfe89f1800902ff902de164b9b93c9f7ec8257498c9d897b778

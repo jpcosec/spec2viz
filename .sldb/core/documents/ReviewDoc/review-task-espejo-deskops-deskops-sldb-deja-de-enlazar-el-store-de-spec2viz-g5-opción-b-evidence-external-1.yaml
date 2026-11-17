@@ -1,7 +1,7 @@
 name: review-task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b-evidence-external-1
 path: desk/reviews/task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b/evidence-external-1.md
 source_hash: 38b0bc1a052625ccf501836586573a6004a5c3808ff650adf17df8b08851ed5f
-content_hash: d0aa19f955f5996e4399ce67a7cac7214f926ff7d6dfb2d837a88bdc6aa55330
+content_hash: 575244f6c77edc6770077a1a0d3b387d5ba3620e6f2caf82a9423c7c764768ad
 field_hashes:
   id: d2a8dc2e47cb83e1ddfe2ed2615bc16e2c3b7147da63e2528c4ff25526401f6d
   title: 0bf1f6ee93f61a4d30615300886a07b9db3627e4753836b0579853cd2d4c365e
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: 58d89a519848f578e9e187cee629455a085d3f8b4f8e57f73914a34b014149a2
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe
   reason: 2ce58fc0118dc0976af186c9b409c1a2d018aef94793e918c0c747d4ed07a4b6

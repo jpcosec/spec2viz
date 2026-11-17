@@ -1,7 +1,7 @@
 name: review-task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo-evidence-commit-1
 path: desk/reviews/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo/evidence-commit-1.md
 source_hash: c0ef6eb9810c3a63796e89f12ec52a84abe8a552077b3788d765106ea2047088
-content_hash: 739817dc0d819128c69a62650a865da877c2089483b0b285cb5cb14d6304838d
+content_hash: 9e73e34c06c339c65fac516258b0c63df3a4b92512a7a0e6f689af99cd0d7f96
 field_hashes:
   id: b70a362301c7a3b78284c1aed6209c1c34fb66fb36b794f9ed48ecee44f6db14
   title: 633fb834bb4e2370e7f1b5baafdc10c8fa5d881d401ec404ed425003168cf316
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: 62543cb08fd28f7129814d4c905dfb30d32612011ebc081a981c68faf5d3542a
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 7920d75d596dd86d60aacc698807d437be25a87c13481208796b8112051e9330

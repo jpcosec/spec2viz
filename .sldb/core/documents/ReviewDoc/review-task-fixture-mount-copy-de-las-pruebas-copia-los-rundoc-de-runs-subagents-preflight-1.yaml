@@ -1,7 +1,7 @@
 name: review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-preflight-1
 path: desk/reviews/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/preflight-1.md
 source_hash: cbe809d2280fae9fec555f8c63540645d80e7381f0af87e8c328cd7a379f5399
-content_hash: 7ef65d7bb63785b6ea86026e4fcdd1fc4587577294586c7d7352a46220551117
+content_hash: 18855490b5482b2a041faedf2c34ed78e39980972d760e367e929423e02d8ff0
 field_hashes:
   id: 7393c80a4b7093d4d71fe5edfb50db737de7a06646d49b1eb925742860f290de
   title: 5681044f18b512cf125e00f30454727e063c03ff0f27576d75e7eaa0b526431c
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: eb722189d1567beaf43daa8bbc36dc2fb3dcc7218b83f0f1a5735b59ceb84ea2
   input_sha256: 048e854fdf9f2640cf14506eacec1204b624f1ce3c854753344e922aebef3b69
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: afa96c8d2ff925edb938ab8729dd74055ce557db33df58b0e9b63b170d10153e
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 3f5a66c7d3af99c1992087c5ef6cb836bec136d94cd75e0ac1f30d1df1516678

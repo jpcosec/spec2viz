@@ -1,7 +1,7 @@
 name: review-task-ir08-extractor-estático-django-drf-y-sql-bundle-1
 path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/bundle-1.md
 source_hash: faec46a574e455d3ffee02b521d3c654f3650ed659a30875b0b46c3f56a1d081
-content_hash: 9842f1591853e29ce9e8823167a99aecf2a05f84ae0ca8349bdcbb90c3a112fe
+content_hash: 054fe62b7a2cf0a29abb84b7c341cbce3f9a9a55526921051aa5bf123db3f8bf
 field_hashes:
   id: 91f9ee9d1925d6ba415e6630bb9f9526609a6fb02a939019bc8c3ef47621decd
   title: 64eebda22562883a76eb334497357bb3be2a9028479ce5deafa5f3e46d97582e
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 54d29a011ad392cc437f683f26a027efef36eaf00d41badc26412ee56443e22a
   input_sha256: 8ec1d82d1f555851064424ba992cb36921f3db35e2a109a34a3a3c6402670add
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 9b5f68734c3fa9876fc30f86ecb2d7cc9c470fc5065632ece45f617a4ca25125
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: a2e85c993dd112fa20d0d63cdc77a5ad0bfaaa4c5e94eb4622151170de26b360

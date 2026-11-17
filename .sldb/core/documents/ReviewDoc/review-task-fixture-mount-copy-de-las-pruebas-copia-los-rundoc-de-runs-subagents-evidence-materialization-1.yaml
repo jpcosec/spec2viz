@@ -1,7 +1,7 @@
 name: review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-evidence-materialization-1
 path: desk/reviews/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/evidence-materialization-1.md
 source_hash: ea1afeee7fd687049dba51fd72624c505bc82dc36026ea0c301e9c47eabe4d2c
-content_hash: a6f2b44b94804fb3b56b2358bf4b2ddf79fa64306c3e8bd4f533563772de559b
+content_hash: 52ce0db98a30c2d922df9dc0173ce896b3d64137913f5e2aa239dbf4c5b70ee1
 field_hashes:
   id: 661085d14a2e03a2dc15778a5cfe1956287ff89f0241e4cdb591cf7f89661cd4
   title: 4207d423c864282a6726a51ad753beae3f36616c58d10fcdd5fae8915bb8885b
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: 1e9d1fca2ebacb66d55511de97841af2c60cd4d75a5f29a002f7f6f81ecc47c6
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: eee55c1e5338ec3a494bc077d151a938b42f10f3264f262f372324aeeaf49fac

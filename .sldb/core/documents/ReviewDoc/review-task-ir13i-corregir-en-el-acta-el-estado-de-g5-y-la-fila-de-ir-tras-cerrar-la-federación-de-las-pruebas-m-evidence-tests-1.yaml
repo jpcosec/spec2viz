@@ -1,7 +1,7 @@
 name: review-task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m-evidence-tests-1
 path: desk/reviews/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m/evidence-tests-1.md
 source_hash: 08a8a7f2fd58d00726033ec3354bed703e9fbfe9e6644ee1669ae4bc663ceda1
-content_hash: 00fe771ba413b97ba0461bd232f75c648a4ba2fea822fe69a66d5ab746c6d452
+content_hash: 88825a18e0ada8970d32d99365c972fdba00ae12b50c73aa7b73838102b3bea0
 field_hashes:
   id: ef69d2182a4fe8e1d48b14df212f2496d1924dff8a8a675b6fd279b57fa2600a
   title: 2b4307fbf861fe5e67d7ce7b7ac039723b8463053dc82b74db6d52cc4d312558
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: c09696522df37c364f90b469ec534376b9b00ae13094522a332a49ecbf3612c4
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: d68dabb67067ffedc990e67c272be55011b6a10fe84f951534f25b51a402ec06

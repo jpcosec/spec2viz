@@ -1,7 +1,7 @@
 name: review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-bundle-1
 path: desk/reviews/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/bundle-1.md
 source_hash: ee3f2c250e39ffb29327c6a1c1570aa7bc86f5e4cb700192c3e7c66939677558
-content_hash: f457cdd11e9531035b009868887a41c3b04830ca34d25af9a2b5ab515c8ea656
+content_hash: 1f5a3879b190b0615217bc51ab7d8dc5546a52cd9bb4f7c5be1a16489ab73e9a
 field_hashes:
   id: 27b8031f6a643d302278a99d306af63d27611bdfaa2d6023c36da8b810368096
   title: db86ae70e8e95555473e0a6e941ecaa6cc4f02d3dae5db36d46784b6d724bee8
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 8538fdda7192c5126b49328586795c2a853352c29e8802b46b8c5105b523f3f6
   input_sha256: 6cc5175341aa8148f3cf68c04a014cc41340cc30d7eff5cff8c551e7ac4ac260
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 7efb108525d4a4a2fc6f67a2398802220904d70f7d6c2765ca7751e573fd7b08
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: c2d3d95ffc43f98f93ed690e9880ddf8db955a9c8a4652981e00b571b5a0690a

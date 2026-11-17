@@ -1,7 +1,7 @@
 name: review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-evidence-atom-1
 path: desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/evidence-atom-1.md
 source_hash: c27f5d7ae97a999ec06caaf3320b982a621c2a80d617645896953ec3eb3206d0
-content_hash: 1688ac066d35fb45581a0cbed499076b24bb85b96b45a208a69185746359a4b6
+content_hash: f192ac20581b60fad5de7593746e21f5840edf08137b1a8094318eb806b12942
 field_hashes:
   id: 1aaa58029505f95625d3e2de08898669aa9a29adad5e9ce0f92ce90f164361de
   title: 43877c208c80551bb1d633509aa9c1d85e740071e12ea460e29050ae13f5fecc
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: 62794e1a44f12c94e490a86d4724107b9b1d1a6d27615642aceb41f24b509c29
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 1bacb8758aab70b949109f3679232c1d22256a8858c595620e799c6b6fc1f86a

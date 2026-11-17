@@ -1,7 +1,7 @@
 name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-25
 path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-25.md
 source_hash: 5b94db76cd18dddcdc8f8ae120c173610602a0624c6cf5617caecf79556b905f
-content_hash: 181b65ada864e5280c6c688a2415fca3ac8034e97df32cf76224d9cb86caf85c
+content_hash: c2ffe91e3400ca2f570fa8a71a81bbb44dfa867a16b3fbb52bc5b16570a0ac86
 field_hashes:
   id: 31a6d6208c817c8c2002f416e7c121f33c13c39c7c0093c22e24a4078ec27dc4
   title: 7a056776b3a16fec173f9fcd0e3278789fa03204ee154fdde1dde1388522285a
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: c51fdf7ff89f3e7f5fedf701e0944d5c882415730b130a4f542c0f45dd3c63c0
   input_sha256: 6b2d9e3da7f3ab9a3fd5718a6eb1dca50c00ffb6dbf7fc0c1d7a209d9e9690ae
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 30165fc2a578439ed0583aca814541c7381f20bf69962c0cc88ac3ffed77b9ea
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 76032990fdcce3031972f0bc6c74c5b91c87242b280a0f3ef227071262907c58

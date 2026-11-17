@@ -1,7 +1,7 @@
 name: review-task-ir13c-notaciones-y-paletas-expuestas-desde-specir-bundle-1
 path: desk/reviews/task-ir13c-notaciones-y-paletas-expuestas-desde-specir/bundle-1.md
 source_hash: 5ed6387329fa10c6456d26e101678ba3188a04388575ed9d81069e1081834aa3
-content_hash: abb7e621f8301033400617520da12fcf2b26987ef483aaf925d25129e67f744e
+content_hash: 475796d22366daf6d29790afabedc49050ff36c14b6444466850985baf7cb3f4
 field_hashes:
   id: d4168f0cad10e5749ef2c6cb0fb85ff05608487ff3c05211e3a995c1ff18ca1a
   title: 165a734c83c0fe035736cdfa763ecf956f089a458de2a52cbfdccd7de178787a
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 13b4da4e1e832a4c87de1a1b0b0cf8213440c071bac7953b6185d7b0e23fe836
   input_sha256: a304e57cd4c3b24b2ad0b0162f0d257e23739230615c018baab5e6061b6331c8
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: e71a80dc3f4776a41043783c5e5535d2ee5552b31f917637efbd2a478e9caa58
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: a2e85c993dd112fa20d0d63cdc77a5ad0bfaaa4c5e94eb4622151170de26b360

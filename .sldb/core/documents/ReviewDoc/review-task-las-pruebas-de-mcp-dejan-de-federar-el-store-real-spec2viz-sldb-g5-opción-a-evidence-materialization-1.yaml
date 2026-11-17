@@ -1,7 +1,7 @@
 name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-evidence-materialization-1
 path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/evidence-materialization-1.md
 source_hash: f50eea61614c008a2c5dc86aae2f6003ac61ede5b7ab5d36423e161d46054872
-content_hash: e9f440f7345ec442fd59df0f8f047cbbeb8f35f2516bcc3485992e6b12cdf003
+content_hash: faa9de0f274082bdbba765d88e6bb72cdd5e2c9542f0c80c28c60592d662b795
 field_hashes:
   id: 97ff48387b5d546c92b76d7f2ba5cdc6fb41d1824a4f39b4c0e5411d4f8f118d
   title: d68ff3dd4070ef2f6c494c23c8ebdd66abd1eadcf47145f67dad586f40f02c3d
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: 1e9d1fca2ebacb66d55511de97841af2c60cd4d75a5f29a002f7f6f81ecc47c6
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: eee55c1e5338ec3a494bc077d151a938b42f10f3264f262f372324aeeaf49fac

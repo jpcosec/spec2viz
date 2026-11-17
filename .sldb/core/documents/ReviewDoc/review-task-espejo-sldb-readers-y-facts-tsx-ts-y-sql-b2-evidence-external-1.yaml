@@ -1,7 +1,7 @@
 name: review-task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2-evidence-external-1
 path: desk/reviews/task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2/evidence-external-1.md
 source_hash: 0e86c3cb58176186cd6cf51aa2e8a427c6e71bba0a68c2ea018beabb92aa2e4a
-content_hash: aea335715899280a60ec61d28abb6d5959452e2675102872977258fe1c1eca71
+content_hash: 52b4eb7307ef6b6a1689f7df1fc1c0c7678fd5f1e17e51ead4a810e446cc3190
 field_hashes:
   id: 5ba762a157c8c028dd4f686b1c72cba8283d42fd0c101ecf1eba1f5135cb67b5
   title: 7304f558633c7ce452a5d973ea9fddb311337e0d5c6079288a89ed82be2b404c
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: af409a494285088466da9c5496c832f25fa6ad19b1481bc6a745ee9e95ecdf70
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 0e4dd0a469409a6f8d8b97e462b1ff58714a9718cd0dc8b81cbb38d60c1d31af

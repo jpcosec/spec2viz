@@ -1,7 +1,7 @@
 name: review-task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02-evidence-tests-2
 path: desk/reviews/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/evidence-tests-2.md
 source_hash: 7e5c5b8c8ab6d01736bbfe41acf6ad3f25e88a98bb5a840d6d2ff8a22f637285
-content_hash: 0f4d4903c41ff6e0265a7be8e54ddefce9091043f85a929d61afbcbcbceb041b
+content_hash: e65d5c0f2fb951ede5db92bde7a66e7808d69aea164408e41497994454bf97de
 field_hashes:
   id: ae8024451c0d985ec0131684a6f4e2344bc0cbde4fcf681f9f8222891aea606b
   title: 1ffc1e4f6ba8dd7b4a2fadf90a8e593e0594803a9a4645d48909de8884014bc2
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: 84a08211562e66a9e85e09a82fe48e564034d82285608e1652e36374cacfee1f
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: f7b6ec500afdd9b4057f95469198b025d851a615a0e760ae896ad5d34ea0c747

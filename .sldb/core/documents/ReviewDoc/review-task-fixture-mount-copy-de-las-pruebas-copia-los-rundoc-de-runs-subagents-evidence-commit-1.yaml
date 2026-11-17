@@ -1,7 +1,7 @@
 name: review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-evidence-commit-1
 path: desk/reviews/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/evidence-commit-1.md
 source_hash: 97f6204e0b4aebad8ea0f24a555262a37798d242bed8e5a96ef63e9ee7e79f41
-content_hash: 28815c19b33afc619519e89cecc3e0ec128631a7cd0e6cf1f497712fa6621517
+content_hash: da09aafce0642ce09b3cdaa2b4a68f3a4e1155761724c79923d12e4cc4530855
 field_hashes:
   id: 79582f7796bb463bca96b278453d721c8620ffc95d673c98b474ac36c40ae14f
   title: b4fc5f02a34ebee1d17c0bd2e8c6f5b1572cd96412a4903018a7269bfbf73b85
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   input_sha256: 97ebb0d5e5775c59db7396b921cad8f0fe14c6a81de94dae5add6fdabde45aec
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 0d1beb7753b47438ee4d7c3648391d9d561bf8e6499119602e4c6aec1f181757

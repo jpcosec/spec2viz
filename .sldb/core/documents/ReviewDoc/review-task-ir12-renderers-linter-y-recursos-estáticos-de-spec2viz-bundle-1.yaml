@@ -1,7 +1,7 @@
 name: review-task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz-bundle-1
 path: desk/reviews/task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz/bundle-1.md
 source_hash: 7b170fa297df0a6e689c1b6f1656c2e46b21e5ad512a5124019d6e7d04a1d981
-content_hash: c64c7e11642f1e0400f83e223d4429663f752cb51143ff41f203ef37eab9fa46
+content_hash: 15d851423e4c19fc18fa77d3da3eb1f88a90b2b5b2f4583842c83f38f47534f2
 field_hashes:
   id: 62d0e943227b2134889e3bf4f5201c10fd7b370038712963e7c437881664f9ce
   title: 2952343fc7d0ea5e63b7c72c11c86643c622f1e92c72fa4d4572347a26b9d335
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 2b711611766015d6fd1063a870f297d849309000fc64e0be0d95458e2881f1b5
   input_sha256: 5fa6e13aea48e3945f87ea02123d9e8ba894d713815bbeab4acf2bc53248c1d0
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 3143e511118dd0de999ccc40d6fffc76bffc950bd662df04aeb201c967633d26
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: a2e85c993dd112fa20d0d63cdc77a5ad0bfaaa4c5e94eb4622151170de26b360

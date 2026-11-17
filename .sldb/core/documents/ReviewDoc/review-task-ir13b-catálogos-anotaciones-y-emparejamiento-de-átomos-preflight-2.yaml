@@ -1,7 +1,7 @@
 name: review-task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos-preflight-2
 path: desk/reviews/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos/preflight-2.md
 source_hash: 0c7621471d46fedcf94b7429b29dd1d467f8773b1b7442a107f43e8d98f2e380
-content_hash: d49f9706f43cffdaed71ea94b185c654cbdfb53cee60bbda59a9186c49cc79bd
+content_hash: 46a960b2c72fa420ef5417bfc0e9391ba293a7e099112e090e8f2a847f0e6ca3
 field_hashes:
   id: 037a5cef81b90f0ed468b061cd4e7d22cd9b414d5fd418d7846f51171b11f5fb
   title: 92e526250a5183b5fb5dc4e39bfbd7570ad672ad06bd2b09e96f16d1bc061062
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 3a68026e71e31185d767d1cf6559663b4e93a9ccc5de6b12157c3ac7c0caa170
   input_sha256: 89dc7e8fda9d7c10951d565662ca5a6887b92da3f79ca658804a6ee9f0e288b6
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: c072e9f9a56878eb4f443b8e88e96a14227809813b6c7e69a8ee98e0375a5665
   verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
   reason: 4092b6f78a42420c2e1e1a6ebf03ef62a97aff2c6c6b61e3a63a2f586a4a6a48

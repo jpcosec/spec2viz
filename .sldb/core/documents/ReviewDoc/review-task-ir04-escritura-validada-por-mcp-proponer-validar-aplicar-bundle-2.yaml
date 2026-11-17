@@ -1,7 +1,7 @@
 name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-bundle-2
 path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/bundle-2.md
 source_hash: de29d28d92c1f2fd4d16a3b6aef5820e628181e1c269d6c64a95d384fbeb3b83
-content_hash: 1f77c385a3d2eea8b3f5ccf5de3dd9c188d64ac0b1f8965df5531a4470f93f4c
+content_hash: f2f0b58ed1c09efd1b414f56f55fd4cfe643d5c96ffdf50e28795b2d035521c5
 field_hashes:
   id: eb4fb27c7a7ed502cd512bfbc1d79f546e0aaf02236d1efabfeb616fe60f74d7
   title: cbae82cc187287640e2d7933b1b7fe65cf991860e1934cb255d56efd27012718
@@ -14,6 +14,7 @@ field_hashes:
   actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   run_dir: 37c019ac02f17539de01523fd9aee76c0aec671e745c47fd1312e606a65ea14f
   input_sha256: 0ec5559f5363c76d826e7ccdbf186ad58b149c1ba0459107e560b8a7ef9740ed
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 62322ee0044860e315cdc96b59e6f40cee1d66305038591bc2c6659e4e25a809
   verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
   reason: 9f79e851e7a4884d3c123c443bcd1a869c763dc5adec4a08bc25b2b09385c655
