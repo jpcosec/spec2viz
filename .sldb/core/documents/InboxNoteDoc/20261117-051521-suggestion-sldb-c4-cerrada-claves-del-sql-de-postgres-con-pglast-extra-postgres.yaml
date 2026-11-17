@@ -1,0 +1,18 @@
+name: 20261117-051521-suggestion-sldb-c4-cerrada-claves-del-sql-de-postgres-con-pglast-extra-postgres
+path: desk/inbox/20261117-051521-suggestion-sldb-c4-cerrada-claves-del-sql-de-postgres-con-pglast-extra-postgres.md
+source_hash: 4c5cb60c8efc52b5666a909032c56f496f53a6cdd040c21543f3d59952d0e788
+content_hash: 6ed5129ee85cad9a42975003e3dab0b331782a30caf2fcf04153ecab56dd4224
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: dc3b0acfbb4b7f88eda9bfb9536ff0fc814e05c5bf951ca9d053caf86ad0bba5
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  title: c3e57b6384b0f1c816e0ad30433d2ee072ad6e2e77a10c442eba06a2125df0fa
+  body: 45bbe0362cd476b767e31bb2258bf54b8cf1b02c01bd373e2e27256fa747d26f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null

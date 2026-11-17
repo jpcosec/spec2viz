@@ -1,0 +1,36 @@
+name: review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-preflight-1
+path: desk/reviews/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/preflight-1.md
+source_hash: 2503ba3e7273a5062fb136c98e657509eb901679b22ec1bdff0753f6fc6a7fa7
+content_hash: 82d2716a1d2d71cf4124cf9ddcd4f4854c76a3483621d0dcdd8df9274ad798a1
+field_hashes:
+  id: e2cd5e91a62c7370d88986f601fd4918b4acea50f367fc16fb27ef0aae5b42fd
+  title: d3e7e31025aac4deb899b2368075566fd79bea7288913c64b494ab1da001d989
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 64152d6c897fdbc6116dc25441b066d5d432060c2b0c66db1d5975fce31ca035
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 57135109d00697d3029e07b089b4dd2f0cfdc8d7a1ea7e4db7a156cdcb106f43
+  input_sha256: 1f726cfebd0a81d2897e054d3bbcd6db4193c29f1620a365133d3ac9d5165011
+  output_sha256: 27364a8bd4ad02bec4a382e659572dfc035ddb3254ef01ecb467ce7b1824db08
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: a9447cf7b06ce7cf6b51bdbc8a089cd8f96bc890f5f1103b6c01de82c4f6d51e
+  created_at: 41a05fa3aad12ee4e15649df7bb7d206b74d88f78c807e7f9709cf3d63bce659
+  disposed_at: 730c8e2fb710249ea638efba625eee1e4c6030f81dbb79bd7aa6ce043402a3f3
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: a98747f55f659bb2692f2959e7eb3930b5d4fe796aacab4e7941a51eb4341998
+  disposition: 2291052a8d9d72149b7f0ea033b3e8500ccf81017130ecfcb8327f7371c93f51
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-17T03:33:46Z'
+  authority: generated
+  via: save_document_payload

@@ -1,0 +1,10 @@
+Task: task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s
+Title: IR13j La prueba portada de notaciones espera el mensaje de sldb para un diagram_type desconocido y SV-H01 queda acreditada
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Effective pills:
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+- desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]

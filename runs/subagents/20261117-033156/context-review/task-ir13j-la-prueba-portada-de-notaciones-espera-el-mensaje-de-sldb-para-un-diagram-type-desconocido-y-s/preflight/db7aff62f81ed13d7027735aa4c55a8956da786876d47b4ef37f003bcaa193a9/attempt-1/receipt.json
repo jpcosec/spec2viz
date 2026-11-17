@@ -1,0 +1,9 @@
+{
+  "key": "task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "db7aff62f81ed13d7027735aa4c55a8956da786876d47b4ef37f003bcaa193a9",
+  "output_sha256": "25a2e9416dba4ecf64a204066bf19aa81f4c2bf9cce5d7294986f7656a892729",
+  "start": "2026-11-17T03:32:00.112535+00:00",
+  "end": "2026-11-17T03:32:59.473978+00:00"
+}

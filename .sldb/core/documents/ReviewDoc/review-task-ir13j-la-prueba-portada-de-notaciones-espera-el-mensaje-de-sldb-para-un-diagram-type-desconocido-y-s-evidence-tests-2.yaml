@@ -1,0 +1,37 @@
+name: review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-evidence-tests-2
+path: desk/reviews/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/evidence-tests-2.md
+source_hash: e39ce5a5d54c077664d02ceff9580f0792122cec8e93fa990ecbc1fa929c4b92
+content_hash: 45605ed9408365f5709ac3dbeaeb06385303396ece2be4741c8918e4a67f449c
+field_hashes:
+  id: 7a28ce412f2220ecf0f33da21637132cbd4f2cea7e31894229eb03f76d53b12b
+  title: 1850b91bc87199231286dd178b9049bb6bf8d792a34522024907413e0675981d
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: 369ba77d3fded5ca841fbd09bead0b43cf36deb8ac76dacd74f00deb98bd2f69
+  subject: 64152d6c897fdbc6116dc25441b066d5d432060c2b0c66db1d5975fce31ca035
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: db6276407605c8612f4ed0a01ef073175221af324c83f8ffb71886c468c89568
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 217118e0b07f93926847aff811200d5ca363ab2a7c43c3cedc47293e967b8ba5
+  created_at: d5ed135088e30e58f29c1c8ee2ce3533a201cc0c4cfb2e6c2260dd44aa118bb9
+  disposed_at: d5ed135088e30e58f29c1c8ee2ce3533a201cc0c4cfb2e6c2260dd44aa118bb9
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 6f2143a31cb214ff129368869074ae73b14e14eafb9a6890245e3e3d214143a1
+  disposition: 91a57d5dcaa66ceeb93861432f128ac204e94cbee4670a2ef1ded7efd1f46679
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-17T11:08:50Z'
+  authority: generated
+  via: create_document

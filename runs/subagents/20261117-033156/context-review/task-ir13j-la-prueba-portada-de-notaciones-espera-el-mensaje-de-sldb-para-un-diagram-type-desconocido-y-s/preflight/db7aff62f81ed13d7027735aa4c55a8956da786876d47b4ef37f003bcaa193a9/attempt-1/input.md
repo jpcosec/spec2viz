@@ -1,3 +1,4 @@
+FILE:desk/tasks/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s.md
 ---
 sldb:
   by: agent
@@ -71,3 +72,7 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 El caso de mindmap pasa con el mensaje de sldb, la matriz y el acta reflejan el estado de SV-H01, y el acta tiene la corrida nueva.
+
+FILE:instruccion
+Preflight solo-TaskDoc de la tarea task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s: reformula el encargo tal como lo leería un ejecutor sin ningún otro contexto, lista ambigüedades con cita textual del input y da el DRY-RUN sin ejecutar nada. No ejecutes nada.
+

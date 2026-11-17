@@ -1,0 +1,13 @@
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/store_index.yaml
+ M docs/spec2viz/acta-de-retiro.md
+ M docs/spec2viz/matriz-de-cobertura.md
+ M tests/visual/test_notations_parity.py
+?? .sldb/core/documents/ReviewDoc/review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-preflight-1.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-e-ab9406eaab99.yaml
+?? desk/reviews/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/
+?? runs/subagents/20261117-033156/
+?? runs/subagents/20261117-041801/
+?? runs/subagents/deskops-e-ab9406eaab99/
