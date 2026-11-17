@@ -1,0 +1,96 @@
+### grep
+tests/conftest.py:89:    remove is served by a copy of that store at `<tmp>/<name>`, so its links back to `../deskops`
+tests/conftest.py:92:    source = WORKSPACE / "deskops"
+rc=0
+### users of changed fixtures
+tests/test_mcp_extension.py
+tests/conftest.py
+rc=0
+### TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py  (2026-11-16T21:55:53-03:00)
+.....F.                                                                  [100%]
+=================================== FAILURES ===================================
+___ test_no_store_linked_from_the_mounted_copy_leads_out_of_the_session_temp ___
+
+store_copy = PosixPath('/dev/shm/pytest-of-robocop/pytest-1134/specir-store0/IR')
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x7c4b5f5175c0>, _basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-1134'), _retention_count=3, _retention_policy='all')
+
+    def test_no_store_linked_from_the_mounted_copy_leads_out_of_the_session_temp(store_copy: Path, tmp_path_factory) -> None:
+        """Every store reachable through the store_index links (transitively) is a session copy,
+        so the server never reaches a real store of the workspace through federation."""
+        temp = tmp_path_factory.getbasetemp().resolve()
+        seen: dict[Path, str] = {}
+        pending = [store_copy.resolve()]
+        while pending:
+            project = pending.pop()
+            for name, store in linked_stores(project).items():
+                assert store.is_relative_to(temp) and not store.is_relative_to(WORKSPACE.resolve()), f"{project}: {name} -> {store}"
+>               assert (store / "core").is_dir(), f"{project}: {name} -> {store} does not resolve"
+E               AssertionError: /dev/shm/pytest-of-robocop/pytest-1134/deskops-copy0/deskops: sldb -> /dev/shm/pytest-of-robocop/pytest-1134/deskops-copy0/sldb/.sldb does not resolve
+E               assert False
+E                +  where False = is_dir()
+E                +    where is_dir = (PosixPath('/dev/shm/pytest-of-robocop/pytest-1134/deskops-copy0/sldb/.sldb') / 'core').is_dir
+
+tests/test_mcp_extension.py:100: AssertionError
+1 failed, 6 passed in 39.08s
+rc=1
+(corrida 1: la prueba nueva detectó que los enlaces seguían en el índice, ver result-summary)
+### TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py  (2026-11-16T21:57:20-03:00)
+.....F.                                                                  [100%]
+=================================== FAILURES ===================================
+___ test_no_store_linked_from_the_mounted_copy_leads_out_of_the_session_temp ___
+
+store_copy = PosixPath('/dev/shm/pytest-of-robocop/pytest-1136/specir-store0/IR')
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x762da88ab5c0>, _basetemp=PosixPath('/dev/shm/pytest-of-robocop/pytest-1136'), _retention_count=3, _retention_policy='all')
+
+    def test_no_store_linked_from_the_mounted_copy_leads_out_of_the_session_temp(store_copy: Path, tmp_path_factory) -> None:
+        """Every store reachable through the store_index links (transitively) is a session copy,
+        so the server never reaches a real store of the workspace through federation."""
+        temp = tmp_path_factory.getbasetemp().resolve()
+        seen: dict[Path, str] = {}
+        pending = [store_copy.resolve()]
+        while pending:
+            project = pending.pop()
+            for name, store in linked_stores(project).items():
+                assert store.is_relative_to(temp) and not store.is_relative_to(WORKSPACE.resolve()), f"{project}: {name} -> {store}"
+>               assert (store / "core").is_dir(), f"{project}: {name} -> {store} does not resolve"
+E               AssertionError: /dev/shm/pytest-of-robocop/pytest-1136/deskops-copy0/deskops: sldb -> /dev/shm/pytest-of-robocop/pytest-1136/deskops-copy0/sldb/.sldb does not resolve
+E               assert False
+E                +  where False = is_dir()
+E                +    where is_dir = (PosixPath('/dev/shm/pytest-of-robocop/pytest-1136/deskops-copy0/sldb/.sldb') / 'core').is_dir
+
+tests/test_mcp_extension.py:100: AssertionError
+1 failed, 6 passed in 36.30s
+rc=1
+(corrida 2: misma falla; causa: condición de salto en build_deskops_copy)
+### TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py  (2026-11-16T21:58:06-03:00)
+.......                                                                  [100%]
+7 passed in 39.20s
+rc=0
+
+### alias en la copia montada (/dev/shm/pytest-of-robocop/pytest-1137)
+Federated stores in /dev/shm/pytest-of-robocop/pytest-1137/specir-store0/IR/.sldb:
+- deskops -> ../../deskops-copy0/deskops/.sldb
+- spec2viz -> ../../spec-store0/.sldb
+rc=0
+store_index de la copia de deskops:
+stores: []
+links: []
+deskops
+
+### strace -f -tt -e trace=%file,%process -o /dev/shm/ir-a2-strace.txt  pytest tests/test_mcp_extension.py (2026-11-16T21:58:53-03:00)
+.......                                                                  [100%]
+7 passed in 85.77s (0:01:25)
+rc=0
+-rw-r--r-- 1 robocop robocop 202585561 Nov 16 22:00 /dev/shm/ir-a2-strace.txt
+stores remove pids: ['883858', '884101', '884420'] copy window ends at: 21:59:21.547011
+syscalls naming /mnt/ssd/proyectos/SLDB_1/deskops/ before end: 129007 after end: 0
+--- detalle
+último proceso de build_deskops_copy: declare --write pid 884665, exit: 21:59:23.664740 884665 21:59:23.664740 +++ exited with 0 +++
+con el corte en la salida del último 'stores remove' (21:59:21.547011, anterior al del declare, o sea más estricto): syscalls %file que nombran /mnt/ssd/proyectos/SLDB_1/deskops (con o sin /) después: 0
+después del corte, nombran /SLDB_1/{sldb,pron,scion}/.sldb o herramientas/deskops/.sldb: 0
+servidor sldb mcp pid 887039 (y sus hilos): syscalls que nombran la copia deskops-copy0/deskops/.sldb: 12828
+pytest: 7 passed, rc 0 bajo strace
+
+### deskops graph missing --root .
+No missing graph references found.
+rc=0

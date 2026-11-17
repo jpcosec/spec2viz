@@ -1,0 +1,88 @@
+### V1 grep
+tests/conftest.py:93:    remove is served by a copy of that store at `<tmp>/<name>`, so its links back to `../deskops`
+tests/conftest.py:96:    source = WORKSPACE / "deskops"
+rc=0
+
+### V2 TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider tests/test_mcp_extension.py
+.......                                                                  [100%]
+7 passed in 40.88s
+rc=0
+
+### V3 sldb stores list en la copia montada (/dev/shm/tester-a2/bt/specir-store0/IR)
+Federated stores in /dev/shm/tester-a2/bt/specir-store0/IR/.sldb:
+- deskops -> ../../deskops-copy0/deskops/.sldb
+- spec2viz -> ../../spec-store0/.sldb
+rc=0
+store_index de la copia montada:
+stores:
+- name: deskops
+  path: ../../deskops-copy0/deskops/.sldb
+- name: spec2viz
+  path: ../../spec-store0/.sldb
+models:
+store_index de la copia de deskops:
+stores: []
+models:
+store.yaml de la copia de deskops:
+version: 1
+links: []
+models:
+- name: AtomDoc
+  model_ref: deskops.models:AtomDoc
+  path: deskops/models/atom.py
+- name: RepositoryDoc
+  model_ref: deskops.models:RepositoryDoc
+  path: deskops/models/repository.py
+- name: TaskDoc
+  model_ref: deskops.models:TaskDoc
+  path: deskops/models/task.py
+- name: RoleDoc
+  model_ref: deskops.models:RoleDoc
+  path: deskops/models/role.py
+- name: RuntimeProfileDoc
+  model_ref: deskops.models:RuntimeProfileDoc
+  path: deskops/models/runtime_profile.py
+- name: RunDoc
+  model_ref: deskops.models:RunDoc
+deskops
+symlinks en la copia: 0
+
+### V6 deskops graph missing --root .
+No missing graph references found.
+rc=0
+sldb /mnt/ssd/proyectos/SLDB_1/sldb/.sldb assert would FAIL
+
+### V4 strace -f -tt -qq -e trace=execve,open,openat,openat2,stat,newfstatat,statx,lstat,access,readlink,chdir,getdents64 sobre TMPDIR=/dev/shm .venv/bin/python -m pytest -q -rs -p no:cacheprovider --basetemp=/dev/shm/tester-a2/bt tests/test_mcp_extension.py
+7 passed in 89.53s; rc=0; 1015955 líneas de traza (169 MB, borrada tras el análisis)
+Línea de tiempo de execve:
+  22:06:05.548 git -C /mnt/ssd/proyectos/SLDB_1/deskops ls-files -z (pid 914717)
+  22:06:20.530 sldb stores remove sldb   / 22:06:22.088 sldb stores declare --write
+  22:06:24.387 sldb stores remove pron   / 22:06:25.952 sldb stores declare --write
+  22:06:28.287 sldb stores remove scion  / 22:06:29.871 sldb stores declare --write (pid 916362; último syscall 22:06:32.122915 = fin de la ventana de la copia)
+  22:06:32.697 sldb stores add .../deskops-copy0/deskops/.sldb --name deskops (mount_copy)
+  22:07:03.091 python -m sldb mcp --store .../specir-store0/IR/.sldb --extension specir.mcp_extension:register
+Accesos que nombran /mnt/ssd/proyectos/SLDB_1/deskops: 129024, todos del pid principal de pytest (128994) y de git ls-files (30);
+  primero 22:06:05.545758, último 22:06:20.510302 (antes incluso del primer stores remove).
+Después del fin de la ventana (22:06:32.122915): 0.
+chdir: 1 a /mnt/ssd/proyectos/SLDB_1/deskops (solo git ls-files, pid 914717, 22:06:05.551); el resto a la copia en /dev/shm o a IR.
+Rutas relativas "../{deskops,sldb,pron,scion}": 0.
+SLDB_1/sldb/.sldb, SLDB_1/pron/.sldb, SLDB_1/scion/.sldb, herramientas/deskops/.sldb: 0 accesos en toda la corrida.
+Fuera de IR, tras la ventana solo se lee SLDB_1/sldb/src y SLDB_1/sldb/pyproject.toml (el paquete sldb instalado editable), no su store.
+RESULTADO V4: PASS
+
+### Copia de deskops (bt/deskops-copy0)
+symlinks: 0; .sldb/.sldb_cache: ausente; store_index stores: []; store.yaml links: [] (único cambio frente al real, por stores declare --write)
+Contenido vs (git ls-files ∪ .sldb sin caché) del deskops real: idéntico salvo .sldb_cache/ de la raíz que sldb crea en la copia durante la sesión,
+39 __pycache__/*.pyc escritos al importar modelos, y 4 archivos rastreados que hoy no existen en el árbol de trabajo de deskops (borrados sin commitear: tests/fixtures/golden/help/deskops_inbox.txt, tests/fixtures/golden/output/inbox.{json,text,yaml}); el código los salta.
+sldb stores check sobre la copia: rc 1, exactamente 2 store/missing de RunDoc (run-deskops-e-d5d217748798, run-deskops-t-350841cd869d): sus run.md existen en deskops pero no están rastreados (git ls-files vacío, no ignorados).
+
+### Demostración: la prueba nueva fallaría con los symlinks del intento 1
+Layout en /dev/shm: base/deskops/.sldb/core/store_index.yaml con sldb -> ../sldb/.sldb, y base/sldb symlink a /mnt/ssd/proyectos/SLDB_1/sldb.
+conftest.linked_stores resuelve el enlace a /mnt/ssd/proyectos/SLDB_1/sldb/.sldb -> la aserción de test_no_store_linked_from_the_mounted_copy_leads_out_of_the_session_temp FALLA. (salida arriba)
+
+### V5 suite completa: SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc TMPDIR=/dev/shm timeout 9000 flock /dev/shm/sldb1-tests.lock .venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests/   (free -g antes: 17 GB disponibles)
+FAILED tests/visual/test_sync_generation_parity.py::test_a_component_spec_from_specir_python_ast_validates
+FAILED tests/visual/test_sync_generation_parity.py::test_python_ast_generation_of_specir_matches_spec2viz_up_to_the_declared_differences
+2 failed, 747 passed, 4 xfailed in 333.96s (0:05:33)
+rc=1
+Causa de ambos FAILED (reproducida con component_spec_from_python(src/specir)): Finding alert component-spec/syntax-error subject=visual/templates/vendor/bpmn-js/bpmn-navigated-viewer.production.min.js — la regresión conocida de sldb 600b51a9 (nota 20261116-213452). Ningún otro fallo.

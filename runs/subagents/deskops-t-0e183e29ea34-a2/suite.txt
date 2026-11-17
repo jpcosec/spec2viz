@@ -1,0 +1,51 @@
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [  9%]
+........x...x........................................................... [ 19%]
+...........................x............................................ [ 28%]
+........................................................................ [ 38%]
+........................................................................ [ 47%]
+........................................................................ [ 57%]
+...............................................x....................F... [ 66%]
+.............................................................F.......... [ 76%]
+........................................................................ [ 86%]
+........................................................................ [ 95%]
+.................................                                        [100%]
+=================================== FAILURES ===================================
+____________ test_a_component_spec_from_specir_python_ast_validates ____________
+[gw0] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+tmp_path = PosixPath('/dev/shm/pytest-of-robocop/pytest-1141/popen-gw0/test_a_component_spec_from_spe0')
+
+    def test_a_component_spec_from_specir_python_ast_validates(tmp_path: Path) -> None:
+        spec, findings = component_spec_from_python(PACKAGE, project_id="specir", title="specIR")
+>       assert findings == [] and spec is not None
+E       AssertionError: assert ([Finding(leve...ocument=None)] == []
+E         
+E         Left contains one more item: Finding(level='alert', code='component-spec/syntax-error', subject='visual/templates/vendor/bpmn-js/bpmn-navigated-vie...='archivo no analizable: el modulo queda sin clases ni imports', fix='corregir la sintaxis del archivo', document=None)
+E         Use -v to get more diff)
+
+tests/visual/test_sync_generation_parity.py:190: AssertionError
+_ test_python_ast_generation_of_specir_matches_spec2viz_up_to_the_declared_differences _
+[gw2] linux -- Python 3.13.18 /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+    @pytest.mark.parity
+    def test_python_ast_generation_of_specir_matches_spec2viz_up_to_the_declared_differences() -> None:
+        pytest.importorskip("spec2viz")
+        from spec2viz.generators.python_ast import generate_python_ast_spec
+    
+        ours, findings = component_spec_from_python(PACKAGE, project_id="specir", title="specIR")
+        oracle = generate_python_ast_spec(PACKAGE, project_id="specir", title="specIR")
+>       assert findings == []
+E       AssertionError: assert [Finding(leve...ocument=None)] == []
+E         
+E         Left contains one more item: Finding(level='alert', code='component-spec/syntax-error', subject='visual/templates/vendor/bpmn-js/bpmn-navigated-vie...='archivo no analizable: el modulo queda sin clases ni imports', fix='corregir la sintaxis del archivo', document=None)
+E         Use -v to get more diff
+
+tests/visual/test_sync_generation_parity.py:307: AssertionError
+=========================== short test summary info ============================
+FAILED tests/visual/test_sync_generation_parity.py::test_a_component_spec_from_specir_python_ast_validates
+FAILED tests/visual/test_sync_generation_parity.py::test_python_ast_generation_of_specir_matches_spec2viz_up_to_the_declared_differences
+2 failed, 747 passed, 4 xfailed in 333.96s (0:05:33)
+rc=1

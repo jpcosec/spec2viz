@@ -1,3 +1,4 @@
+FILE:desk/tasks/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real.md
 ---
 sldb:
   by: agent
@@ -69,3 +70,7 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 Las pruebas MCP de IR no leen ni digieren el store real de deskops y la suite completa da verde aunque deskops escriba durante la corrida.
+
+FILE:instruccion
+Preflight solo-TaskDoc de la tarea task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real: reformula el encargo tal como lo leería un ejecutor sin ningún otro contexto, lista ambigüedades con cita textual del input y da el DRY-RUN sin ejecutar nada. No ejecutes nada.
+

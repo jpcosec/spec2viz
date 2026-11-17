@@ -1,0 +1,36 @@
+name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-evidence-tests-1
+path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/evidence-tests-1.md
+source_hash: c5714cded8759177c28de9ee5ae9e05624f65240008f7d6e2f50ff3a62019f65
+content_hash: e443d235dcb8ca092171152a15a8357bb282ca5fe0d9c48a583d2b36845d63cb
+field_hashes:
+  id: 0755d80b88c2aa6bc2a2509a052aba6e8ca429665d155019bffa39a85cfccb1a
+  title: c44c214e585f96b4a85391db0c97afd70c06c1b88601b7189abd48adc8261fde
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: a8d157e913f146aa53e8a35c74545c8377cfa7f00775a269371efa319bf8ca03
+  subject: f45163cb2f25d0e5ca8b87ef0f44678ea8d726e0ecac9e91f5a8efc5a12e0bcb
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 6a7a3d2677a7d3a7336c9d5cd9582210198ef315f37600cb319f8011fecfe1c9
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: a3c82bbfd36a8560f3df70849f2929846a556a88b23652571d5b3df7316a817f
+  created_at: 6497124657c901dcc21061b5e7e481a78f07c4da59c7a585bf809f90d688bdf5
+  disposed_at: 6497124657c901dcc21061b5e7e481a78f07c4da59c7a585bf809f90d688bdf5
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 28a7b95320815cce3b7a2a6fe35edd1e0acb6b8c9c40c20f7d3c835176735e01
+  disposition: 9e4948f6cdcaa1ec283a4f743f58c1590476816213ba553702281aeed399bfa8
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-17T03:10:50Z'
+  authority: generated
+  via: create_document

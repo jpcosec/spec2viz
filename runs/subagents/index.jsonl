@@ -30,3 +30,4 @@
 {"task_id": "task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4", "run_id": null, "run_dir": "runs/subagents/deskops-t-fb41c88d0a4a", "session_sha256": null, "commit": null}
 {"task_id": "task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
 {"task_id": "task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federaci\u00f3n-de-las-pruebas-m", "run_id": null, "run_dir": "runs/subagents/deskops-t-270be4709340", "session_sha256": null, "commit": null}
+{"task_id": "task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real", "run_id": null, "run_dir": "runs/subagents/deskops-t-0e183e29ea34-a2", "session_sha256": null, "commit": null}

@@ -1,0 +1,19 @@
+## main
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/store_index.yaml
+ M tests/conftest.py
+ M tests/test_mcp_extension.py
+?? .sldb/core/documents/ReviewDoc/review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-bundle-3.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-bundle-4.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-preflight-5.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-e-94a0788c3f5a-a2.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-t-0e183e29ea34-a2.yaml
+?? desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/bundle-3.md
+?? desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/bundle-4.md
+?? desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/preflight-5.md
+?? runs/subagents/20261117-003624/
+?? runs/subagents/20261117-003658/
+?? runs/subagents/20261117-005245/
+?? runs/subagents/deskops-e-94a0788c3f5a-a2/
+?? runs/subagents/deskops-t-0e183e29ea34-a2/
