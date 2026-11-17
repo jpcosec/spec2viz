@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T20:04:24Z'
+  at: '2026-11-17T00:17:49Z'
   authority: generated
   via: save_document_payload
 id: task-ir08-extractor-estático-django-drf-y-sql
@@ -20,6 +20,7 @@ depends_on:
 - task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo
 - task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog
 - task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2
+- task-espejo-sldb-sldb-api-expone-los-facts-de-código-que-necesitan-los-extractores-c1-c5
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md

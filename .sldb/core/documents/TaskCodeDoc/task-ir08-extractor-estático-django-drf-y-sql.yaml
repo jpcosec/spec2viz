@@ -1,7 +1,7 @@
 name: task-ir08-extractor-estático-django-drf-y-sql
 path: desk/tasks/task-ir08-extractor-estático-django-drf-y-sql.md
-source_hash: e45dc3664abf872329428f6a80a1af628442b63614bcc2d2fcc53deabc31eecf
-content_hash: fee51464d9f4c1e988ad4f86eaa5f87030b84953da7865122992f5cd3af10ff5
+source_hash: 682bf03fecc4671a69bf2ebd5a0bfe2b7c1edccb918ef5cc2ae1940e07500585
+content_hash: cd857e57f29aa1eb440af6751a5eca1a4150ce715da8391d1f28c50de8d64ea9
 field_hashes:
   title: ad7800e8142992538794d0e7ab91fb6d4e61fcda0e2d661022cbd2a28ff15358
   id: 69d505b1bbea82b207df04a92ee89d3a9db0c4d5919fdd139834bffd175bd7a1
@@ -14,7 +14,7 @@ field_hashes:
   goal: f38fbda753224bb7203cadb2d8eaa6236602749ae3dd26ccc63d04c08a9eaa61
   scope: 36d3286a51bf4907a83b2259619242c063c241f0aa67313262700f1ebea303a4
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  depends_on: b299189f1a12ccc5eb1612a997b0def6925be4694cd2b06d605d89fd11aa00e3
+  depends_on: 16c9e1e4a8942b05142dbb00d89fee91aea8f15a53c156a63bc8ea669dcaa762
   pills: 857633de51d8431f8d4b794fa4a05fd81ea9e127b0c5ef4219e8aa85a7d2a327
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   implementation_path: 3128d7d91d3513ff0770a6a6f572537b0415e8e140132407e5d4d8d135a50e75
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-16T20:04:24Z'
+  at: '2026-11-17T00:17:49Z'
   authority: generated
   via: save_document_payload

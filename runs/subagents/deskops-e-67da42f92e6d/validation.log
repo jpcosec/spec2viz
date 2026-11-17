@@ -1,0 +1,18 @@
+### probe_sldb_api.py (sldb 7dbb6bc9)
+sldb.api names about code facts: ['anchor_node_id', 'check_doc_anchors', 'template_anchors']
+OK   code:blog/views.py::PostViewSet {"kind": "class", "keys": ["kind", "normalization", "recorded_with", "ref", "seen"], "seen": ["body", "docstring", "shape", "signature"]}
+OK   code:blog/views.py::PostViewSet.publish {"kind": "method", "keys": ["kind", "normalization", "recorded_with", "ref", "seen"], "seen": ["body", "docstring", "shape", "signature"]}
+OK   code:blog/urls.py:: {"kind": "module", "keys": ["kind", "normalization", "recorded_with", "ref", "seen"], "seen": ["body", "docstring", "shape", "signature"]}
+OK   code:blog/models.py::Post {"kind": "class", "keys": ["kind", "normalization", "recorded_with", "ref", "seen"], "seen": ["body", "docstring", "shape", "signature"]}
+OK   code:blog/models.py::Post.publish {"kind": "method", "keys": ["kind", "normalization", "recorded_with", "ref", "seen"], "seen": ["body", "docstring", "shape", "signature"]}
+OK   code:blog/models.py::can_publish {"kind": "function", "keys": ["kind", "normalization", "recorded_with", "ref", "seen"], "seen": ["body", "docstring", "shape", "signature"]}
+OK   code:blog/models.py::Post.Status {"kind": "class", "keys": ["kind", "normalization", "recorded_with", "ref", "seen"], "seen": ["body", "docstring", "shape", "signature"]}
+FAIL code:blog/models.py::Post.status ValueError no symbol 'Post.status' in blog/models.py (or the file is missing)
+OK   code:blog/serializers.py::PostSerializer {"kind": "class", "keys": ["kind", "normalization", "recorded_with", "ref", "seen"], "seen": ["body", "docstring", "shape", "signature"]}
+OK   code:sql/blog_0001_initial.sql::posts {"kind": "table", "keys": ["kind", "normalization", "recorded_with", "ref", "seen"], "seen": ["body", "docstring", "shape", "signature"]}
+OK   code:sql/blog_0001_initial.sql::posts.status {"kind": "column", "keys": ["kind", "normalization", "recorded_with", "ref", "seen"], "seen": ["body", "docstring", "shape", "signature"]}
+OK   code:sql/blog_0001_initial.sql::posts.author_id {"kind": "column", "keys": ["kind", "normalization", "recorded_with", "ref", "seen"], "seen": ["body", "docstring", "shape", "signature"]}
+FAIL code:sql/blog_0001_initial.sql::posts.id ValueError no symbol 'posts.id' in sql/blog_0001_initial.sql (or the file is missing)
+OK   code:sql/blog_0001_initial.sql::posts_author_id_099b8aca {"kind": "index", "keys": ["kind", "normalization", "recorded_with", "ref", "seen"], "seen": ["body", "docstring", "shape", "signature"]}
+FAIL code:sql/blog_0001_initial.sql::posts_author_id_099b8aca_fk_auth_user_id ValueError no symbol 'posts_author_id_099b8aca_fk_auth_user_id' in sql/blog_0001_initial.sql (or the file is missing)
+rc=0

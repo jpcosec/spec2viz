@@ -1,7 +1,7 @@
 name: task-ir09-extractor-estático-react-tsx-y-contratos-de-api
 path: desk/tasks/task-ir09-extractor-estático-react-tsx-y-contratos-de-api.md
-source_hash: d294e4e0f158d2c37e025eeb61be050d1cde3f3ec0a74f95fea20c297abc7b3c
-content_hash: e5f9187bc0710538322128f992f6ab002199a493c33da8c7f486cd907fe5071a
+source_hash: 3ee541a2d2a7bb86b3263d78a65227f96e2547444998487935abae57db85ef4f
+content_hash: 193b5acf876e32aa5352ab2bdcc4013ca165984489649f658919c58729aef5a6
 field_hashes:
   title: e72ae2288b4b597d10bdc3bc5e662a136b10fdd4d25706587ceb0ae3321a0be6
   id: 7ebb097d3e6e5c39e68cfad9904c1dfb47fea1853488215bddf1a61d39243ded
@@ -14,7 +14,7 @@ field_hashes:
   goal: ae330c094c1797a015f7072c8d5bb9d4e3d097230579f59a06fe4da84752c0f6
   scope: e2797939f178f411cb1b0f7ded19231762338252bc18fb1f8467e08c57c1f2d3
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  depends_on: b299189f1a12ccc5eb1612a997b0def6925be4694cd2b06d605d89fd11aa00e3
+  depends_on: 16c9e1e4a8942b05142dbb00d89fee91aea8f15a53c156a63bc8ea669dcaa762
   pills: 857633de51d8431f8d4b794fa4a05fd81ea9e127b0c5ef4219e8aa85a7d2a327
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   implementation_path: e04bdd79f3f24698a9e46d2e391f7d06947d90c448af9c133ba77bc6f59ddbf3
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-16T20:05:09Z'
+  at: '2026-11-17T00:17:55Z'
   authority: generated
   via: save_document_payload

@@ -1,0 +1,39 @@
+name: task-espejo-sldb-sldb-api-expone-los-facts-de-código-que-necesitan-los-extractores-c1-c5
+path: desk/tasks/task-espejo-sldb-sldb-api-expone-los-facts-de-código-que-necesitan-los-extractores-c1-c5.md
+source_hash: 40bfd2fa492535727d7260d9c067c6508eda55366f6102a55083d996b63d666d
+content_hash: 7781350e3f268b5b98436626fbe8798f8b2070894063f0a75b264a231917fbd5
+field_hashes:
+  title: e00c1c2348a787645e0a1a37cd60739a2a3abc3da35d1ece3af54f9a9f7c137a
+  id: ae5431ce90f21be39956f43e52ffde96c77a7abcb96effb78f0838acba33c1cc
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: cdc41ecb0faeea4fd54d89a0af9704fa317051793e9578e08cc68ba3342d3caa
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 2f6b341dc05aea5c6b7bed094343963497d3dcd4e10f6b06e813344f61291f40
+  goal: c82e8cd06c7e0bb754764dc9d9947120bf5bbf90a2348e16063cd86e70e8311c
+  scope: c94b8b46c64cb13866cbeda1a6280b873695c5464d75b2d1a21fa5d3347f43e9
+  references: ebb77318d047d5804afd8cca41efaa8d30654c2ad55f4efbeea96449039cc50f
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 6c24de1ede48e1d18d0092980ccc0d0825207f53bc5f0639eff5341060cf8489
+  validation: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  done_when: 340a72accd6089b30facbb884adbd21ff0dc7831e5c18bd2e8e5b9ea42f24532
+  task_type: 5619d24174620ad487a0abcf96f8cf76f2194860f28794d1d441226cd2d613dd
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- artifact:task
+- host:robocop2
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-17T00:17:41Z'
+  authority: generated
+  via: save_document_payload
