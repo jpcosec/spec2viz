@@ -1,6 +1,6 @@
 """specIR on the MCP server of sldb: the real `sldb mcp --extension specir.mcp_extension:register`,
-reached by the real MCP client over stdio, over an isolated copy of this repo's store (with the
-deskops store linked in place, and a temporary specs store built from this repo's spec fixture
+reached by the real MCP client over stdio, over an isolated copy of this repo's store (with a
+session copy of the deskops store linked, and a temporary specs store built from this repo's spec fixture
 linked as `spec2viz`). At level 0 there is no write tool, and reading through every tool, sldb's
 and specIR's, changes no file of any store."""
 
@@ -12,7 +12,7 @@ from typing import Any
 import yaml
 from sldb.api import extract_document_payload
 
-from conftest import REPO, copy_digest, tree_digest
+from conftest import REPO, WORKSPACE, copy_digest, linked_stores, tree_digest
 
 #: sldb's read surface (sldb.mcp.registry.READ_TOOLS) and its signal log.
 SLDB_READ = {
@@ -81,7 +81,30 @@ def test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server(mcp, spe
         assert document["payload"][key] == value, key
 
 
-def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy: Path, spec_store: Path, copy_digest_before: dict[str, str], original_digest: dict[str, str]) -> None:
+def test_the_deskops_store_linked_is_the_session_copy(store_copy: Path, federated: dict[str, Path]) -> None:
+    linked = linked_stores(store_copy)
+    assert linked["deskops"] == federated["deskops"].resolve()
+    assert not linked["deskops"].is_relative_to(WORKSPACE.resolve()), linked["deskops"]
+
+
+def test_no_store_linked_from_the_mounted_copy_leads_out_of_the_session_temp(store_copy: Path, tmp_path_factory) -> None:
+    """Every store reachable through the store_index links (transitively) is a session copy,
+    so the server never reaches a real store of the workspace through federation."""
+    temp = tmp_path_factory.getbasetemp().resolve()
+    seen: dict[Path, str] = {}
+    pending = [store_copy.resolve()]
+    while pending:
+        project = pending.pop()
+        for name, store in linked_stores(project).items():
+            assert store.is_relative_to(temp) and not store.is_relative_to(WORKSPACE.resolve()), f"{project}: {name} -> {store}"
+            assert (store / "core").is_dir(), f"{project}: {name} -> {store} does not resolve"
+            if store not in seen:
+                seen[store] = name
+                pending.append(store.parent)
+    assert "deskops" in seen.values()
+
+
+def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy: Path, spec_store: Path, federated: dict[str, Path], copy_digest_before: dict[str, str], original_digest: dict[str, str]) -> None:
     task = mcp.call("select_documents", model="TaskDoc", limit=1)["items"][0]["export_id"]
     calls = [
         ("list_models", {}),
@@ -105,7 +128,7 @@ def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy
     for tool, arguments in calls:
         mcp.call(tool, **arguments)
     assert {tool for tool, _ in calls} == {t.name for t in mcp.list_tools()}
-    after = copy_digest(store_copy, spec_store)
+    after = copy_digest(store_copy, spec_store, federated)
     changed = sorted(path for path in set(copy_digest_before) | set(after) if copy_digest_before.get(path) != after.get(path))
     assert not changed, f"reading wrote to: {changed}"
     now = tree_digest(REPO / ".sldb", REPO / "desk")
