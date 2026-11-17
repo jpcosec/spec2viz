@@ -1,0 +1,211 @@
+diff --git a/tests/test_mcp_undo.py b/tests/test_mcp_undo.py
+new file mode 100644
+index 0000000..07eb957
+--- /dev/null
++++ b/tests/test_mcp_undo.py
+@@ -0,0 +1,205 @@
++"""IR04b: the `undo_changes` of `sldb mcp` over a mounted copy of this repo's store, with specIR's
++extension mounted, driven by the real MCP client (tests/conftest.py `served`). Nothing is mocked and
++specIR implements no undo: the tool, the stack of inverse batches and the guards are sldb's."""
++
++from __future__ import annotations
++
++import subprocess
++import sys
++from pathlib import Path
++from typing import Any, Iterator
++
++import pytest
++
++from conftest import REPO, copy_digest, mount_copy, served, tree_digest
++
++ACTOR = "agent:specir-ir04b"
++EDGE = {"origen": "declarado", "verificacion": "sin_verificar"}
++OP = "undo-seed-op"
++
++
++def node(model: str, description: str, **extra: Any) -> dict[str, Any]:
++    return {"title": description, "origen": "declarado", "description": description, "symbol": None, "desconocidos": {"symbol": "no code yet"}, **extra}
++
++
++def seed() -> list[dict[str, Any]]:
++    """What the copy holds before the cases: one domain operation, written through the server."""
++    return [{"action": "create", "model": "DomainOperationDoc", "name": OP, "path": "undo/domain/seed-op.md", "payload": node("DomainOperationDoc", "A seed operation.")}]
++
++
++def content_batch(tag: str) -> list[dict[str, Any]]:
++    """Level 1: create a DomainEntityDoc, edit the existing DomainOperationDoc, assert `writes` between them."""
++    entity = f"undo-entity-{tag}"
++    return [
++        {"action": "create", "model": "DomainEntityDoc", "name": entity, "path": f"undo/domain/{entity}.md", "payload": node("DomainEntityDoc", f"Entity {tag}.")},
++        {"action": "update", "model": "DomainOperationDoc", "name": OP, "fields": {"description": f"Edited by the batch {tag}."}},
++        {"action": "assert_edge", "name": f"undo-op-writes-{tag}", "path": f"undo/edges/op-writes-{tag}.md", "source": f"DomainOperationDoc:{OP}", "target": f"DomainEntityDoc:{entity}", "relation_type": "writes", "attributes": EDGE},
++    ]
++
++
++def rule_change(tag: str) -> dict[str, Any]:
++    return {"action": "create", "model": "RuleDoc", "name": f"rule-undo-{tag}", "path": f"undo/rules/rule-undo-{tag}.md",
++            "payload": {"title": f"Undo rule {tag}", "subject": "model <= DomainEntityDoc", "where": "", "condition": "any(rel:writes: model <= DomainOperationDoc)", "severity": "alert", "moment": "on_check", "message": "No operation writes this entity."}}
++
++
++def propose_apply(session: Any, changes: list[dict[str, Any]]) -> dict[str, Any]:
++    proposal = session.call("propose_changes", changes=changes)["proposal"]
++    return session.call("apply_changes", proposal=proposal)
++
++
++def install(root: Path) -> None:
++    """`python -m specir.install --store <root>/.sldb`, specIR's own command."""
++    done = subprocess.run([sys.executable, "-m", "specir.install", "--store", str(root / ".sldb")], cwd=root, capture_output=True, text=True)
++    assert done.returncode == 0, done.stdout + done.stderr
++
++
++def cli(root: Path, *args: str) -> subprocess.CompletedProcess:
++    return subprocess.run([str(Path(sys.executable).with_name("sldb")), *args, "--store", ".sldb"], cwd=root, capture_output=True, text=True)
++
++
++def checks(root: Path) -> dict[str, tuple[int, str]]:
++    """`sldb rules check` and `sldb edges check` over the copy: (rc, output)."""
++    return {name: (done.returncode, done.stdout + done.stderr) for name, done in (("rules", cli(root, "rules", "check")), ("edges", cli(root, "edges", "check")))}
++
++
++@pytest.fixture(scope="module")
++def copy_root(tmp_path_factory, spec_store, federated) -> Path:
++    """A writable mounted copy with specIR installed and the seed operation written by a level-1 session."""
++    root = mount_copy(tmp_path_factory, "specir-undo", spec_store, federated)
++    install(root)
++    with served(root, "--level", "1", "--actor", ACTOR) as session:
++        assert propose_apply(session, seed())["applied"] is True
++    return root
++
++
++@pytest.fixture
++def digest(copy_root, spec_store, federated):
++    return lambda: copy_digest(copy_root, spec_store, federated)
++
++
++def md_digest(root: Path) -> dict[str, str]:
++    return {k: v for k, v in tree_digest(*(root / n for n in (".sldb", "sldb", "desk", "undo") if (root / n).exists())).items() if k.endswith(".md")}
++
++
++def test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_store(copy_root, digest) -> None:
++    before, mds, checked = digest(), md_digest(copy_root), checks(copy_root)
++    with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
++        assert "undo_changes" in {t.name for t in session.list_tools()}
++        applied = propose_apply(session, content_batch("a"))
++        assert applied["applied"] is True and applied["edge_findings"] == [], applied
++        assert digest() != before
++        undone = session.call("undo_changes", steps=1)
++        print("UNDO", undone)
++        assert undone["applied"] is True and undone["undone"] == 1 and undone["remaining"] == 0, undone
++    assert digest() == before
++    assert md_digest(copy_root) == mds
++    after = checks(copy_root)
++    print("CHECKS before", checked, "after", after)
++    assert after == checked and all(rc == 0 for rc, _ in after.values()), after
++
++
++def foreign_edit(root: Path, description: str) -> None:
++    """Someone else writes over the operation, outside the MCP session: `sldb.api.apply_batch`."""
++    from sldb import api
++
++    payload = api.serialize_document(api.runtime_document(root / ".sldb", None, f"DomainOperationDoc/{OP}"))["payload"]
++    api.apply_batch(root / ".sldb", [{"action": "update", "id": OP, "payload": {**payload, "description": description}}])
++
++
++def test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted(copy_root, digest) -> None:
++    before = digest()
++    with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
++        assert propose_apply(session, content_batch("b"))["applied"] is True
++        foreign_edit(copy_root, "Edited by someone else.")
++        foreign_state = digest()
++        refused = session.call("undo_changes", steps=1)
++        print("STALE", refused)
++        assert refused["applied"] is False and refused["rejected"] == "stale" and refused["written"] is False, refused
++        assert OP in str(refused["document"]), refused
++        assert digest() == foreign_state, "a stale undo wrote something"
++        # The foreign change is reverted by another batch, from another session (its own stack),
++        # that returns the document to the content it had after the batch.
++        with served(copy_root, "--level", "1", "--actor", ACTOR) as other:
++            assert propose_apply(other, [{"action": "update", "model": "DomainOperationDoc", "name": OP, "fields": {"description": "Edited by the batch b."}}])["applied"] is True
++        # The batch stayed on the stack: it is undone now.
++        undone = session.call("undo_changes", steps=1)
++        print("UNDO AFTER REVERT", undone)
++        assert undone["applied"] is True and undone["undone"] == 1, undone
++    assert digest() == before
++
++
++def test_two_batches_are_undone_newest_first_with_steps_and_an_empty_stack_refuses(copy_root, digest) -> None:
++    before = digest()
++    with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
++        first = propose_apply(session, content_batch("d1"))
++        second = propose_apply(session, [{"action": "update", "model": "DomainEntityDoc", "name": "undo-entity-d1", "fields": {"description": "Edited again."}}])
++        assert first["applied"] and second["applied"]
++        undone = session.call("undo_changes", steps=2)
++        print("UNDO 2", undone)
++        assert undone["applied"] is True and undone["undone"] == 2 and undone["remaining"] == 0, undone
++        assert digest() == before
++        nothing = session.call("undo_changes", steps=1)
++        print("EMPTY", nothing)
++        assert nothing["applied"] is False and nothing["rejected"] == "nothing_to_undo" and nothing["written"] is False, nothing
++    assert digest() == before
++
++
++def test_level_0_serves_neither_write_tools_nor_undo_changes(copy_root, digest) -> None:
++    before = digest()
++    with served(copy_root) as session:
++        names = {t.name for t in session.list_tools()}
++        assert not names & {"propose_changes", "apply_changes", "undo_changes"}, names
++        answer = session.portal.call(lambda: session.client.call_tool("undo_changes", {"steps": 1}))
++        print("LEVEL 0", answer.is_error, answer.structured_content)
++        assert answer.structured_content["signal"] == "unknown_tool", answer
++    assert digest() == before
++
++
++def test_level_1_refuses_a_batch_of_rules_so_none_is_on_its_stack_and_a_level_2_batch_is_not_undone_from_it(copy_root, digest) -> None:
++    before = digest()
++    with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
++        refusal = session.error_of("propose_changes", changes=[*content_batch("e"), rule_change("e")])
++        print("LEVEL 1 RULEDOC", refusal)
++        assert "level" in refusal
++        nothing = session.call("undo_changes", steps=1)
++        assert nothing["applied"] is False and nothing["rejected"] == "nothing_to_undo", nothing
++    assert digest() == before
++    with served(copy_root, "--level", "2", "--actor", ACTOR) as rules:
++        assert propose_apply(rules, [*content_batch("f"), rule_change("f")])["applied"] is True
++        applied_state = digest()
++        with served(copy_root, "--level", "1", "--actor", ACTOR) as content:
++            nothing = content.call("undo_changes", steps=1)
++            print("LEVEL 1 OVER A LEVEL 2 BATCH", nothing)
++            assert nothing["applied"] is False and nothing["rejected"] == "nothing_to_undo", nothing
++        assert digest() == applied_state
++        undone = rules.call("undo_changes", steps=1)
++        print("LEVEL 2 UNDO", undone)
++        assert undone["applied"] is True and undone["undone"] == 1, undone
++    assert digest() == before
++
++
++def test_the_store_after_an_undo_passes_the_checks_the_domain_validators_would_ask_for(copy_root, digest) -> None:
++    """specIR registers no batch validator (add_batch_validator): what is left to check after the undo
++    is that sldb's rules and edges checks pass (the rules specIR installs among them)."""
++    from specir.mcp_extension import register
++    import inspect
++
++    assert "add_batch_validator" not in inspect.getsource(register)
++    before, checked = digest(), checks(copy_root)
++    with served(copy_root, "--level", "2", "--actor", ACTOR) as session:
++        assert propose_apply(session, [*content_batch("g"), rule_change("g")])["applied"] is True
++        assert session.call("undo_changes", steps=1)["applied"] is True
++    after = checks(copy_root)
++    print("RULES/EDGES", after)
++    assert after == checked and after["rules"][0] == 0 and after["edges"][0] == 0
++    assert digest() == before
++
++
++def test_specir_defines_no_undo() -> None:
++    """(f): an own implementation is a `def`, a registered tool or a structure keeping batches; docstring
++    mentions and calls to sldb's tool do not count. Today the only hit is the vendored, minified bpmn-js."""
++    done = subprocess.run(["grep", "-rnE", "undo_changes|inverse", "src/specir"], cwd=REPO, capture_output=True, text=True)
++    print("GREP", [line[:120] for line in done.stdout.splitlines()])
++    own_code = [line for line in done.stdout.splitlines() if "/vendor/" not in line.split(":", 1)[0]]
++    assert own_code == [], own_code
++    assert all(line.startswith("src/specir/visual/templates/vendor/bpmn-js/") for line in done.stdout.splitlines())

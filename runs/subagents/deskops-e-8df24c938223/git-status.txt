@@ -1,0 +1,4 @@
+## main
+?? .scion/settings.yaml
+?? runs/subagents/deskops-e-8df24c938223/
+?? tests/test_mcp_undo.py

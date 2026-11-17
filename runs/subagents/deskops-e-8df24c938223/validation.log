@@ -1,0 +1,7 @@
+Entorno: .venv/bin/python no arranca (intérprete de /home/robocop); venv de trabajo en /dev/shm que reusa los site-packages de .venv.
+$ flock /dev/shm/sldb1-tests.lock env TMPDIR=/dev/shm <venv>/bin/python -m pytest tests/test_mcp_undo.py -q -s --tb=line   -> rc=1 (5 failed, 2 passed, 133s). Salida íntegra: pytest-run2.log (run1.log: primera corrida con -x).
+PASAN: test_level_0_serves_neither... (nivel 0: sin tools de escritura ni undo_changes; llamada -> signal unknown_tool), test_specir_defines_no_undo (grep).
+FALLAN (5): todo caso que aplica por apply_changes y luego undo_changes: undo_changes responde nothing_to_undo "this session has 0 applied batch(es)" tras un apply_changes applied:true. Ver result-summary.md (hallazgo).
+$ grep -rnE "undo_changes|inverse" src/specir  -> única coincidencia: src/specir/visual/templates/vendor/bpmn-js/bpmn-navigated-viewer.production.min.js:2 (bpmn-js minificado de terceros, palabra "inverse"); rc=0
+$ deskops graph missing --root .  -> "No missing graph references found." rc=0
+tests/test_mcp_extension.py y tests/test_imports.py: NO corridos (bloqueo antes).

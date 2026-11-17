@@ -1,0 +1,72 @@
+UNDO {'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 1 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, 'undone': 0, 'remaining': 0}
+F
+=================================== FAILURES ===================================
+____ test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_store ____
+  + Exception Group Traceback (most recent call last):
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 86, in test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_store
+  |     with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
+  |          ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 162, in __exit__
+  |     self.gen.throw(value)
+  |     ~~~~~~~~~~~~~~^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/conftest.py", line 272, in served
+  |     with portal.wrap_async_context_manager(Client(params, read_timeout_seconds=TOOL_TIMEOUT)) as client:
+  |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 176, in __exit__
+  |     return self._exit_future.result()
+  |            ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+  |     return self.__get_result()
+  |            ~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+  |     raise self._exception
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 272, in _call_func
+  |     retval = await retval_or_awaitable
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 158, in run_async_cm
+  |     result = await self._async_cm.__aexit__(*self._exit_exc_info)
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/client.py", line 480, in __aexit__
+  |     await self._exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  |   File "/usr/lib/python3.13/contextlib.py", line 768, in __aexit__
+  |     raise exc
+  |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+  |     cb_suppress = await cb(*exc_details)
+  |                   ^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 235, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 201, in stdio_client
+  |     async with anyio.create_task_group() as tg:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 205, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/session.py", line 514, in __aexit__
+    |     result = await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+    |     raise BaseExceptionGroup(
+    |         "unhandled errors in a TaskGroup", self._exceptions
+    |     ) from None
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 93, in test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_store
+      |     assert undone["applied"] is True and undone["undone"] == 1 and undone["remaining"] == 0, undone
+      | AssertionError: {'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 1 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, ...}
+      | assert (False is True)
+      +------------------------------------
+=========================== short test summary info ============================
+FAILED tests/test_mcp_undo.py::test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_store
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed in 95.56s (0:01:35)
+rc=1

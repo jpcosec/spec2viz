@@ -1,0 +1,354 @@
+UNDO {'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 1 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, 'undone': 0, 'remaining': 0}
+FFUNDO 2 {'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 2 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, 'undone': 0, 'remaining': 0}
+FLEVEL 0 False {'found': False, 'tool': 'undo_changes', 'explanation': 'undo_changes needs write level 1; this server was started with level 0 (read). The level is set by the operator (`--level`), not by a tool argument. Does not exist or is not implemented; registered as a signal.', 'signal': 'unknown_tool', 'registered_as_signal': True, 'suggestions': ['select_documents', 'specir_nodes', 'read_document', 'check_integrity', 'neighbors']}
+.Tool 'propose_changes' failed: 'Error executing tool propose_changes: LevelError: propose_changes on RuleDoc:rule-undo-e needs write level 2 (rules); this server was started with level 1 (content). The level is set by the operator (`--level`), not by a tool argument.'
+LEVEL 1 RULEDOC Error executing tool propose_changes: LevelError: propose_changes on RuleDoc:rule-undo-e needs write level 2 (rules); this server was started with level 1 (content). The level is set by the operator (`--level`), not by a tool argument.
+LEVEL 1 OVER A LEVEL 2 BATCH {'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 1 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, 'undone': 0, 'remaining': 0}
+LEVEL 2 UNDO {'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 1 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, 'undone': 0, 'remaining': 0}
+FFGREP ['src/specir/visual/templates/vendor/bpmn-js/bpmn-navigated-viewer.production.min.js:2:!function(e,t){"object"==typeof exp']
+.
+=================================== FAILURES ===================================
+  + Exception Group Traceback (most recent call last):
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 86, in test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_store
+  |     with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
+  |          ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 162, in __exit__
+  |     self.gen.throw(value)
+  |     ~~~~~~~~~~~~~~^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/conftest.py", line 272, in served
+  |     with portal.wrap_async_context_manager(Client(params, read_timeout_seconds=TOOL_TIMEOUT)) as client:
+  |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 176, in __exit__
+  |     return self._exit_future.result()
+  |            ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+  |     return self.__get_result()
+  |            ~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+  |     raise self._exception
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 272, in _call_func
+  |     retval = await retval_or_awaitable
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 158, in run_async_cm
+  |     result = await self._async_cm.__aexit__(*self._exit_exc_info)
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/client.py", line 480, in __aexit__
+  |     await self._exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  |   File "/usr/lib/python3.13/contextlib.py", line 768, in __aexit__
+  |     raise exc
+  |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+  |     cb_suppress = await cb(*exc_details)
+  |                   ^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 235, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 201, in stdio_client
+  |     async with anyio.create_task_group() as tg:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 205, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/session.py", line 514, in __aexit__
+    |     result = await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+    |     raise BaseExceptionGroup(
+    |         "unhandled errors in a TaskGroup", self._exceptions
+    |     ) from None
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 93, in test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_store
+      |     assert undone["applied"] is True and undone["undone"] == 1 and undone["remaining"] == 0, undone
+      | AssertionError: {'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 1 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, ...}
+      | assert (False is True)
+      +------------------------------------
+/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py:871: AssertionError("{'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 1 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, ...}\nassert (False is True)") [single exception in ExceptionGroup]
+  + Exception Group Traceback (most recent call last):
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 110, in test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted
+  |     with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
+  |          ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 162, in __exit__
+  |     self.gen.throw(value)
+  |     ~~~~~~~~~~~~~~^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/conftest.py", line 272, in served
+  |     with portal.wrap_async_context_manager(Client(params, read_timeout_seconds=TOOL_TIMEOUT)) as client:
+  |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 176, in __exit__
+  |     return self._exit_future.result()
+  |            ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+  |     return self.__get_result()
+  |            ~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+  |     raise self._exception
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 272, in _call_func
+  |     retval = await retval_or_awaitable
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 158, in run_async_cm
+  |     result = await self._async_cm.__aexit__(*self._exit_exc_info)
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/client.py", line 480, in __aexit__
+  |     await self._exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  |   File "/usr/lib/python3.13/contextlib.py", line 768, in __aexit__
+  |     raise exc
+  |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+  |     cb_suppress = await cb(*exc_details)
+  |                   ^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 235, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 201, in stdio_client
+  |     async with anyio.create_task_group() as tg:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 205, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/session.py", line 514, in __aexit__
+    |     result = await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+    |     raise BaseExceptionGroup(
+    |         "unhandled errors in a TaskGroup", self._exceptions
+    |     ) from None
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 112, in test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted
+      |     foreign_edit(copy_root, "Edited by someone else.")
+      |     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 105, in foreign_edit
+      |     api.apply_batch(root / ".sldb", [{"action": "update", "model": "DomainOperationDoc", "id": OP, "fields": {"description": description}}])
+      |     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      |   File "/mnt/ssd/proyectos/SLDB_1/sldb/src/sldb/api/documents/apply_batch.py", line 56, in apply_batch
+      |     plan = sorted(prevalidate_changes(location, changes, pythonpath), key=lambda change: _ORDER[change["action"]])
+      |                   ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      |   File "/mnt/ssd/proyectos/SLDB_1/sldb/src/sldb/api/documents/batch_prevalidate.py", line 33, in prevalidate_changes
+      |     _check(location, change, pythonpath)
+      |     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      |   File "/mnt/ssd/proyectos/SLDB_1/sldb/src/sldb/api/documents/batch_prevalidate.py", line 42, in _check
+      |     _check_tracked(location, change, existing, pythonpath)
+      |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      |   File "/mnt/ssd/proyectos/SLDB_1/sldb/src/sldb/api/documents/batch_prevalidate.py", line 74, in _check_tracked
+      |     check_roundtrip(model_class(m_entry.model_ref, pythonpath, location.project_root), change, location.project_root)
+      |     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      |   File "/mnt/ssd/proyectos/SLDB_1/sldb/src/sldb/api/documents/batch_prevalidate.py", line 96, in check_roundtrip
+      |     raise SLDBValidationError(f"{change['id']}: payload must be an object.")
+      | sldb.core.exceptions.sldb_validation_error.SLDBValidationError: undo-seed-op: payload must be an object.
+      +------------------------------------
+/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py:871: SLDBValidationError('undo-seed-op: payload must be an object.') [single exception in ExceptionGroup]
+  + Exception Group Traceback (most recent call last):
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 132, in test_two_batches_are_undone_newest_first_with_steps_and_an_empty_stack_refuses
+  |     with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
+  |          ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 162, in __exit__
+  |     self.gen.throw(value)
+  |     ~~~~~~~~~~~~~~^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/conftest.py", line 272, in served
+  |     with portal.wrap_async_context_manager(Client(params, read_timeout_seconds=TOOL_TIMEOUT)) as client:
+  |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 176, in __exit__
+  |     return self._exit_future.result()
+  |            ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+  |     return self.__get_result()
+  |            ~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+  |     raise self._exception
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 272, in _call_func
+  |     retval = await retval_or_awaitable
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 158, in run_async_cm
+  |     result = await self._async_cm.__aexit__(*self._exit_exc_info)
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/client.py", line 480, in __aexit__
+  |     await self._exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  |   File "/usr/lib/python3.13/contextlib.py", line 768, in __aexit__
+  |     raise exc
+  |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+  |     cb_suppress = await cb(*exc_details)
+  |                   ^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 235, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 201, in stdio_client
+  |     async with anyio.create_task_group() as tg:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 205, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/session.py", line 514, in __aexit__
+    |     result = await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+    |     raise BaseExceptionGroup(
+    |         "unhandled errors in a TaskGroup", self._exceptions
+    |     ) from None
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 138, in test_two_batches_are_undone_newest_first_with_steps_and_an_empty_stack_refuses
+      |     assert undone["applied"] is True and undone["undone"] == 2 and undone["remaining"] == 0, undone
+      | AssertionError: {'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 2 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, ...}
+      | assert (False is True)
+      +------------------------------------
+/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py:871: AssertionError("{'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 2 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, ...}\nassert (False is True)") [single exception in ExceptionGroup]
+  + Exception Group Traceback (most recent call last):
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 166, in test_level_1_refuses_a_batch_of_rules_so_none_is_on_its_stack_and_a_level_2_batch_is_not_undone_from_it
+  |     with served(copy_root, "--level", "2", "--actor", ACTOR) as rules:
+  |          ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 162, in __exit__
+  |     self.gen.throw(value)
+  |     ~~~~~~~~~~~~~~^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/conftest.py", line 272, in served
+  |     with portal.wrap_async_context_manager(Client(params, read_timeout_seconds=TOOL_TIMEOUT)) as client:
+  |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 176, in __exit__
+  |     return self._exit_future.result()
+  |            ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+  |     return self.__get_result()
+  |            ~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+  |     raise self._exception
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 272, in _call_func
+  |     retval = await retval_or_awaitable
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 158, in run_async_cm
+  |     result = await self._async_cm.__aexit__(*self._exit_exc_info)
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/client.py", line 480, in __aexit__
+  |     await self._exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  |   File "/usr/lib/python3.13/contextlib.py", line 768, in __aexit__
+  |     raise exc
+  |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+  |     cb_suppress = await cb(*exc_details)
+  |                   ^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 235, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 201, in stdio_client
+  |     async with anyio.create_task_group() as tg:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 205, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/session.py", line 514, in __aexit__
+    |     result = await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+    |     raise BaseExceptionGroup(
+    |         "unhandled errors in a TaskGroup", self._exceptions
+    |     ) from None
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 176, in test_level_1_refuses_a_batch_of_rules_so_none_is_on_its_stack_and_a_level_2_batch_is_not_undone_from_it
+      |     assert undone["applied"] is True and undone["undone"] == 1, undone
+      | AssertionError: {'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 1 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, ...}
+      | assert (False is True)
+      +------------------------------------
+/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py:871: AssertionError("{'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 1 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, ...}\nassert (False is True)") [single exception in ExceptionGroup]
+  + Exception Group Traceback (most recent call last):
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 188, in test_the_store_after_an_undo_passes_the_checks_the_domain_validators_would_ask_for
+  |     with served(copy_root, "--level", "2", "--actor", ACTOR) as session:
+  |          ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 162, in __exit__
+  |     self.gen.throw(value)
+  |     ~~~~~~~~~~~~~~^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/conftest.py", line 272, in served
+  |     with portal.wrap_async_context_manager(Client(params, read_timeout_seconds=TOOL_TIMEOUT)) as client:
+  |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 176, in __exit__
+  |     return self._exit_future.result()
+  |            ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+  |     return self.__get_result()
+  |            ~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+  |     raise self._exception
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 272, in _call_func
+  |     retval = await retval_or_awaitable
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 158, in run_async_cm
+  |     result = await self._async_cm.__aexit__(*self._exit_exc_info)
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/client.py", line 480, in __aexit__
+  |     await self._exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  |   File "/usr/lib/python3.13/contextlib.py", line 768, in __aexit__
+  |     raise exc
+  |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+  |     cb_suppress = await cb(*exc_details)
+  |                   ^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 235, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 201, in stdio_client
+  |     async with anyio.create_task_group() as tg:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 205, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/session.py", line 514, in __aexit__
+    |     result = await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+    |     raise BaseExceptionGroup(
+    |         "unhandled errors in a TaskGroup", self._exceptions
+    |     ) from None
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 190, in test_the_store_after_an_undo_passes_the_checks_the_domain_validators_would_ask_for
+      |     assert session.call("undo_changes", steps=1)["applied"] is True
+      | AssertionError: assert False is True
+      +------------------------------------
+/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py:871: AssertionError('assert False is True') [single exception in ExceptionGroup]
+=========================== short test summary info ============================
+FAILED tests/test_mcp_undo.py::test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_store
+FAILED tests/test_mcp_undo.py::test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted
+FAILED tests/test_mcp_undo.py::test_two_batches_are_undone_newest_first_with_steps_and_an_empty_stack_refuses
+FAILED tests/test_mcp_undo.py::test_level_1_refuses_a_batch_of_rules_so_none_is_on_its_stack_and_a_level_2_batch_is_not_undone_from_it
+FAILED tests/test_mcp_undo.py::test_the_store_after_an_undo_passes_the_checks_the_domain_validators_would_ask_for
+5 failed, 2 passed in 133.81s (0:02:13)
+rc=1

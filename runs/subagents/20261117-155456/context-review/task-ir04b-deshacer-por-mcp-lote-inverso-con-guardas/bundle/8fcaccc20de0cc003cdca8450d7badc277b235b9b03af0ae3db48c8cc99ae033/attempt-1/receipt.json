@@ -1,0 +1,9 @@
+{
+  "key": "task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "8fcaccc20de0cc003cdca8450d7badc277b235b9b03af0ae3db48c8cc99ae033",
+  "output_sha256": "e3ae37b2ca3e6f4a193d59dc83c76f5da71d0233c3cc947e3080f5faabde78ca",
+  "start": "2026-11-17T15:54:57.155555+00:00",
+  "end": "2026-11-17T15:55:20.552968+00:00"
+}

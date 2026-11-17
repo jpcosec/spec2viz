@@ -1,0 +1,15 @@
+Task: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
+Title: IR04b Deshacer por MCP: adaptador sobre el lote inverso de sldb
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Effective pills:
+- desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+- desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
+Effective atoms:
+- atom-el-deshacer-del-mcp-es-un-lote-inverso-con-guardas
+- atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
+- atom-specir-depende-solo-de-la-api-pública-de-sldb
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
