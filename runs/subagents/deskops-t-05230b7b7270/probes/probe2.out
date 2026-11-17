@@ -1,0 +1,23 @@
+changed:
+  TableDoc:table-posts
+  DomainOperationDoc:op-post-publish
+  PolicyDoc:policy-can-publish
+  RelationDoc:edge-entity-post--persisted_in--table-posts
+  RelationDoc:edge-handler-postviewset-publish--executes--op-post-publish
+  RelationDoc:edge-op-post-publish--governed_by--policy-can-publish
+  RelationDoc:edge-op-post-publish--writes--table-posts
+created:
+unchanged:
+  DomainEntityDoc:entity-post
+  StateDoc:state-post-status-draft
+  StateDoc:state-post-status-published
+  HandlerDoc:handler-postviewset-publish
+  ApiOperationDoc:api-post-posts-id-publish
+  RelationDoc:edge-api-post-posts-id-publish--handled_by--handler-postviewset-publish
+not_derived:
+  PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts
+  DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)
+verified preserved: {'TableDoc:table-posts': True, 'ApiOperationDoc:api-post-posts-id-publish': True, 'DomainOperationDoc:op-post-publish': True, 'DomainEntityDoc:entity-post': True, 'HandlerDoc:handler-postviewset-publish': True, 'RelationDoc:edge-entity-post--persisted_in--table-posts': True, 'RelationDoc:edge-api-post-posts-id-publish--handled_by--handler-postviewset-publish': True, 'RelationDoc:edge-handler-postviewset-publish--executes--op-post-publish': True, 'RelationDoc:edge-op-post-publish--governed_by--policy-can-publish': True, 'RelationDoc:edge-op-post-publish--writes--table-posts': True}
+doc count before/after 62 63
+2nd run changed: [] created: []
+preserved 2nd: True

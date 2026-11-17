@@ -1,0 +1,19 @@
+created 13
+  - TableDoc:table-posts
+  - DomainEntityDoc:entity-post
+  - StateDoc:state-post-status-draft
+  - StateDoc:state-post-status-published
+  - HandlerDoc:handler-postviewset-publish
+  - ApiOperationDoc:api-post-posts-id-publish
+  - DomainOperationDoc:op-post-publish
+  - PolicyDoc:policy-can-publish
+  - RelationDoc:edge-entity-post--persisted_in--table-posts
+  - RelationDoc:edge-api-post-posts-id-publish--handled_by--handler-postviewset-publish
+  - RelationDoc:edge-handler-postviewset-publish--executes--op-post-publish
+  - RelationDoc:edge-op-post-publish--governed_by--policy-can-publish
+  - RelationDoc:edge-op-post-publish--writes--table-posts
+unchanged 0
+changed 0
+not_derived 2
+  - PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts
+  - DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)

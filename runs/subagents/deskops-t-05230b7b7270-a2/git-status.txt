@@ -1,0 +1,24 @@
+ M .sldb/core/documents/BoardDoc/Board.yaml
+ M .sldb/core/models/BoardDoc.yaml
+ M .sldb/core/models/InboxNoteDoc.yaml
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/store_index.yaml
+ M desk/tasks/Board.md
+?? .scion/settings.yaml
+?? .sldb/core/documents/InboxNoteDoc/20261117-104443-suggestion-sldb-c3-ts-js-cerrada-llamadas-y-handlers-del-frontend-por-code-facts-ir09.yaml
+?? .sldb/core/documents/InboxNoteDoc/20261117-110230-suggestion-sldb-test-apply-batch-lock-ya-no-deja-procesos-hu-rfanos-nota-092921.yaml
+?? ".sldb/core/documents/ReviewDoc/review-task-ir08-extractor-est\303\241tico-django-drf-y-sql-evidence-atom-1.yaml"
+?? ".sldb/core/documents/ReviewDoc/review-task-ir08-extractor-est\303\241tico-django-drf-y-sql-evidence-commit-1.yaml"
+?? ".sldb/core/documents/ReviewDoc/review-task-ir08-extractor-est\303\241tico-django-drf-y-sql-evidence-tests-1.yaml"
+?? .sldb/core/documents/TaskCodeDoc/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester.yaml
+?? desk/inbox/20261117-104443-suggestion-sldb-c3-ts-js-cerrada-llamadas-y-handlers-del-frontend-por-code-facts-ir09.md
+?? desk/inbox/20261117-110230-suggestion-sldb-test-apply-batch-lock-ya-no-deja-procesos-hu-rfanos-nota-092921.md
+?? "desk/reviews/task-ir08-extractor-est\303\241tico-django-drf-y-sql/evidence-atom-1.md"
+?? "desk/reviews/task-ir08-extractor-est\303\241tico-django-drf-y-sql/evidence-commit-1.md"
+?? "desk/reviews/task-ir08-extractor-est\303\241tico-django-drf-y-sql/evidence-tests-1.md"
+?? desk/tasks/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester.md
+?? runs/subagents/deskops-e-0539a70e078c-a2/
+?? runs/subagents/deskops-e-0539a70e078c/
+?? runs/subagents/deskops-t-05230b7b7270-a2/
+?? runs/subagents/deskops-t-05230b7b7270/

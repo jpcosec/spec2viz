@@ -1,0 +1,29 @@
+# Entorno: .venv/bin/python de IR apunta a /home/robocop/.local/share/uv/python/... (no existe en este contenedor) y no hay uv.
+# Se usó un venv de trabajo /dev/shm/ir08-exec/venv (python3.13 del sistema + site-packages de IR/.venv por .pth + pglast 8.8 con pip).
+$ uv pip install --python .venv/bin/python -e '.[test]'  -> NO EJECUTABLE (uv no está instalado; .venv sin intérprete). Equivalente usado:
+$ /dev/shm/ir08-exec/venv/bin/python -m pip install 'pglast>=7'   (extra postgres de sldb: pglast>=7)
+pglast                    8.8
+rc=0
+
+## V1,V3,V4,V5,V6,V7(parte), V9: tests/extract
+$ TMPDIR=/dev/shm /dev/shm/ir08-exec/venv/bin/python -m pytest -q -p no:cacheprovider tests/extract tests/models/test_blog_chain.py
+................x...x                                                    [100%]
+19 passed, 2 xfailed in 58.62s
+rc=
+
+## V8 grep
+$ grep -rnE "tree_sitter|import ast|from ast|pglast|sldb\.code|import pron|spec2viz" src/specir/extract
+rc=1 (1 = sin coincidencias)
+
+## V8 test_imports
+.........                                                                [100%]
+9 passed in 0.80s
+rc=
+
+## V10 graph missing
+No missing graph references found.
+rc=0
+
+## rc de los pytest (reejecución con rc explícito)
+tests/extract + tests/models/test_blog_chain.py rc=0
+tests/test_imports.py rc=0

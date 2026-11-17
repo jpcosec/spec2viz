@@ -1,0 +1,8 @@
+## main
+ M pyproject.toml
+?? .scion/settings.yaml
+?? runs/subagents/deskops-e-0539a70e078c-a2/
+?? runs/subagents/deskops-e-0539a70e078c/
+?? runs/subagents/deskops-t-05230b7b7270/
+?? src/specir/extract/
+?? tests/extract/

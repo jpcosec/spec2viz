@@ -1,0 +1,70 @@
+BASE /dev/shm/probe-udkyoesh
+== baseline 13 created 13
+   ApiOperationDoc:api-post-posts-id-publish POST /posts/{id}/publish
+   DomainEntityDoc:entity-post Post
+   DomainOperationDoc:op-post-publish Post.publish
+   HandlerDoc:handler-postviewset-publish PostViewSet.publish
+   PolicyDoc:policy-can-publish can_publish
+   RelationDoc:edge-api-post-posts-id-publish--handled_by--handler-postviewset-publish ('ApiOperationDoc:api-post-posts-id-publish', 'handled_by', 'HandlerDoc:handler-postviewset-publish')
+   RelationDoc:edge-entity-post--persisted_in--table-posts ('DomainEntityDoc:entity-post', 'persisted_in', 'TableDoc:table-posts')
+   RelationDoc:edge-handler-postviewset-publish--executes--op-post-publish ('HandlerDoc:handler-postviewset-publish', 'executes', 'DomainOperationDoc:op-post-publish')
+   RelationDoc:edge-op-post-publish--governed_by--policy-can-publish ('DomainOperationDoc:op-post-publish', 'governed_by', 'PolicyDoc:policy-can-publish')
+   RelationDoc:edge-op-post-publish--writes--table-posts ('DomainOperationDoc:op-post-publish', 'writes', 'TableDoc:table-posts')
+   StateDoc:state-post-status-draft Draft
+   StateDoc:state-post-status-published Published
+   TableDoc:table-posts posts
+not_derived:
+  PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts
+  DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)
+== anchors 21 mismatching 0
+   ApiOperationDoc:api-post-posts-id-publish derivado | Derivado por la regla drf-router-register-action sobre los facts de código blog/urls.py:8 
+   HandlerDoc:handler-postviewset-publish observado | Observado por la regla drf-viewset-method sobre los facts de código blog/views.py:20 PostV
+   DomainOperationDoc:op-post-publish observado | Observado por la regla django-model-method sobre los facts de código blog/models.py:24 Pos
+   PolicyDoc:policy-can-publish observado | Observado por la regla django-predicate-function sobre los facts de código blog/models.py:
+   StateDoc:state-post-status-draft observado | Observado por la regla django-textchoices-state sobre los facts de código blog/models.py:1
+   StateDoc:state-post-status-published observado | Observado por la regla django-textchoices-state sobre los facts de código blog/models.py:1
+   DomainEntityDoc:entity-post observado | Observado por la regla django-model sobre los facts de código blog/models.py:8 Post [ancho
+   TableDoc:table-posts observado | Observado por la regla sql-create-table sobre los facts de código sql/blog_0001_initial.sq
+   RelationDoc:edge-entity-post--persisted_in--table-posts derivado | Derivado por la regla django-meta-db-table sobre los facts de código blog/models.py:8 Post
+   RelationDoc:edge-api-post-posts-id-publish--handled_by--handler-postviewset-publish derivado | Derivado por la regla drf-router-register-action sobre los facts de código blog/urls.py:8 
+   RelationDoc:edge-handler-postviewset-publish--executes--op-post-publish derivado | Derivado por la regla drf-handler-calls-model-method sobre los facts de código blog/views.
+   RelationDoc:edge-op-post-publish--governed_by--policy-can-publish derivado | Derivado por la regla django-method-calls-predicate sobre los facts de código blog/models.
+   RelationDoc:edge-op-post-publish--writes--table-posts derivado | Derivado por la regla django-method-calls-save sobre los facts de código blog/models.py:24
+provenance OK
+== second run identical: True created [] changed [] unchanged 13
+== mutation1 (Post->Article, posts->entries, prefix->stories, post->put)
+   ApiOperationDoc:api-put-stories-id-publish PUT /stories/{id}/publish
+   DomainEntityDoc:entity-article Article
+   DomainOperationDoc:op-article-publish Article.publish
+   HandlerDoc:handler-postviewset-publish PostViewSet.publish
+   PolicyDoc:policy-can-publish can_publish
+   RelationDoc:edge-api-put-stories-id-publish--handled_by--handler-postviewset-publish ('ApiOperationDoc:api-put-stories-id-publish', 'handled_by', 'HandlerDoc:handler-postviewset-publish')
+   RelationDoc:edge-entity-article--persisted_in--table-entries ('DomainEntityDoc:entity-article', 'persisted_in', 'TableDoc:table-entries')
+   RelationDoc:edge-handler-postviewset-publish--executes--op-article-publish ('HandlerDoc:handler-postviewset-publish', 'executes', 'DomainOperationDoc:op-article-publish')
+   RelationDoc:edge-op-article-publish--governed_by--policy-can-publish ('DomainOperationDoc:op-article-publish', 'governed_by', 'PolicyDoc:policy-can-publish')
+   RelationDoc:edge-op-article-publish--writes--table-entries ('DomainOperationDoc:op-article-publish', 'writes', 'TableDoc:table-entries')
+   StateDoc:state-article-status-draft Draft
+   StateDoc:state-article-status-published Published
+   TableDoc:table-entries entries
+not_derived:
+  PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts
+  DomainOperationDoc:op-article-publish transitions: ningún fact de assignment dentro de Article.publish muestra el estado al que pasa (Draft, Published)
+mutation1 OK: titles ['Article', 'Article.publish', 'Draft', 'PUT /stories/{id}/publish', 'PostViewSet.publish', 'Published', 'can_publish', 'entries']
+== mutation2 (no Meta.db_table; table blog_post)
+   RelationDoc:edge-entity-post--persisted_in--table-blog-post ('DomainEntityDoc:entity-post', 'persisted_in', 'TableDoc:table-blog-post')
+   RelationDoc:edge-op-post-publish--writes--table-blog-post ('DomainOperationDoc:op-post-publish', 'writes', 'TableDoc:table-blog-post')
+   TableDoc:table-blog-post blog_post
+not_derived:
+  PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts
+  DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)
+== mutation3 ensure_publishable policies: [] governed_by: 0
+== mutation3 may_publish_post policies: ['may_publish_post'] governed_by: 1
+== mutation4 no router.urls: [] ['PostViewSet: ningún urlpatterns del módulo expone el router de blog/urls.py:8']
+== mutation5 prefix: ['POST /api/v1/posts/{id}/publish']
+== mutation6 slash: ['POST /posts/{id}/publish/']
+== m7 changed: []
+   created: []
+   verified preserved: True | all still present: True
+   2nd run after verify: created [] changed []
+   verified preserved again: True
+== m8 removed self.save: changed ['DomainOperationDoc:op-post-publish', 'PolicyDoc:policy-can-publish', 'RelationDoc:edge-handler-postviewset-publish--executes--op-post-publish', 'RelationDoc:edge-op-post-publish--governed_by--policy-can-publish'] | writes edge still in store: True

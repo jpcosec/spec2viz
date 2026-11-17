@@ -1,0 +1,33 @@
+CREATED 13
+  TableDoc:table-posts
+  DomainEntityDoc:entity-post
+  StateDoc:state-post-status-draft
+  StateDoc:state-post-status-published
+  HandlerDoc:handler-postviewset-publish
+  ApiOperationDoc:api-post-posts-id-publish
+  DomainOperationDoc:op-post-publish
+  PolicyDoc:policy-can-publish
+  RelationDoc:edge-entity-post--persisted_in--table-posts
+  RelationDoc:edge-api-post-posts-id-publish--handled_by--handler-postviewset-publish
+  RelationDoc:edge-handler-postviewset-publish--executes--op-post-publish
+  RelationDoc:edge-op-post-publish--governed_by--policy-can-publish
+  RelationDoc:edge-op-post-publish--writes--table-posts
+NOT_DERIVED
+  PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts
+  DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)
+DOCS tipos: ['ApiOperationDoc', 'DomainEntityDoc', 'DomainOperationDoc', 'HandlerDoc', 'PolicyDoc', 'RelationDoc', 'StateDoc', 'TableDoc']
+('ApiOperationDoc:api-post-posts-id-publish', 'POST /posts/{id}/publish', '/posts/{id}/publish', 'POST', None, None)
+('DomainEntityDoc:entity-post', 'Post', None, None, None, None)
+('DomainOperationDoc:op-post-publish', 'Post.publish', None, None, None, None)
+('HandlerDoc:handler-postviewset-publish', 'PostViewSet.publish', None, None, None, None)
+('PolicyDoc:policy-can-publish', 'can_publish', None, None, None, None)
+('RelationDoc:edge-api-post-posts-id-publish--handled_by--handler-postviewset-publish', 'POST /posts/{id}/publish handled_by PostViewSet.publish', None, None, 'ApiOperationDoc:api-post-posts-id-publish', 'HandlerDoc:handler-postviewset-publish')
+('RelationDoc:edge-entity-post--persisted_in--table-posts', 'Post persisted_in posts', None, None, 'DomainEntityDoc:entity-post', 'TableDoc:table-posts')
+('RelationDoc:edge-handler-postviewset-publish--executes--op-post-publish', 'PostViewSet.publish executes Post.publish', None, None, 'HandlerDoc:handler-postviewset-publish', 'DomainOperationDoc:op-post-publish')
+('RelationDoc:edge-op-post-publish--governed_by--policy-can-publish', 'Post.publish governed_by can_publish', None, None, 'DomainOperationDoc:op-post-publish', 'PolicyDoc:policy-can-publish')
+('RelationDoc:edge-op-post-publish--writes--table-posts', 'Post.publish writes posts', None, None, 'DomainOperationDoc:op-post-publish', 'TableDoc:table-posts')
+('StateDoc:state-post-status-draft', 'Draft', None, None, None, None)
+('StateDoc:state-post-status-published', 'Published', None, None, None, None)
+('TableDoc:table-posts', 'posts', None, None, None, None)
+provenance ok
+IDEMP True 0 0 13

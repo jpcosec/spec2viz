@@ -1,0 +1,15 @@
+anchors 21
+anchor mismatches 0
+ApiOperationDoc derivado sin_verificar '' 5 rule drf-router-register-action
+HandlerDoc observado sin_verificar '' 1 rule drf-viewset-method
+DomainOperationDoc observado sin_verificar '' 1 rule django-model-method
+PolicyDoc observado sin_verificar '' 1 rule django-predicate-function
+StateDoc observado sin_verificar '' 2 rule django-textchoices-state
+StateDoc observado sin_verificar '' 2 rule django-textchoices-state
+DomainEntityDoc observado sin_verificar '' 1 rule django-model
+TableDoc observado sin_verificar '' 8 rule sql-create-table
+RelationDoc derivado sin_verificar '' 3 rule django-meta-db-table
+RelationDoc derivado sin_verificar '' 2 rule drf-router-register-action
+RelationDoc derivado sin_verificar '' 3 rule drf-handler-calls-model-method
+RelationDoc derivado sin_verificar '' 2 rule django-method-calls-predicate
+RelationDoc derivado sin_verificar '' 3 rule django-method-calls-save

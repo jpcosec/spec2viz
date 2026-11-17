@@ -1,0 +1,18 @@
+name: 20261117-110230-suggestion-sldb-test-apply-batch-lock-ya-no-deja-procesos-hu-rfanos-nota-092921
+path: desk/inbox/20261117-110230-suggestion-sldb-test-apply-batch-lock-ya-no-deja-procesos-hu-rfanos-nota-092921.md
+source_hash: 752ad6d2b85d2ec1785d8018ec24df1a918d6b0afaff16c2680be3640d4d618f
+content_hash: 09e1b2eb4477f3767ae9154573380868a5713556f2006240aac8c905279ca69f
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: 7d72712049c740de47e11e92e5a4332a579873d1a95527ccadd3940fb70bbc6e
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  title: fe15c5ec98fc674c02a7723919caef2fc895022073694fa2f031993750a6b41f
+  body: 975c2bc9276b664762f21bd3f446b9bdfdec3b0f4f40ccd205d1476cd3132b83
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null

@@ -1,0 +1,49 @@
+"""How a post goes over the API."""
+
+from rest_framework import serializers
+
+from blog.models import Post
+
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ["id", "author", "title", "body", "status", "published_at"]
+        read_only_fields = ["author", "status", "published_at"]
+
+=== m_model: created=5
+[('DomainEntityDoc', 'Article'), ('StateDoc', 'Draft'), ('StateDoc', 'Published'), ('TableDoc', 'posts')]
+['Article persisted_in posts']
+ND ['blog/urls.py:8 register(PostViewSet): no hay un viewset único con ese nombre entre los facts']
+=== m_table: created=11
+[('ApiOperationDoc', 'POST /posts/{id}/publish'), ('DomainEntityDoc', 'Post'), ('DomainOperationDoc', 'Post.publish'), ('HandlerDoc', 'PostViewSet.publish'), ('PolicyDoc', 'can_publish'), ('StateDoc', 'Draft'), ('StateDoc', 'Published'), ('TableDoc', 'posts')]
+['POST /posts/{id}/publish handled_by PostViewSet.publish', 'Post.publish governed_by can_publish', 'PostViewSet.publish executes Post.publish']
+ND ["DomainEntityDoc:entity-post persisted_in: el SQL leído no tiene la tabla 'entries' de Post", 'PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts', 'DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)']
+=== m_nometa: created=11
+[('ApiOperationDoc', 'POST /posts/{id}/publish'), ('DomainEntityDoc', 'Post'), ('DomainOperationDoc', 'Post.publish'), ('HandlerDoc', 'PostViewSet.publish'), ('PolicyDoc', 'can_publish'), ('StateDoc', 'Draft'), ('StateDoc', 'Published'), ('TableDoc', 'posts')]
+['POST /posts/{id}/publish handled_by PostViewSet.publish', 'Post.publish governed_by can_publish', 'PostViewSet.publish executes Post.publish']
+ND ["DomainEntityDoc:entity-post persisted_in: el SQL leído no tiene la tabla 'blog_post' de Post", 'PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts', 'DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)']
+=== m_router: created=13
+[('ApiOperationDoc', 'POST /articles/{id}/publish'), ('DomainEntityDoc', 'Post'), ('DomainOperationDoc', 'Post.publish'), ('HandlerDoc', 'PostViewSet.publish'), ('PolicyDoc', 'can_publish'), ('StateDoc', 'Draft'), ('StateDoc', 'Published'), ('TableDoc', 'posts')]
+['POST /articles/{id}/publish handled_by PostViewSet.publish', 'Post persisted_in posts', 'Post.publish governed_by can_publish', 'Post.publish writes posts', 'PostViewSet.publish executes Post.publish']
+ND ['PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts', 'DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)']
+=== m_method: created=13
+[('ApiOperationDoc', 'PUT /posts/{id}/publish'), ('DomainEntityDoc', 'Post'), ('DomainOperationDoc', 'Post.publish'), ('HandlerDoc', 'PostViewSet.publish'), ('PolicyDoc', 'can_publish'), ('StateDoc', 'Draft'), ('StateDoc', 'Published'), ('TableDoc', 'posts')]
+['PUT /posts/{id}/publish handled_by PostViewSet.publish', 'Post persisted_in posts', 'Post.publish governed_by can_publish', 'Post.publish writes posts', 'PostViewSet.publish executes Post.publish']
+ND ['PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts', 'DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)']
+=== m_action: created=13
+[('ApiOperationDoc', 'POST /posts/{id}/release'), ('DomainEntityDoc', 'Post'), ('DomainOperationDoc', 'Post.publish'), ('HandlerDoc', 'PostViewSet.release'), ('PolicyDoc', 'can_publish'), ('StateDoc', 'Draft'), ('StateDoc', 'Published'), ('TableDoc', 'posts')]
+['POST /posts/{id}/release handled_by PostViewSet.release', 'Post persisted_in posts', 'Post.publish governed_by can_publish', 'Post.publish writes posts', 'PostViewSet.release executes Post.publish']
+ND ['PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts', 'DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)']
+=== m_pred: created=11
+[('ApiOperationDoc', 'POST /posts/{id}/publish'), ('DomainEntityDoc', 'Post'), ('DomainOperationDoc', 'Post.publish'), ('HandlerDoc', 'PostViewSet.publish'), ('StateDoc', 'Draft'), ('StateDoc', 'Published'), ('TableDoc', 'posts')]
+['POST /posts/{id}/publish handled_by PostViewSet.publish', 'Post persisted_in posts', 'Post.publish writes posts', 'PostViewSet.publish executes Post.publish']
+ND ['PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts', 'DomainOperationDoc:op-post-publish governed_by: llamada a función del proyecto sin señal de política: ensure_publishable (blog/models.py:33, llamada en Post.publish línea 26); solo se toman como política las funciones con prefijo can_/is_/has_/may_', 'DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)']
+=== m_pred2: created=13
+[('ApiOperationDoc', 'POST /posts/{id}/publish'), ('DomainEntityDoc', 'Post'), ('DomainOperationDoc', 'Post.publish'), ('HandlerDoc', 'PostViewSet.publish'), ('PolicyDoc', 'is_allowed'), ('StateDoc', 'Draft'), ('StateDoc', 'Published'), ('TableDoc', 'posts')]
+['POST /posts/{id}/publish handled_by PostViewSet.publish', 'Post persisted_in posts', 'Post.publish governed_by is_allowed', 'Post.publish writes posts', 'PostViewSet.publish executes Post.publish']
+ND ['PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts', 'DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)']
+=== m_state: created=14
+[('ApiOperationDoc', 'POST /posts/{id}/publish'), ('DomainEntityDoc', 'Post'), ('DomainOperationDoc', 'Post.publish'), ('HandlerDoc', 'PostViewSet.publish'), ('PolicyDoc', 'can_publish'), ('StateDoc', 'Archived'), ('StateDoc', 'Draft'), ('StateDoc', 'Live'), ('TableDoc', 'posts')]
+['POST /posts/{id}/publish handled_by PostViewSet.publish', 'Post persisted_in posts', 'Post.publish governed_by can_publish', 'Post.publish writes posts', 'PostViewSet.publish executes Post.publish']
+ND ['PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts', 'DomainOperationDoc:op-post-publish transitions: ningún fact de assignment dentro de Post.publish muestra el estado al que pasa (Draft, Live, Archived)']

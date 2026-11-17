@@ -1,0 +1,9 @@
+TABLE rename: [('TableDoc', 'entries')] ['Post persisted_in entries', 'Post.publish writes entries'] ['PostViewSet: rutas CRUD heredadas de viewsets.ModelViewSet: sin método handler en los facts']
+MODEL rename: [('ApiOperationDoc', 'POST /posts/{id}/publish'), ('DomainEntityDoc', 'Article'), ('DomainOperationDoc', 'Article.publish'), ('HandlerDoc', 'PostViewSet.publish'), ('PolicyDoc', 'can_publish'), ('StateDoc', 'Draft'), ('StateDoc', 'Published'), ('TableDoc', 'posts')] ['Article persisted_in posts', 'Article.publish governed_by can_publish', 'Article.publish writes posts', 'POST /posts/{id}/publish handled_by PostViewSet.publish', 'PostViewSet.publish executes Article.publish']
+M8 writes kept: True True in changed: True ['DomainOperationDoc:op-post-publish', 'PolicyDoc:policy-can-publish', 'RelationDoc:edge-handler-postviewset-publish--executes--op-post-publish', 'RelationDoc:edge-op-post-publish--governed_by--policy-can-publish', 'RelationDoc:edge-op-post-publish--writes--table-posts']
+verified table kept: verificado human:jp x
+SQL change: changed= ['TableDoc:table-posts', 'RelationDoc:edge-entity-post--persisted_in--table-posts', 'RelationDoc:edge-op-post-publish--writes--table-posts']
+verified table after SQL change intact: True
+unverified updated: ['TableDoc:table-posts', 'RelationDoc:edge-entity-post--persisted_in--table-posts', 'RelationDoc:edge-op-post-publish--writes--table-posts'] True
+then stable: [] []
+edges check rc 0

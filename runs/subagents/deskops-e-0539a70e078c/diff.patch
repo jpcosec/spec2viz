@@ -1,0 +1,892 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index d94190d..bc632cb 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -16,7 +16,8 @@ mcp = [
+ ]
+ test = [
+     # `code` brings tree-sitter, which sldb's Python AST spec generator (D2) needs (IR13a's tests).
+-    "structuredLanguageDB[mcp,code]",
++    # `postgres` brings pglast, with which sldb reads the SQL constraint facts the extractor (IR08) maps.
++    "structuredLanguageDB[mcp,code,postgres]",
+     "pytest>=8",
+     "pyyaml>=6.0",
+ ]
+=== nuevo: src/specir/extract/__init__.py
+"""The static extractor of specIR for Django REST Framework apps and their PostgreSQL schema.
+
+`sldb.api.code.code_facts` gives the generic syntax (classes with `bases`, decorators with kwargs,
+`calls`, assignments, calls of module level, SQL tables, columns and constraints); this package
+interprets Django and DRF over those facts (`django_drf.py`, `sql.py`) and writes the domain types
+of specIR, each with anchors on the facts it stands on (`write.py`). It reads no code itself.
+
+    report = extract(project_root, store)    # an ExtractionReport
+"""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+from sldb.api.code import code_facts
+
+from specir.extract.django_drf import interpret
+from specir.extract.facts import Facts
+from specir.extract.write import ExtractionReport, write_plan
+from specir.install import package_pythonpath
+
+__all__ = ["ExtractionReport", "extract"]
+
+
+def extract(root: str | Path, store: str | Path | None = None, paths: list[str] | None = None) -> ExtractionReport:
+    """Extract the backend and data nodes of the code under `root` into `store` (default
+    `<root>/.sldb`), once per call and idempotent: the same code leaves the same store.
+
+    Raises:
+        ValueError: A fact's anchor does not match the fact; nothing is written.
+    """
+    root = Path(root).resolve()
+    store_path = Path(store).resolve() if store is not None else root / ".sldb"
+    facts = code_facts(root, paths)["facts"]
+    plan = interpret(Facts(facts))
+    nodes = [p for p in plan.nodes.values()]
+    edges = [p for p in plan.edges.values()]
+    return write_plan(store_path, root, package_pythonpath(), nodes, edges, list(dict.fromkeys(plan.not_derived)))
+=== nuevo: src/specir/extract/django_drf.py
+"""The rules of Django and Django REST Framework over the generic facts of sldb: classes with their
+`bases`, decorators with their kwargs, `calls`, assignments and calls of module and class level.
+
+Each rule names the facts it reads. What a rule reads as it stands is `observado` (a class, a
+method, a table); what it assembles from several facts is `derivado` (a route from `register` and
+`@action`, `handled_by`, `executes`, `governed_by`, `writes`, `persisted_in`). Nothing here is
+`inferido` or `declarado`. What the facts do not show is returned as not derived, never invented."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+
+from specir.extract import sql
+from specir.extract.facts import Fact, Facts, last, literal, literal_list
+from specir.extract.plan import Planned, edge_name, node_name, sentence
+
+PREDICATE_PREFIXES = ("can_", "is_", "has_", "may_")
+CHOICES = ("TextChoices", "IntegerChoices", "Choices")
+VERBS = {"get", "post", "put", "patch", "delete", "head", "options"}
+ENTITY = "django-model"
+STATE = "django-textchoices-state"
+TABLE_OF = "django-meta-db-table"
+ROUTE = "drf-router-register-action"
+EXECUTES = "drf-handler-calls-model-method"
+GOVERNED = "django-method-calls-predicate"
+WRITES = "django-method-calls-save"
+TRANSITION = "django-method-assigns-choice"
+
+
+@dataclass
+class Plan:
+    nodes: dict[str, Planned] = field(default_factory=dict)
+    edges: dict[str, Planned] = field(default_factory=dict)
+    not_derived: list[str] = field(default_factory=list)
+    members: dict[str, str] = field(default_factory=dict)
+
+    def node(self, planned: Planned) -> Planned:
+        kept = self.nodes.setdefault(planned.export_id, planned)
+        kept.facts.extend(f for f in planned.facts if f not in kept.facts)
+        return kept
+
+    def edge(self, relation: str, source: Planned, target: Planned, rule: str, facts: list[Fact], what: str) -> Planned:
+        name = edge_name(source, relation, target)
+        used = list(facts)
+        fields = {
+            "title": f"{source.fields['title']} {relation} {target.fields['title']}", "source_id": source.export_id,
+            "target_id": target.export_id, "relation_type": relation, "condition": "",
+            "notes": f"{sentence(rule, used, derived=True)} {what}".strip(),
+        }
+        return self.edges.setdefault(f"RelationDoc:{name}", Planned("RelationDoc", name, fields, "derivado", rule, used))
+
+
+def interpret(facts: Facts) -> Plan:
+    plan = Plan()
+    tables = sql.tables(facts)
+    for planned in tables.values():
+        plan.node(planned)
+    entities = {c["id"]: _entity(plan, facts, c) for c in facts.of_kind("class") if _is_model(facts, c)}
+    table_of = {cid: _persist(plan, facts, facts.by_id[cid], entity, tables) for cid, entity in entities.items()}
+    for cid, entity in entities.items():
+        _states(plan, facts, facts.by_id[cid], entity)
+    operations = _routes(plan, facts, entities, table_of)
+    _policies_writes_transitions(plan, facts, operations, entities, table_of)
+    return plan
+
+
+def _is_model(facts: Facts, cls: Fact) -> bool:
+    return any(b in ("models.Model", "Model") for b in facts.bases(cls))
+
+
+def _entity(plan: Plan, facts: Facts, cls: Fact) -> Planned:
+    name = cls["qualified_name"]
+    fields = {"title": name, "symbol": name, "description": sentence(ENTITY, [cls], derived=False)}
+    return plan.node(Planned("DomainEntityDoc", node_name("DomainEntityDoc", name), fields, "observado", ENTITY, [cls]))
+
+
+def _table_name(facts: Facts, cls: Fact) -> tuple[str | None, list[Fact]]:
+    """The table a Django model is stored in: `Meta.db_table`, else Django's default `<app>_<model>`."""
+    meta = facts.member(cls, "Meta", "class")
+    declared = facts.member(meta, "db_table", "assignment") if meta else None
+    if declared is not None and literal(declared["attrs"].get("value")):
+        return literal(declared["attrs"]["value"]), [declared]
+    app = cls["attrs"]["module"].split(".")[0]
+    return f"{app}_{cls['qualified_name'].lower()}", []
+
+
+def _persist(plan: Plan, facts: Facts, cls: Fact, entity: Planned, tables: dict[str, Planned]) -> tuple[Planned, list[Fact]] | None:
+    table_name, used = _table_name(facts, cls)
+    table = tables.get(table_name or "")
+    if table is None:
+        plan.not_derived.append(f"{entity.export_id} persisted_in: el SQL leído no tiene la tabla {table_name!r} de {cls['qualified_name']}")
+        return None
+    source = [cls, *used, table.facts[0]]
+    plan.edge("persisted_in", entity, table, TABLE_OF, source, f"La tabla sale de {'Meta.db_table' if used else 'la convención <app>_<modelo> de Django'}.")
+    return table, [*used, table.facts[0]]
+
+
+def _states(plan: Plan, facts: Facts, cls: Fact, entity: Planned) -> None:
+    for nested in facts.members(cls, "class"):
+        if not any(last(b) in CHOICES for b in facts.bases(nested)):
+            continue
+        for member in facts.members(nested, "assignment"):
+            items = member["attrs"].get("items") or []
+            label = literal(items[1]["value"]) if len(items) > 1 else None
+            title = label or last(member["qualified_name"])
+            used = [nested, member]
+            fields = {"title": title, "entity": entity.export_id, "description": sentence(STATE, used, derived=False)}
+            state = plan.node(Planned("StateDoc", node_name("StateDoc", member["qualified_name"]), fields, "observado", STATE, used))
+            plan.members[state.export_id] = last(member["qualified_name"])
+
+
+# -- routes: urlpatterns, router.register, @action ------------------------------------------------
+
+def _prefixes(facts: Facts, module: str, seen: tuple[str, ...] = ()) -> list[tuple[str, list[Fact]]]:
+    """The URL prefixes `module` is mounted under by `path(prefix, include('<module>'))` in the
+    `urlpatterns` of other modules (with the facts they come from); `[("", [])]` for a root module."""
+    mounts: list[tuple[str, list[Fact]]] = []
+    for fact in facts.of_kind("assignment"):
+        if fact["qualified_name"] != "urlpatterns" or fact["attrs"]["module"] in seen:
+            continue
+        for item in fact["attrs"].get("items") or []:
+            args = item.get("args") or []
+            if item.get("func", "").endswith("path") and len(args) > 1 and args[1] in (f"include('{module}')", f'include("{module}")'):
+                for above, used in _prefixes(facts, fact["attrs"]["module"], (*seen, module)):
+                    mounts.append((join(above, literal(args[0]) or ""), [*used, fact]))
+    return mounts or [("", [])]
+
+
+def join(*parts: str) -> str:
+    return "/".join(p.strip("/") for p in parts if p.strip("/"))
+
+
+def _router(facts: Facts, register: Fact) -> tuple[Fact | None, list[Fact]]:
+    """The router variable of `<router>.register(...)`, the `<router>.urls` assignment of its
+    module that exposes it, and the router's own assignment (for `trailing_slash`)."""
+    var = register["attrs"]["call"]["func"].rsplit(".", 1)[0]
+    module = register["attrs"]["module"]
+    router = next((f for f in facts.of_kind("assignment") if f["qualified_name"] == var and f["attrs"]["module"] == module and f["attrs"].get("call")), None)
+    exposed = [f for f in facts.of_kind("assignment") if f["qualified_name"] == "urlpatterns" and f["attrs"]["module"] == module and _mentions(f, f"{var}.urls")]
+    return router, exposed
+
+
+def _mentions(patterns: Fact, text: str) -> bool:
+    attrs = patterns["attrs"]
+    return attrs.get("value") == text or any(text in a for i in attrs.get("items") or [] for a in i.get("args") or [])
+
+
+def _viewset(facts: Facts, name: str, module: str) -> Fact | None:
+    imported = facts.by_id.get(module, {}).get("attrs", {}).get("imports", [])
+    found = [c for c in facts.classes(name) if any(last(b).endswith("ViewSet") for b in facts.bases(c))]
+    near = [c for c in found if c["attrs"]["module"] in imported]
+    return (near or found)[0] if len(near or found) == 1 else None
+
+
+def _action(method: Fact) -> dict | None:
+    return next((d for d in method["attrs"].get("decorators") or [] if last(d["name"]) == "action"), None)
+
+
+def _model_of(facts: Facts, viewset: Fact, entities: dict[str, Planned]) -> tuple[Fact, list[Fact]] | None:
+    """The model class a viewset serves: the `X` of `queryset = X.objects...`, else the
+    `Meta.model` of its `serializer_class`."""
+    by_name = {e.fields["symbol"]: cid for cid, e in entities.items()}
+    queryset = facts.member(viewset, "queryset", "assignment")
+    func = (queryset["attrs"].get("call") or {}).get("func", "") if queryset else ""
+    if func.split(".")[0] in by_name and ".objects" in func:
+        return facts.by_id[by_name[func.split(".")[0]]], [queryset]
+    serializer = facts.member(viewset, "serializer_class", "assignment")
+    named = serializer["attrs"].get("value") if serializer else None
+    for cls in facts.classes(named) if named else []:
+        meta = facts.member(cls, "Meta", "class")
+        model = facts.member(meta, "model", "assignment") if meta else None
+        if model and model["attrs"].get("value") in by_name:
+            return facts.by_id[by_name[model["attrs"]["value"]]], [serializer, cls, meta, model]
+    return None
+
+
+def _routes(plan: Plan, facts: Facts, entities: dict[str, Planned], table_of: dict) -> list[tuple[Planned, Fact, Fact]]:
+    """ApiOperationDoc, HandlerDoc, DomainOperationDoc and `handled_by`/`executes` of each
+    `@action` of each viewset registered on a router; the domain operations found, with their entity."""
+    operations: list[tuple[Planned, Fact, Fact]] = []
+    for register in facts.of_kind("call"):
+        call = register["attrs"].get("call") or {}
+        args = call.get("args") or []
+        if not call.get("func", "").endswith(".register") or len(args) < 2 or literal(args[0]) is None:
+            continue
+        viewset = _viewset(facts, args[1], register["attrs"]["module"])
+        router, exposed = _router(facts, register)
+        if viewset is None:
+            plan.not_derived.append(f"{register['path']}:{register['span']['start_line']} register({args[1]}): no hay un viewset único con ese nombre entre los facts")
+            continue
+        if router is None or not exposed:
+            plan.not_derived.append(f"{viewset['qualified_name']}: ningún urlpatterns del módulo expone el router de {register['path']}:{register['span']['start_line']}")
+            continue
+        slash = "" if (router["attrs"]["call"].get("kwargs") or {}).get("trailing_slash") == "False" else "/"
+        model = _model_of(facts, viewset, entities)
+        plan.not_derived.append(f"{viewset['qualified_name']}: rutas CRUD heredadas de {', '.join(facts.bases(viewset))}: sin método handler en los facts")
+        for method in facts.members(viewset, "method"):
+            action = _action(method)
+            if action is None:
+                continue
+            for prefix, mount in _prefixes(facts, register["attrs"]["module"]):
+                operations += _action_routes(plan, facts, viewset, method, action, register, router, exposed, mount, prefix, slash, model, entities)
+    return operations
+
+
+def _action_routes(plan, facts, viewset, method, action, register, router, exposed, mount, prefix, slash, model, entities):
+    kwargs = action.get("kwargs") or {}
+    verbs = [v.upper() for v in (literal_list(kwargs.get("methods")) or ["get"]) if v.lower() in VERBS]
+    detail = kwargs.get("detail") == "True"
+    segment = literal(kwargs.get("url_path")) or last(method["qualified_name"])
+    route = "/" + join(prefix, literal(register["attrs"]["call"]["args"][0]), "{id}" if detail else "", segment) + slash
+    handler_facts = [method]
+    handler = plan.node(Planned("HandlerDoc", node_name("HandlerDoc", method["qualified_name"]), {
+        "title": method["qualified_name"], "framework": "django-rest-framework", "symbol": method["qualified_name"],
+        "description": sentence("drf-viewset-method", handler_facts, derived=False)}, "observado", "drf-viewset-method", handler_facts))
+    sources = [register, router, *exposed, *mount, method]
+    found: list = []
+    for verb in verbs:
+        title = f"{verb} {route}"
+        fields = {"title": title, "method": verb, "route": route, "description": sentence(ROUTE, sources, derived=True)}
+        api = plan.node(Planned("ApiOperationDoc", node_name("ApiOperationDoc", title), fields, "derivado", ROUTE, sources))
+        plan.edge("handled_by", api, handler, ROUTE, [register, method], "")
+    if model is not None:
+        found = _executes(plan, facts, method, handler, model, entities)
+    return found
+
+
+def _executes(plan, facts, method, handler, model, entities):
+    cls, served = model
+    found = []
+    for call in method["attrs"].get("calls") or []:
+        owner, _, name = call["name"].rpartition(".")
+        target = facts.member(cls, name, "method") if owner and "." not in owner and owner not in ("self", "cls") else None
+        if target is None:
+            continue
+        fields = {"title": target["qualified_name"], "symbol": target["qualified_name"], "description": sentence("django-model-method", [target], derived=False)}
+        operation = plan.node(Planned("DomainOperationDoc", node_name("DomainOperationDoc", target["qualified_name"]), fields, "observado", "django-model-method", [target]))
+        plan.edge("executes", handler, operation, EXECUTES, [method, *served, target], f"La llamada {call['name']} (línea {call['line']}) es a un método del modelo servido por el viewset.")
+        found.append((operation, target, cls))
+    return found
+
+
+def _policies_writes_transitions(plan: Plan, facts: Facts, operations: list, entities: dict, table_of: dict) -> None:
+    done: set[str] = set()
+    for operation, method, cls in operations:
+        if operation.export_id in done:
+            continue
+        done.add(operation.export_id)
+        module = method["attrs"]["module"]
+        for call in method["attrs"].get("calls") or []:
+            if "." not in call["name"] and call["name"].startswith(PREDICATE_PREFIXES):
+                for function in facts.functions(module, call["name"]):
+                    _policy(plan, operation, method, function, call)
+            if call["name"] in ("self.save", "self.delete") and table_of.get(cls["id"]):
+                table, used = table_of[cls["id"]]
+                plan.edge("writes", operation, table, WRITES, [method, *used], f"La llamada {call['name']} (línea {call['line']}) escribe en la tabla del modelo.")
+        _transitions(plan, facts, operation, method, cls, entities)
+
+
+def _policy(plan: Plan, operation: Planned, method: Fact, function: Fact, call: dict) -> None:
+    statement = function.get("doc") or None
+    fields = {
+        "title": function["qualified_name"], "statement": statement,
+        "description": sentence("django-predicate-function", [function], derived=False),
+    }
+    if statement is None:
+        fields["desconocidos"] = {"statement": "la función no tiene docstring"}
+    policy = plan.node(Planned("PolicyDoc", node_name("PolicyDoc", function["qualified_name"]), fields, "observado", "django-predicate-function", [function]))
+    what = (f"La llamada {call['name']} (línea {call['line']}) es a una función predicado (prefijo {'/'.join(PREDICATE_PREFIXES)}); "
+            "los facts no dan la condición que decide el raise, así que la regla usa solo la llamada.")
+    plan.edge("governed_by", operation, policy, GOVERNED, [method, function], what)
+
+
+def _transitions(plan: Plan, facts: Facts, operation: Planned, method: Fact, cls: Fact, entities: dict) -> None:
+    """`transitions` only when a fact shows the operation assigning a member of the entity's choices;
+    the facts of assignment are of module and class level, so a body assignment is not one."""
+    entity = entities[cls["id"]]
+    states = [n for n in plan.nodes.values() if n.model == "StateDoc" and n.fields["entity"] == entity.export_id]
+    shown = [f for f in facts.members(method, "assignment")]
+    if not states:
+        return
+    reached = [(f, s) for f in shown for s in states if (f["attrs"].get("value") or "").endswith(f".{plan.members[s.export_id]}")]
+    if not reached:
+        plan.not_derived.append(f"{operation.export_id} transitions: ningún fact de assignment dentro de {method['qualified_name']} muestra el estado al que pasa ({', '.join(s.fields['title'] for s in states)})")
+        return
+    for fact, state in reached:
+        plan.edge("transitions", operation, state, TRANSITION, [method, fact], "")
+=== nuevo: src/specir/extract/facts.py
+"""Reading the generic facts of `sldb.api.code.code_facts`: indexes and the small helpers the
+rules share. Nothing here reads code; it reads facts."""
+
+from __future__ import annotations
+
+import json
+from typing import Any
+
+Fact = dict[str, Any]
+
+
+def literal(text: Any) -> str | None:
+    """The value of a string literal as a fact shows it (`'posts'`), else None."""
+    if isinstance(text, str) and len(text) >= 2 and text[0] == text[-1] and text[0] in "'\"":
+        return text[1:-1]
+    return None
+
+
+def literal_list(text: Any) -> list[str] | None:
+    """The string items of a list literal as a fact shows it (`['post']`), else None."""
+    if not isinstance(text, str):
+        return None
+    try:
+        items = json.loads(text.replace("'", '"'))
+    except ValueError:
+        return None
+    return items if isinstance(items, list) and all(isinstance(i, str) for i in items) else None
+
+
+def last(name: str) -> str:
+    return name.rsplit(".", 1)[-1]
+
+
+class Facts:
+    """The facts of a tree, indexed by id, by container and by owner."""
+
+    def __init__(self, facts: list[Fact]) -> None:
+        self.all = facts
+        self.by_id = {f["id"]: f for f in facts}
+        self.children: dict[str, list[Fact]] = {}
+        for fact in facts:
+            for relation in fact.get("relations", []):
+                if relation["type"] == "contained-in":
+                    self.children.setdefault(relation["target"], []).append(fact)
+
+    def of_kind(self, *kinds: str) -> list[Fact]:
+        return [f for f in self.all if f["kind"] in kinds]
+
+    def members(self, fact: Fact, *kinds: str) -> list[Fact]:
+        return [f for f in self.children.get(fact["id"], []) if not kinds or f["kind"] in kinds]
+
+    def member(self, fact: Fact, name: str, *kinds: str) -> Fact | None:
+        return next((f for f in self.members(fact, *kinds) if last(f["qualified_name"]) == name), None)
+
+    def bases(self, fact: Fact) -> list[str]:
+        return list(fact["attrs"].get("bases") or [])
+
+    def classes(self, name: str) -> list[Fact]:
+        return [f for f in self.of_kind("class") if f["qualified_name"] == name]
+
+    def functions(self, module: str, name: str) -> list[Fact]:
+        return [f for f in self.of_kind("function") if f["attrs"].get("module") == module and f["qualified_name"] == name]
+
+    def owner(self, fact: Fact) -> Fact | None:
+        parents = [r["target"] for r in fact.get("relations", []) if r["type"] == "contained-in"]
+        return self.by_id.get(parents[0]) if parents else None
+=== nuevo: src/specir/extract/plan.py
+"""What the rules of specIR plan to write: nodes and edges, each with the rule that made it and
+the facts it stands on (the facts are anchored when the plan is written, `write.py`)."""
+
+from __future__ import annotations
+
+import hashlib
+from dataclasses import dataclass, field
+from typing import Any
+
+#: Where a planned document lands in the store's project, relative to its root.
+DOCUMENT_DIR = "specir/extracted"
+ANCHOR_DIR = "specir/anchors"
+
+#: Name prefix by model: document names are unique in a store whatever their model.
+PREFIXES = {
+    "ApiOperationDoc": "api", "HandlerDoc": "handler", "DomainOperationDoc": "op", "PolicyDoc": "policy",
+    "StateDoc": "state", "DomainEntityDoc": "entity", "TableDoc": "table", "RelationDoc": "edge",
+}
+
+
+def slug(text: str) -> str:
+    """Lowercase letters and digits separated by single hyphens."""
+    out, last = [], "-"
+    for char in text.lower():
+        keep = char if char.isascii() and char.isalnum() else "-"
+        if keep != "-" or last != "-":
+            out.append(keep)
+        last = keep
+    return "".join(out).strip("-")
+
+
+@dataclass
+class Planned:
+    """One node or edge to write: `model` and `name` make its export id; `fields` are the model's
+    own fields (nodes) or the RelationDoc's (edges); `facts` are the facts the rule read."""
+
+    model: str
+    name: str
+    fields: dict[str, Any]
+    origen: str
+    rule: str
+    facts: list[dict[str, Any]] = field(default_factory=list)
+
+    @property
+    def export_id(self) -> str:
+        return f"{self.model}:{self.name}"
+
+    @property
+    def path(self) -> str:
+        return f"{DOCUMENT_DIR}/{self.name}.md"
+
+    def payload(self) -> dict[str, Any]:
+        """The document's payload: the provenance decided in IR05 (never inferido, never declarado,
+        always sin_verificar, evidencia empty) plus the model's own fields."""
+        if self.model == "RelationDoc":
+            attributes = {"origen": self.origen, "verificacion": "sin_verificar", "verificado_por": "", "evidencia": "", "anchors": anchor_refs(self.facts)}
+            return {**self.fields, "attributes": attributes}
+        return {"origen": self.origen, "verificacion": "sin_verificar", "verificado_por": "", "evidencia": "", **self.fields}
+
+
+def node_name(model: str, text: str) -> str:
+    return f"{PREFIXES[model]}-{slug(text)}"
+
+
+def edge_name(source: Planned, relation: str, target: Planned) -> str:
+    return f"{PREFIXES['RelationDoc']}-{slug(source.name)}--{relation}--{slug(target.name)}"
+
+
+def where(fact: dict[str, Any]) -> str:
+    """`path:line symbol [anchor]` of a fact, as the descriptions name it: the anchor is the name of
+    the CodeAnchorDoc that holds the fact's fingerprints and source_hash."""
+    return f"{fact['path']}:{fact['span']['start_line']} {symbol_of(fact)} [{anchor_name(ref_of(fact))}]"
+
+
+def anchor_name(ref: str) -> str:
+    return "anchor-" + hashlib.sha256(ref.encode()).hexdigest()[:16]
+
+
+def symbol_of(fact: dict[str, Any]) -> str:
+    return fact["qualified_name"]
+
+
+def ref_of(fact: dict[str, Any]) -> str:
+    """The `code:<path>::<name>` reference of a fact (code-anchoring.md §1): its id without the
+    module's, which keeps the `~n` suffix of a repeated name."""
+    module = fact["attrs"]["module"]
+    name = "" if fact["id"] == module else fact["id"].removeprefix(module + ".")
+    return f"code:{fact['path']}::{name}"
+
+
+def anchor_refs(facts: list[dict[str, Any]]) -> list[str]:
+    return sorted({ref_of(f) for f in facts})
+
+
+def sentence(rule: str, facts: list[dict[str, Any]], derived: bool) -> str:
+    """One sentence that names the rule and the facts it stands on (preflight-5, point 3)."""
+    named = "; ".join(dict.fromkeys(where(f) for f in facts))
+    how = "Derivado" if derived else "Observado"
+    return f"{how} por la regla {rule} sobre los facts de código {named}."
+=== nuevo: src/specir/extract/sql.py
+"""Rule `sql-create-table`: the tables of the SQL files, with their columns and keys, read from the
+`table`, `column` and `constraint` facts of sldb (a primary key is `attrs.primary_key` of its
+column, the others `constraint_type` facts with `columns` and `references`)."""
+
+from __future__ import annotations
+
+from specir.extract.facts import Fact, Facts
+from specir.extract.plan import Planned, node_name, sentence
+
+RULE = "sql-create-table"
+SCHEMA_UNKNOWN = "el SQL leído no dice el esquema de la tabla"
+
+
+def column_text(column: Fact) -> str:
+    attrs = column["attrs"]
+    extras = [word for key, word in (("primary_key", "PK"), ("identity", "identity")) if attrs.get(key)]
+    return " ".join([column["qualified_name"].split(".", 1)[1], attrs.get("type", ""), *extras]).strip()
+
+
+def constraint_text(constraint: Fact) -> str:
+    attrs = constraint["attrs"]
+    text = f"{attrs['constraint_type']} {constraint['qualified_name'].split('.', 1)[1]} ({', '.join(attrs.get('columns') or [])})"
+    reference = attrs.get("references")
+    return f"{text} -> {reference['table']} ({', '.join(reference['columns'])})" if reference else text
+
+
+def tables(facts: Facts) -> dict[str, Planned]:
+    """One TableDoc per `table` fact, by table name; observado, because a table, its columns and its
+    keys are read as they are written."""
+    planned: dict[str, Planned] = {}
+    for table in facts.of_kind("table"):
+        columns = facts.members(table, "column")
+        constraints = facts.members(table, "constraint")
+        used = [table, *columns, *constraints]
+        detail = "; ".join([*(column_text(c) for c in columns), *(constraint_text(c) for c in constraints)])
+        name = table["qualified_name"]
+        description = f"{sentence(RULE, used, derived=False)} Columnas y claves: {detail}."
+        fields = {
+            "title": name, "description": description, "schema_name": None, "desconocidos": {"schema_name": SCHEMA_UNKNOWN},
+            "columns": [c["qualified_name"].split(".", 1)[1] for c in columns],
+        }
+        planned[name] = Planned("TableDoc", node_name("TableDoc", name), fields, "observado", RULE, used)
+    return planned
+=== nuevo: src/specir/extract/write.py
+"""Writing a plan to a store: every anchor is checked before anything is written, anchors are
+written with `sldb.api.anchors.write_anchor`, documents and relations by `apply_batch`."""
+
+from __future__ import annotations
+
+import hashlib
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any
+
+import sldb.api as api
+from sldb.api.anchors import check_anchors, record_anchor, write_anchor
+
+from specir.extract.plan import ANCHOR_DIR, Planned, anchor_name, anchor_refs, ref_of
+
+ANCHOR_MODEL = "CodeAnchorDoc"
+ANCHOR_REF = "sldb.models.code_anchor_doc:CodeAnchorDoc"
+#: What a verifier changed by hand and a re-extraction therefore never writes over (IR05 D4-C).
+UNVERIFIED = "sin_verificar"
+
+
+@dataclass
+class ExtractionReport:
+    """What one extraction did, as `specir.extract.extract` returns it: the export ids of the
+    documents and relations created, left as they were, changed (an anchor of theirs is not
+    `intact`, or their content differs), and what the facts did not let the rules derive."""
+
+    created: list[str] = field(default_factory=list)
+    unchanged: list[str] = field(default_factory=list)
+    changed: list[str] = field(default_factory=list)
+    not_derived: list[str] = field(default_factory=list)
+
+
+def claim_of(fact: dict[str, Any]) -> str:
+    span = fact["span"]
+    return f"{ref_of(fact)}: {fact['kind']} en {fact['path']} líneas {span['start_line']}-{span['end_line']}, source_hash {fact['source_hash']}"
+
+
+def checked_blocks(root: Path, facts: dict[str, dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    """The anchor block of every fact, each checked against the fact it anchors: the same fingerprints
+    and the same source_hash. `ValueError` naming the ref of the first that does not match."""
+    blocks = {}
+    for ref, fact in sorted(facts.items()):
+        try:
+            block = record_anchor(root, ref)
+        except ValueError as error:
+            raise ValueError(f"{ref}: {error}") from error
+        if block["seen"] != fact["fingerprints"]:
+            raise ValueError(f"{ref}: the anchor does not match the fact (fingerprints differ)")
+        if "sha256:" + hashlib.sha256((root / fact["path"]).read_bytes()).hexdigest() != fact["source_hash"]:
+            raise ValueError(f"{ref}: the anchor does not match the fact (source_hash differs)")
+        blocks[ref] = block
+    return blocks
+
+
+def _same(existing: dict[str, Any], wanted: dict[str, Any]) -> bool:
+    def blank(value: Any) -> Any:
+        return None if value in ("", [], {}) else value
+    return all(blank(existing.get(k)) == blank(v) for k, v in wanted.items())
+
+
+def write_plan(store: Path, root: Path, pythonpath: str, nodes: list[Planned], edges: list[Planned], not_derived: list[str]) -> ExtractionReport:
+    facts = {ref_of(f): f for p in (*nodes, *edges) for f in p.facts}
+    blocks = checked_blocks(root, facts)
+    if not api.is_model_registered(store, ANCHOR_MODEL):
+        api.add_model(store, ANCHOR_REF, pythonpath=pythonpath)
+    states = {r.ref: r.state.value for r in check_anchors(store, pythonpath)}
+    held = {d.name: d for d in api.load_runtime_documents(store, pythonpath) if d.model_name == ANCHOR_MODEL}
+    for ref, fact in facts.items():
+        name = anchor_name(ref)
+        if name in held and states.get(ref) == "intact" and held[name].payload.get("claim") == claim_of(fact):
+            continue
+        write_anchor(store, pythonpath, root / ANCHOR_DIR / f"{name}.md", blocks[ref], claim_of(fact), name)
+    current = {(d.model_name, d.name): d for d in api.load_runtime_documents(store, pythonpath) if d.model_name != ANCHOR_MODEL}
+    report, changes = ExtractionReport(not_derived=list(not_derived)), []
+    for planned in (*nodes, *edges):
+        moved = any(states.get(ref, "intact") != "intact" for ref in anchor_refs(planned.facts))
+        old = current.get((planned.model, planned.name))
+        wanted = planned.payload()
+        if old is None:
+            changes.append({"action": "create", "id": planned.name, "model": planned.model, "path": planned.path, "payload": wanted})
+            report.created.append(planned.export_id)
+        elif (old.payload.get("verificacion") or (old.payload.get("attributes") or {}).get("verificacion")) != UNVERIFIED:
+            (report.changed if moved else report.unchanged).append(planned.export_id)
+        elif moved or not _same(old.payload, wanted) or not _same(old.payload.get("attributes") or {}, wanted.get("attributes") or {}):
+            changes.append({"action": "update", "id": planned.name, "payload": wanted})
+            report.changed.append(planned.export_id)
+        else:
+            report.unchanged.append(planned.export_id)
+    if changes:
+        api.apply_batch(store, changes, pythonpath)
+    return report
+=== nuevo: tests/extract/extraction.py
+"""Helpers of the extractor tests: a project made of a copy of tests/fixtures/blog_app with an SLDB
+store and specIR installed, the extraction of it, and what is read back from the store."""
+
+from __future__ import annotations
+
+import json
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+from typing import Any
+
+import pytest
+
+import sldb.api as api
+from conftest import REPO, sldb
+
+from specir.install import package_pythonpath
+
+FIXTURE = REPO / "tests" / "fixtures" / "blog_app"
+BACKEND_AND_DATA = ("ApiOperationDoc", "HandlerDoc", "DomainOperationDoc", "PolicyDoc", "StateDoc", "DomainEntityDoc", "TableDoc")
+
+
+def new_project(base: Path, name: str = "blog_app") -> Path:
+    """`<base>/<name>`: a copy of the fixture with a new store, specIR installed in it."""
+    root = base / name
+    shutil.copytree(FIXTURE, root, ignore=shutil.ignore_patterns("__pycache__"))
+    sldb("stores", "init", "--path", str(root), cwd=root)
+    done = subprocess.run([sys.executable, "-m", "specir.install", "--store", str(root / ".sldb")], cwd=root, capture_output=True, text=True)
+    if done.returncode != 0:
+        pytest.fail(f"specir.install failed ({done.returncode}):\n{done.stdout}\n{done.stderr}")
+    return root
+
+
+def documents(root: Path) -> dict[str, Any]:
+    """Every tracked document of the store by export id (`Model:name`)."""
+    return {f"{d.model_name}:{d.name}": d for d in api.load_runtime_documents(root / ".sldb", package_pythonpath())}
+
+
+def extracted(root: Path) -> dict[str, Any]:
+    """The nodes and relations the extractor wrote (not the anchors nor the installed seeds)."""
+    models = (*BACKEND_AND_DATA, "RelationDoc")
+    return {k: d for k, d in documents(root).items() if d.model_name in models}
+
+
+def triples(root: Path) -> set[tuple[str, str, str]]:
+    """(source model, relation type, target model) of every extracted edge."""
+    edges = [d for d in extracted(root).values() if d.model_name == "RelationDoc"]
+    return {(d.payload["source_id"].split(":")[0], d.payload["relation_type"], d.payload["target_id"].split(":")[0]) for d in edges}
+
+
+def rules_findings(root: Path) -> list[dict[str, Any]]:
+    """`sldb rules check` over the store, whatever its exit code (it is 1 when a rule fails)."""
+    command = [str(Path(sys.executable).with_name("sldb")), "rules", "check", "--store", ".sldb", "--format", "json"]
+    done = subprocess.run(command, cwd=root, capture_output=True, text=True)
+    assert done.stdout.strip(), done.stderr
+    answer = json.loads(done.stdout)
+    return answer["findings"] if isinstance(answer, dict) else answer
+=== nuevo: tests/extract/test_blog_extraction.py
+"""The extractor over tests/fixtures/blog_app (IR08): what it writes, with what provenance, and what
+a second run or a change of the code does."""
+
+from __future__ import annotations
+
+import re
+import subprocess
+from pathlib import Path
+
+import pytest
+import yaml
+
+import sldb.api as api
+from sldb.api.anchors import check_anchors, check_doc_anchors
+from sldb.api.code import code_facts
+
+from conftest import REPO, tree_digest
+from extraction import BACKEND_AND_DATA, documents, extracted, new_project, rules_findings, triples
+
+from specir.extract import ExtractionReport, extract
+from specir.extract import write as writer
+from specir.extract.django_drf import interpret
+from specir.extract.facts import Facts
+from specir.install import package_pythonpath
+
+GOLDEN = yaml.safe_load((REPO / "tests" / "fixtures" / "blog_chain.yaml").read_text(encoding="utf-8"))
+GOLDEN_RELATIONS = {"handled_by", "executes", "governed_by", "writes", "persisted_in"}
+
+
+@pytest.fixture(scope="module")
+def project(tmp_path_factory: pytest.TempPathFactory) -> tuple[Path, ExtractionReport]:
+    root = new_project(tmp_path_factory.mktemp("extract"))
+    return root, extract(root)
+
+
+def golden_model(ref: str) -> str:
+    return ref.split(":")[0]
+
+
+def test_it_extracts_the_nodes_and_relations_of_the_hand_made_chain(project) -> None:
+    root, _ = project
+    golden = [c for b in GOLDEN["batches"] for c in b["changes"]]
+    nodes = [c for c in golden if c.get("model") in BACKEND_AND_DATA]
+    edges = [c for c in golden if c.get("relation_type") in GOLDEN_RELATIONS]
+    found = [d for d in extracted(root).values() if d.model_name in BACKEND_AND_DATA]
+    for model in BACKEND_AND_DATA:
+        want = sorted(n["payload"]["title"] for n in nodes if n["model"] == model)
+        got = sorted(d.payload["title"] for d in found if d.model_name == model)
+        assert len(got) == len(want), (model, want, got)
+    assert {(golden_model(e["source"]), e["relation_type"], golden_model(e["target"])) for e in edges} == triples(root)
+    titles = {d.payload["title"] for d in found}
+    assert {"POST /posts/{id}/publish", "posts", "Post", "Draft", "Published", "can_publish", "PostViewSet.publish", "Post.publish"} <= titles
+
+
+def test_the_route_is_made_from_register_and_action(project) -> None:
+    root, _ = project
+    (route,) = [d for d in extracted(root).values() if d.model_name == "ApiOperationDoc"]
+    assert (route.payload["method"], route.payload["route"], route.payload["origen"]) == ("POST", "/posts/{id}/publish", "derivado")
+    assert "drf-router-register-action" in route.payload["description"]
+    handler = documents(root)["HandlerDoc:handler-postviewset-publish"]
+    assert (handler.payload["symbol"], handler.payload["origen"]) == ("PostViewSet.publish", "observado")
+
+
+def test_the_tables_columns_and_keys_come_from_the_sql_facts(project) -> None:
+    root, _ = project
+    table = documents(root)["TableDoc:table-posts"].payload
+    assert table["columns"] == ["id", "title", "body", "status", "published_at", "author_id"]
+    assert "id bigint PK identity" in table["description"]
+    assert "foreign_key posts_author_id_099b8aca_fk_auth_user_id (author_id) -> auth_user (id)" in table["description"]
+    assert table["origen"] == "observado" and table["desconocidos"] == {"schema_name": "el SQL leído no dice el esquema de la tabla"}
+    constraint = next(f for f in code_facts(root, ["sql"])["facts"] if f["kind"] == "constraint")
+    assert constraint["attrs"]["constraint_type"] == "foreign_key" and constraint["attrs"]["references"] == {"table": "auth_user", "columns": ["id"]}
+
+
+def test_the_transition_without_a_fact_is_reported_as_not_derived(project) -> None:
+    root, report = project
+    assert not any(d.payload.get("relation_type") == "transitions" for d in extracted(root).values() if d.model_name == "RelationDoc")
+    assert any("transitions" in item and "Post.publish" in item for item in report.not_derived), report.not_derived
+    assert any("rutas CRUD" in item for item in report.not_derived)
+
+
+def anchored_facts(root: Path) -> dict[str, dict]:
+    return {f"code:{f['path']}::" + ("" if f["id"] == f["attrs"]["module"] else f["id"].removeprefix(f["attrs"]["module"] + ".")): f for f in code_facts(root)["facts"]}
+
+
+def test_every_node_and_edge_names_anchors_with_file_line_and_source_hash(project) -> None:
+    root, _ = project
+    held = {d.name: d for d in documents(root).values() if d.model_name == "CodeAnchorDoc"}
+    facts = anchored_facts(root)
+    assert held
+    for doc in held.values():
+        fact = facts[doc.payload["ref"]]
+        assert f"líneas {fact['span']['start_line']}-{fact['span']['end_line']}" in doc.payload["claim"]
+        assert fact["source_hash"] in doc.payload["claim"] and fact["path"] in doc.payload["claim"]
+        assert doc.payload["seen"] == fact["fingerprints"]
+    for export_id, doc in extracted(root).items():
+        text = doc.payload.get("description") or doc.payload.get("notes")
+        named = set(re.findall(r"\[(anchor-[0-9a-f]{16})\]", text))
+        assert named and named <= set(held), export_id
+        if doc.model_name == "RelationDoc":
+            assert {held[n].payload["ref"] for n in named} == set(doc.payload["attributes"]["anchors"]), export_id
+    assert [r for r in check_anchors(root / ".sldb", package_pythonpath()) if r.state.value != "intact"] == []
+    assert check_doc_anchors(root / ".sldb", package_pythonpath()) == []
+
+
+def test_provenance_is_observed_or_derived_and_never_verified(project) -> None:
+    root, _ = project
+    for export_id, doc in extracted(root).items():
+        fields = doc.payload["attributes"] if doc.model_name == "RelationDoc" else doc.payload
+        assert fields["origen"] in ("observado", "derivado"), export_id
+        assert fields["verificacion"] == "sin_verificar" and not fields["verificado_por"] and not fields["evidencia"], export_id
+        if doc.model_name == "RelationDoc":
+            assert fields["origen"] == "derivado"
+
+
+def test_relations_pass_their_relation_types_and_the_rules(project) -> None:
+    root, _ = project
+    done = subprocess.run([str(Path(__import__("sys").executable).with_name("sldb")), "edges", "check", "--store", ".sldb"], cwd=root, capture_output=True, text=True)
+    assert done.returncode == 0, done.stdout + done.stderr
+    assert [f for f in rules_findings(root) if f["level"] == "error"] == []
+
+
+def test_a_second_run_leaves_the_store_identical(tmp_path) -> None:
+    root = new_project(tmp_path)
+    first = extract(root)
+    before = tree_digest(root / ".sldb", root / "specir")
+    second = extract(root)
+    assert tree_digest(root / ".sldb", root / "specir") == before
+    assert second.created == [] and second.changed == [] and sorted(second.unchanged) == sorted(first.created)
+
+
+def edit(root: Path, relative: str, old: str, new: str) -> None:
+    path = root / relative
+    text = path.read_text(encoding="utf-8")
+    assert old in text
+    path.write_text(text.replace(old, new), encoding="utf-8")
+
+
+def test_a_changed_file_flags_its_nodes_and_never_overwrites_a_verified_one(tmp_path) -> None:
+    root = new_project(tmp_path)
+    extract(root)
+    store, pythonpath = root / ".sldb", package_pythonpath()
+    verified = {"verificacion": "verificado", "verificado_por": "human:jp", "evidencia": "revisado a mano"}
+    policy = documents(root)["PolicyDoc:policy-can-publish"]
+    api.save_document_payload(store, "PolicyDoc", policy.name, {**policy.payload, **verified}, pythonpath)
+    edge = documents(root)["RelationDoc:edge-op-post-publish--governed_by--policy-can-publish"]
+    api.save_document_payload(store, "RelationDoc", edge.name, {**edge.payload, "attributes": {**edge.payload["attributes"], **verified}}, pythonpath)
+    kept = {k: documents(root)[k].payload for k in ("PolicyDoc:policy-can-publish", "RelationDoc:edge-op-post-publish--governed_by--policy-can-publish")}
+
+    edit(root, "blog/models.py", 'return user == post.author or user.has_perm("blog.change_post")', 'return user == post.author or user.is_staff')
+    report = extract(root)
+
+    assert set(report.changed) == {"PolicyDoc:policy-can-publish", "RelationDoc:edge-op-post-publish--governed_by--policy-can-publish"}
+    assert report.created == []
+    assert "TableDoc:table-posts" in report.unchanged and "ApiOperationDoc:api-post-posts-id-publish" in report.unchanged
+    after = documents(root)
+    for key, payload in kept.items():
+        assert after[key].payload == payload, key
+        fields = payload.get("attributes") or payload
+        assert fields["verificacion"] == "verificado" and fields["verificado_por"] == "human:jp"
+
+
+def test_a_changed_file_updates_what_was_not_verified(tmp_path) -> None:
+    root = new_project(tmp_path)
+    extract(root)
+    edit(root, "blog/models.py", '    """Publish the post: it becomes visible to readers."""\n', "")
+    edit(root, "blog/models.py", "        self.published_at = timezone.now()\n", "        self.published_at = timezone.now()\n        self.status = self.Status.PUBLISHED\n")
+    report = extract(root)
+    assert "DomainOperationDoc:op-post-publish" in report.changed
+    assert "TableDoc:table-posts" in report.unchanged
+    assert [r for r in check_anchors(root / ".sldb", package_pythonpath()) if r.state.value != "intact"] == []
+
+
+def test_an_anchor_that_does_not_match_stops_everything_before_writing(tmp_path) -> None:
+    root = new_project(tmp_path)
+    stale = interpret(Facts(code_facts(root)["facts"]))
+    edit(root, "blog/models.py", "def can_publish(user, post: Post) -> bool:", "def can_publish(user, post: Post, extra=None) -> bool:")
+    before = tree_digest(root / ".sldb", root / "specir")
+    with pytest.raises(ValueError, match=r"code:blog/models\.py::"):
+        writer.write_plan(root / ".sldb", root, package_pythonpath(), list(stale.nodes.values()), list(stale.edges.values()), [])
+    assert tree_digest(root / ".sldb", root / "specir") == before
+
+
+def test_the_extractor_reads_no_code_itself() -> None:
+    forbidden = re.compile(r"tree_sitter|import ast|from ast|pglast|sldb\.code\b|import pron|spec2viz")
+    for path in sorted((REPO / "src" / "specir" / "extract").glob("*.py")):
+        assert not forbidden.search(path.read_text(encoding="utf-8")), path

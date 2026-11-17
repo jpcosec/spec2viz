@@ -1,0 +1,10 @@
+Board: board-001
+Title: IR Board
+status: 
+summary: 
+scope: desk
+purpose: Route the active execution set for IR.
+tasks: desk/tasks/task-ir08-extractor-estático-django-drf-y-sql.md, desk/tasks/task-ir09-extractor-estático-react-tsx-y-contratos-de-api.md, desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md, desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md, desk/tasks/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas.md, desk/tasks/task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesión.md, desk/tasks/task-espejo-sldb-component-spec-from-python-lee-solo-py-regresión-de-b2-que-rompe-2-pruebas-de-ir.md, desk/tasks/task-espejo-sldb-sldb-code-publica-facts-genéricos-de-ts-tsx-js-y-jsx-c3-de-ir-parte-ts-js-para-ir09.md
+pills: desk/contexts/pills.md
+rituals: desk/rituals/phase.md, desk/rituals/execution.md, desk/rituals/testing.md, desk/rituals/closeout.md
+notes: Diecisiete tareas de specIR autoradas desde el drawer, todas en borrador: ninguna se ha ejecutado. Dos ramas: MCP y modelado (IR01 a IR06, IR08 a IR10) y cobertura y retiro de spec2viz (IR07, IR11, IR12, IR13a a IR13d, IR13). Las dependencias están en el campo depends_on de cada tarea.

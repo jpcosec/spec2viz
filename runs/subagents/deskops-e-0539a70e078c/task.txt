@@ -1,0 +1,15 @@
+Task: task-ir08-extractor-estático-django-drf-y-sql
+Title: IR08 Extractor estático Django/DRF y SQL
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+From drawer: desk/drawer/tasks/task-ir08-extractor-estatico-django-drf-y-sql.md
+Effective pills:
+- desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+Effective atoms:
+- atom-por-qué-existe-specir-coherencia-entre-capas-para-agentes-de-código
+- atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
+- atom-specir-depende-solo-de-la-api-pública-de-sldb
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]

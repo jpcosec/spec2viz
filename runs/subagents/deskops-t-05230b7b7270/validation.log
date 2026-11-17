@@ -1,0 +1,25 @@
+### NOTE: .venv/bin/python missing in container; used /dev/shm/tester-venv-05230 (system py3.13 + .venv site-packages + sldb console scripts)
+### grep -rnE tree_sitter|import ast|from ast|pglast|sldb\.code|import pron|spec2viz src/specir/extract
+rc=1
+### /dev/shm/tester-venv-05230/bin/python -m pytest -q -p no:cacheprovider tests/test_imports.py
+.........                                                                [100%]
+9 passed in 0.83s
+rc=0
+### /dev/shm/tester-venv-05230/bin/python -m pytest -q -p no:cacheprovider tests/extract tests/models/test_blog_chain.py -v
+============================= test session starts ==============================
+platform linux -- Python 3.13.5, pytest-9.2.0, pluggy-1.7.0
+rootdir: /mnt/ssd/proyectos/SLDB_1/IR
+configfile: pyproject.toml
+plugins: xdist-3.8.0, anyio-4.16.0
+collected 21 items
+
+tests/extract/test_blog_extraction.py ............                       [ 57%]
+tests/models/test_blog_chain.py ....x...x                                [100%]
+
+=================== 19 passed, 2 xfailed in 68.55s (0:01:08) ===================
+rc=0
+### deskops graph missing --root .
+No missing graph references found.
+rc=0
+### indirect reads grep
+src/specir/extract/write.py:50:        if "sha256:" + hashlib.sha256((root / fact["path"]).read_bytes()).hexdigest() != fact["source_hash"]:
