@@ -1,13 +1,15 @@
 name: 20261116-173627-suggestion-sldb-apply-batch-devuelve-el-lote-inverso-ir04b-destrabado
 path: desk/inbox/20261116-173627-suggestion-sldb-apply-batch-devuelve-el-lote-inverso-ir04b-destrabado.md
-source_hash: 1bbbb7b5a6f7553e69e4deda7e353d5016530707d8b1d9db46ff71b33f4d5e23
-content_hash: 17f101008c6fd62031ebf5c35ac5dd5638ad7dcefa01b3e1e51b87b46af5b6ab
+source_hash: 1285b35b106c4703373f40daa62513cb00e5e38744fbc2073f7f520df08f8ce5
+content_hash: c3ca7d20ed7a49cbdb09242908abad496444793dbafbca03d80ae0a1adaaaacc
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
   target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   created_at: 4b1d4f495191793586515dbcbf3011649841177e131627db453ad68e7a74ee78
-  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: d97d271ba4d15f99bbf7ab03d183649f49e769f11d2f6d921736659156132e66
   title: d3990ab31b0b5d853baf56529330e409a44afd6d88f673577b9a0d4ce30ab723
   body: efd5c5f308669dbe102c50eb4dc4586ef5554e4986997bcce53d9c52f0fbed4d
 semantic_tags:
@@ -15,4 +17,8 @@ semantic_tags:
 - source.document.markdown
 - type.desk.inbox-note
 - workspace.desk.inbox
-provenance: null
+provenance:
+  by: agent
+  at: '2026-11-17T01:22:05Z'
+  authority: generated
+  via: save_document_payload

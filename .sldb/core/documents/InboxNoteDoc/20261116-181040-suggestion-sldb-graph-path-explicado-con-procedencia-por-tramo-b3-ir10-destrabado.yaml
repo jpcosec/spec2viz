@@ -1,13 +1,15 @@
 name: 20261116-181040-suggestion-sldb-graph-path-explicado-con-procedencia-por-tramo-b3-ir10-destrabado
 path: desk/inbox/20261116-181040-suggestion-sldb-graph-path-explicado-con-procedencia-por-tramo-b3-ir10-destrabado.md
-source_hash: 77cf2b95404839927aeae90d63b8423841ca770a1553a61ccb3ae56768112d9b
-content_hash: 4bd918517b4c760952379b77502de9d815698cdb376ceef98b49dded824f1622
+source_hash: d368dcbef7bcf5448cf2ddef42953a3a1117eb2ef12fd1c1c2a8dbbd775c8796
+content_hash: 54985595bdc2a0a84ca0839b083205af09a710c48100ff97d7f1448b133d9176
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
   target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   created_at: a8d932a6931585718618e51e52592233d3e02fed005983cd87ff7cb897954031
-  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: e6024772e2e11876566da0b528ba1ffa5deb99fb066c12ff7eb41933af47c2d8
   title: e073952d4f818e2d5a0a72b77f7d77bd608ac783b61781c02ea4b2ca83f7d5ef
   body: b73a64fc85c4a9ac93e218641a82e75089f4e59f197ea4c8042720f3587af1a7
 semantic_tags:
@@ -15,4 +17,8 @@ semantic_tags:
 - source.document.markdown
 - type.desk.inbox-note
 - workspace.desk.inbox
-provenance: null
+provenance:
+  by: agent
+  at: '2026-11-17T01:22:00Z'
+  authority: generated
+  via: save_document_payload

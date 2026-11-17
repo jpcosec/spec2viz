@@ -1,13 +1,15 @@
 name: 20261116-170314-suggestion-sldb-mcp-gancho-de-validadores-de-lote-add-batch-validator-cerrado
 path: desk/inbox/20261116-170314-suggestion-sldb-mcp-gancho-de-validadores-de-lote-add-batch-validator-cerrado.md
-source_hash: 866bb324568972c709415e458f84bf3ffb550d8f0565bb9709501ed971a0ee69
-content_hash: 2765edde4df5eefef31a83fc19596f40dd1a85f6876c29aba7d6b33ed92eb03f
+source_hash: 804b244a82d4184d1b39e510f2ed54d43dc3c8e14a7c7cd891f728978227e883
+content_hash: 1c7dd4c4b19d41d9013fae11abde7c771b90c91e1d13f0ae5423dc9608a85705
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
   target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   created_at: e8d7fa6b11f41772d957a16b838e501574f56760007055fa3b8323a7bc88158c
-  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: 7c3b1caa900bea4dc73ee86cf542cb238dfe2bac28b4e5165815266d8568deb5
   title: 96479f484d5495cc08f0468cf91fda7b798ad7a7ea6358c100047852399284dc
   body: 453c9a59bd4a8abbe7944553457f181f86a10ce2dd9567765a259b8786704db8
 semantic_tags:
@@ -15,4 +17,8 @@ semantic_tags:
 - source.document.markdown
 - type.desk.inbox-note
 - workspace.desk.inbox
-provenance: null
+provenance:
+  by: agent
+  at: '2026-11-17T01:22:18Z'
+  authority: generated
+  via: save_document_payload

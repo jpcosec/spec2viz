@@ -1,4 +1,9 @@
 ---
+sldb:
+  by: agent
+  at: '2026-11-17T01:21:55Z'
+  authority: generated
+  via: save_document_payload
 # unclear | suggestion
 kind: suggestion
 # e.g., other_repo
@@ -8,9 +13,11 @@ target_project: IR
 # ISO 8601 timestamp
 created_at: '2026-11-16T18:39:54'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: IR
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-11-16T22:21:52'
 ---
 
 # sldb.code lee TS, TSX, JS y JSX (B2, IR08 destrabado)
