@@ -1,0 +1,9 @@
+{
+  "key": "task-ir09-extractor-estático-react-tsx-y-contratos-de-api/bundle",
+  "technical_ok": false,
+  "returncode": null,
+  "input_sha256": "778f5a6266d7570bf3c068cb8ccdf39c2ebca10a96293b1f12de519c90af6fff",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "start": "2026-11-17T15:59:30.842293+00:00",
+  "end": "2026-11-17T16:14:30.952402+00:00"
+}
