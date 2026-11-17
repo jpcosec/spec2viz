@@ -1,0 +1,39 @@
+name: task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesión
+path: desk/tasks/task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesión.md
+source_hash: bc7807a6c5bfa5722dd62248d96fff9f003d1cafc0ad25a0b6ef6426b213c19b
+content_hash: c6f76ed7e51b1128f4382368954fd20b65567175598bc86e6b37f83b92867ca8
+field_hashes:
+  title: 133172cfbfee027fc9c58d8ec835134a2fde964bd08de97dd48abbbbf55e29a7
+  id: 83195ab8a52ba8aa4f703a0e1a7e36e417d79bba732d8719e8eaf1172a5eac8d
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: cdc41ecb0faeea4fd54d89a0af9704fa317051793e9578e08cc68ba3342d3caa
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 300926b28f1981fb762432639cb5b58400f615266e067820788e2c8ce9c85101
+  goal: dd43e4bd0e5e4433fd01591242baa908f65927e1f008fa696e8c66b2b5487068
+  scope: 6d056f3d39869e6b43619b25f3e28a6d2f2af8c69b2f47f8d425ff6f2beaefd3
+  references: fd2bf2611fa2adaa96ddb2fd46f62ea40ec616db55017a6707fbca5d6a10e1d4
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 509e632eaf4c9cecb97280d2d6ea3a65bc12a3e9b5ac9bbc73acbc2feec21f66
+  validation: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  done_when: 9891989b8b31cfe47b2e38b3a4fdd9fce7a46bb5c512fb66297692e1682a5a0b
+  task_type: 5619d24174620ad487a0abcf96f8cf76f2194860f28794d1d441226cd2d613dd
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- artifact:task
+- host:robocop2
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-17T03:08:44Z'
+  authority: generated
+  via: save_document_payload

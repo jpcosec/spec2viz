@@ -1,7 +1,7 @@
 name: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
 path: desk/tasks/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas.md
-source_hash: 2b8bd8d7556af793ea90dec6ad37654b948e1e0e7098b8c21ddf508205d6b472
-content_hash: 824f67f872cc6ef4814c87efab6ffcf1a1b1817e9c728ec1e2286854cda6773d
+source_hash: ebb7b974b526b35a310a98f66213341f0c792f1abdc375ad01b61a753b84dd4c
+content_hash: 60c2bff1749966410c678f6a7f2b3dea6995d066fb3e576593c47097a3e4e7b2
 field_hashes:
   title: 23dd8cf93df143e429a80fd29d18f3c14a879fe858cd7cbac6c844e622e2db61
   id: 505050d1000deb7af48cd481b64d8c527030e85c2415b05f9db1c24765a13a44
@@ -11,15 +11,15 @@ field_hashes:
   current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
   history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   why: 5eb69c288ec7a7ccfc32e501a309594d4f93670ae42bca485a283ed4858623b1
-  goal: 6d321cb1bddf27c580957846419560a6f158f559a8ed348bd2f54dda65d04e59
-  scope: 406f15b60677e1897dfd4144b924f09116c9dc470b9e29a6abad5cb422684f9a
-  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  depends_on: 2515623f2a61c78142f418bc1feaf2106e6a3e1d11a87c7b41fde5665c769c48
+  goal: e123e27f0fbad693060c593fbfc4c14fbcee31daa585d95b1e0cf7c68f9f8437
+  scope: b726316fdd00dcd7ca7475df256cd5af34b136e1a411f854efcfab451f9b3bec
+  references: 1f49cf137a9ebb542b9740026c54db25d04ddba50bf34e32106f77ce5e8f1df7
+  depends_on: b5b7aae207560d43ab62904f94a360bc4c3a1a00ab7ecc501bd3e13f78670ac1
   pills: cd52265a75a519d9a09b455a9b0e6a8a09f8ebfa0c435314ecdaf50e5a2f12fd
-  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: e17fdf57bba78df44694f7f0e415e4a6624055cb0445f69969d2020c4ee43d05
-  validation: 633168f9930a0a0eda9ae6b1a061e2a4d30d1b6cbc3e959a1c2aabece0e465af
-  done_when: 11cdd5d3c4331c9bb7082141de6372c9473873211e91914061151540b376cf7a
+  files: 5b501bdbfe918dfbebc8668b2f00ab20439c3a572cedca24602b1e29c86df5a5
+  implementation_path: d149066191c1748cc3709ba3d26787f453c6e4f6215bfdf19db341058f48bb9b
+  validation: d2afbe9ec750f27b0b6a701280529e927acad092ff39bc578087ea0c88f41bb6
+  done_when: f41c36fce0138eef8513f12f4b4fa8ad648e49f7a5413eb2b05d736e979be57c
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
@@ -34,6 +34,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-16T05:05:16Z'
+  at: '2026-11-17T03:09:58Z'
   authority: generated
   via: save_document_payload
