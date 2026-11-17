@@ -1,0 +1,9 @@
+{
+  "key": "task-ir08-extractor-estático-django-drf-y-sql/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "464b34b65e2103eed0238c4b307a841f69ed6d771d97824906c9e334dd312cfa",
+  "output_sha256": "65583c53b63c740088bab8cc6f4a160b7080e0fdf149d63369080537a0c13808",
+  "start": "2026-11-17T11:13:51.186492+00:00",
+  "end": "2026-11-17T11:14:05.397566+00:00"
+}

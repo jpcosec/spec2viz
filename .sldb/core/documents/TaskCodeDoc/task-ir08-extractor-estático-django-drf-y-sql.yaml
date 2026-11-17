@@ -1,7 +1,7 @@
 name: task-ir08-extractor-estático-django-drf-y-sql
 path: desk/tasks/task-ir08-extractor-estático-django-drf-y-sql.md
-source_hash: 682bf03fecc4671a69bf2ebd5a0bfe2b7c1edccb918ef5cc2ae1940e07500585
-content_hash: cd857e57f29aa1eb440af6751a5eca1a4150ce715da8391d1f28c50de8d64ea9
+source_hash: 0c85dae9d935043284f7d7ed38d91ec96fa13378de0aa1082bddf35b078f9d2e
+content_hash: 0af9bfbafadb83c807c5c740128bfcdc426364c0ba1035651bf6b3679858efb0
 field_hashes:
   title: ad7800e8142992538794d0e7ab91fb6d4e61fcda0e2d661022cbd2a28ff15358
   id: 69d505b1bbea82b207df04a92ee89d3a9db0c4d5919fdd139834bffd175bd7a1
@@ -11,14 +11,14 @@ field_hashes:
   current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
   history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   why: b99db0dae913f3525b2ee03306f03cb22e7300bc3e5a5a4c05d27fe25523a941
-  goal: f38fbda753224bb7203cadb2d8eaa6236602749ae3dd26ccc63d04c08a9eaa61
-  scope: 36d3286a51bf4907a83b2259619242c063c241f0aa67313262700f1ebea303a4
+  goal: 4354f442f2be593846754181e5e66b9f70903c1046acc203caf053856a09ed37
+  scope: d740413b5cf4e05392cf94577ac9f4ac951f7deb6b8e2a6aff3264520fcfe78d
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   depends_on: 16c9e1e4a8942b05142dbb00d89fee91aea8f15a53c156a63bc8ea669dcaa762
   pills: 857633de51d8431f8d4b794fa4a05fd81ea9e127b0c5ef4219e8aa85a7d2a327
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 3128d7d91d3513ff0770a6a6f572537b0415e8e140132407e5d4d8d135a50e75
-  validation: 9fc31e089c9d03a39957a898ee69a228f2a778e875201d717c96c0f468ac8697
+  implementation_path: a961ab22cc3fb150c5cfb55ba94f7f8de308ec65221722d5dec28a8e870e8159
+  validation: 9bfed10b8e3314df1628f58f127c9ae1d6108aeecff71ba4fbdabf3c12054285
   done_when: 69552816b763fa4f6bdf4dc54ec0b10a5b6eff4d2f1002594a76f10c578390ec
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
@@ -37,6 +37,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-17T00:17:49Z'
+  at: '2026-11-17T11:18:08Z'
   authority: generated
   via: save_document_payload
