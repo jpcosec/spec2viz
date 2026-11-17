@@ -1,0 +1,37 @@
+{
+  "key": "task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m/preflight",
+  "input_sha256": "46296ec227ca7f1c3b29e68e7a982d690eec18b1c6e80d3224f159a2dcad1cb3",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261116-230908/context-review/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m/preflight/46296ec227ca7f1c3b29e68e7a982d690eec18b1c6e80d3224f159a2dcad1cb3/attempt-1/input.md"
+  ],
+  "model": "deepseek/deepseek-flash",
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m.md",
+      "sha256": "6c97849b5d8f0300569ef1b16c89aa9e5680c804d683691f6ed53d95696858e7",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-16T23:09:08.341299+00:00",
+  "finished": "2026-11-16T23:09:24.234116+00:00"
+}

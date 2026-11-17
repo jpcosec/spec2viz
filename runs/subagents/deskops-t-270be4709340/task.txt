@@ -1,0 +1,9 @@
+Task: task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m
+Title: IR13i Corregir en el acta el estado de G5 y la fila de IR tras cerrar la federación de las pruebas MCP
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Effective pills:
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]

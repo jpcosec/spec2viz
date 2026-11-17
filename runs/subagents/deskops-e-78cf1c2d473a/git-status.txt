@@ -1,0 +1,25 @@
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .sldb/core/documents/TaskCodeDoc/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real.yaml
+	modified:   .sldb/core/models/RunDoc.yaml
+	modified:   .sldb/core/models/TaskCodeDoc.yaml
+	modified:   .sldb/core/store_index.yaml
+	modified:   desk/tasks/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real.md
+	modified:   docs/spec2viz/acta-de-retiro.md
+	modified:   tests/conftest.py
+	modified:   tests/test_mcp_extension.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.sldb/core/documents/RunDoc/run-deskops-e-78cf1c2d473a.yaml
+	runs/subagents/20261116-230908/
+	runs/subagents/20261116-230947/
+	runs/subagents/20261117-000806/
+	runs/subagents/deskops-e-473333353dce/
+	runs/subagents/deskops-e-78cf1c2d473a/
+	runs/subagents/deskops-t-af2c27434a91/
+	tests/fixtures/blog_app/
+
+no changes added to commit (use "git add" and/or "git commit -a")

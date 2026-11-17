@@ -1,0 +1,18 @@
+name: 20261116-213102-suggestion-sldb-la-nota-211648-c1-c5-ya-son-cuatro-tareas-en-sldb
+path: desk/inbox/20261116-213102-suggestion-sldb-la-nota-211648-c1-c5-ya-son-cuatro-tareas-en-sldb.md
+source_hash: 51f25715132cdc5b5289ed22b211e939e2a9730f4609406199597c09d8478888
+content_hash: d550a469132389c9c20864ba0fec4f28bd196e3ebb5bdcb73587d8a41360819c
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: 8027d2d0d4b44cf1dfebcee5fc76c4abf0ccb5bf03894e211889af71dd50854b
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  title: 63630ff0d33957212b717863fdd1d5e42fe531667a92b351973aa754b8f71646
+  body: 8c034320c20101f477393120d8f5ac1aff6f43b6fe195d4dfab5b45a4159496a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null

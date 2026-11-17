@@ -1,0 +1,200 @@
+$ git rev-parse HEAD
+d6a804f4741408a2562c72e7bb65eb6afbd9fa67
+rc=0
+
+$ git merge-base --is-ancestor 4f1e108 HEAD
+rc=0
+
+$ git merge-base --is-ancestor b16aab7 HEAD
+rc=0
+
+$ git merge-base --is-ancestor 421d6a27 HEAD || echo '(421d6a27 es de deskops, no de IR)'
+fatal: Not a valid object name 421d6a27
+(421d6a27 es de deskops, no de IR)
+rc=0
+
+$ git show HEAD:tests/conftest.py | grep -nE 'spec2viz'
+7:in place and only read. The store linked as `spec2viz` is not spec2viz's: it is a new sldb store
+32:SPEC_FIXTURES = REPO / "tests" / "visual" / "fixtures" / "spec2viz"
+33:SPEC_FIXTURE = "docs/architecture/spec2viz/class-sldb-models.yml"
+101:    """The `.sldb` of the temporary specs store linked as `spec2viz` in every mounted copy."""
+113:    the deskops store and the specs store `spec_store` (as `spec2viz`) linked."""
+126:    sldb("stores", "add", str(spec_store), "--name", "spec2viz", "--store", ".sldb", cwd=root)
+rc=0
+
+$ git show HEAD:tests/test_mcp_extension.py | grep -nE 'spec2viz'
+4:linked as `spec2viz`). At level 0 there is no write tool, and reading through every tool, sldb's
+26:SPEC_STORE = "spec2viz"
+65:def test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server(mcp, spec_store: Path) -> None:
+rc=0
+
+$ git show HEAD:tests/conftest.py | grep -nE 'WORKSPACE / "spec2viz"|\.\./spec2viz'
+rc=1
+
+$ git show HEAD:tests/test_mcp_extension.py | grep -nE 'WORKSPACE / "spec2viz"|\.\./spec2viz'
+rc=1
+
+$ grep -nE 'spec2viz' tests/conftest.py
+9:it is only read. The store linked as `spec2viz` is not spec2viz's: it is a new sldb store
+38:SPEC_FIXTURES = REPO / "tests" / "visual" / "fixtures" / "spec2viz"
+39:SPEC_FIXTURE = "docs/architecture/spec2viz/class-sldb-models.yml"
+147:    """The `.sldb` of the temporary specs store linked as `spec2viz` in every mounted copy."""
+159:    the `federated` stores (the deskops copy) and the specs store `spec_store` (as `spec2viz`) linked."""
+172:    sldb("stores", "add", str(spec_store), "--name", "spec2viz", "--store", ".sldb", cwd=root)
+rc=0
+
+$ git diff --stat
+ ...copia-del-store-de-deskops-en-vez-del-real.yaml | 10 +--
+ .sldb/core/models/RunDoc.yaml                      |  6 +-
+ .sldb/core/models/TaskCodeDoc.yaml                 |  4 +-
+ .sldb/core/store_index.yaml                        |  2 +-
+ ...a-copia-del-store-de-deskops-en-vez-del-real.md |  5 +-
+ docs/spec2viz/acta-de-retiro.md                    | 16 ++--
+ tests/conftest.py                                  | 90 ++++++++++++++++------
+ tests/test_mcp_extension.py                        | 17 ++--
+ 8 files changed, 103 insertions(+), 47 deletions(-)
+rc=0
+
+$ git diff --stat -- . ':!desk' ':!.sldb' ':!runs'
+ docs/spec2viz/acta-de-retiro.md | 16 ++++----
+ tests/conftest.py               | 90 +++++++++++++++++++++++++++++++----------
+ tests/test_mcp_extension.py     | 17 +++++---
+ 3 files changed, 89 insertions(+), 34 deletions(-)
+rc=0
+
+$ git status --short -- . ':!desk' ':!.sldb' ':!runs'
+ M docs/spec2viz/acta-de-retiro.md
+ M tests/conftest.py
+ M tests/test_mcp_extension.py
+?? tests/fixtures/blog_app/
+rc=0
+
+$ grep -n 'bloqueada' docs/spec2viz/acta-de-retiro.md
+rc=1
+
+$ .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_matriz_cobertura_spec2viz.py tests/visual/test_retirement_gate.py
+...........x                                                             [100%]
+11 passed, 1 xfailed in 4.92s
+rc=0
+
+$ deskops graph missing --root .
+No missing graph references found.
+rc=0
+
+$ git -C /mnt/ssd/proyectos/SLDB_1/deskops merge-base --is-ancestor 421d6a27 origin/main; git -C /mnt/ssd/proyectos/SLDB_1/deskops merge-base --is-ancestor 74ffdb63 origin/main; git -C /mnt/ssd/proyectos/SLDB_1/deskops log --oneline -1 421d6a27; git -C /mnt/ssd/proyectos/SLDB_1/deskops log --oneline -1 74ffdb63
+421d6a27 deskops quita el enlace federado al store de spec2viz de su .sldb (G5 opción b de JP)
+74ffdb63 closeout: task-deskops-quita-el-enlace-federado-al-store-de-spec2viz-de-su-sldb-g5-opcion-b-de-jp
+rc=0
+
+$ git log --oneline -1 b16aab7; git log --oneline -1 4f1e108
+b16aab7 tests: las pruebas MCP dejan de federar el store real spec2viz/.sldb; store de specs temporal desde la fixture de IR (G5)
+4f1e108 closeout: task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a
+rc=0
+
+$ git diff -- tests/conftest.py tests/test_mcp_extension.py > /dev/shm/t270-ajeno.patch; diff <(grep -vE '^index ' /dev/shm/t270-ajeno.patch) <(grep -vE '^index ' runs/subagents/deskops-e-473333353dce/diff.patch | awk '/^diff --git/{keep=($0 ~ /tests\/(conftest|test_mcp_extension)\.py/)} keep') && echo IDENTICOS
+IDENTICOS
+rc=0
+
+$ grep -nE 'federa|conftest|bloquead' docs/spec2viz/acta-de-retiro.md
+80:`../deskops/.sldb/core/store_index.yaml` solo federa sldb, pron y scion (la única coincidencia de
+93:| G5 Stores | decidido; pendiente de ejecución en IR | `spec2viz/.sldb` registra los 7 modelos de `spec2viz.sldb_models` (19 registros). Es el único store del universo que lo hace. Decisión de JP del 2026-11-16 (transmitida por el supervisor; nota de spec2viz `desk/inbox/20261116-021430-suggestion-g5-decisi-n-de-jp-sobre-spec2viz-sldb.md`): opción A, el store `spec2viz/.sldb` se archiva junto con el repo spec2viz cuando `specir retirement check` dé 0, y no se reapuntan sus 7 modelos. Registro en spec2viz: atom `atom-decisión-de-jp-2026-11-16-g5-el-store-spec2viz-sldb-se-archiva-con-el-repo` y task.decision `task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a`. Resuelta en IR: las pruebas ya no federan ese store (`task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a`, código `b16aab7`, closeout `4f1e108`), después de que deskops quitara su enlace al store de spec2viz (`421d6a27`, closeout `74ffdb63`; pedido en la nota de inbox 20261116-122447). Pendiente: quitar `spec2viz/.sldb` del universo de `specir retirement check` al declarar el retiro (IR13) y archivar el store con el repo spec2viz. |
+102:| deskops | 22: 20 de habilidad de agente (`.claude/skills/deskops-workflow/SKILL.md`, `references/spec2viz-cli.md`, `.opencode/skills/use-spec2viz/SKILL.md`), 2 invocaciones (`desk/drawer/plans/workspace-documental/render_diagram.py:7`, `:9`), corrida del 2026-11-15 (y las de IR13e, IR13f e IR13g); 0 desde la del 2026-11-16 de IR13h (HEAD `12c5c2ce`, origin/main `ee9bc3cd`). Además, la regla de rutas `deskops/graph/desk_graph.py:75` (no es dependencia; decidida, ver «Decisiones» 4) | `deskops/desk/inbox/20261115-224757-suggestion-ir13-pide-migrar-las-habilidades-y-el-script-de-deskops-de-spec2viz-a-specir.md` | resuelto: deskops origin/main `ee9bc3cd` (aviso de su coordinador del 2026-11-16), en tres pares de commit y closeout, todos en origin: el enlace federado al store de spec2viz sale de su `.sldb` (`421d6a27`, closeout `74ffdb63`; G5 opción b), la regla de `deskops/graph/desk_graph.py:75` deja de nombrar spec2viz y reconoce los specs YAML sincronizados (`42b752ea`, closeout `b716bf85`) y las skills y el script `render_diagram.py` dejan de invocar spec2viz y usan specir (`ce66f69e`, closeout `2421ca29`). Comprobado desde IR el 2026-11-16 (IR13h): `git -C ../deskops merge-base --is-ancestor` de `2421ca29`, `74ffdb63` y `b716bf85` (y de `421d6a27`, `42b752ea` y `ce66f69e`) contra `origin/main` rc 0; `../deskops/.sldb/core/store_index.yaml` federa solo sldb, pron y scion (`grep -n spec2viz` solo encuentra la etiqueta `system.spec2viz` del modelo `ViewDoc` de sldb, línea 308); la corrida de IR13h no tiene filas de deskops. Quedan menciones en prosa (la remisión de `.opencode/skills/use-spec2viz/SKILL.md` a use-specir), que no cuentan para el comprobador |
+189:El store que descubre el catálogo es el `.sldb` de IR, que federa 8 stores (con `deskops` y `sldb`
+194:`sldb/desk/inbox/20261115-224941-suggestion-matching-edges-catalog-build-con-tomos-tarda-minutos-porque-cada-edges-of-recompone-live-stale-y-mapas-del-ndice-federado.md`.
+204:   cuando `specir retirement check` dé 0, sin reapuntar sus 7 modelos. Las pruebas ya no lo federan:
+205:   `task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a` quedó resuelta en IR
+219:6. IR: quitar o congelar los oráculos de paridad en las pruebas (la federación del store de spec2viz ya
+rc=0
+
+$ git diff --word-diff=porcelain docs/spec2viz/acta-de-retiro.md | grep -c '^[-+][^-+]'
+27
+rc=0
+
+$ git show 4f1e108 --stat | head -20
+commit 4f1e108ef0670c2842da0eb26115aa86308ad9cb
+Author: robocop server <juanpablo.ruiz.r@gmail.com>
+Date:   Mon Nov 16 19:16:32 2026 -0300
+
+    closeout: task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a
+    
+    Task-Id: task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a
+    Run-Dir: runs/subagents/deskops-t-79b9a3c32e0f-a2
+
+ .sldb/core/documents/BoardDoc/Board.yaml           |   8 +-
+ ...spec2viz-sldb-g5-opci\303\263n-a-bundle-4.yaml" |  36 ++
+ ...spec2viz-sldb-g5-opci\303\263n-a-bundle-5.yaml" |  36 ++
+ ...sldb-g5-opci\303\263n-a-evidence-commit-1.yaml" |  36 ++
+ ...pci\303\263n-a-evidence-materialization-1.yaml" |  36 ++
+ ...-sldb-g5-opci\303\263n-a-evidence-tests-1.yaml" |  36 ++
+ .../RunDoc/run-deskops-t-79b9a3c32e0f-a2.yaml      |  32 ++
+ ...ore-real-spec2viz-sldb-g5-opci\303\263n-a.yaml" |  42 --
+ .sldb/core/models/BoardDoc.yaml                    |   4 +-
+ .sldb/core/models/ReviewDoc.yaml                   |   6 +-
+ .sldb/core/models/RunDoc.yaml                      |   6 +-
+rc=0
+
+$ git show b16aab7 --stat | head -20
+commit b16aab708dcfedfc399a1400f98113ec5d0f18d2
+Author: robocop server <juanpablo.ruiz.r@gmail.com>
+Date:   Mon Nov 16 19:15:55 2026 -0300
+
+    tests: las pruebas MCP dejan de federar el store real spec2viz/.sldb; store de specs temporal desde la fixture de IR (G5)
+    
+    Task-Id: task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+ tests/conftest.py           | 65 ++++++++++++++++++++++++++++++++++++---------
+ tests/test_mcp_extension.py | 29 ++++++++++----------
+ 2 files changed, 67 insertions(+), 27 deletions(-)
+rc=0
+
+$ git -C ../deskops log -1 --format='%h %cI' 421d6a27; git -C ../deskops log -1 --format='%h %cI' 74ffdb63; git log -1 --format='%h %cI' b16aab7; git log -1 --format='%h %cI' 4f1e108
+421d6a27 2026-11-16T17:37:45-03:00
+74ffdb63 2026-11-16T17:38:57-03:00
+b16aab7 2026-11-16T19:15:55-03:00
+4f1e108 2026-11-16T19:16:32-03:00
+rc=0
+
+$ grep -n spec2viz ../deskops/.sldb/core/store_index.yaml
+308:  - system.spec2viz
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -m pytest -q -p no:cacheprovider 'tests/visual/test_sync_generation_parity.py::test_a_component_spec_from_specir_python_ast_validates' 2>&1 | tail -3
+=========================== short test summary info ============================
+FAILED tests/visual/test_sync_generation_parity.py::test_a_component_spec_from_specir_python_ast_validates
+1 failed in 2.34s
+rc=0
+
+$ TMPDIR=/dev/shm .venv/bin/python -c "from pathlib import Path; import specir; from sldb.api.notations import component_spec_from_python as f; s,fi=f(Path(specir.__file__).parent, project_id='specir', title='specIR'); [print(x.code, x.subject) for x in fi]"
+component-spec/syntax-error visual/templates/vendor/bpmn-js/bpmn-navigated-viewer.production.min.js
+rc=0
+
+$ git -C ../sldb show --stat 600b51a9 | head -25
+commit 600b51a9c2431c1fdaaa335f6a726138b290961f
+Author: robocop server <juanpablo.ruiz.r@gmail.com>
+Date:   Mon Nov 16 18:25:17 2026 -0300
+
+    sldb.code lee el frontend: TS, TSX, JS y JSX con un mismo reader sobre tree-sitter-typescript (extra code), hechos y anclas
+    
+    Task-Id: task-código-readers-y-facts-de-tsx-ts-y-sql-con-anclas-sobre-tree-sitter-inbox-20261115-022446-b2
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+ CHANGELOG.md                                       |  1 +
+ pyproject.toml                                     |  1 +
+ src/sldb/api/anchors/record_anchor.py              | 14 ++--
+ src/sldb/code/files.py                             | 20 +++++
+ src/sldb/code/lang_ts.py                           | 47 ++++++++++++
+ src/sldb/code/runtime.py                           | 44 +++++++----
+ src/sldb/code/scan.py                              | 30 ++++----
+ src/sldb/code/ts_fingerprints.py                   | 34 +++++++++
+ src/sldb/code/ts_readers.py                        | 86 ++++++++++++++++++++++
+ src/sldb/models/code_ref.py                        |  6 +-
+ tests/api/test_anchors.py                          | 53 +++++++++++++
+ tests/fixtures/treesitter/frontend/src/App.tsx     | 41 +++++++++++
+ tests/fixtures/treesitter/frontend/src/Panel.jsx   |  6 ++
+ .../fixtures/treesitter/frontend/src/useToggle.ts  |  6 ++
+ tests/fixtures/treesitter/frontend/src/util.js     |  4 +
+rc=0
+

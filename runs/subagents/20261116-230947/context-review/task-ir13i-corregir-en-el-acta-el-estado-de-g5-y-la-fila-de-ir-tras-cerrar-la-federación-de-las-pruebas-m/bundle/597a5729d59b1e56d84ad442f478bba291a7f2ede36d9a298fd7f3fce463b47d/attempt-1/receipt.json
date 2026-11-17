@@ -1,0 +1,9 @@
+{
+  "key": "task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "597a5729d59b1e56d84ad442f478bba291a7f2ede36d9a298fd7f3fce463b47d",
+  "output_sha256": "28ee897490474a64f2d0b731162a3bcf9a064997c7b40bbf237d2ffa3ec57a14",
+  "start": "2026-11-16T23:09:47.921285+00:00",
+  "end": "2026-11-16T23:10:15.992010+00:00"
+}

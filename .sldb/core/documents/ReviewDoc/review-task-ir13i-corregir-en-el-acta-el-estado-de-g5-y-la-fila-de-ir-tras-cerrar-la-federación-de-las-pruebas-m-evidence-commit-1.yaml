@@ -1,0 +1,36 @@
+name: review-task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m-evidence-commit-1
+path: desk/reviews/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m/evidence-commit-1.md
+source_hash: caf83d83d7265f84676e003bff627af95a285ac478ef00e0f85437dbb922b9c9
+content_hash: a3e548996a550a317fbbd2816c11f2e4132956b2bc1900a5021713313c834fbf
+field_hashes:
+  id: bd80cca871c2d96cc52a891d4d76cd0e9c046119cf0fc0b0e064cc9a9b4b7c45
+  title: 45f47b8ec49b690ea8c053837e8883c0b391b9a4acd7f07dc5c828c3d29550d9
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 5ea9c58673a69c87d0e5540a6f9978aad8f8e0a0b9ce3471cff139c730d97888
+  value: f262583d6c66d3a4eaa0e2f6f1807ac2700fce9252ed5f94cbb45cca3d2bb0fc
+  subject: d364bdc3b314008daf3455ca281f87020942de07d257459ee77c64b22e5a1c65
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 84343d1a063828215dbbc9aec75a0697e6df5fc0b67f7114ccabc26e398b2984
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: c08ac286191fc0be25869b81c034dba36142a5a746cf4eb8c5c23a45776ca897
+  created_at: 05262f8cffddaf28d90a820809ef3b64a858aeb27dd5cc59098ad04d17ec324c
+  disposed_at: 05262f8cffddaf28d90a820809ef3b64a858aeb27dd5cc59098ad04d17ec324c
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: ecb0ce4c26f1d4ebc0f305c4c86dc0e738a2f59e22df11ad84344682c01d7e36
+  disposition: d071bb0a4976ddace11f661fc8263c1e663e846f78e8ecede9e4dd31f179327c
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-17T00:35:34Z'
+  authority: generated
+  via: create_document

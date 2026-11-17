@@ -1,0 +1,9 @@
+{
+  "key": "task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "46296ec227ca7f1c3b29e68e7a982d690eec18b1c6e80d3224f159a2dcad1cb3",
+  "output_sha256": "511c64613515c59f97c1d11cba5879198d16b9465d9a38809f4d43e703e978d5",
+  "start": "2026-11-16T23:09:08.341299+00:00",
+  "end": "2026-11-16T23:09:24.234116+00:00"
+}

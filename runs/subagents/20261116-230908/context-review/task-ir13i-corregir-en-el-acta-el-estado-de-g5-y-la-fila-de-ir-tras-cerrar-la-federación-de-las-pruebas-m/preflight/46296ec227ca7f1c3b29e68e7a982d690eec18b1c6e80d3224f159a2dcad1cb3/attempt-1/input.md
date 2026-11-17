@@ -1,3 +1,4 @@
+FILE:desk/tasks/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m.md
 ---
 sldb:
   by: agent
@@ -68,3 +69,7 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 La fila G5, el punto de G5 de Lo que falta y la fila de IR en Consumidores describen el estado real: la federación de las pruebas está cerrada y lo que queda de G5 es retirar el store del universo y archivarlo.
+
+FILE:instruccion
+Preflight solo-TaskDoc de la tarea task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m: reformula el encargo tal como lo leería un ejecutor sin ningún otro contexto, lista ambigüedades con cita textual del input y da el DRY-RUN sin ejecutar nada. No ejecutes nada.
+

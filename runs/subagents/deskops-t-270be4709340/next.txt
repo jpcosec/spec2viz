@@ -1,0 +1,22 @@
+Task: task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m
+Title: IR13i Corregir en el acta el estado de G5 y la fila de IR tras cerrar la federación de las pruebas MCP
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Phase: execution
+Required ritual:
+- desk/rituals/execution.md
+Required pills:
+- desk/contexts/pills.md
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+Next actions:
+1. Make the active task, scope, touched files, and validation targets explicit.
+2. Run a fresh-context subagent review.
+3. Bind matching board and task pills.
+4. Start implementation only after the initialization gate is satisfied.
+Advance when:
+- Execution gate obligations are recorded or satisfied.
+Sources:
+- task: desk/tasks/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m.md
+- board: desk/tasks/Board.md
+- workflow: deskops/spec/workflows/task_lifecycle.yaml

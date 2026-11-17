@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-17T00:17:20Z'
+  at: '2026-11-17T00:35:54Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -16,7 +16,6 @@ tasks:
 - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
 - desk/tasks/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas.md
 - desk/tasks/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real.md
-- desk/tasks/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m.md
 - desk/tasks/task-espejo-sldb-sldb-api-expone-los-facts-de-código-que-necesitan-los-extractores-c1-c5.md
 # List of pill-xxx paths
 pills:
@@ -56,5 +55,4 @@ _Generated from the task references above._
 - IR13 Migración de consumidores y gate final de retiro de spec2viz [draft] - Un comprobador del gate de retiro y un acta que demuestran, con evidencia, que toda capacidad de spec2viz está cubierta por specIR y que ningún consumidor importa ni invoca spec2viz.
 - IR04b Deshacer por MCP: adaptador sobre el lote inverso de sldb [draft] - Una tool MCP undo_changes, montada sobre sldb mcp por el punto de extensión, que deshace los últimos lotes de la sesión reaplicando con sldb.api.apply_batch el lote inverso con guardas que sldb devuelve al aplicar cada uno. Bloqueada hasta que sldb entregue sldb mcp y el lote inverso (tareas espejo de sldb: servidor MCP genérico y lote inverso).
 - Las pruebas MCP de IR federan una copia del store de deskops en vez del real [draft] - La suite completa de IR es reproducible con independencia de lo que hagan otros desks: las pruebas MCP enlazan y digieren una copia del store de deskops tomada al inicio de la sesión, no el store real.
-- IR13i Corregir en el acta el estado de G5 y la fila de IR tras cerrar la federación de las pruebas MCP [draft] - El acta de retiro deja de afirmar cosas que ya no son ciertas sobre G5 y sobre las pruebas de IR.
 - Espejo sldb: sldb.api expone los facts de código que necesitan los extractores (C1–C5) [draft] - Que sldb.api exponga los facts de código con sus anclas, span y hash, incluidos los de Django/DRF y las claves del SQL de Postgres, para que specIR mapee sin leer código.
