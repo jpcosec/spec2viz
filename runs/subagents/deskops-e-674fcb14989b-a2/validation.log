@@ -1,0 +1,31 @@
+# validation.log (ejecutor deskops-e-674fcb14989b-a2); python = venv de trabajo /dev/shm/deskops-e-674fcb14989b-a2-venv sobre los site-packages de .venv
+
+## tests/test_mcp_extension.py -> 11 passed, rc 0
+## tests/test_imports.py -> 9 passed
+## tests/visual/test_sync_generation_parity.py -> 22 passed
+## tests/models/test_domain_tools.py -> 1 failed, 4 passed (fuera de mi alcance, ver result-summary)
+## tests/models/test_blog_chain.py -> 1 failed, 6 passed, 2 xfailed (fuera de mi alcance)
+## tests/test_mcp_undo.py -> 6 failed, 2 passed, rc 1 (hallazgos para sldb; salida completa en undo-run3.log)
+
+## grep (f) y graph missing
+## grep (f): grep -nE "undo_changes|inverse" src/specir
+src/specir/visual/templates/vendor/bpmn-js/bpmn-navigated-viewer.production.min.js:2:!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.
+rc=0
+
+## deskops graph missing --root .
+No missing graph references found.
+rc=0
+Clasificación (f): única coincidencia = bpmn-js minificado de terceros (vendor); sin def, tool ni pila propias.
+
+## pytest-others.log (corridas 1 de los demás módulos)
+### tests/test_mcp_undo.py
+5 failed, 2 passed in 153.46s (0:02:33)
+### tests/test_imports.py
+9 passed in 0.75s
+### tests/models/test_domain_tools.py
+1 failed, 4 passed in 10.93s
+### tests/models/test_blog_chain.py
+E       AssertionError: propose_changes({'changes': [{'action': 'update', 'model': 'DomainEntityDoc', 'name': 'post', 'fields': {'verificacion': 'verificado', 'verificado_por': 'human:jp', 'evidencia': 'x'}}]}) did not fail: {'applied': False, 'rejected': 'domain', 'explanation': '1 domain check(s) failed', 'written': False, 'findings': [{'code': 'specir_agent_verifies', 'level': 'error', 'what': 'post: an agent does not write verificacion: verificado through the MCP; only a human outside the MCP or a deterministic check verifies (IR05 D2-E)', 'subject': 'post'}]}
+1 failed, 6 passed, 2 xfailed in 15.91s
+### tests/visual/test_sync_generation_parity.py
+22 passed in 73.24s (0:01:13)

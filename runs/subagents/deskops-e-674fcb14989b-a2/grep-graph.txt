@@ -1,0 +1,7 @@
+## grep (f): grep -nE "undo_changes|inverse" src/specir
+src/specir/visual/templates/vendor/bpmn-js/bpmn-navigated-viewer.production.min.js:2:!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.
+rc=0
+
+## deskops graph missing --root .
+No missing graph references found.
+rc=0

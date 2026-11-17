@@ -1,0 +1,6 @@
+## main
+ M src/specir/mcp_extension.py
+ M tests/test_mcp_extension.py
+?? .scion/settings.yaml
+?? runs/subagents/deskops-e-674fcb14989b-a2/
+?? tests/test_mcp_undo.py

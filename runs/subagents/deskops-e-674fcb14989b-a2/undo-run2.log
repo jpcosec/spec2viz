@@ -1,0 +1,332 @@
+UNDO {'applied': True, 'undone': 1, 'batches': [{'applied': True, 'saved': ['undo-seed-op', 'undo-op-writes-a', 'undo-entity-a'], 'changes': [{'id': 'undo-seed-op', 'action': 'update', 'payload': {'title': 'A seed operation.', 'origen': 'declarado', 'verificacion': 'sin_verificar', 'verificado_por': '', 'evidencia': '', 'desconocidos': {'symbol': 'no code yet'}, 'description': 'A seed operation.'}, 'expected_source_hash': '0aeba8f092d5b8e2ed3f3eff582d2cca85af4cab5db0661f2b5a60f3ff374cb5'}, {'id': 'undo-op-writes-a', 'action': 'delete', 'expected_source_hash': '3f5a2ac899f95c3fff8c9c7f2e2caebb35a54f5cadabf4b55c325027cd3cb6a9'}, {'id': 'undo-entity-a', 'action': 'delete', 'expected_source_hash': 'd93af1b3182dcbc226e29771b2f82c7e0c12bc01a8d6bef5dc80678d8bc73033'}]}], 'remaining': 0, 'pending': [{'what': "the guards re-checked inside apply_batch's transaction, or a store write lock: a concurrent writer between prevalidation and write is not detected", 'note': 'sldb:20261115-022444-suggestion-specir-guardas-de-apply-batch-bajo-el-cerrojo-del-store'}]}
+FCHANGED /dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR/.sldb/core/documents/DomainOperationDoc/undo-seed-op.yaml
+--- before
++++ after
+@@ -2,3 +2,3 @@
+ path: undo/domain/seed-op.md
+-source_hash: 145260791a7982a6eaea593f34d0c77bbc2908002ec83b487a9555dde60ab28c
++source_hash: d349b3832a966cea8de170a5c7d866902f6d34a1b89e4e9eae5f3256b54ef87f
+ content_hash: b8be4dc051ad1497da83fcfab57278c2604524eef309a0543b8b2d984b156138
+@@ -19,3 +19,3 @@
+   by: agent:specir-ir04b
+-  at: '2026-11-17T16:40:54Z'
++  at: '2026-11-17T16:41:06Z'
+   authority: authored
+
+CHANGED /dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR/.sldb/core/models/DomainOperationDoc.yaml
+--- before
++++ after
+@@ -5,4 +5,4 @@
+ sections_index: .sldb/runtime/sections/DomainOperationDoc.yaml
+-model_hash: 3ec0bd2f6dad2ae47a33675a36e3fa7bc42562e7d679281ba890ad1f7d15ed42
+-roster_hash: 3e8e25542fff6e3cc073fb2703c66b5464a4e37935f8c4c957faa565df041584
++model_hash: ddffd7eae32e5e527ce995b5be8158356cf97b1f6b1fc3541fe1f2d4cd92025c
++roster_hash: 39e8d2ef671135d03f6d122b6b42f6d0fc1904f0844f54c860ba5e65ba166959
+ contract_hash: 54cabd1bf29bc1e5c1238a8388b84ccf02f7f81b9c4aa96667c6b9ad151dda03
+
+CHANGED /dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR/.sldb/core/store_index.yaml
+--- before
++++ after
+@@ -448,2 +448,2 @@
+     holding the refs and the ref as authored.
+-store_hash: 4605a46a601713a92f8d363d07f33d627dacaf84b7e3583eb517b715c3552947
++store_hash: 0e8238eebe167c9a202540936cb69e9fc23ac27b1a4de46669c57cc732a9dfe2
+
+FSTALE {'applied': False, 'rejected': 'stale', 'explanation': "the store changed after that batch was applied: undo-seed-op changed in the store: expected '213c32e8e992cefe9ca5a550ddfd3f4f71b26bfcbee1c120307faa4ad956712f', found '1f189aef1b22b941d69d8732258f48739cfef612f52c98ccebf1dd803a3d3264'. It stays in the stack.", 'written': False, 'document': 'undo-seed-op', 'undone': 0, 'batches': [], 'remaining': 1}
+UNDO AFTER REVERT {'applied': False, 'rejected': 'stale', 'explanation': "the store changed after that batch was applied: undo-seed-op changed in the store: expected '213c32e8e992cefe9ca5a550ddfd3f4f71b26bfcbee1c120307faa4ad956712f', found '4baced0e4e27ae48ce8e89acebff58af1004467850caef110ad25913b2dfd4aa'. It stays in the stack.", 'written': False, 'document': 'undo-seed-op', 'undone': 0, 'batches': [], 'remaining': 1}
+FUNDO 2 {'applied': False, 'rejected': 'stale', 'explanation': "the store changed after that batch was applied: undo-entity-d1 changed in the store: expected '9a3f2bf23eb6882bbe7b57773840d4bff0d0499e0551996ff0628ea5e4b3917c', found '16250d50676155e8144410c6af5d90ee98bde356d609d57d287818b57f984459'. It stays in the stack.", 'written': True, 'document': 'undo-entity-d1', 'undone': 1, 'batches': [{'applied': True, 'saved': ['undo-entity-d1'], 'changes': [{'id': 'undo-entity-d1', 'action': 'update', 'payload': {'title': 'Entity d1.', 'origen': 'declarado', 'verificacion': 'sin_verificar', 'verificado_por': '', 'evidencia': '', 'desconocidos': {'symbol': 'no code yet'}, 'description': 'Entity d1.'}, 'expected_source_hash': 'a19762335d145ae81daf29c9433546fbe554f3c3b69f78016ccd4410a31ec4e3'}]}], 'remaining': 1}
+FLEVEL 0 False {'found': False, 'tool': 'undo_changes', 'explanation': 'undo_changes needs write level 1; this server was started with level 0 (read). The level is set by the operator (`--level`), not by a tool argument. Does not exist or is not implemented; registered as a signal.', 'signal': 'unknown_tool', 'registered_as_signal': True, 'suggestions': ['select_documents', 'specir_nodes', 'read_document', 'check_integrity', 'neighbors']}
+.Tool 'propose_changes' failed: 'Error executing tool propose_changes: LevelError: propose_changes on RuleDoc:rule-undo-e needs write level 2 (rules); this server was started with level 1 (content). The level is set by the operator (`--level`), not by a tool argument.'
+LEVEL 1 RULEDOC Error executing tool propose_changes: LevelError: propose_changes on RuleDoc:rule-undo-e needs write level 2 (rules); this server was started with level 1 (content). The level is set by the operator (`--level`), not by a tool argument.
+LEVEL 1 OVER A LEVEL 2 BATCH {'applied': False, 'rejected': 'nothing_to_undo', 'explanation': 'asked to undo 1 batch(es); this session has 0 applied batch(es) left to undo (the stack is per session and in memory)', 'written': False, 'undone': 0, 'remaining': 0}
+FRULES/EDGES {'rules': (0, 'alert: [rules/rule-undo-f] DomainEntityDoc:undo-entity-b: No operation writes this entity. | any(rel:writes: model <= DomainOperationDoc) (seen: {})\nalert: [rules/rule-undo-f] DomainEntityDoc:undo-entity-d1: No operation writes this entity. | any(rel:writes: model <= DomainOperationDoc) (seen: {})\nalert: [rules/rule-undo-f] DomainEntityDoc:undo-entity-f: No operation writes this entity. | any(rel:writes: model <= DomainOperationDoc) (seen: {})\nrules check: 3 alerta(s)\n'), 'edges': (0, 'note: linked stores: 0 error(s), 1138 stale, theirs to fix (run `edges check` there, or this with --local to leave them out)\nEdges OK\n')}
+FGREP ['src/specir/visual/templates/vendor/bpmn-js/bpmn-navigated-viewer.production.min.js:2:!function(e,t){"object"==typeof exp']
+.
+=================================== FAILURES ===================================
+__ test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_documents __
+
+copy_root = PosixPath('/dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR')
+digest = <function digest.<locals>.take at 0x7f9a80ce0900>
+content = <function content.<locals>.<lambda> at 0x7f9a7f04be20>
+
+    def test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_documents(copy_root, digest, content) -> None:
+        before, mds, checked = digest(), md_digest(copy_root), checks(copy_root)
+        with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
+            assert "undo_changes" in {t.name for t in session.list_tools()}
+            applied = propose_apply(session, content_batch("a"))
+            assert applied["applied"] is True and applied["edge_findings"] == [], applied
+            assert digest() != before
+            undone = session.call("undo_changes", steps=1)
+            print("UNDO", undone)
+            assert undone["applied"] is True and undone["undone"] == 1 and undone["remaining"] == 0, undone
+>       assert content() == mds
+E       AssertionError: assert {'/dev/shm/py...3bae836', ...} == {'/dev/shm/py...3bae836', ...}
+E         
+E         Omitting 414 identical items, use -vv to show
+E         Differing items:
+E         {'/dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR/undo/domain/seed-op.md': '145260791a7982a6eaea593f34d0c77bbc2908002ec83b487a9555dde60ab28c'} != {'/dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR/undo/domain/seed-op.md': '6261d4f1d041f01726cee82e7e4d81494fdc9a62d9636456ce67e1000172847d'}
+E         Use -v to get more diff
+
+tests/test_mcp_undo.py:125: AssertionError
+____________ test_the_store_files_are_byte_identical_after_the_undo ____________
+
+copy_root = PosixPath('/dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR')
+digest = <function digest.<locals>.take at 0x7f9a80208220>
+
+    def test_the_store_files_are_byte_identical_after_the_undo(copy_root, digest) -> None:
+        """Validation 1 asks the sha256 of the store files to match too. It does not: see the finding
+        for sldb in runs/subagents/deskops-e-674fcb14989b-a2/result-summary.md. Kept strict, not xfail."""
+        before = digest()
+        with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
+            assert propose_apply(session, content_batch("h"))["applied"] is True
+            assert session.call("undo_changes", steps=1)["applied"] is True
+>       assert digest() == before
+E       AssertionError: assert {'/dev/shm/py...c242f47c6407'} == {'/dev/shm/py...c242f47c6407'}
+E         
+E         Omitting 9710 identical items, use -vv to show
+E         Differing items:
+E         {'/dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR/.sldb/core/models/DomainOperationDoc.yaml': '53f4c83e1357fa81ed8158ed77fbae08032e5bc2fd7ec24218ce7f0b7107be74'} != {'/dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR/.sldb/core/models/DomainOperationDoc.yaml': '0685c611d475f1451e9b4b4e5d0f2fde932e2b4e7d5e5d6fef7a081dfd25e4b2'}
+E         {'/dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR/.sldb/core/store_index.yaml': 'bb644991a54624b1afa29382826233dbd4e6f3f46880e9c3fb4f6f96503e4896'} != {'/dev/shm/pytest-of-scion/p...
+E         
+E         ...Full output truncated, use '-vv' to show
+
+tests/test_mcp_undo.py:138: AssertionError
+_ test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted _
+  + Exception Group Traceback (most recent call last):
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 151, in test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted
+  |     with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
+  |          ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 162, in __exit__
+  |     self.gen.throw(value)
+  |     ~~~~~~~~~~~~~~^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/conftest.py", line 272, in served
+  |     with portal.wrap_async_context_manager(Client(params, read_timeout_seconds=TOOL_TIMEOUT)) as client:
+  |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 176, in __exit__
+  |     return self._exit_future.result()
+  |            ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+  |     return self.__get_result()
+  |            ~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+  |     raise self._exception
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 272, in _call_func
+  |     retval = await retval_or_awaitable
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 158, in run_async_cm
+  |     result = await self._async_cm.__aexit__(*self._exit_exc_info)
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/client.py", line 480, in __aexit__
+  |     await self._exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  |   File "/usr/lib/python3.13/contextlib.py", line 768, in __aexit__
+  |     raise exc
+  |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+  |     cb_suppress = await cb(*exc_details)
+  |                   ^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 235, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 201, in stdio_client
+  |     async with anyio.create_task_group() as tg:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 205, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/session.py", line 514, in __aexit__
+    |     result = await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+    |     raise BaseExceptionGroup(
+    |         "unhandled errors in a TaskGroup", self._exceptions
+    |     ) from None
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 167, in test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted
+      |     assert undone["applied"] is True and undone["undone"] == 1, undone
+      | AssertionError: {'applied': False, 'rejected': 'stale', 'explanation': "the store changed after that batch was applied: undo-seed-op c...und '4baced0e4e27ae48ce8e89acebff58af1004467850caef110ad25913b2dfd4aa'. It stays in the stack.", 'written': False, ...}
+      | assert (False is True)
+      +------------------------------------
+_ test_two_batches_are_undone_newest_first_with_steps_and_an_empty_stack_refuses _
+  + Exception Group Traceback (most recent call last):
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 173, in test_two_batches_are_undone_newest_first_with_steps_and_an_empty_stack_refuses
+  |     with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
+  |          ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 162, in __exit__
+  |     self.gen.throw(value)
+  |     ~~~~~~~~~~~~~~^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/conftest.py", line 272, in served
+  |     with portal.wrap_async_context_manager(Client(params, read_timeout_seconds=TOOL_TIMEOUT)) as client:
+  |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 176, in __exit__
+  |     return self._exit_future.result()
+  |            ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+  |     return self.__get_result()
+  |            ~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+  |     raise self._exception
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 272, in _call_func
+  |     retval = await retval_or_awaitable
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 158, in run_async_cm
+  |     result = await self._async_cm.__aexit__(*self._exit_exc_info)
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/client.py", line 480, in __aexit__
+  |     await self._exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  |   File "/usr/lib/python3.13/contextlib.py", line 768, in __aexit__
+  |     raise exc
+  |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+  |     cb_suppress = await cb(*exc_details)
+  |                   ^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 235, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 201, in stdio_client
+  |     async with anyio.create_task_group() as tg:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 205, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/session.py", line 514, in __aexit__
+    |     result = await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+    |     raise BaseExceptionGroup(
+    |         "unhandled errors in a TaskGroup", self._exceptions
+    |     ) from None
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 179, in test_two_batches_are_undone_newest_first_with_steps_and_an_empty_stack_refuses
+      |     assert undone["applied"] is True and undone["undone"] == 2 and undone["remaining"] == 0, undone
+      | AssertionError: {'applied': False, 'rejected': 'stale', 'explanation': "the store changed after that batch was applied: undo-entity-d1...ound '16250d50676155e8144410c6af5d90ee98bde356d609d57d287818b57f984459'. It stays in the stack.", 'written': True, ...}
+      | assert (False is True)
+      +------------------------------------
+_ test_level_1_refuses_a_batch_of_rules_so_none_is_on_its_stack_and_a_level_2_batch_is_not_undone_from_it _
+  + Exception Group Traceback (most recent call last):
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 207, in test_level_1_refuses_a_batch_of_rules_so_none_is_on_its_stack_and_a_level_2_batch_is_not_undone_from_it
+  |     with served(copy_root, "--level", "2", "--actor", ACTOR) as rules:
+  |          ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 162, in __exit__
+  |     self.gen.throw(value)
+  |     ~~~~~~~~~~~~~~^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/conftest.py", line 272, in served
+  |     with portal.wrap_async_context_manager(Client(params, read_timeout_seconds=TOOL_TIMEOUT)) as client:
+  |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 176, in __exit__
+  |     return self._exit_future.result()
+  |            ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+  |     return self.__get_result()
+  |            ~~~~~~~~~~~~~~~~~^^
+  |   File "/usr/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+  |     raise self._exception
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 272, in _call_func
+  |     retval = await retval_or_awaitable
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/from_thread.py", line 158, in run_async_cm
+  |     result = await self._async_cm.__aexit__(*self._exit_exc_info)
+  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/client.py", line 480, in __aexit__
+  |     await self._exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  |   File "/usr/lib/python3.13/contextlib.py", line 768, in __aexit__
+  |     raise exc
+  |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+  |     cb_suppress = await cb(*exc_details)
+  |                   ^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/usr/lib/python3.13/contextlib.py", line 235, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 201, in stdio_client
+  |     async with anyio.create_task_group() as tg:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 205, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/usr/lib/python3.13/contextlib.py", line 751, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/mcp/client/session.py", line 514, in __aexit__
+    |     result = await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/mnt/ssd/proyectos/SLDB_1/IR/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 871, in __aexit__
+    |     raise BaseExceptionGroup(
+    |         "unhandled errors in a TaskGroup", self._exceptions
+    |     ) from None
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/mnt/ssd/proyectos/SLDB_1/IR/tests/test_mcp_undo.py", line 214, in test_level_1_refuses_a_batch_of_rules_so_none_is_on_its_stack_and_a_level_2_batch_is_not_undone_from_it
+      |     assert content() == applied_state
+      |            ~~~~~~~^^
+      | TypeError: 'McpSession' object is not callable
+      +------------------------------------
+_ test_the_store_after_an_undo_passes_the_checks_and_the_registered_domain_validators _
+
+copy_root = PosixPath('/dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR')
+digest = <function digest.<locals>.take at 0x7f9a762f4680>
+content = <function content.<locals>.<lambda> at 0x7f9a762f6520>
+
+    def test_the_store_after_an_undo_passes_the_checks_and_the_registered_domain_validators(copy_root, digest, content) -> None:
+        """sldb applies the inverse batch with `apply_batch` directly, so the batch validators specIR
+        registered (`add_batch_validator`) do not run on it. After the undo the store must pass sldb's
+        rules and edges checks, and the registered validators, run over the documents of the batch as
+        they are stored, must find no error."""
+        from sldb import api
+        from sldb.mcp.changes import BatchChange
+        from sldb.mcp.context import ServerContext
+        from sldb.mcp.server import build_server
+    
+        import specir.mcp_extension as extension
+    
+        before, checked = content(), checks(copy_root)
+        context = ServerContext(copy_root / ".sldb", 2, ACTOR)
+        extension.register(build_server(copy_root / ".sldb", 2, ACTOR), context)
+        assert len(context.batch_validators) == 1
+        stored = lambda name: api.serialize_document(api.runtime_document(copy_root / ".sldb", None, f"DomainOperationDoc/{name}"))["payload"]
+        with served(copy_root, "--level", "2", "--actor", ACTOR) as session:
+            assert propose_apply(session, [*content_batch("g"), rule_change("g")])["applied"] is True
+            assert session.call("undo_changes", steps=1)["applied"] is True
+        after = checks(copy_root)
+        print("RULES/EDGES", after)
+        assert after == checked and after["rules"][0] == 0 and after["edges"][0] == 0
+>       assert content() == before
+E       AssertionError: assert {'/dev/shm/py...3bae836', ...} == {'/dev/shm/py...3bae836', ...}
+E         
+E         Omitting 421 identical items, use -vv to show
+E         Differing items:
+E         {'/dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR/undo/domain/seed-op.md': '664b2cff954b64cd413acdc57cf037d7d51306fc819ab3b357989971d85cd859'} != {'/dev/shm/pytest-of-scion/pytest-28/specir-undo0/IR/undo/domain/seed-op.md': '08db4f533ebf3e8dc82fd44a7cfa29a3076dffb2b365e289c17d006e9b3128c3'}
+E         Use -v to get more diff
+
+tests/test_mcp_undo.py:244: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_mcp_undo.py::test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_documents
+FAILED tests/test_mcp_undo.py::test_the_store_files_are_byte_identical_after_the_undo
+FAILED tests/test_mcp_undo.py::test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted
+FAILED tests/test_mcp_undo.py::test_two_batches_are_undone_newest_first_with_steps_and_an_empty_stack_refuses
+FAILED tests/test_mcp_undo.py::test_level_1_refuses_a_batch_of_rules_so_none_is_on_its_stack_and_a_level_2_batch_is_not_undone_from_it
+FAILED tests/test_mcp_undo.py::test_the_store_after_an_undo_passes_the_checks_and_the_registered_domain_validators
+6 failed, 2 passed in 261.69s (0:04:21)
+rc=1

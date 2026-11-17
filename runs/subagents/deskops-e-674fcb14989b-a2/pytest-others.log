@@ -1,0 +1,126 @@
+### tests/test_mcp_undo.py
+            undone = rules.call("undo_changes", steps=1)
+            print("LEVEL 2 UNDO", undone)
+            assert undone["applied"] is True and undone["undone"] == 1, undone
+>       assert digest() == before
+E       AssertionError: assert {'/dev/shm/py...91a1753', ...} == {'/dev/shm/py...91a1753', ...}
+E         
+E         Omitting 9694 identical items, use -vv to show
+E         Differing items:
+E         {'/dev/shm/pytest-of-scion/pytest-23/specir-undo0/IR/.sldb/core/documents/DomainOperationDoc/undo-seed-op.yaml': 'eb605ea0772794ad95e7ff9efefeff81a83498f7755e1fb468613f90a58cdab7'} != {'/dev/shm/pytest-of-scion/pytest-23/specir-undo0/IR/.sldb/core/documents/DomainOperationDoc/undo-seed-op.yaml': 'a095c2f11255b0acf62866052d65d1137cce8af60d587525d2b0ff5d01f8faf9'}
+E         {'/dev/shm/pytest-of-scion/pytest-23/specir-undo0/IR/.sldb/core/store_index.yaml': '8aff4ef46a636070610cb9db14628cf7b19fab9d0557c7631bcce42e38b81d3f'}...
+E         
+E         ...Full output truncated, use '-vv' to show
+
+tests/test_mcp_undo.py:178: AssertionError
+_ test_the_store_after_an_undo_passes_the_checks_and_the_registered_domain_validators _
+
+copy_root = PosixPath('/dev/shm/pytest-of-scion/pytest-23/specir-undo0/IR')
+digest = <function digest.<locals>.<lambda> at 0x7e3143ba0fe0>
+
+    def test_the_store_after_an_undo_passes_the_checks_and_the_registered_domain_validators(copy_root, digest) -> None:
+        """sldb applies the inverse batch with `apply_batch` directly, so the batch validators specIR
+        registered (`add_batch_validator`) do not run on it. After the undo the store must pass sldb's
+        rules and edges checks, and the registered validators, run over the documents of the batch as
+        they are stored, must find no error."""
+        from sldb import api
+        from sldb.mcp.changes import BatchChange
+        from sldb.mcp.context import ServerContext
+        from sldb.mcp.server import build_server
+    
+        import specir.mcp_extension as extension
+    
+        before, checked = digest(), checks(copy_root)
+        context = ServerContext(copy_root / ".sldb", 2, ACTOR)
+        extension.register(build_server(copy_root / ".sldb", 2, ACTOR), context)
+        assert len(context.batch_validators) == 1
+        stored = lambda name: api.serialize_document(api.runtime_document(copy_root / ".sldb", None, f"DomainOperationDoc/{name}"))["payload"]
+        with served(copy_root, "--level", "2", "--actor", ACTOR) as session:
+            assert propose_apply(session, [*content_batch("g"), rule_change("g")])["applied"] is True
+            assert session.call("undo_changes", steps=1)["applied"] is True
+        after = checks(copy_root)
+        print("RULES/EDGES", after)
+        assert after == checked and after["rules"][0] == 0 and after["edges"][0] == 0
+>       assert digest() == before
+E       AssertionError: assert {'/dev/shm/py...91a1753', ...} == {'/dev/shm/py...91a1753', ...}
+E         
+E         Omitting 9694 identical items, use -vv to show
+E         Differing items:
+E         {'/dev/shm/pytest-of-scion/pytest-23/specir-undo0/IR/.sldb/core/documents/DomainOperationDoc/undo-seed-op.yaml': '9328adf715be381e8091e9d603d26d06e7a45f1ffe143d7b7eabc3ece52c39c0'} != {'/dev/shm/pytest-of-scion/pytest-23/specir-undo0/IR/.sldb/core/documents/DomainOperationDoc/undo-seed-op.yaml': 'eb605ea0772794ad95e7ff9efefeff81a83498f7755e1fb468613f90a58cdab7'}
+E         {'/dev/shm/pytest-of-scion/pytest-23/specir-undo0/IR/.sldb/core/store_index.yaml': '2f1d53b9e4d45d9f8eb64436e0f2e2beba8335425189405dcde321e54c30d706'}...
+E         
+E         ...Full output truncated, use '-vv' to show
+
+tests/test_mcp_undo.py:204: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_mcp_undo.py::test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_store
+FAILED tests/test_mcp_undo.py::test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted
+FAILED tests/test_mcp_undo.py::test_two_batches_are_undone_newest_first_with_steps_and_an_empty_stack_refuses
+FAILED tests/test_mcp_undo.py::test_level_1_refuses_a_batch_of_rules_so_none_is_on_its_stack_and_a_level_2_batch_is_not_undone_from_it
+FAILED tests/test_mcp_undo.py::test_the_store_after_an_undo_passes_the_checks_and_the_registered_domain_validators
+5 failed, 2 passed in 153.46s (0:02:33)
+rc=
+### tests/test_imports.py
+.........
+9 passed in 0.75s
+rc=
+### tests/models/test_domain_tools.py
+....F
+=================================== FAILURES ===================================
+__________ test_the_write_tools_come_with_the_extension_from_level_1 ___________
+
+blog = <conftest.McpSession object at 0x7e3124262270>
+
+    def test_the_write_tools_come_with_the_extension_from_level_1(blog) -> None:
+        names = {t.name for t in blog.list_tools()}
+        assert {"propose_changes", "apply_changes", "specir_types", "specir_nodes"} <= names
+        described = next(t for t in blog.list_tools() if t.name == "propose_changes")
+>       assert "IR05 D2-E" in described.description
+E       assert 'IR05 D2-E' in "Dry run: turn typed changes (create/update/delete a document, assert_edge/retract_edge)\ninto a sealed proposal with the server's guards, and answer what it would write. Writes nothing."
+E        +  where "Dry run: turn typed changes (create/update/delete a document, assert_edge/retract_edge)\ninto a sealed proposal with the server's guards, and answer what it would write. Writes nothing." = Tool(name='propose_changes', title=None, description="Dry run: turn typed changes (create/update/delete a document, as...ions(title=None, read_only_hint=True, destructive_hint=False, idempotent_hint=False, open_world_hint=False), meta=None).description
+
+tests/models/test_domain_tools.py:73: AssertionError
+=========================== short test summary info ============================
+FAILED tests/models/test_domain_tools.py::test_the_write_tools_come_with_the_extension_from_level_1
+1 failed, 4 passed in 10.93s
+rc=
+### tests/models/test_blog_chain.py
+....x.F.x
+=================================== FAILURES ===================================
+________________ test_an_agent_does_not_verify_through_the_mcp _________________
+
+blog = <conftest.McpSession object at 0x7949b38dea50>
+
+    def test_an_agent_does_not_verify_through_the_mcp(blog) -> None:
+        edge = {**changes_of("edges")[0], "name": "ir06-self-verified", "attributes": {"origen": "inferido", "verificacion": "verificado", "verificado_por": "human:jp", "evidencia": "x"}}
+        for change in (
+            {"action": "update", "model": "DomainEntityDoc", "name": "post", "fields": {"verificacion": "verificado", "verificado_por": "human:jp", "evidencia": "x"}},
+            {"action": "update", "model": "RelationDoc", "name": changes_of("edges")[0]["name"], "fields": {"attributes.verificacion": "verificado"}},
+            edge,
+        ):
+>           assert "IR05 D2-E" in blog.error_of("propose_changes", changes=[change]), change
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/models/test_blog_chain.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <conftest.McpSession object at 0x7949b38dea50>, tool = 'propose_changes'
+arguments = {'changes': [{'action': 'update', 'model': 'DomainEntityDoc', 'name': 'post', 'fields': {'verificacion': 'verificado', 'verificado_por': 'human:jp', 'evidencia': 'x'}}]}
+
+    def error_of(self, tool: str, **arguments: Any) -> str:
+        """The error text of a call that must fail."""
+        result = self.portal.call(lambda: self.client.call_tool(tool, arguments))
+>       assert result.is_error, f"{tool}({arguments}) did not fail: {result.structured_content}"
+E       AssertionError: propose_changes({'changes': [{'action': 'update', 'model': 'DomainEntityDoc', 'name': 'post', 'fields': {'verificacion': 'verificado', 'verificado_por': 'human:jp', 'evidencia': 'x'}}]}) did not fail: {'applied': False, 'rejected': 'domain', 'explanation': '1 domain check(s) failed', 'written': False, 'findings': [{'code': 'specir_agent_verifies', 'level': 'error', 'what': 'post: an agent does not write verificacion: verificado through the MCP; only a human outside the MCP or a deterministic check verifies (IR05 D2-E)', 'subject': 'post'}]}
+E       assert False
+E        +  where False = CallToolResult(meta={'io.modelcontextprotocol/serverInfo': {'name': 'sldb', 'version': ''}}, content=[TextContent(type...e the MCP or a deterministic check verifies (IR05 D2-E)', 'subject': 'post'}]}, is_error=False, result_type='complete').is_error
+
+tests/conftest.py:248: AssertionError
+=========================== short test summary info ============================
+FAILED tests/models/test_blog_chain.py::test_an_agent_does_not_verify_through_the_mcp
+1 failed, 6 passed, 2 xfailed in 15.91s
+rc=
+### tests/visual/test_sync_generation_parity.py
+......................
+22 passed in 73.24s (0:01:13)
+rc=

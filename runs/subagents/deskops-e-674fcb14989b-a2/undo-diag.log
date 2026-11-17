@@ -1,0 +1,77 @@
+UNDO {'applied': True, 'undone': 1, 'batches': [{'applied': True, 'saved': ['undo-seed-op', 'undo-op-writes-a', 'undo-entity-a'], 'changes': [{'id': 'undo-seed-op', 'action': 'update', 'payload': {'title': 'A seed operation.', 'origen': 'declarado', 'verificacion': 'sin_verificar', 'verificado_por': '', 'evidencia': '', 'desconocidos': {'symbol': 'no code yet'}, 'description': 'A seed operation.'}, 'expected_source_hash': 'cefaaf68e1a27b1eec2c4341b24dc9b3074dc0b27bdb6e29674cfefa763dde60'}, {'id': 'undo-op-writes-a', 'action': 'delete', 'expected_source_hash': '9c73f83967943cbc8be37b2301258bcaaa58985ce005f8d0ec8c89446cb7ddc5'}, {'id': 'undo-entity-a', 'action': 'delete', 'expected_source_hash': 'c4016e8a373272f49bdc8004fc7b4f95b64eecc439ef1820ca2e8b3498edd4f1'}]}], 'remaining': 0, 'pending': [{'what': "the guards re-checked inside apply_batch's transaction, or a store write lock: a concurrent writer between prevalidation and write is not detected", 'note': 'sldb:20261115-022444-suggestion-specir-guardas-de-apply-batch-bajo-el-cerrojo-del-store'}]}
+CHANGED /dev/shm/pytest-of-scion/pytest-27/specir-undo0/IR/.sldb/core/documents/DomainOperationDoc/undo-seed-op.yaml
+--- before
++++ after
+@@ -2,3 +2,3 @@
+ path: undo/domain/seed-op.md
+-source_hash: fd05956898dd9f8b50a87aa42b81091f3625018fbad43552b754ebbcba979230
++source_hash: 72513ecae5e0cf3ab532fb9b5476ed9553879b3bb6c0dc97b51b247669026bcd
+ content_hash: b8be4dc051ad1497da83fcfab57278c2604524eef309a0543b8b2d984b156138
+@@ -19,4 +19,4 @@
+   by: agent:specir-ir04b
+-  at: '2026-11-17T16:21:36Z'
++  at: '2026-11-17T16:21:54Z'
+   authority: authored
+-  via: create_document
++  via: save_document_payload
+
+CHANGED /dev/shm/pytest-of-scion/pytest-27/specir-undo0/IR/.sldb/core/models/DomainEntityDoc.yaml
+--- before
++++ after
+@@ -4,3 +4,3 @@
+ documents_index: .sldb/core/documents/DomainEntityDoc.yaml
+-sections_index: ''
++sections_index: .sldb/runtime/sections/DomainEntityDoc.yaml
+ model_hash: 2886b0bd1c3cc90aaade1ba8dd089ea7c482c86fceb8331e4d466506d8f89e02
+
+CHANGED /dev/shm/pytest-of-scion/pytest-27/specir-undo0/IR/.sldb/core/models/DomainOperationDoc.yaml
+--- before
++++ after
+@@ -5,4 +5,4 @@
+ sections_index: .sldb/runtime/sections/DomainOperationDoc.yaml
+-model_hash: d8aa5be3de723009fc2730d89d75fdb66fdaa5accfc628ade194ecf4114cfd69
+-roster_hash: 43263608dea795b8b87b29fb944776e90a1ac65ca19d1f3fe29d6d07af8220c9
++model_hash: 005ee01863b3500e85bac3a20102e4f52ad77c65904fbb086abe9614e9c341db
++roster_hash: 07a60615ff74dddeb00041682c0efe04a90878ad3d360083bf87733c967d6d61
+ contract_hash: 54cabd1bf29bc1e5c1238a8388b84ccf02f7f81b9c4aa96667c6b9ad151dda03
+
+CHANGED /dev/shm/pytest-of-scion/pytest-27/specir-undo0/IR/.sldb/core/store_index.yaml
+--- before
++++ after
+@@ -448,2 +448,2 @@
+     holding the refs and the ref as authored.
+-store_hash: d993b4df6056b873a89a9102ca8335edd888a9e123c7cc6ff73e09d4574a2a4f
++store_hash: 8ae43848fd859a512f748b4b514738f8fd11ad1f2d07f7195119581e8cb64b1b
+
+F
+=================================== FAILURES ===================================
+____ test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_store ____
+
+copy_root = PosixPath('/dev/shm/pytest-of-scion/pytest-27/specir-undo0/IR')
+digest = <function digest.<locals>.take at 0x712663068180>
+
+    def test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_store(copy_root, digest) -> None:
+        before, mds, checked = digest(), md_digest(copy_root), checks(copy_root)
+        with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
+            assert "undo_changes" in {t.name for t in session.list_tools()}
+            applied = propose_apply(session, content_batch("a"))
+            assert applied["applied"] is True and applied["edge_findings"] == [], applied
+            assert digest() != before
+            undone = session.call("undo_changes", steps=1)
+            print("UNDO", undone)
+            assert undone["applied"] is True and undone["undone"] == 1 and undone["remaining"] == 0, undone
+>       assert digest() == before
+E       AssertionError: assert {'/dev/shm/py...e5ec6acfac96'} == {'/dev/shm/py...e5ec6acfac96'}
+E         
+E         Omitting 9707 identical items, use -vv to show
+E         Differing items:
+E         {'/dev/shm/pytest-of-scion/pytest-27/specir-undo0/IR/.sldb/core/store_index.yaml': '576ffff8da8de7366bcc253399c3881a5e61421eaca41609ec04011c1deba8b6'} != {'/dev/shm/pytest-of-scion/pytest-27/specir-undo0/IR/.sldb/core/store_index.yaml': '09bb82749dce9dbe3ce428bb668f2c6c06ed81ecee58139d47bebb32daffc8e7'}
+E         {'/dev/shm/pytest-of-scion/pytest-27/specir-undo0/IR/.sldb/core/models/DomainEntityDoc.yaml': '1dc65ee2faa0bf8331292b3d8c9d1a180f2a88de674df4f77adcaacd0c358b95'} != {'/dev/shm/pytest-of-scion/pytest-27/specir-u...
+E         
+E         ...Full output truncated, use '-vv' to show
+
+tests/test_mcp_undo.py:119: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_mcp_undo.py::test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_store
+1 failed, 6 deselected in 83.99s (0:01:23)
+rc=1
