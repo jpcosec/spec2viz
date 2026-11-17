@@ -1,0 +1,9 @@
+{
+  "key": "task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "9c23de7ce19db3bd769845030d33e2428006aeebd659f51d27d807b9a4cfa11c",
+  "output_sha256": "41efee60fd9f088cc9dd8881da13a8cf9fc9497ca7da15f9c217d6b4ce915938",
+  "start": "2026-11-17T15:57:24.899058+00:00",
+  "end": "2026-11-17T15:57:33.465252+00:00"
+}
