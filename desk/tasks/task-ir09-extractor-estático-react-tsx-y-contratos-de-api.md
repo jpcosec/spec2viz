@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-17T00:17:55Z'
+  at: '2026-11-17T11:10:55Z'
   authority: generated
   via: save_document_payload
 id: task-ir09-extractor-estático-react-tsx-y-contratos-de-api
@@ -21,6 +21,7 @@ depends_on:
 - task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog
 - task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2
 - task-espejo-sldb-sldb-api-expone-los-facts-de-código-que-necesitan-los-extractores-c1-c5
+- task-espejo-sldb-sldb-code-publica-facts-genéricos-de-ts-tsx-js-y-jsx-c3-de-ir-parte-ts-js-para-ir09
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md

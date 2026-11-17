@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-17T11:09:45Z'
+  at: '2026-11-17T11:12:07Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -15,9 +15,9 @@ tasks:
 - desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md
 - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
 - desk/tasks/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas.md
-- desk/tasks/task-espejo-sldb-sldb-api-expone-los-facts-de-código-que-necesitan-los-extractores-c1-c5.md
 - desk/tasks/task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesión.md
 - desk/tasks/task-espejo-sldb-component-spec-from-python-lee-solo-py-regresión-de-b2-que-rompe-2-pruebas-de-ir.md
+- desk/tasks/task-espejo-sldb-sldb-code-publica-facts-genéricos-de-ts-tsx-js-y-jsx-c3-de-ir-parte-ts-js-para-ir09.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -55,6 +55,6 @@ _Generated from the task references above._
 - IR10 Reglas semánticas y análisis de impacto [draft] - Un conjunto de reglas RuleDoc de dominio que detectan brechas entre capas, evaluadas con el motor de reglas de sldb, y un análisis de impacto que usa los caminos explicados de sldb (graph_path y graph_paths, tarea espejo B3) y lo expone como tool de dominio sobre sldb mcp, con el camino que justifica cada afectado.
 - IR13 Migración de consumidores y gate final de retiro de spec2viz [draft] - Un comprobador del gate de retiro y un acta que demuestran, con evidencia, que toda capacidad de spec2viz está cubierta por specIR y que ningún consumidor importa ni invoca spec2viz.
 - IR04b Deshacer por MCP: adaptador sobre el lote inverso de sldb [draft] - Verificar desde specIR, con un cliente MCP real sobre sldb mcp y la extensión de dominio de specIR montada, que el undo_changes que sirve sldb mcp deshace los últimos lotes de la sesión, incluidos los que pasan por los validadores de dominio de specIR. sldb decidió (nota de inbox 20261116-232335) que undo_changes y la pila de lotes inversos por sesión son de sldb mcp. specIR no registra la tool ni guarda la pila.
-- Espejo sldb: sldb.api expone los facts de código que necesitan los extractores (C1–C5) [draft] - Que sldb.api exponga los facts de código con sus anclas, span y hash, incluidos los de Django/DRF y las claves del SQL de Postgres, para que specIR mapee sin leer código.
 - Espejo sldb: sldb mcp sirve undo_changes con la pila de lotes inversos de la sesión [draft] - Que sldb mcp sirva undo_changes, para que IR04b lo verifique desde specIR.
 - Espejo sldb: component_spec_from_python lee solo .py (regresión de B2 que rompe 2 pruebas de IR) [draft] - Que la suite completa de IR vuelva a verde sin exclusiones del lado de IR.
+- Espejo sldb: sldb.code publica facts genéricos de TS, TSX, JS y JSX (C3 de IR, parte TS/JS, para IR09) [draft] - Que sldb.api.code.code_facts dé, para TS, TSX, JS y JSX, las llamadas de cada función, componente o hook (fetch, axios, clientes de API y otros símbolos) con su primer argumento literal, y los atributos JSX que ligan un evento a un handler, para que specIR arme los contratos de API de React sin leer código.

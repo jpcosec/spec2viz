@@ -1,13 +1,15 @@
 name: 20261117-080227-suggestion-sldb-c3-python-cerrada-facts-gen-ricos-para-django-drf-por-code-facts
 path: desk/inbox/20261117-080227-suggestion-sldb-c3-python-cerrada-facts-gen-ricos-para-django-drf-por-code-facts.md
-source_hash: 033b71ce299225f905f5e7156a3d76fe36083b60a9c42fa4dbfeaad2646adc64
-content_hash: f85b70a87ecb6473abb7bb5f4edc852f228dce97c47a2f77b679d8e30a020e8b
+source_hash: 5e37a661a848c1804c83574e66e6e243ee3af9110817050b4bca14713d74bb25
+content_hash: 9fa54146f97b0390a53ce0e13664338f9546ff96553660843f13f0535bf26bb1
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
   target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   created_at: e93bcfbc43647a7ebc32ed1c9de547887ee2f69164ab8fa3cf42855072ee6ce4
-  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: e7ac5b82209bdcabe7a14b97c1c35ea08a364d2ca8235723a1e3770a9b1deea9
   title: 2d72b025c3ed36db1a299901b5ec060128487474f7e7a56d8b90e4dc63c71ebd
   body: d87259d3bc649c76a9d88701147ff373dcce5590363c2a308c78a12a05d096e5
 semantic_tags:
@@ -15,4 +17,8 @@ semantic_tags:
 - source.document.markdown
 - type.desk.inbox-note
 - workspace.desk.inbox
-provenance: null
+provenance:
+  by: agent
+  at: '2026-11-17T11:11:50Z'
+  authority: generated
+  via: save_document_payload

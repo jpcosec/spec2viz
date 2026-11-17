@@ -1,13 +1,15 @@
 name: 20261117-051521-suggestion-sldb-c4-cerrada-claves-del-sql-de-postgres-con-pglast-extra-postgres
 path: desk/inbox/20261117-051521-suggestion-sldb-c4-cerrada-claves-del-sql-de-postgres-con-pglast-extra-postgres.md
-source_hash: 4c5cb60c8efc52b5666a909032c56f496f53a6cdd040c21543f3d59952d0e788
-content_hash: 6ed5129ee85cad9a42975003e3dab0b331782a30caf2fcf04153ecab56dd4224
+source_hash: f8494abc36ba849b55627c87243ec89a9ba7174c75e53b43dbaeb87d8c4a82e0
+content_hash: 3fdde2b51d884cf3d157e5b848571c09d8465ce0c66de2e2c153adf16474a29f
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
   target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   created_at: dc3b0acfbb4b7f88eda9bfb9536ff0fc814e05c5bf951ca9d053caf86ad0bba5
-  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: 0280b40c27855345f4b745c5dec16b9737c16382ea8602a59b3e68482356bd4d
   title: c3e57b6384b0f1c816e0ad30433d2ee072ad6e2e77a10c442eba06a2125df0fa
   body: 45bbe0362cd476b767e31bb2258bf54b8cf1b02c01bd373e2e27256fa747d26f
 semantic_tags:
@@ -15,4 +17,8 @@ semantic_tags:
 - source.document.markdown
 - type.desk.inbox-note
 - workspace.desk.inbox
-provenance: null
+provenance:
+  by: agent
+  at: '2026-11-17T11:11:44Z'
+  authority: generated
+  via: save_document_payload

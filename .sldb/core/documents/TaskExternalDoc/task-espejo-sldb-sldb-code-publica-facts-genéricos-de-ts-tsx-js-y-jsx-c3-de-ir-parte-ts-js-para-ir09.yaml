@@ -1,0 +1,38 @@
+name: task-espejo-sldb-sldb-code-publica-facts-genéricos-de-ts-tsx-js-y-jsx-c3-de-ir-parte-ts-js-para-ir09
+path: desk/tasks/task-espejo-sldb-sldb-code-publica-facts-genéricos-de-ts-tsx-js-y-jsx-c3-de-ir-parte-ts-js-para-ir09.md
+source_hash: 87e83d3cc08479c1b34780d922b5ccb61133d1635c0ad28ef773835ba14eefe9
+content_hash: b26e6eadf18ff726cf4b760d112d0989ca5b7d07919297a28a5f400217c99968
+field_hashes:
+  title: 8952059a0f86dde7c7fcef0d0fb1e98b00ad3ae056ee42949f8bdb18b443bb60
+  id: bc122a12c6c4da4575a9936aeaefd6985383d0228809279e6173cdf1be8507af
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 9e7e8be2998f87dfcbb538781d827f202722ef7dad630b93bca343e20f247db8
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 6072c95c03f5a9e8c7f46e6de4f17d770556a8746e2507c6ee7ca3bcf43eabfa
+  goal: 3b6bd70d21bc320c6b3afcaf88bfc95d309320bbf96b4431a0ed1dc34ad7d856
+  scope: efb959b324567aee716a28691615af53c211a581caa1cd3d631532cf8fecc14e
+  references: e6e93b075a3dbe9691d65b4c3f122be6776ca673984456586cf3282597212c78
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: a979f6d54bbf67577dce6aa3ed07a9955e5ddd7508d69502539e071e8af832a8
+  validation: 8fb3a222b6dc7e522e2ff4823f98a83df1ed6a859f4a1ae5bb059b236351632b
+  done_when: bdb4c5ade52bfc0702238276543c5173f6914bdc69f6793902390e17dc2b5e8d
+  task_type: 5619d24174620ad487a0abcf96f8cf76f2194860f28794d1d441226cd2d613dd
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-17T11:10:39Z'
+  authority: generated
+  via: save_document_payload
