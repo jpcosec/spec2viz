@@ -34,3 +34,4 @@
 {"task_id": "task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s", "run_id": "run-deskops-t-d471ebbc6f77", "run_dir": "runs/subagents/deskops-t-d471ebbc6f77", "session_sha256": null, "commit": null}
 {"task_id": "task-espejo-sldb-sldb-api-expone-los-facts-de-c\u00f3digo-que-necesitan-los-extractores-c1-c5", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
 {"task_id": "task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesi\u00f3n", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
+{"task_id": "task-espejo-sldb-component-spec-from-python-lee-solo-py-regresi\u00f3n-de-b2-que-rompe-2-pruebas-de-ir", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}

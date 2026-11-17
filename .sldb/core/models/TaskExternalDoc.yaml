@@ -3,10 +3,10 @@ model_ref: deskops.models:TaskExternalDoc
 path: ''
 documents_index: .sldb/core/documents/TaskExternalDoc.yaml
 sections_index: .sldb/runtime/sections/TaskExternalDoc.yaml
-model_hash: 56296338bfe845c0f697ab9bce4d3f4d95689987f10daad5ae4578de32292550
-roster_hash: e00a53a8862cf982c9a3aa3ae27907c6c1fa24ca9f94427a8f95bdd2cc23e958
+model_hash: 19bfc68f72d8d231f66603615e447b8a9e8ed71f7371800d0e71803cf272d125
+roster_hash: 473d157ab4906955b8988a15133b75fe8841ee0603f33e8244909632d8be8431
 contract_hash: 18c9b4f737e2efd59001a6b1d09075cac4eca474b2b89b816d2b4ee631fd1e1c
-documents_count: 2
+documents_count: 1
 version: 1
 canonical: false
 family: null
