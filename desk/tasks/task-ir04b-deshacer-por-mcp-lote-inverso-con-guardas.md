@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-17T14:35:02Z'
+  at: '2026-11-17T15:53:45Z'
   authority: generated
   via: save_document_payload
 id: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
@@ -26,6 +26,7 @@ pills:
 files:
 - src/specir/mcp_extension.py
 - tests/conftest.py
+- tests/test_mcp_extension.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
@@ -59,7 +60,7 @@ Dentro: pruebas de specIR que, sobre una copia montada del store, aplican lotes 
 
 _Outline the expected implementation route or affected surface._
 
-Esperar a que cierre el espejo task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesión. Después, escribir las pruebas en un archivo de prueba nuevo bajo tests/, dedicado al deshacer, usando los fixtures de tests/conftest.py (mount_copy, store_copy y la sesión mcp) contra el sldb mcp real. Sin mocks. La única lógica nueva en specIR, si hace falta, es la que su extensión necesite para que el deshacer pase por sus validadores; ni inversión ni guardas. Precisiones (preflight-1 y bundle-1): (a) los tres espejos de depends_on están cerrados (undo_changes en sldb d0ee07a3/02ea724e, en origin). (b) Niveles de sldb mcp, en sldb/src/sldb/mcp/mutability.py: 0 read, 1 content y 2 rules (RelationTypeDoc y RuleDoc); el 3 no se sirve. Se prueban 0, 1 y 2: con 2 se deshace un lote que tocó RelationTypeDoc o RuleDoc. (c) La copia escribible es la de mount_copy de tests/conftest.py, con su sesión MCP de escritura arrancada con el nivel de cada caso; el store_copy de solo lectura no sirve. La huella es tree_digest de la copia. (d) Las tools y respuestas son las de sldb mcp: apply_changes y undo_changes(steps), con rechazo {applied: false, rejected: stale, document, written: false}. Revertir el cambio ajeno es aplicar otro lote que devuelve el documento a su contenido anterior. (e) Hoy src/specir/mcp_extension.py no registra validadores de lote (add_batch_validator): lo que se comprueba es que tras undo_changes el store pasa sldb rules check y sldb edges check, y se deja escrito como aserción y en result-summary.md. Si el deshacer deja reglas rotas, es un hallazgo para sldb. (f) Cuenta como implementación propia una def, una tool registrada o una estructura que guarde lotes; las menciones en docstrings y las llamadas a la tool de sldb no cuentan. (g) La prueba va en un módulo nuevo de la carpeta de pruebas, llamado test_mcp_undo; deskops graph missing se corre desde la raíz de IR.
+Esperar a que cierre el espejo task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesión. Después, escribir las pruebas en un archivo de prueba nuevo bajo tests/, dedicado al deshacer, usando los fixtures de tests/conftest.py (mount_copy, store_copy y la sesión mcp) contra el sldb mcp real. Sin mocks. La única lógica nueva en specIR, si hace falta, es la que su extensión necesite para que el deshacer pase por sus validadores; ni inversión ni guardas. Precisiones (preflight-1 y bundle-1): (a) los tres espejos de depends_on están cerrados (undo_changes en sldb d0ee07a3/02ea724e, en origin). (b) Niveles de sldb mcp, en sldb/src/sldb/mcp/mutability.py: 0 read, 1 content y 2 rules (RelationTypeDoc y RuleDoc); el 3 no se sirve. Se prueban 0, 1 y 2: con 2 se deshace un lote que tocó RelationTypeDoc o RuleDoc. (c) La copia escribible es la de mount_copy de tests/conftest.py, con su sesión MCP de escritura arrancada con el nivel de cada caso; el store_copy de solo lectura no sirve. La huella es tree_digest de la copia. (d) Las tools y respuestas son las de sldb mcp: apply_changes y undo_changes(steps), con rechazo {applied: false, rejected: stale, document, written: false}. Revertir el cambio ajeno es aplicar otro lote que devuelve el documento a su contenido anterior. (e) Corrección tras el hallazgo del intento 1 (coordinador, 2026-11-17): src/specir/mcp_extension.py crea un segundo WriteTools de sldb y reemplaza propose_changes y apply_changes; ese WriteTools tiene su propia pila, así que el undo_changes de la sesión no encuentra lo aplicado (nothing_to_undo). Se corrige en specIR: la extensión deja de crear WriteTools y de quitar o registrar propose_changes y apply_changes, y registra su regla IR05 D2-E (no escribir verificacion: verificado) con context.add_batch_validator de sldb mcp, como hallazgo de nivel error; el validador recibe Change tipados en propose_changes y BatchChange en apply_changes, y debe reconocer ambos. Las pruebas existentes de tests/test_mcp_extension.py que esperaban el rechazo anterior se ajustan al rechazo domain de sldb, sin debilitar lo que comprueban. Tras undo_changes el store pasa sldb rules check y sldb edges check, y se deja escrito qué hace undo_changes con los validadores de dominio (sldb aplica el lote inverso con apply_batch directo). (f) Cuenta como implementación propia una def, una tool registrada o una estructura que guarde lotes; las menciones en docstrings y las llamadas a la tool de sldb no cuentan. (g) La prueba va en un módulo nuevo de la carpeta de pruebas, llamado test_mcp_undo; deskops graph missing se corre desde la raíz de IR.
 
 ## Validation
 
