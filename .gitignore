@@ -3,3 +3,7 @@
 runs/subagents/*/session.jsonl
 *.egg-info/
 __pycache__/
+
+# cola del host y logs de los post-hooks de deskops (salida de ejecución, no se versiona)
+runs/queue/
+runs/hooks/
