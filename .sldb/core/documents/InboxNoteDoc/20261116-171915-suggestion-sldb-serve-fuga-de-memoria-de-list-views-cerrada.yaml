@@ -1,7 +1,7 @@
 name: 20261116-171915-suggestion-sldb-serve-fuga-de-memoria-de-list-views-cerrada
 path: desk/inbox/20261116-171915-suggestion-sldb-serve-fuga-de-memoria-de-list-views-cerrada.md
 source_hash: 131994f618c06cd400d13276171764939a012a44fe5f093a13d26d4b9013ff31
-content_hash: 2bd8feff4b117fd9b23f5ccb7a15dbf938985430e60ca4ec4514e3bd317975d8
+content_hash: 9f35f9de5d4668e9b781382ec1b8a4eddf7890a750c4f75d5d9134c3617d54f6
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
@@ -10,6 +10,7 @@ field_hashes:
   status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
   acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   acknowledged_at: 76ead522f7d66968771d9a3181561623492cf0f7c640815139b46e9b3beddcbd
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   title: 9584e4f5064ba2cdfae5d7a7f7f956dfd7b075d92de4fc06c7da735228c91cc6
   body: 2230645de0ebd9429462ffa36d699651f64ae172ab32294cf02e968d1473ce4d
 semantic_tags:

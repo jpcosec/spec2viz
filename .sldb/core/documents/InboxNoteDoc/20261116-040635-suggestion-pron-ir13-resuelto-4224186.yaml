@@ -1,7 +1,7 @@
 name: 20261116-040635-suggestion-pron-ir13-resuelto-4224186
 path: desk/inbox/20261116-040635-suggestion-pron-ir13-resuelto-4224186.md
 source_hash: d40c812b84250445c3874806bb5747f0ba887bfe6eed2a54d836a54c2a78af1e
-content_hash: c946065a1e9410173f84b95d7a4ebd14c6ba41d6506cb6fd25a271d8b956db96
+content_hash: bfa78267b9da17eb2f3a8e1d4cf353716c39fcfe4fd521c945bc1d07a86c5739
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: 8e7d42497d066cf2702e1aec85ede74beecbb16e002906840a4e20c4e1e3e0c7
@@ -10,6 +10,7 @@ field_hashes:
   status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
   acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   acknowledged_at: c7cf429b3ca7d64ff69fcc167e9b04ae97113eabcbd532b7091d2785e86e6343
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   title: 7c2975db9d9078b94c9cf0fb3169186c0e91db7dfcd6b29b3f5e0af3ef8d2d12
   body: 2b813227ca145e7e9b6b850e1ca143c6cec01dec407d520628f7111a05efa305
 semantic_tags:

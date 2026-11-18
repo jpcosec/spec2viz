@@ -1,7 +1,7 @@
 name: 20261117-081722-suggestion-sldb-regresi-n-de-b2-cerrada-component-spec-from-python-lee-solo-py
 path: desk/inbox/20261117-081722-suggestion-sldb-regresi-n-de-b2-cerrada-component-spec-from-python-lee-solo-py.md
 source_hash: 507902a920b4fe98989c204eab15efe4d2f0d8fd26245d3d064a6e03ac353da6
-content_hash: 7701e3dd061305f2033e654ce975dbfe6b9a7a04e832450b6e8995fd2c42b26e
+content_hash: 1e78b064a0a22d3e5aa83654d5df6464854b3d1902fc0a8d11d96cf2704be74e
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
@@ -10,6 +10,7 @@ field_hashes:
   status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
   acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   acknowledged_at: deed04aa66c4ae0ff80cacee4f0bd255d9de9c661c0802318c025e112ad951d7
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   title: 0c6dc1568aec3d4f3762043dffc204c3f8533b07aee7cfb5a4929e23bbae0a8d
   body: e242db690faf89cc64baf8738748f5b20f346b83dfe6c8db9ba546063f1c5126
 semantic_tags:

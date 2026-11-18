@@ -1,7 +1,7 @@
 name: 20261116-021128-suggestion-ir-gitignore-no-ignora-egg-info-ni-pycache-el-hook-de-scion-instala-ir-editable
 path: desk/inbox/20261116-021128-suggestion-ir-gitignore-no-ignora-egg-info-ni-pycache-el-hook-de-scion-instala-ir-editable.md
 source_hash: 96874b18c1a8af973cb93b0b86b5426d534bc7d9ab4c6da4b65d883331552245
-content_hash: 8beef44d7841e6be253bcd3e437909f8e0ec71f42cd3788f70f13176a8d2d953
+content_hash: 3766cc007fc76e124967249453d84cf4eeddab6842ee4974ee8193676d85c2aa
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: 1321d9efcb48ac8350a2345a4fb62a20719e69787bd4152b777b80ff17daa46a
@@ -10,6 +10,7 @@ field_hashes:
   status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
   acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   acknowledged_at: d1f3adc87e9c4071885a6be0f0bc66ccd33c35fe30a3f9cae12d9db5fa12eac7
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   title: 70ffbe1452257d4868f461aa5ba26222fc646e3b3f850533cd307f47a2f3e45d
   body: be2025bbdf01f1719bd91a9938feb46a651e5967051b941c6897ffd645c3087f
 semantic_tags:

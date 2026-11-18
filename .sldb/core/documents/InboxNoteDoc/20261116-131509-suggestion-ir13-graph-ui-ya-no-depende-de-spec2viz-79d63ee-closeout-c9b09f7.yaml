@@ -1,7 +1,7 @@
 name: 20261116-131509-suggestion-ir13-graph-ui-ya-no-depende-de-spec2viz-79d63ee-closeout-c9b09f7
 path: desk/inbox/20261116-131509-suggestion-ir13-graph-ui-ya-no-depende-de-spec2viz-79d63ee-closeout-c9b09f7.md
 source_hash: be12c657dec4992562d19703d84c940cf98cc01d8e41d20e92bfee6ec657e66c
-content_hash: a704998df560ca0cb60155d5c51e7578a2dfc85a79f5714134459533e69ca4b5
+content_hash: 91620fac4c8668132b92751077b0811e391aa6fed5e816347c7e9cea6c1a3257
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: 1d147ab379788e0277ce278d918ca7cf9e0572dffeefc59e10d282ef146bd45c
@@ -10,6 +10,7 @@ field_hashes:
   status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
   acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   acknowledged_at: 323ef80b90c10a1e6dcba1c40d05b9b7d0bddc1e647639e67aeb9c09475dff02
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   title: 4fde105a47a74ef4d73935fe956f32bb2a94c7b620cae211599caf6de949474c
   body: 532e4bf5eecf5cb2fb6d9097d208b8310af2b32c4a4900fbd45843f112ef040b
 semantic_tags:

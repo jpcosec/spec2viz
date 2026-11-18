@@ -1,0 +1,20 @@
+name: type-task_returns_to_execution
+path: desk/lifecycle/type-task_returns_to_execution.md
+source_hash: 4046d511fd0a115b08243b37914deb9f7dfd3b9a623b0dcadac51ab4a1ec259f
+content_hash: 75295c602182349a9933ade2277cbe49447492ee0e2c5f140add58eb3ebba244
+field_hashes:
+  title: 93d356276681bdabb23d0ee4cb47cd00400792b7d9a420bad09384b0002be5e6
+  name: 2f64f19e68e127f98c1811c49a696364089382592a1902500df0f9d06e647cd6
+  direction: bc5965e31ad9b9fbdee7d03f2a8a26540c86629ea7b2abb3eb4cf2ac5e63a18b
+  cardinality: 3ea55382070a4f53a291448ffcb0ca975ac9b850f2514acbd418f89c891c1ffd
+  axis: e5dde65923d9119e9031fb86ce39e4686c31e5edc82de2486b18c60d560a0a36
+  source_types: 35a7e144bcd0b87616e4f1d78f9999548925590430d7ab92f87704e55bf40375
+  target_types: 35a7e144bcd0b87616e4f1d78f9999548925590430d7ab92f87704e55bf40375
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  description: 483dc0edb83bc7e43863154fec25fda761e443c5a21171f6f64fe9a9f762aa76
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.type
+provenance: null

@@ -1,0 +1,1104 @@
+version: 1
+links:
+- name: deskops
+  path: ../deskops/.sldb
+models:
+- name: CrossroadDoc
+  model_ref: deskops.models:CrossroadDoc
+  origin: deskops
+- name: AtomDoc
+  model_ref: deskops.models:AtomDoc
+  origin: deskops
+- name: BoardDoc
+  model_ref: deskops.models:BoardDoc
+  origin: deskops
+- name: DeskFAQDoc
+  model_ref: deskops.models:DeskFAQDoc
+  origin: deskops
+- name: InboxNoteDoc
+  model_ref: deskops.models:InboxNoteDoc
+  origin: deskops
+- name: MaterializationContractDoc
+  model_ref: deskops.models:MaterializationContractDoc
+  origin: deskops
+- name: PillDoc
+  model_ref: deskops.models:PillDoc
+  origin: deskops
+- name: ProtoAtomDoc
+  model_ref: deskops.models:ProtoAtomDoc
+  origin: deskops
+- name: RepositoryDoc
+  model_ref: deskops.models:RepositoryDoc
+  origin: deskops
+- name: ReviewDoc
+  model_ref: deskops.models:ReviewDoc
+  origin: deskops
+- name: RitualDoc
+  model_ref: deskops.models:RitualDoc
+  origin: deskops
+- name: RoleDoc
+  model_ref: deskops.models:RoleDoc
+  origin: deskops
+- name: RunDoc
+  model_ref: deskops.models:RunDoc
+  origin: deskops
+- name: RuntimeProfileDoc
+  model_ref: deskops.models:RuntimeProfileDoc
+  origin: deskops
+- name: StepDoc
+  model_ref: deskops.models:StepDoc
+  origin: deskops
+- name: TaskAggregateDoc
+  model_ref: deskops.models:TaskAggregateDoc
+  origin: deskops
+- name: TaskCodeDoc
+  model_ref: deskops.models:TaskCodeDoc
+  origin: deskops
+- name: TaskDebugDoc
+  model_ref: deskops.models:TaskDebugDoc
+  origin: deskops
+- name: TaskDecisionDoc
+  model_ref: deskops.models:TaskDecisionDoc
+  origin: deskops
+- name: TaskDoc
+  model_ref: deskops.models:TaskDoc
+  origin: deskops
+- name: TaskDocsDoc
+  model_ref: deskops.models:TaskDocsDoc
+  origin: deskops
+- name: TaskExternalDoc
+  model_ref: deskops.models:TaskExternalDoc
+  origin: deskops
+- name: TaskRefactorDoc
+  model_ref: deskops.models:TaskRefactorDoc
+  origin: deskops
+- name: RelationTypeDoc
+  model_ref: sldb.models.relation_type_doc:RelationTypeDoc
+- name: RelationDoc
+  model_ref: sldb.models.relation_doc:RelationDoc
+- name: RuleDoc
+  model_ref: sldb.models.rule_doc:RuleDoc
+predicates:
+  applies_to_source:
+    axis: WHAT
+    description: 'Instances of this model may be the source of edges of this relation type: the verbs
+      a class can be subject of.'
+  applies_to_target:
+    axis: WHAT
+    description: Instances of this model may be the target of edges of this relation type.
+  composes:
+    axis: WHAT
+    description: A composed field of the source (`__compositions__`) renders this document's payload into
+      the source's text; the edge carries the composed field, the field holding the refs and the ref as
+      authored.
+  contains:
+    axis: WHERE
+    description: A field the model declared in `__containment__` holds this document as a child; the edge
+      carries the field name and the models the declaration allows.
+  defines:
+    axis: WHAT
+    description: Defines the target concept.
+  explains_failure_of:
+    axis: WHY
+    description: Explains why the target fails.
+  extends:
+    axis: WHAT
+    description: The model inherits from that model (base_models); instances of the source are instances
+      of the target.
+  grounded_by:
+    axis: PROVENANCE
+    description: Identifies supporting provenance.
+  has_document:
+    axis: WHAT
+    description: The model has this document as an instance.
+  has_field:
+    axis: WHAT
+    description: The model declares this field; the field node carries its type and description.
+  has_model:
+    axis: WHAT
+    description: 'The store registers this model: its own, or one it inherits from the linked store that
+      owns it.'
+  has_section:
+    axis: WHERE
+    description: The document contains this section.
+  implements:
+    axis: HOW
+    description: Identifies what the source implements.
+  is_solved_by:
+    axis: HOW
+    description: Identifies how the source is solved.
+  links_to:
+    axis: WHERE
+    description: 'The store links that store under an alias (`stores add`): it reads its documents and
+      inherits its models.'
+  mathematically_proves:
+    axis: WHY
+    description: Provides a mathematical proof.
+  names:
+    axis: WHAT
+    description: The anchor (an alias word) names this model, field, relation type or document.
+  references:
+    axis: WHAT
+    description: A field the model declared in `__references__` holds this document's id; the edge carries
+      the field name.
+  restricts:
+    axis: WHEN_WHERE
+    description: Restricts the target context.
+  semantic_equivalent:
+    axis: WHAT
+    description: This local tag maps to that global tag across linked stores.
+  semantic_parent:
+    axis: WHAT
+    description: This tag is a child of that tag in the semantic DAG.
+  tagged_as:
+    axis: WHAT
+    description: The model, document or section carries this semantic tag.
+generate: []
+derived: []
+include:
+- model: AtomDoc
+  glob: desk/atoms/*.md
+- model: BoardDoc
+  paths:
+  - desk/tasks/Board.md
+- model: InboxNoteDoc
+  glob: desk/inbox/*.md
+- model: MaterializationContractDoc
+  glob: desk/materializations/*.md
+- model: PillDoc
+  paths:
+  - desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md
+  - desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
+  - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+  - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
+- model: RelationDoc
+  paths:
+  - desk/lifecycle/closeout-task_completes.md
+  - desk/lifecycle/execution-task_activates.md
+  - desk/lifecycle/testing-task_hands_to_closeout.md
+  - desk/lifecycle/testing-task_returns_to_execution.md
+- model: RelationTypeDoc
+  paths:
+  - desk/lifecycle/type-task_activates.md
+  - desk/lifecycle/type-task_completes.md
+  - desk/lifecycle/type-task_hands_to_closeout.md
+  - desk/lifecycle/type-task_returns_to_execution.md
+- model: RelationTypeDoc
+  paths:
+  - path: sldb/relation_types/applies_to_source.md
+    name: reltype-applies_to_source
+  - path: sldb/relation_types/applies_to_target.md
+    name: reltype-applies_to_target
+  - path: sldb/relation_types/composes.md
+    name: reltype-composes
+  - path: sldb/relation_types/contains.md
+    name: reltype-contains
+  - path: sldb/relation_types/extends.md
+    name: reltype-extends
+  - path: sldb/relation_types/has_document.md
+    name: reltype-has_document
+  - path: sldb/relation_types/has_field.md
+    name: reltype-has_field
+  - path: sldb/relation_types/has_model.md
+    name: reltype-has_model
+  - path: sldb/relation_types/has_section.md
+    name: reltype-has_section
+  - path: sldb/relation_types/links_to.md
+    name: reltype-links_to
+  - path: sldb/relation_types/names.md
+    name: reltype-names
+  - path: sldb/relation_types/references.md
+    name: reltype-references
+  - path: sldb/relation_types/semantic_equivalent.md
+    name: reltype-semantic_equivalent
+  - path: sldb/relation_types/semantic_parent.md
+    name: reltype-semantic_parent
+  - path: sldb/relation_types/tagged_as.md
+    name: reltype-tagged_as
+- model: RepositoryDoc
+  glob: desk/registry/*.md
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir01/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir01-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir01/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir01-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir02-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir02-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir03/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir03-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir03/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir03-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir04/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir04-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir04/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir04-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir05/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir05-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir05/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir05-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir06/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir06-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir06/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir06-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir07/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir07-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir07/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir07-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir08/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir08-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir08/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir08-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir09/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir09-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir09/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir09-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir10/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir10-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir10/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir10-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir11/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir11-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir11/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir11-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir12/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir12-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir12/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir12-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir13/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir13-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir13/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir13-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir13a/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir13a-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir13a/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir13a-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir13b/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir13b-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir13b/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir13b-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir13c/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir13c-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir13c/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir13c-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir13d/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir13d-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir13d/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-ir13d-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-root/node-1.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-root-node-1
+  - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-root/node-2.md
+    name: review-specir-reemplazo-spec2viz-sobre-sldb-root-node-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b/evidence-external-1.md
+    name: review-task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b-evidence-external-1
+  - path: desk/reviews/task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b/evidence-external-2.md
+    name: review-task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b-evidence-external-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer/evidence-external-1.md
+    name: review-task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer-evidence-external-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-espejo-sldb-component-spec-from-python-lee-solo-py-regresión-de-b2-que-rompe-2-pruebas-de-ir/evidence-external-1.md
+    name: review-task-espejo-sldb-component-spec-from-python-lee-solo-py-regresión-de-b2-que-rompe-2-pruebas-de-ir-evidence-external-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-espejo-sldb-graph-path-y-graph-paths-explicados-b3/evidence-external-1.md
+    name: review-task-espejo-sldb-graph-path-y-graph-paths-explicados-b3-evidence-external-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2/evidence-external-1.md
+    name: review-task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2-evidence-external-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-espejo-sldb-sldb-api-expone-los-facts-de-código-que-necesitan-los-extractores-c1-c5/evidence-external-1.md
+    name: review-task-espejo-sldb-sldb-api-expone-los-facts-de-código-que-necesitan-los-extractores-c1-c5-evidence-external-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-espejo-sldb-sldb-code-publica-facts-genéricos-de-ts-tsx-js-y-jsx-c3-de-ir-parte-ts-js-para-ir09/evidence-external-1.md
+    name: review-task-espejo-sldb-sldb-code-publica-facts-genéricos-de-ts-tsx-js-y-jsx-c3-de-ir-parte-ts-js-para-ir09-evidence-external-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesión/evidence-external-1.md
+    name: review-task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesión-evidence-external-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/bundle-1.md
+    name: review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-bundle-1
+  - path: desk/reviews/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/evidence-commit-1.md
+    name: review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-evidence-commit-1
+  - path: desk/reviews/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/evidence-materialization-1.md
+    name: review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-evidence-materialization-1
+  - path: desk/reviews/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/evidence-tests-1.md
+    name: review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-evidence-tests-1
+  - path: desk/reviews/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/preflight-1.md
+    name: review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-preflight-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir-gitignore-ignora-egg-info-y-pycache/bundle-1.md
+    name: review-task-ir-gitignore-ignora-egg-info-y-pycache-bundle-1
+  - path: desk/reviews/task-ir-gitignore-ignora-egg-info-y-pycache/evidence-atom-1.md
+    name: review-task-ir-gitignore-ignora-egg-info-y-pycache-evidence-atom-1
+  - path: desk/reviews/task-ir-gitignore-ignora-egg-info-y-pycache/evidence-atom-2.md
+    name: review-task-ir-gitignore-ignora-egg-info-y-pycache-evidence-atom-2
+  - path: desk/reviews/task-ir-gitignore-ignora-egg-info-y-pycache/evidence-commit-1.md
+    name: review-task-ir-gitignore-ignora-egg-info-y-pycache-evidence-commit-1
+  - path: desk/reviews/task-ir-gitignore-ignora-egg-info-y-pycache/evidence-materialization-1.md
+    name: review-task-ir-gitignore-ignora-egg-info-y-pycache-evidence-materialization-1
+  - path: desk/reviews/task-ir-gitignore-ignora-egg-info-y-pycache/evidence-tests-1.md
+    name: review-task-ir-gitignore-ignora-egg-info-y-pycache-evidence-tests-1
+  - path: desk/reviews/task-ir-gitignore-ignora-egg-info-y-pycache/preflight-1.md
+    name: review-task-ir-gitignore-ignora-egg-info-y-pycache-preflight-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-1.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-1
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-10.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-10
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-11.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-11
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-12.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-12
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-13.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-13
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-14.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-14
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-15.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-15
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-16.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-16
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-17.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-17
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-18.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-18
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-19.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-19
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-2.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-2
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-20.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-20
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-21.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-21
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-22.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-22
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-23.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-23
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-24.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-24
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-25.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-25
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-3.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-3
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-4.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-4
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-5.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-5
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-6.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-6
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-7.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-7
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-8.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-8
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/bundle-9.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-bundle-9
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/evidence-commit-1.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-evidence-commit-1
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/evidence-commit-2.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-evidence-commit-2
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/evidence-document-1.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-evidence-document-1
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/evidence-document-2.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-evidence-document-2
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-1.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-1
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-10.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-10
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-11.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-11
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-12.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-12
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-13.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-13
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-14.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-14
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-15.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-15
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-16.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-16
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-17.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-17
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-18.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-18
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-19.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-19
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-2.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-2
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-20.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-20
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-21.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-21
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-22.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-22
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-23.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-23
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-24.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-24
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-25.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-25
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-26.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-26
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-27.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-27
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-28.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-28
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-29.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-29
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-3.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-3
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-4.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-4
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-5.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-5
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-6.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-6
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-7.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-7
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-8.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-8
+  - path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/preflight-9.md
+    name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-preflight-9
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp/bundle-1.md
+    name: review-task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp-bundle-1
+  - path: desk/reviews/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp/evidence-commit-1.md
+    name: review-task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp-evidence-commit-1
+  - path: desk/reviews/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp/evidence-commit-2.md
+    name: review-task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp-evidence-commit-2
+  - path: desk/reviews/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp/evidence-document-1.md
+    name: review-task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp-evidence-document-1
+  - path: desk/reviews/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp/owner-1.md
+    name: review-task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp-owner-1
+  - path: desk/reviews/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp/preflight-1.md
+    name: review-task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp-preflight-1
+  - path: desk/reviews/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp/preflight-2.md
+    name: review-task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp-preflight-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/bundle-1.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-bundle-1
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/bundle-2.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-bundle-2
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/evidence-atom-1.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-evidence-atom-1
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/evidence-commit-1.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-evidence-commit-1
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/evidence-commit-2.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-evidence-commit-2
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/evidence-materialization-1.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-evidence-materialization-1
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/evidence-materialization-2.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-evidence-materialization-2
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/evidence-tests-1.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-evidence-tests-1
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/evidence-tests-2.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-evidence-tests-2
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/preflight-1.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-preflight-1
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/preflight-2.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-preflight-2
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/preflight-3.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-preflight-3
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/preflight-4.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-preflight-4
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/preflight-5.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-preflight-5
+  - path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/preflight-6.md
+    name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-preflight-6
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp/bundle-1.md
+    name: review-task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp-bundle-1
+  - path: desk/reviews/task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp/preflight-1.md
+    name: review-task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp-preflight-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/bundle-1.md
+    name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-bundle-1
+  - path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/bundle-2.md
+    name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-bundle-2
+  - path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/bundle-3.md
+    name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-bundle-3
+  - path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/evidence-commit-1.md
+    name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-evidence-commit-1
+  - path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/evidence-materialization-1.md
+    name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-evidence-materialization-1
+  - path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/evidence-tests-1.md
+    name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-evidence-tests-1
+  - path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/preflight-1.md
+    name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-preflight-1
+  - path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/preflight-2.md
+    name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-preflight-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/bundle-1.md
+    name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-bundle-1
+  - path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/bundle-2.md
+    name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-bundle-2
+  - path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/bundle-3.md
+    name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-bundle-3
+  - path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/preflight-1.md
+    name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-preflight-1
+  - path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/preflight-2.md
+    name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-preflight-2
+  - path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/preflight-3.md
+    name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-preflight-3
+  - path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/preflight-4.md
+    name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-preflight-4
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo/bundle-1.md
+    name: review-task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo-bundle-1
+  - path: desk/reviews/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo/evidence-commit-1.md
+    name: review-task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo-evidence-commit-1
+  - path: desk/reviews/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo/evidence-document-1.md
+    name: review-task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo-evidence-document-1
+  - path: desk/reviews/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo/owner-1.md
+    name: review-task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo-owner-1
+  - path: desk/reviews/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo/preflight-1.md
+    name: review-task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo-preflight-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/bundle-1.md
+    name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-bundle-1
+  - path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/evidence-commit-1.md
+    name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-evidence-commit-1
+  - path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/evidence-commit-2.md
+    name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-evidence-commit-2
+  - path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/evidence-materialization-1.md
+    name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-evidence-materialization-1
+  - path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/evidence-materialization-2.md
+    name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-evidence-materialization-2
+  - path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/evidence-tests-1.md
+    name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-evidence-tests-1
+  - path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/evidence-tests-2.md
+    name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-evidence-tests-2
+  - path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/evidence-tests-3.md
+    name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-evidence-tests-3
+  - path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/preflight-1.md
+    name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-preflight-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro/bundle-1.md
+    name: review-task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro-bundle-1
+  - path: desk/reviews/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro/bundle-2.md
+    name: review-task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro-bundle-2
+  - path: desk/reviews/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro/preflight-1.md
+    name: review-task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro-preflight-1
+  - path: desk/reviews/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro/preflight-2.md
+    name: review-task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro-preflight-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/bundle-1.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-bundle-1
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/bundle-2.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-bundle-2
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/bundle-3.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-bundle-3
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/evidence-atom-1.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-evidence-atom-1
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/evidence-commit-1.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-evidence-commit-1
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/evidence-commit-2.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-evidence-commit-2
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/evidence-tests-1.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-evidence-tests-1
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/evidence-tests-2.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-evidence-tests-2
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/preflight-1.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-preflight-1
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/preflight-2.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-preflight-2
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/preflight-3.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-preflight-3
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/preflight-4.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-preflight-4
+  - path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/preflight-5.md
+    name: review-task-ir08-extractor-estático-django-drf-y-sql-preflight-5
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/bundle-1.md
+    name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-bundle-1
+  - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/bundle-2.md
+    name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-bundle-2
+  - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/bundle-3.md
+    name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-bundle-3
+  - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/bundle-4.md
+    name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-bundle-4
+  - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/preflight-1.md
+    name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-preflight-1
+  - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/preflight-2.md
+    name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-preflight-2
+  - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/preflight-3.md
+    name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-preflight-3
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/bundle-1.md
+    name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-bundle-1
+  - path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/preflight-1.md
+    name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-preflight-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir11-compiladores-y-proyecciones-de-spec2viz/bundle-1.md
+    name: review-task-ir11-compiladores-y-proyecciones-de-spec2viz-bundle-1
+  - path: desk/reviews/task-ir11-compiladores-y-proyecciones-de-spec2viz/bundle-2.md
+    name: review-task-ir11-compiladores-y-proyecciones-de-spec2viz-bundle-2
+  - path: desk/reviews/task-ir11-compiladores-y-proyecciones-de-spec2viz/preflight-1.md
+    name: review-task-ir11-compiladores-y-proyecciones-de-spec2viz-preflight-1
+  - path: desk/reviews/task-ir11-compiladores-y-proyecciones-de-spec2viz/preflight-2.md
+    name: review-task-ir11-compiladores-y-proyecciones-de-spec2viz-preflight-2
+  - path: desk/reviews/task-ir11-compiladores-y-proyecciones-de-spec2viz/preflight-3.md
+    name: review-task-ir11-compiladores-y-proyecciones-de-spec2viz-preflight-3
+  - path: desk/reviews/task-ir11-compiladores-y-proyecciones-de-spec2viz/preflight-4.md
+    name: review-task-ir11-compiladores-y-proyecciones-de-spec2viz-preflight-4
+  - path: desk/reviews/task-ir11-compiladores-y-proyecciones-de-spec2viz/preflight-5.md
+    name: review-task-ir11-compiladores-y-proyecciones-de-spec2viz-preflight-5
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz/bundle-1.md
+    name: review-task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz-bundle-1
+  - path: desk/reviews/task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz/bundle-2.md
+    name: review-task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz-bundle-2
+  - path: desk/reviews/task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz/preflight-1.md
+    name: review-task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz-preflight-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/bundle-1.md
+    name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-bundle-1
+  - path: desk/reviews/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/bundle-2.md
+    name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-bundle-2
+  - path: desk/reviews/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/preflight-1.md
+    name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-preflight-1
+  - path: desk/reviews/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/preflight-2.md
+    name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-preflight-2
+  - path: desk/reviews/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/preflight-3.md
+    name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-preflight-3
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs/bundle-1.md
+    name: review-task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs-bundle-1
+  - path: desk/reviews/task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs/bundle-2.md
+    name: review-task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs-bundle-2
+  - path: desk/reviews/task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs/preflight-1.md
+    name: review-task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs-preflight-1
+  - path: desk/reviews/task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs/preflight-2.md
+    name: review-task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs-preflight-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos/bundle-1.md
+    name: review-task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos-bundle-1
+  - path: desk/reviews/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos/bundle-2.md
+    name: review-task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos-bundle-2
+  - path: desk/reviews/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos/preflight-1.md
+    name: review-task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos-preflight-1
+  - path: desk/reviews/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos/preflight-2.md
+    name: review-task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos-preflight-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir13c-notaciones-y-paletas-expuestas-desde-specir/bundle-1.md
+    name: review-task-ir13c-notaciones-y-paletas-expuestas-desde-specir-bundle-1
+  - path: desk/reviews/task-ir13c-notaciones-y-paletas-expuestas-desde-specir/preflight-1.md
+    name: review-task-ir13c-notaciones-y-paletas-expuestas-desde-specir-preflight-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual/bundle-1.md
+    name: review-task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual-bundle-1
+  - path: desk/reviews/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual/bundle-2.md
+    name: review-task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual-bundle-2
+  - path: desk/reviews/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual/preflight-1.md
+    name: review-task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual-preflight-1
+  - path: desk/reviews/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual/preflight-2.md
+    name: review-task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual-preflight-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/bundle-1.md
+    name: review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-bundle-1
+  - path: desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/bundle-2.md
+    name: review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-bundle-2
+  - path: desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/evidence-atom-1.md
+    name: review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-evidence-atom-1
+  - path: desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/evidence-commit-1.md
+    name: review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-evidence-commit-1
+  - path: desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/evidence-tests-1.md
+    name: review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-evidence-tests-1
+  - path: desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/preflight-1.md
+    name: review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-preflight-1
+  - path: desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/preflight-2.md
+    name: review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-preflight-2
+  - path: desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/preflight-3.md
+    name: review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-preflight-3
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5/bundle-1.md
+    name: review-task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5-bundle-1
+  - path: desk/reviews/task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5/evidence-atom-1.md
+    name: review-task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5-evidence-atom-1
+  - path: desk/reviews/task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5/evidence-commit-1.md
+    name: review-task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5-evidence-commit-1
+  - path: desk/reviews/task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5/evidence-tests-1.md
+    name: review-task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5-evidence-tests-1
+  - path: desk/reviews/task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5/preflight-1.md
+    name: review-task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5-preflight-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee/bundle-1.md
+    name: review-task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee-bundle-1
+  - path: desk/reviews/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee/evidence-atom-1.md
+    name: review-task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee-evidence-atom-1
+  - path: desk/reviews/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee/evidence-commit-1.md
+    name: review-task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee-evidence-commit-1
+  - path: desk/reviews/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee/evidence-tests-1.md
+    name: review-task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee-evidence-tests-1
+  - path: desk/reviews/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee/preflight-1.md
+    name: review-task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee-preflight-1
+  - path: desk/reviews/task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee/preflight-2.md
+    name: review-task-ir13g-acreditar-en-la-matriz-y-el-acta-que-graph-ui-ya-no-depende-de-spec2viz-79d63ee-preflight-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/bundle-1.md
+    name: review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-bundle-1
+  - path: desk/reviews/task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/evidence-atom-1.md
+    name: review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-evidence-atom-1
+  - path: desk/reviews/task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/evidence-commit-1.md
+    name: review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-evidence-commit-1
+  - path: desk/reviews/task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/evidence-tests-1.md
+    name: review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-evidence-tests-1
+  - path: desk/reviews/task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/preflight-1.md
+    name: review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-preflight-1
+  - path: desk/reviews/task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/preflight-2.md
+    name: review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-preflight-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m/bundle-1.md
+    name: review-task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m-bundle-1
+  - path: desk/reviews/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m/evidence-atom-1.md
+    name: review-task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m-evidence-atom-1
+  - path: desk/reviews/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m/evidence-commit-1.md
+    name: review-task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m-evidence-commit-1
+  - path: desk/reviews/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m/evidence-tests-1.md
+    name: review-task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m-evidence-tests-1
+  - path: desk/reviews/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m/preflight-1.md
+    name: review-task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m-preflight-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/bundle-1.md
+    name: review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-bundle-1
+  - path: desk/reviews/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/evidence-atom-1.md
+    name: review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-evidence-atom-1
+  - path: desk/reviews/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/evidence-atom-2.md
+    name: review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-evidence-atom-2
+  - path: desk/reviews/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/evidence-commit-1.md
+    name: review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-evidence-commit-1
+  - path: desk/reviews/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/evidence-commit-2.md
+    name: review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-evidence-commit-2
+  - path: desk/reviews/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/evidence-tests-1.md
+    name: review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-evidence-tests-1
+  - path: desk/reviews/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/evidence-tests-2.md
+    name: review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-evidence-tests-2
+  - path: desk/reviews/task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s/preflight-1.md
+    name: review-task-ir13j-la-prueba-portada-de-notaciones-espera-el-mensaje-de-sldb-para-un-diagram-type-desconocido-y-s-preflight-1
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/bundle-1.md
+    name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-bundle-1
+  - path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/bundle-2.md
+    name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-bundle-2
+  - path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/bundle-3.md
+    name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-bundle-3
+  - path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/bundle-4.md
+    name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-bundle-4
+  - path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/bundle-5.md
+    name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-bundle-5
+  - path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/evidence-commit-1.md
+    name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-evidence-commit-1
+  - path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/evidence-materialization-1.md
+    name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-evidence-materialization-1
+  - path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/evidence-tests-1.md
+    name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-evidence-tests-1
+  - path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/preflight-1.md
+    name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-preflight-1
+  - path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/preflight-2.md
+    name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-preflight-2
+  - path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/preflight-3.md
+    name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-preflight-3
+  - path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/preflight-4.md
+    name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-preflight-4
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/bundle-1.md
+    name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-bundle-1
+  - path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/bundle-2.md
+    name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-bundle-2
+  - path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/bundle-3.md
+    name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-bundle-3
+  - path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/bundle-4.md
+    name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-bundle-4
+  - path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/evidence-commit-1.md
+    name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-evidence-commit-1
+  - path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/evidence-materialization-1.md
+    name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-evidence-materialization-1
+  - path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/evidence-tests-1.md
+    name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-evidence-tests-1
+  - path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/preflight-1.md
+    name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-preflight-1
+  - path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/preflight-2.md
+    name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-preflight-2
+  - path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/preflight-3.md
+    name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-preflight-3
+  - path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/preflight-4.md
+    name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-preflight-4
+  - path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/preflight-5.md
+    name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-preflight-5
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/bundle-1.md
+    name: review-task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02-bundle-1
+  - path: desk/reviews/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/evidence-atom-1.md
+    name: review-task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02-evidence-atom-1
+  - path: desk/reviews/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/evidence-atom-2.md
+    name: review-task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02-evidence-atom-2
+  - path: desk/reviews/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/evidence-commit-1.md
+    name: review-task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02-evidence-commit-1
+  - path: desk/reviews/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/evidence-commit-2.md
+    name: review-task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02-evidence-commit-2
+  - path: desk/reviews/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/evidence-tests-1.md
+    name: review-task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02-evidence-tests-1
+  - path: desk/reviews/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/evidence-tests-2.md
+    name: review-task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02-evidence-tests-2
+  - path: desk/reviews/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/preflight-1.md
+    name: review-task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02-preflight-1
+  - path: desk/reviews/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/preflight-2.md
+    name: review-task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02-preflight-2
+- model: ReviewDoc
+  paths:
+  - path: desk/reviews/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester/bundle-1.md
+    name: review-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester-bundle-1
+  - path: desk/reviews/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester/preflight-1.md
+    name: review-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester-preflight-1
+- model: RitualDoc
+  paths:
+  - path: desk/rituals/closeout.md
+    name: ritual-closeout
+  - path: desk/rituals/execution.md
+    name: ritual-execution
+  - path: desk/rituals/phase.md
+    name: ritual-phase
+  - path: desk/rituals/testing.md
+    name: ritual-testing
+- model: RoleDoc
+  paths:
+  - desk/roles/role-ir-executor.md
+- model: RuleDoc
+  paths:
+  - desk/lifecycle/rule-activation-task-aggregate.md
+  - desk/lifecycle/rule-activation-task-code.md
+  - desk/lifecycle/rule-activation-task-debug.md
+  - desk/lifecycle/rule-activation-task-decision.md
+  - desk/lifecycle/rule-activation-task-docs.md
+  - desk/lifecycle/rule-activation-task-external.md
+  - desk/lifecycle/rule-activation-task-refactor.md
+  - desk/lifecycle/rule-closeout-alert-implicit-code.md
+  - desk/lifecycle/rule-closeout-alert-pill-graduation.md
+  - desk/lifecycle/rule-closeout-task-aggregate.md
+  - desk/lifecycle/rule-closeout-task-code.md
+  - desk/lifecycle/rule-closeout-task-debug.md
+  - desk/lifecycle/rule-closeout-task-decision.md
+  - desk/lifecycle/rule-closeout-task-docs.md
+  - desk/lifecycle/rule-closeout-task-external.md
+  - desk/lifecycle/rule-closeout-task-refactor.md
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-068628774e48/run.md
+    name: run-deskops-e-068628774e48
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-31500ac1cfa1/run.md
+    name: run-deskops-e-31500ac1cfa1
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-3db2821b1604-a2/run.md
+    name: run-deskops-e-3db2821b1604-a2
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-473333353dce/run.md
+    name: run-deskops-e-473333353dce
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-5d20e77cfc47/run.md
+    name: run-deskops-e-5d20e77cfc47
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-67da42f92e6d/run.md
+    name: run-deskops-e-67da42f92e6d
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-78cf1c2d473a/run.md
+    name: run-deskops-e-78cf1c2d473a
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-94a0788c3f5a-a2/run.md
+    name: run-deskops-e-94a0788c3f5a-a2
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-ab9406eaab99/run.md
+    name: run-deskops-e-ab9406eaab99
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-be491a5e3b00/run.md
+    name: run-deskops-e-be491a5e3b00
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-d7008737b929/run.md
+    name: run-deskops-e-d7008737b929
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-f5f68a7aa648/run.md
+    name: run-deskops-e-f5f68a7aa648
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-f98a77856867/run.md
+    name: run-deskops-e-f98a77856867
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-e-fa630485b00c/run.md
+    name: run-deskops-e-fa630485b00c
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-0e183e29ea34-a2/run.md
+    name: run-deskops-t-0e183e29ea34-a2
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-270be4709340/run.md
+    name: run-deskops-t-270be4709340
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-5a39cc2dfbf8/run.md
+    name: run-deskops-t-5a39cc2dfbf8
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-63c09536450a/run.md
+    name: run-deskops-t-63c09536450a
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-79b9a3c32e0f/run.md
+    name: run-deskops-t-79b9a3c32e0f
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-79b9a3c32e0f-a2/run.md
+    name: run-deskops-t-79b9a3c32e0f-a2
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-8825fdd278af/run.md
+    name: run-deskops-t-8825fdd278af
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-8825fdd278af-a2/run.md
+    name: run-deskops-t-8825fdd278af-a2
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-af2c27434a91/run.md
+    name: run-deskops-t-af2c27434a91
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-c6d27c1b855b/run.md
+    name: run-deskops-t-c6d27c1b855b
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-c8a1e07fdf14-a2/run.md
+    name: run-deskops-t-c8a1e07fdf14-a2
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-d471ebbc6f77/run.md
+    name: run-deskops-t-d471ebbc6f77
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-d802dff465a0/run.md
+    name: run-deskops-t-d802dff465a0
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-e9062210030f/run.md
+    name: run-deskops-t-e9062210030f
+- model: RunDoc
+  paths:
+  - path: runs/subagents/deskops-t-fb41c88d0a4a/run.md
+    name: run-deskops-t-fb41c88d0a4a
+- model: RuntimeProfileDoc
+  paths:
+  - desk/runtimes/runtime-claude-en-scion.md
+- model: TaskCodeDoc
+  paths:
+  - desk/tasks/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas.md
+  - desk/tasks/task-ir09-extractor-estático-react-tsx-y-contratos-de-api.md
+  - desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md
+  - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
+  - desk/tasks/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester.md
+graph_backend: networkx
+policy: {}
+tag_models:
+- AtomDoc
+- ProtoAtomDoc
+tag_namespaces:
+- name: domain
+  hierarchical: true
+  folder_axis: false
+  anchored_by:
+    model: CrossroadDoc
+    field: path
+    value: bare
+- name: layer
+  hierarchical: true
+  folder_axis: false
+- name: system
+  hierarchical: true
+  folder_axis: false
+- name: topic
+  hierarchical: true
+  folder_axis: false
