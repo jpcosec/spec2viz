@@ -323,4 +323,4 @@ predicates:
   description: A composed field of the source (`__compositions__`) renders this document's
     payload into the source's text; the edge carries the composed field, the field
     holding the refs and the ref as authored.
-store_hash: 3d1e85838ce1ce63d1005dd6d214a1ca8531949b558a6a94223bb4d3e2980aee
+store_hash: 1d1d6fab47a458a6ff2b2fd0bc4f4067c616bd6a6dc4365567d7043fac2cea28
