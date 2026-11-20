@@ -276,8 +276,16 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       })[0];
       if (start) {
         var box = canvas.getAbsoluteBBox(start);
-        var outer = canvas.viewbox().outer;
-        canvas.scroll({ dx: 60 - box.x, dy: Math.round(outer.height * 0.4) - box.y });
+        var vb = canvas.viewbox(), outer = vb.outer, zoom = canvas.zoom();
+        // vertically: the whole diagram centred when its height fits, its top edge when it does not;
+        // only if that leaves the start event out of view, anchor on the start event instead
+        var top = (vb.inner.y - vb.y) * zoom, height = vb.inner.height * zoom;
+        var dy = (height + 2 * PAD <= outer.height ? Math.round((outer.height - height) / 2) : PAD) - top;
+        if (box.y + box.height + dy > outer.height - PAD) { dy = Math.round(outer.height * 0.4) - box.y; }
+        // horizontally: the diagram's left edge (the pool header, when there is one) unless the start is far from it
+        var dx = PAD - (vb.inner.x - vb.x) * zoom;
+        if (box.x + dx > outer.width / 2) { dx = 60 - box.x; }
+        canvas.scroll({ dx: dx, dy: dy });
       }
     }
     document.body.setAttribute('data-zoom', canvas.zoom().toFixed(3));
