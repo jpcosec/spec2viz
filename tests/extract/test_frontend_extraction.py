@@ -121,6 +121,15 @@ def test_a_non_literal_url_creates_no_relation_and_is_a_declared_gap(gaps) -> No
     assert not any("search" in k for k, d in mine(root).items() if d.model_name == "RelationDoc" and d.payload["relation_type"] == "invokes")
 
 
+def test_a_fetch_with_a_literal_url_is_a_declared_gap_and_leaves_no_undeclared_action(gaps) -> None:
+    root, report = gaps
+    assert any("src/api/fetcher.ts:2" in n and "fetch" in n and "hueco declarado" in n for n in report.not_derived), report.not_derived
+    docs = mine(root)
+    action = [k for k, d in docs.items() if d.model_name == "InterfaceActionDoc" and d.payload["title"] == "handleLoad"]
+    assert action
+    assert not [d for d in docs.values() if d.model_name == "RelationDoc" and d.payload["relation_type"] == "invokes" and d.payload["source_id"] in action]
+
+
 def test_a_call_to_an_endpoint_absent_from_the_graph_is_a_breach_and_invents_nothing(gaps) -> None:
     root, report = gaps
     assert any("src/api/legacy_archive.js:4" in n and "axios.delete" in n and "brecha" in n for n in report.not_derived), report.not_derived

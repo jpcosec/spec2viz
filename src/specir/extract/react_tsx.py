@@ -42,7 +42,9 @@ def _is_hole(call: dict) -> bool:
     expressions, a variable, a non canonical callee)."""
     first = call.get("first_arg")
     verb = last(call["name"]).lower() in HTTP_VERBS and "." in call["name"]
-    return (verb or last(call["name"]) == "fetch") and not (call.get("canonical") and isinstance(first, str) and first.startswith("/"))
+    if last(call["name"]) == "fetch":
+        return True  # the method is not in the facts, even when the URL is a literal
+    return verb and not (call.get("canonical") and isinstance(first, str) and first.startswith("/"))
 
 
 def interpret_frontend(facts: Facts, operations: list[Planned]) -> Plan:
@@ -96,7 +98,7 @@ def _call(plan, facts, functions, operations, action, component, owner, call, de
     if method is not None:
         _resolve(plan, operations, action, component, owner, call, method, here)
     elif _is_hole(call):
-        why = "fetch no da el método en los facts" if last(call["name"]) == "fetch" else "la URL no es un literal con / inicial (hueco declarado: template con expresiones, variable o llamada no canónica)"
+        why = "fetch no da el método en los facts (hueco declarado)" if last(call["name"]) == "fetch" else "la URL no es un literal con / inicial (hueco declarado: template con expresiones, variable o llamada no canónica)"
         plan.not_derived.append(f"{here} {call['name']}: {why}")
     elif depth == 0 and call.get("canonical") and "." not in call["name"]:
         found = functions.get(call["name"], [])
