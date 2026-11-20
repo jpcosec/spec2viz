@@ -1,0 +1,19 @@
+name: 20261120-194315-suggestion-versionar-spec2viz-y-fijarlo-en-quienes-lo-usan
+path: desk/inbox/20261120-194315-suggestion-versionar-spec2viz-y-fijarlo-en-quienes-lo-usan.md
+source_hash: 1f03dd5818328eedd21d498eefa779b10eec3d9ecd528adf44c4d3e3a339f682
+content_hash: a0106fb656725e9ddc366e5149fbba2cd4e4c62e3d804c447c5fd7003f8b96a8
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: 3c894b699286d85f1511fdbcb79fa8e20b368f377466132c43b01c94611d9e89
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: b60ea5195b6e1097d5be0e24be113ece295ffa10babf243b21e9de7fff4db32a
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  title: 7053e835c2c0c08fd2170625db5435569c8bb0d90cda9b27fff57d9c9ed95af0
+  body: 7516942b355118bda77db89378d507ad2e8c6007b8f48bfe3c0b6a170e2f3a74
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null
