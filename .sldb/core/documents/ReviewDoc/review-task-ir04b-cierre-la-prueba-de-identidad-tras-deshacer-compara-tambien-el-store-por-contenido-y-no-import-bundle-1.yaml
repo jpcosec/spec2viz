@@ -1,0 +1,37 @@
+name: review-task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import-bundle-1
+path: desk/reviews/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import/bundle-1.md
+source_hash: 5062a17198ff6a7991333a02e449425185a427ad8fb053e316396f7592837fcc
+content_hash: f43c1c2f5be40f5b228c4708d7eb5c4c085ce5ea2f7b48c443e2b4233c74feac
+field_hashes:
+  id: 8e16ef727146d908bdc1c0c5b46e1b80b616389811526fb090d3a443fbd56a6d
+  title: 3e695f1d7eb619db230ebd93391391161466be9a9cf7a5147ea9e25794f08c18
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: b213c1f8a9beb561647d941a0c87d9cdeb222e82e5456e5501159085fa0ad255
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 727ca31499eaff4f53d645e51897120a5b8b27a7c3732e1b688e8dcff926a762
+  input_sha256: a4dc98829843ac81bf17eeef889c9b4123ddc3edb038ea18fc6353240300d4fb
+  contract_sha256: 8d18c30af47ccf5a72760989df9320c319e48ac7bfc1d37ff3ee484a760efecd
+  output_sha256: c614d505824e7b66dcf1ca4570284e526a414be00bb04da018f3662853d706df
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 31f4caed605c3db849d04e9daa3d979e551d460473a48dd060bb83a1869e586e
+  created_at: 90a2969dace99468f144e08a18c31a446875aa6a46103ff05288e2dce8b7308e
+  disposed_at: c52a84236854be49c6cf57281e37bfee20c7d84d494c3677eb048afbf5d89ab9
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 92445765bc0fa4a3964ba5cc283b45d5e8361064f521f5a9ce723ce9dfb610ee
+  disposition: 3341faafd529d0741b6676133cea49db1e91c88e83351c47bfd6788123e651e5
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-20T23:49:17Z'
+  authority: generated
+  via: save_document_payload
