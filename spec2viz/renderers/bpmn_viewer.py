@@ -18,7 +18,12 @@ from spec2viz.renderers.bpmn_palette import (
 BPMN_NS = "http://www.omg.org/spec/BPMN/20100524/MODEL"
 COLOR_NS = "http://www.omg.org/spec/BPMN/non-normative/color/1.0"
 VENDOR_DIR = Path(__file__).resolve().parent.parent / "templates" / "vendor" / "bpmn-js"
-NODE_TAGS = {"startEvent", "endEvent", "task", "exclusiveGateway", "subProcess"}
+NODE_TAGS = {
+    "startEvent", "endEvent", "intermediateCatchEvent", "intermediateThrowEvent", "task", "userTask",
+    "serviceTask", "manualTask", "sendTask", "receiveTask", "scriptTask", "exclusiveGateway", "subProcess",
+}
+# text size of the diagram in the viewer (bpmn-js textRenderer); the layout measures text with it
+TEXT_FONT_SIZE = 15
 
 
 def _vendor(name: str) -> str:
@@ -43,16 +48,34 @@ def _local(tag: str) -> str:
 
 
 def element_info(xml: str) -> dict[str, dict]:
-    """label/detail/branches indexed by BPMN element id, read from the generated XML."""
+    """label/detail/notes/lane/branches indexed by BPMN element id, read from the generated XML."""
     try:
         root = ET.fromstring(xml.encode("utf-8"))
     except ET.ParseError:
         return {}
     elements: dict[str, ET.Element] = {}
+    annotations: dict[str, str] = {}
+    lane_of: dict[str, str] = {}
+    associations: list[ET.Element] = []
     for el in root.iter():
         tag = _local(el.tag)
         if tag in NODE_TAGS and el.get("id"):
             elements[el.get("id")] = el
+        elif tag == "textAnnotation" and el.get("id"):
+            annotations[el.get("id")] = "".join(t.text or "" for t in el if _local(t.tag) == "text")
+        elif tag == "association":
+            associations.append(el)
+        elif tag == "lane":
+            for ref in el:
+                if _local(ref.tag) == "flowNodeRef" and ref.text:
+                    lane_of[ref.text.strip()] = el.get("name") or ""
+    notes: dict[str, list[str]] = {}
+    for assoc in associations:
+        src, tgt = assoc.get("sourceRef"), assoc.get("targetRef")
+        if annotations.get(tgt):
+            notes.setdefault(src, []).append(annotations[tgt])
+        elif annotations.get(src):
+            notes.setdefault(tgt, []).append(annotations[src])
     name = {eid: (el.get("name") or eid) for eid, el in elements.items()}
     flows = [el for el in root.iter() if _local(el.tag) == "sequenceFlow"]
     info: dict[str, dict] = {}
@@ -69,6 +92,8 @@ def element_info(xml: str) -> dict[str, dict]:
         info[eid] = {
             "label": el.get("name") or eid,
             "detail": docs[-1] if docs else None,
+            "notes": notes.get(eid, []),
+            "lane": lane_of.get(eid),
             "branches": branches,
             "subprocess": _local(el.tag) == "subProcess",
         }
@@ -172,9 +197,13 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .legend .title { flex: 0 0 auto; font-weight: 600; }
   main { flex: 1 1 auto; min-height: 0; display: flex; }
   #canvas { flex: 1 1 auto; min-height: 0; position: relative; }
-  #panel { flex: 0 0 340px; max-width: 340px; border-left: 1px solid #d0d7de; overflow: auto; padding: 12px 14px; font-size: 13px; line-height: 1.45; background: #fbfcfd; box-sizing: border-box; }
+  #panel { flex: 0 0 320px; max-width: 320px; border-left: 1px solid #d0d7de; overflow: auto; padding: 12px 14px; font-size: 13px; line-height: 1.45; background: #fbfcfd; box-sizing: border-box; }
   body.panel-collapsed #panel { display: none; }
-  #panel h2 { font-size: 14px; margin: 0 0 8px; }
+  #panel .panel-head { display: flex; align-items: center; justify-content: space-between; margin: 0 0 8px; }
+  #panel h2 { font-size: 14px; margin: 0; }
+  #panel .close { font: inherit; font-size: 16px; line-height: 1; padding: 0 6px; border: 0; background: none; cursor: pointer; color: #57606a; }
+  #panel .element-label { font-weight: 600; font-size: 14px; }
+  #panel .lane { margin-top: -4px; }
   #panel h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: #57606a; margin: 14px 0 5px; }
   #panel p { margin: 0 0 8px; white-space: pre-wrap; }
   #panel ul { margin: 0; padding-left: 18px; }
@@ -184,7 +213,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   #error { color: #b42318; font-size: 12px; white-space: pre-wrap; position: absolute; right: 14px; top: 6px; }
 </style>
 </head>
-<body>
+<body class="panel-collapsed">
 <header>
   <div class="row">
     <h1>@@TITLE@@</h1>
@@ -204,8 +233,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <main>
   <div id="canvas"></div>
   <aside id="panel" aria-live="polite">
-    <h2>Detalle</h2>
-    <p class="muted" id="panel-body">Haz clic en una tarea, gateway o subproceso.</p>
+    <div class="panel-head"><h2>Detalle</h2><button type="button" class="close" id="close-panel" title="Cerrar" aria-label="Cerrar el detalle">&times;</button></div>
+    <div class="muted" id="panel-body">Haz clic en un paso, una pregunta o un subproceso para ver su detalle.</div>
   </aside>
 </main>
 <script>
@@ -223,9 +252,17 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     }
   });
   window.bpmnViewer = viewer;
-  var MIN_ZOOM = 0.6;  // the initial view never shows the diagram smaller than this
+  var PAD = 28;         // free margin around the diagram in the initial view
+  var MIN_ZOOM = 0.5;   // below this the initial view zooms in and starts at the start event
   function fitViewport() {
-    viewer.get('canvas').zoom('fit-viewport', 'auto');
+    // like zoom('fit-viewport') but with a margin, so nothing sits against the border
+    var canvas = viewer.get('canvas');
+    canvas.zoom('fit-viewport', 'auto');
+    var vb = canvas.viewbox(), inner = vb.inner, outer = vb.outer;
+    if (!inner.width || !inner.height) { return; }
+    var scale = Math.min(1, (outer.width - 2 * PAD) / inner.width, (outer.height - 2 * PAD) / inner.height);
+    var w = outer.width / scale, h = outer.height / scale;
+    canvas.viewbox({ x: inner.x + inner.width / 2 - w / 2, y: inner.y + inner.height / 2 - h / 2, width: w, height: h });
   }
   function initialView() {
     fitViewport();
@@ -240,9 +277,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       if (start) {
         var box = canvas.getAbsoluteBBox(start);
         var outer = canvas.viewbox().outer;
-        canvas.scroll({ dx: 40 - box.x, dy: Math.round(outer.height * 0.4) - box.y });
+        canvas.scroll({ dx: 60 - box.x, dy: Math.round(outer.height * 0.4) - box.y });
       }
     }
+    document.body.setAttribute('data-zoom', canvas.zoom().toFixed(3));
   }
   function el(tag, text, cls) {
     var node = document.createElement(tag);
@@ -250,24 +288,34 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     if (cls) { node.className = cls; }
     return node;
   }
-  function showInfo(id) {
-    var data = info[id];
+  function setPanel(open) {
+    var collapsed = document.body.classList.contains('panel-collapsed');
+    if (open === !collapsed) { return; }
+    document.body.classList.toggle('panel-collapsed', !open);
+    viewer.get('canvas').resized();
+  }
+  function showInfo(element) {
+    var data = info[element.id];
+    if (!data) { return false; }
     var body = document.getElementById('panel-body');
     body.className = '';
     body.textContent = '';
-    if (!data) {
-      body.className = 'muted';
-      body.textContent = 'Sin informacion para este elemento.';
-      return;
-    }
     body.appendChild(el('p', data.label, 'element-label'));
+    if (data.lane) { body.appendChild(el('p', 'Carril: ' + data.lane, 'muted lane')); }
     if (data.detail) {
       body.appendChild(el('h3', data.subprocess ? 'Detalle del grupo' : 'Detalle'));
       body.appendChild(el('p', data.detail));
     }
-    body.appendChild(el('h3', 'Ramas salientes'));
+    (data.notes || []).forEach(function (note) {
+      body.appendChild(el('h3', 'Nota'));
+      body.appendChild(el('p', note));
+    });
+    if (!data.detail && !(data.notes || []).length) {
+      body.appendChild(el('p', 'Sin detalle.', 'muted'));
+    }
+    body.appendChild(el('h3', 'Sigue'));
     if (!data.branches.length) {
-      body.appendChild(el('p', 'Sin ramas.', 'muted'));
+      body.appendChild(el('p', 'Termina aquí.', 'muted'));
     } else {
       var ul = el('ul');
       data.branches.forEach(function (branch) {
@@ -278,14 +326,23 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       });
       body.appendChild(ul);
     }
+    return true;
   }
-  viewer.on('element.click', function (evt) { showInfo(evt.element.id); });
+  viewer.on('element.click', function (evt) {
+    if (showInfo(evt.element)) {
+      setPanel(true);
+      try { viewer.get('canvas').scrollToElement(evt.element, 40); } catch (e) {}
+    }
+  });
   viewer.on('root.set', function () { try { initialView(); } catch (e) {} });
   viewer.importXML(xml).then(function (result) {
-    if (result.warnings && result.warnings.length) { console.warn('bpmn-js import warnings', result.warnings); }
+    var warnings = (result.warnings || []).length;
+    document.body.setAttribute('data-import-warnings', String(warnings));
+    if (warnings) { console.warn('bpmn-js import warnings', result.warnings); }
     initialView();
     window.bpmnReady = true;
   }).catch(function (err) {
+    document.body.setAttribute('data-import-error', err.message);
     document.getElementById('error').textContent = 'Could not render the BPMN diagram: ' + err.message;
     console.error(err);
   });
@@ -293,9 +350,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   document.getElementById('zoom-in').addEventListener('click', function () { viewer.get('zoomScroll').stepZoom(1); });
   document.getElementById('zoom-out').addEventListener('click', function () { viewer.get('zoomScroll').stepZoom(-1); });
   document.getElementById('toggle-panel').addEventListener('click', function () {
-    document.body.classList.toggle('panel-collapsed');
-    setTimeout(function () { viewer.get('canvas').resized(); }, 0);
+    setPanel(document.body.classList.contains('panel-collapsed'));
   });
+  document.getElementById('close-panel').addEventListener('click', function () { setPanel(false); });
   window.addEventListener('resize', function () { viewer.get('canvas').resized(); });
 })();
 </script>
@@ -315,7 +372,7 @@ def render_bpmn_html(xml: str, title: str, metadata: dict | None = None) -> str:
         "@@INFO_JSON@@": _json_for_script(element_info(xml)),
         "@@META@@": _meta_html(metadata),
         "@@LEGEND@@": _legend_html(xml, metadata),
-        "@@FONT@@": "14",
+        "@@FONT@@": str(TEXT_FONT_SIZE),
         "@@TITLE@@": html.escape(title),
     }
     return re.sub("|".join(re.escape(k) for k in values), lambda m: values[m.group(0)], HTML_TEMPLATE)

@@ -1,0 +1,63 @@
+id: activity.swimlanes
+title: "Recordatorios de cobranza por carril"
+type: activity
+version: "0.1"
+metadata:
+  description: "Cinco carriles, una pregunta que reparte entre dos de ellos y notas visibles."
+data:
+  start: lee
+  end: anota
+  steps:
+    lee:
+      label: Lee el ERP y envía la carga
+      partition: Cliente (VM del ERP)
+      detail: Una tarea programada lee los comprobantes con saldo y los envía firmados.
+      next: guarda
+    guarda:
+      label: Guarda la carga y calcula saldos
+      partition: Nube
+      notes: TC del día anterior
+      next: concilia
+    concilia:
+      label: "Concilia pagos: falta el banco"
+      partition: Nube
+      tone: warning
+      notes: Todavía no llega
+      next: arma
+    arma:
+      label: Arma la cola del día
+      partition: Nube
+      next: color
+    color:
+      label: ¿A quién se le escribe?
+      kind: decision
+      partition: Nube
+      detail: Se le escribe a un verde (solo) o a un amarillo (si una persona lo decide).
+      branches:
+        verde: programado
+        amarillo: revisa
+    revisa:
+      label: Una persona lo revisa
+      partition: Panel
+      kind: user
+      next: manda
+    programado:
+      label: Toma los verdes de hoy
+      partition: Agente
+      kind: service
+      tone: warning
+      notes: Hoy está apagado
+      next: manda
+    manda:
+      label: Manda el recordatorio
+      partition: Agente
+      tone: warning
+      notes: "Hoy: canal de prueba"
+      next: recibe
+    recibe:
+      label: Recibe el aviso
+      partition: Cliente final
+      next: anota
+    anota:
+      label: Anota el aviso enviado
+      partition: Nube

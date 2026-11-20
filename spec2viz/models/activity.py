@@ -12,7 +12,14 @@ class StepModel(BaseModel):
     label: str = Field(description="Display label rendered for the activity step.")
     kind: str = Field(
         default="action",
-        description="Semantic step type: action (default), decision (branches) or merge (joins branches back into one flow; drawn as a diamond like decision).",
+        description=(
+            "Semantic step type: action (default), decision (branches) or merge (joins branches back into one "
+            "flow; drawn as a diamond like decision). `start` makes the activity's start step the start event "
+            "itself (drawn as the labelled circle, without a separate task) and `end` makes a terminal step an "
+            "end event; only the `data.start` step can be `start`, an `end` step has no next or branches and no "
+            "step can point at a `start` step. BPMN task types: user, service, manual, send, receive, script; "
+            "intermediate events: timer, message. Renderers without these shapes draw them as an action."
+        ),
     )
     tone: StepTone | None = Field(
         default=None,
@@ -101,6 +108,22 @@ class ActivityData(BaseModel):
             "a step joins one with its `group` field."
         ),
     )
+
+    @model_validator(mode="after")
+    def _start_and_end_kinds(self) -> "ActivityData":
+        for sid, step in self.steps.items():
+            if step.kind == "start" and sid != self.start:
+                raise ValueError(f"Step '{sid}' has kind 'start' but the activity starts at '{self.start}'")
+            if step.kind == "end" and (step.next or step.branches):
+                raise ValueError(f"Step '{sid}' has kind 'end' and cannot have next or branches")
+            if step.kind == "end" and sid == self.start:
+                raise ValueError(f"The start step '{sid}' cannot have kind 'end'")
+        starts = {sid for sid, step in self.steps.items() if step.kind == "start"}
+        for sid, step in self.steps.items():
+            for target in [step.next, *step.branches.values()]:
+                if target in starts:
+                    raise ValueError(f"Step '{sid}' points at '{target}', which has kind 'start'")
+        return self
 
     @model_validator(mode="after")
     def _groups_exist(self) -> "ActivityData":

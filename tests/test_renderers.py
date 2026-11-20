@@ -527,3 +527,31 @@ def test_component_mermaid_click_desde_href(tmp_path):
     out = MermaidRenderer().render(compile_ir(load(spec)))
     assert 'click a href "/wiki/a/"' in out
     assert "click b" not in out
+
+
+def test_mermaid_activity_end_step_is_connected_and_named_events_replace_start_end():
+    from spec2viz.ir import ActivityIR, ActivityStep
+
+    ir = ActivityIR(title="T", start="a", end="fin", steps=[
+        ActivityStep(id="a", label="A", next="fin"),
+        ActivityStep(id="fin", label="Fin del relevamiento"),
+    ])
+    src = render(ir, "mermaid")
+    # the end step receives its arrow (it used to be left loose) and leads to End
+    assert "a --> fin" in src and "fin --> __end" in src and "a --> __end" not in src
+    ir = ActivityIR(title="T", start="ini", end="fin", steps=[
+        ActivityStep(id="ini", label="Primera hora", kind="start", next="a"),
+        ActivityStep(id="a", label="A", next="fin"),
+        ActivityStep(id="fin", label="Cierre", kind="end"),
+    ])
+    src = render(ir, "mermaid")
+    assert "__start" not in src and "__end" not in src
+    assert 'ini(["Primera hora"])' in src and 'fin(["Cierre"])' in src and "a --> fin" in src
+
+
+def test_antonia_html_draws_after_the_fonts_load():
+    from spec2viz.ir import ActivityIR, ActivityStep
+
+    page = render(ActivityIR(title="T", start="a", end="end", steps=[ActivityStep(id="a", label="A")]),
+                  "antonia-html")
+    assert "startOnLoad: false" in page and "document.fonts.ready" in page and "mermaid.run()" in page
