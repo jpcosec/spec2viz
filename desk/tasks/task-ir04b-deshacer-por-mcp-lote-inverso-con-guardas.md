@@ -1,18 +1,37 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-17T15:53:45Z'
+  at: '2026-11-20T23:08:20Z'
   authority: generated
   via: save_document_payload
 id: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
 - host:robocop2
 current_node: ritual-execution
-history: []
+history:
+- task_activates
+- 'task_returns_to_execution: Tester deskops-t-ef3b25a2dd59 FALLA sobre 1be6fc1 (ya
+  está en main por el reap). (1) Validation 1 pide sha256 idéntico de los .md y del
+  store tras deshacer, y quedó como xfail estricto. Por el contrato de sldb (nota
+  20261118-211934, sldb efd5ebb8: ''mismo contenido salvo procedencia''; deshacer
+  re-sella sldb.at/sldb.via y los hashes derivados), esa validación se cumple comparando
+  el contenido sin el bloque sldb: el sha256 del texto sin bloque sldb, como sldb/api/documents/content_hash.py
+  de sldb, igual antes y después, documento por documento, y el store por el mismo
+  criterio. Intento 2: reescribir esa prueba así, sin xfail, y que pase. (2) Regresiones
+  bloqueantes: tests/models/test_blog_chain.py::test_an_agent_does_not_verify_through_the_mcp
+  y tests/models/test_domain_tools.py::test_the_write_tools_come_with_the_extension_from_level_1
+  esperan que propose_changes falle como error de herramienta con ''IR05 D2-E'' en
+  el mensaje y en su descripción. El commit lo movió a un validador de add_batch y
+  cambió ese comportamiento. Intento 2: conservar ese comportamiento (propose_changes
+  sigue rechazando con un error de herramienta que nombra ''IR05 D2-E'' y su descripción
+  lo menciona) sin tocar los asserts de esas dos pruebas. Antes de entregar, correr
+  tests/test_mcp_undo.py, tests/models/test_blog_chain.py, tests/models/test_domain_tools.py
+  y tests/test_mcp_extension.py, de a uno, todos en verde. Commit desde tu worktree
+  con ''git commit -- <rutas>'' y trailer Task-Id.'
 references:
 - desk/inbox/20261116-232335-suggestion-sldb-responde-ir04b-undo-changes-mensaje-de-notationspec-ir13e-y-regresi-n-de-b2.md
 depends_on:
