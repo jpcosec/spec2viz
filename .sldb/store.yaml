@@ -235,6 +235,14 @@ include:
     name: review-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester-evidence-materialization-1
   - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/preflight-4.md
     name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-preflight-4
+  - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/evidence-tests-1.md
+    name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-evidence-tests-1
+  - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/evidence-commit-1.md
+    name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-evidence-commit-1
+  - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/evidence-atom-1.md
+    name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-evidence-atom-1
+  - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/evidence-materialization-1.md
+    name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-evidence-materialization-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -980,6 +988,10 @@ include:
     name: run-deskops-e-e9fb2cd27cee
   - path: runs/subagents/exec-deskops-t-e2a621a70a51-testing/run.md
     name: run-deskops-t-e2a621a70a51
+  - path: runs/subagents/exec-deskops-e-e9fb2cd27cee-a2/run.md
+    name: run-deskops-e-e9fb2cd27cee-a2
+  - path: runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/run.md
+    name: run-deskops-t-e2a621a70a51-a2
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md

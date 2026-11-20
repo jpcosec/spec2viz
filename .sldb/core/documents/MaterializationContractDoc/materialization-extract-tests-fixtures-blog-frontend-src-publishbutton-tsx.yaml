@@ -1,0 +1,25 @@
+name: materialization-extract-tests-fixtures-blog-frontend-src-publishbutton-tsx
+path: desk/materializations/materialization-extract-tests-fixtures-blog-frontend-src-publishbutton-tsx.md
+source_hash: 862495166a2a1b377127d97ab9594de419f5cb2d5ee3bc047874094fe6e5d7e8
+content_hash: fd3ce39e2596f7222652fbd38b17eab991e3a57c3a41633bf8b977e8b7ba33fa
+field_hashes:
+  id: 196d32984a6783f43d44ddf612b9d2fbf4f703b1a94bf6f1c468214da091646a
+  title: 7265dc382d68f480fe2c0895835f91b4b06dbef3bd65a304a9d4cb1f8b208016
+  source_atoms: ad4812795e97fb1e5833e77974e1f2fe7790c480225e99caac29d3471898b40b
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: f1b60dc404b56cc23a42b0a6f92fddf2f6ae8fa4f9d11441879a53e600f7bb40
+  intent: c1c43d069526a9a2992ea62192252a566a103d48b4b546829cd7916ffc2ee3a5
+  validation: 46b181a4c9d3a11efcf24c68c107a87cb768d116c9e8f5b92b4ca8e52cbf7bb9
+  tags: 6cfc6503ffa61ab9613995db87f1e4c3983bc81b613e0cf921dd3e76a740a378
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:extract
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-20T22:01:17Z'
+  authority: generated
+  via: create_document

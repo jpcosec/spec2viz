@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-20T21:38:31Z'
+  at: '2026-11-20T22:00:58Z'
   authority: generated
   via: save_document_payload
 id: task-ir09-extractor-estático-react-tsx-y-contratos-de-api
@@ -13,7 +13,7 @@ tags:
 - system:specir
 - topic:extractores
 - host:robocop2
-current_node: ritual-execution
+current_node: ritual-testing
 history:
 - task_activates
 - 'task_returns_to_execution: Tester exec-deskops-t-e2a621a70a51-testing FALLA sobre
@@ -25,7 +25,23 @@ history:
   y agregar una prueba con un fetch de URL literal (en blog_frontend_gaps o en tests/extract/test_frontend_extraction.py)
   que verifique que va a not_derived y que no queda una acción sin invokes sin declarar.
   Commit solo de tus archivos con ''git commit -- <rutas>'' desde tu worktree.'
-references: []
+- task_activates
+references:
+- src/specir/extract/__init__.py
+- src/specir/extract/plan.py
+- src/specir/extract/react_tsx.py
+- tests/extract/test_frontend_extraction.py
+- tests/fixtures/blog_frontend/src/PublishButton.tsx
+- tests/fixtures/blog_frontend/src/api/client.ts
+- tests/fixtures/blog_frontend/src/api/legacy.js
+- tests/fixtures/blog_frontend_gaps/src/ArchiveButton.tsx
+- tests/fixtures/blog_frontend_gaps/src/FetchButton.tsx
+- tests/fixtures/blog_frontend_gaps/src/SearchBox.tsx
+- tests/fixtures/blog_frontend_gaps/src/api/fetcher.ts
+- tests/fixtures/blog_frontend_gaps/src/api/legacy_archive.js
+- tests/fixtures/blog_frontend_gaps/src/api/search.ts
+- 6121f69f9da3b924875991a2f432886ad58e2a02
+- 6a9bbdd0bc07a22bbff1bd7df7f781dbd8fa5f76
 depends_on:
 - task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo
 - task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog
@@ -37,14 +53,25 @@ depends_on:
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
-files: []
+files:
+- src/specir/extract/__init__.py
+- src/specir/extract/plan.py
+- src/specir/extract/react_tsx.py
+- tests/extract/test_frontend_extraction.py
+- tests/fixtures/blog_frontend/src/PublishButton.tsx
+- tests/fixtures/blog_frontend/src/api/client.ts
+- tests/fixtures/blog_frontend/src/api/legacy.js
+- tests/fixtures/blog_frontend_gaps/src/ArchiveButton.tsx
+- tests/fixtures/blog_frontend_gaps/src/FetchButton.tsx
+- tests/fixtures/blog_frontend_gaps/src/SearchBox.tsx
+- tests/fixtures/blog_frontend_gaps/src/api/fetcher.ts
+- tests/fixtures/blog_frontend_gaps/src/api/legacy_archive.js
+- tests/fixtures/blog_frontend_gaps/src/api/search.ts
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
 atoms:
 - atom-por-qué-existe-specir-coherencia-entre-capas-para-agentes-de-código
-- atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
-- atom-entidad-aparición-proyección-y-notación-son-cosas-distintas
 from_drawer: desk/drawer/tasks/task-ir09-extractor-estatico-react-tsx-y-contratos-api.md
 ---
 

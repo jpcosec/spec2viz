@@ -1,0 +1,25 @@
+name: materialization-extract-tests-fixtures-blog-frontend-gaps-src-api-legacy-archive-js
+path: desk/materializations/materialization-extract-tests-fixtures-blog-frontend-gaps-src-api-legacy-archive-js.md
+source_hash: 7561c9bd61f3908e445759dda2e0aa3dd300d187dfe652e580cce89b249b14c7
+content_hash: 5174160405f162291155cdbcc51b2674fac3be7e404e5810d6e67398124ee59b
+field_hashes:
+  id: f464cf1b6fc0700c618af261ad9107dec55845d10286f42b7cd1a1f70a661c68
+  title: 23932780c1d3a14d24bbc387569eb5bf97ebd34f9d8a248babb36cd87d504ce9
+  source_atoms: ad4812795e97fb1e5833e77974e1f2fe7790c480225e99caac29d3471898b40b
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: 64d83cd46329de357bef137919dfb237a32ac3e8bed94f650efbd0ffa2263386
+  intent: d8758eb2f820c0ff658d2a3d473fe81b9c776920e6688534fd87c75ca8a5a85f
+  validation: 46b181a4c9d3a11efcf24c68c107a87cb768d116c9e8f5b92b4ca8e52cbf7bb9
+  tags: 6cfc6503ffa61ab9613995db87f1e4c3983bc81b613e0cf921dd3e76a740a378
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:extract
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-20T22:01:43Z'
+  authority: generated
+  via: create_document
