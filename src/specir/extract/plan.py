@@ -14,7 +14,7 @@ ANCHOR_DIR = "specir/anchors"
 #: Name prefix by model: document names are unique in a store whatever their model.
 PREFIXES = {
     "ApiOperationDoc": "api", "HandlerDoc": "handler", "DomainOperationDoc": "op", "PolicyDoc": "policy",
-    "StateDoc": "state", "DomainEntityDoc": "entity", "TableDoc": "table", "RelationDoc": "edge",
+    "StateDoc": "state", "InterfaceControlDoc": "control", "InterfaceActionDoc": "action", "DomainEntityDoc": "entity", "TableDoc": "table", "RelationDoc": "edge",
 }
 
 
