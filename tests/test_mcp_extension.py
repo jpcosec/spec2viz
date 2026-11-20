@@ -140,7 +140,7 @@ def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy
 
 
 # --- IR05 D2-E: an agent does not verify through the MCP. specIR registers it as a batch validator of
-# sldb (`context.add_batch_validator`); sldb answers a `domain` rejection with nothing written.
+# sldb (`context.add_batch_validator`): a tool error in propose_changes, a `domain` rejection in apply_changes.
 
 ACTOR = "agent:specir-d2e"
 NODE = {"title": "Node", "origen": "declarado", "description": "A node.", "symbol": None, "desconocidos": {"symbol": "no code yet"}}
@@ -165,7 +165,7 @@ def test_the_write_tools_are_sldbs_own_and_the_extension_adds_a_validator_not_a_
         assert names == SLDB_READ | DOMAIN | SLDB_WRITE | {"undo_changes"}, names
 
 
-def test_a_change_that_writes_verificado_is_refused_in_propose_as_a_domain_rejection_and_nothing_is_written(writable, spec_store, federated) -> None:
+def test_a_change_that_writes_verificado_is_refused_in_propose_as_a_tool_error_and_nothing_is_written(writable, spec_store, federated) -> None:
     before = copy_digest(writable, spec_store, federated)
     seed = create("d2e-seed")
     with served(writable, "--level", "1", "--actor", ACTOR) as session:
@@ -181,12 +181,9 @@ def test_a_change_that_writes_verificado_is_refused_in_propose_as_a_domain_rejec
             edge,
         ]
         for change in refused:
-            answer = session.call("propose_changes", changes=[change])
-            print("D2-E", change["action"], answer)
-            assert answer["applied"] is False and answer["rejected"] == "domain" and answer["written"] is False, answer
-            assert "proposal" not in answer
-            found = answer["findings"]
-            assert [f["level"] for f in found] == ["error"] and found[0]["code"] == "specir_agent_verifies" and "IR05 D2-E" in found[0]["what"], found
+            error = session.error_of("propose_changes", changes=[change])
+            print("D2-E", change["action"], error)
+            assert "IR05 D2-E" in error, error
         assert copy_digest(writable, spec_store, federated) == seeded
     assert seeded != before
 

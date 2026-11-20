@@ -10,8 +10,8 @@ adds only what is its own, over its domain types (`specir.models.domain`, IR06):
 - From level 1, a batch validator (`context.add_batch_validator` of sldb) refuses a change that
   writes `verificacion: verificado` (IR05 D2-E: an agent does not verify through the MCP; only a
   human outside it or a deterministic check does). sldb runs it on `propose_changes` (over the
-  typed changes) and on `apply_changes` (over the proposal's batch changes) and answers a `domain`
-  rejection with nothing written. The write tools, their proposal and the undo of the session
+  typed changes: a tool error naming IR05 D2-E) and on `apply_changes` (over the proposal's batch
+  changes: a `domain` rejection), nothing written either way; the description of `propose_changes` says the rule. The write tools, their proposal and the undo of the session
   are sldb's, served unchanged: this module creates none of them.
 
 This is the only module of specIR that reaches `sldb.mcp`; the rest uses `sldb.api` alone.
@@ -136,11 +136,25 @@ def register(server: Any, context: Any) -> None:
         return
 
     def verification_is_not_written(changes: list[Any], validating: Any) -> list[dict[str, Any]]:
-        """sldb's `BatchValidator`: one error finding per change that writes `verificacion: verificado`."""
-        return [
+        """sldb's `BatchValidator`: one error finding per change that writes `verificacion: verificado`.
+
+        In `propose_changes` sldb hands it the typed changes: the proposal is refused as a tool
+        error that names IR05 D2-E. In `apply_changes` it hands it the batch changes: a `domain`
+        rejection with the findings, nothing written."""
+        findings = [
             {"code": "specir_agent_verifies", "level": "error", "what": f"{change_name(change)}: {VERIFIES}", "subject": change_name(change)}
             for change in changes
             if claims_verified(change, validating.store_path)
         ]
+        if findings and not any(isinstance(change, BatchChange) for change in changes):
+            raise ValueError("; ".join(f["what"] for f in findings))
+        return findings
 
     context.add_batch_validator(verification_is_not_written)
+    # The tool stays sldb's (one WriteTools, one undo stack); only its description says the rule.
+    try:
+        tool = server._tool_manager.get_tool("propose_changes")
+    except AttributeError:  # pragma: no cover - a server without the tool manager keeps sldb's description
+        tool = None
+    if tool is not None:
+        tool.description = f"{tool.description} specIR: {VERIFIES}."

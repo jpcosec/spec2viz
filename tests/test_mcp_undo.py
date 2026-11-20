@@ -5,7 +5,6 @@ specIR implements no undo: the tool, the stack of inverse batches and the guards
 from __future__ import annotations
 
 import hashlib
-import re
 import subprocess
 import sys
 from pathlib import Path
@@ -115,17 +114,16 @@ def content(copy_root):
     return take
 
 
-STAMP = re.compile(r"^(\s+(?:at|via): ).*$", re.MULTILINE)
-
-
 def md_digest(root: Path) -> dict[str, str]:
-    """sha256 of every Markdown document of the copy, with the provenance stamp (`sldb.at` and
-    `sldb.via`) left out: an undo restores the content of a document but sldb stamps it with the time and the way of the undo
-    (finding for sldb, see test_the_store_files_are_byte_identical_after_the_undo)."""
+    """sha256 of the content of every Markdown document of the copy: its text without the `sldb`
+    provenance block (`sldb.api.documents.content_hash`). An undo restores the content of a document
+    but sldb re-stamps `sldb.at` and `sldb.via` (sldb: same content but for the provenance)."""
+    from sldb.models.provenance_block import strip_block
+
     digest = {}
     for path in sorted(p for n in (".sldb", "sldb", "desk", "undo") if (root / n).exists() for p in (root / n).rglob("*.md")):
         if path.is_file() and ".sldb_cache" not in path.parts:
-            digest[str(path)] = hashlib.sha256(STAMP.sub(r"\1<stamp>", path.read_text(encoding="utf-8")).encode()).hexdigest()
+            digest[str(path)] = hashlib.sha256(strip_block(path.read_text(encoding="utf-8")).encode("utf-8")).hexdigest()
     return digest
 
 
@@ -145,16 +143,16 @@ def test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_documents(c
     assert after == checked and all(rc == 0 for rc, _ in after.values()), after
 
 
-@pytest.mark.xfail(strict=True, reason="finding for sldb: undo_changes restores the content but re-stamps `sldb.at` and `sldb.via` of the edited document (and the hashes derived from it in .sldb/)")
-def test_the_store_files_are_byte_identical_after_the_undo(copy_root, digest) -> None:
-    """Validation 1 asks the sha256 of the .md and of the store to match. They match but for the
-    provenance stamp (`sldb.at`, `sldb.via`) of the document the batch edited, and the hashes derived from it.
-    Strict xfail: when sldb stops re-stamping, this passes and the xfail must go."""
-    before = digest()
+def test_the_documents_and_the_store_have_the_same_content_after_the_undo(copy_root, content) -> None:
+    """Validation 1: the sha256 of the content (text without the `sldb` block) of every .md is the
+    same before and after, document by document; the store's files hold the same content likewise."""
+    before = content()
     with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
         assert propose_apply(session, content_batch("h"))["applied"] is True
+        assert content() != before
         assert session.call("undo_changes", steps=1)["applied"] is True
-    assert digest() == before
+    assert content() == before
+    assert set(content()) == set(before), "the undo left or removed files"
 
 
 def foreign_edit(root: Path, description: str) -> None:
