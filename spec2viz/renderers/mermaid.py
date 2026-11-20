@@ -167,10 +167,23 @@ class MermaidRenderer:
         return "\n".join(lines)
 
     def _activity(self, ir: ActivityIR) -> str:
-        lines = [*_flowchart("TD"), "    __start([Start])"]
+        by_id = {step.id: step for step in ir.steps}
+        start_step = by_id.get(ir.start)
+        end_step = by_id.get(ir.end)
+        # un paso `kind: start`/`kind: end` es el propio evento (con su rotulo); si no, Start/End aparte
+        own_start = start_step is not None and start_step.kind == "start"
+        own_end = end_step is not None and end_step.kind == "end"
+        lines = [*_flowchart("TD")]
+        if not own_start:
+            lines.append("    __start([Start])")
 
         def node_lines(step, indent: str) -> list[str]:
             # decision y merge son rombos; una nota es un nodo aparte unido por una linea punteada
+            if step.kind in ("start", "end"):
+                out = [f"{indent}{step.id}([\"{_esc_label(step.label)}\"])"]
+                if step.notes:
+                    out.append(f"{indent}{step.id}__note[\"{_esc_label(step.notes)}\"]:::note")
+                return out
             if step.kind in ("decision", "merge"):
                 # mermaid no acepta un rombo con rotulo vacio (el merge UML no lleva rotulo)
                 out = [f"{indent}{step.id}{{\"{_esc_label(step.label) or ' '}\"}}"]
@@ -193,16 +206,23 @@ class MermaidRenderer:
             for step in steps:
                 lines.extend(node_lines(step, "        "))
             lines.append("    end")
-        lines.append(f"    __end([End])")
-        lines.append(f"    __start --> {ir.start}")
+        if not own_end:
+            lines.append(f"    __end([End])")
+        if not own_start:
+            lines.append(f"    __start --> {ir.start}")
+
+        def dest(target: str) -> str:
+            # el fin es un paso: las flechas llegan a ese paso (antes quedaba suelto)
+            return target if target in by_id else ("__end" if target == ir.end else target)
+
         for step in ir.steps:
             if step.kind == "decision":
                 for branch, target in step.branches.items():
-                    dest = "__end" if target == ir.end else target
-                    lines.append(f'    {step.id} -->|"{_esc_label(branch)}"| {dest}')
+                    lines.append(f'    {step.id} -->|"{_esc_label(branch)}"| {dest(target)}')
             elif step.next:
-                dest = "__end" if step.next == ir.end else step.next
-                lines.append(f"    {step.id} --> {dest}")
+                lines.append(f"    {step.id} --> {dest(step.next)}")
+        if end_step is not None and not own_end:
+            lines.append(f"    {end_step.id} --> __end")
         for step in ir.steps:
             if step.notes:
                 lines.append(f"    {step.id} -.- {step.id}__note")

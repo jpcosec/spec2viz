@@ -2034,7 +2034,7 @@
         },
         "kind": {
           "default": "action",
-          "description": "Semantic step type: action (default), decision (branches) or merge (joins branches back into one flow; drawn as a diamond like decision).",
+          "description": "Semantic step type: action (default), decision (branches) or merge (joins branches back into one flow; drawn as a diamond like decision). `start` makes the activity's start step the start event itself (drawn as the labelled circle, without a separate task) and `end` makes a terminal step an end event; only the `data.start` step can be `start`, an `end` step has no next or branches and no step can point at a `start` step. BPMN task types: user, service, manual, send, receive, script; intermediate events: timer, message. Renderers without these shapes draw them as an action.",
           "title": "Kind",
           "type": "string"
         },

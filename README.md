@@ -83,29 +83,58 @@ Supported renderers:
 - `<stem>.bpmn`: BPMN 2.0 XML (`http://www.omg.org/spec/BPMN/20100524/MODEL`) with one process: a
   `startEvent`, a `task` per step, an `exclusiveGateway` per `kind: decision` (or `merge`) step named with its
   label, a `sequenceFlow` per `next` and per branch (the branch label is the flow name) and one `endEvent`.
-  A step without `next` or branches ends the process (it flows to the end event); `notes` become
-  `documentation`. Ids are stable and derived from the step ids (`Task_<step>`, `Gateway_<step>`,
-  `Flow_<from>__<to>`). It carries BPMN DI from a deterministic layered layout (left to right by longest
-  path, long flows in their own lanes, orthogonal waypoints), so it opens laid out in bpmn.io, Camunda
-  Modeler or bpmn-js.
+  A step without `next` or branches ends the process (it flows to the end event). `detail` becomes the
+  element's `documentation` (shown in the viewer's side panel); `notes` become a `textAnnotation` joined to
+  the step by an `association`, drawn above it. Ids are stable and derived from the step ids (`Task_<step>`,
+  `Gateway_<step>`, `Flow_<from>__<to>`, `TextAnnotation_<step>`). It carries BPMN DI from a deterministic
+  layered layout, so it opens laid out in bpmn.io, Camunda Modeler or bpmn-js.
 - `<stem>.bpmn.html`: a self-contained viewer (bpmn-js NavigatedViewer: pan, zoom, fit). The title, the
   Fit/Zoom buttons and a one-line color legend sit in a compact bar; `metadata.description` and
   `metadata.preguntas_abiertas` are collapsed in a `<details>` and the diagram fills the rest of the window.
-  Text renders at 14px; the page opens fitted, and when fitting would shrink the diagram below 90% it zooms to
-  that minimum and starts at the flow's first step. The legend names each color: generic Spanish labels by
-  default, overridable per tone with `metadata.legend` (`{success: Aceptar, rule2: R2 · Stock, ...}`); only the
-  tones the diagram uses are listed. bpmn-js is vendored in `spec2viz/templates/vendor/bpmn-js/` (version,
-  source and the bpmn.io license there) and inlined, so the page works offline from `file://`.
+  Text renders at 15px. The page opens with the whole diagram fitted with a margin (never above 100%); only
+  when that would shrink it below 50% does it zoom to 50% and start at the start event. The «Detalle» panel
+  is folded until a step, gateway or subprocess is clicked; it shows the label, the lane, `detail`, `notes`
+  and where the flow goes next. The legend names each color: generic Spanish labels by default, overridable
+  per tone with `metadata.legend` (`{success: Aceptar, rule2: R2 · Stock, ...}`); only the tones the diagram
+  uses are listed. bpmn-js is vendored in `spec2viz/templates/vendor/bpmn-js/` (version, source and the
+  bpmn.io license there) and inlined, so the page works offline from `file://`.
+
+**Lanes.** When steps have a `partition`, the process sits in a pool (`collaboration` with one `participant`)
+with a `laneSet`: one `lane` per partition, in the order the partitions first appear in the spec, each
+listing its steps in `flowNodeRef`. Each lane is a horizontal band with its name in the left strip (every
+other band lightly tinted); the flow advances left to right and changes band. A step without `partition`
+takes the lane of the step before it (events too). A task whose only flow goes to a task in another lane can
+sit right above or below it, in the same column, when nothing lies in between, and the arrow drops straight
+down. The pool carries the title when it fits in its strip.
+
+**Kinds.** Besides `action`, `decision` and `merge`, a step may be `kind: start` (only the `data.start`
+step: it becomes the start event itself, with its label, instead of a start event plus a task), `kind: end`
+(a step without `next`/branches drawn as a named end event; when it is `data.end` the other terminal steps
+flow into it), `user`, `service`, `manual`, `send`, `receive` or `script` (the BPMN task types) and `timer`
+or `message` (intermediate catch events). Specs without these kinds render as before; other renderers draw
+them as an action (mermaid draws `start`/`end` steps as the rounded start/end node with their label).
+
+**Routing.** Flows are orthogonal and never pass over a shape: a gateway sends the branches that go down
+out of its bottom corner; a task whose only flow changes lane enters the next step from the top or the
+bottom; the rest run through vertical tracks in the gap between columns. Several flows entering the same
+step get their own entry point (a flow that arrives level with the step stays straight; a step with many
+inputs grows taller), and a long flow keeps the height of its source when its corridor is free. Flow labels
+that would overlap move below their stretch. Back edges (loops) leave to the right and run along a corridor
+under their lane (or under the whole diagram) back into the target.
 
 Steps accept an optional `tone` (`success`, `warning`, `danger`, `info`, `neutral` or `rule1`..`rule5`, to
 tint each decision group) that the renderer writes as BPMN in Color (`color:background-color` on
 `BPMNShape`, `color:border-color` on `BPMNShape` and `BPMNEdge`, namespace
 `http://www.omg.org/spec/BPMN/non-normative/color/1.0`), which bpmn-js and Camunda Modeler honor. Gateways
 without a tone get a soft violet, the start event green, the end event dark red, and the flows leaving a
-gateway take its border color. Task boxes wrap their label at no more than 220px wide and grow in height.
+gateway take its border color. Task boxes are as narrow as two lines of their label allow (three for long
+labels, between 120 and 200px, never narrower than their longest word) and grow in height; text widths are
+estimated with Arial metrics.
 
-Layout limits: partitions (swimlanes) are not drawn as BPMN lanes yet; crossings are reduced with a few
-barycenter sweeps, not minimized; back edges (loops) are routed below the whole diagram.
+Layout limits: with `groups`, partitions are not drawn as lanes and `kind: start`/`end` steps are drawn as
+tasks (the groups keep their collapsed subprocesses); crossings between flows are reduced with a few
+barycenter sweeps, not minimized; a long chain of steps in one lane makes a wide diagram, which the viewer
+fits whole (a 16-step sequence fits a 1600px window at about 9px text).
 
 Catalog commands build a deskops architecture HTML bundle from a legacy `vistas.yml` registry or a hierarchical diagram store:
 

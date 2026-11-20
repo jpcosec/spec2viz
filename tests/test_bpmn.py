@@ -26,6 +26,10 @@ NS = {
     "di": "http://www.omg.org/spec/DD/20100524/DI",
 }
 NODE_TAGS = ("startEvent", "endEvent", "task", "exclusiveGateway")
+FLOW_NODE_TAGS = NODE_TAGS + (
+    "userTask", "serviceTask", "manualTask", "sendTask", "receiveTask", "scriptTask",
+    "intermediateCatchEvent", "subProcess",
+)
 
 
 def _parse(xml: str) -> ET.Element:
@@ -38,16 +42,20 @@ def _check_structure(root: ET.Element) -> dict[str, int]:
     processes = root.findall("bpmn:process", NS)
     assert len(processes) == 1
     proc = processes[0]
-    nodes = {el.get("id"): el for tag in NODE_TAGS for el in proc.findall(f"bpmn:{tag}", NS)}
+    nodes = {el.get("id"): el for tag in FLOW_NODE_TAGS for el in proc.findall(f"bpmn:{tag}", NS)}
     flows = proc.findall("bpmn:sequenceFlow", NS)
-    ids = [el.get("id") for el in proc] + [proc.get("id")]
+    ids = [el.get("id") for el in root.iter() if el.get("id")]
     assert len(ids) == len(set(ids)), "ids must be unique"
     for f in flows:
         assert f.get("sourceRef") in nodes and f.get("targetRef") in nodes
     plane = root.find("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)
-    assert plane.get("bpmnElement") == proc.get("id")
-    shapes = {s.get("bpmnElement"): s for s in plane.findall("bpmndi:BPMNShape", NS)}
-    edges = {e.get("bpmnElement"): e for e in plane.findall("bpmndi:BPMNEdge", NS)}
+    collab = root.find("bpmn:collaboration", NS)
+    assert plane.get("bpmnElement") == (collab.get("id") if collab is not None else proc.get("id"))
+    shapes = {s.get("bpmnElement"): s for s in plane.findall("bpmndi:BPMNShape", NS)
+              if s.get("bpmnElement") in nodes}
+    flow_ids = {f.get("id") for f in flows}
+    edges = {e.get("bpmnElement"): e for e in plane.findall("bpmndi:BPMNEdge", NS)
+             if e.get("bpmnElement") in flow_ids}
     assert set(shapes) == set(nodes), "every node has exactly one DI shape"
     assert set(edges) == {f.get("id") for f in flows}, "every flow has exactly one DI edge"
     for s in shapes.values():
@@ -302,7 +310,7 @@ def test_text_width_is_estimated_per_character_class():
     # uppercase, '_' and 'm'/'w' are wider than the old flat 7.7px, narrow signs are thinner
     assert _text_w("PARTIAL_STOCK") > len("PARTIAL_STOCK") * 7.7
     assert _text_w("mmmm") > _text_w("iiii")
-    assert _text_w("...") < _text_w("III")
+    assert _text_w("...") < _text_w("MMM")
     # PARTIAL_STOCK (the label that used to break in two) fits on a single line
     w, _h = _task_box("PARTIAL_STOCK")
     assert w - TASK_PAD + 4 >= _text_w("PARTIAL_STOCK")
@@ -372,8 +380,10 @@ def test_viewer_font_size_and_initial_zoom():
     xml = render(compile_ir(load(FIXTURES / "activity.validation.yml")), "bpmn")
     page = render_bpmn_html(xml, "T", None)
     assert "textRenderer" in page and "defaultStyle" in page and "externalStyle" in page
-    assert "fontSize: 14" in page
-    assert "MIN_ZOOM = 0.6" in page and "canvas.zoom(MIN_ZOOM)" in page
+    from spec2viz.renderers.bpmn_viewer import TEXT_FONT_SIZE
+
+    assert f"fontSize: {TEXT_FONT_SIZE}" in page
+    assert "MIN_ZOOM = 0.5" in page and "canvas.zoom(MIN_ZOOM)" in page
     # Fit really fits, it does not re-apply the minimum-zoom initial view
     assert "function fitViewport()" in page
     assert "document.getElementById('fit').addEventListener('click', fitViewport)" in page
@@ -501,7 +511,7 @@ def test_group_and_step_detail_reach_the_viewer_json():
         {"label": "ok", "target": "Cierre interno"},
         {"label": "no", "target": "Afuera"},
     ]
-    assert "id=\"panel\"" in page and "340px" in page and "toggle-panel" in page
+    assert "id=\"panel\"" in page and "320px" in page and "toggle-panel" in page
 
 
 def test_spec_without_groups_produces_one_plane_and_no_subprocess():
@@ -530,3 +540,256 @@ def test_model_validates_groups_and_detail():
     with pytest.raises(ValidationError, match="unknown group 'missing'"):
         ActivityData(start="a", end="end",
                      steps={"a": StepModel(label="A", next="end", group="missing")})
+
+
+# ── lanes, notes, start/end kinds, task types (presentable output) ─────────────
+
+
+def _bounds_of(el: ET.Element) -> tuple[int, int, int, int]:
+    b = el.find("dc:Bounds", NS)
+    return tuple(int(b.get(k)) for k in ("x", "y", "width", "height"))
+
+
+def _flow_shapes(root: ET.Element) -> dict[str, tuple[int, int, int, int]]:
+    proc = root.find("bpmn:process", NS)
+    nodes = {el.get("id") for tag in FLOW_NODE_TAGS for el in proc.findall(f"bpmn:{tag}", NS)}
+    plane = root.find("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)
+    return {s.get("bpmnElement"): _bounds_of(s) for s in plane.findall("bpmndi:BPMNShape", NS)
+            if s.get("bpmnElement") in nodes}
+
+
+def _assert_flows_avoid_shapes(root: ET.Element) -> None:
+    """No flow segment passes over a shape other than its own source and target."""
+    proc = root.find("bpmn:process", NS)
+    plane = root.find("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)
+    boxes = _flow_shapes(root)
+    for f in proc.findall("bpmn:sequenceFlow", NS):
+        edge = plane.find(f"bpmndi:BPMNEdge[@bpmnElement='{f.get('id')}']", NS)
+        pts = [(int(w.get("x")), int(w.get("y"))) for w in edge.findall("di:waypoint", NS)]
+        for nid, (x, y, w, h) in boxes.items():
+            if nid in (f.get("sourceRef"), f.get("targetRef")):
+                continue
+            for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
+                sx0, sx1, sy0, sy1 = min(x0, x1), max(x0, x1), min(y0, y1), max(y0, y1)
+                crosses = sx1 > x and sx0 < x + w and sy1 > y and sy0 < y + h
+                assert not crosses, f"{f.get('id')} crosses {nid}"
+
+
+def _swimlanes():
+    return render(compile_ir(load(FIXTURES / "activity.swimlanes.yml")), "bpmn")
+
+
+def test_partitions_become_a_pool_with_one_lane_each_in_spec_order():
+    root = _parse(_swimlanes())
+    _check_structure(root)
+    collab = root.find("bpmn:collaboration", NS)
+    participant = collab.find("bpmn:participant", NS)
+    assert participant.get("processRef") == "Process_1"
+    lanes = root.findall("bpmn:process/bpmn:laneSet/bpmn:lane", NS)
+    assert [lane.get("name") for lane in lanes] == [
+        "Cliente (VM del ERP)", "Nube", "Panel", "Agente", "Cliente final",
+    ]
+    refs = {lane.get("name"): {r.text for r in lane.findall("bpmn:flowNodeRef", NS)} for lane in lanes}
+    assert refs["Panel"] == {"Task_revisa"}
+    assert {"Task_guarda", "Gateway_color", "Task_anota"} <= refs["Nube"]
+    # the start event follows its first step, the end event the step before it
+    assert "StartEvent_lee" in refs["Cliente (VM del ERP)"] and "EndEvent_anota" in refs["Nube"]
+    # every flow node is in exactly one lane
+    shapes = _flow_shapes(root)
+    listed = [r for names in refs.values() for r in names]
+    assert sorted(listed) == sorted(shapes)
+
+
+def test_lane_di_is_horizontal_stacked_and_holds_its_steps():
+    root = _parse(_swimlanes())
+    plane = root.find("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)
+    di = {s.get("bpmnElement"): s for s in plane.findall("bpmndi:BPMNShape", NS)}
+    pool = di["Participant_1"]
+    assert pool.get("isHorizontal") == "true"
+    px, py, pw, ph = _bounds_of(pool)
+    lanes = root.findall("bpmn:process/bpmn:laneSet/bpmn:lane", NS)
+    top = py
+    shapes = _flow_shapes(root)
+    for lane in lanes:
+        shape = di[lane.get("id")]
+        assert shape.get("isHorizontal") == "true"
+        lx, ly, lw, lh = _bounds_of(shape)
+        assert ly == top and lx == px + 30 and lx + lw == px + pw  # stacked bands, title band at the left
+        top += lh
+        for ref in lane.findall("bpmn:flowNodeRef", NS):
+            x, y, w, h = shapes[ref.text]
+            assert lx < x and x + w < lx + lw and ly < y and y + h < ly + lh, f"{ref.text} leaves its lane"
+    assert top == py + ph
+
+
+def test_lane_layout_has_no_overlaps_and_flows_never_cross_shapes():
+    for xml in (_swimlanes(), render(compile_ir(load(FIXTURES / "activity.lanes.yml")), "bpmn")):
+        root = _parse(xml)
+        _check_structure(root)  # also: no two shapes overlap, every waypoint orthogonal
+        _assert_flows_avoid_shapes(root)
+        # annotations and labels do not sit on top of shapes either
+        plane = root.find("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)
+        boxes = list(_flow_shapes(root).values())
+        for s in plane.findall("bpmndi:BPMNShape", NS):
+            if s.get("bpmnElement", "").startswith("TextAnnotation_"):
+                x, y, w, h = _bounds_of(s)
+                for (x2, y2, w2, h2) in boxes:
+                    assert x + w <= x2 or x2 + w2 <= x or y + h <= y2 or y2 + h2 <= y
+
+
+def test_lanes_advance_left_to_right_and_a_lane_change_may_drop_straight_down():
+    root = _parse(_swimlanes())
+    shapes = _flow_shapes(root)
+    proc = root.find("bpmn:process", NS)
+    for f in proc.findall("bpmn:sequenceFlow", NS):
+        (sx, _, sw, _), (tx, _, tw, _) = shapes[f.get("sourceRef")], shapes[f.get("targetRef")]
+        assert sx + sw / 2 <= tx + tw / 2, f"{f.get('id')} goes backwards"
+    # `manda` (Agente) hands over to `recibe` (Cliente final) right below it, in the same column
+    edges = _edges(_swimlanes())
+    pts = [(int(w.get("x")), int(w.get("y"))) for w in edges["Flow_manda__recibe"].findall("di:waypoint", NS)]
+    assert len(pts) == 2 and pts[0][0] == pts[1][0] and pts[1][1] > pts[0][1]
+
+
+def test_flows_into_the_same_step_do_not_share_their_last_stretch():
+    root = _parse(_swimlanes())
+    plane = root.find("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)
+    proc = root.find("bpmn:process", NS)
+    last: dict[str, list[tuple[tuple[int, int], tuple[int, int]]]] = {}
+    for f in proc.findall("bpmn:sequenceFlow", NS):
+        edge = plane.find(f"bpmndi:BPMNEdge[@bpmnElement='{f.get('id')}']", NS)
+        pts = [(int(w.get("x")), int(w.get("y"))) for w in edge.findall("di:waypoint", NS)]
+        last.setdefault(f.get("targetRef"), []).append((pts[-2], pts[-1]))
+    into_manda = last["Task_manda"]
+    assert len(into_manda) == 2
+    assert into_manda[0][1] != into_manda[1][1], "two arrows end at the same point"
+
+
+def test_spec_without_partitions_has_no_pool():
+    root = _parse(render(compile_ir(load(FIXTURES / "activity.mepu-decision.yml")), "bpmn"))
+    assert root.find("bpmn:collaboration", NS) is None
+    assert root.find("bpmn:process/bpmn:laneSet", NS) is None
+    _assert_flows_avoid_shapes(root)
+
+
+def test_detail_reaches_the_viewer_without_groups():
+    xml = _swimlanes()
+    proc = _parse(xml).find("bpmn:process", NS)
+    doc = proc.find("bpmn:task[@id='Task_lee']/bpmn:documentation", NS)
+    assert doc.text.startswith("Una tarea programada")
+    page = render_bpmn_html(xml, "T", None)
+    info = json.loads(re.search(r"var info = (\{.*?\});\n", page, re.S).group(1))
+    assert info["Task_lee"]["detail"].startswith("Una tarea programada")
+    assert info["Gateway_color"]["detail"].startswith("Se le escribe")
+    assert info["Task_guarda"]["notes"] == ["TC del día anterior"]
+    assert info["Task_lee"]["lane"] == "Cliente (VM del ERP)"
+
+
+def test_notes_are_text_annotations_joined_to_their_step():
+    root = _parse(_swimlanes())
+    proc = root.find("bpmn:process", NS)
+    ann = proc.find("bpmn:textAnnotation[@id='TextAnnotation_guarda']", NS)
+    assert ann.find("bpmn:text", NS).text == "TC del día anterior"
+    assoc = proc.find("bpmn:association[@id='Association_guarda']", NS)
+    assert (assoc.get("sourceRef"), assoc.get("targetRef")) == ("Task_guarda", "TextAnnotation_guarda")
+    # the note is not repeated as documentation (it is visible on the canvas)
+    assert proc.find("bpmn:task[@id='Task_guarda']/bpmn:documentation", NS) is None
+    plane = root.find("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)
+    shape = plane.find("bpmndi:BPMNShape[@bpmnElement='TextAnnotation_guarda']", NS)
+    edge = plane.find("bpmndi:BPMNEdge[@bpmnElement='Association_guarda']", NS)
+    ax, ay, aw, ah = _bounds_of(shape)
+    tx, ty, tw, th = _flow_shapes(root)["Task_guarda"]
+    assert ay + ah < ty, "the annotation sits above its step"
+    pts = [(int(w.get("x")), int(w.get("y"))) for w in edge.findall("di:waypoint", NS)]
+    assert pts[0][1] == ay + ah and pts[-1][1] == ty
+
+
+def test_start_and_end_kinds_are_only_the_event():
+    steps = [
+        ActivityStep(id="inicio", label="Primera hora del día", kind="start", next="trabaja"),
+        ActivityStep(id="trabaja", label="Trabaja", next="fin"),
+        ActivityStep(id="fin", label="Fin del día", kind="end"),
+    ]
+    root = _parse(BpmnRenderer().render(_ir(steps, start="inicio", end="fin")))
+    counts = _check_structure(root)
+    assert counts == {"startEvent": 1, "endEvent": 1, "task": 1, "exclusiveGateway": 0, "sequenceFlow": 2}
+    proc = root.find("bpmn:process", NS)
+    assert proc.find("bpmn:startEvent", NS).get("name") == "Primera hora del día"
+    assert proc.find("bpmn:endEvent", NS).get("name") == "Fin del día"
+    # the event's label is placed below the circle
+    plane = root.find("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)
+    start_di = plane.find("bpmndi:BPMNShape[@bpmnElement='StartEvent_inicio']", NS)
+    _, sy, _, sh = _bounds_of(start_di)
+    _, ly, _, _ = _bounds_of(start_di.find("bpmndi:BPMNLabel", NS))
+    assert ly > sy + sh
+
+
+def test_start_and_end_kinds_are_validated():
+    from pydantic import ValidationError
+    from spec2viz.models.activity import ActivityData, StepModel
+
+    with pytest.raises(ValidationError, match="kind 'start' but the activity starts"):
+        ActivityData(start="a", end="b", steps={
+            "a": StepModel(label="A", next="b"), "b": StepModel(label="B", kind="start")})
+    with pytest.raises(ValidationError, match="kind 'end' and cannot have next"):
+        ActivityData(start="a", end="b", steps={"a": StepModel(label="A", kind="end", next="b"),
+                                                 "b": StepModel(label="B")})
+    with pytest.raises(ValidationError, match="points at 'a', which has kind 'start'"):
+        ActivityData(start="a", end="end", steps={"a": StepModel(label="A", kind="start", next="b"),
+                                                   "b": StepModel(label="B", next="a")})
+    with pytest.raises(RenderError):
+        BpmnRenderer().render(_ir([ActivityStep(id="a", label="A", kind="end", next="end")]))
+
+
+def test_existing_specs_keep_a_generated_start_and_end_event():
+    # without `kind: start`/`end` the start step is a task after an unnamed start event, as before
+    root = _parse(render(compile_ir(load(FIXTURES / "activity.validation.yml")), "bpmn"))
+    proc = root.find("bpmn:process", NS)
+    assert proc.find("bpmn:startEvent", NS).get("name") is None
+    assert proc.find("bpmn:endEvent", NS).get("name") is None
+
+
+def test_task_and_event_kinds():
+    steps = [
+        ActivityStep(id="a", label="Revisa", kind="user", next="b"),
+        ActivityStep(id="b", label="Calcula", kind="service", next="t"),
+        ActivityStep(id="t", label="Espera al lunes", kind="timer", next="m"),
+        ActivityStep(id="m", label="Llega el pago", kind="message", next="c"),
+        ActivityStep(id="c", label="Archiva", kind="manual", next="end"),
+    ]
+    root = _parse(BpmnRenderer().render(_ir(steps)))
+    _check_structure(root)
+    proc = root.find("bpmn:process", NS)
+    assert proc.find("bpmn:userTask[@id='Task_a']", NS) is not None
+    assert proc.find("bpmn:serviceTask[@id='Task_b']", NS) is not None
+    assert proc.find("bpmn:manualTask[@id='Task_c']", NS) is not None
+    timer = proc.find("bpmn:intermediateCatchEvent[@id='Event_t']", NS)
+    assert timer.get("name") == "Espera al lunes" and timer.find("bpmn:timerEventDefinition", NS) is not None
+    message = proc.find("bpmn:intermediateCatchEvent[@id='Event_m']", NS)
+    assert message.find("bpmn:messageEventDefinition", NS) is not None
+    # an unknown kind stays a plain task, as before
+    root = _parse(BpmnRenderer().render(_ir([ActivityStep(id="a", label="A", kind="whatever", next="end")])))
+    assert root.find("bpmn:process/bpmn:task[@id='Task_a']", NS) is not None
+
+
+def test_merge_without_label_has_no_visible_name():
+    root = _parse(render(compile_ir(load(FIXTURES / "activity.lanes.yml")), "bpmn"))
+    gw = root.find("bpmn:process/bpmn:exclusiveGateway[@id='Gateway_joined']", NS)
+    assert gw.get("name") is None
+    plane = root.find("bpmndi:BPMNDiagram/bpmndi:BPMNPlane", NS)
+    assert plane.find("bpmndi:BPMNShape[@bpmnElement='Gateway_joined']/bpmndi:BPMNLabel", NS) is None
+
+
+def test_a_box_never_breaks_a_word_wider_than_the_maximum():
+    from spec2viz.renderers.bpmn import TASK_MAX_W, TASK_PAD, _task_box, _text_w, _wrap
+
+    word = "RESERVA_INSTITUCIONAL_EXTENDIDA"
+    w, _ = _task_box(f"Revisar {word}")
+    assert w > TASK_MAX_W and _wrap(word, w - TASK_PAD + 4) == 1 and w - TASK_PAD + 4 >= _text_w(word)
+
+
+def test_viewer_starts_with_the_panel_folded_and_fits_with_a_margin():
+    page = render_bpmn_html(_swimlanes(), "T", None)
+    assert '<body class="panel-collapsed">' in page
+    assert "setPanel(true)" in page and "id=\"close-panel\"" in page
+    assert "var PAD = 28" in page and "outer.width - 2 * PAD" in page
+    assert "data-import-warnings" in page and "data-zoom" in page

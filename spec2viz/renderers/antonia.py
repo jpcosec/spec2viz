@@ -29,7 +29,7 @@ TEMPLATE = """<!DOCTYPE html>
 </section>
 <script>
   mermaid.initialize({{
-    startOnLoad: true,
+    startOnLoad: false,
     theme: 'base',
     themeVariables: {{
       darkMode: true,
@@ -62,6 +62,12 @@ TEMPLATE = """<!DOCTYPE html>
     flowchart: {{ curve: 'basis', htmlLabels: true }},
     sequence: {{ mirrorActors: false, actorMargin: 40 }}
   }});
+  // mermaid mide cada rotulo al dibujar: si lo hace antes de que llegue la fuente (Manrope), mide con la
+  // de reemplazo y la caja queda corta (se comia la ultima letra); se dibuja cuando las fuentes estan
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve())
+    .then(function () {{ return document.fonts && document.fonts.load ? document.fonts.load("14px Manrope") : null; }})
+    .catch(function () {{}})
+    .then(function () {{ mermaid.run(); }});
 </script>
 </body>
 </html>

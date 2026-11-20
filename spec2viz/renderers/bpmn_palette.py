@@ -15,6 +15,8 @@ TONE_PALETTE: dict[str, tuple[str, str]] = {
 GATEWAY_TONE = ("#F4F0FB", "#7E57C2")
 START_TONE = ("#E3F4E6", "#2E7D32")
 END_TONE = ("#FBE3E3", "#8B1A1A")
+# every other lane of a pool is tinted (bpmn-js draws a lane fill at 25% opacity)
+LANE_TINT = "#DCE6F2"
 DEFAULT_LEGEND_LABELS = {
     "success": "favorable",
     "warning": "atención",
@@ -31,4 +33,4 @@ DEFAULT_LEGEND_LABELS = {
     "end": "fin",
 }
 
-__all__ = ["TONE_PALETTE", "GATEWAY_TONE", "START_TONE", "END_TONE", "DEFAULT_LEGEND_LABELS"]
+__all__ = ["TONE_PALETTE", "GATEWAY_TONE", "START_TONE", "END_TONE", "LANE_TINT", "DEFAULT_LEGEND_LABELS"]

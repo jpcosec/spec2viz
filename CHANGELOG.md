@@ -1,5 +1,24 @@
 # Changelog
 
+## Unreleased - 2026-11-20
+
+- BPMN, presentable output: `partition` draws a pool with one lane per partition (collaboration,
+  participant, laneSet/lanes with `flowNodeRef`, and their DI), in spec order; the layout is a band per lane,
+  advancing left to right, with lane changes dropping straight down when nothing is in between. Flows never
+  cross a shape (gateway branches leave by the bottom corner, single lane changes enter from the top/bottom,
+  the rest use gap tracks), flows into the same step get their own entry point, long flows stay straight,
+  overlapping flow labels move, loops run along a corridor under their lane. `detail` reaches the side panel
+  also without `groups` (it was dropped); `notes` are a visible `textAnnotation` with its `association`
+  instead of hidden documentation. New step kinds: `start` (the start step is the named start event, no extra
+  task), `end` (a named end event), `user`/`service`/`manual`/`send`/`receive`/`script` tasks and
+  `timer`/`message` intermediate events; existing specs render the same elements as before. Text at 15px with
+  Arial metrics; the viewer fits the whole diagram with a margin, keeps the «Detalle» panel folded until an
+  element is clicked (it shows lane, detail and notes) and exposes `data-zoom`/`data-import-warnings` on
+  `<body>` for checks
+- mermaid activity: the `end` step receives its arrows and leads to End (it was left loose); `kind: start`
+  and `kind: end` steps replace the Start/End nodes with their own label. antonia-html draws after the web
+  fonts load, so labels are no longer clipped by one character
+
 ## Unreleased - 2026-10-17
 
 - BPMN color and legibility: activity steps take an optional `tone` (`success`, `warning`, `danger`, `info`,
