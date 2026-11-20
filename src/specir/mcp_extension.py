@@ -7,11 +7,12 @@ adds only what is its own, over its domain types (`specir.models.domain`, IR06):
   store registers it and how many documents it tracks.
 - `specir_nodes` (every level, read-only): the specIR nodes of the store with their provenance
   (IR05 D1-B), filtered by type, layer, origen and verificacion, as a page.
-- From level 1, `propose_changes` refuses a change that writes `verificacion: verificado` (IR05
-  D2-E: an agent does not verify through the MCP; only a human outside it or a deterministic
-  check does). sldb's own write tools are served unchanged otherwise: the extension serves
-  `propose_changes` and `apply_changes` from one `WriteTools` of sldb, so the proposal it seals
-  is the one `apply_changes` accepts.
+- From level 1, a batch validator (`context.add_batch_validator` of sldb) refuses a change that
+  writes `verificacion: verificado` (IR05 D2-E: an agent does not verify through the MCP; only a
+  human outside it or a deterministic check does). sldb runs it on `propose_changes` (over the
+  typed changes) and on `apply_changes` (over the proposal's batch changes) and answers a `domain`
+  rejection with nothing written. The write tools, their proposal and the undo of the session
+  are sldb's, served unchanged: this module creates none of them.
 
 This is the only module of specIR that reaches `sldb.mcp`; the rest uses `sldb.api` alone.
 """
@@ -21,10 +22,9 @@ from __future__ import annotations
 from typing import Any, Literal
 
 import sldb.api as api
-from sldb.mcp.changes import AssertEdge, Change, CreateDocument, UpdateDocument
+from sldb.mcp.changes import AssertEdge, BatchChange, CreateDocument, UpdateDocument
 from sldb.mcp.paging import DEFAULT_LIMIT, page
-from sldb.mcp.registry import PROPOSES, READ_ONLY, WRITES
-from sldb.mcp.write import WriteTools
+from sldb.mcp.registry import READ_ONLY
 
 from specir.models.domain import DOMAIN_MODELS, PROVENANCE_FIELDS, Origen, SpecIRNodeDoc, Verificacion
 
@@ -41,18 +41,39 @@ def own_fields(model: type[SpecIRNodeDoc]) -> list[str]:
     return [name for name in model.model_fields if name not in SpecIRNodeDoc.model_fields]
 
 
-def claims_verified(change: Any) -> bool:
-    """Whether a change writes `verificacion: verificado` on a node or in an edge's attributes."""
+def _says_verified(values: Any) -> bool:
+    return isinstance(values, dict) and values.get("verificacion") == "verificado"
+
+
+def _payload_verified(payload: dict[str, Any] | None) -> bool:
+    return _says_verified(payload) or _says_verified((payload or {}).get("attributes"))
+
+
+def claims_verified(change: Any, store_path: Any = None) -> bool:
+    """Whether a change writes `verificacion: verificado` on a node or in an edge's attributes.
+
+    It reads the typed changes of `propose_changes` and the `BatchChange`s of `apply_changes`. A
+    batch update carries the whole payload, so it claims it only if the stored document is not
+    verified already (a human's verification stays; editing another field of it is not a claim)."""
     if isinstance(change, CreateDocument):
-        written = [change.payload, change.payload.get("attributes") or {}]
-    elif isinstance(change, UpdateDocument):
+        return _payload_verified(change.payload)
+    if isinstance(change, UpdateDocument):
         fields = change.fields
-        written = [fields, fields.get("attributes") or {}, {"verificacion": fields.get("attributes.verificacion")}]
-    elif isinstance(change, AssertEdge):
-        written = [change.attributes]
-    else:
-        return False
-    return any(isinstance(values, dict) and values.get("verificacion") == "verificado" for values in written)
+        return _payload_verified(fields) or fields.get("attributes.verificacion") == "verificado"
+    if isinstance(change, AssertEdge):
+        return _says_verified(change.attributes)
+    if isinstance(change, BatchChange) and change.action in ("create", "update"):
+        if not _payload_verified(change.payload):
+            return False
+        if change.action == "update" and store_path is not None:
+            current = api.serialize_document(api.runtime_document(store_path, None, f"{change.model}/{change.id}"))["payload"]
+            return not _payload_verified(current)
+        return True
+    return False
+
+
+def change_name(change: Any) -> str:
+    return getattr(change, "name", None) or getattr(change, "id", "")
 
 
 class DomainTools:
@@ -113,16 +134,13 @@ def register(server: Any, context: Any) -> None:
     server.add_tool(tools.specir_nodes, annotations=READ_ONLY)
     if context.level < 1:
         return
-    writes = WriteTools(context.store_path, context.level, context.actor)
 
-    def propose_changes(changes: list[Change]) -> dict[str, Any]:
-        for change in changes:
-            if claims_verified(change):
-                raise ValueError(f"{change.name}: {VERIFIES}")
-        return writes.propose_changes(changes)
+    def verification_is_not_written(changes: list[Any], validating: Any) -> list[dict[str, Any]]:
+        """sldb's `BatchValidator`: one error finding per change that writes `verificacion: verificado`."""
+        return [
+            {"code": "specir_agent_verifies", "level": "error", "what": f"{change_name(change)}: {VERIFIES}", "subject": change_name(change)}
+            for change in changes
+            if claims_verified(change, validating.store_path)
+        ]
 
-    propose_changes.__doc__ = f"{writes.propose_changes.__doc__} specIR: {VERIFIES}."
-    for name in ("propose_changes", "apply_changes"):
-        server.remove_tool(name)
-    server.add_tool(propose_changes, annotations=PROPOSES)
-    server.add_tool(writes.apply_changes, annotations=WRITES)
+    context.add_batch_validator(verification_is_not_written)

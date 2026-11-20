@@ -6,13 +6,16 @@ and specIR's, changes no file of any store."""
 
 from __future__ import annotations
 
+import subprocess
+import sys
 from pathlib import Path
 from typing import Any
 
+import pytest
 import yaml
 from sldb.api import extract_document_payload
 
-from conftest import REPO, WORKSPACE, copy_digest, linked_stores, tree_digest
+from conftest import REPO, WORKSPACE, copy_digest, linked_stores, mount_copy, served, tree_digest
 
 #: sldb's read surface (sldb.mcp.registry.READ_TOOLS) and its signal log.
 SLDB_READ = {
@@ -134,3 +137,105 @@ def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy
     now = tree_digest(REPO / ".sldb", REPO / "desk")
     moved = sorted(path for path in set(original_digest) | set(now) if original_digest.get(path) != now.get(path))
     assert not moved, f"the repo's own store changed during the tests: {moved}"
+
+
+# --- IR05 D2-E: an agent does not verify through the MCP. specIR registers it as a batch validator of
+# sldb (`context.add_batch_validator`); sldb answers a `domain` rejection with nothing written.
+
+ACTOR = "agent:specir-d2e"
+NODE = {"title": "Node", "origen": "declarado", "description": "A node.", "symbol": None, "desconocidos": {"symbol": "no code yet"}}
+VERIFIED = {"verificacion": "verificado", "verificado_por": "human:jp", "evidencia": "x"}
+
+
+@pytest.fixture(scope="module")
+def writable(tmp_path_factory, spec_store, federated) -> Path:
+    root = mount_copy(tmp_path_factory, "specir-d2e", spec_store, federated)
+    done = subprocess.run([sys.executable, "-m", "specir.install", "--store", str(root / ".sldb")], cwd=root, capture_output=True, text=True)
+    assert done.returncode == 0, done.stdout + done.stderr
+    return root
+
+
+def create(name: str, **extra: Any) -> dict[str, Any]:
+    return {"action": "create", "model": "DomainEntityDoc", "name": name, "path": f"d2e/{name}.md", "payload": {**NODE, **extra}}
+
+
+def test_the_write_tools_are_sldbs_own_and_the_extension_adds_a_validator_not_a_tool(writable) -> None:
+    with served(writable, "--level", "1", "--actor", ACTOR) as session:
+        names = {t.name for t in session.list_tools()}
+        assert names == SLDB_READ | DOMAIN | SLDB_WRITE | {"undo_changes"}, names
+
+
+def test_a_change_that_writes_verificado_is_refused_in_propose_as_a_domain_rejection_and_nothing_is_written(writable, spec_store, federated) -> None:
+    before = copy_digest(writable, spec_store, federated)
+    seed = create("d2e-seed")
+    with served(writable, "--level", "1", "--actor", ACTOR) as session:
+        proposal = session.call("propose_changes", changes=[seed])["proposal"]
+        assert session.call("apply_changes", proposal=proposal)["applied"] is True
+        seeded = copy_digest(writable, spec_store, federated)
+        edge = {"action": "assert_edge", "name": "d2e-edge", "path": "d2e/edges/d2e-edge.md", "source": "DomainEntityDoc:d2e-seed", "target": "DomainEntityDoc:d2e-seed",
+                "relation_type": "references", "attributes": {"origen": "declarado", **VERIFIED}}
+        refused = [
+            create("d2e-self-verified", **VERIFIED),
+            {"action": "update", "model": "DomainEntityDoc", "name": "d2e-seed", "fields": VERIFIED},
+            {"action": "update", "model": "RelationDoc", "name": "d2e-edge", "fields": {"attributes.verificacion": "verificado"}},
+            edge,
+        ]
+        for change in refused:
+            answer = session.call("propose_changes", changes=[change])
+            print("D2-E", change["action"], answer)
+            assert answer["applied"] is False and answer["rejected"] == "domain" and answer["written"] is False, answer
+            assert "proposal" not in answer
+            found = answer["findings"]
+            assert [f["level"] for f in found] == ["error"] and found[0]["code"] == "specir_agent_verifies" and "IR05 D2-E" in found[0]["what"], found
+        assert copy_digest(writable, spec_store, federated) == seeded
+    assert seeded != before
+
+
+def test_the_same_rule_refuses_the_batch_changes_apply_receives_and_leaves_what_is_stored_alone(writable, spec_store, federated) -> None:
+    """In `apply_changes` sldb hands the validator the proposal's `BatchChange`s. The seal makes a
+    proposal untouchable, so the batch changes are built by sldb from a benign proposal and edited
+    here to say verificado: the validator, the one the server registered, must refuse them."""
+    from sldb.mcp.context import ServerContext
+    from sldb.mcp.server import build_server
+    from sldb.mcp.write import WriteTools
+    from sldb.mcp.changes import Proposal
+
+    import specir.mcp_extension as extension
+
+    store = writable / ".sldb"
+    context = ServerContext(store, 1, ACTOR)
+    extension.register(build_server(store, 1, ACTOR), context)
+    assert len(context.batch_validators) == 1
+    writes = WriteTools(store, 1, ACTOR, context=context)
+    from sldb.mcp.changes import CreateDocument
+
+    proposal = writes.propose_changes([CreateDocument(action="create", model="DomainEntityDoc", name="d2e-batch", path="d2e/d2e-batch.md", payload=NODE)])["proposal"]
+    benign = Proposal.model_validate(proposal).changes
+    assert context.batch_validators[0](benign, context) == []
+    claiming = [c.model_copy(update={"payload": {**c.payload, **VERIFIED}}) for c in benign]
+    found = context.batch_validators[0](claiming, context)
+    assert [f["level"] for f in found] == ["error"] and found[0]["subject"] == "d2e-batch", found
+    # A seal check comes first: the edited proposal does not even reach the validator, and nothing is written.
+    tampered = {**proposal, "changes": [c.model_dump(mode="json") for c in claiming]}
+    before = copy_digest(writable, spec_store, federated)
+    try:
+        answer = writes.apply_changes(Proposal.model_validate(tampered))
+    except Exception as error:  # the seal refuses it
+        answer = {"applied": False, "error": str(error)}
+    assert answer["applied"] is False
+    assert copy_digest(writable, spec_store, federated) == before
+
+
+def test_an_edit_of_a_node_a_human_verified_is_not_a_claim_of_the_agent(writable) -> None:
+    """A batch update carries the whole payload: if the stored node is verified already, editing
+    another field of it is not a new `verificacion: verificado`."""
+    from sldb.mcp.changes import BatchChange
+
+    import specir.mcp_extension as extension
+
+    with served(writable, "--level", "1", "--actor", ACTOR) as session:
+        stored = session.call("read_document", ref="DomainEntityDoc:d2e-seed")["payload"]
+    assert stored["verificacion"] == "sin_verificar"
+    claim = BatchChange(id="d2e-seed", action="update", model="DomainEntityDoc", payload={**stored, **VERIFIED})
+    assert extension.claims_verified(claim, writable / ".sldb") is True
+    assert extension.claims_verified(claim.model_copy(update={"payload": stored}), writable / ".sldb") is False
