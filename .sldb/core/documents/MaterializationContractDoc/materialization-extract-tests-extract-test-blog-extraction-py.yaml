@@ -1,0 +1,25 @@
+name: materialization-extract-tests-extract-test-blog-extraction-py
+path: desk/materializations/materialization-extract-tests-extract-test-blog-extraction-py.md
+source_hash: 133209d64b42c94a72aa2872d03c83feb4b7a02a1c0b938ba4e070ccb9e1a622
+content_hash: 0b7efbe2a0b969315ba6bcf48d2649afc7c4ffe7cfd47af94f0c7344c45a9e35
+field_hashes:
+  id: 5535681b3c5a00f12334b7a2324aa617f5e9e5eb1ccb0b2d4925ac2c5b163867
+  title: 9b8f77a807ebf2c53b1c1c47ec4ad03e60eedbec2e8f881c0430e77b40812234
+  source_atoms: 2d7fcd1f738df127af07ee3415cb1ab95e2f59c9f9f185101b21bf4955dded78
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: dea7a458b50f5cfcffc66bd6f2bcaaac7f8ad80e0b6cb0d3b88cccbf6d1b64e4
+  intent: 39121385a63f7c3f6275d14729dbba91c022b2e81cbb623df1ae26b7c15e5b65
+  validation: 082fc3e2b01f6419b241386dd1d3bd576e93a62c6e47870caf0b2f247d749eb1
+  tags: 6cfc6503ffa61ab9613995db87f1e4c3983bc81b613e0cf921dd3e76a740a378
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:extract
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-20T20:52:57Z'
+  authority: generated
+  via: create_document

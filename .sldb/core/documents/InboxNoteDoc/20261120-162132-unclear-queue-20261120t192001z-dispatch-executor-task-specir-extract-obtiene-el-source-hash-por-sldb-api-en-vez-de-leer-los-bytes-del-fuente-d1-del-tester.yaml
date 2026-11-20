@@ -1,0 +1,19 @@
+name: 20261120-162132-unclear-queue-20261120t192001z-dispatch-executor-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester
+path: desk/inbox/20261120-162132-unclear-queue-20261120t192001z-dispatch-executor-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester.md
+source_hash: 7cafc66e894d1d0f25aef159726c07bbb24d5c4fcf21b74636be601c620c4f28
+content_hash: 71b6a395d7e34d8887f3d1dd1fdf46fad8dcb04d47c2493629cfc875ce65becc
+field_hashes:
+  kind: 683144a12969e0fd85512737e57b4db93ed15ee760906165a5516d581a77889a
+  sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: f2c31d87c7cd9fa0ca4b208c5972188aed718228a513fba6328c135356f286a0
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  title: 68d288300438aca9b66d69a628ad2ca9f7e9a0eb15af2ca464d8828ad1734255
+  body: 7dbc2dd01cd733efe5aecff17b2976c37ed04779583f46d3f81b4aaefb57ac28
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null

@@ -1,26 +1,33 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-17T14:06:54Z'
+  at: '2026-11-20T20:52:11Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-testing
+history:
+- task_activates
+references:
+- src/specir/extract/write.py
+- tests/extract/test_blog_extraction.py
+- 184152898d77efe7062fef47e81624f1b7f2edf1
 depends_on:
 - task-ir08-extractor-estático-django-drf-y-sql
 pills: []
-files: []
+files:
+- src/specir/extract/write.py
+- tests/extract/test_blog_extraction.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-el-deshacer-del-mcp-es-un-lote-inverso-con-guardas
 ---
 
 # specir.extract obtiene el source_hash por sldb.api en vez de leer los bytes del fuente (D1 del tester de IR08)

@@ -223,6 +223,16 @@ include:
     name: review-specir-reemplazo-spec2viz-sobre-sldb-ir01-node-1
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir01/node-2.md
     name: review-specir-reemplazo-spec2viz-sobre-sldb-ir01-node-2
+  - path: desk/reviews/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester/evidence-tests-1.md
+    name: review-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester-evidence-tests-1
+  - path: desk/reviews/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester/evidence-commit-1.md
+    name: review-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester-evidence-commit-1
+  - path: desk/reviews/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester/evidence-atom-1.md
+    name: review-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester-evidence-atom-1
+  - path: desk/reviews/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester/evidence-atom-2.md
+    name: review-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester-evidence-atom-2
+  - path: desk/reviews/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester/evidence-materialization-1.md
+    name: review-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester-evidence-materialization-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -958,6 +968,12 @@ include:
   paths:
   - path: runs/subagents/deskops-e-068628774e48/run.md
     name: run-deskops-e-068628774e48
+  - path: runs/subagents/exec-deskops-e-eb458efc91d9/run.md
+    name: run-deskops-e-eb458efc91d9
+  - path: runs/subagents/exec-deskops-e-eb458efc91d9-a2/run.md
+    name: run-deskops-e-eb458efc91d9-a2
+  - path: runs/subagents/exec-deskops-t-66e1914de785-testing/run.md
+    name: run-deskops-t-66e1914de785
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md
