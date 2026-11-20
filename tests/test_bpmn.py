@@ -389,6 +389,8 @@ def test_viewer_font_size_and_initial_zoom():
     assert "document.getElementById('fit').addEventListener('click', fitViewport)" in page
     assert ".zoom('fit-viewport', 'auto')" in page
     assert "getAbsoluteBBox(start)" in page  # the initial view is anchored on the start event
+    # ...and vertically shows the whole height when it fits, the top edge when it does not
+    assert "height + 2 * PAD <= outer.height" in page
     # entering a subprocess applies the same rule as the initial view
     assert "viewer.on('root.set', function () { try { initialView(); }" in page
 
