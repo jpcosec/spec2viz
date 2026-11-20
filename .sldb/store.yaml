@@ -976,6 +976,10 @@ include:
     name: run-deskops-e-eb458efc91d9-a2
   - path: runs/subagents/exec-deskops-t-66e1914de785-testing/run.md
     name: run-deskops-t-66e1914de785
+  - path: runs/subagents/exec-deskops-e-e9fb2cd27cee/run.md
+    name: run-deskops-e-e9fb2cd27cee
+  - path: runs/subagents/exec-deskops-t-e2a621a70a51-testing/run.md
+    name: run-deskops-t-e2a621a70a51
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md

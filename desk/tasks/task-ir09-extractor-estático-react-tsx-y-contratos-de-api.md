@@ -1,11 +1,11 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-17T15:59:25Z'
+  at: '2026-11-20T21:38:31Z'
   authority: generated
   via: save_document_payload
 id: task-ir09-extractor-estático-react-tsx-y-contratos-de-api
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
@@ -14,7 +14,17 @@ tags:
 - topic:extractores
 - host:robocop2
 current_node: ritual-execution
-history: []
+history:
+- task_activates
+- 'task_returns_to_execution: Tester exec-deskops-t-e2a621a70a51-testing FALLA sobre
+  6a9bbdd por la precisión (c) de la tarea: un fetch canónico con URL literal no queda
+  declarado en not_derived y puede dejar una acción sin invokes (y una regla de nivel
+  error). Lo demás pasa (43 passed, 2 xfailed en tests/extract, tests/models/test_blog_chain.py
+  y tests/test_imports.py). Intento 2: tratar como hueco cualquier llamada cuyo último
+  segmento sea fetch (que _is_hole sea true para fetch), con su motivo en not_derived,
+  y agregar una prueba con un fetch de URL literal (en blog_frontend_gaps o en tests/extract/test_frontend_extraction.py)
+  que verifique que va a not_derived y que no queda una acción sin invokes sin declarar.
+  Commit solo de tus archivos con ''git commit -- <rutas>'' desde tu worktree.'
 references: []
 depends_on:
 - task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo
