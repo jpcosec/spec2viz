@@ -1,7 +1,7 @@
 name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-bundle-2
 path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/bundle-2.md
-source_hash: 17f27b75f118fdae17e30b79b5bdbd37eded6f5f23b2a5c9ca2cf79f1e2f373b
-content_hash: f7d7d82e49280d4add97725d3ea1d4795a86618ececf000d628e5cebd5f02e38
+source_hash: 44be5ba1e117d6dc3add732f5da6440d4f5abddf844686c92ad3845aafe41718
+content_hash: 8bcf7db4567abb13d2fd7b216fe6c6e484ccbca6755e08977062d04a15bfe413
 field_hashes:
   id: 5c4c8efbe48a745668594feaf5728c2d528f6090fddf8ca3e6d6d666871a9408
   title: fa18854484a75c1bf4b13578bfdff572c9221f9e84ba067935210ce1f707b0a4
@@ -16,13 +16,13 @@ field_hashes:
   input_sha256: a62f0f8ec36d0ce621762582af413de961be6b00d63d3120430dc19b54e2b209
   contract_sha256: 48e6afbe3ac05160c6a5d5bee6c554686ea760486b0471e57a66e2803eecb6ff
   output_sha256: 86fe99bd03fa92f48183996c396ee0649ea98a1da668225252cd296ed2b6e301
-  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
-  reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: f53028a5ed142d077318340f37747ca837c502d89bae986c0abd2b975c0bf3f5
   created_at: 648a1e78539309b5f0750cc9985775c4f8556ef949585ed6f47ea5569133b610
-  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_at: f09ae0e136f5a8ae6ef71da3f20c34c9465c6de26ade446866295ec62c83a144
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 5d602051d04c743de951a575eeab8eca1b4961601e14e2022783da796941c3d0
-  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposition: f29343bdf4407bbcbbba253a119d1f66b0ff3335a0be7cd0d01f7750482935ff
   tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
 semantic_tags:
 - representation.markdown
@@ -32,6 +32,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-20T22:03:16Z'
+  at: '2026-11-20T22:37:31Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
