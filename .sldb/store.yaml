@@ -233,6 +233,8 @@ include:
     name: review-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester-evidence-atom-2
   - path: desk/reviews/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester/evidence-materialization-1.md
     name: review-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester-evidence-materialization-1
+  - path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/preflight-4.md
+    name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-preflight-4
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
