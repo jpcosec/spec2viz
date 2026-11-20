@@ -1095,7 +1095,6 @@ include:
   - desk/tasks/task-ir09-extractor-estático-react-tsx-y-contratos-de-api.md
   - desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md
   - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
-  - desk/tasks/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester.md
 graph_backend: networkx
 policy: {}
 tag_models:

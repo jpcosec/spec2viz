@@ -1,7 +1,17 @@
+Task: task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester
+Title: specir.extract obtiene el source_hash por sldb.api en vez de leer los bytes del fuente (D1 del tester de IR08)
+Status: active
+Current node: ritual-testing
+Task type: task.code
+Lifecycle gates:
+- task_hands_to_closeout -> ritual-closeout: open [nonempty(validation)]
+  post-hook evento-para-el-coordinador: sh -c mkdir -p runs/hooks && printf '%s %s %s %s->%s\n' "$(date -u +%FT%TZ)" "$DESKOPS_TASK_ID" "$DESKOPS_TRANSITION" "$DESKOPS_FROM_NODE" "$DESKOPS_TO_NODE" >> runs/hooks/events.log
+  post-hook encola-reap-del-tester: deskops queue add dispatch-reap --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-20T20:52:11Z'
+  at: '2026-11-20T20:43:23Z'
   authority: generated
   via: save_document_payload
 id: task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester
@@ -13,21 +23,15 @@ tags:
 current_node: ritual-testing
 history:
 - task_activates
-references:
-- src/specir/extract/write.py
-- tests/extract/test_blog_extraction.py
-- 184152898d77efe7062fef47e81624f1b7f2edf1
+references: []
 depends_on:
 - task-ir08-extractor-estático-django-drf-y-sql
 pills: []
-files:
-- src/specir/extract/write.py
-- tests/extract/test_blog_extraction.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-el-deshacer-del-mcp-es-un-lote-inverso-con-guardas
+atoms: []
 ---
 
 # specir.extract obtiene el source_hash por sldb.api en vez de leer los bytes del fuente (D1 del tester de IR08)
@@ -69,3 +73,14 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 src/specir/extract no contiene read_bytes, read_text ni open sobre fuentes, y las pruebas de tests/extract siguen verdes.
+
+## Como probar (tester)
+
+Ubica el trabajo del ejecutor:
+
+    git log -1 --format=%H --grep "Task-Id: task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester"   # commit del ejecutor
+    git show --name-only <commit>                           # sus archivos
+
+Los tests a correr son los archivos tests/*.py de ese commit, mas tests/test_<modulo>.py cuando exista para cada modulo de codigo tocado; de a uno, con `TMPDIR=/tmp python -m pytest -q <archivo>`. No corras la suite completa: la corre integrate en el host.
+
+Escribe result-summary.md con el veredicto PASA o FALLA en la primera linea.

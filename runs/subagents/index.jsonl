@@ -37,3 +37,4 @@
 {"task_id": "task-espejo-sldb-component-spec-from-python-lee-solo-py-regresi\u00f3n-de-b2-que-rompe-2-pruebas-de-ir", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
 {"task_id": "task-ir08-extractor-est\u00e1tico-django-drf-y-sql", "run_id": "deskops-t-05230b7b7270-a2", "run_dir": "runs/subagents/deskops-t-05230b7b7270-a2", "session_sha256": null, "commit": null}
 {"task_id": "task-espejo-sldb-sldb-code-publica-facts-gen\u00e9ricos-de-ts-tsx-js-y-jsx-c3-de-ir-parte-ts-js-para-ir09", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
+{"task_id": "task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester", "run_id": "run-deskops-e-eb458efc91d9-a2", "run_dir": "runs/subagents/exec-deskops-e-eb458efc91d9-a2", "session_sha256": null, "commit": null}

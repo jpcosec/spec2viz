@@ -1,0 +1,16 @@
+## main
+ M .sldb/core/models/InboxNoteDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/store_index.yaml
+ M .sldb/store.yaml
+ M src/specir/mcp_extension.py
+ M tests/test_mcp_extension.py
+?? .scion/settings.yaml
+?? .scion/state.yaml
+?? .sldb/core/documents/InboxNoteDoc/20261120-162132-unclear-queue-20261120t192001z-dispatch-executor-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-e-eb458efc91d9-a2.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-e-eb458efc91d9.yaml
+?? desk/inbox/20261120-162132-unclear-queue-20261120t192001z-dispatch-executor-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester.md
+?? runs/subagents/exec-deskops-e-eb458efc91d9-a2/
+?? runs/subagents/exec-deskops-e-eb458efc91d9/
+?? tests/test_mcp_undo.py

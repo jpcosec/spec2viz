@@ -1,0 +1,5 @@
+run_dir: runs/subagents/exec-deskops-e-eb458efc91d9-a2
+run_id: run-deskops-e-eb458efc91d9-a2
+session: null
+session_sha256: null
+task_id: task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester

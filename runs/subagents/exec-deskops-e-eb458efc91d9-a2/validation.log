@@ -1,0 +1,4 @@
+grep -rnE 'read_bytes|read_text|open\(' src/specir/extract -> no output (worktree)
+pytest -q -p no:cacheprovider tests/extract tests/models/test_blog_chain.py -> 22 passed, 2 xfailed, 1 failed (rc 1)
+ failed: test_the_tables_columns_and_keys_come_from_the_sql_facts (column order id/title; fails identically WITHOUT my change; env tree-sitter-sql version in /tmp venv)
+deskops graph missing -> rc 0
