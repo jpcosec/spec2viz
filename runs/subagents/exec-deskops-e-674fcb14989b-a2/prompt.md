@@ -1,7 +1,25 @@
+Task: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
+Title: IR04b Deshacer por MCP: adaptador sobre el lote inverso de sldb
+Status: active
+Current node: ritual-execution
+Task type: task.code
+Effective pills:
+- desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+- desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
+Effective atoms:
+- atom-el-deshacer-del-mcp-es-un-lote-inverso-con-guardas
+- atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
+- atom-specir-depende-solo-de-la-api-pública-de-sldb
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-20T23:47:50Z'
+  at: '2026-11-20T23:08:20Z'
   authority: generated
   via: save_document_payload
 id: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
@@ -11,7 +29,7 @@ tags:
 - workspace:desk
 - artifact:task
 - host:robocop2
-current_node: ritual-testing
+current_node: ritual-execution
 history:
 - task_activates
 - 'task_returns_to_execution: Tester deskops-t-ef3b25a2dd59 FALLA sobre 1be6fc1 (ya
@@ -32,13 +50,8 @@ history:
   tests/test_mcp_undo.py, tests/models/test_blog_chain.py, tests/models/test_domain_tools.py
   y tests/test_mcp_extension.py, de a uno, todos en verde. Commit desde tu worktree
   con ''git commit -- <rutas>'' y trailer Task-Id.'
-- task_activates
 references:
-- src/specir/mcp_extension.py
-- tests/test_mcp_extension.py
-- tests/test_mcp_undo.py
-- 57616e89123162b9117109ad3fa5765f0ce960cf
-- 1be6fc1bd16c4dd4bd620d42810fa6d6b3f09d34
+- desk/inbox/20261116-232335-suggestion-sldb-responde-ir04b-undo-changes-mensaje-de-notationspec-ir13e-y-regresi-n-de-b2.md
 depends_on:
 - task-espejo-sldb-sldb-mcp-servidor-mcp-genérico-a
 - task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer
@@ -49,13 +62,15 @@ pills:
 - desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
 files:
 - src/specir/mcp_extension.py
+- tests/conftest.py
 - tests/test_mcp_extension.py
-- tests/test_mcp_undo.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
 atoms:
 - atom-el-deshacer-del-mcp-es-un-lote-inverso-con-guardas
+- atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
+- atom-specir-depende-solo-de-la-api-pública-de-sldb
 ---
 
 # IR04b Deshacer por MCP: adaptador sobre el lote inverso de sldb
@@ -100,3 +115,20 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 Un agente por MCP aplica un lote y lo deshace con el undo_changes de sldb mcp, con la extensión de specIR montada, sobre una copia del store real, y el store queda como estaba; specIR no implementa el deshacer.
+
+## Entrega del ejecutor
+
+Al terminar, commitea solo los archivos que cambiaste para la tarea, nombrados uno por uno (los mismos que listas en result-summary.md):
+
+    git add <ruta> <ruta> ...
+    git commit -m "<resumen>" -m "Task-Id: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas"
+
+Nunca uses `git add -A`, `git add -u` sobre todo el arbol ni `git stash`: puede haber trabajo ajeno sin commitear. No hagas push. Recien despues ejecuta `deskops advance task`.
+
+## Tu worktree
+
+Tu codigo vive en un worktree propio, en la rama `deskops/deskops-e-674fcb14989b-a2`:
+
+    /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/deskops-e-674fcb14989b-a2
+
+Haz `cd` ahi: edita, corre los tests y commitea ahi (git add / git commit), no en el checkout principal /mnt/ssd/proyectos/SLDB_1/IR. Las operaciones de desk (`deskops ... --root /mnt/ssd/proyectos/SLDB_1/IR`, evidencia en runs/subagents/..., `deskops advance task`) siguen usando el checkout principal. Al terminar, reap trae tus commits a la rama principal y borra el worktree.

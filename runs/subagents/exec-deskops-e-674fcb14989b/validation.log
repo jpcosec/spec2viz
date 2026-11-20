@@ -1,0 +1,4 @@
+$ PYTHONPATH=<worktree>/src python -m pytest -q -p no:cacheprovider tests/test_mcp_undo.py tests/test_mcp_extension.py
+18 passed, 1 xfailed in 331.31s  (exit 0)
+$ grep -rnE "undo_changes|inverse" src/specir | grep -v /vendor/   -> no output (own code: none)
+$ deskops graph missing --root .  -> rc 0 (graph.txt)

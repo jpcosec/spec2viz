@@ -1,0 +1,37 @@
+name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-evidence-tests-1
+path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/evidence-tests-1.md
+source_hash: 71fa699b7b2c8db83b1a286a75a8d3b4aa2be590f03da9ac50a89ea5691dcf2c
+content_hash: a585240231169a86bb879793f124c411d01208de4ccc3f33d02f94f609d76d29
+field_hashes:
+  id: fa7a31e8b19d489a6a6e5d50a334ffab2f44c1e5b15d2f3de91d15ae96c112d6
+  title: 08063fa25c0d0b04db01978b180a3ea9df4652f2e6f80f8b6c3dc0cf43c3b3b8
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: 547285e9c49795009875cb0f01bd5cebc088d569ab6cb3bcb03f9c4dd49ce990
+  subject: d11d7e3dbb2b02df5ab660296a67a85c09c11560158884a46d0e258a916e0099
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 4f5444195585d7571ade25672820336a3ce51f4548711cb1a8182cba05f3425c
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: eb4bf12275825529740d282c1b550f31e2a10a8994ae2442c67f2404f1771d38
+  created_at: a47f575e578567a0db0007aec10abc497b208c823948175ddaee01c74fdbccff
+  disposed_at: a47f575e578567a0db0007aec10abc497b208c823948175ddaee01c74fdbccff
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 56e3898d589a98e5234af980c88ebab751f84bf2da9e7cbe6034003186e44131
+  disposition: 5dd3289ac3ae92d728a3002699609a09f3e2ae051c9e93661bd10b2bb1b798f9
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-20T23:48:07Z'
+  authority: generated
+  via: create_document

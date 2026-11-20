@@ -1,0 +1,23 @@
+Tester IR04b — commit 1be6fc1bd16c4dd4bd620d42810fa6d6b3f09d34
+Entorno: /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python, TMPDIR=/tmp, cwd raíz de IR
+
+Comprobaciones pedidas por el encargo (de a uno):
+  tests/test_mcp_undo.py                 -> 7 passed, 1 xfailed, rc 0 (187 s)
+  tests/test_mcp_extension.py            -> 11 passed, rc 0 (110 s)
+    (el xfail estricto es test_the_store_files_are_byte_identical_after_the_undo)
+
+Módulos que importan specir.mcp_extension (regresión):
+  tests/test_imports.py                  -> 9 passed, rc 0
+  tests/visual/test_sync_generation_parity.py -> 22 passed, rc 0
+  tests/models/test_blog_chain.py        -> 1 failed, 6 passed, 2 xfailed, rc 1
+    FAILED test_an_agent_does_not_verify_through_the_mcp
+      espera result.is_error con "IR05 D2-E"; ahora propose_changes responde
+      {"applied": false, "rejected": "domain", "written": false, "findings": [...]}
+  tests/models/test_domain_tools.py      -> 1 failed, 4 passed, rc 1
+    FAILED test_the_write_tools_come_with_the_extension_from_level_1
+      espera "IR05 D2-E" en la descripción de propose_changes; la extensión ya no
+      reemplaza la tool, así que la descripción es la de sldb.
+
+Otras validaciones:
+  grep -rnE "undo_changes|inverse" src/specir  -> rc 1, sin coincidencias propias
+  deskops graph missing --root .               -> rc 0, "No missing graph references found."

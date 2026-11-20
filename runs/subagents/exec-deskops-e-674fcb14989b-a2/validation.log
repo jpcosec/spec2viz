@@ -1,0 +1,6 @@
+python -m pytest tests/test_mcp_undo.py -> 8 passed (rc 0)
+python -m pytest tests/models/test_blog_chain.py -> 7 passed, 2 xfailed (pre-existing xfails) (rc 0)
+python -m pytest tests/models/test_domain_tools.py -> 5 passed (rc 0)
+python -m pytest tests/test_mcp_extension.py -> 11 passed (rc 0)
+deskops graph missing --root . -> rc 0
+grep def undo|inverse in src/specir *.py -> none

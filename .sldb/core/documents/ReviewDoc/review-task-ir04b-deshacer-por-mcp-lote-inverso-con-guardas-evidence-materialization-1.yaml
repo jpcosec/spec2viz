@@ -1,0 +1,37 @@
+name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-evidence-materialization-1
+path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/evidence-materialization-1.md
+source_hash: 02ae1fc16efae1c3a8720240ed7fe47468525e99c756634d71aa80b14af6b9d7
+content_hash: c9c4d1c336e18db9be07077ec6aaa2e02605e49641aefeaa70abed8c713ed64f
+field_hashes:
+  id: a93168908c0082d72def18b99d1ad3e20d4f4899ac044066a06e53b87e51d3ca
+  title: ee17b2df4254107d37dd58ed5f6e3292d830a53c48f941e95326541f600ad1e1
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: b77d8cf6414796c495587568e836eb101f2c47c6cbab025c9e93d24db5ead67b
+  value: 6560f1dcdccaf4cc8ed5a2f5af8a6b525bc7ffdb93413824b65292cf8b561513
+  subject: d11d7e3dbb2b02df5ab660296a67a85c09c11560158884a46d0e258a916e0099
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: e94f90c40f1958e465a7b952e8cdd0ec320c3730c9dd4d0737deb8f4c4144b9a
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 1402103df4597b76ab92ba831970f157ddbe9054a6a4b87a97d65a4f00037832
+  created_at: a47f575e578567a0db0007aec10abc497b208c823948175ddaee01c74fdbccff
+  disposed_at: a47f575e578567a0db0007aec10abc497b208c823948175ddaee01c74fdbccff
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: e127f7192aede559c8f6d6aa5e79f7b47a5310e709b993febc14e80763793bc1
+  disposition: 62054fa6d1dd27590a8db17bd27b573145c0609d1e66036f9341cb210015891d
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-20T23:48:11Z'
+  authority: generated
+  via: create_document
