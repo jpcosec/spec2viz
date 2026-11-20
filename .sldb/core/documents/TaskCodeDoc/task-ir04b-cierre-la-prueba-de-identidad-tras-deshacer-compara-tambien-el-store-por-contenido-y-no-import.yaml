@@ -1,0 +1,38 @@
+name: task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import
+path: desk/tasks/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import.md
+source_hash: de0502b2a7672e121e2f5036d88e96423ac98e45dfdd7e4ea5c74c091de5ec64
+content_hash: 540ec13a0ca655c13ecacebf89049515e6687f916633ac51186ffa519c23de69
+field_hashes:
+  title: 8e80be17998d6da7152d3fcd3cb367c596f783b0d7c21ae6c3c92b083ab4ac53
+  id: 739ae0a1bc155a9577ac61fd3b667d88106553e4b34fb09b7a4ffd70335d3d62
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 9e7e8be2998f87dfcbb538781d827f202722ef7dad630b93bca343e20f247db8
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: eb8599963285bcb3acb87899b27225a9641086d4ab503196fdab4a0fbb7cf140
+  goal: 0c9713a985bcb0c3b8e3a73d078aac51ecbaf05b46bd2c3711a19caaf255f371
+  scope: c08eb57d72d759756b5971faee6fe8c849f1807ccb759c1ada25a5eba72343cb
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: b3786e06cbb6a0c29f2a898e22d893de6f1237d9a529969a0c47d0aa272d8e98
+  validation: 6ccc69c6cc20b210f856d67523dfff52aa89ff005acda7f5350174d72c5c963e
+  done_when: e1c01eb2e9a28456c42fa3fc2dbd7bfdf91452125ac2b0baf1ddd918411d6eaa
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-20T23:47:06Z'
+  authority: generated
+  via: create_document

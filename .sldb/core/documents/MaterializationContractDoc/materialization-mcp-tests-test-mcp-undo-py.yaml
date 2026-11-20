@@ -1,0 +1,25 @@
+name: materialization-mcp-tests-test-mcp-undo-py
+path: desk/materializations/materialization-mcp-tests-test-mcp-undo-py.md
+source_hash: b5d11a2754446e33a22e2aae0d3e5ae90146c03ee1ada4ea12a3fb1d366d7975
+content_hash: 93668d055632f1954c4c7123fdd616f9b4b2e2305aaef20c99c98ef4aedd46c6
+field_hashes:
+  id: 29a9e348d3965d7ab96ae916b408f3dee259bea3e66d35b605303321f243856d
+  title: b6ba1ede00cc34f9e62cace08cbe394ea25fa746e8c55707667337d6ef382721
+  source_atoms: 2d7fcd1f738df127af07ee3415cb1ab95e2f59c9f9f185101b21bf4955dded78
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: 83abf3eb272b372ac4c23e67a187c636a0a78cb9271d779d5b55df3bbd363270
+  intent: 036023bcb945911312f0be281eec60c12f626dc48398e0fc4421f9e6dd5dd352
+  validation: 6ccc69c6cc20b210f856d67523dfff52aa89ff005acda7f5350174d72c5c963e
+  tags: 5f44539b43dff20e27c48e803b1220545b57a127bdd04149bf62506f992a5401
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:mcp
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-20T23:48:02Z'
+  authority: generated
+  via: create_document

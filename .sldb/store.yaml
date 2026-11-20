@@ -251,6 +251,14 @@ include:
     name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-preflight-4
   - path: desk/reviews/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/bundle-3.md
     name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-bundle-3
+  - path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/evidence-tests-1.md
+    name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-evidence-tests-1
+  - path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/evidence-commit-1.md
+    name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-evidence-commit-1
+  - path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/evidence-atom-1.md
+    name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-evidence-atom-1
+  - path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/evidence-materialization-1.md
+    name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-evidence-materialization-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -1004,6 +1012,10 @@ include:
     name: run-deskops-e-674fcb14989b
   - path: runs/subagents/exec-deskops-t-ef3b25a2dd59-testing/run.md
     name: run-deskops-t-ef3b25a2dd59
+  - path: runs/subagents/exec-deskops-e-674fcb14989b-a2/run.md
+    name: run-deskops-e-674fcb14989b-a2
+  - path: runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/run.md
+    name: run-deskops-t-ef3b25a2dd59-a2
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md
@@ -1124,6 +1136,7 @@ include:
   - desk/tasks/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas.md
   - desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md
   - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
+  - desk/tasks/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import.md
 graph_backend: networkx
 policy: {}
 tag_models:

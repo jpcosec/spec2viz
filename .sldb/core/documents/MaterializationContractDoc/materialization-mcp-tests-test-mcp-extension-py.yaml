@@ -1,0 +1,25 @@
+name: materialization-mcp-tests-test-mcp-extension-py
+path: desk/materializations/materialization-mcp-tests-test-mcp-extension-py.md
+source_hash: 32f90742dfc1ba1eb9f204335dde9c6f31c636a3de90398b4146c3d1fc059a6b
+content_hash: fdf7f05429e98129f037a8e8f29c75bf67c2999f6236d300d86648ebaebf2128
+field_hashes:
+  id: d65f4b5dc9955d6e3433e28805e03e59ec9887b7fdb5674e7573f10ce29fb493
+  title: fb263d8c86a719e78bbeb8311c8c22aab121539eeb211faf3b65226651fee18b
+  source_atoms: 2d7fcd1f738df127af07ee3415cb1ab95e2f59c9f9f185101b21bf4955dded78
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: a8d157e913f146aa53e8a35c74545c8377cfa7f00775a269371efa319bf8ca03
+  intent: 941f1da4607dbc2e7c21a6d29d41f70a050ab501a78b2759160ecfcce75f536a
+  validation: 6ccc69c6cc20b210f856d67523dfff52aa89ff005acda7f5350174d72c5c963e
+  tags: 5f44539b43dff20e27c48e803b1220545b57a127bdd04149bf62506f992a5401
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:mcp
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-20T23:47:58Z'
+  authority: generated
+  via: create_document

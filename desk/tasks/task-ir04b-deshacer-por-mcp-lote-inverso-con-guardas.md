@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-20T23:08:20Z'
+  at: '2026-11-20T23:47:50Z'
   authority: generated
   via: save_document_payload
 id: task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas
@@ -11,7 +11,7 @@ tags:
 - workspace:desk
 - artifact:task
 - host:robocop2
-current_node: ritual-execution
+current_node: ritual-testing
 history:
 - task_activates
 - 'task_returns_to_execution: Tester deskops-t-ef3b25a2dd59 FALLA sobre 1be6fc1 (ya
@@ -32,8 +32,13 @@ history:
   tests/test_mcp_undo.py, tests/models/test_blog_chain.py, tests/models/test_domain_tools.py
   y tests/test_mcp_extension.py, de a uno, todos en verde. Commit desde tu worktree
   con ''git commit -- <rutas>'' y trailer Task-Id.'
+- task_activates
 references:
-- desk/inbox/20261116-232335-suggestion-sldb-responde-ir04b-undo-changes-mensaje-de-notationspec-ir13e-y-regresi-n-de-b2.md
+- src/specir/mcp_extension.py
+- tests/test_mcp_extension.py
+- tests/test_mcp_undo.py
+- 57616e89123162b9117109ad3fa5765f0ce960cf
+- 1be6fc1bd16c4dd4bd620d42810fa6d6b3f09d34
 depends_on:
 - task-espejo-sldb-sldb-mcp-servidor-mcp-genérico-a
 - task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer
@@ -44,15 +49,13 @@ pills:
 - desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
 files:
 - src/specir/mcp_extension.py
-- tests/conftest.py
 - tests/test_mcp_extension.py
+- tests/test_mcp_undo.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
 atoms:
 - atom-el-deshacer-del-mcp-es-un-lote-inverso-con-guardas
-- atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
-- atom-specir-depende-solo-de-la-api-pública-de-sldb
 ---
 
 # IR04b Deshacer por MCP: adaptador sobre el lote inverso de sldb
