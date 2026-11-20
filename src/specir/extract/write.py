@@ -3,13 +3,13 @@ written with `sldb.api.anchors.write_anchor`, documents and relations by `apply_
 
 from __future__ import annotations
 
-import hashlib
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
 import sldb.api as api
+from sldb.api.code import code_facts
 from sldb.api.anchors import check_anchors, record_anchor, write_anchor
 
 from specir.extract.plan import ANCHOR_DIR, Planned, anchor_name, anchor_refs, ref_of
@@ -41,6 +41,7 @@ def claim_of(fact: dict[str, Any]) -> str:
 def checked_blocks(root: Path, facts: dict[str, dict[str, Any]]) -> dict[str, dict[str, Any]]:
     """The anchor block of every fact, each checked against the fact it anchors: the same fingerprints
     and the same source_hash. `ValueError` naming the ref of the first that does not match."""
+    fresh = {f["path"]: f["source_hash"] for f in code_facts(root, sorted({f["path"] for f in facts.values()}))["facts"]}
     blocks = {}
     for ref, fact in sorted(facts.items()):
         try:
@@ -49,7 +50,7 @@ def checked_blocks(root: Path, facts: dict[str, dict[str, Any]]) -> dict[str, di
             raise ValueError(f"{ref}: {error}") from error
         if block["seen"] != fact["fingerprints"]:
             raise ValueError(f"{ref}: the anchor does not match the fact (fingerprints differ)")
-        if "sha256:" + hashlib.sha256((root / fact["path"]).read_bytes()).hexdigest() != fact["source_hash"]:
+        if fresh.get(fact["path"]) != fact["source_hash"]:
             raise ValueError(f"{ref}: the anchor does not match the fact (source_hash differs)")
         blocks[ref] = block
     return blocks

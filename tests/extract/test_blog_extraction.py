@@ -213,3 +213,40 @@ def test_a_relation_the_new_plan_no_longer_produces_is_flagged_and_kept(tmp_path
     report = extract(root)
     assert writes in report.changed, report
     assert writes in documents(root) and documents(root)[writes].payload == before
+
+
+def test_the_extractor_reads_no_source_file(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """specIR gets the code only through sldb.api: during the extraction no module of specir opens
+    or reads a file of the fixture on its own (D1 of the IR08 tester)."""
+    import builtins
+    import inspect
+
+    root = new_project(tmp_path)
+    real_open, real_read_bytes, real_read_text = builtins.open, Path.read_bytes, Path.read_text
+    seen: list[str] = []
+
+    def from_specir() -> bool:
+        # frames: from_specir, watch, the spy, then whoever called open / read_bytes / read_text
+        return "/specir/extract/" in inspect.stack(0)[3].filename.replace("\\", "/")
+
+    def watch(path: object) -> None:
+        if str(path).startswith(str(root)) and not str(path).startswith(str(root / ".sldb")) and from_specir():
+            seen.append(str(path))
+
+    def spy_open(file, *args, **kwargs):
+        watch(file)
+        return real_open(file, *args, **kwargs)
+
+    def spy_bytes(self, *args, **kwargs):
+        watch(self)
+        return real_read_bytes(self, *args, **kwargs)
+
+    def spy_text(self, *args, **kwargs):
+        watch(self)
+        return real_read_text(self, *args, **kwargs)
+
+    monkeypatch.setattr(builtins, "open", spy_open)
+    monkeypatch.setattr(Path, "read_bytes", spy_bytes)
+    monkeypatch.setattr(Path, "read_text", spy_text)
+    extract(root)
+    assert seen == []
