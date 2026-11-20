@@ -247,6 +247,10 @@ include:
     name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-preflight-2
   - path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/bundle-2.md
     name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-bundle-2
+  - path: desk/reviews/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/preflight-4.md
+    name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-preflight-4
+  - path: desk/reviews/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/bundle-3.md
+    name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-bundle-3
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
