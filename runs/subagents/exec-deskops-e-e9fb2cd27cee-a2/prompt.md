@@ -1,7 +1,25 @@
+Task: task-ir09-extractor-estático-react-tsx-y-contratos-de-api
+Title: IR09 Extractor estático React/TSX y contratos de API
+Status: active
+Current node: ritual-execution
+Task type: task.code
+From drawer: desk/drawer/tasks/task-ir09-extractor-estatico-react-tsx-y-contratos-api.md
+Effective pills:
+- desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+Effective atoms:
+- atom-por-qué-existe-specir-coherencia-entre-capas-para-agentes-de-código
+- atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
+- atom-entidad-aparición-proyección-y-notación-son-cosas-distintas
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-20T22:00:58Z'
+  at: '2026-11-20T21:38:31Z'
   authority: generated
   via: save_document_payload
 id: task-ir09-extractor-estático-react-tsx-y-contratos-de-api
@@ -13,7 +31,7 @@ tags:
 - system:specir
 - topic:extractores
 - host:robocop2
-current_node: ritual-testing
+current_node: ritual-execution
 history:
 - task_activates
 - 'task_returns_to_execution: Tester exec-deskops-t-e2a621a70a51-testing FALLA sobre
@@ -25,23 +43,7 @@ history:
   y agregar una prueba con un fetch de URL literal (en blog_frontend_gaps o en tests/extract/test_frontend_extraction.py)
   que verifique que va a not_derived y que no queda una acción sin invokes sin declarar.
   Commit solo de tus archivos con ''git commit -- <rutas>'' desde tu worktree.'
-- task_activates
-references:
-- src/specir/extract/__init__.py
-- src/specir/extract/plan.py
-- src/specir/extract/react_tsx.py
-- tests/extract/test_frontend_extraction.py
-- tests/fixtures/blog_frontend/src/PublishButton.tsx
-- tests/fixtures/blog_frontend/src/api/client.ts
-- tests/fixtures/blog_frontend/src/api/legacy.js
-- tests/fixtures/blog_frontend_gaps/src/ArchiveButton.tsx
-- tests/fixtures/blog_frontend_gaps/src/FetchButton.tsx
-- tests/fixtures/blog_frontend_gaps/src/SearchBox.tsx
-- tests/fixtures/blog_frontend_gaps/src/api/fetcher.ts
-- tests/fixtures/blog_frontend_gaps/src/api/legacy_archive.js
-- tests/fixtures/blog_frontend_gaps/src/api/search.ts
-- 6121f69f9da3b924875991a2f432886ad58e2a02
-- 6a9bbdd0bc07a22bbff1bd7df7f781dbd8fa5f76
+references: []
 depends_on:
 - task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo
 - task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog
@@ -53,25 +55,14 @@ depends_on:
 pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
-files:
-- src/specir/extract/__init__.py
-- src/specir/extract/plan.py
-- src/specir/extract/react_tsx.py
-- tests/extract/test_frontend_extraction.py
-- tests/fixtures/blog_frontend/src/PublishButton.tsx
-- tests/fixtures/blog_frontend/src/api/client.ts
-- tests/fixtures/blog_frontend/src/api/legacy.js
-- tests/fixtures/blog_frontend_gaps/src/ArchiveButton.tsx
-- tests/fixtures/blog_frontend_gaps/src/FetchButton.tsx
-- tests/fixtures/blog_frontend_gaps/src/SearchBox.tsx
-- tests/fixtures/blog_frontend_gaps/src/api/fetcher.ts
-- tests/fixtures/blog_frontend_gaps/src/api/legacy_archive.js
-- tests/fixtures/blog_frontend_gaps/src/api/search.ts
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
 atoms:
 - atom-por-qué-existe-specir-coherencia-entre-capas-para-agentes-de-código
+- atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
+- atom-entidad-aparición-proyección-y-notación-son-cosas-distintas
 from_drawer: desk/drawer/tasks/task-ir09-extractor-estatico-react-tsx-y-contratos-api.md
 ---
 
@@ -121,3 +112,20 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 Las pruebas anteriores pasan sobre el fixture, la mitad de interfaz de la cadena de publicar un post se obtiene sin poblarla a mano y specIR no contiene ningún analizador propio de TS, TSX, JSX ni JS.
+
+## Entrega del ejecutor
+
+Al terminar, commitea solo los archivos que cambiaste para la tarea, nombrados uno por uno (los mismos que listas en result-summary.md):
+
+    git add <ruta> <ruta> ...
+    git commit -m "<resumen>" -m "Task-Id: task-ir09-extractor-estático-react-tsx-y-contratos-de-api"
+
+Nunca uses `git add -A`, `git add -u` sobre todo el arbol ni `git stash`: puede haber trabajo ajeno sin commitear. No hagas push. Recien despues ejecuta `deskops advance task`.
+
+## Tu worktree
+
+Tu codigo vive en un worktree propio, en la rama `deskops/deskops-e-e9fb2cd27cee-a2`:
+
+    /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/deskops-e-e9fb2cd27cee-a2
+
+Haz `cd` ahi: edita, corre los tests y commitea ahi (git add / git commit), no en el checkout principal /mnt/ssd/proyectos/SLDB_1/IR. Las operaciones de desk (`deskops ... --root /mnt/ssd/proyectos/SLDB_1/IR`, evidencia en runs/subagents/..., `deskops advance task`) siguen usando el checkout principal. Al terminar, reap trae tus commits a la rama principal y borra el worktree.

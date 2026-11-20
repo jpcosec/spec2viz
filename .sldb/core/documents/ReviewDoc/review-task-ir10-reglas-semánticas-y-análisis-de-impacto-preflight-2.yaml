@@ -1,0 +1,37 @@
+name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-preflight-2
+path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/preflight-2.md
+source_hash: 92f417a829ac722cbfd06ac017d5e90f22c7402206f2322521074691637faff7
+content_hash: 32323ebf69a30b0cca03c559be65398b71e50a7466f010f3a7464f07ce4aacb2
+field_hashes:
+  id: 0df6fa90af2c2f294b638821e4d1286b3f9ff4ab51e4b03883256c4e2d3edff1
+  title: a9d063a098a3b6efcbbcd31eb408da1542f831c28cd7d1ff53cbb96847fc3fa6
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: fd324b4d137fffcf936f681162ffa40804a687e018ee326dcd9ed3ec35106b4b
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: ac1207cc5127ce039ba85c8aa50fd63418bd06bc49391c5243a3d6b53ec6c62d
+  input_sha256: 4b0b12cc14ccb21f5e9e5eee003832f3e0313013135ebd26f08e47830e362bac
+  contract_sha256: 41c69dede528cb789049ac347e3d16e933cab0da548968de12ed7f523deb022f
+  output_sha256: dfc5c4156ec7fdb15260003c3ad79c5ffbcfd4dcb12830faa2b3d82f76afbaef
+  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
+  reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  created_at: 4eeab8c979967ab464c169cb04393ec18fa95faa4ae1f9f83cec68fce3cbc751
+  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  summary: fbeec77111ca8d7af890f73ecbfda3bd8500150a1c69784a66971e5ee6ea9076
+  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-20T22:03:00Z'
+  authority: generated
+  via: create_document

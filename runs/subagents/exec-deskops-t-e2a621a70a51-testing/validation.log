@@ -1,0 +1,37 @@
+# IR09 tester validation (worktree limpio /tmp/ir09-clean @ 6a9bbdd)
+# Python: /workspace/IR/.venv/bin/python; PYTHONPATH=/tmp/ir09-clean/src
+
+$ TMPDIR=/dev/shm /workspace/IR/.venv/bin/python -m pytest -q -p no:cacheprovider tests/extract tests/models/test_blog_chain.py tests/test_imports.py
+43 passed, 2 xfailed in 101.11s
+
+$ TMPDIR=/tmp /workspace/IR/.venv/bin/python -m pytest -q -p no:cacheprovider tests/extract/test_frontend_extraction.py
+11 passed in 33.99s
+
+$ TMPDIR=/tmp /workspace/IR/.venv/bin/python -m pytest -q -p no:cacheprovider tests/extract/test_blog_extraction.py
+16 passed in 72.83s
+
+$ TMPDIR=/tmp /workspace/IR/.venv/bin/python -m pytest -q -p no:cacheprovider tests/models/test_blog_chain.py
+7 passed, 2 xfailed in 13.72s
+
+$ TMPDIR=/tmp /workspace/IR/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_imports.py
+9 passed in 0.76s
+
+$ grep -rnE "tree_sitter|import ast|from ast|pglast|read_bytes|read_text|sldb\.code\b|spec2viz" src/specir/extract
+(no output, rc 1)
+
+$ deskops graph missing --root .
+No missing graph references found. (rc 0)
+
+# Extra: fetch literal probe over the real fixtures (temporary project)
+# probe.js: export function probePublish() { return fetch("/posts/{id}/publish"); }
+# ProbeButton.tsx handler -> probePublish()
+# extract_frontend report.not_derived == []
+# created InterfaceActionDoc:action-frontend-src-probebutton-probebutton-handleprobe with no invokes
+$ sldb rules check --store .sldb --format json
+error rules/rule-specir-action-invokes-an-api-operation InterfaceActionDoc:action-frontend-src-probebutton-probebutton-handleprobe
+(rc 1)
+
+# Dirty workspace only, not the executor commit:
+$ TMPDIR=/tmp .venv/bin/python -m pytest -q -p no:cacheprovider tests/models/test_blog_chain.py
+1 failed, 6 passed, 2 xfailed
+# failure: test_an_agent_does_not_verify_through_the_mcp (uncommitted mcp_extension changes return domain rejection)

@@ -1,0 +1,17 @@
+Task: task-ir09-extractor-estático-react-tsx-y-contratos-de-api
+Title: IR09 Extractor estático React/TSX y contratos de API
+Status: active
+Current node: ritual-execution
+Task type: task.code
+From drawer: desk/drawer/tasks/task-ir09-extractor-estatico-react-tsx-y-contratos-api.md
+Effective pills:
+- desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+Effective atoms:
+- atom-por-qué-existe-specir-coherencia-entre-capas-para-agentes-de-código
+- atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
+- atom-entidad-aparición-proyección-y-notación-son-cosas-distintas
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .

@@ -1,0 +1,5 @@
+## deskops/deskops-e-e9fb2cd27cee-a2
+ M src/specir/extract/react_tsx.py
+ M tests/extract/test_frontend_extraction.py
+?? tests/fixtures/blog_frontend_gaps/src/FetchButton.tsx
+?? tests/fixtures/blog_frontend_gaps/src/api/fetcher.ts

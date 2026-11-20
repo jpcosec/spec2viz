@@ -1,0 +1,37 @@
+name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-evidence-commit-1
+path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/evidence-commit-1.md
+source_hash: 5ac02c35018f08b6ea49a49b1fffcda69ad1729fb754032cadb6bf4089dc51b0
+content_hash: d9975ec4f2f6a66588aa076e9d6c52328326a4bec9c459dafeee0a6dad97118b
+field_hashes:
+  id: 284c7c598c2b3c917c59884024a3d77038822357e4984d521208cc0201c4c713
+  title: b359e5ec5b2d6b2a12748c8e39bb774a44bc05c4eb00157059c52f1a6773296d
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 5ea9c58673a69c87d0e5540a6f9978aad8f8e0a0b9ce3471cff139c730d97888
+  value: 6cbddab5e6514e1d205c0a144611a5a225bced5a8b79a87d744f1f86dcec8e9e
+  subject: 725884fdb9f380c6f8c476534c9df18a00ddfcc024cc55b8745760c12d31eead
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 15d1d29c2bf552d2b123a95faf3ac86b0bcdffce5df8bf358d14f1c61963c0f2
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: fc67df78febe91106d94e8b2430d29f3c096c76a7d6185df8db3f0afaba5edd6
+  created_at: fac3ab0572b099d586acc78e7825e25f6de587a74850cf6d1ea62024bc223852
+  disposed_at: fac3ab0572b099d586acc78e7825e25f6de587a74850cf6d1ea62024bc223852
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 91e5d5ad52027fa188682cd39318fc17c1960f3aebac1b6603cf9cd13abfd22f
+  disposition: cf121f5e23b02e05527cf65b7e8d6f64fa92fb546269a99a07a96590665b9e03
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-20T22:01:53Z'
+  authority: generated
+  via: create_document

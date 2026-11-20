@@ -1,0 +1,4 @@
+...............................x...x.........                            [100%]
+43 passed, 2 xfailed in 136.30s (0:02:16)
+pytest rc=0
+grep rc=1 (1 = sin hallazgos)
