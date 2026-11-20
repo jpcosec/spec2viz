@@ -1,14 +1,16 @@
 name: 20261118-211934-suggestion-sldb-undo-changes-de-sldb-mcp-con-guard-de-contenido-y-steps-todo-o-nada-respuesta-a-ir04b-nota-20261117-135338
 path: desk/inbox/20261118-211934-suggestion-sldb-undo-changes-de-sldb-mcp-con-guard-de-contenido-y-steps-todo-o-nada-respuesta-a-ir04b-nota-20261117-135338.md
-source_hash: 6090165fa6b5c20ce18d5f9881882d294c30362a6c6a87ffbe2e7595ddaba4a7
-content_hash: b90ef6423229668f4fb99487c12e7506cc787f4196b46dfa45e705089b88ddc9
+source_hash: b5aba203683f7d07ad456a255ac9ea19471bf1b0f300bbc556d3ff99db275c92
+content_hash: a1c7bd0f0b88644c77bedc877f90513490791a88e17cd1243232b0b61fca6f61
 field_hashes:
   kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
   sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
   target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   created_at: 49105d49085a73e7420c1a00b09885a217eb45ace9e4ab1cc9135d7e10fde99d
-  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
-  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: f5d2e6f59d6b352aa267a0491fe91aba0ac3b7ac4e0c0d0d42ba16c3d5a26083
+  ack_reason: 2e72127ce1cbdc73d94f74fe41ac5238bcc0b9575d5b037809d3edf260160c6d
   title: 625a1bc11bc1d857be6f011b8dc1a2c0b9c776c430d79e4ed98c56eb06098305
   body: b40f5a561ab69b507721c2e5e8a688cc1f431dc1c407b49fb101ba5971e86936
 semantic_tags:
@@ -16,4 +18,8 @@ semantic_tags:
 - source.document.markdown
 - type.desk.inbox-note
 - workspace.desk.inbox
-provenance: null
+provenance:
+  by: agent
+  at: '2026-11-20T23:54:17Z'
+  authority: generated
+  via: save_document_payload

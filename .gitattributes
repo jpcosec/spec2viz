@@ -1,0 +1,3 @@
+.sldb/core/store_index.yaml merge=sldb
+.sldb/core/models/*.yaml merge=sldb
+.sldb/store.yaml merge=sldb

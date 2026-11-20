@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-20T23:52:14Z'
+  at: '2026-11-20T23:54:31Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -39,7 +39,7 @@ Route the active execution set for IR.
 
 _Add short operational notes about the current routed set._
 
-Diecisiete tareas de specIR autoradas desde el drawer, todas en borrador: ninguna se ha ejecutado. Dos ramas: MCP y modelado (IR01 a IR06, IR08 a IR10) y cobertura y retiro de spec2viz (IR07, IR11, IR12, IR13a a IR13d, IR13). Las dependencias están en el campo depends_on de cada tarea.
+Estado al 2026-11-20 (noche): cerradas IR01 a IR09, IR11, IR12, IR13a a IR13j, D1 de IR08 e IR04b (89f8734: deshacer por MCP sobre el lote inverso de sldb, partiendo del trabajo sin commit del intento 2, guardado en runs/subagents/20261120-ir04b-wip/). Queda la tarea de cierre de IR04b (la prueba de identidad compara también el store y no importa módulos internos de sldb), en ejecución. Después, en serie: (2) IR10, sin dependencias abiertas; preflight-2 y bundle-2 aceptados el 2026-11-20 (ya no stale). (3) IR13, gate final de retiro de spec2viz; preflight y bundle nuevos aceptados; va al final porque certifica el conjunto. Inbox en 0. La rama sync/local-20261120 de la sesión de supervisión no se pudo fusionar por CLI (conflicto en el shard del Board); su contenido (dos acks y estas notas) se aplicó con deskops message ack y deskops edit board.
 
 ## Task Details
 

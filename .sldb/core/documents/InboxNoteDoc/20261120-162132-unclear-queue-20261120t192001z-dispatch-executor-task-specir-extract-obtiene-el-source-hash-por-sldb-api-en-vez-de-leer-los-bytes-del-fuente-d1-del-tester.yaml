@@ -1,14 +1,16 @@
 name: 20261120-162132-unclear-queue-20261120t192001z-dispatch-executor-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester
 path: desk/inbox/20261120-162132-unclear-queue-20261120t192001z-dispatch-executor-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester.md
-source_hash: 7cafc66e894d1d0f25aef159726c07bbb24d5c4fcf21b74636be601c620c4f28
-content_hash: 71b6a395d7e34d8887f3d1dd1fdf46fad8dcb04d47c2493629cfc875ce65becc
+source_hash: a6c3ca5ce97f4eef5504003e783f72aacbe39371f4055a898e17f540e34f703f
+content_hash: 2fd3d5b9ab6542c0c3a1018bbe31553ca9eb4455e43efd920f4ea2724f63cbff
 field_hashes:
   kind: 683144a12969e0fd85512737e57b4db93ed15ee760906165a5516d581a77889a
   sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   created_at: f2c31d87c7cd9fa0ca4b208c5972188aed718228a513fba6328c135356f286a0
-  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
-  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: 1e940019c3fb880cccdd64957fae37eb6a56910fc4b0f8ad7db74f8abeed04c0
+  ack_reason: bcdd38898469b1ae37fa038b08b9af060a63d53259c15a9f763671426c8e7eb7
   title: 68d288300438aca9b66d69a628ad2ca9f7e9a0eb15af2ca464d8828ad1734255
   body: 7dbc2dd01cd733efe5aecff17b2976c37ed04779583f46d3f81b4aaefb57ac28
 semantic_tags:
@@ -16,4 +18,8 @@ semantic_tags:
 - source.document.markdown
 - type.desk.inbox-note
 - workspace.desk.inbox
-provenance: null
+provenance:
+  by: agent
+  at: '2026-11-20T23:54:13Z'
+  authority: generated
+  via: save_document_payload
