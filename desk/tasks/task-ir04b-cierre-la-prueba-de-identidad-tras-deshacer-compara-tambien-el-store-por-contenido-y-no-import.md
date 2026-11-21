@@ -1,17 +1,30 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-20T23:47:06Z'
+  at: '2026-11-21T00:25:44Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
 current_node: ritual-execution
-history: []
+history:
+- task_activates
+- 'task_returns_to_execution: Tester deskops-t-da81f2bd34e0 FALLA sobre 33846f5: tests/test_mcp_undo.py::test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted
+  falla en ''assert content() == mds'' (línea 208). La causa no es el deshacer: content()
+  lista el store con sldb.api.load_runtime_documents, que omite en silencio los modelos
+  que no resuelven (los heredados de deskops, model_ref deskops.models...), así que
+  al empezar ve 53 documentos y después de una escritura en el mismo proceso ve 506.
+  Intento 2, como dice la resolución aceptada: enumerar con sldb.api.select_documents
+  (filas export_id, model, name, path, que no dependen de importar modelos) y comparar
+  cada documento por el sha256 del texto de su archivo sin el bloque sldb (el md_digest
+  local ya existente). Que el conjunto de claves sea estable entre las dos instantáneas.
+  Si hace falta, que content() del test stale compare solo los .md y deje la comparación
+  del store al test de identidad. Los cuatro archivos de tests tienen que pasar, de
+  a uno. Commit desde tu worktree con ''git commit -- <rutas>'' y trailer Task-Id.'
 references: []
 depends_on: []
 pills: []
