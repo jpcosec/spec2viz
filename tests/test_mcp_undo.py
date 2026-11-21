@@ -5,12 +5,15 @@ specIR implements no undo: the tool, the stack of inverse batches and the guards
 from __future__ import annotations
 
 import hashlib
+import json
+import re
 import subprocess
 import sys
 from pathlib import Path
 from typing import Any, Iterator
 
 import pytest
+import yaml
 
 from conftest import REPO, copy_digest, mount_copy, served, tree_digest
 
@@ -114,16 +117,36 @@ def content(copy_root):
     return take
 
 
+def md_text_without_block(text: str) -> str:
+    """The text of a Markdown document without its `sldb` provenance block (the contract of sldb:
+    same content but for the provenance). Done here on the frontmatter, not with sldb internals."""
+    match = re.match(r"\A---\n(.*?)\n---\n?", text, re.DOTALL)
+    if match is None:
+        return text
+    front = yaml.safe_load(match.group(1))
+    if not isinstance(front, dict) or "sldb" not in front:
+        return text
+    front.pop("sldb")
+    rest = text[match.end():]
+    if not front:
+        return rest.lstrip("\n")
+    return "---\n" + yaml.safe_dump(front, sort_keys=True, allow_unicode=True) + "---\n" + rest
+
+
 def md_digest(root: Path) -> dict[str, str]:
-    """sha256 of the content of every Markdown document of the copy: its text without the `sldb`
-    provenance block (`sldb.api.documents.content_hash`). An undo restores the content of a document
-    but sldb re-stamps `sldb.at` and `sldb.via` (sldb: same content but for the provenance)."""
-    from sldb.models.provenance_block import strip_block
+    """sha256 of the content of every Markdown document of the copy (its text without the `sldb`
+    provenance block) plus, for every document the store tracks, the sha256 of its payload as
+    `sldb.api` extracts it: the store compared by content. An undo restores the content of a
+    document but sldb re-stamps `sldb.at` and `sldb.via`."""
+    from sldb import api
 
     digest = {}
     for path in sorted(p for n in (".sldb", "sldb", "desk", "undo") if (root / n).exists() for p in (root / n).rglob("*.md")):
         if path.is_file() and ".sldb_cache" not in path.parts:
-            digest[str(path)] = hashlib.sha256(strip_block(path.read_text(encoding="utf-8")).encode("utf-8")).hexdigest()
+            digest[str(path)] = hashlib.sha256(md_text_without_block(path.read_text(encoding="utf-8")).encode("utf-8")).hexdigest()
+    for doc in sorted(api.load_runtime_documents(root / ".sldb"), key=lambda d: (str(d.path), str(d.name))):
+        payload = json.dumps(doc.payload, sort_keys=True, default=str, ensure_ascii=False)
+        digest[f"store:{doc.model_name}/{doc.name}@{doc.path}"] = hashlib.sha256(payload.encode("utf-8")).hexdigest()
     return digest
 
 
