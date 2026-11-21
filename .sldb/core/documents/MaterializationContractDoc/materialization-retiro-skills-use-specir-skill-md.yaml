@@ -1,0 +1,25 @@
+name: materialization-retiro-skills-use-specir-skill-md
+path: desk/materializations/materialization-retiro-skills-use-specir-skill-md.md
+source_hash: 0f7e285465459b8a71b2a6cd3809a765a066c890b221055599083c0bf949d19b
+content_hash: 40a89775a235f5044276ff73309f0f0c70862386bfe5415273f5a3476599f1b0
+field_hashes:
+  id: ac57ba9dc5206b75e903f7f3758288ef936c9a660ee2e5079bd9a5b117112088
+  title: f61a1ec8f9c512b31ec7b324f139942b89219356f0d2387aae6f15895c567469
+  source_atoms: 89482d17264aa538493f62328006d1b47539b4952b2fe9d1be380fcfe1ae438a
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: 6f1822a6149be251847c37113e2796296c6738e5a80ea573ecc6670cf2c33e3f
+  intent: dd0034a93f9657c26f6416234c74ec5b0c48161c6216d5e07f4f6a042c9c6020
+  validation: 7816e067f4ee8446a434c5a2e242ae897c5451863828b37da5eefc1bfdb8e13f
+  tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:retiro
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-21T06:39:32Z'
+  authority: generated
+  via: create_document

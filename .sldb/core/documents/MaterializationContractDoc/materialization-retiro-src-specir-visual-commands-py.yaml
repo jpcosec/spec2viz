@@ -1,0 +1,25 @@
+name: materialization-retiro-src-specir-visual-commands-py
+path: desk/materializations/materialization-retiro-src-specir-visual-commands-py.md
+source_hash: 8c8451e1be29c97a2b39935aca060fd7a5623e292b17ca097d8afa548692d353
+content_hash: 34300c82102edfcdf51bf54a473722a17ef6b1ffaa6d88306af0adc6c0f63596
+field_hashes:
+  id: 1858257fde6eb729c2cc2cf996b2c191b5bde789bb87ebc43dd0247a0819fbc0
+  title: 176dbe39bdccbe05d4684c24df14da16cd248a759e3c1b90db4687a60bda9023
+  source_atoms: 89482d17264aa538493f62328006d1b47539b4952b2fe9d1be380fcfe1ae438a
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: 0d110ce35cce9613bc73162cfcd82e2348bee7e9245bc3e5832521d768551ae0
+  intent: 0b9c66a4fb93fdc1cefb89b6a616583422e2cce9b6cb4ecb145b82006fbdc915
+  validation: 7816e067f4ee8446a434c5a2e242ae897c5451863828b37da5eefc1bfdb8e13f
+  tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:retiro
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-21T06:39:45Z'
+  authority: generated
+  via: create_document

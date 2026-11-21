@@ -1,25 +1,48 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-21T04:20:04Z'
+  at: '2026-11-21T06:39:13Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-testing
+history:
+- task_activates
+references:
+- docs/spec2viz/correspondencia-cli.md
+- docs/spec2viz/matriz-de-cobertura.md
+- skills/use-specir/SKILL.md
+- src/specir/cli.py
+- src/specir/visual/commands.py
+- src/specir/visual/render_file.py
+- tests/visual/test_cli.py
+- tests/visual/test_packaging.py
+- tests/visual/test_render_cases.py
+- tests/visual/test_render_commands.py
+- 3d0a436c52e07e5eb40922ccd06e06c65c650cdb
 depends_on: []
 pills: []
-files: []
+files:
+- docs/spec2viz/correspondencia-cli.md
+- docs/spec2viz/matriz-de-cobertura.md
+- skills/use-specir/SKILL.md
+- src/specir/cli.py
+- src/specir/visual/commands.py
+- src/specir/visual/render_file.py
+- tests/visual/test_cli.py
+- tests/visual/test_packaging.py
+- tests/visual/test_render_cases.py
+- tests/visual/test_render_commands.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-las-filas-de-validate-de-la-matriz-de-spec2viz-remiten-a-sldb-notations-validate
 ---
 
 # Matriz de spec2viz: SV-K16, K21, K26 y K29 pasan a sldb notations validate y se retiran los validate provisionales de specIR

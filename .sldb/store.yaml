@@ -287,6 +287,14 @@ include:
     name: review-task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac-preflight-1
   - path: desk/reviews/task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac/bundle-1.md
     name: review-task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac-bundle-1
+  - path: desk/reviews/task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr/evidence-tests-1.md
+    name: review-task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr-evidence-tests-1
+  - path: desk/reviews/task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr/evidence-commit-1.md
+    name: review-task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr-evidence-commit-1
+  - path: desk/reviews/task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr/evidence-atom-1.md
+    name: review-task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr-evidence-atom-1
+  - path: desk/reviews/task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr/evidence-materialization-1.md
+    name: review-task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr-evidence-materialization-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -1060,6 +1068,8 @@ include:
     name: run-deskops-e-59807359e541
   - path: runs/subagents/exec-deskops-e-b299337f84bf/run.md
     name: run-deskops-e-b299337f84bf
+  - path: runs/subagents/exec-deskops-t-63cb541754df-testing/run.md
+    name: run-deskops-t-63cb541754df
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md
