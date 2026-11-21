@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-21T06:19:18Z'
+  at: '2026-11-21T06:46:08Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -11,7 +11,6 @@ scope: desk
 # List of task-xxx paths
 tasks:
 - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
-- desk/tasks/task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr.md
 - desk/tasks/task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac.md
 # List of pill-xxx paths
 pills:
@@ -46,5 +45,4 @@ Estado al 2026-11-21 (madrugada): cerradas además IR04b (89f8734) y su tarea de
 _Generated from the task references above._
 
 - IR13 Migración de consumidores y gate final de retiro de spec2viz [draft] - Un comprobador del gate de retiro y un acta que demuestran, con evidencia, que toda capacidad de spec2viz está cubierta por specIR y que ningún consumidor importa ni invoca spec2viz.
-- Matriz de spec2viz: SV-K16, K21, K26 y K29 pasan a sldb notations validate y se retiran los validate provisionales de specIR [draft] - En docs/spec2viz/matriz-de-cobertura.md, SV-K16, SV-K21, SV-K26 y SV-K29 quedan como 'usar sldb directamente' con equivalente 'sldb notations validate', y en estado cumplida, citando un test. SV-K09, SV-K18 y SV-K23 pasan a cumplida si todas sus hijas lo están. specir diagram validate y el alias specir validate se retiran de specIR, y su ayuda y docs/spec2viz/correspondencia-cli.md remiten a sldb notations validate. El test que cubre la tabla de equivalentes (test_every_equivalent_of_the_table_answers_its_help en tests/visual/test_cli.py) invoca 'sldb notations validate --help'. specir retirement check solo deja abierta SV-A17.
 - Las pruebas de paridad de IR comparan contra goldens congelados de spec2viz y dejan de importarlo (acta, punto 6) [draft] - Ningún archivo de IR importa ni invoca spec2viz: specir retirement check no lista dependencias de IR. Cada comparación con spec2viz en vivo pasa a comparar contra un golden versionado en tests/visual/goldens/, grabado desde spec2viz (el checkout /mnt/ssd/proyectos/SLDB_1/spec2viz, con su commit en el nombre del archivo, como los spec2viz-2de1056*.json) con un script de grabación que vive fuera de tests/ (en runs/<run>/, que el comprobador no audita), y la prueba carga el golden sin importar spec2viz. Si un caso ya está cubierto por un golden existente, la prueba en vivo se borra. La cobertura de la paridad no baja: los casos que hoy pasan con spec2viz instalado siguen comprobados. tests/test_matriz_cobertura_spec2viz.py deja de importar spec2viz.cli (usa el golden o una lista congelada de comandos).

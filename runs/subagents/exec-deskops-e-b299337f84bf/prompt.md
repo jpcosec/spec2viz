@@ -1,48 +1,35 @@
+Task: task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr
+Title: Matriz de spec2viz: SV-K16, K21, K26 y K29 pasan a sldb notations validate y se retiran los validate provisionales de specIR
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-21T06:39:13Z'
+  at: '2026-11-21T04:20:04Z'
   authority: generated
-  via: save_document_payload
+  via: create_document
 id: task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr
-status: active
+status: draft
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-testing
-history:
-- task_activates
-references:
-- docs/spec2viz/correspondencia-cli.md
-- docs/spec2viz/matriz-de-cobertura.md
-- skills/use-specir/SKILL.md
-- src/specir/cli.py
-- src/specir/visual/commands.py
-- src/specir/visual/render_file.py
-- tests/visual/test_cli.py
-- tests/visual/test_packaging.py
-- tests/visual/test_render_cases.py
-- tests/visual/test_render_commands.py
-- 3d0a436c52e07e5eb40922ccd06e06c65c650cdb
+current_node: ritual-execution
+history: []
+references: []
 depends_on: []
 pills: []
-files:
-- docs/spec2viz/correspondencia-cli.md
-- docs/spec2viz/matriz-de-cobertura.md
-- skills/use-specir/SKILL.md
-- src/specir/cli.py
-- src/specir/visual/commands.py
-- src/specir/visual/render_file.py
-- tests/visual/test_cli.py
-- tests/visual/test_packaging.py
-- tests/visual/test_render_cases.py
-- tests/visual/test_render_commands.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-las-filas-de-validate-de-la-matriz-de-spec2viz-remiten-a-sldb-notations-validate
+atoms: []
 ---
 
 # Matriz de spec2viz: SV-K16, K21, K26 y K29 pasan a sldb notations validate y se retiran los validate provisionales de specIR
@@ -82,3 +69,20 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 tests/visual/test_cli.py, tests/test_matriz_cobertura_spec2viz.py y tests/visual/test_retirement_gate.py pasan, y specir retirement check lista solo SV-A17 entre las filas abiertas.
+
+## Entrega del ejecutor
+
+Al terminar, commitea solo los archivos que cambiaste para la tarea, nombrados uno por uno (los mismos que listas en result-summary.md):
+
+    git add <ruta> <ruta> ...
+    git commit -m "<resumen>" -m "Task-Id: task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr"
+
+Nunca uses `git add -A`, `git add -u` sobre todo el arbol ni `git stash`: puede haber trabajo ajeno sin commitear. No hagas push. Recien despues ejecuta `deskops advance task`.
+
+## Tu worktree
+
+Tu codigo vive en un worktree propio, en la rama `deskops/deskops-e-b299337f84bf`:
+
+    /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/deskops-e-b299337f84bf
+
+Haz `cd` ahi: edita, corre los tests y commitea ahi (git add / git commit), no en el checkout principal /mnt/ssd/proyectos/SLDB_1/IR. Las operaciones de desk (`deskops ... --root /mnt/ssd/proyectos/SLDB_1/IR`, evidencia en runs/subagents/..., `deskops advance task`) siguen usando el checkout principal. Al terminar, reap trae tus commits a la rama principal y borra el worktree.

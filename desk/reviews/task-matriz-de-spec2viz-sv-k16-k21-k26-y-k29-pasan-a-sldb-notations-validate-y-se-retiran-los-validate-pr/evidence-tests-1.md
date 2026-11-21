@@ -1,0 +1,83 @@
+---
+sldb:
+  by: agent
+  at: '2026-11-21T06:40:22Z'
+  authority: generated
+  via: create_document
+# review-<task>-<kind>-<n>
+id: review-task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr-evidence-tests-1
+# preflight | bundle | reproduction | goldens | owner | node | evidence
+kind: evidence
+# kind evidence only: tests | commit | atom | materialization | document | external
+fact: tests
+# kind evidence only: what the producer verified, one item per line
+value: 'src/specir/cli.py
+
+  src/specir/visual/commands.py
+
+  src/specir/visual/render_file.py
+
+  tests/visual/test_cli.py
+
+  tests/visual/test_packaging.py
+
+  tests/visual/test_render_cases.py
+
+  tests/visual/test_render_commands.py'
+# doc:<Model>:<id> or empty for reviews of plan nodes
+subject: doc:TaskCodeDoc:task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr@sha256:cd132e67325686674adeaf16d470e39878405c7fb1303b51d7263855f667a12c
+# <plan>/dag.yaml#node:<ID>; empty when subject names a document
+subject_ref: ''
+# RuntimeProfileDoc name or "human"
+engine: deskops-closeout
+actor: IR
+# Run evidence directory under runs/, relative to the project root
+run_dir: ''
+input_sha256: c44ba1424d7e5af360262e508e02cb0076e0e2aa90bbf6f86675297bf383f321
+# preflight/bundle: SHA-256 of the input with the TaskDoc replaced by its __contract__ digest
+contract_sha256: ''
+output_sha256: ''
+# pending | accepted | rejected | incomplete
+verdict: accepted
+reason: 'verified: tests src/specir/cli.py
+
+  src/specir/visual/commands.py
+
+  src/specir/visual/render_file.py
+
+  tests/visual/test_cli.py
+
+  tests/visual/test_packaging.py
+
+  tests/visual/test_render_cases.py
+
+  tests/visual/test_render_commands.py'
+# ISO 8601 timestamp
+created_at: '2026-11-21T06:40:21.737624+00:00'
+# ISO 8601 timestamp, empty while pending
+disposed_at: '2026-11-21T06:40:21.737624+00:00'
+disposed_by: IR
+# e.g. workspace:desk
+tags:
+- workspace:desk
+---
+
+# Closeout evidence tests of task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr
+
+## Summary
+
+_Summarize what was reviewed and the evidence this receipt records._
+
+closeout verify checked tests: src/specir/cli.py, src/specir/visual/commands.py, src/specir/visual/render_file.py, tests/visual/test_cli.py, tests/visual/test_packaging.py, tests/visual/test_render_cases.py, tests/visual/test_render_commands.py
+
+## Disposition
+
+_Record the verdict rationale and who disposed of the review._
+
+Verdict accepted: verified: tests src/specir/cli.py
+src/specir/visual/commands.py
+src/specir/visual/render_file.py
+tests/visual/test_cli.py
+tests/visual/test_packaging.py
+tests/visual/test_render_cases.py
+tests/visual/test_render_commands.py

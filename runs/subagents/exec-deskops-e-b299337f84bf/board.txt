@@ -1,0 +1,10 @@
+Board: board-001
+Title: IR Board
+status: 
+summary: 
+scope: desk
+purpose: Route the active execution set for IR.
+tasks: desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md, desk/tasks/task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr.md, desk/tasks/task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac.md
+pills: desk/contexts/pills.md
+rituals: desk/rituals/phase.md, desk/rituals/execution.md, desk/rituals/testing.md, desk/rituals/closeout.md
+notes: Estado al 2026-11-21 (madrugada): cerradas además IR04b (89f8734) y su tarea de cierre (ffc1523) e IR10 (fd05e74: reglas RuleDoc de brechas entre capas y las tools MCP specir_rules y specir_impact). IR13, el gate final de retiro de spec2viz, corrió el 2026-11-21: 'specir retirement check' da rc 1 con 63 dependencias en otros repos (graph_ui, deskops, pron, sldb y el store spec2viz/.sldb) y 8 filas abiertas de la matriz (SV-A17, K09, K16, K18, K21, K23, K26, K29). Detalle en runs/subagents/exec-deskops-e-59807359e541/retirement-check.txt. Queda abierta hasta rc 0: depende de que esos desks migren (sus inboxes tienen los pedidos) y de las capacidades pendientes de las 8 filas. Inbox en 0.

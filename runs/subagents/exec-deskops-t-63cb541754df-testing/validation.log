@@ -1,0 +1,23 @@
+Tester: task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr
+Commit del ejecutor: 3d0a436c52e07e5eb40922ccd06e06c65c650cdb
+Entorno: /workspace/IR/.venv/bin/python (3.13), sldb sibling /workspace/IR/.venv/bin/sldb, TMPDIR=/tmp
+
+Archivos de test del commit (de a uno):
+  tests/visual/test_cli.py               -> 40 passed, rc 0 (56 s)
+  tests/visual/test_matriz_cobertura_spec2viz.py -> 5 passed, rc 0 (0.5 s)
+  tests/visual/test_retirement_gate.py   -> 6 passed, 1 xfailed, rc 0 (5 s)
+  tests/visual/test_render_cases.py      -> 27 passed, 3 skipped, rc 0 (66 s)
+  tests/visual/test_render_commands.py   -> 33 passed, rc 0 (3 s)
+  tests/visual/test_packaging.py         -> 2 passed, 1 skipped, rc 0 (2 s)
+
+Comando de validación del encargo (equivale a los tres primeros, que se corrieron por separado):
+  TMPDIR=/tmp python -m pytest -q -p no:cacheprovider tests/visual/test_cli.py tests/test_matriz_cobertura_spec2viz.py tests/visual/test_retirement_gate.py
+
+specir retirement check (rutas del inventario de la matriz):
+  --path graph_ui=/workspace/UIs/graph_ui --path deskops=/workspace/deskops --path pron=/workspace/pron
+  --path sldb=/workspace/sldb --path spec2viz/.sldb=/workspace/spec2viz/.sldb
+  rc 1 por las dependencias de paridad/G5 que quedan fuera de alcance; filas no acreditadas: 1
+    SV-A17: abierta
+  (salida completa en retirement-check.txt)
+
+Veredicto: PASA
