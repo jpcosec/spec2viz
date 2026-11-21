@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-21T01:31:57Z'
+  at: '2026-11-21T01:43:25Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -37,7 +37,7 @@ Route the active execution set for IR.
 
 _Add short operational notes about the current routed set._
 
-Estado al 2026-11-20 (noche): cerradas IR01 a IR09, IR11, IR12, IR13a a IR13j, D1 de IR08 e IR04b (89f8734: deshacer por MCP sobre el lote inverso de sldb, partiendo del trabajo sin commit del intento 2, guardado en runs/subagents/20261120-ir04b-wip/). Queda la tarea de cierre de IR04b (la prueba de identidad compara también el store y no importa módulos internos de sldb), en ejecución. Después, en serie: (2) IR10, sin dependencias abiertas; preflight-2 y bundle-2 aceptados el 2026-11-20 (ya no stale). (3) IR13, gate final de retiro de spec2viz; preflight y bundle nuevos aceptados; va al final porque certifica el conjunto. Inbox en 0. La rama sync/local-20261120 de la sesión de supervisión no se pudo fusionar por CLI (conflicto en el shard del Board); su contenido (dos acks y estas notas) se aplicó con deskops message ack y deskops edit board.
+Estado al 2026-11-21 (madrugada): cerradas además IR04b (89f8734) y su tarea de cierre (ffc1523) e IR10 (fd05e74: reglas RuleDoc de brechas entre capas y las tools MCP specir_rules y specir_impact). IR13, el gate final de retiro de spec2viz, corrió el 2026-11-21: 'specir retirement check' da rc 1 con 63 dependencias en otros repos (graph_ui, deskops, pron, sldb y el store spec2viz/.sldb) y 8 filas abiertas de la matriz (SV-A17, K09, K16, K18, K21, K23, K26, K29). Detalle en runs/subagents/exec-deskops-e-59807359e541/retirement-check.txt. Queda abierta hasta rc 0: depende de que esos desks migren (sus inboxes tienen los pedidos) y de las capacidades pendientes de las 8 filas. Inbox en 0.
 
 ## Task Details
 
