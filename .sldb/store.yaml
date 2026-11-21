@@ -279,6 +279,10 @@ include:
     name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-evidence-atom-1
   - path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/evidence-materialization-1.md
     name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-evidence-materialization-1
+  - path: desk/reviews/task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr/preflight-1.md
+    name: review-task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr-preflight-1
+  - path: desk/reviews/task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr/bundle-1.md
+    name: review-task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr-bundle-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
