@@ -1,0 +1,31 @@
+Tester IR04b cierre — commit 33846f54689e9db0d56909e6359034ca384dd086
+Worktree limpio: /workspace/ir04b-clean2 (detached HEAD 33846f5), sin cambios al terminar.
+Entorno: TMPDIR=/tmp PYTHONPATH=/workspace/ir04b-clean2/src /workspace/IR/.venv/bin/python -m pytest -q -p no:cacheprovider
+
+tests/test_mcp_undo.py            -> 7 passed, 1 failed, rc 1 (193 s), sin xfail
+tests/models/test_blog_chain.py   -> 7 passed, 2 xfailed, rc 0 (13,8 s)
+tests/models/test_domain_tools.py -> 5 passed, rc 0 (11,8 s)
+tests/test_mcp_extension.py       -> 11 passed, rc 0 (108,8 s)
+tests/test_imports.py             -> 9 passed, rc 0 (0,75 s)
+
+Fallo:
+  tests/test_mcp_undo.py::test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted
+  tests/test_mcp_undo.py:208: assert content() == mds
+    Omitting 509 identical items
+    Left contains 452 more items (claves store:...)
+  El deshacer no cambió los 509 hashes comunes; lo que cambia es el conjunto de documentos
+  que devuelve api.load_runtime_documents:
+    - al inicio del test: 53 docs (RelationTypeDoc 27, RuleDoc 21, RelationDoc 4, DomainOperationDoc 1)
+    - tras api.apply_batch de foreign_edit: 506 docs
+  Causa: load_runtime_documents omite en silencio los modelos cuyo model_ref no resuelve
+  (deskops.models:...); tras la escritura in-process pasan a resolver. El snapshot del store
+  depende del estado de resolución del proceso, no del contenido.
+  Reproducido aislado: pytest -q tests/test_mcp_undo.py -k stale -> 1 failed, 7 deselected.
+
+Imports internos restantes en tests/test_mcp_undo.py:
+  267: from sldb.mcp.changes import BatchChange
+  268: from sldb.mcp.context import ServerContext
+  269: from sldb.mcp.server import build_server
+(El import de sldb.models.provenance_block ya no está; md_digest usa yaml + sldb.api.)
+
+No hay fallo real del deshacer: los hashes de los documentos comunes coinciden; src/specir no se tocó.

@@ -1,0 +1,37 @@
+name: review-task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import-evidence-materialization-1
+path: desk/reviews/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import/evidence-materialization-1.md
+source_hash: 55d8179ef67307eef0fca14484bb63db6e2eafb779729c6244bacf285464c119
+content_hash: 8a036e7b132034f90db4d244b3d611eb264e6a4f12c082aebc017353cf632524
+field_hashes:
+  id: 3318d02ce2df65db804b72d820d2321e6f59313b4d065afaed3bdd3ec9b8ad6c
+  title: 0c9eb8b7953230d6ab67891584a977d07e9a19645ceeb82e340daf979ee08f69
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: b77d8cf6414796c495587568e836eb101f2c47c6cbab025c9e93d24db5ead67b
+  value: 29a9e348d3965d7ab96ae916b408f3dee259bea3e66d35b605303321f243856d
+  subject: 1a4b2533490aa6c70a096e916e94e2ffac8197f62a5daf8356dbf86776d1c31f
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 2aac216ba0e572670d124e486084cbc826b4b7726d3858a7d0782c0b5de3e097
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 7d88aa538aa8ceeeb3edc822c261a890fc774bd854857539c6f309cb7c3d5dc0
+  created_at: b4052b528954f0c7661cf9d06824f6fadc4c058de914e1c007d934c969632eb1
+  disposed_at: b4052b528954f0c7661cf9d06824f6fadc4c058de914e1c007d934c969632eb1
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 8bbe2508a995ba6fcebd3df0fa9c983cee89624a0a369619f4b2715887496d25
+  disposition: 89d8a43eaf2b635c9ff2aba5903abfa098528fc926df26a4720ef534d30588bd
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-21T00:53:57Z'
+  authority: generated
+  via: create_document

@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-20T23:54:31Z'
+  at: '2026-11-21T00:54:59Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -12,7 +12,6 @@ scope: desk
 tasks:
 - desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md
 - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
-- desk/tasks/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -47,4 +46,3 @@ _Generated from the task references above._
 
 - IR10 Reglas semánticas y análisis de impacto [draft] - Un conjunto de reglas RuleDoc de dominio que detectan brechas entre capas, evaluadas con el motor de reglas de sldb, y un análisis de impacto que usa los caminos explicados de sldb (graph_path y graph_paths, tarea espejo B3) y lo expone como tool de dominio sobre sldb mcp, con el camino que justifica cada afectado.
 - IR13 Migración de consumidores y gate final de retiro de spec2viz [draft] - Un comprobador del gate de retiro y un acta que demuestran, con evidencia, que toda capacidad de spec2viz está cubierta por specIR y que ningún consumidor importa ni invoca spec2viz.
-- IR04b, cierre: la prueba de identidad tras deshacer compara también el store por contenido, y no importa módulos internos de sldb [draft] - En tests/test_mcp_undo.py la prueba de identidad compara, además de cada .md, el estado del store antes y después de deshacer por el mismo criterio de contenido: para cada documento trackeado, su payload o el content hash que exponga sldb.api. Pasa sin xfail. Y el digest de contenido de las pruebas usa solo la API pública de sldb (sldb.api; por ejemplo la función de sldb/api/documents/content_hash.py si se exporta, o el payload por sldb.api), sin importar sldb.models ni otros módulos internos.

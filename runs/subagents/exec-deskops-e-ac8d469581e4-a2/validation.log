@@ -1,0 +1,4 @@
+TMPDIR=/tmp python -m pytest -q -p no:cacheprovider tests/test_mcp_undo.py -> 8 passed (exit 0)
+tests/models/test_blog_chain.py -> 7 passed, 2 xfailed (exit 0)
+tests/models/test_domain_tools.py -> 5 passed (exit 0)
+tests/test_mcp_extension.py -> 11 passed (exit 0)

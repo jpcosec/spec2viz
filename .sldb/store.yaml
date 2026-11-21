@@ -1155,7 +1155,6 @@ include:
   paths:
   - desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md
   - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
-  - desk/tasks/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import.md
 graph_backend: networkx
 policy: {}
 tag_models:

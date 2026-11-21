@@ -1,7 +1,17 @@
+Task: task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import
+Title: IR04b, cierre: la prueba de identidad tras deshacer compara también el store por contenido, y no importa módulos internos de sldb
+Status: active
+Current node: ritual-execution
+Task type: task.code
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-21T00:53:47Z'
+  at: '2026-11-21T00:25:44Z'
   authority: generated
   via: save_document_payload
 id: task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import
@@ -10,7 +20,7 @@ summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-testing
+current_node: ritual-execution
 history:
 - task_activates
 - 'task_returns_to_execution: Tester deskops-t-da81f2bd34e0 FALLA sobre 33846f5: tests/test_mcp_undo.py::test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted
@@ -25,20 +35,14 @@ history:
   Si hace falta, que content() del test stale compare solo los .md y deje la comparación
   del store al test de identidad. Los cuatro archivos de tests tienen que pasar, de
   a uno. Commit desde tu worktree con ''git commit -- <rutas>'' y trailer Task-Id.'
-- task_activates
-references:
-- tests/test_mcp_undo.py
-- e5c575592a333fbd55ca6628beb9bdd732700e7d
-- 33846f54689e9db0d56909e6359034ca384dd086
+references: []
 depends_on: []
 pills: []
-files:
-- tests/test_mcp_undo.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-la-prueba-de-identidad-del-deshacer-por-mcp-compara-los-md-y-el-store-por-contenido-con-la-api-publi
+atoms: []
 ---
 
 # IR04b, cierre: la prueba de identidad tras deshacer compara también el store por contenido, y no importa módulos internos de sldb
@@ -78,3 +82,20 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 Los cuatro archivos de tests pasan; la prueba de identidad compara .md y store por contenido; no hay imports de módulos internos de sldb en tests/test_mcp_undo.py.
+
+## Entrega del ejecutor
+
+Al terminar, commitea solo los archivos que cambiaste para la tarea, nombrados uno por uno (los mismos que listas en result-summary.md):
+
+    git add <ruta> <ruta> ...
+    git commit -m "<resumen>" -m "Task-Id: task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import"
+
+Nunca uses `git add -A`, `git add -u` sobre todo el arbol ni `git stash`: puede haber trabajo ajeno sin commitear. No hagas push. Recien despues ejecuta `deskops advance task`.
+
+## Tu worktree
+
+Tu codigo vive en un worktree propio, en la rama `deskops/deskops-e-ac8d469581e4-a2`:
+
+    /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/deskops-e-ac8d469581e4-a2
+
+Haz `cd` ahi: edita, corre los tests y commitea ahi (git add / git commit), no en el checkout principal /mnt/ssd/proyectos/SLDB_1/IR. Las operaciones de desk (`deskops ... --root /mnt/ssd/proyectos/SLDB_1/IR`, evidencia en runs/subagents/..., `deskops advance task`) siguen usando el checkout principal. Al terminar, reap trae tus commits a la rama principal y borra el worktree.

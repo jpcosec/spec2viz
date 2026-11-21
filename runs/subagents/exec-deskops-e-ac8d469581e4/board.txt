@@ -1,0 +1,10 @@
+Board: board-001
+Title: IR Board
+status: 
+summary: 
+scope: desk
+purpose: Route the active execution set for IR.
+tasks: desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md, desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md, desk/tasks/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import.md
+pills: desk/contexts/pills.md
+rituals: desk/rituals/phase.md, desk/rituals/execution.md, desk/rituals/testing.md, desk/rituals/closeout.md
+notes: Estado al 2026-11-20 (noche): cerradas IR01 a IR09, IR11, IR12, IR13a a IR13j, D1 de IR08 e IR04b (89f8734: deshacer por MCP sobre el lote inverso de sldb, partiendo del trabajo sin commit del intento 2, guardado en runs/subagents/20261120-ir04b-wip/). Queda la tarea de cierre de IR04b (la prueba de identidad compara también el store y no importa módulos internos de sldb), en ejecución. Después, en serie: (2) IR10, sin dependencias abiertas; preflight-2 y bundle-2 aceptados el 2026-11-20 (ya no stale). (3) IR13, gate final de retiro de spec2viz; preflight y bundle nuevos aceptados; va al final porque certifica el conjunto. Inbox en 0. La rama sync/local-20261120 de la sesión de supervisión no se pudo fusionar por CLI (conflicto en el shard del Board); su contenido (dos acks y estas notas) se aplicó con deskops message ack y deskops edit board.
