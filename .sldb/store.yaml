@@ -263,6 +263,14 @@ include:
     name: review-task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import-preflight-1
   - path: desk/reviews/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import/bundle-1.md
     name: review-task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import-bundle-1
+  - path: desk/reviews/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import/evidence-tests-1.md
+    name: review-task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import-evidence-tests-1
+  - path: desk/reviews/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import/evidence-commit-1.md
+    name: review-task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import-evidence-commit-1
+  - path: desk/reviews/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import/evidence-atom-1.md
+    name: review-task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import-evidence-atom-1
+  - path: desk/reviews/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import/evidence-materialization-1.md
+    name: review-task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import-evidence-materialization-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -1024,6 +1032,10 @@ include:
     name: run-deskops-e-ac8d469581e4
   - path: runs/subagents/exec-deskops-t-da81f2bd34e0-testing/run.md
     name: run-deskops-t-da81f2bd34e0
+  - path: runs/subagents/exec-deskops-e-ac8d469581e4-a2/run.md
+    name: run-deskops-e-ac8d469581e4-a2
+  - path: runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/run.md
+    name: run-deskops-t-da81f2bd34e0-a2
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md

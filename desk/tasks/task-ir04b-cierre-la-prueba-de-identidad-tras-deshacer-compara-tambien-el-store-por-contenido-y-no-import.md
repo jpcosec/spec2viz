@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-21T00:25:44Z'
+  at: '2026-11-21T00:53:47Z'
   authority: generated
   via: save_document_payload
 id: task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import
@@ -10,7 +10,7 @@ summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
+current_node: ritual-testing
 history:
 - task_activates
 - 'task_returns_to_execution: Tester deskops-t-da81f2bd34e0 FALLA sobre 33846f5: tests/test_mcp_undo.py::test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted
@@ -25,14 +25,20 @@ history:
   Si hace falta, que content() del test stale compare solo los .md y deje la comparación
   del store al test de identidad. Los cuatro archivos de tests tienen que pasar, de
   a uno. Commit desde tu worktree con ''git commit -- <rutas>'' y trailer Task-Id.'
-references: []
+- task_activates
+references:
+- tests/test_mcp_undo.py
+- e5c575592a333fbd55ca6628beb9bdd732700e7d
+- 33846f54689e9db0d56909e6359034ca384dd086
 depends_on: []
 pills: []
-files: []
+files:
+- tests/test_mcp_undo.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-la-prueba-de-identidad-del-deshacer-por-mcp-compara-los-md-y-el-store-por-contenido-con-la-api-publi
 ---
 
 # IR04b, cierre: la prueba de identidad tras deshacer compara también el store por contenido, y no importa módulos internos de sldb
