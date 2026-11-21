@@ -1,0 +1,21 @@
+$ PYTHONHASHSEED=3 python -m pytest -q -p no:cacheprovider tests/visual tests/test_matriz_cobertura_spec2viz.py -rs   (spec2viz not installed)
+...........................s............................................ [ 11%]
+........................................................................ [ 22%]
+.......................................................sssssss.......... [ 34%]
+........................................................................ [ 45%]
+................s...............s...s...........s....................... [ 57%]
+........................................................................ [ 68%]
+..............................................................s......... [ 80%]
+........................................................................ [ 91%]
+....................................................                     [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/visual/test_api.py:227: spec2viz sources not found at /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/spec2viz/spec2viz/__init__.py
+SKIPPED [4] tests/visual/test_lint_mermaid.py:38: mmdc (mermaid-cli) not installed
+SKIPPED [3] tests/visual/test_lint_mermaid.py:46: mmdc (mermaid-cli) not installed
+SKIPPED [1] tests/visual/test_packaging.py:52: sldb sources not found at /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/sldb
+SKIPPED [1] tests/visual/test_render_cases.py:113: mmdc (mermaid-cli) not installed
+SKIPPED [1] tests/visual/test_render_cases.py:159: mmdc (mermaid-cli) not installed
+SKIPPED [1] tests/visual/test_render_cases.py:300: mmdc (mermaid-cli) not installed
+SKIPPED [1] tests/visual/test_retirement_gate.py:187: repos or stores of the inventory not in the workspace: ['graph_ui', 'pron', 'sldb', 'spec2viz/.sldb']
+615 passed, 13 skipped in 521.49s (0:08:41)
+exit 0

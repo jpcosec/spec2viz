@@ -1,60 +1,35 @@
+Task: task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac
+Title: Las pruebas de paridad de IR comparan contra goldens congelados de spec2viz y dejan de importarlo (acta, punto 6)
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-21T09:27:07Z'
+  at: '2026-11-21T06:19:17Z'
   authority: generated
-  via: save_document_payload
+  via: create_document
 id: task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac
-status: active
+status: draft
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-testing
-history:
-- task_activates
-references:
-- tests/test_matriz_cobertura_spec2viz.py
-- tests/visual/goldens/spec2viz-2de1056-oracle.json
-- tests/visual/oracle.py
-- tests/visual/parity.py
-- tests/visual/render_parity.py
-- tests/visual/test_catalog_parity.py
-- tests/visual/test_cli.py
-- tests/visual/test_lint_mermaid.py
-- tests/visual/test_render_cases.py
-- tests/visual/test_render_commands.py
-- tests/visual/test_render_parity.py
-- tests/visual/test_resources.py
-- tests/visual/test_schema.py
-- tests/visual/test_sync_generation_parity.py
-- tests/visual/test_visual_names.py
-- tests/visual/test_visual_parity.py
-- c47111de57c53e75a15a565ec945b73695de96c8
+current_node: ritual-execution
+history: []
+references: []
 depends_on: []
 pills: []
-files:
-- tests/test_matriz_cobertura_spec2viz.py
-- tests/visual/goldens/spec2viz-2de1056-oracle.json
-- tests/visual/oracle.py
-- tests/visual/parity.py
-- tests/visual/render_parity.py
-- tests/visual/test_catalog_parity.py
-- tests/visual/test_cli.py
-- tests/visual/test_lint_mermaid.py
-- tests/visual/test_render_cases.py
-- tests/visual/test_render_commands.py
-- tests/visual/test_render_parity.py
-- tests/visual/test_resources.py
-- tests/visual/test_schema.py
-- tests/visual/test_sync_generation_parity.py
-- tests/visual/test_visual_names.py
-- tests/visual/test_visual_parity.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz
+atoms: []
 ---
 
 # Las pruebas de paridad de IR comparan contra goldens congelados de spec2viz y dejan de importarlo (acta, punto 6)
@@ -94,3 +69,20 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 tests/visual pasa sin spec2viz importable con el mismo número de casos de paridad que antes pasaban con él, y specir retirement check no lista ninguna dependencia de IR.
+
+## Entrega del ejecutor
+
+Al terminar, commitea solo los archivos que cambiaste para la tarea, nombrados uno por uno (los mismos que listas en result-summary.md):
+
+    git add <ruta> <ruta> ...
+    git commit -m "<resumen>" -m "Task-Id: task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac"
+
+Nunca uses `git add -A`, `git add -u` sobre todo el arbol ni `git stash`: puede haber trabajo ajeno sin commitear. No hagas push. Recien despues ejecuta `deskops advance task`.
+
+## Tu worktree
+
+Tu codigo vive en un worktree propio, en la rama `deskops/deskops-e-5ccf277d5e67`:
+
+    /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/deskops-e-5ccf277d5e67
+
+Haz `cd` ahi: edita, corre los tests y commitea ahi (git add / git commit), no en el checkout principal /mnt/ssd/proyectos/SLDB_1/IR. Las operaciones de desk (`deskops ... --root /mnt/ssd/proyectos/SLDB_1/IR`, evidencia en runs/subagents/..., `deskops advance task`) siguen usando el checkout principal. Al terminar, reap trae tus commits a la rama principal y borra el worktree.

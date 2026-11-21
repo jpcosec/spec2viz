@@ -1,0 +1,48 @@
+audited repos: graph_ui, deskops, pron, sldb, IR
+audited stores: spec2viz/.sldb
+dependencies: 42
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:54	importación	from spec2viz.compilers import compile_ir
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:55	importación	from spec2viz.linters.mermaid import lint_mermaid
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:56	importación	from spec2viz.loader import load
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:57	importación	from spec2viz.renderers import render
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:58	importación	from spec2viz.renderers.bpmn import render_bpmn_html
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:59	importación	from spec2viz.schema import json_schema
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:60	importación	from spec2viz.validator import validate
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:99	importación	from spec2viz.cli import DIAGRAM_RENDERERS
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:100	importación	from spec2viz.renderers import DEFAULT_RENDERER, EXT_MAP
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:105	importación	from spec2viz.renderers.view_mermaid import view_to_mermaid as call
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:110	importación	from spec2viz import render_to_file as call
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:117	importación	import spec2viz
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:123	importación	from spec2viz.sldb_sync import check_catalog as call
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:131	importación	from spec2viz.sldb_sync import SpecSync, sync_catalog
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:143	importación	from spec2viz.cli import main
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:152	importación	from spec2viz.deskops import render_deskops
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:159	importación	from spec2viz.deskops import render_deskops
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:168	importación	from spec2viz.sldb_sync import SpecSync
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:189	importación	import spec2viz.graph_import as call
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:195	importación	import spec2viz.graph_import as call
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:201	importación	import spec2viz.graph_import as call
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:211	importación	from spec2viz.generators.python_ast import generate_python_ast_spec
+  IR	runs/subagents/exec-deskops-e-5ccf277d5e67/record_goldens.py:216	importación	from spec2viz.cli import main
+  spec2viz/.sldb	store.yaml:44	modelo registrado	model_ref: spec2viz.sldb_models:SpecDoc
+  spec2viz/.sldb	store.yaml:47	modelo registrado	model_ref: spec2viz.sldb_models:SpecNodeDoc
+  spec2viz/.sldb	store.yaml:50	modelo registrado	model_ref: spec2viz.sldb_models:NotationDoc
+  spec2viz/.sldb	store.yaml:53	modelo registrado	model_ref: spec2viz.sldb_models:GlyphDoc
+  spec2viz/.sldb	store.yaml:56	modelo registrado	model_ref: spec2viz.sldb_models:LinkDoc
+  spec2viz/.sldb	core/store_index.yaml:141	modelo registrado	model_ref: spec2viz.sldb_models:SpecDoc
+  spec2viz/.sldb	core/store_index.yaml:154	modelo registrado	model_ref: spec2viz.sldb_models:SpecNodeDoc
+  spec2viz/.sldb	core/store_index.yaml:167	modelo registrado	model_ref: spec2viz.sldb_models:NotationDoc
+  spec2viz/.sldb	core/store_index.yaml:180	modelo registrado	model_ref: spec2viz.sldb_models:GlyphDoc
+  spec2viz/.sldb	core/store_index.yaml:193	modelo registrado	model_ref: spec2viz.sldb_models:LinkDoc
+  spec2viz/.sldb	core/store_index.yaml:246	modelo registrado	model_ref: spec2viz.sldb_models:ViewDoc
+  spec2viz/.sldb	core/store_index.yaml:259	modelo registrado	model_ref: spec2viz.sldb_models:PaletteDoc
+  spec2viz/.sldb	core/models/GlyphDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:GlyphDoc
+  spec2viz/.sldb	core/models/LinkDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:LinkDoc
+  spec2viz/.sldb	core/models/NotationDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:NotationDoc
+  spec2viz/.sldb	core/models/PaletteDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:PaletteDoc
+  spec2viz/.sldb	core/models/SpecDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:SpecDoc
+  spec2viz/.sldb	core/models/SpecNodeDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:SpecNodeDoc
+  spec2viz/.sldb	core/models/ViewDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:ViewDoc
+rows not accredited: 1
+  SV-A17: abierta
+gate: failed, the retirement is not declared

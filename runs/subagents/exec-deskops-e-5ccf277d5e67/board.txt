@@ -1,0 +1,10 @@
+Board: board-001
+Title: IR Board
+status: 
+summary: 
+scope: desk
+purpose: Route the active execution set for IR.
+tasks: desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md, desk/tasks/task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac.md
+pills: desk/contexts/pills.md
+rituals: desk/rituals/phase.md, desk/rituals/execution.md, desk/rituals/testing.md, desk/rituals/closeout.md
+notes: Estado al 2026-11-21 (mañana): IR13, gate de retiro de spec2viz. specir retirement check (con --path de deskops, UIs/graph_ui, pron, sldb y spec2viz/.sldb) da 62 dependencias: 43 de IR, que son los oráculos de paridad en tests/visual, y 19 del store spec2viz/.sldb (G5, se archiva con el repo). sldb, deskops, pron y graph_ui ya no cuentan: el gen_golden de sldb se retiró en cfa6477b (sldb origin 64c810b0). Cerrada la tarea de las filas de validate (3d0a436, closeout 9c343b9): SV-K16, K21, K26 y K29 pasan a sldb notations validate y se retiran specir diagram validate y specir validate. Solo queda abierta SV-A17 (G5). En ejecución: la tarea que congela los oráculos de paridad en goldens (acta, punto 6). Después quedan las decisiones de JP: sacar spec2viz/.sldb del universo del comprobador y archivar spec2viz (puntos 2 y 8 del acta), y declarar el retiro.
