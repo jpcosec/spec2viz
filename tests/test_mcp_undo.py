@@ -135,18 +135,19 @@ def md_text_without_block(text: str) -> str:
 
 def md_digest(root: Path) -> dict[str, str]:
     """sha256 of the content of every Markdown document of the copy (its text without the `sldb`
-    provenance block) plus, for every document the store tracks, the sha256 of its payload as
-    `sldb.api` extracts it: the store compared by content. An undo restores the content of a
-    document but sldb re-stamps `sldb.at` and `sldb.via`."""
+    provenance block) plus, for every document the store tracks (listed by `sldb.api.select_documents`,
+    which does not import models), the sha256 of the text of its file without that block: the store
+    compared by content. An undo restores the content of a document but sldb re-stamps `sldb.at`
+    and `sldb.via`."""
     from sldb import api
 
     digest = {}
     for path in sorted(p for n in (".sldb", "sldb", "desk", "undo") if (root / n).exists() for p in (root / n).rglob("*.md")):
         if path.is_file() and ".sldb_cache" not in path.parts:
             digest[str(path)] = hashlib.sha256(md_text_without_block(path.read_text(encoding="utf-8")).encode("utf-8")).hexdigest()
-    for doc in sorted(api.load_runtime_documents(root / ".sldb"), key=lambda d: (str(d.path), str(d.name))):
-        payload = json.dumps(doc.payload, sort_keys=True, default=str, ensure_ascii=False)
-        digest[f"store:{doc.model_name}/{doc.name}@{doc.path}"] = hashlib.sha256(payload.encode("utf-8")).hexdigest()
+    for row in sorted(api.select_documents(root / ".sldb", {}), key=lambda r: (r["path"], r["export_id"])):
+        text = (root / row["path"]).read_text(encoding="utf-8")
+        digest[f"store:{row['export_id']}@{row['path']}"] = hashlib.sha256(md_text_without_block(text).encode("utf-8")).hexdigest()
     return digest
 
 
