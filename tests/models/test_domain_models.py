@@ -19,7 +19,7 @@ from specir.models import DOMAIN_MODELS, SpecIRNodeDoc
 #: The visual vocabulary of SLDB (sldb.models.notation_models), served by sldb.api.
 SLDB_VISUAL = (api.SpecDoc, api.SpecNodeDoc, api.NotationDoc, api.GlyphDoc, api.LinkDoc, api.PaletteDoc, api.ViewDoc)
 DATA = REPO / "src" / "specir" / "data"
-KINDS = {"InterfaceControlDoc", "InterfaceActionDoc", "ApiOperationDoc", "HandlerDoc", "DomainOperationDoc", "PolicyDoc", "StateDoc", "DomainEntityDoc", "TableDoc"}
+KINDS = {"InterfaceControlDoc", "InterfaceActionDoc", "InterfaceFieldDoc", "ApiOperationDoc", "ApiFieldDoc", "HandlerDoc", "DomainOperationDoc", "PolicyDoc", "StateDoc", "DomainEntityDoc", "TableDoc"}
 
 
 def test_the_model_classes_live_in_the_specir_package() -> None:
@@ -46,7 +46,7 @@ def test_install_registers_the_models_by_sldbs_registry_and_seeds_the_data(blog_
     for name in ("RuleDoc", "ViewDoc", "RelationDoc", "RelationTypeDoc"):
         assert by_name[name]["model_ref"].startswith("sldb."), by_name[name]
     types = {d["name"] for d in yaml.safe_load((DATA / "relation_types.yaml").read_text(encoding="utf-8"))}
-    assert types == {"triggers", "invokes", "handled_by", "executes", "governed_by", "transitions", "writes", "persisted_in"}
+    assert types == {"triggers", "invokes", "handled_by", "executes", "governed_by", "transitions", "writes", "persisted_in", "bound_to", "field_of"}
     declared = {t["name"] for t in blog.call("list_relation_types", limit=200)["items"]}
     assert types <= declared, types - declared
     rules = {d["name"] for d in yaml.safe_load((DATA / "rules.yaml").read_text(encoding="utf-8"))}
@@ -57,7 +57,7 @@ def test_install_registers_the_models_by_sldbs_registry_and_seeds_the_data(blog_
 def test_install_is_idempotent(blog_root: Path, blog) -> None:
     again = json.loads(install(blog_root).stdout)
     assert again["registered"] == [] and again["created"] == [] and again["rewritten"] == [] and again["conflicts"] == [], again
-    assert len(again["present"]) == 13
+    assert len(again["present"]) == 18
 
 
 def node(**fields) -> dict:

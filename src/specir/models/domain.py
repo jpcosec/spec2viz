@@ -111,6 +111,15 @@ class InterfaceActionDoc(SpecIRNodeDoc):
     event: str | None = Field(default=None, description="The interface event the action answers (click, submit).")
 
 
+class InterfaceFieldDoc(SpecIRNodeDoc):
+    """A field the interface shows or sends: an input of a form, a column of a list."""
+
+    __semantics__ = {"type": ["specir", "node", "interface_field"], "layer": ["interface"]}
+    __template__ = _template([("component", "optrev")])
+
+    component: str | None = Field(default=None, description="The interface component that shows or collects it.")
+
+
 class ApiOperationDoc(SpecIRNodeDoc):
     """An operation the API exposes: an endpoint and its method."""
 
@@ -119,6 +128,15 @@ class ApiOperationDoc(SpecIRNodeDoc):
 
     method: str | None = Field(default=None, description="The HTTP method (GET, POST, ...).")
     route: str | None = Field(default=None, description="The route template, e.g. /posts/{id}/publish.")
+
+
+class ApiFieldDoc(SpecIRNodeDoc):
+    """A field of what an API operation receives or returns: an attribute of its serializer."""
+
+    __semantics__ = {"type": ["specir", "node", "api_field"], "layer": ["api"]}
+    __template__ = _template([("serializer", "optrev")])
+
+    serializer: str | None = Field(default=None, description="The serializer or schema that declares it.")
 
 
 class HandlerDoc(SpecIRNodeDoc):
@@ -182,7 +200,9 @@ class TableDoc(SpecIRNodeDoc):
 DOMAIN_MODELS: tuple[type[SpecIRNodeDoc], ...] = (
     InterfaceControlDoc,
     InterfaceActionDoc,
+    InterfaceFieldDoc,
     ApiOperationDoc,
+    ApiFieldDoc,
     HandlerDoc,
     DomainOperationDoc,
     PolicyDoc,

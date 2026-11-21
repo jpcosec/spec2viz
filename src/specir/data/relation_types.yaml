@@ -60,3 +60,17 @@
   source_types: [DomainEntityDoc]
   target_types: [TableDoc]
   description: The domain entity is stored in the table.
+- name: bound_to
+  title: Bound to
+  axis: WHAT
+  cardinality: many_to_many
+  source_types: [InterfaceFieldDoc]
+  target_types: [ApiFieldDoc]
+  description: The interface field shows or sends the API field. An interface field bound to no API field has no serializer attribute behind it.
+- name: field_of
+  title: Field of
+  axis: WHAT
+  cardinality: many_to_many
+  source_types: [ApiFieldDoc]
+  target_types: [ApiOperationDoc]
+  description: The API field is part of what the API operation receives or returns.

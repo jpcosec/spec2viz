@@ -7,6 +7,13 @@ adds only what is its own, over its domain types (`specir.models.domain`, IR06):
   store registers it and how many documents it tracks.
 - `specir_nodes` (every level, read-only): the specIR nodes of the store with their provenance
   (IR05 D1-B), filtered by type, layer, origen and verificacion, as a page.
+- `specir_rules` (every level, read-only): the findings of specIR's cross-layer rules (IR10:
+  broken chains between interface, API, operation and data), evaluated by sldb's rule engine
+  (`sldb.api.rules_check`), each with its severity, the rule that produced it and the document.
+- `specir_impact` (every level, read-only): the nodes of the other layers a change to one node
+  (a field, an endpoint, a rule, a table) affects, each with the explained path sldb gives
+  (`sldb.api.graph.graph_path`) and the provenance of every hop; a path through an `inferido`
+  relation says so. It proposes no change.
 - From level 1, a batch validator (`context.add_batch_validator` of sldb) refuses a change that
   writes `verificacion: verificado` (IR05 D2-E: an agent does not verify through the MCP; only a
   human outside it or a deterministic check does). sldb runs it on `propose_changes` (over the
@@ -26,8 +33,10 @@ from sldb.mcp.changes import AssertEdge, BatchChange, CreateDocument, UpdateDocu
 from sldb.mcp.paging import DEFAULT_LIMIT, page
 from sldb.mcp.registry import READ_ONLY
 
+from specir.impact import affected, export_id
 from specir.models.domain import DOMAIN_MODELS, PROVENANCE_FIELDS, Origen, SpecIRNodeDoc, Verificacion
 
+RULE_PREFIX = "rules/rule-specir-"
 KINDS = {model.__name__: model for model in DOMAIN_MODELS}
 VERIFIES = "an agent does not write verificacion: verificado through the MCP; only a human outside the MCP or a deterministic check verifies (IR05 D2-E)"
 
@@ -126,12 +135,62 @@ class DomainTools:
             explanation = "the store does not register specIR's domain types" if not self._registered() else "no specIR node matches these filters"
         return page(rows, offset, limit, explanation)
 
+    def specir_rules(self, severity: Literal["error", "alert"] | None = None, offset: int = 0, limit: int = DEFAULT_LIMIT) -> dict[str, Any]:
+        """The findings of specIR's cross-layer rules over this store (a control that triggers no
+        action, an action that invokes no operation, an interface field the serializer lacks, an
+        operation without handler, an entity without table, a policy no control reaches), as a page.
+        Each has its `severity`, the `rule` that produced it, the `subject` document and its path,
+        and what is missing. sldb's engine evaluates them; nothing is written and nothing is proposed."""
+        if not any(api.is_model_registered(self.store_path, model.__name__) for model in DOMAIN_MODELS):
+            return {**page([], offset, limit), "explanation": "the store does not register specIR's domain types; `python -m specir.install --store <store>` installs them"}
+        rows = []
+        for finding in api.rules_check(self.store_path):
+            if not finding.code.startswith(RULE_PREFIX) or severity not in (None, finding.level):
+                continue
+            rows.append({"severity": finding.level, "rule": finding.code.removeprefix("rules/"), "subject": finding.subject, "address": f"sldb://document/{finding.subject}", "path": finding.document, "what": finding.what})
+        rows.sort(key=lambda r: (r["severity"], r["rule"], r["subject"]))
+        return page(rows, offset, limit, None if rows else "no specIR rule reports a finding")
+
+    def specir_impact(
+        self,
+        node: str,
+        field: str | None = None,
+        direction: Literal["dependents", "dependencies"] = "dependents",
+        layer: Literal["interface", "api", "backend", "domain", "data"] | None = None,
+        offset: int = 0,
+        limit: int = DEFAULT_LIMIT,
+    ) -> dict[str, Any]:
+        """The specIR nodes a change to `node` (`Model:name`, e.g. TableDoc:posts, ApiOperationDoc:...,
+        PolicyDoc:...) affects, in the other layers: with `direction` dependents (default) the nodes
+        whose chain of relations leads to it (the interface above a table or an endpoint),
+        with dependencies the nodes it leads to. `field` names the changed field or column of the
+        node (a column of a TableDoc, a field of the document) and must exist. Each affected node
+        carries the explained path from sldb: every hop with its relation, direction and
+        provenance (origen, verificacion, evidencia); `inferred` is true when a hop is `inferido`.
+        It reports what is affected and why, never a change to make."""
+        ref = export_id(node)
+        model_name = ref.split(":", 1)[0]
+        if model_name not in KINDS or not api.is_model_registered(self.store_path, model_name):
+            return {**page([], offset, limit), "explanation": f"{node!r} is not a node of a specIR type registered in this store; specir_nodes lists them", "signal": {"class": "unknown_model", "name": model_name, "candidates": sorted(KINDS)}}
+        try:
+            payload = api.serialize_document(api.runtime_document(self.store_path, None, ref.replace(":", "/", 1)))["payload"]
+        except Exception:
+            return {**page([], offset, limit), "explanation": f"the store has no document {ref}; specir_nodes lists the nodes", "signal": {"class": "unknown_document", "name": ref}}
+        if field is not None and field not in (payload.get("columns") or []) and field not in payload:
+            return {**page([], offset, limit), "explanation": f"{ref} has no field or column {field!r}", "signal": {"class": "unknown_field", "name": field}}
+        rows = [r for r in affected(self.store_path, ref, direction) if layer in (None, r["layer"])]
+        rows.sort(key=lambda r: (len(r["path"]["steps"]), r["layer"], r["export_id"]))
+        answer = page(rows, offset, limit, None if rows else f"no node of another layer {'depends on' if direction == 'dependents' else 'is reached from'} {ref}")
+        return {"changed": {"node": ref, "field": field, "direction": direction}, **answer}
+
 
 def register(server: Any, context: Any) -> None:
     """Register specIR's tools on a server of `sldb mcp` (the `--extension` contract of sldb)."""
     tools = DomainTools(context)
     server.add_tool(tools.specir_types, annotations=READ_ONLY)
     server.add_tool(tools.specir_nodes, annotations=READ_ONLY)
+    server.add_tool(tools.specir_rules, annotations=READ_ONLY)
+    server.add_tool(tools.specir_impact, annotations=READ_ONLY)
     if context.level < 1:
         return
 

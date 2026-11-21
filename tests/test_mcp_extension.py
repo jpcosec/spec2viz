@@ -25,7 +25,7 @@ SLDB_READ = {
 }
 SLDB_WRITE = {"propose_changes", "apply_changes"}
 #: specIR's own tools (specir.mcp_extension).
-DOMAIN = {"specir_types", "specir_nodes"}
+DOMAIN = {"specir_types", "specir_nodes", "specir_rules", "specir_impact"}
 SPEC_STORE = "spec2viz"
 SPEC = "class.sldb-models"
 
@@ -127,6 +127,8 @@ def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy
         ("list_signals", {}),
         ("specir_types", {}),
         ("specir_nodes", {"layer": "api"}),
+        ("specir_rules", {}),
+        ("specir_impact", {"node": "TableDoc:posts"}),
     ]
     for tool, arguments in calls:
         mcp.call(tool, **arguments)

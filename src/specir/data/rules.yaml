@@ -31,10 +31,31 @@
   severity: alert
   moment: on_check
   message: The interface control triggers no interface action.
+- name: rule-specir-interface-field-is-served
+  title: An interface field is an attribute of the API
+  subject: model <= InterfaceFieldDoc
+  condition: 'any(rel:bound_to: model <= ApiFieldDoc)'
+  severity: error
+  moment: on_check
+  message: The interface field is bound to no API field; the serializer does not carry it.
+- name: rule-specir-entity-is-persisted
+  title: A domain entity is persisted
+  subject: model <= DomainEntityDoc
+  condition: 'any(rel:persisted_in: model <= TableDoc)'
+  severity: alert
+  moment: on_check
+  message: The domain entity is persisted in no table.
+- name: rule-specir-policy-reaches-the-interface
+  title: A policy is represented in the interface
+  subject: model <= PolicyDoc
+  condition: 'any(^rel:governed_by: any(^rel:executes: any(^rel:handled_by: any(^rel:invokes: any(^rel:triggers: model <= InterfaceControlDoc)))))'
+  severity: alert
+  moment: on_check
+  message: No interface control reaches an operation this policy governs.
 - name: rule-specir-edges-carry-their-provenance
   title: A specIR edge carries its provenance
   subject: model <= RelationDoc
-  where: relation_type in ["triggers", "invokes", "handled_by", "executes", "governed_by", "transitions", "writes", "persisted_in"]
+  where: relation_type in ["triggers", "invokes", "handled_by", "executes", "governed_by", "transitions", "writes", "persisted_in", "bound_to", "field_of"]
   condition: attributes.origen in ["observado", "derivado", "inferido", "declarado"] and attributes.verificacion in ["sin_verificar", "verificado", "refutado"]
   severity: error
   moment: on_write
