@@ -1,0 +1,25 @@
+name: materialization-retiro-tests-visual-test-catalog-parity-py
+path: desk/materializations/materialization-retiro-tests-visual-test-catalog-parity-py.md
+source_hash: 8b038d280545b47a17f0d0bff60d86b0a0f397e5c87fa99601beeebbb5f43ec8
+content_hash: 27030f61e0bd46fd1c18492b62f06666c495f360c71b6e57f02ccb7606215fdb
+field_hashes:
+  id: 0bbf96ace6bf665a4c59f7981fb5cfec7ac55181b6bdfd3a10542ac9739e9fc2
+  title: aacac4d523943276bdc29768c6fa96f15dbda8c17ad4e6cee55f6b9fafc21e8d
+  source_atoms: 1f4f5f9d114708ef88b7fb93ac75386231d48f8a601c5cf90bb2fa67fb4be2ae
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: a8c467e8dc6ed68825bfe236690e1c2ae273468b86e94fe4ecd01f569615aef1
+  intent: 6e9a019cf59c43f59d8a74e5b0b1089d710fcd54ff7ae2753af33dc6a8c7bc3f
+  validation: f2f0b0617a4bb5a8c80887d4ba12368f1ec451ac5339244ac77f702158c1fe77
+  tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:retiro
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-21T09:27:33Z'
+  authority: generated
+  via: create_document

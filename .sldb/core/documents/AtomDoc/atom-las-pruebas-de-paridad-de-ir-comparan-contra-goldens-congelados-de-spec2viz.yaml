@@ -1,0 +1,22 @@
+name: atom-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz
+path: desk/atoms/atom-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz.md
+source_hash: e3bbf977927ca7e8f8f1aa8a10895b70ecd0ddfaebff2a852ab729fba2c8b054
+content_hash: 1ff85de92ba13925ee555c5ce5bc7c36630cf6c12535cd586edde750e8058df1
+field_hashes:
+  id: 3e504b677c7e439a382a6706e20db37b63bd880a3fd2d8ef044005db383a7909
+  title: afcebe37367dc9d2563020c2fe6426367b073b872cd2621e23230b4c5afe507d
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: 7870c3d58e0b07e6dde605755270387f27b2ae1b5a1373e8ed10bff9fa92413b
+  tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:retiro
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-21T09:26:53Z'
+  authority: generated
+  via: create_document

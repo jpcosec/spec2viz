@@ -1,0 +1,25 @@
+name: materialization-retiro-tests-visual-test-lint-mermaid-py
+path: desk/materializations/materialization-retiro-tests-visual-test-lint-mermaid-py.md
+source_hash: 45d7a0873dc1bb297126a9395409376169803eb1672583152b20208cd8360060
+content_hash: 904387f2752fd1a775649a8735bf2ca36c81ab4183f94339aa6de77de02f28b0
+field_hashes:
+  id: d416ef7fe2b5a2a291f1582a5225db7fe809720f6e6241d252c2e8178747fc58
+  title: 6a7c88f7623e7428985dbcaa48569857d9f143bb5be499b02aff245c5270f694
+  source_atoms: 1f4f5f9d114708ef88b7fb93ac75386231d48f8a601c5cf90bb2fa67fb4be2ae
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: 160e51a5880079d84b232211d4411652be809ac16fe8bcba1fb79bbcc13de3f3
+  intent: 4d61478429484b3c05147b88050ad7072bbc8692716097d77248d2710e78d706
+  validation: f2f0b0617a4bb5a8c80887d4ba12368f1ec451ac5339244ac77f702158c1fe77
+  tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:retiro
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-21T09:27:39Z'
+  authority: generated
+  via: create_document

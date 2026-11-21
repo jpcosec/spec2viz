@@ -1,0 +1,25 @@
+name: materialization-retiro-tests-test-matriz-cobertura-spec2viz-py
+path: desk/materializations/materialization-retiro-tests-test-matriz-cobertura-spec2viz-py.md
+source_hash: fa774a89c6ebc6b702c7008ee1453fe1ed423f1073db81a9b6a6a181e7c5f3ea
+content_hash: 44e77ac0f449928aa6a98e1bbf10be1a7f9ea083f2043dc85190efe3b3aa1cea
+field_hashes:
+  id: 8b451367a055148a597c36a2e30b38b00ecef005a44465c59bbe676b19eff852
+  title: 6660debd99b53a73ff816efa25841877263e687815e913cbbc86612545bd5c77
+  source_atoms: 1f4f5f9d114708ef88b7fb93ac75386231d48f8a601c5cf90bb2fa67fb4be2ae
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: 04b3daf9eab1a74fc19340d60c73655f5ce055ef7919478630d94cef9e689137
+  intent: c388e2ae714e1e6d5df406077d40d7c82b7170965908489d13dd3f28f0a37392
+  validation: f2f0b0617a4bb5a8c80887d4ba12368f1ec451ac5339244ac77f702158c1fe77
+  tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:retiro
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-21T09:27:11Z'
+  authority: generated
+  via: create_document

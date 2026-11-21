@@ -1,25 +1,60 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-21T06:19:17Z'
+  at: '2026-11-21T09:27:07Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-testing
+history:
+- task_activates
+references:
+- tests/test_matriz_cobertura_spec2viz.py
+- tests/visual/goldens/spec2viz-2de1056-oracle.json
+- tests/visual/oracle.py
+- tests/visual/parity.py
+- tests/visual/render_parity.py
+- tests/visual/test_catalog_parity.py
+- tests/visual/test_cli.py
+- tests/visual/test_lint_mermaid.py
+- tests/visual/test_render_cases.py
+- tests/visual/test_render_commands.py
+- tests/visual/test_render_parity.py
+- tests/visual/test_resources.py
+- tests/visual/test_schema.py
+- tests/visual/test_sync_generation_parity.py
+- tests/visual/test_visual_names.py
+- tests/visual/test_visual_parity.py
+- c47111de57c53e75a15a565ec945b73695de96c8
 depends_on: []
 pills: []
-files: []
+files:
+- tests/test_matriz_cobertura_spec2viz.py
+- tests/visual/goldens/spec2viz-2de1056-oracle.json
+- tests/visual/oracle.py
+- tests/visual/parity.py
+- tests/visual/render_parity.py
+- tests/visual/test_catalog_parity.py
+- tests/visual/test_cli.py
+- tests/visual/test_lint_mermaid.py
+- tests/visual/test_render_cases.py
+- tests/visual/test_render_commands.py
+- tests/visual/test_render_parity.py
+- tests/visual/test_resources.py
+- tests/visual/test_schema.py
+- tests/visual/test_sync_generation_parity.py
+- tests/visual/test_visual_names.py
+- tests/visual/test_visual_parity.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz
 ---
 
 # Las pruebas de paridad de IR comparan contra goldens congelados de spec2viz y dejan de importarlo (acta, punto 6)
