@@ -1,0 +1,37 @@
+name: review-task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac-preflight-1
+path: desk/reviews/task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac/preflight-1.md
+source_hash: a8919d75366fda5d49df5134101cf17305a257f7fadf93fb9f6e9f46bf4e16d3
+content_hash: 771b47a346d62dffd363520209b291e2eaa2d55e843fffbb2af74af370729892
+field_hashes:
+  id: 588517d508c509eddc4f6e71d2047f2540e9b6c310c11a19dd03da5466f885df
+  title: 3305f43e63fd0512c40ca89c5dbbab1dac9b74fef05b05ef61d50d28cbbb37cc
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 8482116ef319c83b7849241b668060d5146ef4bc92c04fa7c9bc8c58b4f59db4
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 50c6fcf171b79042f8a4e0305ecc45629b8bec2c5dd7e089826cc74bcbaffa0f
+  input_sha256: ff929fe7d3b42781b3e840819a07d28d4e96fbfc1320a42210a3ad090b5b0541
+  contract_sha256: 0c94727e27515d0d8d282f7322a893c1b46cf2d9822abc380df69d79ff7eacee
+  output_sha256: 3f14ea3f54a9612ed1fcbdc5f9610da3ec11922ffb9bbf38f3ba84213f473874
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 46016d02826dba092db261acb5dc657a37668a539b4ce0a06381c95469f1918c
+  created_at: ee247ff11dbc1376053d2849bfb9500b2add4d5c8510a6a6de54a7d3ec8e6ff4
+  disposed_at: de3f68ce4c030cb149f97917263b40b812379d2bf8c5f3defd3be2465a06f8ed
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: aba36c4c893a8127aca3ff8e59f1a772747a89dc6a246c02e4fad4719f462b02
+  disposition: eb8d437cf722c954534bec58da2ae52218fca1dbd753764d29d1b7babbbacb4b
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-21T06:20:48Z'
+  authority: generated
+  via: save_document_payload
