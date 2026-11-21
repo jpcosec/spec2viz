@@ -21,7 +21,7 @@ glifos. Las secciones §2 a §7 describen lo que hace el resolver, para leerlo y
 |---|---|---|---|
 | `SpecDoc:<spec>` | `id:` del YAML | `diagram sync` / `catalog sync` | el spec: `diagram_type`, `notation`, `nodes`, `spec_path`, `sha256`, y del catálogo `category`, `nav`, `summary` |
 | `SpecNodeDoc:<spec>.<elemento>` | id del elemento | `diagram sync` | un elemento: `title`, `kind`, `collection`, `refs`, `atom_refs`, `contains`, `data`, `description` |
-| `RelationDoc:<spec>.<nn>-<from>__<rel>__<to>` | | `diagram sync` | una arista del spec, con su posición `nn`: `source_id`, `target_id`, `relation_type` (nombre), `condition`, `notes` |
+| `RelationDoc:<spec>.<nn>-<from>__<rel>__<to>` | | `diagram sync` | una arista del spec, con su posición `nn`: `source_id`, `target_id`, `relation_type` (nombre), `notes` y `attributes` (ahí va la guarda en prosa de un mensaje de secuencia, `attributes.condition`; el campo `condition` queda vacío porque sldb lo evalúa como predicado) |
 | `RelationTypeDoc:reltype-<rel>` | `reltype-<rel>` | ambos | el tipo de relación: `name`, `direction`, `cardinality` |
 | `NotationDoc:<name>` | nombre de la notación | `notation sync` | nivel, tipo de diagrama, `layout`, `markers`, `glyphs`, `links` |
 | `GlyphDoc:<name>.<glyph>` | | `notation sync` | cómo se ve un documento |

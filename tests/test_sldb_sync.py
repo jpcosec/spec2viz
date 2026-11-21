@@ -171,8 +171,9 @@ def test_other_diagram_types_extract_their_own_edges():
 
     sequence = {"type": "sequence", "data": {"participants": [{"id": "u", "kind": "actor"}, {"id": "s"}], "messages": [
         {"from": "u", "to": "s", "message": "hi"}, {"from": "s", "to": "u", "message": "ok", "kind": "return", "condition": "if alive"}, {"from": "u", "to": "s", "message": "bye", "kind": "async"}]}}
-    assert [(e["relation"], e["label"], e["condition"]) for e in spec_edges(sequence)] == [("sends", "hi", ""), ("returns", "ok", "if alive"), ("sends_async", "bye", "")]
-    assert spec_edges(sequence)[1]["attributes"] == {"kind": "return", "message": "ok"}
+    # la guarda de un mensaje es prosa: va en attributes; `condition` queda vacia porque sldb la evalua como predicado
+    assert [(e["relation"], e["label"], e["condition"]) for e in spec_edges(sequence)] == [("sends", "hi", ""), ("returns", "ok", ""), ("sends_async", "bye", "")]
+    assert spec_edges(sequence)[1]["attributes"] == {"kind": "return", "message": "ok", "condition": "if alive"}
 
     matrix = {"type": "component_view_matrix", "data": {
         "views": [{"id": "v", "label": "View", "stages": [{"id": "s1", "label": "One"}, {"id": "s2", "label": "Two"}]}],
