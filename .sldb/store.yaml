@@ -271,6 +271,14 @@ include:
     name: review-task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import-evidence-atom-1
   - path: desk/reviews/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import/evidence-materialization-1.md
     name: review-task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import-evidence-materialization-1
+  - path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/evidence-tests-1.md
+    name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-evidence-tests-1
+  - path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/evidence-commit-1.md
+    name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-evidence-commit-1
+  - path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/evidence-atom-1.md
+    name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-evidence-atom-1
+  - path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/evidence-materialization-1.md
+    name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-evidence-materialization-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -1036,6 +1044,10 @@ include:
     name: run-deskops-e-ac8d469581e4-a2
   - path: runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/run.md
     name: run-deskops-t-da81f2bd34e0-a2
+  - path: runs/subagents/exec-deskops-e-8ec8764345d1/run.md
+    name: run-deskops-e-8ec8764345d1
+  - path: runs/subagents/exec-deskops-t-9ff404e7928e-testing/run.md
+    name: run-deskops-t-9ff404e7928e
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md

@@ -1,0 +1,25 @@
+name: materialization-rules-tests-models-test-domain-models-py
+path: desk/materializations/materialization-rules-tests-models-test-domain-models-py.md
+source_hash: ae1de19f4e6263bb9ec679dc281ab782f29ed054e18c6e878902c1a8c26687b5
+content_hash: 3673608f60041d945462df6db3f11122fef661bcc301b7f2c43bb65a8fd145d8
+field_hashes:
+  id: 7a283f8beaa259acd20590cdeb60bf9764944b69f735ddad2ba7f9dd775cdc31
+  title: 6fd2f8395845bcb84f07748505ada0100034667dd1ac8a88847312cab10fb9d0
+  source_atoms: ad4812795e97fb1e5833e77974e1f2fe7790c480225e99caac29d3471898b40b
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: a6dd1b01e31df97466e6022ad3a0437cf1644c564b3cd2aa9dd23867f26dfe18
+  intent: 685d78718cf0cfd4dd78f333ebee14ea3db7319eec9e223a59b19d0b0ad86f22
+  validation: 4342863ecdd812e0575cbe041bbed99982585b5723ee9548f6b384a1c84bfb4e
+  tags: b2f01a87b0513f5132fd746ab3a48d9c50191bec17cbab22e324cc4c8d2ca1aa
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:rules
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-21T01:29:38Z'
+  authority: generated
+  via: create_document

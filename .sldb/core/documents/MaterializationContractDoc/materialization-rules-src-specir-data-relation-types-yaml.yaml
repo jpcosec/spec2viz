@@ -1,0 +1,25 @@
+name: materialization-rules-src-specir-data-relation-types-yaml
+path: desk/materializations/materialization-rules-src-specir-data-relation-types-yaml.md
+source_hash: c3f7e5dbadcbde8845c79ef55af73ce0da74717a24a1a2ac2d99f58501cb247a
+content_hash: 113da267731870d0338afb19fa888ae5509377bedd966f2ecf7b188b536631fd
+field_hashes:
+  id: 6314e568968c2e981ccb6c4c9b3af4f6a15d150e5561637f42347e85b8f48ebb
+  title: 4f1556fc632bb481bf8feb2821f982e43ee5d7a2febb6460412b9befd72e7e48
+  source_atoms: ad4812795e97fb1e5833e77974e1f2fe7790c480225e99caac29d3471898b40b
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: 04afc80201d5f875bfcbc174d8a23dba24f830793d0c52cf990ba49c9337b36e
+  intent: 1f7eec20f1e1f50bb1985ad35b41a1d340f7e2f86e981ac054849dfa6eda8e3b
+  validation: 4342863ecdd812e0575cbe041bbed99982585b5723ee9548f6b384a1c84bfb4e
+  tags: b2f01a87b0513f5132fd746ab3a48d9c50191bec17cbab22e324cc4c8d2ca1aa
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:rules
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-21T01:29:14Z'
+  authority: generated
+  via: create_document

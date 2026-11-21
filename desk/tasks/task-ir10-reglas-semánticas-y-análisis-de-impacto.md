@@ -1,11 +1,11 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-16T05:05:35Z'
+  at: '2026-11-21T01:29:10Z'
   authority: generated
   via: save_document_payload
 id: task-ir10-reglas-semánticas-y-análisis-de-impacto
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
@@ -13,9 +13,20 @@ tags:
 - system:specir
 - topic:impacto
 - host:robocop2
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-testing
+history:
+- task_activates
+references:
+- src/specir/data/relation_types.yaml
+- src/specir/data/rules.yaml
+- src/specir/impact.py
+- src/specir/mcp_extension.py
+- src/specir/models/__init__.py
+- src/specir/models/domain.py
+- tests/models/test_domain_models.py
+- tests/models/test_rules_and_impact.py
+- tests/test_mcp_extension.py
+- c7f16bd520f99f32cbcf7ee452201a8986cdb64f
 depends_on:
 - task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog
 - task-ir08-extractor-estático-django-drf-y-sql
@@ -25,14 +36,21 @@ pills:
 - desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 - desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
 - desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
-files: []
+files:
+- src/specir/data/relation_types.yaml
+- src/specir/data/rules.yaml
+- src/specir/impact.py
+- src/specir/mcp_extension.py
+- src/specir/models/__init__.py
+- src/specir/models/domain.py
+- tests/models/test_domain_models.py
+- tests/models/test_rules_and_impact.py
+- tests/test_mcp_extension.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
 atoms:
 - atom-por-qué-existe-specir-coherencia-entre-capas-para-agentes-de-código
-- atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
-- atom-specir-depende-solo-de-la-api-pública-de-sldb
 from_drawer: desk/drawer/tasks/task-ir10-reglas-semanticas-y-analisis-de-impacto.md
 ---
 
