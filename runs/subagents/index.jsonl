@@ -41,3 +41,4 @@
 {"task_id": "task-ir09-extractor-est\u00e1tico-react-tsx-y-contratos-de-api", "run_id": "run-deskops-e-e9fb2cd27cee", "run_dir": "runs/subagents/exec-deskops-e-e9fb2cd27cee", "session_sha256": null, "commit": null}
 {"task_id": "task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas", "run_id": "run-deskops-e-674fcb14989b", "run_dir": "runs/subagents/exec-deskops-e-674fcb14989b", "session_sha256": null, "commit": null}
 {"task_id": "task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import", "run_id": "run-deskops-e-ac8d469581e4", "run_dir": "runs/subagents/exec-deskops-e-ac8d469581e4", "session_sha256": null, "commit": null}
+{"task_id": "task-ir10-reglas-sem\u00e1nticas-y-an\u00e1lisis-de-impacto", "run_id": "run-deskops-e-8ec8764345d1", "run_dir": "runs/subagents/exec-deskops-e-8ec8764345d1", "session_sha256": null, "commit": null}

@@ -1165,7 +1165,6 @@ include:
   - desk/runtimes/runtime-claude-en-scion.md
 - model: TaskCodeDoc
   paths:
-  - desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md
   - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
 graph_backend: networkx
 policy: {}

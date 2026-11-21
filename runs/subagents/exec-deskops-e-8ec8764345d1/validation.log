@@ -1,0 +1,4 @@
+cd .worktrees/deskops-e-8ec8764345d1; pytest tests/models/test_domain_models.py tests/models/test_rules_and_impact.py tests/test_mcp_extension.py -> exit 0 (32 passed)
+pytest tests --ignore=tests/visual (before updating 2 hardcoded counts): 87 passed, 2 failed (counts 8 relation types / 13 seeds, fixed afterwards), 5 skipped, 2 xfailed
+................................                                         [100%]
+32 passed in 155.47s (0:02:35)

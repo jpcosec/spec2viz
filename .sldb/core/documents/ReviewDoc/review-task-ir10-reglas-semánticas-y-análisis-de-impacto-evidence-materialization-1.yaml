@@ -1,0 +1,37 @@
+name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-evidence-materialization-1
+path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/evidence-materialization-1.md
+source_hash: 20e7ae804d3911e101dc18138e163522b498edd371479ad8e2311caa09596725
+content_hash: 213ea8dcb6acb90ddb51aec19563eaa6180381272f8cbde5ba9e6291df9528f4
+field_hashes:
+  id: bc0ba421072917f2ec680ad0553d0e981c86a125f5886c4c0c4a74be48147f92
+  title: 37e15f48d28e0ab61410a13370f3c3c874e0635baa70f168c6e5feb224bd7127
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: b77d8cf6414796c495587568e836eb101f2c47c6cbab025c9e93d24db5ead67b
+  value: 06e5b573a5aeff9b6732761cdc6b692fe2cebab436c15f10a7792e6f3c43fb62
+  subject: 7bc73366fb0d25ee1f049f8ce62db65b4f4a8714ce49f2215c830d5373240c36
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 6762e4ba20ff47d8a7a09f711fe0c47b345fbe9a94e333f9332f3a2dfce95087
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 1c86d58e1da914aa374fc0568aae4d4de4c9dba8abe08907bfaaf9d118fdecf2
+  created_at: 400605ee7d1fa0864db70eaf464ba35b3a4aa2f7dcafee43ba893c3043d3fdac
+  disposed_at: 400605ee7d1fa0864db70eaf464ba35b3a4aa2f7dcafee43ba893c3043d3fdac
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 45c6f3ee076c18959d814d5ded19ebb8da22dca51e906fddbe9ef41751ded5a2
+  disposition: 3c3f23a31145beea73a6207601a95ae78b4932730dbdd645a07bde91f716ec06
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-21T01:29:55Z'
+  authority: generated
+  via: create_document

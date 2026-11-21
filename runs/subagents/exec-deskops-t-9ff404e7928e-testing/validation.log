@@ -1,0 +1,44 @@
+Tester IR10 (run-deskops-t-9ff404e7928e)
+Commit del ejecutor: c7f16bd520f99f32cbcf7ee452201a8986cdb64f
+Worktree limpio: /workspace/IR/.worktrees/test-ir10 (detached en c7f16bd)
+Python: /workspace/IR/.venv/bin/python (3.13.18)
+PYTHONPATH=/workspace/IR/.worktrees/test-ir10/src
+TMPDIR=/tmp
+
+$ git show --name-only --format= c7f16bd
+src/specir/data/relation_types.yaml
+src/specir/data/rules.yaml
+src/specir/impact.py
+src/specir/mcp_extension.py
+src/specir/models/__init__.py
+src/specir/models/domain.py
+tests/models/test_domain_models.py
+tests/models/test_rules_and_impact.py
+tests/test_mcp_extension.py
+
+$ git diff --check c7f16bd^ c7f16bd
+rc=0
+
+$ TMPDIR=/tmp PYTHONPATH=.../src python -m pytest -q tests/models/test_domain_models.py
+.......                                                                  [100%]
+7 passed in 10.41s
+
+$ TMPDIR=/tmp PYTHONPATH=.../src python -m pytest -q tests/models/test_rules_and_impact.py
+..............                                                           [100%]
+14 passed in 17.56s
+
+$ TMPDIR=/tmp PYTHONPATH=.../src python -m pytest -q tests/test_mcp_extension.py
+...........                                                              [100%]
+11 passed in 117.08s (0:01:57)
+
+Pruebas relacionadas (regresión del modelo y tools existentes):
+
+$ TMPDIR=/tmp PYTHONPATH=.../src python -m pytest -q tests/models/test_domain_tools.py
+.....                                                                    [100%]
+5 passed in 12.89s
+
+$ TMPDIR=/tmp PYTHONPATH=.../src python -m pytest -q tests/models/test_blog_chain.py
+....x...x                                                                 [100%]
+7 passed, 2 xfailed in 16.02s
+
+Grep de mocks en los archivos de la entrega: sin coincidencias.
