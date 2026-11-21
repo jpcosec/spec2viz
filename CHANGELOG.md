@@ -2,6 +2,9 @@
 
 ## Unreleased - 2026-11-20
 
+- `diagram sync`, sequence: a message's `condition` is prose, so it now goes to the edge's `attributes.condition`
+  and the RelationDoc `condition` stays empty. sldb evaluates that field as a predicate and `sldb edges check`
+  rejected every guarded message ("no evaluator understands the predicate"). Views keep showing the guard.
 - BPMN, presentable output: `partition` draws a pool with one lane per partition (collaboration,
   participant, laneSet/lanes with `flowNodeRef`, and their DI), in spec order; the layout is a band per lane,
   advancing left to right, with lane changes dropping straight down when nothing is in between. Flows never

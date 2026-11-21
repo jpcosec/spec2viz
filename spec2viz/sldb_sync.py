@@ -242,7 +242,7 @@ def _edge_label(raw: dict) -> str:
 _EDGE_ATTRIBUTE_FIELDS: dict[str, tuple[str, ...]] = {
     "class": ("from_multiplicity", "to_multiplicity", "label"),
     "state": ("on", "guard", "action"),
-    "sequence": ("kind", "group", "message"),
+    "sequence": ("kind", "group", "message", "condition"),
     "deployment": ("protocol", "label", "kind"),
 }
 
@@ -291,7 +291,8 @@ def _matrix_edges(data: dict) -> list[dict]:
 
 
 def spec_edges(spec: dict) -> list[dict]:
-    """Las aristas del spec en orden: from, to, relation (token), label (con guarda y accion), condition y attributes."""
+    """Las aristas del spec en orden: from, to, relation (token), label (con guarda y accion), condition (siempre vacia: es
+    un predicado de sldb y un spec no lo declara) y attributes (con la guarda en prosa de un mensaje de secuencia)."""
     data = spec.get("data") or {}
     diagram_type = str(spec.get("type"))
     if diagram_type == "activity":
@@ -314,8 +315,8 @@ def spec_edges(spec: dict) -> list[dict]:
             relation = {"deploy": "deploy", "manifest": "manifest"}.get(str(raw.get("kind") or ""), default)
         else:
             relation = relation_token(value, default)
-        condition = str(raw.get("condition") or "") if diagram_type == "sequence" else ""
-        out.append({"from": str(raw["from"]), "to": str(raw["to"]), "relation": relation, "label": _edge_label(raw), "condition": condition,
+        # `condition` de un RelationDoc es un predicado que sldb evalua; la guarda en prosa de un mensaje va en `attributes`
+        out.append({"from": str(raw["from"]), "to": str(raw["to"]), "relation": relation, "label": _edge_label(raw), "condition": "",
                     "attributes": _edge_attributes(diagram_type, raw)})
     return out
 
