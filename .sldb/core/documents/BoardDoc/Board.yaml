@@ -1,7 +1,7 @@
 name: Board
 path: desk/tasks/Board.md
-source_hash: 89ad65d1bd3f03cdfe6ca7831303a98d8dcda0def227100d24411369207ac08e
-content_hash: 19130dcaad158bfc62eb6ed97b1e6c081badfc202bd4ad8c1051ca397c27b106
+source_hash: fbd7914cb31402b2df7b53ae250c204cabac18e23c6765e3997a7194bab89a64
+content_hash: 101f81542311df07d5b01ba619a5824249e0b2575c39137eeb8f21df6b23f064
 field_hashes:
   title: c0a1e78e27ac75c1547410080c6f3b914f73ad7a4dae93bcdee6693a6236c15f
   id: 14fdd56a1f61a067259a59a534c546cea3a3c3dc109c1faa2ead67d4628306d4
@@ -15,7 +15,7 @@ field_hashes:
   tasks: 02c84ac69bc1adc3f9eb277d6063768daa687a3d087d7dae67822b244632bce9
   pills: 33d5c69693f756e07ee806628cab3bfcc86535c31bf3d7fa73d7aa31f3d5952b
   rituals: b0e8ba36cc0694c83ced9cd33014463abfe0f0dfdc7ed16b2cae92403c5db73e
-  notes: 3a034021848fe3d518638bc52996cb5cf654a905c191ba90db53f8799d11737a
+  notes: 0d88e6abe2caeca016374157e6ca3a37b5fb2a6a03a0a2680107c4e32348e4ac
 semantic_tags:
 - representation.markdown
 - source.document.markdown
@@ -24,6 +24,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-21T06:46:08Z'
+  at: '2026-11-21T06:48:01Z'
   authority: generated
   via: save_document_payload

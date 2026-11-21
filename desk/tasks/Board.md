@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-21T06:46:08Z'
+  at: '2026-11-21T06:48:01Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -38,7 +38,7 @@ Route the active execution set for IR.
 
 _Add short operational notes about the current routed set._
 
-Estado al 2026-11-21 (madrugada): cerradas además IR04b (89f8734) y su tarea de cierre (ffc1523) e IR10 (fd05e74: reglas RuleDoc de brechas entre capas y las tools MCP specir_rules y specir_impact). IR13, el gate final de retiro de spec2viz, corrió el 2026-11-21: 'specir retirement check' da rc 1 con 63 dependencias en otros repos (graph_ui, deskops, pron, sldb y el store spec2viz/.sldb) y 8 filas abiertas de la matriz (SV-A17, K09, K16, K18, K21, K23, K26, K29). Detalle en runs/subagents/exec-deskops-e-59807359e541/retirement-check.txt. Queda abierta hasta rc 0: depende de que esos desks migren (sus inboxes tienen los pedidos) y de las capacidades pendientes de las 8 filas. Inbox en 0.
+Estado al 2026-11-21 (mañana): IR13, gate de retiro de spec2viz. specir retirement check (con --path de deskops, UIs/graph_ui, pron, sldb y spec2viz/.sldb) da 62 dependencias: 43 de IR, que son los oráculos de paridad en tests/visual, y 19 del store spec2viz/.sldb (G5, se archiva con el repo). sldb, deskops, pron y graph_ui ya no cuentan: el gen_golden de sldb se retiró en cfa6477b (sldb origin 64c810b0). Cerrada la tarea de las filas de validate (3d0a436, closeout 9c343b9): SV-K16, K21, K26 y K29 pasan a sldb notations validate y se retiran specir diagram validate y specir validate. Solo queda abierta SV-A17 (G5). En ejecución: la tarea que congela los oráculos de paridad en goldens (acta, punto 6). Después quedan las decisiones de JP: sacar spec2viz/.sldb del universo del comprobador y archivar spec2viz (puntos 2 y 8 del acta), y declarar el retiro.
 
 ## Task Details
 
