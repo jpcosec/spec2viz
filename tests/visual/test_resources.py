@@ -2,7 +2,7 @@
 
 - The catalog template (`templates/default.html`) and the vendored bpmn-js
   (`templates/vendor/bpmn-js/`) are package data of specIR: the installed package reads them, a wheel
-  built from the project carries them, and they are spec2viz's own bytes (live, when installed).
+  built from the project carries them, and they are spec2viz's own bytes (the SHA-256 of each, in the golden).
 - The pages that must open from `file://` with nothing from outside (the offline BPMN viewer and the
   graph HTML; the tree HTML too) reference no external script, stylesheet, font or import; the
   viewer inlines the vendored bpmn-js and its two stylesheets.
@@ -11,6 +11,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import re
 import shutil
 import subprocess
@@ -26,7 +27,7 @@ from specir.visual.renderers.bpmn_viewer import VENDOR_DIR
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-import render_parity  # noqa: E402
+import oracle  # noqa: E402
 
 PROJECT = HERE.parents[1]
 CORPUS = HERE / "fixtures" / "spec2viz"
@@ -59,10 +60,9 @@ def test_the_installed_package_reads_its_resources():
 
 @pytest.mark.parity
 def test_resources_are_spec2viz_bytes():
-    pytest.importorskip("spec2viz")
-    origin = render_parity.spec2viz_package_dir()
+    expected = oracle.expect("resource_digests", RESOURCES)  # rel -> SHA-256 of spec2viz's bytes
     for rel in RESOURCES:
-        assert _resource(rel).read_bytes() == (origin / rel).read_bytes(), rel
+        assert hashlib.sha256(_resource(rel).read_bytes()).hexdigest() == expected[rel], rel
 
 
 @pytest.mark.skipif(shutil.which("uv") is None, reason="uv is not installed: no backend to build the wheel")

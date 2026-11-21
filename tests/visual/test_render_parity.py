@@ -2,8 +2,8 @@
 
 - Every spec of the corpus that validates, drawn by each of the nine values of spec2viz's renderer
   selector, gives what spec2viz gave (`render_parity`): the same text, the same JSON or the same
-  error class and message, and the same offline BPMN viewer page. Against the saved goldens always,
-  and against spec2viz live when it is installed (`parity` marker). The only order compared as a
+  error class and message, and the same offline BPMN viewer page, against the saved goldens
+  (`parity` marker). The only order compared as a
   mapping is the kind color scale of `vega`, which spec2viz listed in set order (declared in the
   coverage matrix, SV-C05).
 - The selector of specIR has the nine values of spec2viz, with the same extensions and the same
@@ -23,6 +23,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE.parent / "models"))  # blog.py, for conftest's blog fixtures
 
+import oracle  # noqa: E402
 import render_parity  # noqa: E402
 
 from specir.visual.ir import ANY_STATE, StateIR, StateNode, Transition  # noqa: E402
@@ -47,20 +48,6 @@ def test_specir_renders_what_the_goldens_say(rel):
     assert render_parity.comparable(render_parity.specir_renders(rel)) == render_parity.comparable(GOLDENS[rel])
 
 
-@pytest.mark.parity
-@pytest.mark.parametrize("rel", render_parity.VALID)
-def test_specir_renders_what_spec2viz_renders(rel):
-    pytest.importorskip("spec2viz")
-    assert render_parity.comparable(render_parity.specir_renders(rel)) == render_parity.comparable(render_parity.spec2viz_renders(rel))
-
-
-@pytest.mark.parity
-def test_goldens_are_spec2viz_last_run():
-    pytest.importorskip("spec2viz")
-    for rel in render_parity.VALID:
-        assert render_parity.comparable(render_parity.spec2viz_renders(rel)) == render_parity.comparable(GOLDENS[rel]), rel
-
-
 def test_vega_lists_the_kinds_in_order_of_first_appearance():
     from sldb.api.notations import load_spec
 
@@ -80,8 +67,7 @@ def test_the_selector_has_the_nine_values_of_spec2viz():
 
 @pytest.mark.parity
 def test_selector_extensions_and_defaults_are_spec2viz():
-    pytest.importorskip("spec2viz")
-    values, extensions, defaults = render_parity.spec2viz_selector()
+    values, extensions, defaults = oracle.expect("selector")
     assert values == list(render_parity.RENDERERS)
     assert EXT_MAP == extensions
     assert {k.__name__: v for k, v in DEFAULT_RENDERER.items()} == defaults

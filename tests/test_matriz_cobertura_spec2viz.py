@@ -1,86 +1,32 @@
 """The spec2viz coverage matrix (IR07) lists every capability that the retirement gate has to cover.
 
-Completeness is checked against spec2viz itself: every command and subgroup of its CLI help, every
+Completeness is checked against what spec2viz had (revision 2de1056, frozen in
+`visual/goldens/spec2viz-2de1056-oracle.json`): every command and subgroup of its CLI help, every
 module of its compilers, renderers, linters and generators, and every file of its test suite has a
 row in `docs/spec2viz/matriz-de-cobertura.md`, and every row has one of the four coverage modes.
 
-The CLI tree comes from click when spec2viz is importable, and otherwise from the decorators in
-`spec2viz/cli.py` (specIR never depends on spec2viz, so the source is the usual path)."""
+The lists are the golden's: specIR neither imports spec2viz nor reads its checkout."""
 
 from __future__ import annotations
 
-import ast
-import importlib
 import re
+import sys
 from pathlib import Path
 
-import pytest
-
 REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO / "tests" / "visual"))
+import oracle  # noqa: E402
+
 MATRIX = REPO / "docs" / "spec2viz" / "matriz-de-cobertura.md"
-SPEC2VIZ = REPO.parent / "spec2viz"
-PACKAGE = SPEC2VIZ / "spec2viz"
-SUBPACKAGES = ("compilers", "renderers", "linters", "generators")
 MODES = ("migrar tal cual", "reemplazar", "usar sldb directamente", "migrado a sldb")
-
-pytestmark = pytest.mark.skipif(not (PACKAGE / "cli.py").is_file(), reason=f"spec2viz sources not found at {SPEC2VIZ}")
-
-
-def commands_from_click() -> set[str] | None:
-    try:
-        main = importlib.import_module("spec2viz.cli").main
-    except ImportError:
-        return None
-    paths: set[str] = set()
-
-    def walk(group, prefix: str) -> None:
-        for name, command in group.commands.items():
-            path = f"{prefix} {name}"
-            paths.add(path)
-            if hasattr(command, "commands"):
-                walk(command, path)
-
-    walk(main, "spec2viz")
-    return paths
-
-
-def commands_from_source() -> set[str]:
-    """Each `@<parent>.command(...)`/`@<parent>.group(...)` of cli.py, with click's default name."""
-    tree = ast.parse((PACKAGE / "cli.py").read_text(encoding="utf-8"))
-    parents: dict[str, tuple[str, str]] = {}
-    for node in tree.body:
-        if not isinstance(node, ast.FunctionDef):
-            continue
-        for decorator in node.decorator_list:
-            if not (isinstance(decorator, ast.Call) and isinstance(decorator.func, ast.Attribute)):
-                continue
-            if decorator.func.attr not in ("command", "group") or not isinstance(decorator.func.value, ast.Name):
-                continue
-            if decorator.func.value.id == "click":  # the root group (`main`)
-                continue
-            named = [arg.value for arg in decorator.args if isinstance(arg, ast.Constant)]
-            named += [kw.value.value for kw in decorator.keywords if kw.arg == "name" and isinstance(kw.value, ast.Constant)]
-            name = named[0] if named else node.name.replace("_", "-")
-            parents[node.name] = (decorator.func.value.id, name)
-
-    def path(function: str) -> str:
-        parent, name = parents[function]
-        return f"spec2viz {name}" if parent == "main" else f"{path(parent)} {name}"
-
-    return {path(function) for function in parents}
 
 
 def cli_commands() -> set[str]:
-    return commands_from_click() or commands_from_source()
+    return set(oracle.frozen("cli_commands"))
 
 
 def package_modules() -> list[str]:
-    return sorted(
-        f"spec2viz/{sub}/{module.name}"
-        for sub in SUBPACKAGES
-        for module in (PACKAGE / sub).glob("*.py")
-        if module.name != "__init__.py"
-    )
+    return sorted(oracle.frozen("package_modules"))
 
 
 def matrix_rows(text: str) -> list[str]:
@@ -102,7 +48,7 @@ def test_every_cli_command_and_subgroup_has_a_row() -> None:
 
 def test_every_compiler_renderer_linter_and_generator_module_has_a_row() -> None:
     modules = package_modules()
-    assert modules, f"no modules under {PACKAGE}"
+    assert modules, "no modules in the golden"
     rows = "\n".join(matrix_rows(MATRIX.read_text(encoding="utf-8")))
     missing = [module for module in modules if f"`{module}`" not in rows]
     assert not missing, f"spec2viz modules without a row in {MATRIX.name}: {missing}"
@@ -111,8 +57,8 @@ def test_every_compiler_renderer_linter_and_generator_module_has_a_row() -> None
 def test_every_spec2viz_test_file_maps_to_a_row() -> None:
     text = MATRIX.read_text(encoding="utf-8")
     mapped = set(re.findall(r"^\| `(tests/test_[a-z0-9_]+\.py)` \| SV-", text, flags=re.MULTILINE))
-    files = {f"tests/{path.name}" for path in (SPEC2VIZ / "tests").glob("test_*.py")}
-    assert files, f"no tests under {SPEC2VIZ / 'tests'}"
+    files = set(oracle.frozen("test_files"))
+    assert files, "no test files in the golden"
     assert not sorted(files - mapped), f"spec2viz test files without a row: {sorted(files - mapped)}"
 
 

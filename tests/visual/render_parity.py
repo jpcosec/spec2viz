@@ -6,10 +6,10 @@ rendered output (text, or the JSON-able value of `vega` and `json`) or the error
 message; an activity spec also gets the SHA-256 of its offline BPMN viewer page (`bpmn.html`), which
 inlines the vendored bpmn-js.
 
-The oracle is spec2viz itself when it is installed (`spec2viz_renders`); `GOLDENS` keeps the outcomes
-of its last run (`python tests/visual/render_parity.py` rewrites them), so the parity still holds
-against them once spec2viz is retired. The same run saves spec2viz's lint findings on its lint fixtures
-(`LINT_GOLDENS`) and the JSON Schema it exports for every type (`SCHEMA_GOLDENS`)."""
+The oracle is `GOLDENS`: what spec2viz gave at `REVISION`, recorded by the script of the run
+`exec-deskops-e-5ccf277d5e67` (`runs/subagents/`), which is the only place that runs spec2viz. The same run
+saved spec2viz's lint findings on its lint fixtures (`LINT_GOLDENS`) and the JSON Schema it exports
+for every type (`SCHEMA_GOLDENS`)."""
 
 from __future__ import annotations
 
@@ -68,57 +68,6 @@ def specir_renders(rel: str) -> dict[str, Any]:
     from specir.visual.renderers.bpmn import render_bpmn_html
 
     return outcomes(rel, load_spec, compile_ir, render, render_bpmn_html)
-
-
-def spec2viz_renders(rel: str) -> dict[str, Any]:
-    from spec2viz.compilers import compile_ir
-    from spec2viz.loader import load
-    from spec2viz.renderers import render
-    from spec2viz.renderers.bpmn import render_bpmn_html
-
-    return outcomes(rel, load, compile_ir, render, render_bpmn_html)
-
-
-# ── the rest of the oracle: every other use of spec2viz by the tests of IR12 goes through here ──
-
-
-def spec2viz_selector() -> tuple[list[str], dict[str, str], dict[str, str]]:
-    """spec2viz's `--renderer` values, its extensions and its default renderer per IR class name."""
-    from spec2viz.cli import DIAGRAM_RENDERERS
-    from spec2viz.renderers import DEFAULT_RENDERER, EXT_MAP
-
-    return list(DIAGRAM_RENDERERS), dict(EXT_MAP), {k.__name__: v for k, v in DEFAULT_RENDERER.items()}
-
-
-def spec2viz_view_to_mermaid(view: dict[str, Any], theme: str) -> str:
-    from spec2viz.renderers.view_mermaid import view_to_mermaid
-
-    return view_to_mermaid(view, theme=theme)
-
-
-def spec2viz_lint() -> Callable:
-    from spec2viz.linters.mermaid import lint_mermaid
-
-    return lint_mermaid
-
-
-def spec2viz_json_schema() -> Callable:
-    from spec2viz.schema import json_schema
-
-    return json_schema
-
-
-def spec2viz_render_to_file(spec: str | Path, out: Path, renderer: str) -> Path:
-    from spec2viz import render_to_file
-
-    return render_to_file(spec, out=out, renderer=renderer)
-
-
-def spec2viz_package_dir() -> Path:
-    """Where the installed spec2viz package lives (its templates and vendored bpmn-js)."""
-    import spec2viz
-
-    return Path(spec2viz.__file__).parent
 
 
 def comparable(outcome: dict[str, Any]) -> dict[str, Any]:
@@ -181,23 +130,3 @@ def schemas(json_schema: Callable) -> dict[str, Any]:
 
 def schema_goldens() -> dict[str, Any]:
     return json.loads(SCHEMA_GOLDENS.read_text(encoding="utf-8"))
-
-
-def write_goldens() -> None:
-    """The render outcomes of spec2viz over the valid corpus, and its lint findings, as the saved oracle."""
-    import os
-
-    from spec2viz.linters.mermaid import lint_mermaid
-    from spec2viz.schema import json_schema
-
-    data = {rel: spec2viz_renders(rel) for rel in VALID}
-    GOLDENS.write_text(json.dumps(data, indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
-    os.environ["SPEC2VIZ_MMDC"] = "0"
-    LINT_GOLDENS.write_text(json.dumps(lint_findings(lint_mermaid), indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
-    SCHEMA_GOLDENS.write_text(json.dumps(schemas(json_schema), indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
-
-
-if __name__ == "__main__":
-    sys.path.insert(0, str(HERE.parents[1] / "src"))
-    write_goldens()
-    print(f"{len(VALID)} specs x {len(RENDERERS)} renderers -> {GOLDENS}")

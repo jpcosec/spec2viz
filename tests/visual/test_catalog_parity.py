@@ -1,5 +1,5 @@
-"""specIR's catalog against spec2viz's, as the development oracle (IR13b; `parity` marker, skipped
-without spec2viz).
+"""specIR's catalog against spec2viz's, as the oracle (IR13b; `parity` marker). What spec2viz answered
+to each case at revision 2de1056 is in `goldens/spec2viz-2de1056-oracle.json` (`oracle.py`).
 
 - Validating a registry: sldb's `check_catalog` (what `sldb notations sync --catalog --check` runs)
   gives, entry by entry, the same view, spec, error class and message as spec2viz's, over the
@@ -35,8 +35,10 @@ from test_catalog import (
 )
 from test_sync_generation_parity import _assert_same_store
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import oracle  # noqa: E402
+
 pytestmark = pytest.mark.parity
-spec2viz = pytest.importorskip("spec2viz")
 
 WARNINGS = re.compile(r"window\.SPEC2VIZ_(ATOM|COVERAGE)_WARNINGS = (\[.*?\]); ")
 
@@ -46,10 +48,8 @@ def _ours(entry, exc):
 
 
 def _same_check(config: Path, store: Path | None = None) -> list:
-    from spec2viz.sldb_sync import check_catalog as oracle
-
-    ours = [_ours(entry, exc) for entry, exc in check_catalog(config, store)]
-    assert ours == [_ours(entry, exc) for entry, exc in oracle(config, store)]
+    ours = oracle.scrub([_ours(entry, exc) for entry, exc in check_catalog(config, store)], oracle.tmp_root(config))
+    assert ours == oracle.expect("check_catalog", config, store, roots=(oracle.tmp_root(config),))
     return ours
 
 
@@ -98,46 +98,42 @@ def test_check_catalog_with_a_store_notation(tmp_path):
 
 # --- syncing a registry -------------------------------------------------------------------------
 
-def _sync_both(tmp_path: Path, config_rel: str) -> tuple[Path, Path]:
-    from spec2viz.sldb_sync import SpecSync as OracleSync
-    from spec2viz.sldb_sync import sync_catalog as oracle_sync
-
-    roots = []
-    for name, sync_class, sync in (("sldb", SpecSync, sync_catalog), ("spec2viz", OracleSync, oracle_sync)):
-        root = fixture_repo(tmp_path / name)
-        sldb_api.init_store(root)
-        sync(sync_class(root / ".sldb"), root / config_rel)
-        roots.append(root)
-    return roots[0], roots[1]
+def _sync_ours(tmp_path: Path, config_rel: str) -> Path:
+    root = fixture_repo(tmp_path / "sldb")
+    sldb_api.init_store(root)
+    sync_catalog(SpecSync(root / ".sldb"), root / config_rel)
+    return root
 
 
 def test_catalog_sync_leaves_what_spec2viz_leaves(tmp_path):
-    ours, oracle = _sync_both(tmp_path, "docs/architecture/vistas.yml")
-    _assert_same_store(ours, oracle)
+    ours = _sync_ours(tmp_path, "docs/architecture/vistas.yml")
+    _assert_same_store(ours, oracle.expect("catalog_sync_documents", tmp_path / "spec2viz", "docs/architecture/vistas.yml", roots=(tmp_path,)))
     assert len(spec_docs(ours / ".sldb")) == 11
 
 
-def test_a_failing_view_makes_both_write_nothing(tmp_path):
-    from click.testing import CliRunner
-    from spec2viz.cli import main
+def _failing_catalog_root(base: Path) -> tuple[Path, Path]:
+    """A synced-nothing repo whose registry has a last view that draws with the wrong type."""
+    root = fixture_repo(base)
+    sldb_api.init_store(root)
+    config = root / "docs" / "architecture" / "vistas.yml"
+    data = yaml.safe_load(config.read_text(encoding="utf-8"))
+    data["vistas"][-1]["notation"] = "deployment"
+    config.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
+    return root, config
 
-    outputs = []
-    for name in ("sldb", "spec2viz"):
-        root = fixture_repo(tmp_path / name)
-        sldb_api.init_store(root)
-        config = root / "docs" / "architecture" / "vistas.yml"
-        data = yaml.safe_load(config.read_text(encoding="utf-8"))
-        data["vistas"][-1]["notation"] = "deployment"  # the last view draws with the wrong type
-        config.write_text(yaml.safe_dump(data, allow_unicode=True), encoding="utf-8")
-        if name == "sldb":
-            rc, output = sldb_cli("notations", "sync", "--catalog", config, "--store", root / ".sldb")
-        else:
-            result = CliRunner().invoke(main, ["catalog", "sync", "--config", str(config), "--store", str(root / ".sldb")])
-            rc, output = result.exit_code, result.output
-        assert rc == 1 and "NotationMismatchError" in output, output
-        assert not spec_docs(root / ".sldb")
-        outputs.append([line.replace(str(root), "<root>") for line in output.splitlines() if line.startswith("Invalid:")])
-    assert outputs[0] == outputs[1]
+
+def _invalid_lines(output: str, root: Path) -> list[str]:
+    return [line.replace(str(root), "<root>") for line in output.splitlines() if line.startswith("Invalid:")]
+
+
+def test_a_failing_view_makes_both_write_nothing(tmp_path):
+    root, config = _failing_catalog_root(tmp_path / "sldb")
+    rc, output = sldb_cli("notations", "sync", "--catalog", config, "--store", root / ".sldb")
+    assert rc == 1 and "NotationMismatchError" in output, output
+    assert not spec_docs(root / ".sldb")
+    rc_oracle, named, written, invalid = oracle.expect("catalog_sync_failure", tmp_path / "spec2viz", roots=(tmp_path,))
+    assert rc_oracle == 1 and named and written == 0  # spec2viz exited 1, named the error and wrote no SpecDoc
+    assert _invalid_lines(output, root) == invalid
 
 
 # --- building the catalog -----------------------------------------------------------------------
@@ -151,13 +147,12 @@ def _warnings(page: str) -> tuple[str, list]:
 
 
 def _same_page(config: Path, **options) -> str:
-    from spec2viz.deskops import render_deskops
-
-    ours, oracle = render_catalog(config, **options), render_deskops(config, **{k.replace("strict_atoms", "strict_atoms"): v for k, v in options.items()})
+    tmp = oracle.tmp_root(config)
+    ours = render_catalog(config, **options)
     ours_page, ours_warnings = _warnings(ours)
-    oracle_page, oracle_warnings = _warnings(oracle)
-    assert ours_page == oracle_page
-    assert ours_warnings == oracle_warnings
+    oracle_digest, oracle_warnings = oracle.expect("catalog_page", config, roots=(tmp,), **options)
+    assert oracle.page_digest(oracle.scrub(ours_page, tmp)) == oracle_digest
+    assert oracle.unhash(oracle.scrub(ours_warnings, tmp)) == oracle_warnings
     return ours
 
 
@@ -200,14 +195,12 @@ def test_explicit_atoms_are_spec2viz_s(tmp_path, atoms_a, atoms_b):
 
 
 def test_strict_atoms_fail_both(tmp_path):
-    from spec2viz.deskops import render_deskops
-
     atoms = _explicit_project(tmp_path, ["no-existe"], None)
     with pytest.raises(Exception, match="no-existe") as ours:
         render_catalog(tmp_path / "vistas.yml", atoms_dir=atoms, strict_atoms=True)
-    with pytest.raises(Exception, match="no-existe") as oracle:
-        render_deskops(tmp_path / "vistas.yml", atoms_dir=atoms, strict_atoms=True)
-    assert type(ours.value).__name__ == type(oracle.value).__name__ == "UnknownAtomError"
+    oracle_error, oracle_text = oracle.expect("catalog_page_error", tmp_path / "vistas.yml", atoms_dir=atoms, strict_atoms=True, roots=(tmp_path,))
+    assert "no-existe" in oracle_text
+    assert type(ours.value).__name__ == oracle_error == "UnknownAtomError"
 
 
 @pytest.mark.parametrize("view_notation", [None, "infra-own.yml"])

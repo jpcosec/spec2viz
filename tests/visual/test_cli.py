@@ -555,10 +555,8 @@ def _assert_answers_help(words: list[str], options: list[str]) -> None:
 
 
 def test_the_table_covers_exactly_the_command_tree_of_spec2viz():
-    if not (matrix.PACKAGE / "cli.py").is_file():
-        pytest.skip(f"spec2viz sources not found at {matrix.SPEC2VIZ}")
     listed = {re.fullmatch(r"`([^`]+)`", row[1]).group(1) for row in correspondence_rows()}
-    assert listed == matrix.commands_from_source() | {"spec2viz --help"}
+    assert listed == matrix.cli_commands() | {"spec2viz --help"}
     ids = [row[0] for row in correspondence_rows()]
     assert sorted(ids) == [f"SV-K{n:02d}" for n in range(1, 31)]
 

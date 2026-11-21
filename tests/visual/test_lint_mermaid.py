@@ -5,7 +5,7 @@
   engine off (`SPECIR_MMDC=0`, and spec2viz's `SPEC2VIZ_MMDC=0` still works).
 - The same findings as spec2viz on the lint fixtures (`render_parity.lint_cases`: spec2viz's lint
   texts and the mermaid of every spec of the corpus), with and without the raw-angle-bracket rule:
-  against the saved goldens always, against spec2viz live when it is installed.
+  against the saved goldens.
 - `diagram lint` reports a clean spec, a clean `.mmd` and a broken `.mmd` as spec2viz's did."""
 
 from __future__ import annotations
@@ -79,14 +79,6 @@ def test_lint_goldens_cover_the_fixtures_and_flag_the_bad_ones():
 def test_specir_finds_what_the_goldens_say(monkeypatch):
     monkeypatch.setenv("SPECIR_MMDC", "0")
     assert render_parity.lint_findings(lint_mermaid) == render_parity.lint_goldens()
-
-
-@pytest.mark.parity
-def test_specir_finds_what_spec2viz_finds(monkeypatch):
-    pytest.importorskip("spec2viz")
-    monkeypatch.setenv("SPECIR_MMDC", "0")
-    monkeypatch.setenv("SPEC2VIZ_MMDC", "0")
-    assert render_parity.lint_findings(lint_mermaid) == render_parity.lint_findings(render_parity.spec2viz_lint())
 
 
 def test_assert_mermaid_ok_raises_a_render_error(monkeypatch):

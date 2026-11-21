@@ -25,10 +25,8 @@ from specir.visual.spec_models import SPEC_MODELS, BaseDiagram, EnforcementArtif
 REPO = Path(__file__).resolve().parents[2]
 PACKAGE = REPO / "src" / "specir"
 TESTS = REPO / "tests"
-#: The modules that reach spec2viz as the development oracle (IR11, IR12, IR13a's sync and generation
-#: parity and IR13b's catalog parity).
-ORACLES = {TESTS / "visual" / "parity.py", TESTS / "visual" / "render_parity.py", TESTS / "visual" / "test_sync_generation_parity.py",
-           TESTS / "visual" / "test_catalog_parity.py"}
+#: The modules that reach spec2viz: none. Its answers are goldens (`tests/visual/goldens/`, `oracle.py`).
+ORACLES: set[Path] = set()
 EIGHT = {"ClassDiagram", "SequenceDiagram", "StateDiagram", "ComponentDiagram", "ActivityDiagram",
          "DeploymentDiagram", "MatrixDiagram", "ReflectionDiagram"}
 
@@ -95,7 +93,7 @@ def test_the_eight_spec_models_are_sldb_classes_and_compile() -> None:
         assert compile_ir(diagram) is not None, diagram.id
 
 
-def test_spec2viz_is_imported_only_by_the_parity_oracle() -> None:
+def test_spec2viz_is_imported_by_nobody() -> None:
     importing = set()
     for path in sorted([*TESTS.rglob("*.py"), *PACKAGE.rglob("*.py")]):
         for node in ast.walk(ast.parse(path.read_text(encoding="utf-8"))):

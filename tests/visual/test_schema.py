@@ -2,7 +2,7 @@
 
 The models are sldb's (D3); specIR only exports their schema. The export equals spec2viz's for all
 types, each type and the diagram store envelope: against the saved goldens and spec2viz's checked-in
-schemas (`examples/schema/`) always, against spec2viz live when it is installed. Ported from spec2viz
+schemas (`examples/schema/`). Ported from spec2viz
 (revision 2de1056): `test_json_schema_for_all_types`, `test_json_schema_for_specific_type` and
 `test_write_json_schema` of `tests/test_api.py`; `test_schema_stdout`, `test_schema_outfile`,
 `test_schema_diagram_store_stdout`, `test_schema_invalid_type_fails` and `test_catalog_schema_stdout`
@@ -37,12 +37,6 @@ def test_schema_goldens_cover_every_type():
 
 def test_specir_exports_what_the_goldens_say():
     assert render_parity.schemas(json_schema) == render_parity.schema_goldens()
-
-
-@pytest.mark.parity
-def test_specir_exports_what_spec2viz_exports():
-    pytest.importorskip("spec2viz")
-    assert render_parity.schemas(json_schema) == render_parity.schemas(render_parity.spec2viz_json_schema())
 
 
 # ── tests/test_api.py ───────────────────────────────────────────────────────────────────────────

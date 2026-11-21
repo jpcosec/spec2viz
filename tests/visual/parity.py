@@ -6,14 +6,12 @@ same relative paths. For each spec the outcome is what loading and validating it
 the error's class name and message) and, when it is valid, its compiled IR in normalized form
 (`specir.visual.normalize`).
 
-The oracle is spec2viz itself when it is installed (`spec2viz_outcome`); `GOLDENS` keeps the
-outcomes of its last run (`python tests/visual/parity.py` rewrites them), so the parity still
-holds against them once spec2viz is retired."""
+The oracle is `GOLDENS`: the outcomes spec2viz gave at `REVISION`, recorded by the script of the run
+`exec-deskops-e-5ccf277d5e67` (`runs/subagents/`), which is the only place that runs spec2viz."""
 
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
 from typing import Any, Callable
 
@@ -48,25 +46,5 @@ def specir_outcome(rel: str) -> dict[str, Any]:
     return outcome(rel, load_spec, validate_spec, compile_ir)
 
 
-def spec2viz_outcome(rel: str) -> dict[str, Any]:
-    from spec2viz.compilers import compile_ir
-    from spec2viz.loader import load
-    from spec2viz.validator import validate
-
-    return outcome(rel, load, validate, compile_ir)
-
-
 def goldens() -> dict[str, Any]:
     return json.loads(GOLDENS.read_text(encoding="utf-8"))
-
-
-def write_goldens() -> None:
-    """The outcomes of spec2viz over the corpus, as the saved oracle."""
-    data = {rel: spec2viz_outcome(rel) for rel in CORPUS}
-    GOLDENS.write_text(json.dumps(data, indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
-
-
-if __name__ == "__main__":
-    sys.path.insert(0, str(HERE.parents[1] / "src"))
-    write_goldens()
-    print(f"{len(CORPUS)} specs -> {GOLDENS}")
