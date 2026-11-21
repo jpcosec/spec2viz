@@ -6,13 +6,14 @@ Ported from spec2viz (revision 2de1056), over the same fixtures (`fixtures/spec2
   seven `test_render_to_file_*` (on `specir.visual.render_file.render_to_file`).
 - `tests/test_cli.py`: every `test_render_*` (on `diagram render`, the command the top-level alias of
   IR13d calls) and `test_rendered_text_projections_carry_a_provenance_header`, whose header now names
-  specIR's command (`specir diagram validate`).
+  sldb's command (`sldb notations validate`).
 - `tests/test_rendering_bug.py`: `test_direct_render_to_file`."""
 
 from __future__ import annotations
 
 import json
 import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -170,7 +171,7 @@ def test_render_help_lists_the_renderers():
         assert name in r.output
     r = runner.invoke(main, ["diagram", "--help"])
     assert r.exit_code == 0
-    assert "render" in r.output and "validate" in r.output and "schema" in r.output and "lint" in r.output
+    assert "render" in r.output and "validate" not in r.output and "schema" in r.output and "lint" in r.output
 
 
 def test_render_d2(tmp_path):
@@ -201,7 +202,7 @@ def test_rendered_text_projections_carry_a_provenance_header(tmp_path, monkeypat
         # en mermaid el frontmatter de config (ELK) va primero; la cabecera, justo despues
         first = lines[lines.index("---", 1) + 1] if renderer == "mermaid" else lines[0]
         assert first.startswith(f"{prefix} specir: generated from examples/component/example.yml;")
-        assert "`specir diagram validate examples/component/example.yml`" in first
+        assert "`sldb notations validate examples/component/example.yml`" in first
     assert provenance_header("vega", spec) == "" and provenance_header("json", spec) == ""
     matrix = render_to_file(Path("tests/fixtures/matrix.quotation-view.yml"), out=tmp_path, renderer="vega").read_text(encoding="utf-8")
     assert matrix.lstrip().startswith("{")
@@ -210,10 +211,11 @@ def test_rendered_text_projections_carry_a_provenance_header(tmp_path, monkeypat
 def test_the_header_names_a_command_that_validates(tmp_path, monkeypatch):
     """The command the provenance header names exists and validates the spec."""
     monkeypatch.chdir(CORPUS)
-    r = runner.invoke(main, ["diagram", "validate", "examples/component/example.yml"])
-    assert r.exit_code == 0 and r.output == "example.yml: OK\n"
-    r = runner.invoke(main, ["diagram", "validate", "tests/fixtures/invalid/unknown_node.yml"])
-    assert r.exit_code == 1 and "unknown_node.yml: ERROR: " in r.output
+    sldb = str(Path(sys.executable).with_name("sldb"))
+    ok = subprocess.run([sldb, "notations", "validate", "examples/component/example.yml"], capture_output=True, text=True)
+    assert ok.returncode == 0, ok.stderr
+    bad = subprocess.run([sldb, "notations", "validate", "tests/fixtures/invalid/unknown_node.yml"], capture_output=True, text=True)
+    assert bad.returncode == 1, bad.stdout
 
 
 # ── tests/test_rendering_bug.py ─────────────────────────────────────────────────────────────────
@@ -262,7 +264,7 @@ def test_render_to_file_writes_what_spec2viz_writes_but_the_command_it_names(tmp
     assert sorted(os.listdir(ours)) == sorted(os.listdir(theirs))
     for name in os.listdir(theirs):
         expected = (theirs / name).read_text(encoding="utf-8").replace("spec2viz: generated from", "specir: generated from")
-        expected = expected.replace("`spec2viz diagram validate", "`specir diagram validate")
+        expected = expected.replace("`spec2viz diagram validate", "`sldb notations validate")
         actual = (ours / name).read_text(encoding="utf-8")
         if renderer == "vega":
             # spec2viz built the kindColor domain from a set (order depends on PYTHONHASHSEED,

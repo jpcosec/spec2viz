@@ -1,11 +1,10 @@
 """The render, lint and schema commands of the visual layer, migrated from `spec2viz.cli`.
 
 `diagram render|lint|schema` and `catalog schema` keep spec2viz's arguments, options (`--renderer`
-with its alias `--backend` and its nine values) and output. `diagram validate` runs sldb's
-`load_spec`/`validate_spec` (D3) and is the command the provenance header of a projection names
-(SV-K16: sldb has no command that validates a spec yet; when it has one, this one goes).
+with its alias `--backend` and its nine values) and output. Validating a spec is
+`sldb notations validate` (SV-K16), which the provenance header of a projection names.
 The `specir` command is `specir.cli` (IR13d): it mounts these two groups, adds `catalog build`, the
-top-level aliases and `about`. The helpers `_render_paths`, `_validate_paths`, `_lint_paths` and
+top-level aliases and `about`. The helpers `_render_paths`, `_lint_paths` and
 `_write_schema` are what a group command and its top-level alias share."""
 
 from __future__ import annotations
@@ -15,7 +14,7 @@ import sys
 from pathlib import Path
 
 import click
-from sldb.api.notations import load_spec, validate_spec
+from sldb.api.notations import load_spec
 
 from specir.visual.exceptions import Spec2VizError
 from specir.visual.notation_style import NotationError
@@ -40,16 +39,6 @@ def _render_paths(paths: list[Path], out: Path, renderer: str | None):
                 click.echo(f"Rendered {path.name} -> {output.with_name(output.name + '.html')}")
         except ERRORS as exc:
             click.echo(f"Error: {exc}", err=True)
-            sys.exit(1)
-
-
-def _validate_paths(paths: list[Path]):
-    for path in paths:
-        try:
-            validate_spec(load_spec(path))
-            click.echo(f"{path.name}: OK")
-        except ERRORS as exc:
-            click.echo(f"{path.name}: ERROR: {exc}", err=True)
             sys.exit(1)
 
 
@@ -113,13 +102,6 @@ def catalog():
 def diagram_render(paths: list[Path], out: Path, renderer: str | None):
     """Render one or more semantic diagram spec files."""
     _render_paths(paths, out, renderer)
-
-
-@diagram.command("validate", short_help="Validate semantic diagram spec files (sldb's load_spec and validate_spec).")
-@click.argument("paths", nargs=-1, type=click.Path(exists=True, path_type=Path), metavar="SPEC ...")
-def diagram_validate(paths: list[Path]):
-    """Validate one or more semantic diagram spec files."""
-    _validate_paths(paths)
 
 
 @diagram.command("lint", short_help="Lint rendered mermaid for browser-breaking syntax.")

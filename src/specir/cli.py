@@ -1,9 +1,9 @@
 """The `specir` command: the visual layer's CLI, with the taxonomy of spec2viz's (IR13d).
 
-- `diagram` (render, validate, lint, schema) and `catalog` (schema) are IR12's groups
+- `diagram` (render, lint, schema) and `catalog` (schema) are IR12's groups
   (`specir.visual.commands`); this module mounts them and adds `catalog build` (IR13b's page, with
   the option to save its annotations through `sldb serve`), the top-level aliases `render`,
-  `validate`, `lint`, `schema` and `build`, and `about`.
+  `lint`, `schema` and `build`, and `about`.
 - `retirement check` (IR13) is the retirement gate of spec2viz (`specir.visual.retirement`): it audits,
   read-only, the inventory of the coverage matrix plus specIR's repo, and the matrix's accreditation.
 - What spec2viz's CLI did that is sldb's has no command here, by design (JP: no wrapper over sldb's
@@ -12,8 +12,8 @@
   (`sldb notations from-graph`), listing notations and palettes (`sldb notations list`), resolving a
   view (`sldb notations view`) and serving the catalog's annotations (`sldb serve`). The table is
   `docs/spec2viz/correspondencia-cli.md`.
-- `diagram validate` (and `validate`) runs sldb's `load_spec`/`validate_spec` and redefines
-  nothing: sldb has no command that validates a spec yet (SV-K16); when it has one, it goes."""
+- Validating a spec, a notation or a palette is `sldb notations validate <name|path> [--json]`
+  (SV-K16, SV-K21, SV-K26, SV-K29): specIR does not define `diagram validate` or `validate`."""
 
 from __future__ import annotations
 
@@ -26,14 +26,13 @@ from specir.visual.commands import (
     DIAGRAM_RENDERERS,
     _lint_paths,
     _render_paths,
-    _validate_paths,
     _write_schema,
     catalog,
     diagram,
 )
 
 #: The top-level aliases, each with the group command it stands for (spec2viz's legacy commands).
-ALIASES = {"render": "diagram render", "validate": "diagram validate", "lint": "diagram lint", "schema": "diagram schema",
+ALIASES = {"render": "diagram render", "lint": "diagram lint", "schema": "diagram schema",
            "build": "catalog build"}
 
 
@@ -41,9 +40,9 @@ ALIASES = {"render": "diagram render", "validate": "diagram validate", "lint": "
     help=(
         "specIR CLI: semantic diagram specs -> diagrams -> catalog HTML.\n\n"
         "\b\nTaxonomy:\n"
-        "- diagram: semantic diagram specs (render, validate, lint, schema)\n"
+        "- diagram: semantic diagram specs (render, lint, schema)\n"
         "- catalog: HTML bundles and hierarchical diagram stores (build, schema)\n\n"
-        "Top-level aliases (render, validate, lint, schema, build) remain available for compatibility.\n\n"
+        "Top-level aliases (render, lint, schema, build) remain available for compatibility.\n\n"
         "Syncing specs, notations, palettes and catalogs into a store, generating specs from a graph "
         "or from Python, resolving views and serving annotations are sldb's: use `sldb notations ...` "
         "and `sldb serve` directly."
@@ -74,7 +73,7 @@ def about():
     click.echo("  catalog config   : a vistas.yml registry or a project.yml / diagram-store config\n")
 
     click.echo("Flow to HTML:")
-    click.echo("  1. specir diagram validate <spec.yml>")
+    click.echo("  1. sldb notations validate <spec.yml>")
     click.echo("  2. specir diagram render   <spec.yml> --out <dir>")
     click.echo("  3. specir diagram lint     <rendered.mmd>")
     click.echo("  4. specir catalog build    --config <vistas.yml> --out <out.html>")
@@ -151,13 +150,6 @@ def build(config: Path, out: Path, base_dir: Path | None, atoms_dir: Path | None
 def render(paths: list[Path], out: Path, renderer: str | None):
     """Legacy alias for `diagram render`."""
     _render_paths(paths, out, renderer)
-
-
-@main.command("validate", short_help="Validate semantic diagram spec files (sldb's load_spec and validate_spec).")
-@click.argument("paths", nargs=-1, type=click.Path(exists=True, path_type=Path), metavar="SPEC ...")
-def validate_cmd(paths: list[Path]):
-    """Legacy alias for `diagram validate`."""
-    _validate_paths(paths)
 
 
 @main.command("lint", short_help="Lint rendered mermaid for browser-breaking syntax.")

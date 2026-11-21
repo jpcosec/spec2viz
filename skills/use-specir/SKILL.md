@@ -35,7 +35,7 @@ specir catalog --help
 | Need | Use | Not |
 |---|---|---|
 | Render, lint, schema of a spec | `specir diagram render`, `specir diagram lint`, `specir diagram schema` | |
-| Validate a spec | `specir diagram validate` (calls sldb's `load_spec` and `validate_spec`; provisional until sldb has its own command) | |
+| Validate a spec, a notation or a palette | `sldb notations validate <name\|path> [--json]` (specIR has no validate command) | |
 | Catalog HTML | `specir catalog build` | |
 | Catalog schema | `specir catalog schema` | |
 | Sync a spec into a store | `sldb notations sync --spec` | a specIR command |
@@ -60,14 +60,14 @@ add it to specIR.
 
 ## CLI taxonomy
 
-- `diagram`: `render`, `validate`, `lint`, `schema`
+- `diagram`: `render`, `lint`, `schema`
 - `catalog`: `build`, `schema`
-- top level: `about`, and the aliases `render`, `validate`, `lint`, `schema`, `build`
+- top level: `about`, and the aliases `render`, `lint`, `schema`, `build`
 
 Core commands (canonical form):
 
 ```bash
-specir diagram validate <spec.yml>
+sldb notations validate <spec.yml>
 specir diagram render <spec.yml> --out <dir>
 specir diagram render <spec.yml> --out <dir> --renderer mermaid
 specir diagram lint <rendered.mmd>
@@ -78,7 +78,7 @@ specir catalog build --config <vistas.yml> --out <out.html> --atoms-dir <atoms> 
 ```
 
 `--backend` is an alias of `--renderer`. A rendered text projection starts with a provenance header
-that names its spec and `specir diagram validate`: never edit it by hand, re-render it.
+that names its spec and `sldb notations validate`: never edit it by hand, re-render it.
 
 ## Renderer contract
 
@@ -93,7 +93,7 @@ viewer). Do not document a renderer list that disagrees with `RENDERER_MAP`.
 ## Full flow to HTML
 
 ```
-specir diagram validate -> specir diagram render -> specir diagram lint -> specir catalog build -> HTML
+sldb notations validate -> specir diagram render -> specir diagram lint -> specir catalog build -> HTML
 ```
 
 ### Real mermaid engine (mmdc)

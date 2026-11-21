@@ -31,7 +31,7 @@ def test_primary_cli_still_exposes_commands():
 
     assert result.exit_code == 0
     assert "render" in result.output
-    assert "validate" in result.output
+    assert "validate" not in result.output
 
 
 def test_the_script_is_the_command_of_specir_cli():
@@ -87,8 +87,6 @@ def test_the_package_installs_in_a_clean_environment_and_starts_without_spec2viz
     rendered = _run([str(specir), "render", str(SPEC), "--out", str(out), "--renderer", "mermaid"], cwd=tmp_path)
     assert rendered.returncode == 0, rendered.stderr[-800:]
     assert (out / "state.quotation.mmd").read_text(encoding="utf-8")
-    validated = _run([str(specir), "validate", str(SPEC)], cwd=tmp_path)
-    assert validated.returncode == 0 and validated.stdout == "state.quotation.yml: OK\n", validated.stderr
     # the package that runs is the installed wheel, not the source tree
     where = _run([str(python), "-c", "import specir, sys; print(specir.__file__)"], cwd=tmp_path)
     assert str(venv) in where.stdout, where.stdout

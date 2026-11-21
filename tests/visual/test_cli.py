@@ -44,38 +44,19 @@ import test_matriz_cobertura_spec2viz as matrix  # noqa: E402
 # ── validate ──────────────────────────────────────────────────────────────────
 
 
-def test_validate_valid():
-    r = runner.invoke(main, ["validate", str(FIXTURES / "sequence.create-quotation.yml")])
-    assert r.exit_code == 0
-    assert "OK" in r.output
-
-
-def test_validate_invalid():
-    r = runner.invoke(main, ["validate", str(FIXTURES / "invalid" / "unknown_node.yml")])
-    assert r.exit_code != 0
-
-
-def test_validate_all_types():
-    for name in [
-        "sequence.create-quotation.yml",
-        "state.quotation.yml",
-        "activity.validation.yml",
-        "deployment.runtime.yml",
-        "component.quotation.yml",
-        "matrix.quotation-view.yml",
-    ]:
-        r = runner.invoke(main, ["validate", str(FIXTURES / name)])
-        assert r.exit_code == 0, f"{name}: {r.output}"
-
-
-def test_diagram_validate_valid():
-    r = runner.invoke(main, ["diagram", "validate", str(FIXTURES / "state.quotation.yml")])
-    assert r.exit_code == 0 and r.output == "state.quotation.yml: OK\n"
-
-
-def test_diagram_validate_invalid():
-    r = runner.invoke(main, ["diagram", "validate", str(FIXTURES / "invalid" / "unknown_node.yml")])
-    assert r.exit_code == 1 and "unknown_node.yml: ERROR: " in r.output
+def test_specir_defines_no_validate_command():
+    """SV-K16, SV-K21, SV-K26 and SV-K29 are `sldb notations validate` (specIR retired its own)."""
+    assert "validate" not in main.commands and "validate" not in ALIASES
+    assert "validate" not in main.commands["diagram"].commands
+    for args in (["validate", "x.yml"], ["diagram", "validate", "x.yml"]):
+        r = runner.invoke(main, args)
+        assert r.exit_code == 2 and "No such command" in r.output
+    r = runner.invoke(main, ["--help"])
+    assert not re.search(r"^\s+validate\b", r.output, flags=re.M)
+    p = subprocess.run([SLDB, "notations", "validate", str(FIXTURES / "state.quotation.yml")], capture_output=True, text=True)
+    assert p.returncode == 0, p.stderr
+    p = subprocess.run([SLDB, "notations", "validate", str(FIXTURES / "invalid" / "unknown_node.yml")], capture_output=True, text=True)
+    assert p.returncode == 1, p.stdout
 
 
 # ── render (top-level alias) ──────────────────────────────────────────────────
@@ -213,7 +194,7 @@ def test_help_mentions_taxonomy_groups_and_renderers():
     assert r.exit_code == 0
     assert "diagram" in r.output
     assert "catalog" in r.output
-    assert "Top-level aliases (render, validate, lint, schema, build) remain available" in r.output
+    assert "Top-level aliases (render, lint, schema, build) remain available" in r.output
 
     r = runner.invoke(main, ["render", "--help"])
     assert r.exit_code == 0
@@ -223,7 +204,7 @@ def test_help_mentions_taxonomy_groups_and_renderers():
     r = runner.invoke(main, ["diagram", "--help"])
     assert r.exit_code == 0
     assert "render" in r.output
-    assert "validate" in r.output
+    assert "validate" not in r.output
     assert "schema" in r.output
 
     r = runner.invoke(main, ["catalog", "--help"])
@@ -250,7 +231,7 @@ def test_about_names_the_commands_of_specir_and_sldb(tmp_path, monkeypatch):
         if line.startswith(("specir ", "sldb ")):
             words, options = _command_and_options(line)
             named.setdefault(" ".join(words), set()).update(options)
-    assert {"specir diagram validate", "specir diagram render", "specir diagram lint", "specir catalog build",
+    assert {"sldb notations validate", "specir diagram render", "specir diagram lint", "specir catalog build",
             "sldb notations sync", "sldb notations from-graph", "sldb notations view", "sldb serve", "sldb models add"} <= set(named)
     assert "spec2viz diagram" not in r.output and "spec2viz catalog" not in r.output
     for command, options in named.items():
@@ -643,7 +624,7 @@ def test_the_skill_names_only_commands_that_exist():
         seen.add(key)
         _assert_answers_help(words, options)
     named = {" ".join(words) for words, _ in seen}
-    assert {"specir about", "specir diagram render", "specir diagram validate", "specir diagram lint", "specir catalog build",
+    assert {"specir about", "specir diagram render", "sldb notations validate", "specir diagram lint", "specir catalog build",
             "specir catalog schema", "sldb notations sync", "sldb notations from-graph", "sldb serve"} <= named
 
 

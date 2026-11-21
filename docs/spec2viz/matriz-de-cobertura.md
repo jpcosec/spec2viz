@@ -197,27 +197,27 @@ equivalente es el comando de sldb y specIR no define subcomando propio.
 | SV-K06 | `spec2viz catalog serve` | reemplazar | `sldb serve` sobre el store del catálogo (IR13b) | SV-G06. IR13d: `sldb serve --store --cors`; test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
 | SV-K07 | `spec2viz catalog sync` | migrado a sldb | `sldb notations sync --catalog` (D1) | SV-G04. IR13d: test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
 | SV-K08 | `spec2viz catalog validate` | migrado a sldb | `sldb notations sync --catalog --check` (D1) | SV-G05. IR13d: test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
-| SV-K09 | `spec2viz diagram` (subgrupo) | migrar tal cual | Subgrupo diagram de specIR con render, lint y schema (y validate, ver SV-K16); sync, from-graph y generate remiten a sldb | SV-K10 a SV-K16 cumplidas. IR13d: `specir diagram` (render, validate, lint, schema); test_help_mentions_taxonomy_groups_and_renderers de `tests/visual/test_cli.py`. |
+| SV-K09 | `spec2viz diagram` (subgrupo) | migrar tal cual | Subgrupo diagram de specIR con render, lint y schema (validate es de sldb, SV-K16); sync, from-graph y generate remiten a sldb | SV-K10 a SV-K16 cumplidas. IR13d: `specir diagram` (render, lint, schema; IR13k retiró validate); test_help_mentions_taxonomy_groups_and_renderers de `tests/visual/test_cli.py`. |
 | SV-K10 | `spec2viz diagram from-graph` | migrado a sldb | `sldb notations from-graph --snapshot/--store` (D2) | SV-F01; test_cli_from_graph_* (5) y test_cli_from_graph_module_prefix reescritos contra el comando de sldb (D2). IR13d: `sldb notations from-graph --snapshot/--store`; test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
 | SV-K11 | `spec2viz diagram generate` | migrado a sldb | `sldb notations from-graph --python` (D2) | SV-F02. IR13d: `sldb notations from-graph --python`; test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
 | SV-K12 | `spec2viz diagram lint` | migrar tal cual | specIR (IR12, IR13d) | SV-D01. IR13d: `specir diagram lint`; test_lint_alias_matches_diagram_lint de `tests/visual/test_cli.py`. |
 | SV-K13 | `spec2viz diagram render` | migrar tal cual | specIR (IR12, IR13d) | test_render_* de `tests/test_cli.py` portados; SV-C01 a SV-C12. IR13d: `specir diagram render`; test_render_* de `tests/visual/test_render_commands.py` (IR12) y test_the_render_alias_writes_what_diagram_render_writes de `tests/visual/test_cli.py`. |
 | SV-K14 | `spec2viz diagram schema` | migrar tal cual | specIR (IR12, IR13d) | SV-A15. IR13d: `specir diagram schema`; `tests/visual/test_schema.py` (IR12) y test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
 | SV-K15 | `spec2viz diagram sync` | migrado a sldb | `sldb notations sync --spec` (D1) | SV-E01. IR13d: `sldb notations sync --spec`; test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
-| SV-K16 | `spec2viz diagram validate` | migrado a sldb | Lógica en sldb (`load_spec`, `validate_spec`, D3). Decisión de IR13d: sldb aún no tiene comando que valide un spec (pedido en su inbox; `sldb validate` valida contra un modelo, sin despacho por tipo ni validación semántica), así que `specir diagram validate` y el alias `specir validate` quedan en specIR de forma provisional: solo llaman a `load_spec` y `validate_spec` de sldb, sin redefinir nada. Cuando sldb publique su comando, los de specIR se retiran, la cabecera de procedencia lo nombra y la fila pasa a «usar sldb directamente» (`docs/spec2viz/correspondencia-cli.md`) | test_validate_valid, test_validate_invalid y test_validate_all_types de `tests/test_cli.py` portados contra el comando elegido; SV-A11 y SV-A12. IR13d: test_validate_valid, test_validate_invalid y test_validate_all_types portados sobre `specir validate`, y test_diagram_validate_valid y test_diagram_validate_invalid sobre `specir diagram validate`, en `tests/visual/test_cli.py`. |
+| SV-K16 | `spec2viz diagram validate` | usar sldb directamente | `sldb notations validate` | SV-A11 y SV-A12. IR13k: sldb publicó `sldb notations validate <nombre|ruta> [--json] [--store S]` (valida un spec, una notación o una paleta; hallazgos `notations/<tipo>-invalid`; sale 1 con algún error); test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`); test_specir_defines_no_validate_command de `tests/visual/test_cli.py` comprueba que specIR no define `diagram validate` ni `validate`. La cabecera de procedencia de las proyecciones nombra `sldb notations validate` (test_the_header_names_a_command_that_validates de `tests/visual/test_render_commands.py`). |
 | SV-K17 | `spec2viz lint` (alias) | migrar tal cual | Alias en specIR (IR13d) | SV-K12. IR13d: `specir lint`; test_lint_alias_matches_diagram_lint y test_every_alias_stands_for_a_group_command_with_the_same_parameters de `tests/visual/test_cli.py`. |
 | SV-K18 | `spec2viz notation` (subgrupo) | usar sldb directamente | `sldb notations` | SV-K19 a SV-K22 cumplidas. IR13d: test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`); specIR no define el subgrupo (test_specir_defines_no_command_the_table_gives_to_sldb). IR13g: SV-K19, SV-K20 y SV-K22 cumplidas; sigue abierta por SV-K21. |
 | SV-K19 | `spec2viz notation list` | usar sldb directamente | `sldb notations list` | SV-H02. IR13d: test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
 | SV-K20 | `spec2viz notation sync` | usar sldb directamente | `sldb notations sync --notation` | SV-E02. IR13d: test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
-| SV-K21 | `spec2viz notation validate` | usar sldb directamente | `sldb.notations.load_notation`; sldb no tiene hoy comando de validación de notaciones (ver pendientes) | SV-H01 y un comando de sldb que valide por nombre o ruta, pedido por el desk de sldb. IR13d: la tabla remite a `sldb.notations.load_notation`, que test_every_equivalent_of_the_table_answers_its_help invoca sobre cada builtin; el comando de sldb sigue pedido. |
+| SV-K21 | `spec2viz notation validate` | usar sldb directamente | `sldb notations validate` | SV-H01. IR13k: test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
 | SV-K22 | `spec2viz notation view` | usar sldb directamente | `sldb notations view` | SV-H03. IR13d: test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). IR13g: SV-H03 cumplida. |
 | SV-K23 | `spec2viz palette` (subgrupo) | usar sldb directamente | `sldb notations` (`list`, `sync --palette`) | SV-K24 a SV-K26 cumplidas. IR13d: test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`); specIR no define el subgrupo. |
 | SV-K24 | `spec2viz palette list` | usar sldb directamente | `sldb notations list` (incluye `builtin_palettes`) | SV-H05. IR13d: test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
 | SV-K25 | `spec2viz palette sync` | usar sldb directamente | `sldb notations sync --palette` | SV-E02. IR13d: test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
-| SV-K26 | `spec2viz palette validate` | usar sldb directamente | `sldb.notations.load_palette` (con contraste WCAG); sldb no tiene hoy comando de validación de paletas (ver pendientes) | SV-H04 y un comando de sldb que valide por nombre o ruta, pedido por el desk de sldb. IR13d: la tabla remite a `sldb.notations.load_palette`, que test_every_equivalent_of_the_table_answers_its_help invoca sobre cada builtin; el comando de sldb sigue pedido. |
+| SV-K26 | `spec2viz palette validate` | usar sldb directamente | `sldb notations validate` | SV-H04. IR13k: test_every_equivalent_of_the_table_answers_its_help de `tests/visual/test_cli.py` lo invoca con `--help` (`docs/spec2viz/correspondencia-cli.md`). |
 | SV-K27 | `spec2viz render` (alias) | migrar tal cual | Alias en specIR (IR13d) | SV-K13. IR13d: `specir render`; test_render_each_type (6), test_render_override, test_render_backend_alias, test_render_multiple, test_render_invalid_fails, test_render_d2, test_render_antonia_html y test_render_json_reflection_artifact portados sobre el alias en `tests/visual/test_cli.py`. |
 | SV-K28 | `spec2viz schema` (alias) | migrar tal cual | Alias en specIR (IR13d) | SV-K14. IR13d: `specir schema`; test_schema_stdout, test_schema_outfile, test_schema_diagram_store_stdout y test_schema_invalid_type_fails de `tests/visual/test_cli.py`. |
-| SV-K29 | `spec2viz validate` (alias) | migrado a sldb | Igual que SV-K16 | SV-K16. IR13d: `specir validate`; ver SV-K16. |
+| SV-K29 | `spec2viz validate` (alias) | usar sldb directamente | `sldb notations validate` | SV-K16. IR13k: test_specir_defines_no_validate_command de `tests/visual/test_cli.py` (specIR no define el alias `validate`). |
 | SV-K30 | Ayuda raíz con taxonomía (diagram, catalog) y lista de renderers | migrar tal cual | Ayuda del comando de specIR (IR13d) | test_help_mentions_taxonomy_groups_and_renderers de `tests/test_cli.py` portado. IR13d: test_help_mentions_taxonomy_groups_and_renderers portado en `tests/visual/test_cli.py`; la ayuda dice «Top-level aliases (render, validate, lint, schema, build) remain available» donde spec2viz decía «Legacy top-level commands remain available». |
 
 ### Pruebas de spec2viz por fila
@@ -312,12 +312,10 @@ Lo que esta matriz deja abierto y debe convertirse en tarea o pedido (no lo resu
    `tests/test_view_contract_resolved.py`, `tests/test_style_palette.py` ni `tests/test_view_doc.py`
    contra sldb. La prueba de paridad la aporta IR13 (prueba en specIR que llama a sldb sin envoltorio) o
    una tarea nueva derivada de estas filas.
-2. SV-K21 y SV-K26: sldb no tiene comando para validar una notación o una paleta por nombre o ruta.
-   Pedido al desk de sldb en la nota `20261115-192054` (la misma que pide validar un spec, SV-K16); sigue
-   abierto.
-3. SV-K16 y SV-K29: decidido en IR13d. Mientras sldb no tenga el comando (pedido a su desk), lo da
-   `specir diagram validate` (y `specir validate`) sobre `load_spec`/`validate_spec` de sldb, sin redefinir
-   nada; se retira cuando sldb lo publique.
+2. SV-K21 y SV-K26: resuelto el 2026-11-21 (IR13k): `sldb notations validate <nombre|ruta>` valida una
+   notación o una paleta (nota `20261115-192054`).
+3. SV-K16 y SV-K29: resuelto el 2026-11-21 (IR13k): `sldb notations validate` también valida un spec;
+   `specir diagram validate` y `specir validate` se retiraron de specIR.
 4. SV-I03: resuelto. sldb portó los 9 casos de resolución y aristas en `tests/matching/test_matching_refs.py`
    (D4) e IR13 portó los 3 de modelos y schema en `tests/visual/test_refs_models.py`.
 5. SV-C13 y SV-C14: resuelto por IR12, que incluyó en su lista de archivos los backends UML de clases y el
@@ -474,27 +472,27 @@ comando de sldb que valide una notación; y con ella SV-K18.
 | `SV-K06` | cumplida | IR `tests/visual/test_cli.py` y `tests/visual/test_catalog_annotations.py`. | - |
 | `SV-K07` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_spec_catalog_sync.py`. | - |
 | `SV-K08` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_spec_catalog_sync.py`. | - |
-| `SV-K09` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-K16 (SV-K12 ya cumplida). |
+| `SV-K09` | cumplida | IR `tests/visual/test_cli.py`; SV-K10 a SV-K16 cumplidas (IR13k). | - |
 | `SV-K10` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_notations_from_graph_cli.py` (6 passed). | - |
 | `SV-K11` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_component_spec_python.py`. | - |
 | `SV-K12` | cumplida | IR `tests/visual/test_cli.py` (44 passed con `SPECIR_MMDC` apuntando a mermaid-cli real; test_lint_alias_matches_diagram_lint) y SV-D01 cumplida. | - |
 | `SV-K13` | cumplida | IR `tests/visual/test_cli.py` y `tests/visual/test_render_commands.py`. | - |
 | `SV-K14` | cumplida | IR `tests/visual/test_cli.py` y `tests/visual/test_schema.py`. | - |
 | `SV-K15` | cumplida | IR `tests/visual/test_cli.py`; sldb `tests/notations/test_notations_sync_spec_cli.py` (4 passed) y `tests/notations/test_spec_sync.py`. | - |
-| `SV-K16` | abierta | IR `tests/visual/test_cli.py` (test_validate_*, test_diagram_validate_*). | `specir diagram validate` es provisional: falta el comando de sldb que valide un spec (nota 20261115-192054) y retirar el de specIR. |
+| `SV-K16` | cumplida | IR `tests/visual/test_cli.py` (IR13k: test_every_equivalent_of_the_table_answers_its_help invoca `sldb notations validate --help`; test_specir_defines_no_validate_command) y SV-A11 y SV-A12 cumplidas. | - |
 | `SV-K17` | cumplida | IR `tests/visual/test_cli.py` (44 passed con `SPECIR_MMDC` apuntando a mermaid-cli real; test_lint_alias_matches_diagram_lint, test_every_alias_stands_for_a_group_command_with_the_same_parameters) y SV-K12 cumplida. | - |
-| `SV-K18` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-K21 (SV-K19, SV-K20 y SV-K22 ya cumplidas). |
+| `SV-K18` | cumplida | IR `tests/visual/test_cli.py`; SV-K19 a SV-K22 cumplidas (IR13k). | - |
 | `SV-K19` | cumplida | IR `tests/visual/test_cli.py` y SV-H02 cumplida (IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed)). | - |
 | `SV-K20` | cumplida | IR `tests/visual/test_cli.py` y SV-E02 cumplida (IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed)). | - |
-| `SV-K21` | abierta | IR `tests/visual/test_cli.py` (invoca `load_notation`) y SV-H01 cumplida (IR `tests/visual/test_notations_parity.py` (IR13j: 89 passed)). | Falta el comando de sldb que valide una notación (nota 20261115-192054). |
+| `SV-K21` | cumplida | IR `tests/visual/test_cli.py` (IR13k: test_every_equivalent_of_the_table_answers_its_help invoca `sldb notations validate --help`; test_specir_defines_no_validate_command) y SV-H01 cumplida. | - |
 | `SV-K22` | cumplida | IR `tests/visual/test_cli.py` y SV-H03 cumplida (IR `tests/visual/test_notations_parity.py` (IR13g: 88 passed, 1 xfailed)). | - |
-| `SV-K23` | abierta | IR `tests/visual/test_cli.py`. | Depende de SV-K26 (SV-K24 y SV-K25 ya cumplidas). |
+| `SV-K23` | cumplida | IR `tests/visual/test_cli.py`; SV-K24 a SV-K26 cumplidas (IR13k). | - |
 | `SV-K24` | cumplida | IR `tests/visual/test_cli.py` y SV-H05 cumplida (IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed)). | - |
 | `SV-K25` | cumplida | IR `tests/visual/test_cli.py` y SV-E02 cumplida (IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed)). | - |
-| `SV-K26` | abierta | IR `tests/visual/test_cli.py` (invoca `load_palette`). | Depende de SV-H04; falta el comando de sldb que valide una paleta (nota 20261115-192054). |
+| `SV-K26` | cumplida | IR `tests/visual/test_cli.py` (IR13k: test_every_equivalent_of_the_table_answers_its_help invoca `sldb notations validate --help`; test_specir_defines_no_validate_command) y SV-H04 cumplida. | - |
 | `SV-K27` | cumplida | IR `tests/visual/test_cli.py`. | - |
 | `SV-K28` | cumplida | IR `tests/visual/test_cli.py`. | - |
-| `SV-K29` | abierta | IR `tests/visual/test_cli.py`. | Igual que SV-K16. |
+| `SV-K29` | cumplida | IR `tests/visual/test_cli.py` (IR13k: test_every_equivalent_of_the_table_answers_its_help invoca `sldb notations validate --help`; test_specir_defines_no_validate_command) y SV-K16 cumplida. | - |
 | `SV-K30` | cumplida | IR `tests/visual/test_cli.py`. | - |
 
 ## Gate de retiro
@@ -505,14 +503,14 @@ Lista comprobable. spec2viz solo se retira cuando **todos** los ítems se cumple
 - [ ] **G1. Filas cumplidas.** Toda fila SV-* de esta matriz tiene su condición de retiro cumplida y la
   prueba que lo acredita citada por IR13 en la fila (ninguna fila sin prueba; ninguna dice descartado ni
   fuera de alcance).
-  Estado IR13: **abierto**. 8 filas abiertas (sección «Acreditación (IR13)»; la corrida con mmdc del 2026-11-15 acreditó 7, IR13e, el 2026-11-16, otras 12, SV-G08 y SV-I02 incluidas, IR13g, el mismo día, SV-H03 y SV-K22, e IR13j, el 2026-11-17, SV-H01).
+  Estado IR13: **abierto**. 1 fila abierta, SV-A17 (sección «Acreditación (IR13)»; la corrida con mmdc del 2026-11-15 acreditó 7, IR13e, el 2026-11-16, otras 12, SV-G08 y SV-I02 incluidas, IR13g, el mismo día, SV-H03 y SV-K22, IR13j, el 2026-11-17, SV-H01, e IR13k, el 2026-11-21, SV-K09, K16, K18, K21, K23, K26 y K29).
 - [ ] **G2. Suite de spec2viz.** Cada caso de cada archivo de `spec2viz/tests/` pasa contra specIR o
   contra sldb (portado), o pertenece a una fila en modo reemplazar cuya prueba equivalente está declarada y
   pasa. La tabla «Pruebas de spec2viz por fila» no deja archivo sin fila.
   Estado IR13: **abierto**. IR13e portó contra sldb 42 pruebas de `tests/test_notation.py`, `tests/test_notation_view.py`, `tests/test_view_contract_resolved.py`, `tests/test_style_palette.py` y `tests/test_view_doc.py` (`tests/visual/test_notations_parity.py`; la parte de CLI de las 6 que invocan el CLI tiene su equivalente en las filas K, y la validación tipada sin CLI de dos de ellas está portada), sin xfail: el caso de `diagram_type` desconocido de test_invalid_notations_are_rejected espera desde IR13j el mensaje de sldb (SV-H01, nota 20261116-232335); los casos de mmdc ya corren con mermaid-cli real (0 skipped); el caso de `label_key` ya no es xfail (sldb `06dbcf02`, IR `4dc8946`). La tabla no deja archivo sin fila (`tests/test_matriz_cobertura_spec2viz.py`).
 - [ ] **G3. CLI.** Cada comando y subgrupo de la ayuda de spec2viz (filas SV-K*) tiene equivalente que
   existe y una prueba lo invoca (`docs/spec2viz/correspondencia-cli.md` de IR13d).
-  Estado IR13: **abierto**. Los 30 equivalentes existen y `test_every_equivalent_of_the_table_answers_its_help` los invoca, pero SV-K21 y SV-K26 no tienen comando en sldb y SV-K16/SV-K29 son provisionales en specIR.
+  Estado IR13: **abierto**. Los 30 equivalentes existen y `test_every_equivalent_of_the_table_answers_its_help` los invoca (IR13k: SV-K16, K21, K26 y K29 son `sldb notations validate`; specIR no define `validate`).
 - [ ] **G4. Consumidores.** Ningún consumidor del inventario importa ni invoca spec2viz: cero
   `import spec2viz`/`from spec2viz`, cero dependencias declaradas (pyproject, requirements, CI), cero
   invocaciones del comando `spec2viz` en código, scripts o configuración ejecutable, y ninguna habilidad de

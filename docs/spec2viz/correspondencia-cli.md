@@ -32,20 +32,20 @@ sldb y se usa directamente. specIR no envuelve la CLI ni la API de sldb.
 | SV-K13 | `spec2viz diagram render` | migrar tal cual | `specir diagram render --renderer --backend --out` | test_render_* de test_render_commands.py (IR12) |
 | SV-K14 | `spec2viz diagram schema` | migrar tal cual | `specir diagram schema --type --out` | test_schema.py (IR12) |
 | SV-K15 | `spec2viz diagram sync` | migrado a sldb | `sldb notations sync --spec --notation --strict` | test_every_equivalent_of_the_table_answers_its_help; paridad en test_sync_generation_parity.py (IR13a) |
-| SV-K16 | `spec2viz diagram validate` | migrado a sldb (provisional en specIR) | `specir diagram validate` | test_diagram_validate_valid, test_diagram_validate_invalid (ver la decisión de abajo) |
+| SV-K16 | `spec2viz diagram validate` | usar sldb directamente | `sldb notations validate --json --store` | test_every_equivalent_of_the_table_answers_its_help; test_specir_defines_no_validate_command (ver la decisión de abajo) |
 | SV-K17 | `spec2viz lint` | migrar tal cual | `specir lint` | test_lint_alias_matches_diagram_lint |
 | SV-K18 | `spec2viz notation` | usar sldb directamente | `sldb notations` | test_every_equivalent_of_the_table_answers_its_help |
 | SV-K19 | `spec2viz notation list` | usar sldb directamente | `sldb notations list` | test_every_equivalent_of_the_table_answers_its_help |
 | SV-K20 | `spec2viz notation sync` | usar sldb directamente | `sldb notations sync --notation` | test_every_equivalent_of_the_table_answers_its_help |
-| SV-K21 | `spec2viz notation validate` | usar sldb directamente | `sldb.notations.load_notation` (API; sldb aún no tiene comando) | test_every_equivalent_of_the_table_answers_its_help |
+| SV-K21 | `spec2viz notation validate` | usar sldb directamente | `sldb notations validate --json --store` | test_every_equivalent_of_the_table_answers_its_help |
 | SV-K22 | `spec2viz notation view` | usar sldb directamente | `sldb notations view --store` | test_every_equivalent_of_the_table_answers_its_help |
 | SV-K23 | `spec2viz palette` | usar sldb directamente | `sldb notations` | test_every_equivalent_of_the_table_answers_its_help |
 | SV-K24 | `spec2viz palette list` | usar sldb directamente | `sldb notations list` | test_every_equivalent_of_the_table_answers_its_help |
 | SV-K25 | `spec2viz palette sync` | usar sldb directamente | `sldb notations sync --palette` | test_every_equivalent_of_the_table_answers_its_help |
-| SV-K26 | `spec2viz palette validate` | usar sldb directamente | `sldb.notations.load_palette` (API; sldb aún no tiene comando) | test_every_equivalent_of_the_table_answers_its_help |
+| SV-K26 | `spec2viz palette validate` | usar sldb directamente | `sldb notations validate --json --store` | test_every_equivalent_of_the_table_answers_its_help |
 | SV-K27 | `spec2viz render` | migrar tal cual | `specir render --renderer --backend --out` | test_render_* (alias) de test_cli.py |
 | SV-K28 | `spec2viz schema` | migrar tal cual | `specir schema --type --out` | test_schema_stdout, test_schema_outfile, test_schema_diagram_store_stdout, test_schema_invalid_type_fails |
-| SV-K29 | `spec2viz validate` | migrado a sldb (provisional en specIR) | `specir validate` | test_validate_valid, test_validate_invalid, test_validate_all_types |
+| SV-K29 | `spec2viz validate` | usar sldb directamente | `sldb notations validate --json --store` | test_specir_defines_no_validate_command |
 
 ## Opciones de `catalog build` que cambian
 
@@ -57,14 +57,11 @@ sldb y se usa directamente. specIR no envuelve la CLI ni la API de sldb.
 
 ## Decisión sobre SV-K16 y SV-K29 (validar un spec por CLI)
 
-- La lógica es de sldb (`load_spec` y `validate_spec` de `sldb.api.notations`, D3). sldb no tiene todavía
-  un comando que valide un spec por ruta: está pedido en su inbox (nota
-  `20261115-192054-suggestion-sldb-notations-validar-una-notaci-n-una-paleta-o-un-spec-por-nombre-o-ruta-desde-la-cli`,
-  que también pide validar notaciones y paletas, SV-K21 y SV-K26).
-- `sldb validate` no lo cubre: valida un documento o unos datos contra un modelo, sin elegir el tipo de
-  diagrama ni hacer la validación semántica de `validate_spec`.
-- Decisión (IR13d): mientras sldb no tenga el comando, `specir diagram validate` y su alias `validate`
-  siguen en specIR. Solo llaman a `load_spec` y `validate_spec` de sldb y no redefinen nada. La cabecera de
-  procedencia de las proyecciones nombra `specir diagram validate`.
-- Cuando sldb publique su comando, `specir diagram validate` y `specir validate` se retiran, la cabecera
-  pasa a nombrar el comando de sldb y esta fila pasa a «usar sldb directamente».
+- La lógica es de sldb (`load_spec` y `validate_spec` de `sldb.api.notations`, D3). Desde el 2026-11-21
+  sldb tiene el comando: `sldb notations validate <nombre|ruta> [--json] [--store S]` valida un spec, una
+  notación o una paleta (hallazgos `notations/<tipo>-invalid`; sale 1 con algún error). Cubre también
+  SV-K21 y SV-K26.
+- `sldb validate` no lo cubre: valida un documento o unos datos contra un modelo.
+- Decisión (IR13k): `specir diagram validate` y el alias `specir validate` se retiraron de specIR
+  (test_specir_defines_no_validate_command). La cabecera de procedencia de las proyecciones nombra
+  `sldb notations validate` y estas filas pasan a «usar sldb directamente».

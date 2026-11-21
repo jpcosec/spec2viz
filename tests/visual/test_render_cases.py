@@ -101,7 +101,6 @@ def test_cli_schema_validate_and_render(tmp_path, monkeypatch):
     runner = CliRunner()
     for args in [
         ["diagram", "schema", "--type", "class", "--out", str(tmp_path / "class.schema.json")],
-        ["diagram", "validate", str(EXAMPLE)],
         ["diagram", "render", str(EXAMPLE), "--out", str(tmp_path)],
         ["diagram", "render", str(EXAMPLE), "--backend", "plantuml", "--out", str(tmp_path)],
     ]:

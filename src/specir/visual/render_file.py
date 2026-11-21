@@ -97,7 +97,7 @@ def provenance_text(spec_path: str | Path) -> str:
         shown = spec.resolve().relative_to(Path.cwd().resolve())
     except ValueError:
         shown = spec
-    return f"{COMMAND}: generated from {shown.as_posix()}; do not edit, run `{COMMAND} diagram validate {shown.as_posix()}` and re-render"
+    return f"{COMMAND}: generated from {shown.as_posix()}; do not edit, run `sldb notations validate {shown.as_posix()}` and re-render"
 
 
 __all__ = ["COMMAND", "provenance_header", "provenance_text", "render_to_file", "with_provenance"]
