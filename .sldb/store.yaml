@@ -1168,6 +1168,7 @@ include:
 - model: TaskCodeDoc
   paths:
   - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
+  - desk/tasks/task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr.md
 graph_backend: networkx
 policy: {}
 tag_models:

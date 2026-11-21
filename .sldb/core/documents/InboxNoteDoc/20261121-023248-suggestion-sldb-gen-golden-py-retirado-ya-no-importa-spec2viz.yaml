@@ -1,0 +1,19 @@
+name: 20261121-023248-suggestion-sldb-gen-golden-py-retirado-ya-no-importa-spec2viz
+path: desk/inbox/20261121-023248-suggestion-sldb-gen-golden-py-retirado-ya-no-importa-spec2viz.md
+source_hash: 24107942110d29d6b9acf3dab5c1323fe877bb8fc7a724ff0472c3a75ecae3fc
+content_hash: 53d815bae9dda69c90d07c9ed1ffd25960fcbc861e4c58097c0863f973f6e3d5
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: f40fc5b1356caa8d1d17d20b449730172b50375522fc4883b6274eff79d8e7ed
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  title: 5e3bf3c6624d856efc9a53897542a450da364a7961502a22901d35db09ee31ed
+  body: 626542e4959ffcb87644aad18e36ffac74786d9c29e6b823df485f5ddda6188f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null
