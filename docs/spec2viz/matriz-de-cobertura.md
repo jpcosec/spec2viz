@@ -499,25 +499,25 @@ comando de sldb que valide una notación; y con ella SV-K18.
 Lista comprobable. spec2viz solo se retira cuando **todos** los ítems se cumplen; el procedimiento está en
 `docs/spec2viz/gate-de-retiro.md` y lo evalúa IR13.
 
-- [ ] **G1. Filas cumplidas.** Toda fila SV-* de esta matriz tiene su condición de retiro cumplida y la
+- [x] **G1. Filas cumplidas.** Toda fila SV-* de esta matriz tiene su condición de retiro cumplida y la
   prueba que lo acredita citada por IR13 en la fila (ninguna fila sin prueba; ninguna dice descartado ni
   fuera de alcance).
-  Estado IR13: **abierto**. 1 fila abierta, SV-A17 (sección «Acreditación (IR13)»; la corrida con mmdc del 2026-11-15 acreditó 7, IR13e, el 2026-11-16, otras 12, SV-G08 y SV-I02 incluidas, IR13g, el mismo día, SV-H03 y SV-K22, IR13j, el 2026-11-17, SV-H01, e IR13k, el 2026-11-21, SV-K09, K16, K18, K21, K23, K26 y K29).
-- [ ] **G2. Suite de spec2viz.** Cada caso de cada archivo de `spec2viz/tests/` pasa contra specIR o
+  Estado: **cumplido el 2026-11-23** (retiro declarado en el acta; `specir retirement check` rc 0). Historia, IR13: **abierto**. 1 fila abierta, SV-A17 (sección «Acreditación (IR13)»; la corrida con mmdc del 2026-11-15 acreditó 7, IR13e, el 2026-11-16, otras 12, SV-G08 y SV-I02 incluidas, IR13g, el mismo día, SV-H03 y SV-K22, IR13j, el 2026-11-17, SV-H01, e IR13k, el 2026-11-21, SV-K09, K16, K18, K21, K23, K26 y K29).
+- [x] **G2. Suite de spec2viz.** Cada caso de cada archivo de `spec2viz/tests/` pasa contra specIR o
   contra sldb (portado), o pertenece a una fila en modo reemplazar cuya prueba equivalente está declarada y
   pasa. La tabla «Pruebas de spec2viz por fila» no deja archivo sin fila.
-  Estado IR13: **abierto**. IR13e portó contra sldb 42 pruebas de `tests/test_notation.py`, `tests/test_notation_view.py`, `tests/test_view_contract_resolved.py`, `tests/test_style_palette.py` y `tests/test_view_doc.py` (`tests/visual/test_notations_parity.py`; la parte de CLI de las 6 que invocan el CLI tiene su equivalente en las filas K, y la validación tipada sin CLI de dos de ellas está portada), sin xfail: el caso de `diagram_type` desconocido de test_invalid_notations_are_rejected espera desde IR13j el mensaje de sldb (SV-H01, nota 20261116-232335); los casos de mmdc ya corren con mermaid-cli real (0 skipped); el caso de `label_key` ya no es xfail (sldb `06dbcf02`, IR `4dc8946`). La tabla no deja archivo sin fila (`tests/test_matriz_cobertura_spec2viz.py`).
-- [ ] **G3. CLI.** Cada comando y subgrupo de la ayuda de spec2viz (filas SV-K*) tiene equivalente que
+  Estado: **cumplido el 2026-11-23** (retiro declarado en el acta; `specir retirement check` rc 0). Historia, IR13: **abierto**. IR13e portó contra sldb 42 pruebas de `tests/test_notation.py`, `tests/test_notation_view.py`, `tests/test_view_contract_resolved.py`, `tests/test_style_palette.py` y `tests/test_view_doc.py` (`tests/visual/test_notations_parity.py`; la parte de CLI de las 6 que invocan el CLI tiene su equivalente en las filas K, y la validación tipada sin CLI de dos de ellas está portada), sin xfail: el caso de `diagram_type` desconocido de test_invalid_notations_are_rejected espera desde IR13j el mensaje de sldb (SV-H01, nota 20261116-232335); los casos de mmdc ya corren con mermaid-cli real (0 skipped); el caso de `label_key` ya no es xfail (sldb `06dbcf02`, IR `4dc8946`). La tabla no deja archivo sin fila (`tests/test_matriz_cobertura_spec2viz.py`).
+- [x] **G3. CLI.** Cada comando y subgrupo de la ayuda de spec2viz (filas SV-K*) tiene equivalente que
   existe y una prueba lo invoca (`docs/spec2viz/correspondencia-cli.md` de IR13d).
-  Estado IR13: **abierto**. Los 30 equivalentes existen y `test_every_equivalent_of_the_table_answers_its_help` los invoca (IR13k: SV-K16, K21, K26 y K29 son `sldb notations validate`; specIR no define `validate`).
-- [ ] **G4. Consumidores.** Ningún consumidor del inventario importa ni invoca spec2viz: cero
+  Estado: **cumplido el 2026-11-23** (retiro declarado en el acta; `specir retirement check` rc 0). Historia, IR13: **abierto**. Los 30 equivalentes existen y `test_every_equivalent_of_the_table_answers_its_help` los invoca (IR13k: SV-K16, K21, K26 y K29 son `sldb notations validate`; specIR no define `validate`).
+- [x] **G4. Consumidores.** Ningún consumidor del inventario importa ni invoca spec2viz: cero
   `import spec2viz`/`from spec2viz`, cero dependencias declaradas (pyproject, requirements, CI), cero
   invocaciones del comando `spec2viz` en código, scripts o configuración ejecutable, y ninguna habilidad de
   agente que instruya a invocarlo. El comprobador de IR13 sale con código distinto de cero si encuentra una.
-  Estado IR13: **abierto**. `specir retirement check` (corrida del 2026-11-16 de IR13h, acta) lista 63 dependencias: sldb 1, las pruebas de paridad de IR 43 y el store `spec2viz/.sldb` 19 (G5); graph_ui, deskops y pron salen con 0.
-- [ ] **G5. Stores.** Ningún store del universo registra modelos `spec2viz.sldb_models` en su
+  Estado: **cumplido el 2026-11-23** (retiro declarado en el acta; `specir retirement check` rc 0). Historia, IR13: **abierto**. `specir retirement check` (corrida del 2026-11-16 de IR13h, acta) lista 63 dependencias: sldb 1, las pruebas de paridad de IR 43 y el store `spec2viz/.sldb` 19 (G5); graph_ui, deskops y pron salen con 0.
+- [x] **G5. Stores.** Ningún store del universo registra modelos `spec2viz.sldb_models` en su
   `store.yaml`, su `store_index.yaml` ni sus `core/models/*.yaml`.
-  Estado IR13: **abierto**. `spec2viz/.sldb` registra los 7 modelos de `spec2viz.sldb_models` (19 registros).
+  Estado: **cumplido el 2026-11-23** (retiro declarado en el acta; `specir retirement check` rc 0). Historia, IR13: **abierto**. `spec2viz/.sldb` registra los 7 modelos de `spec2viz.sldb_models` (19 registros).
 - [x] **G6. specIR limpio.** Ningún módulo bajo `src/specir/` importa spec2viz (prueba de imports) y specIR
   no define envoltorios de lo que se usa de sldb directamente.
   Estado IR13: **cumplido**. `tests/test_imports.py` (9 passed); specIR no define comandos de lo que es de sldb (`test_specir_defines_no_command_the_table_gives_to_sldb`).

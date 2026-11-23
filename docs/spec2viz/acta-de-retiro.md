@@ -4,14 +4,22 @@ Tarea IR13 (`task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec
 2026-11-15 sobre IR `dc5496a`, sldb `d4aeb4b1` y el inventario de consumidores de
 `docs/spec2viz/matriz-de-cobertura.md`.
 
-**Retiro: no declarado.** El comprobador `specir retirement check` sale con código 1: quedan 63
+**Retiro: declarado el 2026-11-23** (decisión de JP del mismo día, recibos owner-1 y owner-2 de
+`task-jp-decide-declarar-el-retiro-de-spec2viz-sacar-spec2viz-sldb-del-universo-del-comprobador-y-archivar`).
+El comprobador `specir retirement check` sale con código 0: 0 dependencias de spec2viz en el universo
+auditado y 0 filas de la matriz sin acreditar (corrida del 2026-11-23, ver «Salida del comprobador»).
+`specir catalog build` termina: 55,8 s, rc 0, 1,7 GB de RSS, después de que sldb cerrara
+`attach_atom_edges` (sldb `c377aff6`; ver «Medición de `specir catalog build`»). Los cambios del momento
+del retiro están hechos (`109684f`). Lo único que queda es archivar el repo spec2viz en GitHub (punto 9 de
+«Lo que falta para declarar el retiro»), el último paso, que hace el coordinador; esta tarea no lo hace.
+
+Historia, hasta la declaración: el retiro estaba **no declarado** y el comprobador salía con código 1: quedaban 63
 dependencias de spec2viz en el universo auditado y 8 filas de la matriz sin acreditar (corrida del
 2026-11-17 de IR13j, que acreditó SV-H01 con el mensaje de sldb para un `diagram_type` desconocido; eran 9
 en la del 2026-11-16 de IR13h, con 0 dependencias de deskops tras su migración a specir; la de IR13g acreditó
 SV-H03 y SV-K22 tras la migración de graph_ui en `79d63ee`; eran 11
 tras el ciclo de corrección 1 de IR13e, que portó contra sldb las pruebas de notaciones, paletas y vistas
-y acreditó SV-G08 y SV-I02; antes de IR13e eran 23, y 30 antes de las decisiones de JP y la corrida con mermaid-cli real). Archivar o borrar
-spec2viz lo decide JP cuando el gate se cumpla; esta tarea no lo hace.
+y acreditó SV-G08 y SV-I02; antes de IR13e eran 23, y 30 antes de las decisiones de JP y la corrida con mermaid-cli real).
 
 ## Comprobador
 
@@ -96,14 +104,32 @@ test_invalid_notations_are_rejected lo espera sin xfail y `tests/visual/test_not
 89 passed, sin xfailed ni xpassed. Las 63 dependencias son las mismas de la salida de abajo; las filas bajan
 de 9 a 8 porque SV-H01 pasa a cumplida.
 
+rc 0; 0 dependencias; 0 filas no acreditadas. Corrida del 2026-11-23 de
+`task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom`,
+sobre IR `b723bb6`, con el universo declarado (graph_ui, deskops, pron, sldb e IR; `spec2viz/.sldb` ya no
+está en el inventario) y `timeout 300`:
+
+```
+specir retirement check --path graph_ui=../UIs/graph_ui --path deskops=../deskops \
+  --path pron=../pron --path sldb=../sldb
+audited repos: graph_ui, deskops, pron, sldb, IR
+audited stores: -
+dependencies: 0
+rows not accredited: 0
+gate: passed, the retirement can be declared
+```
+
+Sobre sldb `c377aff6`, deskops `75545ca7`, pron `a0c4100`, graph_ui `e0647be` y spec2viz `91ba1d0`. Los
+conteos de las corridas de arriba son historia fechada.
+
 ## Gate G1 a G7
 
 | Ítem | Estado | Evidencia |
 |---|---|---|
-| G1 Filas cumplidas | abierto | 97 cumplidas y 8 abiertas en «Acreditación (IR13)» de la matriz. IR13j (2026-11-17) acreditó SV-H01: el caso de `diagram_type` desconocido de test_invalid_notations_are_rejected espera el mensaje de sldb, sin xfail (nota 20261116-232335); SV-K21, que dependía de ella, sigue abierta por el comando de sldb que valide una notación. IR13g (2026-11-16) acreditó SV-H03 y SV-K22, al resolverse G4 de graph_ui (`79d63ee`). IR13e (2026-11-16) acreditó SV-E02, SV-H02, SV-H04, SV-H05, SV-H06, SV-J06, SV-K19, SV-K20, SV-K24 y SV-K25, y en su ciclo de corrección 1 SV-G08 y SV-I02 (`tests/visual/test_catalog.py`, 68 passed, sin xfail de `label_key`); la corrida con mermaid-cli real del 2026-11-15 acreditó SV-B03, SV-C13, SV-C14, SV-D01, SV-G03, SV-K12 y SV-K17. |
-| G2 Suite de spec2viz | abierto | Portadas contra sldb por IR13e en `tests/visual/test_notations_parity.py` (89 passed desde IR13j, sin xfailed ni xpassed): 42 pruebas de `tests/test_view_doc.py`, `test_notation.py`, `test_notation_view.py`, `test_view_contract_resolved.py` y `test_style_palette.py`, más 9 comparaciones «valida igual» (51); la parte de CLI de las 6 que invocan el CLI de spec2viz tiene su equivalente en las filas K, y la validación tipada sin CLI de dos de ellas está portada (test_notation_load_gives_typed_errors, 7 casos; test_palette_check_is_typed, 6 casos). El caso de `diagram_type` desconocido de test_invalid_notations_are_rejected ya no es xfail: espera el mensaje de sldb, que sldb conserva como contrato (SV-H01, IR13j, nota 20261116-232335). Los casos de mmdc (`test_mermaid_mmdc.py` y los de motor real de `test_class_diagram.py`, `test_class_packages.py` y `test_catalog_resolved_views.py`) ya corren con mermaid-cli real y pasan (2026-11-15). `label_key` frente a `normKey` (`test_atoms_matching.py`): ya no es xfail (sldb `06dbcf02`, IR `4dc8946`; `tests/visual/test_catalog.py` 68 passed). Los 38 archivos tienen fila (`tests/test_matriz_cobertura_spec2viz.py`, 5 passed). |
-| G3 CLI | abierto | Los 30 equivalentes existen y los invoca `test_every_equivalent_of_the_table_answers_its_help` (`tests/visual/test_cli.py`, 44 passed). Faltan los comandos de sldb para validar notación y paleta (SV-K21, SV-K26) y el de validar un spec, que hoy da specIR de forma provisional (SV-K16, SV-K29). Nota de sldb `20261115-192054`. |
-| G4 Consumidores | abierto | 63 dependencias (abajo; corrida del 2026-11-16 de IR13h): sldb 1 (`runs/subagents/20261116-exec-oraculo-d2/gen_golden.py:5`), IR 43 (los oráculos de paridad en pruebas, que se retiran al declarar) y `spec2viz/.sldb` 19 (G5). graph_ui (`79d63ee`), pron (`4224186`) y deskops (`ee9bc3cd`; closeouts `74ffdb63`, `b716bf85` y `2421ca29`) están resueltos y salen con 0 (ver «Consumidores»). |
+| G1 Filas cumplidas | cumplido el 2026-11-23 (0 filas no acreditadas) | 97 cumplidas y 8 abiertas en «Acreditación (IR13)» de la matriz. IR13j (2026-11-17) acreditó SV-H01: el caso de `diagram_type` desconocido de test_invalid_notations_are_rejected espera el mensaje de sldb, sin xfail (nota 20261116-232335); SV-K21, que dependía de ella, sigue abierta por el comando de sldb que valide una notación. IR13g (2026-11-16) acreditó SV-H03 y SV-K22, al resolverse G4 de graph_ui (`79d63ee`). IR13e (2026-11-16) acreditó SV-E02, SV-H02, SV-H04, SV-H05, SV-H06, SV-J06, SV-K19, SV-K20, SV-K24 y SV-K25, y en su ciclo de corrección 1 SV-G08 y SV-I02 (`tests/visual/test_catalog.py`, 68 passed, sin xfail de `label_key`); la corrida con mermaid-cli real del 2026-11-15 acreditó SV-B03, SV-C13, SV-C14, SV-D01, SV-G03, SV-K12 y SV-K17. |
+| G2 Suite de spec2viz | cumplido el 2026-11-23 | Portadas contra sldb por IR13e en `tests/visual/test_notations_parity.py` (89 passed desde IR13j, sin xfailed ni xpassed): 42 pruebas de `tests/test_view_doc.py`, `test_notation.py`, `test_notation_view.py`, `test_view_contract_resolved.py` y `test_style_palette.py`, más 9 comparaciones «valida igual» (51); la parte de CLI de las 6 que invocan el CLI de spec2viz tiene su equivalente en las filas K, y la validación tipada sin CLI de dos de ellas está portada (test_notation_load_gives_typed_errors, 7 casos; test_palette_check_is_typed, 6 casos). El caso de `diagram_type` desconocido de test_invalid_notations_are_rejected ya no es xfail: espera el mensaje de sldb, que sldb conserva como contrato (SV-H01, IR13j, nota 20261116-232335). Los casos de mmdc (`test_mermaid_mmdc.py` y los de motor real de `test_class_diagram.py`, `test_class_packages.py` y `test_catalog_resolved_views.py`) ya corren con mermaid-cli real y pasan (2026-11-15). `label_key` frente a `normKey` (`test_atoms_matching.py`): ya no es xfail (sldb `06dbcf02`, IR `4dc8946`; `tests/visual/test_catalog.py` 68 passed). Los 38 archivos tienen fila (`tests/test_matriz_cobertura_spec2viz.py`, 5 passed). |
+| G3 CLI | cumplido el 2026-11-23 (`sldb notations validate` cubre SV-K16, K21, K26 y K29; `3d0a436`) | Los 30 equivalentes existen y los invoca `test_every_equivalent_of_the_table_answers_its_help` (`tests/visual/test_cli.py`, 44 passed). Faltan los comandos de sldb para validar notación y paleta (SV-K21, SV-K26) y el de validar un spec, que hoy da specIR de forma provisional (SV-K16, SV-K29). Nota de sldb `20261115-192054`. |
+| G4 Consumidores | cumplido el 2026-11-23 (0 dependencias; sldb `c377aff6`, oráculos de IR congelados en `c47111d`) | 63 dependencias (abajo; corrida del 2026-11-16 de IR13h): sldb 1 (`runs/subagents/20261116-exec-oraculo-d2/gen_golden.py:5`), IR 43 (los oráculos de paridad en pruebas, que se retiran al declarar) y `spec2viz/.sldb` 19 (G5). graph_ui (`79d63ee`), pron (`4224186`) y deskops (`ee9bc3cd`; closeouts `74ffdb63`, `b716bf85` y `2421ca29`) están resueltos y salen con 0 (ver «Consumidores»). |
 | G5 Stores | hecho el 2026-11-23 (`a918dfa`) | `spec2viz/.sldb` registra los 7 modelos de `spec2viz.sldb_models` (19 registros). Es el único store del universo que lo hace. Decisión de JP del 2026-11-16 (transmitida por el supervisor; nota de spec2viz `desk/inbox/20261116-021430-suggestion-g5-decisi-n-de-jp-sobre-spec2viz-sldb.md`): opción A, el store `spec2viz/.sldb` se archiva junto con el repo spec2viz cuando `specir retirement check` dé 0, y no se reapuntan sus 7 modelos. Registro en spec2viz: atom `atom-decisión-de-jp-2026-11-16-g5-el-store-spec2viz-sldb-se-archiva-con-el-repo` y task.decision `task-decisión-de-jp-g5-del-retiro-archivar-el-store-spec2viz-sldb-con-el-repo-o-reapuntar-sus-7-modelos-a`. Resuelta en IR: las pruebas ya no federan ese store (`task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a`, código `b16aab7`, closeout `4f1e108`), después de que deskops quitara su enlace al store de spec2viz (`421d6a27`, closeout `74ffdb63`; pedido en la nota de inbox 20261116-122447). Hecho el 2026-11-23 (`a918dfa`, decisión de JP, recibo owner-2 punto 1): `spec2viz/.sldb` salió del inventario de la matriz (el universo del comprobador) y SV-A17 quedó acreditada citando G5 opción A; `specir retirement check` sale con rc 0 (0 dependencias, 0 filas no acreditadas). Pendiente solo archivar el store con el repo spec2viz (punto 3, coordinador). |
 | G6 specIR limpio | cumplido | `tests/test_imports.py` (9 passed): nada bajo `src/specir/` importa spec2viz; `test_specir_defines_no_command_the_table_gives_to_sldb`. |
 | G7 Decisión del YAML | cumplido | JP aceptó el 2026-11-15 (vía supervisor) que el YAML del spec queda como formato de autoría e intercambio subordinado al grafo: `docs/decisiones/fuente-de-verdad-del-diagrama.md` y atom `atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al` (la propuesta de IR07 quedó como redirección). |
@@ -123,6 +149,9 @@ Para enviar los mensajes se registraron en `desk/registry` de IR los repos desko
 `graph-ui`) y spec2viz con `deskops repo register`; antes solo estaba sldb.
 
 ## Salida del comprobador (dependencias)
+
+Corrida del 2026-11-23: rc 0 y ninguna dependencia (ver arriba). La salida de abajo es la de la corrida del
+2026-11-17 (IR13j), con rc 1, y se conserva como historia fechada.
 
 ```
 sldb	runs/subagents/20261116-exec-oraculo-d2/gen_golden.py:5	importación	from spec2viz.generators import python_ast
@@ -190,7 +219,14 @@ spec2viz/.sldb	core/models/SpecNodeDoc.yaml:2	modelo registrado	model_ref: spec2
 spec2viz/.sldb	core/models/ViewDoc.yaml:2	modelo registrado	model_ref: spec2viz.sldb_models:ViewDoc
 ```
 
-## Medición de `specir catalog build` (pendiente de IR13d)
+## Medición de `specir catalog build`
+
+**Medición del 2026-11-23** (coordinador, sldb `c377aff6`, que cerró
+`task-matching-attach-atom-edges-…`):
+`specir catalog build --config tests/visual/fixtures/catalog/examples/catalog/project.yml` termina en
+55,8 s con rc 0 y 1,7 GB de RSS (antes no terminaba en 300 s). El pedido a sldb queda resuelto.
+
+Medición original (2026-11-15, historia fechada):
 
 `specir catalog build --config tests/visual/fixtures/catalog/examples/catalog/project.yml` dentro de IR
 no termina en 300 s (`timeout 300`, rc 124, 3 min 50 s de CPU). Con cProfile (corrida cortada a los
@@ -209,38 +245,43 @@ Es de sldb, no de specIR: specIR solo usa la API pública. Pedido en
 
 ## Lo que falta para declarar el retiro
 
-1. Consumidores (G4): que sldb resuelva su pedido y responda con el commit
+Estado al 2026-11-23: el retiro está declarado; solo queda el punto 9. Cada punto indica cómo quedó.
+
+1. **Hecho el 2026-11-23** (sldb `c377aff6`; `specir retirement check` rc 0). Consumidores (G4): que sldb resuelva su pedido y responda con el commit
    (`runs/subagents/20261116-exec-oraculo-d2/gen_golden.py:5`); lo demás que queda en G4 es de IR (los
    oráculos de paridad en pruebas, punto 6, que se retiran al declarar) y `spec2viz/.sldb` (G5, punto 2).
    pron quedó resuelto con `4224186`, graph_ui con `79d63ee` y deskops con `ee9bc3cd` (closeouts
    `74ffdb63`, `b716bf85` y `2421ca29`).
-2. Store (G5): decidido por JP el 2026-11-16 (opción A): `spec2viz/.sldb` se archiva con el repo spec2viz
+2. **Hecho el 2026-11-23** (`a918dfa`). Store (G5): decidido por JP el 2026-11-16 (opción A): `spec2viz/.sldb` se archiva con el repo spec2viz
    cuando `specir retirement check` dé 0, sin reapuntar sus 7 modelos. Las pruebas ya no lo federan:
    `task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a` quedó resuelta en IR
    (`b16aab7`, closeout `4f1e108`), después de que deskops quitara su enlace (`421d6a27`, closeout
    `74ffdb63`; pedido en la nota 20261116-122447). Hecho el 2026-11-23 (`a918dfa`): salió del universo del
    comprobador y SV-A17 se acredita con G5 opción A; `specir retirement check` da rc 0. Queda archivarlo con el repo.
-3. Filas «usar sldb directamente»: portadas por IR13e (`tests/visual/test_notations_parity.py`). Quedan
+3. **Hecho** (0 filas no acreditadas el 2026-11-23). Filas «usar sldb directamente»: portadas por IR13e (`tests/visual/test_notations_parity.py`). Quedan
    SV-A17 (solo G5), y SV-K18 y SV-K23 (dependen de SV-K21 y SV-K26). SV-H03 y su dependiente SV-K22
    quedaron cumplidas en IR13g (graph_ui `79d63ee`), y SV-H01 en IR13j (el caso de `diagram_type`
    desconocido espera el mensaje de sldb, nota 20261116-232335); SV-K21, que dependía de SV-H01, sigue
    abierta por el comando de sldb (punto 4).
-4. sldb: comando para validar spec, notación y paleta (SV-K16, K21, K26, K29; después hay que retirar
+4. **Hecho** (`sldb notations validate`, `3d0a436`). sldb: comando para validar spec, notación y paleta (SV-K16, K21, K26, K29; después hay que retirar
    `specir diagram validate`/`validate`). El `label_key` con `_` (SV-G08 y SV-I02) quedó resuelto
    (sldb `06dbcf02`, IR `4dc8946`).
-5. mmdc: resuelto el 2026-11-15. Con mermaid-cli real (`SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc`)
+5. **Hecho.** mmdc: resuelto el 2026-11-15. Con mermaid-cli real (`SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc`)
    pasan los casos de motor real; quedaron cumplidas SV-B03, C13, C14, D01, G03, K12 y K17. SV-K09 sigue
    abierta por SV-K16.
-6. IR: quitar o congelar los oráculos de paridad en las pruebas (la federación del store de spec2viz ya
-   salió de las pruebas con `b16aab7`; ver punto 2).
-7. G7: resuelto el 2026-11-15 (decisión aceptada por JP; ver «Decisiones»).
-8. En el momento del retiro: el BPMN pasa a `exporter="specir"` y a un `targetNamespace` de specir, y la
+6. **Hecho** (`c47111d`, closeout `3bbc758`, 2026-11-21). IR: quitar o congelar los oráculos de paridad en
+   las pruebas (la federación del store de spec2viz ya salió de las pruebas con `b16aab7`; ver punto 2).
+   Los oráculos de paridad se retiran al declarar: ya comparan contra goldens congelados de spec2viz y no
+   importan spec2viz, así que el comprobador cuenta 0 dependencias en IR.
+7. **Hecho.** G7: resuelto el 2026-11-15 (decisión aceptada por JP; ver «Decisiones»).
+8. **Hecho.** En el momento del retiro: el BPMN pasa a `exporter="specir"` y a un `targetNamespace` de specir, y la
    página del catálogo a una clave de `localStorage` de specir, con goldens nuevos y migración de las
    anotaciones guardadas con `spec2viz.catalog.annotations.v1` (decisión 3).
    **Hecho el 2026-11-23** (task-cambios-del-momento-del-retiro-de-spec2viz…): `exporter="specir"`,
    `targetNamespace="http://specir/bpmn"`, clave `specir.catalog.annotations.v1` con migración desde la vieja y
-   goldens regenerados; commit: ver `git log --grep Task-Id` de la tarea.
-9. Archivar spec2viz cuando `specir retirement check` salga con 0 (decisión 6).
+   goldens regenerados; commit `109684f`.
+9. **Pendiente, último paso (coordinador, en GitHub).** Archivar spec2viz, y con él el store `spec2viz/.sldb`,
+   ahora que `specir retirement check` sale con 0 (decisión 6). No lo hace esta tarea.
 
 ## Decisiones
 
