@@ -1,0 +1,22 @@
+name: atom-cambios-del-momento-del-retiro-de-spec2viz-bpmn-de-specir-y-clave-de-localstorage-de-specir-con-migr
+path: desk/atoms/atom-cambios-del-momento-del-retiro-de-spec2viz-bpmn-de-specir-y-clave-de-localstorage-de-specir-con-migr.md
+source_hash: ba32f8b368b69fc64bfe7bb005c2623f463d84b8e7c2655c4889d1a1e754b79b
+content_hash: a260d461a74ea9583bc09e0836147cce926c2be4b9c83be08957c2e59b3dd52b
+field_hashes:
+  id: 5abadd871260ceb24de08fddb406de46e48df911a8b3a471ad49d1bca903eca4
+  title: 3223f388b0fb7cc52097be99be1dbcec77b307634514b7b570066b733a6a8f2a
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: 07b69d16ac9067b522e81c7236daab6c231f7a741ba65bc4f540a5dc789b3bbb
+  tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:retiro
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-23T23:07:46Z'
+  authority: generated
+  via: create_document

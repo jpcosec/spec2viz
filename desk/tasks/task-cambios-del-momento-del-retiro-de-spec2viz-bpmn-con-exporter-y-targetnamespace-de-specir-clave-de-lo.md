@@ -1,26 +1,41 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-23T18:03:20Z'
+  at: '2026-11-23T23:07:59Z'
   authority: generated
   via: save_document_payload
 id: task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-testing
+history:
+- task_activates
+references:
+- docs/spec2viz/acta-de-retiro.md
+- src/specir/visual/renderers/bpmn.py
+- src/specir/visual/templates/default.html
+- tests/visual/goldens/spec2viz-2de1056-oracle.json
+- tests/visual/goldens/spec2viz-2de1056-renders.json
+- tests/visual/test_catalog_annotations.py
+- 109684fde25e6df9aef79ebe4729ae59ba0b660a
 depends_on:
 - task-specir-retirement-check-da-rc-0-spec2viz-sldb-sale-del-inventario-de-la-matriz-y-sv-a17-se-acredita
 pills: []
-files: []
+files:
+- docs/spec2viz/acta-de-retiro.md
+- src/specir/visual/renderers/bpmn.py
+- src/specir/visual/templates/default.html
+- tests/visual/goldens/spec2viz-2de1056-oracle.json
+- tests/visual/goldens/spec2viz-2de1056-renders.json
+- tests/visual/test_catalog_annotations.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-cambios-del-momento-del-retiro-de-spec2viz-bpmn-de-specir-y-clave-de-localstorage-de-specir-con-migr
 ---
 
 # Cambios del momento del retiro de spec2viz: BPMN con exporter y targetNamespace de specir, clave de localStorage del catalogo de specir con migracion y goldens nuevos

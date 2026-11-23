@@ -1,0 +1,25 @@
+name: materialization-retiro-src-specir-visual-renderers-bpmn-py
+path: desk/materializations/materialization-retiro-src-specir-visual-renderers-bpmn-py.md
+source_hash: 00df8d3de1038f0ce16cd05cfb97a5b9c3c9fc166f27999ff14855a306482160
+content_hash: 7dd76908a709b1817182f95770ccfe2a6f995be71247b4cd17b54e2df8c3bcff
+field_hashes:
+  id: 6183fb5ecbbafd7bd0359c6e4f682b28cc862e0c6415a348012155dcabbf2e6c
+  title: 910050953889d2969466ab53559b0b452c7a8c246cfb9d1ba8bbfd9b94f5308f
+  source_atoms: 43ce8d33d459008f8f1238b30a58c5dcc9d2728b603d0792691331ee8d4bda5b
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: 6b6262c8a2facf59f9efd4b72b6f380b5bf004c57eac97b3d65c184ba3787983
+  intent: 063fe643a50229827da155a5cbaa4d941659cdf2a2162caebcbfe4bad2532f94
+  validation: b71b1506f17fbbb115732cab77b9ebd365eef3256931d74b8152b90f8a624a64
+  tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:retiro
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-23T23:08:08Z'
+  authority: generated
+  via: create_document

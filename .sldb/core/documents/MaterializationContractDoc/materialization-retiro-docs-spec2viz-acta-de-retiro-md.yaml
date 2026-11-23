@@ -1,0 +1,25 @@
+name: materialization-retiro-docs-spec2viz-acta-de-retiro-md
+path: desk/materializations/materialization-retiro-docs-spec2viz-acta-de-retiro-md.md
+source_hash: afef173daac1bef342eb4a79e30536b064133c0412b252fe8d1ee5c92a1bbdb8
+content_hash: eefca1aaa724d030c44c9049d59abea706620087fd14751052e8cb3e47e474da
+field_hashes:
+  id: c2eb282c9e75e8739fe5d595ea0f9b5303c9f217f4add1d0466b1933cab78913
+  title: fd2d2a43fb68c9cff4bd034a9e3b6aafefc8a6075bec8377294ca43edab53365
+  source_atoms: 43ce8d33d459008f8f1238b30a58c5dcc9d2728b603d0792691331ee8d4bda5b
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: e47d410572d98482f3c0d3c9c74877bb0cf86fb6ba0d2f3d051575d6384c2871
+  intent: 3542dfc5a88547d18b7e62103b13a426978799a937d486841c158674727ed21d
+  validation: b71b1506f17fbbb115732cab77b9ebd365eef3256931d74b8152b90f8a624a64
+  tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:retiro
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-23T23:08:04Z'
+  authority: generated
+  via: create_document

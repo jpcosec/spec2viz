@@ -1,0 +1,25 @@
+name: materialization-retiro-src-specir-visual-templates-default-html
+path: desk/materializations/materialization-retiro-src-specir-visual-templates-default-html.md
+source_hash: 77e555ceedb83baa2f99dce80edfd0974748fd230efa263c228bd97610c96c85
+content_hash: 739ff8d90a112d0c0df34df49fb560b2a987b665afb7d40ea2d3bfca7f4f78c5
+field_hashes:
+  id: 9d01844bba7bcf3c6bf2ddda07f789ad9d30c9c022786d5c984c3923a42bd9ae
+  title: 01d0d0c433f4c932769a935c2b317300d395df1bf868404023ab4ec9ef722e15
+  source_atoms: 43ce8d33d459008f8f1238b30a58c5dcc9d2728b603d0792691331ee8d4bda5b
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: 99f12a384581821761d9f541757dadc4317f761914fb54e57ca7135c9c5954c9
+  intent: f3dbbe65d367736bcdc79839191edaa20b2aaba76df27f56376ae95ad365c893
+  validation: b71b1506f17fbbb115732cab77b9ebd365eef3256931d74b8152b90f8a624a64
+  tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:retiro
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-23T23:08:12Z'
+  authority: generated
+  via: create_document
