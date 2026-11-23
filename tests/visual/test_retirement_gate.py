@@ -2,7 +2,8 @@
 
 Synthetic repos and stores are built in tmp; the real run audits the inventory of
 `docs/spec2viz/matriz-de-cobertura.md` in the workspace and is a strict xfail while a dependency or a
-row not accredited remains (`docs/spec2viz/acta-de-retiro.md`)."""
+row not accredited remains (`docs/spec2viz/acta-de-retiro.md`); since 2026-11-23 the universe no longer
+holds `spec2viz/.sldb` (G5, option A) and the real run must pass."""
 
 from __future__ import annotations
 
@@ -88,7 +89,7 @@ def test_the_inventory_names_the_repos_and_the_stores_of_the_matrix() -> None:
     assert inventory(INVENTORY) == (["app"], ["app/.sldb"])
     repos, stores = inventory(MATRIX.read_text(encoding="utf-8"))
     assert {"graph_ui", "deskops", "pron", "sldb", "IR"} <= set(repos)
-    assert stores == ["spec2viz/.sldb"]
+    assert stores == []
 
 
 def test_a_row_without_a_cited_test_fails_and_passes_once_every_row_has_one(tmp_path: Path) -> None:
@@ -188,7 +189,6 @@ def real_paths() -> dict[str, Path]:
     return paths
 
 
-@pytest.mark.xfail(strict=True, reason="consumers still depend on spec2viz and rows remain open: docs/spec2viz/acta-de-retiro.md")
 def test_the_real_universe_has_no_dependency_and_every_row_is_accredited() -> None:
     report = check(MATRIX, real_paths())
     assert report.ok, f"{len(report.dependencies)} dependencies, {len(report.open_rows)} rows not accredited"

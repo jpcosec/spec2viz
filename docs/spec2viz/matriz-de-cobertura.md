@@ -292,9 +292,8 @@ el 2026-11-15 sobre los repos con `.git` bajo `SLDB_1/` (`IR`, `deskops`, `pron`
 | sldb | `sldb/docs/architecture/spec2viz/vistas.yml` y sus specs (`current-*.yml`, `python-ast.yml`) | registro de catálogo que construye `spec2viz catalog build` | decidido (coordinador, aceptado por JP el 2026-11-15): los specs se quedan como fixtures durante la paridad; el catálogo se construye con `specir catalog build` (SV-G01) y se sincroniza con `sldb notations sync --catalog`; lo hace el desk de sldb |
 | sldb | `sldb/contracts/identity.toml:299` (`consumers = [..., "spec2viz", ...]`) | configuración de contrato | quitar spec2viz de la lista al retirarlo |
 | IR (specIR) | `IR/tests/conftest.py:24` y `:80` (federa el store `spec2viz/.sldb`), `IR/tests/test_mcp_extension.py:24` (`SPEC_STORE = "spec2viz"`) | lectura del store de spec2viz en pruebas | store con modelos de sldb (G5) o fixture propio |
-| store `spec2viz/.sldb` | `spec2viz/.sldb/store.yaml:44-57`, `spec2viz/.sldb/core/store_index.yaml:141-194`, `spec2viz/.sldb/core/models/{SpecDoc,SpecNodeDoc,NotationDoc,GlyphDoc,LinkDoc,PaletteDoc,ViewDoc}.yaml` | modelos `spec2viz.sldb_models` registrados | `sldb.models.notation.*` (SV-A17) |
 
-Es el único store bajo `SLDB_1/` cuyo índice registra `spec2viz.sldb_models`.
+Es el único store bajo `SLDB_1/` cuyo índice registra `spec2viz.sldb_models`: `spec2viz/.sldb`. Sale del universo del comprobador por decisión de JP del 2026-11-23 (G5, opción A del 2026-11-16): el store se archiva con el repo spec2viz y ya no figura en esta tabla; sus 19 registros (`store.yaml:44-57`, `core/store_index.yaml:141-194` y `core/models/{SpecDoc,SpecNodeDoc,NotationDoc,GlyphDoc,LinkDoc,PaletteDoc,ViewDoc}.yaml`) quedan en el archivo de spec2viz y se acreditan con SV-A17.
 
 Specs YAML existentes que afecta la decisión del YAML (†): `spec2viz` (44: `tests/fixtures/`,
 `docs/architecture/spec2viz/`, `examples/`), `sldb` (46: `tests/fixtures/`, `docs/architecture/`),
@@ -405,7 +404,7 @@ comando de sldb que valide una notación; y con ella SV-K18.
 | `SV-A14` | cumplida | IR `tests/visual/test_visual_compilers.py` (28 passed, `CompileError`/`Spec2VizError`), `tests/visual/test_renderers.py` (56 passed) y `tests/visual/test_bpmn.py` (26 passed, `RenderError`). | - |
 | `SV-A15` | cumplida | IR `tests/visual/test_schema.py` (13 passed), `tests/visual/test_api.py` (31 passed), `tests/visual/test_cli.py` (44 passed). | - |
 | `SV-A16` | cumplida | IR `tests/visual/test_cli.py` (test_schema_diagram_store_stdout, test_catalog_schema_stdout). | - |
-| `SV-A17` | abierta | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): test_defaults_and_shape, test_invalid y test_view_doc_in_a_store_references_its_notation, con `ViewDoc` de `sldb.api`. | Solo G5: `spec2viz/.sldb` registra `spec2viz.sldb_models` (pedido al desk de spec2viz, nota 20261115-225013; fuera de IR13e). |
+| `SV-A17` | cumplida | IR `tests/visual/test_notations_parity.py` (IR13e: 88 passed, 1 xfailed): test_defaults_and_shape, test_invalid y test_view_doc_in_a_store_references_its_notation, con `ViewDoc` de `sldb.api`. Acreditada por G5 opción A (JP, 2026-11-16): `spec2viz/.sldb` se archiva con el repo spec2viz; sale del inventario del comprobador el 2026-11-23. | - |
 | `SV-B01` | cumplida | IR `tests/visual/test_visual_ir.py` (3 passed). | - |
 | `SV-B02` | cumplida | IR `tests/visual/test_visual_compilers.py` (28 passed), `tests/visual/test_api.py` (31 passed) y `tests/visual/test_visual_parity.py` (90 passed). | - |
 | `SV-B03` | cumplida | IR `tests/visual/test_visual_compilers.py` (28 passed) y `tests/visual/test_render_cases.py` (30 passed, 0 skipped con `SPECIR_MMDC` apuntando a mermaid-cli real: test_real_mermaid_engine_accepts_members_kinds_and_all_relations y test_real_mermaid_engine_accepts_the_packages en verde). | - |
