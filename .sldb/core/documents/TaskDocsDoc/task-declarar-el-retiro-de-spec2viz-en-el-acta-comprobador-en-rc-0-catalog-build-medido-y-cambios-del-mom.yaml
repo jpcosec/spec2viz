@@ -1,0 +1,38 @@
+name: task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom
+path: desk/tasks/task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom.md
+source_hash: 73c714ee4ffa093151b9d4afc3b2554987ee776bf181f885939b78fd4327b085
+content_hash: 4bb290c033bf3cb1b7b1d74bec46eb6ef2233392686f6b6dfe9c3b3a1f4b44c1
+field_hashes:
+  title: c89b0caf8661774b367a89de600a0b7267729e26b3a1432ab96097681fa4911b
+  id: 654423f7ee15125862841a96cb41b097fe03be3d5c44abd88e8c2d06a1383aef
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 9e7e8be2998f87dfcbb538781d827f202722ef7dad630b93bca343e20f247db8
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: d755fecc44ce92cdfdc3bdd94e6b5f1fee5d64907858fc549d21c354bdc5907a
+  goal: 2c91462a3d792240e693b74f9ed19d216e2695caa5d3f020d22c1277f6ebbfcc
+  scope: eb8fdb4510566b880da0d552564ff2c25d51c723a44afa39762d3dd02db088af
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 2eaf6acd3534f6eab1656b6055b3dbbb827d4112f14fe58b918c2f15c8d3f8c8
+  validation: 04037e92cdbe084b0b6aaec20e4c6d0f5e3447a1e6d27cf508bca8796135db89
+  done_when: 3c98d57d4eca181ed71bf78111951dbd9e330c372fd1383413348acbf2586738
+  task_type: 8dbc7ea3fc2d737a841f8f9a89de6dd4bd2ca7fdc77434a53400db8767ba695d
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- artifact:task
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-23T23:13:56Z'
+  authority: generated
+  via: create_document

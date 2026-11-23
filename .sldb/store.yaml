@@ -1239,6 +1239,9 @@ include:
 - model: TaskDecisionDoc
   paths:
   - desk/tasks/task-jp-decide-declarar-el-retiro-de-spec2viz-sacar-spec2viz-sldb-del-universo-del-comprobador-y-archivar.md
+- model: TaskDocsDoc
+  paths:
+  - desk/tasks/task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom.md
 graph_backend: networkx
 policy: {}
 tag_models:
