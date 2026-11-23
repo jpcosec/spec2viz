@@ -10,6 +10,7 @@ with an empty `localStorage`: what it shows comes from the store."""
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 import socket
@@ -36,8 +37,9 @@ HARNESS = """
 globalThis.window = globalThis;
 globalThis.location = { search: process.argv[2] || '' };
 const memory = new Map();
-globalThis.localStorage = { getItem: k => memory.get(k) ?? null, setItem: (k, v) => memory.set(k, String(v)) };
-const ANNO_STORE_KEY = 'spec2viz.catalog.annotations.v1';
+globalThis.localStorage = { getItem: k => memory.get(k) ?? null, setItem: (k, v) => memory.set(k, String(v)), removeItem: k => memory.delete(k) };
+for (const [k, v] of Object.entries(JSON.parse(process.env.SEED || '{}'))) memory.set(k, v);
+const ANNO_STORE_KEY = 'specir.catalog.annotations.v1';
 let annoCache = [];
 let renders = 0;
 function annoRender() { renders += 1; }
@@ -47,7 +49,7 @@ function annoRender() { renders += 1; }
   const steps = JSON.parse(process.argv[1]);
   await annoLoad();
   for (const step of steps) await annoWriteStore([...annoCache, step]);
-  console.log(JSON.stringify({ annoCache, renders, local: JSON.parse(localStorage.getItem(ANNO_STORE_KEY) || '[]') }));
+  console.log(JSON.stringify({ annoCache, renders, local: JSON.parse(localStorage.getItem(ANNO_STORE_KEY) || '[]'), keys: [...memory.keys()], legacy: memory.get('spec2viz.catalog.annotations.v1') ?? null }));
 })();
 """
 
@@ -97,15 +99,15 @@ def _project(tmp_path: Path) -> Path:
 
 def _page_code(page: str) -> tuple[str, str]:
     """The template's three storage functions and the scripts the build embedded for sldb."""
-    template = re.search(r"    function annoReadStore\(\) \{.*?\n    function annoClose", page, re.S).group(0).removesuffix("    function annoClose")
-    injected = re.search(r"window\.SPECIR_ANNOTATIONS = .*?// </sldb-annotations>", page, re.S).group(0)
-    return template, injected
+    template = re.search(r"    function annoMigrateLegacy\(\) \{.*?\n    function annoClose", page, re.S).group(0).removesuffix("    function annoClose")
+    found = re.search(r"window\.SPECIR_ANNOTATIONS = .*?// </sldb-annotations>", page, re.S)
+    return template, found.group(0) if found else ""  # a page without a target has no injected script
 
 
-def _run(page: str, steps: list[dict], search: str = "") -> dict:
+def _run(page: str, steps: list[dict], search: str = "", seed: dict | None = None) -> dict:
     template, injected = _page_code(page)
     code = HARNESS % {"template": template, "injected": injected}
-    done = subprocess.run(["node", "-e", code, json.dumps(steps), search], capture_output=True, text=True, timeout=60)
+    done = subprocess.run(["node", "-e", code, json.dumps(steps), search], capture_output=True, text=True, timeout=60, env={**os.environ, "SEED": json.dumps(seed or {})})
     assert done.returncode == 0, done.stderr
     assert "not saved" not in done.stderr and "not read" not in done.stderr, done.stderr
     return json.loads(done.stdout)
@@ -183,3 +185,34 @@ def test_the_model_registers_once_and_the_id_is_one_sldb_serve_accepts(tmp_path:
     assert api.is_model_registered(root / ".sldb", MODEL_NAME)
     assert annotations_id("Mi Catálogo / v2") == "catalog-annotations-Mi-Cat-logo-v2"
     assert re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9_-]{0,159}", annotations_id("x" * 300))
+
+
+LEGACY = "spec2viz.catalog.annotations.v1"
+NEW = "specir.catalog.annotations.v1"
+
+
+def _local_page(tmp_path: Path) -> str:
+    root = _project(tmp_path)
+    return render_catalog(root / "docs" / "vistas.yml")
+
+
+def test_annotations_saved_under_spec2vizs_key_move_to_specirs_key(tmp_path: Path) -> None:
+    page = _local_page(tmp_path)
+    assert page.count(LEGACY) == 1 and NEW in page
+    old = [_note("A", "vieja")]
+    out = _run(page, [_note("B", "nueva")], seed={LEGACY: json.dumps(old)})
+    assert out["annoCache"] == [*old, _note("B", "nueva")]
+    assert out["keys"] == [NEW] and out["legacy"] is None
+
+
+def test_when_both_keys_exist_the_new_wins_and_the_old_is_dropped(tmp_path: Path) -> None:
+    page = _local_page(tmp_path)
+    out = _run(page, [], seed={LEGACY: json.dumps([_note("A", "vieja")]), NEW: json.dumps([_note("C", "nueva")])})
+    assert out["annoCache"] == [_note("C", "nueva")]
+    assert out["keys"] == [NEW]
+
+
+def test_an_invalid_old_value_is_left_untouched(tmp_path: Path) -> None:
+    page = _local_page(tmp_path)
+    out = _run(page, [], seed={LEGACY: "{not json"})
+    assert out["annoCache"] == [] and out["legacy"] == "{not json" and NEW not in out["keys"]

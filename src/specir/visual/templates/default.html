@@ -562,7 +562,7 @@
     const annoBtn = document.getElementById('anno-btn');
     const clearAnnoBtn = document.getElementById('clear-anno-btn');
     const ANNO_SEL = '.mermaid .node, .mermaid g.classGroup, .mermaid g.stateGroup, .mermaid rect.actor, .mermaid g.actor, .mermaid .messageText, .mermaid .noteText, .mermaid g.cluster';
-    const ANNO_STORE_KEY = 'spec2viz.catalog.annotations.v1';
+    const ANNO_STORE_KEY = 'specir.catalog.annotations.v1';
     let annoMode = false;
     let annoCache = [];
 
@@ -893,7 +893,22 @@
       return `${vista}::${label}`;
     }
 
+    function annoMigrateLegacy() {
+      // One-off: annotations saved under spec2viz's key move to specir's key; the old key is never written again.
+      const legacyKey = 'spec2viz.catalog.annotations.v1';
+      try {
+        const legacy = localStorage.getItem(legacyKey);
+        if (legacy === null) return;
+        JSON.parse(legacy);
+        if (localStorage.getItem(ANNO_STORE_KEY) === null) localStorage.setItem(ANNO_STORE_KEY, legacy);
+        localStorage.removeItem(legacyKey);
+      } catch (err) {
+        console.warn('annotations under the old key are not valid JSON and were left untouched', err);
+      }
+    }
+
     function annoReadStore() {
+      annoMigrateLegacy();
       try {
         return JSON.parse(localStorage.getItem(ANNO_STORE_KEY) || '[]');
       } catch {

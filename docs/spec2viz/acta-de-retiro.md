@@ -237,6 +237,9 @@ Es de sldb, no de specIR: specIR solo usa la API pública. Pedido en
 8. En el momento del retiro: el BPMN pasa a `exporter="specir"` y a un `targetNamespace` de specir, y la
    página del catálogo a una clave de `localStorage` de specir, con goldens nuevos y migración de las
    anotaciones guardadas con `spec2viz.catalog.annotations.v1` (decisión 3).
+   **Hecho el 2026-11-23** (task-cambios-del-momento-del-retiro-de-spec2viz…): `exporter="specir"`,
+   `targetNamespace="http://specir/bpmn"`, clave `specir.catalog.annotations.v1` con migración desde la vieja y
+   goldens regenerados; commit: ver `git log --grep Task-Id` de la tarea.
 9. Archivar spec2viz cuando `specir retirement check` salga con 0 (decisión 6).
 
 ## Decisiones

@@ -722,8 +722,8 @@ class BpmnRenderer:
         pid = "Process_1"
         defs = ET.Element(_q("bpmn", "definitions"), {
             "id": "Definitions_1",
-            "targetNamespace": "http://spec2viz/bpmn",
-            "exporter": "spec2viz",
+            "targetNamespace": "http://specir/bpmn",
+            "exporter": "specir",
         })
         proc = ET.SubElement(defs, _q("bpmn", "process"), {"id": pid, "name": ir.title, "isExecutable": "false"})
         tags = {
