@@ -1,0 +1,5 @@
+audited repos: graph_ui, deskops, pron, sldb, IR
+audited stores: -
+dependencies: 0
+rows not accredited: 0
+gate: passed, the retirement can be declared

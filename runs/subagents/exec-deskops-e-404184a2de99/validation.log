@@ -1,0 +1,4 @@
+$ specir retirement check --path graph_ui=.. --path deskops=.. --path pron=.. --path sldb=..   (baseline, con spec2viz/.sldb) -> rc=1 (19 dependencias, SV-A17 abierta)
+$ idem sin spec2viz/.sldb -> rc=0 (0 dependencias, 0 filas no acreditadas)
+$ TMPDIR=/dev/shm pytest -q tests/visual/test_retirement_gate.py tests/test_matriz_cobertura_spec2viz.py -> exit 0: 11 passed, 1 skipped
+  (el skip es test_the_real_universe...: en el worktree el workspace no contiene los repos; la corrida real con los repos dio rc=0)

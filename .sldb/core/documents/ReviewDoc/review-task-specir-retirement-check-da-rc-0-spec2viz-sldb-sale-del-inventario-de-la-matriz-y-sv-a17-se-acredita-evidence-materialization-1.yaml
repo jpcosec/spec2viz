@@ -1,0 +1,37 @@
+name: review-task-specir-retirement-check-da-rc-0-spec2viz-sldb-sale-del-inventario-de-la-matriz-y-sv-a17-se-acredita-evidence-materialization-1
+path: desk/reviews/task-specir-retirement-check-da-rc-0-spec2viz-sldb-sale-del-inventario-de-la-matriz-y-sv-a17-se-acredita/evidence-materialization-1.md
+source_hash: 692e939c59b3fd00209ca9d3c843abd4cd3820fd0551471e76ba7c047fbf82d9
+content_hash: ba5e54dca1ce6276cdbb121d83d5ab1ef61c0b705a0df4aaaa14317f58097a84
+field_hashes:
+  id: dff852636487ce004cd980cfe04220cccd092346fb0e6f571c36e3aa66631a88
+  title: cd40fca06be364e34a9599607af6141f9f12c43d1d4155c0af6ab50933babb82
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: b77d8cf6414796c495587568e836eb101f2c47c6cbab025c9e93d24db5ead67b
+  value: 8b0dfa42cfc6cdd9ee15a1252f908d1960fdbe69f1f8687daa249f220fc5f621
+  subject: db3d2997199f1a5729fba8a2dbca8cbe7aa4c9980122cc729dd09b1351254212
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: eacf8837825734e6d414cb77cbf4b9d8a16ac600ccd2368bf59adbf70c3c7237
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: ebdd9e87c0e0ba993bb2b7efe8ffef2fe3458e2787228669966637febfe2bf2d
+  created_at: babd9c1e626ad67666c63b01495a2fa945d6aeeef45982f662dc6f226115f6e2
+  disposed_at: babd9c1e626ad67666c63b01495a2fa945d6aeeef45982f662dc6f226115f6e2
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 4abd6a13a7d88b912d9cc5b84f19abc299f621bd67c5d8e18647256136c89651
+  disposition: 934cf0d22728e638878f4aa0302a6aa4f05483f645f86180b68fe07afb48786a
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-23T18:20:05Z'
+  authority: generated
+  via: create_document
