@@ -1,7 +1,7 @@
 name: task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
 path: desk/tasks/task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo.md
-source_hash: 2a48d7ea768665707e877eb16c829d25ee308cb92c72ad770ce3365b6f868726
-content_hash: f7f601864b5cc77b34654260b65244f6a7847a30708ba0a8d13eb7da7bf67749
+source_hash: 54b0292af1ac5a9b95e4ccbd0ee5959a029bb45b5c5a08c61dad1cf1c192605d
+content_hash: b09a0746c288cf98f44bfa17fbb223c883a56e479a39ea9269aeb1ac7a1d7400
 field_hashes:
   title: c195ded879bde13e30e21ef7a8654c7e165ed23ffa7b96d2219ee900b7be5184
   id: 2f1b4367e9ea97a769d808d92136b4de9fbd216f2244a354abea784253b67d7d
@@ -14,7 +14,7 @@ field_hashes:
   goal: e5243f77b5b0693dfb4b6ffd484ee6a4e193683d6c0582bc2871ff99fd609afa
   scope: 999db88e5508ce68b84eb485c6ac14e6a4062667cc17fba07396d1195a6f6705
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: cd07e37e1a87d4ce8fe146adb0d22c097b4a73e8a9a8ed37aea175c9dce0f32c
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   implementation_path: a0b631db384c434587ee06b60757a0f0c652554aa514c964438d46c64005d249
@@ -33,6 +33,6 @@ semantic_tags:
 - workspace:desk
 provenance:
   by: agent
-  at: '2026-11-23T17:52:59Z'
+  at: '2026-11-23T18:03:20Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

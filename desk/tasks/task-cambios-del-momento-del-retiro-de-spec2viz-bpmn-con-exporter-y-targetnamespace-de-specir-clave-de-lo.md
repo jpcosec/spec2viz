@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-23T17:52:59Z'
+  at: '2026-11-23T18:03:20Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
 status: draft
 summary: ''
@@ -13,7 +13,8 @@ tags:
 current_node: ritual-execution
 history: []
 references: []
-depends_on: []
+depends_on:
+- task-specir-retirement-check-da-rc-0-spec2viz-sldb-sale-del-inventario-de-la-matriz-y-sv-a17-se-acredita
 pills: []
 files: []
 task_type: task.code

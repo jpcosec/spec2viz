@@ -1,0 +1,37 @@
+name: review-task-jp-decide-declarar-el-retiro-de-spec2viz-sacar-spec2viz-sldb-del-universo-del-comprobador-y-archivar-owner-2
+path: desk/reviews/task-jp-decide-declarar-el-retiro-de-spec2viz-sacar-spec2viz-sldb-del-universo-del-comprobador-y-archivar/owner-2.md
+source_hash: b228a56fde6cc0ff73095612a4fce0ce4387b9ba0cfdac215871d191a7d5b8a5
+content_hash: f66ea213231dc731f6b45bed6532ceab4b61a17a4c0f901e3966dd8f248b61bb
+field_hashes:
+  id: 49aa10285d5baad8df1059b4ac7b02f661ac21f9d00d950bf117e78eb79640a9
+  title: 5d966b709f79580a65a3bfa71faecdf94d8e1fce4fc6dce7388c0699218c60ec
+  kind: 622f06cbcd2e7e61637e17212e714e6c721d2dd5a9f7bc1aec911b65b34edcf5
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: bff46eb410223cf0f60565111649170742aa2bf8f32b07b822acfad365c0f67d
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 11e25bab0df4bb9f63c6dde985fea5de0ef16abdb2ec640dc08e7e97ec6b1d15
+  actor: 8a04ba293c5c2684429ebca3f43b247095ee4428cc59bb2ccb2174f19e719a39
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
+  reason: b2f3efc8272959ceedf3c45aa86ea4827d66c6377a0a58dd2b85dfd3f044c0aa
+  created_at: d768534825e30217deb36ba2ce3999c011f287d762c878b436276972a4742302
+  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  summary: 2cb7f8015b12fdbee39bb7bbfefc93b3e0889c5b6ccee5e873e08014b6fa67fe
+  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-23T18:02:52Z'
+  authority: generated
+  via: create_document
