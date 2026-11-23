@@ -1,0 +1,9 @@
+Task: task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+Title: Cambios del momento del retiro de spec2viz: BPMN con exporter y targetNamespace de specir, clave de localStorage del catalogo de specir con migracion y goldens nuevos
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .

@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-23T18:24:01Z'
+  at: '2026-11-23T23:13:37Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -12,7 +12,6 @@ scope: desk
 tasks:
 - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
 - desk/tasks/task-jp-decide-declarar-el-retiro-de-spec2viz-sacar-spec2viz-sldb-del-universo-del-comprobador-y-archivar.md
-- desk/tasks/task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -47,4 +46,3 @@ _Generated from the task references above._
 
 - IR13 Migración de consumidores y gate final de retiro de spec2viz [draft] - Un comprobador del gate de retiro y un acta que demuestran, con evidencia, que toda capacidad de spec2viz está cubierta por specIR y que ningún consumidor importa ni invoca spec2viz.
 - JP decide: declarar el retiro de spec2viz, sacar spec2viz/.sldb del universo del comprobador y archivar el repo spec2viz [draft] - JP confirma (o cambia) tres cosas. 1) Sacar spec2viz/.sldb del inventario de la matriz (el universo del comprobador) y acreditar SV-A17 con G5, para que specir retirement check dé rc 0. 2) Hacer los cambios del momento del retiro (acta, punto 8): BPMN con exporter='specir' y targetNamespace de specir, clave de localStorage del catálogo de specir con migración de spec2viz.catalog.annotations.v1, y goldens nuevos. 3) Declarar el retiro en docs/spec2viz/acta-de-retiro.md y archivar el repo spec2viz (GitHub archive y su desk). Con la confirmación, 1 y 2 se despachan como tareas de IR (IR13), y 3 lo hace quien JP diga.
-- Cambios del momento del retiro de spec2viz: BPMN con exporter y targetNamespace de specir, clave de localStorage del catalogo de specir con migracion y goldens nuevos [draft] - El BPMN que emite specir lleva exporter='specir' y un targetNamespace de specir; la pagina del catalogo usa una clave de localStorage de specir y migra al cargar las anotaciones guardadas con spec2viz.catalog.annotations.v1 (sin perderlas y sin volver a escribir la clave vieja); los goldens afectados se regeneran con el comando del repo y quedan revisados en el diff.

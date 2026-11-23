@@ -1,41 +1,36 @@
+Task: task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+Title: Cambios del momento del retiro de spec2viz: BPMN con exporter y targetNamespace de specir, clave de localStorage del catalogo de specir con migracion y goldens nuevos
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-23T23:07:59Z'
+  at: '2026-11-23T18:03:20Z'
   authority: generated
   via: save_document_payload
 id: task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
-status: active
+status: draft
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-testing
-history:
-- task_activates
-references:
-- docs/spec2viz/acta-de-retiro.md
-- src/specir/visual/renderers/bpmn.py
-- src/specir/visual/templates/default.html
-- tests/visual/goldens/spec2viz-2de1056-oracle.json
-- tests/visual/goldens/spec2viz-2de1056-renders.json
-- tests/visual/test_catalog_annotations.py
-- 109684fde25e6df9aef79ebe4729ae59ba0b660a
+current_node: ritual-execution
+history: []
+references: []
 depends_on:
 - task-specir-retirement-check-da-rc-0-spec2viz-sldb-sale-del-inventario-de-la-matriz-y-sv-a17-se-acredita
 pills: []
-files:
-- docs/spec2viz/acta-de-retiro.md
-- src/specir/visual/renderers/bpmn.py
-- src/specir/visual/templates/default.html
-- tests/visual/goldens/spec2viz-2de1056-oracle.json
-- tests/visual/goldens/spec2viz-2de1056-renders.json
-- tests/visual/test_catalog_annotations.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-cambios-del-momento-del-retiro-de-spec2viz-bpmn-de-specir-y-clave-de-localstorage-de-specir-con-migr
+atoms: []
 ---
 
 # Cambios del momento del retiro de spec2viz: BPMN con exporter y targetNamespace de specir, clave de localStorage del catalogo de specir con migracion y goldens nuevos
@@ -75,3 +70,26 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 Los tests de BPMN y del catalogo pasan con los goldens nuevos; un test prueba la migracion de la clave vieja a la nueva; grep de spec2viz.catalog.annotations.v1 solo queda en la migracion; el acta registra el punto 8 hecho.
+
+## Entrega del ejecutor
+
+Al terminar, commitea solo los archivos que cambiaste para la tarea, nombrados uno por uno (los mismos que listas en result-summary.md):
+
+    git add <ruta> <ruta> ...
+    git commit -m "<resumen>" -m "Task-Id: task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo"
+
+Nunca uses `git add -A`, `git add -u` sobre todo el arbol ni `git stash`: puede haber trabajo ajeno sin commitear. No hagas push. Recien despues ejecuta `deskops advance task`.
+
+## Temporales de pytest
+
+Antes de cualquier pytest exporta, para que sus temporales caigan en el /tmp del contenedor (muere con el agente) y no en el /dev/shm del host:
+
+    export PYTEST_ADDOPTS="--basetemp=/tmp/pytest-deskops-e-c2af90ecb869"
+
+## Tu worktree
+
+Tu codigo vive en un worktree propio, en la rama `deskops/deskops-e-c2af90ecb869`:
+
+    /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/deskops-e-c2af90ecb869
+
+Haz `cd` ahi: edita, corre los tests y commitea ahi (git add / git commit), no en el checkout principal /mnt/ssd/proyectos/SLDB_1/IR. Las operaciones de desk (`deskops ... --root /mnt/ssd/proyectos/SLDB_1/IR`, evidencia en runs/subagents/..., `deskops advance task`) siguen usando el checkout principal. Al terminar, reap trae tus commits a la rama principal y borra el worktree.

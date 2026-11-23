@@ -1,0 +1,5 @@
+cd .worktrees/deskops-e-c2af90ecb869; TMPDIR=/tmp PYTEST_ADDOPTS=--basetemp=/tmp/pytest-$HOSTNAME
+pytest tests/visual/test_catalog_annotations.py test_bpmn.py test_resources.py test_render_parity.py -> 86 passed (exit 0)
+Antes (serial): tests/visual/test_catalog_parity.py + los anteriores -> 111 passed, 3 failed (tests nuevos, corregidos despues; luego 40 passed)
+Con -n 4 test_catalog_parity falla en paralelo (tmp_root/xdist); en serie pasa (29 passed con digests regenerados).
+tests/test_mcp_*: errores previos del entorno (stores check dañado), ajenos.

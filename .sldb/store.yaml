@@ -1236,7 +1236,6 @@ include:
 - model: TaskCodeDoc
   paths:
   - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
-  - desk/tasks/task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo.md
 - model: TaskDecisionDoc
   paths:
   - desk/tasks/task-jp-decide-declarar-el-retiro-de-spec2viz-sacar-spec2viz-sldb-del-universo-del-comprobador-y-archivar.md

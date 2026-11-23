@@ -1,0 +1,28 @@
+Tester task-cambios-del-momento-del-retiro-de-spec2viz... — commit 109684fde25e6df9aef79ebe4729ae59ba0b660a
+Entorno: /workspace/IR, .venv/bin/python 3.13.18, TMPDIR=/tmp, PYTEST_ADDOPTS=--basetemp=/tmp/pytest-deskops-t-97635c2c4cce*
+
+tests/visual/test_bpmn.py                       -> 26 passed, rc 0
+tests/visual/test_catalog_annotations.py        -> 8 passed, rc 0
+tests/visual/test_render_parity.py              -> 45 passed, rc 0
+tests/visual/test_resources.py                  -> 6 passed, 1 skipped, rc 0
+tests/visual/test_catalog.py                    -> 68 passed, rc 0
+tests/visual/test_catalog_parity.py             -> 29 passed, rc 0 (en serie)
+tests/visual/test_render_commands.py            -> 33 passed, rc 0
+tests/visual/test_schema.py + test_lint_mermaid -> 19 passed, 7 skipped, rc 0
+
+Comprobaciones del encargo:
+  BPMN: targetNamespace="http://specir/bpmn", exporter="specir"; XML vivo == golden.
+  Catálogo: clave specir.catalog.annotations.v1; migración desde
+            spec2viz.catalog.annotations.v1 en annoMigrateLegacy (única aparición en producción);
+            3 tests de migración (copia+borra, ambas gana la nueva, inválida intacta).
+  Goldens: 8 salidas BPMN + 8 bpmn.html + 4 páginas de catálogo + digest default.html revisados.
+  Acta: punto 8 marcado hecho (2026-11-23).
+  Grep clave vieja en producción: solo src/specir/visual/templates/default.html:898 (migración).
+
+Observaciones no bloqueantes:
+  - Goldens parcheados (spec2viz retirado) y verificados contra salida viva de specir.
+  - test_resources_are_spec2viz_bytes conserva nombre/docstring pero su digest ya es el de la
+    plantilla modificada; renombrar/reformular en limpieza futura.
+  - test_catalog_parity debe correr en serie (falla bajo xdist -n 4 según el ejecutor).
+
+Veredicto: PASA

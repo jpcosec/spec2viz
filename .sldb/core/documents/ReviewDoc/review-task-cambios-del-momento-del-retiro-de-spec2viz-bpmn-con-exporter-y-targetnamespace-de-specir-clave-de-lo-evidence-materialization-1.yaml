@@ -1,0 +1,37 @@
+name: review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-materialization-1
+path: desk/reviews/task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo/evidence-materialization-1.md
+source_hash: bf1421260decbfc84da9be383eb0224c0e97a38d512a1cde4ddef0b9e1d58ad8
+content_hash: 901d9dfb29ee745b7bc91604a736d345272c195a56d41586310f1cf69e836982
+field_hashes:
+  id: 58baedee69748fe142d2177329731e06c4fce3f3752491f349120bf527a5829f
+  title: 827ac7fc895b13a4bff3eb14feb1950ec2dffc0c1f96dcef3ad566e83eb5d647
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: b77d8cf6414796c495587568e836eb101f2c47c6cbab025c9e93d24db5ead67b
+  value: 8cb319068ab55c475422a0398b8043a5bea6ec663c55dde64981f6b25fd2e854
+  subject: 03483cc5a90a906f72bfbfbcce6a3f343194a57673b5d41f42ceec276b8d38ad
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 7a4fe41397fa0f1914775d1772f3e7ecdd8d294456b343f7b7127d0af1f80d2d
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 2e7ebda1f48684090d77b78e08617d05c395c352ba500eebb7d4f4adda5a537d
+  created_at: fdb8926b5e00435d2777e4c86f107bb16e40cac4f8ad434162cb2a88d88f0f4b
+  disposed_at: fdb8926b5e00435d2777e4c86f107bb16e40cac4f8ad434162cb2a88d88f0f4b
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 30c995ba4d5ab642d18c10a4c32f3b187938454246143989b3f8d447012764f0
+  disposition: c8e5b42ba232fedff9e4990d92ad2373c23e851daae0a7ff2b7109c2ee2b949d
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-23T23:08:32Z'
+  authority: generated
+  via: create_document

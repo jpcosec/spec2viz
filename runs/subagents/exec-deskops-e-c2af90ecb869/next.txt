@@ -1,0 +1,25 @@
+Task: task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+Title: Cambios del momento del retiro de spec2viz: BPMN con exporter y targetNamespace de specir, clave de localStorage del catalogo de specir con migracion y goldens nuevos
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Phase: execution
+Required ritual:
+- desk/rituals/execution.md
+Required pills:
+- desk/contexts/pills.md
+Next actions:
+1. Make the active task, scope, touched files, and validation targets explicit.
+2. Run a fresh-context subagent review.
+3. Bind matching board and task pills.
+4. Start implementation only after the initialization gate is satisfied.
+Advance when:
+- Execution gate obligations are recorded or satisfied.
+Post-hooks:
+- task_activates:
+  - encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  - encola-tester: deskops queue add dispatch-tester --root .
+Sources:
+- task: desk/tasks/task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo.md
+- board: desk/tasks/Board.md
+- workflow: deskops/spec/workflows/task_lifecycle.yaml
