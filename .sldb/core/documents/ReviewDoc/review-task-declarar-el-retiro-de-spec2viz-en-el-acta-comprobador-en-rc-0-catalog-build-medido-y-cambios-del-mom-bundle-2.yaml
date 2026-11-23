@@ -1,0 +1,37 @@
+name: review-task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom-bundle-2
+path: desk/reviews/task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom/bundle-2.md
+source_hash: cf188794efa98dcf7d89a192b0448b3c508eaccc3cd5c7f46e694819070f38ba
+content_hash: c8997a53ca1c82ccbd9722c74e1a69bd9ae4e6ddd4ec59440bc3b30fd642df07
+field_hashes:
+  id: 0f42d230413f526c137137b3ee56fcf6e19b3b176b7168078c782cd42002f779
+  title: c9a9c93a8438013e8954bff4af10dd545e668e1690a48b36e039ce13764f9f8c
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: e3bae78ab74b32fd79e809131eb47bd92ac9dd7211ffb3586f75970926523c4c
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 50ea9fd55fd4587c5bce2a7f96d2625898ebb3f8000e873d848290b04eebb962
+  input_sha256: b64cf4118e9c8fbcd7443ea07c4e0c6e13df52c901cbddd65e2b4cfe8b8a62ee
+  contract_sha256: f03d0cce859cff02640894678cdac11aa4da6120b10d0c1d845387cdf91b24f7
+  output_sha256: a76f254faed843cbe5d52b53fca41be4960c7f305e23484584b74558765e9c73
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 9e5e3557a96358f52760855dde4611853cba3e56c8ea69b9d75ced2cae474fd6
+  created_at: f22eac20c3c2fe68aa0fa9c43083f388fb8e2a68c6a7ff73f7c1a68d0da9f8fa
+  disposed_at: ff77ce31aa1d6226ad3486dfb9e53c87245fa62d50620220d245374f12284350
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 558ea4858f8a5b933fc3e9d20d87075e5e669adec41ddf718da1625855ebc851
+  disposition: 64f6c93d4b82c41b2fe57b8824fb22484203a7650ef55a559b0f8f677d985bd2
+  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+- workspace:desk
+provenance:
+  by: agent
+  at: '2026-11-23T23:45:22Z'
+  authority: generated
+  via: save_document_payload
