@@ -1,0 +1,19 @@
+name: 20261122-215815-suggestion-de-ftcourier-lo-que-todav-a-molesta-del-renderer-bpmn-despu-s-del-arreglo-255b27b
+path: desk/inbox/20261122-215815-suggestion-de-ftcourier-lo-que-todav-a-molesta-del-renderer-bpmn-despu-s-del-arreglo-255b27b.md
+source_hash: 60e9207c59685cda3a48c4ce29af38869a2e0056c7bd8b8e1b029122dab51333
+content_hash: b1c388b1add8ce5db9e40cdb99566a44465b804e3b857c06627bb2ee432942cd
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: 61b9410ba2d037186aef59e069fb63bdebe189c1d225b8dca1b5d5e1235c3a6d
+  target_project: ceff6202e6805e3bc22d70f0f2e7fee9f6478bcff2cb6a60430793b5268a8e12
+  created_at: dbcea525b61012d611c4a01b63d3646c8a820d57854020059f49c8f86bfce0a5
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  title: 0c0f8bf45e1da89de7cd6026da96860e869637a6bd82fef9f1ce1cd90c2709ae
+  body: 774ad4761b31101705c260449dc41efae420ed737a12661db19379efe626b1b2
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null
