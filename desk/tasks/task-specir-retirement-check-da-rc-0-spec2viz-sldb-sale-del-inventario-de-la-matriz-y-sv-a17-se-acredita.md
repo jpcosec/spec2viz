@@ -1,25 +1,33 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-23T18:03:08Z'
+  at: '2026-11-23T18:19:30Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-specir-retirement-check-da-rc-0-spec2viz-sldb-sale-del-inventario-de-la-matriz-y-sv-a17-se-acredita
-status: draft
+status: active
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-testing
+history:
+- task_activates
+references:
+- docs/spec2viz/matriz-de-cobertura.md
+- tests/visual/test_retirement_gate.py
+- a12456204c4f5bf0895830efa6d262fe9298e75d
+- b3e387b
 depends_on: []
 pills: []
-files: []
+files:
+- docs/spec2viz/matriz-de-cobertura.md
+- tests/visual/test_retirement_gate.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-specir-retirement-check-da-rc-0-spec2viz-sldb-fuera-del-inventario-y-sv-a17-acreditada-con-g5-opcion
 ---
 
 # specir retirement check da rc 0: spec2viz/.sldb sale del inventario de la matriz y SV-A17 se acredita con G5 opcion A
