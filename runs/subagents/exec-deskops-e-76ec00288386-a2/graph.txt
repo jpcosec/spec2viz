@@ -1,0 +1,20 @@
+Missing graph references:
+- missing_declared_target: config_file:.worktrees/deskops-e-76ec00288386-a2/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-bundle-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-76ec00288386-a2/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-bundle-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-76ec00288386-a2/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-atom-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-76ec00288386-a2/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-atom-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-76ec00288386-a2/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-commit-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-76ec00288386-a2/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-commit-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-76ec00288386-a2/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-materialization-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-76ec00288386-a2/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-materialization-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-76ec00288386-a2/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-tests-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-76ec00288386-a2/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-tests-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-76ec00288386-a2/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-preflight-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-76ec00288386-a2/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-preflight-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+6 missing, 0 informational (0 planned_target)

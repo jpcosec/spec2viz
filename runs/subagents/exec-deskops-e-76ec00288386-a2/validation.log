@@ -1,0 +1,7 @@
+$ specir retirement check --path graph_ui=../UIs/graph_ui --path deskops=../deskops --path pron=../pron --path sldb=../sldb  -> rc=0
+audited repos: graph_ui, deskops, pron, sldb, IR
+audited stores: -
+dependencies: 0
+rows not accredited: 0
+gate: passed, the retirement can be declared
+$ pytest tests/test_matriz_cobertura_spec2viz.py tests/visual/test_retirement_gate.py -> 11 passed, 1 skipped (rc 0)

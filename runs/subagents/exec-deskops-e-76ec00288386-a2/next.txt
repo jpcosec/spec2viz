@@ -1,0 +1,24 @@
+Task: task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom
+Title: Declarar el retiro de spec2viz en el acta: comprobador en rc 0, catalog build medido y cambios del momento del retiro hechos
+Status: active
+Current node: ritual-testing
+Task type: task.docs
+Phase: testing
+Required ritual:
+- desk/rituals/testing.md
+Required pills:
+- desk/contexts/pills.md
+Next actions:
+1. Confirm the handoff names the contract, touched files, and pill guardrails.
+2. Add or update relevant tests.
+3. Run the smallest relevant test scope, then broader validation if shared behavior changed.
+Advance when:
+- Relevant tests pass and the testing-to-closeout handoff is explicit.
+Post-hooks:
+- task_hands_to_closeout:
+  - evento-para-el-coordinador: sh -c mkdir -p runs/hooks && printf '%s %s %s %s->%s\n' "$(date -u +%FT%TZ)" "$DESKOPS_TASK_ID" "$DESKOPS_TRANSITION" "$DESKOPS_FROM_NODE" "$DESKOPS_TO_NODE" >> runs/hooks/events.log
+  - encola-reap-del-tester: deskops queue add dispatch-reap --root .
+Sources:
+- task: desk/tasks/task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom.md
+- board: desk/tasks/Board.md
+- workflow: deskops/spec/workflows/task_lifecycle.yaml

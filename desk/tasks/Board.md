@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-23T23:13:57Z'
+  at: '2026-11-24T02:20:44Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -12,7 +12,6 @@ scope: desk
 tasks:
 - desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
 - desk/tasks/task-jp-decide-declarar-el-retiro-de-spec2viz-sacar-spec2viz-sldb-del-universo-del-comprobador-y-archivar.md
-- desk/tasks/task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -47,4 +46,3 @@ _Generated from the task references above._
 
 - IR13 Migración de consumidores y gate final de retiro de spec2viz [draft] - Un comprobador del gate de retiro y un acta que demuestran, con evidencia, que toda capacidad de spec2viz está cubierta por specIR y que ningún consumidor importa ni invoca spec2viz.
 - JP decide: declarar el retiro de spec2viz, sacar spec2viz/.sldb del universo del comprobador y archivar el repo spec2viz [draft] - JP confirma (o cambia) tres cosas. 1) Sacar spec2viz/.sldb del inventario de la matriz (el universo del comprobador) y acreditar SV-A17 con G5, para que specir retirement check dé rc 0. 2) Hacer los cambios del momento del retiro (acta, punto 8): BPMN con exporter='specir' y targetNamespace de specir, clave de localStorage del catálogo de specir con migración de spec2viz.catalog.annotations.v1, y goldens nuevos. 3) Declarar el retiro en docs/spec2viz/acta-de-retiro.md y archivar el repo spec2viz (GitHub archive y su desk). Con la confirmación, 1 y 2 se despachan como tareas de IR (IR13), y 3 lo hace quien JP diga.
-- Declarar el retiro de spec2viz en el acta: comprobador en rc 0, catalog build medido y cambios del momento del retiro hechos [draft] - docs/spec2viz/acta-de-retiro.md declara el retiro con fecha 2026-11-23: el estado de cabecera pasa de 'no declarado' a 'declarado'; la seccion de medicion de catalog build trae la medicion nueva; la salida del comprobador muestra rc 0; los items de 'Lo que falta para declarar el retiro' quedan marcados hechos con su commit; el punto 9 (archivar el repo spec2viz) queda como el ultimo paso, que hace el coordinador en GitHub; el acta registra que los oraculos de paridad (punto 6) se retiran al declarar, o el motivo si no.

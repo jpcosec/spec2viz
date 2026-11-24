@@ -1,0 +1,53 @@
+## main
+ M .sldb/core/documents/RunDoc/run-deskops-e-76ec00288386.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/store_index.yaml
+ M runs/subagents/exec-deskops-e-404184a2de99/run.md
+ M runs/subagents/exec-deskops-e-76ec00288386/run.md
+ M runs/subagents/exec-deskops-e-c2af90ecb869/run.md
+?? .scion/settings.yaml
+?? .scion/state.yaml
+?? runs/subagents/20261120-211322/
+?? runs/subagents/20261120-220249/
+?? runs/subagents/20261120-220302/
+?? runs/subagents/20261120-223745/
+?? runs/subagents/20261120-223808/
+?? runs/subagents/20261120-234747/
+?? runs/subagents/20261120-234819/
+?? runs/subagents/20261120-ir04b-wip/
+?? runs/subagents/20261121-042012/
+?? runs/subagents/20261121-042028/
+?? runs/subagents/20261121-061925/
+?? runs/subagents/20261121-061940/
+?? runs/subagents/20261123-180329/
+?? runs/subagents/20261123-180347/
+?? runs/subagents/20261123-180404/
+?? runs/subagents/20261123-180424/
+?? runs/subagents/20261123-231404/
+?? runs/subagents/20261123-232909/
+?? runs/subagents/20261123-234426/
+?? runs/subagents/20261123-234445/
+?? runs/subagents/exec-deskops-e-59807359e541/board.txt
+?? runs/subagents/exec-deskops-e-59807359e541/git-status.txt
+?? runs/subagents/exec-deskops-e-59807359e541/graph.txt
+?? runs/subagents/exec-deskops-e-59807359e541/next.txt
+?? runs/subagents/exec-deskops-e-59807359e541/prompt.md
+?? runs/subagents/exec-deskops-e-59807359e541/result-summary.md
+?? runs/subagents/exec-deskops-e-59807359e541/retirement-check.txt
+?? runs/subagents/exec-deskops-e-59807359e541/task.txt
+?? runs/subagents/exec-deskops-e-59807359e541/validation.log
+?? runs/subagents/exec-deskops-e-76ec00288386/board.txt
+?? runs/subagents/exec-deskops-e-76ec00288386/git-status.txt
+?? runs/subagents/exec-deskops-e-76ec00288386/graph.txt
+?? runs/subagents/exec-deskops-e-76ec00288386/next.txt
+?? runs/subagents/exec-deskops-e-76ec00288386/prompt.md
+?? runs/subagents/exec-deskops-e-76ec00288386/task.txt
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/validation.log
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/validation.log
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/validation.log

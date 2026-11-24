@@ -1,0 +1,3 @@
+## deskops/deskops-e-76ec00288386-a2
+M  docs/spec2viz/acta-de-retiro.md
+M  docs/spec2viz/matriz-de-cobertura.md

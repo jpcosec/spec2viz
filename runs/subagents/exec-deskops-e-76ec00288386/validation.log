@@ -1,0 +1,3 @@
+specir retirement check --path graph_ui=.. --path deskops=.. --path pron=.. --path sldb=..  -> rc 0
+pytest tests/test_matriz_cobertura_spec2viz.py tests/visual/test_retirement_gate.py -> 11 passed, 1 skipped
+grep -n "no declarado" acta -> solo linea 16 (historia fechada)

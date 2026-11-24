@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-23T23:49:12Z'
+  at: '2026-11-24T02:20:38Z'
   authority: generated
   via: save_document_payload
 # run-xxx
@@ -29,9 +29,9 @@ dispatch_confirmed_at: '2026-11-23T23:49:11+00:00'
 # External reference, e.g. scion://agent/<slug>
 external_ref: scion://agent/deskops-e-76ec00288386
 # ISO 8601 end timestamp, empty while in progress
-ended_at: ''
+ended_at: '2026-11-24T02:20:38+00:00'
 # in_progress | success | failure | aborted
-outcome: in_progress
+outcome: success
 # Closeout commit hash, empty until closeout completes
 commit_sha: ''
 # e.g. system:deskops
