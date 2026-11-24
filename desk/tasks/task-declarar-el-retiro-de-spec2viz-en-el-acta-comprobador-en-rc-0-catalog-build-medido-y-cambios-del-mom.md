@@ -1,25 +1,34 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-23T23:13:56Z'
+  at: '2026-11-24T02:19:59Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom
-status: draft
+status: ready_for_testing
 summary: ''
 tags:
 - workspace:desk
 - artifact:task
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-closeout
+history:
+- task_activates
+- task_hands_to_closeout
+references:
+- docs/spec2viz/acta-de-retiro.md
+- docs/spec2viz/matriz-de-cobertura.md
+- 8df3b9025b56cf23b8480173f25514b3c4786f5b
+- e538795
 depends_on: []
 pills: []
-files: []
+files:
+- docs/spec2viz/acta-de-retiro.md
+- docs/spec2viz/matriz-de-cobertura.md
 task_type: task.docs
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-el-retiro-de-spec2viz-queda-declarado-el-2026-11-23-en-el-acta
 ---
 
 # Declarar el retiro de spec2viz en el acta: comprobador en rc 0, catalog build medido y cambios del momento del retiro hechos
