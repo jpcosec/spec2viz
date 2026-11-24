@@ -307,10 +307,10 @@ quedan donde están; durante la paridad son fixtures y después cada repo decide
 Lo que esta matriz deja abierto y debe convertirse en tarea o pedido (no lo resuelve IR07):
 
 1. Filas «usar sldb directamente» (SV-A17, SV-E02, SV-H01 a SV-H06, SV-I05, SV-J06, SV-K18 a SV-K26):
-   con IR13c retirada, ninguna tarea porta hoy `tests/test_notation.py`, `tests/test_notation_view.py`,
+   Resuelto (IR13e, 2026-11-16; retiro declarado el 2026-11-23). Historia fechada: con IR13c retirada, ninguna tarea portaba entonces `tests/test_notation.py`, `tests/test_notation_view.py`,
    `tests/test_view_contract_resolved.py`, `tests/test_style_palette.py` ni `tests/test_view_doc.py`
    contra sldb. La prueba de paridad la aporta IR13 (prueba en specIR que llama a sldb sin envoltorio) o
-   una tarea nueva derivada de estas filas.
+   una tarea nueva derivada de estas filas (IR13e las portó en `tests/visual/test_notations_parity.py`).
 2. SV-K21 y SV-K26: resuelto el 2026-11-21 (IR13k): `sldb notations validate <nombre|ruta>` valida una
    notación o una paleta (nota `20261115-192054`).
 3. SV-K16 y SV-K29: resuelto el 2026-11-21 (IR13k): `sldb notations validate` también valida un spec;
@@ -323,12 +323,13 @@ Lo que esta matriz deja abierto y debe convertirse en tarea o pedido (no lo resu
    spec2viz (store); las notas y su estado están en `docs/spec2viz/acta-de-retiro.md`.
 7. Filas con pruebas de mmdc (SV-B03, SV-C13, SV-C14, SV-D01, SV-G03 y, por dependencia, SV-K09, SV-K12 y
    SV-K17): resuelto el 2026-11-15 con mermaid-cli 12.2 sobre Chrome headless
-   (`SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc`, ver «Acreditación (IR13)»). SV-K09 sigue
-   abierta por SV-K16.
+   (`SPECIR_MMDC=/mnt/ssd/herramientas/mermaid-cli/mmdc`, ver «Acreditación (IR13)»). SV-K09, que seguía
+   abierta por SV-K16, quedó cumplida con IR13k (2026-11-21).
 8. Exporter de BPMN y clave de `localStorage` del catálogo (SV-C06, SV-G06): decidido por el coordinador y
    aceptado por JP. Mientras dure la paridad se mantienen `exporter="spec2viz"`,
    `targetNamespace="http://spec2viz/bpmn"` y la clave `spec2viz.catalog.annotations.v1`; en el momento
    del retiro pasan a specir con goldens nuevos y migración de anotaciones (paso del acta de retiro).
+   Hecho el 2026-11-23 (`109684f`): `exporter="specir"`, `targetNamespace="http://specir/bpmn"` y clave `specir.catalog.annotations.v1`.
 
 ## Acreditación (IR13)
 
@@ -336,7 +337,7 @@ Evaluada por IR13 el 2026-11-15 sobre IR `dc5496a` y sldb `d4aeb4b1`, cada archi
 separado con `TMPDIR=/dev/shm` (las de sldb con el entorno de IR, que instala sldb editable desde
 `sldb/src`). Una fila es **cumplida** solo si su condición de retiro se cumple entera y la prueba citada
 pasa; si depende de otra fila abierta, queda abierta. `specir retirement check` exige que cada fila esté
-cumplida y cite al menos una prueba (`tests/….py`). Resumen: 97 cumplidas, 8 abiertas (tras IR13j); el detalle
+cumplida y cite al menos una prueba (`tests/….py`). Resumen: 105 cumplidas, 0 abiertas el 2026-11-23, con el retiro declarado (`specir retirement check` rc 0; `e6e369d`, `109684f`, sldb `c377aff6`); historia fechada: 97 cumplidas y 8 abiertas tras IR13j (2026-11-17). El detalle
 por gate y por consumidor está en `docs/spec2viz/acta-de-retiro.md`.
 
 Corrida con motor real de mermaid (2026-11-15, decisiones de JP): `@mermaid-js/mermaid-cli` instalado en
