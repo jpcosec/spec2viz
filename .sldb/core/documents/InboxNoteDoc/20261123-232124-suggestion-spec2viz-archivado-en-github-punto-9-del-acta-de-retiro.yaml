@@ -1,0 +1,25 @@
+name: 20261123-232124-suggestion-spec2viz-archivado-en-github-punto-9-del-acta-de-retiro
+path: desk/inbox/20261123-232124-suggestion-spec2viz-archivado-en-github-punto-9-del-acta-de-retiro.md
+source_hash: 22ac70dedf973fc6dccd98b13b08f9abd31b8738d5d6c6ac299b879961d39475
+content_hash: 7d8f94df87614cfd060f13c55464155323be59286eb43026f68fa71fff830c9b
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: b95e0098e73244328c6e04a723ea1ef28919f2cd4226b2bb459287b6bd168e90
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: d8210b0697751b19734b7def86bdeefb3a208ee71ecb712999f679f72218a3d5
+  ack_reason: 4348a2292560a002a22dc3a1aaaef8f81dae5c62fbc8b08720d95227dd45cdd2
+  title: f912bed30452db2c194e517c8799d845971d97dd3fb291768e433954600c6be6
+  body: 7658e1e72ed3a869693477cb4617a377331cafad3074f32151ff6010c4631623
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance:
+  by: agent
+  at: '2026-11-24T02:21:32Z'
+  authority: generated
+  via: save_document_payload
