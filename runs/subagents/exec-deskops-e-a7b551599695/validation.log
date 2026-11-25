@@ -1,0 +1,6 @@
+cd .worktrees/deskops-e-a7b551599695 (PYTHONPATH=<worktree>/src, venv /tmp/ws-venv con sldb[mcp,code,postgres])
+python -m pytest -q -p no:cacheprovider tests/test_extract_python_cli.py   -> 9 passed, rc 0
+python -m pytest -q -p no:cacheprovider -n 4                                -> 485 passed, 12 skipped, 2 xfailed, rc 0
+(una primera corrida completa sin los extras mcp de sldb dio 45 errores de ModuleNotFoundError anyio/mcp: entorno, resuelto instalando el extra)
+specir extract python-cli <copia de deskops origin/main 3abef17fd> -> created: 102, desconocidos: 1, rc 0 (30 min: write_anchor es lento)
+sldb rules check --store .sldb (en esa copia) -> rc 0; 102 alertas rule-specir-entity-is-persisted (ninguna tabla), 0 errores

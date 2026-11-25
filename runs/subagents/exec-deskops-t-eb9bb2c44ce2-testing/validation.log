@@ -1,0 +1,66 @@
+# Tester evidence — task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de
+
+Environment: /workspace/IR/.venv/bin/python (Python 3.13.18, pytest 9.2.0)
+             TMPDIR=/tmp; PYTEST_ADDOPTS="--basetemp=/tmp/pytest-deskops-t-eb9bb2c44ce2-*"
+Executor code commit: 4df694b5ceeb56fcab39658d32ef47faae48346e
+  (git log --grep "Task-Id: ..." gives no result, as the task asked for no Task-Id in the code commit.)
+  src/ and tests/ are identical between 4df694b and HEAD:
+    git diff --stat 4df694b HEAD -- src tests   -> empty
+  git merge-base --is-ancestor 4df694b HEAD     -> rc 0
+
+## 1. Requested test file
+$ python -m pytest -q tests/test_extract_python_cli.py
+9 passed in 30.59s
+
+## 2. Tests of the touched modules
+$ python -m pytest -q tests/test_cli_mcp.py            # src/specir/cli.py
+3 passed in 2.56s
+$ python -m pytest -q tests/test_imports.py            # src/specir/extract/__init__.py (public-API guard)
+9 passed in 1.81s
+$ python -m pytest -q tests/extract/test_ux_extract_cli.py   # cli.py group/command coexistence
+2 passed in 43.02s
+$ python -m pytest -q tests/visual/test_cli.py         # cli.py top-level command surface
+40 passed in 94.92s
+
+(The full suite was not run, per the tester instructions: the host runs it.)
+
+## 3. Done When on a copy of deskops
+$ git worktree add --detach /tmp/deskops-accept origin/main
+  HEAD 3abef17fd48b8c49105852aaea7f2fc8df28f3b0
+$ sldb stores init --path /tmp/deskops-store
+$ python -m specir.install --store /tmp/deskops-store/.sldb
+  rc 0 (11s)
+$ specir extract python-cli /tmp/deskops-accept --store /tmp/deskops-store/.sldb
+  created: 102, updated: 0, unchanged: 0, desconocidos: 1
+    desconocido: los comandos de argparse que arma deskops/cli/parser.py:53
+      deskops.cli.parser._add_command_parser en el cuerpo de la función; los hechos de
+      sldb traen de cada llamada solo su nombre y su línea (sin argumentos), así que no
+      muestran el nombre del subcomando ni su handler; pedido a sldb en su inbox
+  rc 0 (2m28s)
+
+Documents by model in /tmp/deskops-store/.sldb:
+  InterfaceControlDoc 0, InterfaceActionDoc 0, ApiOperationDoc 0,
+  HandlerDoc 0, DomainOperationDoc 0, DomainEntityDoc 102
+
+All 102 nodes checked through sldb.api.load_runtime_documents:
+  origen=observado 102/102
+  layer.domain     102/102 (from each model's __semantics__, not a new type)
+  description with <path>.py:<line> and [anchor-...] 102/102
+  bad=0
+
+$ sldb rules check --store /tmp/deskops-store/.sldb --format json
+  rc 0; 102 findings, all level=alert (rule-specir-entity-is-persisted: entity with no
+  TableDoc in the tree), 0 errors.
+  (An earlier rc 120 was an artifact of piping to `head`, which closes stdout; the full
+  command wrote /tmp/rules.json and returned rc 0.)
+
+Deskops CLI commands are NOT in the store: its parser and its Command(...) registry are
+built inside function bodies and sldb's `attrs.calls` for a function carries only
+{name, line}, no args/kwargs. The unknown above names that gap and it is counted (1).
+Notes left by the executor:
+  IR desk/inbox/20261125-194830-unclear-python-cli-el-parser-de-deskops-queda-como-desconocido.md
+  sldb desk/inbox/20261125-194644-unclear-code-facts-argumentos-de-las-llamadas-dentro-del-cuerpo-de-una-funci-n.md
+Both are present and open; both are untracked in their repos.
+
+Cleanup: /tmp/deskops-accept worktree removed (`git worktree remove --force`, rc 0);
+         /tmp/deskops-store removed.

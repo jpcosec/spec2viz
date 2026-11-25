@@ -1,7 +1,17 @@
+Task: task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de
+Title: specir extract describe una librería de Python con CLI con los tipos que ya tiene, y sobre el repo deskops deja sus comandos, operaciones y modelos como nodos con capa
+Status: active
+Current node: ritual-testing
+Task type: task.code
+Lifecycle gates:
+- task_hands_to_closeout -> ritual-closeout: open [nonempty(validation)]
+  post-hook evento-para-el-coordinador: sh -c mkdir -p runs/hooks && printf '%s %s %s %s->%s\n' "$(date -u +%FT%TZ)" "$DESKOPS_TASK_ID" "$DESKOPS_TRANSITION" "$DESKOPS_FROM_NODE" "$DESKOPS_TO_NODE" >> runs/hooks/events.log
+  post-hook encola-reap-del-tester: deskops queue add dispatch-reap --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-25T21:11:24Z'
+  at: '2026-11-25T20:41:09Z'
   authority: generated
   via: save_document_payload
 id: task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de
@@ -11,36 +21,14 @@ tags: []
 current_node: ritual-testing
 history:
 - task_activates
-references:
-- src/specir/cli.py
-- src/specir/extract/__init__.py
-- src/specir/extract/python_cli.py
-- tests/fixtures/cli_lib/mylib/__init__.py
-- tests/fixtures/cli_lib/mylib/cli.py
-- tests/fixtures/cli_lib/mylib/clicmd.py
-- tests/fixtures/cli_lib/mylib/core.py
-- tests/fixtures/cli_lib/mylib/dynamic.py
-- tests/fixtures/cli_lib/mylib/models.py
-- tests/test_extract_python_cli.py
-- 4df694b5ceeb56fcab39658d32ef47faae48346e
+references: []
 depends_on: []
 pills: []
-files:
-- src/specir/cli.py
-- src/specir/extract/__init__.py
-- src/specir/extract/python_cli.py
-- tests/fixtures/cli_lib/mylib/__init__.py
-- tests/fixtures/cli_lib/mylib/cli.py
-- tests/fixtures/cli_lib/mylib/clicmd.py
-- tests/fixtures/cli_lib/mylib/core.py
-- tests/fixtures/cli_lib/mylib/dynamic.py
-- tests/fixtures/cli_lib/mylib/models.py
-- tests/test_extract_python_cli.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-specir-extract-python-cli-describe-una-libreria-python-con-cli-con-los-tipos-existentes
+atoms: []
 ---
 
 # specir extract describe una librería de Python con CLI con los tipos que ya tiene, y sobre el repo deskops deja sus comandos, operaciones y modelos como nodos con capa
@@ -83,3 +71,20 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 specir extract sobre una copia del repo deskops deja en el store los comandos de su CLI, las funciones públicas que cada uno invoca y sus modelos, cada nodo con su capa, su origen observado y el archivo y la línea de donde salió. Las reglas sembradas de specIR corren sobre ese store sin error. Lo que no se pudo clasificar aparece como desconocido y contado.
+
+## Como probar (tester)
+
+Ubica el trabajo del ejecutor:
+
+    git log -1 --format=%H --grep "Task-Id: task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de"   # commit del ejecutor
+    git show --name-only <commit>                           # sus archivos
+
+Los tests a correr son los archivos tests/*.py de ese commit, mas tests/test_<modulo>.py cuando exista para cada modulo de codigo tocado; de a uno, con `TMPDIR=/tmp python -m pytest -q <archivo>`. No corras la suite completa: la corre integrate en el host.
+
+Escribe result-summary.md con el veredicto PASA o FALLA en la primera linea.
+
+## Temporales de pytest
+
+Antes de cualquier pytest exporta, para que sus temporales caigan en el /tmp del contenedor (muere con el agente) y no en el /dev/shm del host:
+
+    export PYTEST_ADDOPTS="--basetemp=/tmp/pytest-deskops-t-eb9bb2c44ce2"

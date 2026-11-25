@@ -1,0 +1,36 @@
+name: review-task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de-evidence-tests-1
+path: desk/reviews/task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de/evidence-tests-1.md
+source_hash: 5b3271f9f59d0311add9a909dd50e8f77581e17a28f2fed5fda7cc5fae58dffc
+content_hash: c7bd8505bae6cf9b276936029b63dcea6d245e1cce0cb087137dcd0ebbcc4c89
+field_hashes:
+  id: f499e660da599c945d0f3e85f53265eefb06a8fea9b4d702f449a8d677fe2797
+  title: a9d3a1ae75f8c6f7fd62bc98b7de4162afdc80803043821e6b59b71dab613cca
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: 63695f247e99bf168ee185eb95b2834e3862a15cc80887fc58015886f0ef213d
+  subject: 14951ee7f49badbc5866a6f57d315a3d0b02ac6cdc81465158ee09adb1cc22b3
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 71a479e21afdaada8ef5cfd91ecacc4d5ce99d5bcb81a91cedcf85c37d6db382
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 5fcbf8032b928330d70bf8f079c7f534ebc99617a78942b6bbe4184b57c5c19c
+  created_at: 5718a86d8d9b2007b834bd5fa93dc279691bed1c4f232fbaca2b3be2c93490ba
+  disposed_at: 5718a86d8d9b2007b834bd5fa93dc279691bed1c4f232fbaca2b3be2c93490ba
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 873fd063b100db5c44fa284f44cb79ddd8b297af389afaf34e2f19a072caee35
+  disposition: 4c8dcfd3562a905138baa08670efe3e9ad96ea7a167e168d28d4aafa463b1a93
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T21:14:55Z'
+  authority: generated
+  via: create_document

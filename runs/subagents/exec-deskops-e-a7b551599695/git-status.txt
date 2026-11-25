@@ -1,0 +1,49 @@
+## main...origin/main [ahead 19]
+ M .sldb/core/documents/RunDoc/run-deskops-e-1d2444804e95.yaml
+ M .sldb/core/documents/RunDoc/run-deskops-e-a7b551599695.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid.yaml
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/store_index.yaml
+ M desk/tasks/task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de.md
+ M desk/tasks/task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo.md
+ M desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md
+ M desk/tasks/task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid.md
+ M runs/subagents/exec-deskops-e-1d2444804e95/run.md
+ M runs/subagents/exec-deskops-e-a7b551599695/run.md
+?? .scion/settings.yaml
+?? .scion/state.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid-preflight-1.yaml
+?? desk/reviews/task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de/
+?? desk/reviews/task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo/
+?? desk/reviews/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de/
+?? desk/reviews/task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid/
+?? runs/jp-dispose-graphui.sh
+?? runs/subagents/20261125-192037/
+?? runs/subagents/20261125-192117/
+?? runs/subagents/20261125-192155/
+?? runs/subagents/20261125-192214/
+?? runs/subagents/20261125-192232/
+?? runs/subagents/20261125-192246/
+?? runs/subagents/20261125-192414/
+?? runs/subagents/20261125-192430/
+?? runs/subagents/20261125-192452/
+?? runs/subagents/20261125-192510/
+?? runs/subagents/exec-deskops-e-1d2444804e95/prompt.md
+?? runs/subagents/exec-deskops-e-a7b551599695/board.txt
+?? runs/subagents/exec-deskops-e-a7b551599695/git-status.txt
+?? runs/subagents/exec-deskops-e-a7b551599695/graph.txt
+?? runs/subagents/exec-deskops-e-a7b551599695/next.txt
+?? runs/subagents/exec-deskops-e-a7b551599695/prompt.md
+?? runs/subagents/exec-deskops-e-a7b551599695/task.txt
