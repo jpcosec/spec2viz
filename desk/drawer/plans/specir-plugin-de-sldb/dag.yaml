@@ -7,18 +7,9 @@ estimate_legend:
   M: uno a dos días
   L: más de dos días
 external:
-  sldb-declaracion-de-plugin:
-    owner: sldb
-    state: sin pedir
   sldb-reglas-de-store-enlazado:
     owner: sldb
     state: pedido por deskops (C1)
-  sldb-extension-del-cli:
-    owner: sldb
-    state: pedido por deskops (C5)
-  sldb-servidor-fastmcp:
-    owner: sldb
-    state: decidido, sin empezar
   sldb-argumentos-literales-python:
     owner: sldb
     state: tarea creada
@@ -37,6 +28,12 @@ external:
   deskops-punteros-del-donde:
     owner: deskops
     state: tarea creada
+  sldb-cli-estable:
+    owner: sldb
+    state: en curso
+  sldb-instalacion-de-plugin:
+    owner: sldb
+    state: sin pedir
 tasks:
   K1:
     title: La decisión "specIR es un plugin sobre sldb" queda en docs/decisiones/ con las cuatro reglas
@@ -104,23 +101,18 @@ tasks:
     - deskops-punteros-del-donde
     task: task-specir-impact-entrega-para-los-archivos-de-un-cambio-...
   S2:
-    title: Las herramientas de specIR se montan en el servidor de sldb
+    title: specIR declara sus herramientas en un servidor fastmcp propio, del que salen su MCP y su CLI; llaman a sldb por su CLI
     phase: F4
-    estimate: S
+    estimate: M
     requires:
-    - sldb-servidor-fastmcp
-  S3:
-    title: specir queda como extensión delgada del CLI de sldb
-    phase: F4
-    estimate: S
-    requires:
-    - sldb-extension-del-cli
+    - sldb-cli-estable
+    state: 'diferido por JP (2026-11-25): el CLI de sldb se está modificando'
   S4:
-    title: specIR se instala por la declaración de plugin; se borra install.py
+    title: specIR instala sus modelos y semillas por el mecanismo que sldb defina; se borra install.py
     phase: F4
     estimate: S
     requires:
-    - sldb-declaracion-de-plugin
+    - sldb-instalacion-de-plugin
     - sldb-reglas-de-store-enlazado
   S5:
     title: La pantalla del catálogo es una composición declarada como dato
@@ -166,3 +158,4 @@ order_notes:
 - E1 antes que E2
 - 'K2, N1, E3, R1, R5 y D1 no se pisan: pueden ir en paralelo'
 - 'R2 se verifica antes de estimarse en firme: no se comprobó cuánto de visual/ir.py usan los exportes'
+- El servidor de specIR se fusiona eventualmente con el de sldb
