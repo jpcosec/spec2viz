@@ -1,0 +1,48 @@
+id: paridad-por-capacidades
+status: proposed
+as_of: '2026-11-25'
+source: 'README.md de esta carpeta. Relacionados, en sus repos, UIs/graph_ui/desk/drawer/plans/fierros-hacia-afuera y sldb/desk/drawer/plans/pedidos-de-specir-y-graph-ui.'
+decisions:
+  paridad-por-capacidades: {state: decided, by: JP, on: '2026-11-25', decided: 'specIR cumple capacidades, no código; los goldens de spec2viz se borran'}
+  guardrail-de-paridad: {state: decided, by: JP, on: '2026-11-25', decided: 'Se reescribe: una capacidad está cubierta cuando su prueba de aceptación pasa'}
+  estandares-como-datos: {state: decided, by: JP, on: '2026-11-25', decided: 'El mapeo de un estándar es dato del store'}
+  full-conversation: {state: decided, by: JP, on: '2026-11-25', decided: 'full_conversation.md se queda en el repo'}
+  venv-de-ir: {state: done, by: JP, on: '2026-11-25', decided: 'specIR instalado editable en el venv compartido de robocop2'}
+  aceptar-capacidades: {state: open}
+  frontera-atomos-anotaciones-diccionario: {state: open, options: [graph_ui, specIR]}
+capabilities:
+  - {id: C1, title: Ver cualquiera de los 8 tipos de diagrama del store con su notación, where: graph_ui, state: cumplida en dibujo}
+  - {id: C2, title: Navegar el catálogo por categoría, where: graph_ui, state: cumplida con vistas.yml sincronizado}
+  - {id: C3, title: 'Abrir un nodo y ver su documento, sus átomos y sus referencias', where: graph_ui, state: falta el panel de átomos}
+  - {id: C4, title: 'Anotar un diagrama o un nodo, guardado en el store', where: graph_ui, state: falta}
+  - {id: C5, title: Editar desde el diagrama, where: graph_ui, state: no existe}
+  - {id: C6, title: Incrustar un diagrama como SVG o HTML estático, where: graph_ui, state: en borrador}
+  - {id: C7, title: Validar una spec y sincronizarla al store, where: sldb, state: cumplida}
+  - {id: C8, title: 'Exportar a PlantUML, Mermaid, D2 o BPMN XML', where: specIR, state: cumplida}
+tasks:
+  borrar-goldens:
+    title: Borrar los goldens de spec2viz y las pruebas que los leen; reescribir el guardrail
+    task: task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac
+    depends_on: []
+    review: 'Mover, no borrar, los casos de comportamiento de test_render_parity.py (proyección del blog)'
+  sembrar-notacion:
+    title: specir.install siembra la notación de los tipos de specIR (specir-layers.yml)
+    depends_on: []
+    gate: 'Se ve en graph_ui solo con G-C'
+  capacidades-en-el-store:
+    title: Capacidades como AtomDoc con su MaterializationContractDoc, RuleDoc y ViewDoc
+    depends_on: [aceptar-capacidades]
+  notacion-orca:
+    title: Notación ORCA sobre los tipos de specIR
+    depends_on: [sembrar-notacion]
+  notacion-ifml:
+    title: Notación IFML sobre los tipos de specIR
+    depends_on: [sembrar-notacion]
+  mcp-delega:
+    title: specir mcp delega en mcp_extension y cli.py deja de importar sldb.mcp
+    task: task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp
+    depends_on: []
+  workspace-por-variable:
+    title: Las pruebas encuentran el workspace por SPECIR_WORKSPACE
+    task: task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr
+    depends_on: []

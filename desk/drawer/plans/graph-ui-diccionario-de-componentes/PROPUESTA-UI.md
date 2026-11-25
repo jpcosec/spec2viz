@@ -1,5 +1,10 @@
 # Propuesta: una UI nueva para specIR
 
+> **Estado al 2026-11-25:** esta propuesta queda como referencia de forma y estética. Su
+> arquitectura (una app propia de specIR) está en revisión: el render principal de los diagramas
+> es la vista de notación de graph_ui, y JP decidió esperar a su panel embebible. Ver el README
+> de esta carpeta y `../paridad-por-capacidades/`.
+
 Respuesta a D1 (JP, 2026-11-24): no apuntar a los experimentos de graph_ui; proponer una UI nueva,
 inspirada en la superficie de sldb, que como mínimo haga lo que hacía la UI del spec2viz antiguo, sin
 copiarla. La maqueta está en `maqueta-ui.html` (estática, sin servidor; se abre con doble clic).

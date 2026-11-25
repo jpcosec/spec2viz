@@ -1,0 +1,35 @@
+# Notacion de la cadena entre capas de specIR: de un control de interfaz a la tabla.
+# Un glifo por tipo de dominio de specIR y un link por tipo de relacion (specir/data/relation_types.yaml).
+# No dibuja nada propio: la forma y el trazo salen de aqui y los resuelve sldb.
+name: specir-layers
+title: specIR, cadena entre capas
+diagram_type: component
+level: instances
+projection: all
+layout: {kind: graph, direction: LR}
+
+glyphs:
+  - {id: control, title: Control de interfaz, model: InterfaceControlDoc, shape: rounded-box, keyword: "«control»", label: "{title}", function: interface_control}
+  - {id: action, title: Accion de interfaz, model: InterfaceActionDoc, shape: rounded-box, keyword: "«action»", label: "{title}", function: interface_action}
+  - {id: interface-field, title: Campo de interfaz, model: InterfaceFieldDoc, shape: box, keyword: "«field»", label: "{title}", function: interface_field}
+  - {id: api-operation, title: Operacion de API, model: ApiOperationDoc, shape: boundary-box, keyword: "«api»", label: "{title}", function: api_operation}
+  - {id: api-field, title: Campo de API, model: ApiFieldDoc, shape: box, keyword: "«api field»", label: "{title}", function: api_field}
+  - {id: handler, title: Handler, model: HandlerDoc, shape: box, keyword: "«handler»", label: "{title}", function: handler}
+  - {id: domain-operation, title: Operacion de dominio, model: DomainOperationDoc, shape: box, keyword: "«operation»", label: "{title}", function: domain_operation}
+  - {id: policy, title: Politica, model: PolicyDoc, shape: note, label: "{title}", function: policy}
+  - {id: state, title: Estado, model: StateDoc, shape: rounded-box, keyword: "«state»", label: "{title}", function: state}
+  - {id: entity, title: Entidad de dominio, model: DomainEntityDoc, shape: class-box, label: "{title}", function: domain_entity}
+  - {id: table, title: Tabla, model: TableDoc, shape: cylinder, label: "{title}", compartments: [columns], function: table}
+
+links:
+  - {id: triggers, title: Dispara, relation: triggers, draw: line, line: solid, target_end: open-arrow, label: "triggers"}
+  - {id: invokes, title: Invoca, relation: invokes, draw: line, line: solid, target_end: filled-arrow, label: "invokes"}
+  - {id: handled-by, title: La recibe, relation: handled_by, draw: line, line: solid, target_end: open-arrow, label: "handled by"}
+  - {id: executes, title: Ejecuta, relation: executes, draw: line, line: solid, target_end: filled-arrow, label: "executes"}
+  - {id: governed-by, title: La gobierna, relation: governed_by, draw: line, line: dashed, target_end: open-arrow, label: "governed by"}
+  - {id: transitions, title: Lleva al estado, relation: transitions, draw: line, line: solid, target_end: open-arrow, label: "transitions"}
+  - {id: writes, title: Escribe, relation: writes, draw: line, line: solid, target_end: filled-arrow, label: "writes"}
+  - {id: persisted-in, title: Se guarda en, relation: persisted_in, draw: line, line: dashed, target_end: open-arrow, label: "persisted in"}
+  - {id: bound-to, title: Ligado a, relation: bound_to, draw: line, line: dotted, target_end: open-arrow, label: "bound to"}
+  - {id: field-of, title: Campo de, relation: field_of, draw: line, line: dotted, target_end: open-arrow, label: "field of"}
+  - {id: state-of, title: Estado de, relation: references, draw: line, line: dotted, target_end: open-arrow, label: "state of"}
