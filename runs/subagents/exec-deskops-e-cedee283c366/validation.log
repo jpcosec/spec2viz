@@ -1,0 +1,2 @@
+grep -n jpcosec/specir acta: rc 0
+! grep "Lo único que queda es archivar": rc 0

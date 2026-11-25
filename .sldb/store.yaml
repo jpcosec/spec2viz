@@ -1282,7 +1282,6 @@ include:
   - desk/tasks/task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca.md
 - model: TaskDocsDoc
   paths:
-  - desk/tasks/task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y.md
   - desk/tasks/task-plan-probar-uis-con-graph-ui-como-diccionario-de-componentes-y-una-forma-comoda-de-usar-specir-ahi.md
 graph_backend: networkx
 policy: {}

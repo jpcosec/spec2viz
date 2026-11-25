@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T01:10:08Z'
+  at: '2026-11-25T02:53:39Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -13,7 +13,6 @@ tasks:
 - desk/tasks/task-goldens-de-la-capa-visual-capturados-de-spec2viz-una-sola-vez-y-las-pruebas-de-paridad-pasan-a-compa.md
 - desk/tasks/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir.md
 - desk/tasks/task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca.md
-- desk/tasks/task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y.md
 - desk/tasks/task-plan-probar-uis-con-graph-ui-como-diccionario-de-componentes-y-una-forma-comoda-de-usar-specir-ahi.md
 # List of pill-xxx paths
 pills:
@@ -49,5 +48,4 @@ _Generated from the task references above._
 - Goldens de la capa visual capturados de spec2viz una sola vez, y las pruebas de paridad pasan a compararse contra esos goldens [draft] - Las salidas de referencia que hoy calcula spec2viz se guardan como goldens versionados bajo tests/visual/goldens/, y las pruebas de paridad comparan specIR contra esos archivos en vez de importar spec2viz.
 - Sin marcador parity ni dependencia de spec2viz en las pruebas de IR [draft] - pyproject.toml ya no declara el marcador parity, tests/conftest.py y tests/visual no importan ni nombran spec2viz como dependencia, y el script de captura queda borrado o documentado como historico.
 - specir mcp: el punto de entrada propio de specIR levanta el server MCP de sldb con su extension ya cargada [draft] - 'specir mcp --store <ruta> [--level N] [--actor A]' arranca sldb.mcp.server.serve con specir.mcp_extension:register cargada; 'specir mcp --help' lo explica; las tools specir_* aparecen.
-- El acta de retiro dice que spec2viz continua como IR en jpcosec/specir (rama legacy con su historia) y marca hecho el punto 9 [draft] - docs/spec2viz/acta-de-retiro.md registra el cambio: spec2viz no queda archivado sino que continua como IR en jpcosec/specir (main = IR, legacy = historia de spec2viz); el punto 9 queda marcado como hecho con esta salvedad, con fecha y la decision de JP.
 - Plan: probar UIs con graph_ui como diccionario de componentes y una forma comoda de usar specIR ahi [draft] - Un plan en desk/drawer/plans/graph-ui-diccionario-de-componentes/ que diga: que es el diccionario de componentes (que componente de graph_ui es que nodo de la capa UX de specIR), como se genera (extractor React de specIR sobre graph_ui), como se usa para probar UIs (que prueba lee el diccionario: auto_user_test, flujos, controles esperados), la ergonomia (comando o tool MCP de specIR), y el DAG de tareas chicas con depends_on para implementarlo. Decisiones abiertas como task.decision para JP.

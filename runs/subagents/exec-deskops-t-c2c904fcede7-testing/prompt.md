@@ -1,7 +1,17 @@
+Task: task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y
+Title: El acta de retiro dice que spec2viz continua como IR en jpcosec/specir (rama legacy con su historia) y marca hecho el punto 9
+Status: active
+Current node: ritual-testing
+Task type: task.docs
+Lifecycle gates:
+- task_hands_to_closeout -> ritual-closeout: open [nonempty(validation)]
+  post-hook evento-para-el-coordinador: sh -c mkdir -p runs/hooks && printf '%s %s %s %s->%s\n' "$(date -u +%FT%TZ)" "$DESKOPS_TASK_ID" "$DESKOPS_TRANSITION" "$DESKOPS_FROM_NODE" "$DESKOPS_TO_NODE" >> runs/hooks/events.log
+  post-hook encola-reap-del-tester: deskops queue add dispatch-reap --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-25T02:49:52Z'
+  at: '2026-11-25T02:42:41Z'
   authority: generated
   via: save_document_payload
 id: task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y
@@ -11,18 +21,14 @@ tags: []
 current_node: ritual-testing
 history:
 - task_activates
-references:
-- docs/spec2viz/acta-de-retiro.md
-- 70374fc0992f25272640db04cdb42bca5288a2b1
+references: []
 depends_on: []
 pills: []
-files:
-- docs/spec2viz/acta-de-retiro.md
+files: []
 task_type: task.docs
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-spec2viz-continua-como-ir-en-jpcosec-specir
+atoms: []
 ---
 
 # El acta de retiro dice que spec2viz continua como IR en jpcosec/specir (rama legacy con su historia) y marca hecho el punto 9
@@ -63,3 +69,20 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 El acta nombra jpcosec/specir y la rama legacy en el punto 9 marcado como hecho el 2026-11-24, la cabecera y la linea de estado ya no dicen que falta archivar.
+
+## Como probar (tester)
+
+Ubica el trabajo del ejecutor:
+
+    git log -1 --format=%H --grep "Task-Id: task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y"   # commit del ejecutor
+    git show --name-only <commit>                           # sus archivos
+
+Los tests a correr son los archivos tests/*.py de ese commit, mas tests/test_<modulo>.py cuando exista para cada modulo de codigo tocado; de a uno, con `TMPDIR=/tmp python -m pytest -q <archivo>`. No corras la suite completa: la corre integrate en el host.
+
+Escribe result-summary.md con el veredicto PASA o FALLA en la primera linea.
+
+## Temporales de pytest
+
+Antes de cualquier pytest exporta, para que sus temporales caigan en el /tmp del contenedor (muere con el agente) y no en el /dev/shm del host:
+
+    export PYTEST_ADDOPTS="--basetemp=/tmp/pytest-deskops-t-c2c904fcede7"
