@@ -509,6 +509,18 @@ include:
     name: review-task-u1b-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta-evidence-atom-1
   - path: desk/reviews/task-u1b-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta/evidence-materialization-1.md
     name: review-task-u1b-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta-evidence-materialization-1
+  - path: desk/reviews/task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp/preflight-1.md
+    name: review-task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp-preflight-1
+  - path: desk/reviews/task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp/bundle-1.md
+    name: review-task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp-bundle-1
+  - path: desk/reviews/task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr/preflight-1.md
+    name: review-task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr-preflight-1
+  - path: desk/reviews/task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr/bundle-1.md
+    name: review-task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr-bundle-1
+  - path: desk/reviews/task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac/preflight-1.md
+    name: review-task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac-preflight-1
+  - path: desk/reviews/task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac/bundle-1.md
+    name: review-task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac-bundle-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -1338,6 +1350,8 @@ include:
     name: run-deskops-t-4fe82aa7eac2
   - path: runs/subagents/exec-deskops-t-f68fc4d93dac-testing/run.md
     name: run-deskops-t-f68fc4d93dac
+  - path: runs/subagents/exec-deskops-e-353d0aebfaed/run.md
+    name: run-deskops-e-353d0aebfaed
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md
