@@ -59,3 +59,4 @@
 {"task_id": "task-decision-de-jp-cual-es-el-localizador-de-un-control-en-el-diccionario-de-componentes", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
 {"task_id": "task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
 {"task_id": "task-decision-de-jp-donde-vive-el-diccionario-de-componentes", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
+{"task_id": "task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}

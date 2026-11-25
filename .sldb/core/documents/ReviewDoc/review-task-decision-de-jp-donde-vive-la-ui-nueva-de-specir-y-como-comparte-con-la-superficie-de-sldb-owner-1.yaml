@@ -1,7 +1,7 @@
 name: review-task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb-owner-1
 path: desk/reviews/task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb/owner-1.md
-source_hash: f4ba74bf05aaa184dca890d055c5aa49e81d326384c3254a03170127798c6cd7
-content_hash: 18315bbd017e670f4ceaccf19a58b3eff2d46847826d1b86f8fc866f09b32ed1
+source_hash: 44edc2d3889d7f362344b6500912eb95a6043dbb55a2093eab3ca21c88b822c7
+content_hash: 05c490955211407073bb3f6638a321cabc46bfce56a2f27cfea173a47da79287
 field_hashes:
   id: a065a207ba61fe67fb5973dba4ecd333dc56e0a0dd25d3e990e233d891eb5ab2
   title: d42feafc60611c7aaaf2f010232a1dbf113857e6018441e2d27b7beac9b0498d
@@ -16,13 +16,13 @@ field_hashes:
   input_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
-  reason: 288fe1b9492cec32069ef7f0bd5a35e7da58eee49c1f36227e341dee537641ad
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: ec611ddfec1dbd05588a6914301abf9efcd6d420602278456cabe42b67124f18
   created_at: d592c544bfa36ebf3a5cdf0e76ee78e4e5a65bdb194e45ce113e40727a0e4eab
-  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_at: 9b91845ed516b96914e77af9ef68a056f51a41c28cc0038f52d784cbcff31468
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 7735b1af9e1a496fa0f36df9a318df8a8253c73fe4fc00804339157235f7a7c3
-  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposition: b39bab23ffb844de958117515159beb65494cb5db251c5f99d0effe17575171c
   tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
@@ -31,6 +31,6 @@ semantic_tags:
 - workspace.desk.runs
 provenance:
   by: agent
-  at: '2026-11-25T06:02:45Z'
+  at: '2026-11-25T12:20:49Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

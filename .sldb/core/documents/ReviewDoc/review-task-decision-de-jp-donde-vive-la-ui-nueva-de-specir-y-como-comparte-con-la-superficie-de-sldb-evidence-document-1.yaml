@@ -1,0 +1,36 @@
+name: review-task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb-evidence-document-1
+path: desk/reviews/task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb/evidence-document-1.md
+source_hash: 5b6036d38b964d8f72e54622de204b26dc577617aefb35aa1094cbb5b84f98e0
+content_hash: 4dcb0a811b0b9638e47c24a8b1bab131bc04a765b1d0f64fe08cd009ddb390ef
+field_hashes:
+  id: a9e31c1a4e644207286cf9afd3fdf9df4277fc414fb745186ff145fa2b4935fe
+  title: 533bf1e9c0bf6bcef3446310a3eb31462d48b48ce6ed2951e9554d40c5e81c14
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 64ac8e615520cd1ae43ab0d47cfc9e750a82d13f9c47d468dab7cd8c982b7859
+  value: fd4063ec830cbb4b7390f32b7a1c3bfb5880519eccc084b82734a10b0e23db95
+  subject: 80f250a48ad8bb431da8e896cc27cb1d213265852ddb9695555aa1d274fc59ff
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: d49423cfa1af77857f8c797896bb127f1139668ac4b98092008ca6b75600d153
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 2b642514f21cb6964106fac43111ca728927384f6397dbaa6f8982e73c1c5565
+  created_at: c5c5d9850b2346bf0e7853b99e790da6f11ff58418d520d75435ec7862d04e8c
+  disposed_at: c5c5d9850b2346bf0e7853b99e790da6f11ff58418d520d75435ec7862d04e8c
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 6e7b8065e6f659e78e43ce65f6c4750359d25418ff6c24798b4ef3584a01258d
+  disposition: b97dad00ff3e276a5b5392ff27d13f09058daf26c70667c8a31f832ce33901f3
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T12:31:15Z'
+  authority: generated
+  via: create_document

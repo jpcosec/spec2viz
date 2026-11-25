@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T06:02:45Z'
+  at: '2026-11-25T12:20:49Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 # review-<task>-<kind>-<n>
 id: review-task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb-owner-1
 # preflight | bundle | reproduction | goldens | owner | node | evidence
@@ -26,15 +26,13 @@ input_sha256: ''
 contract_sha256: ''
 output_sha256: ''
 # pending | accepted | rejected | incomplete
-verdict: pending
-reason: 'JP decidio D7: app propia en IR/ui que COPIA de sldb/surface lo que necesita
-  (cliente, lienzo de notacion, estilos) citando archivo y commit de origen; no importa
-  de @sldb/surface (2026-11-25, sesion de johanes; registrado en runs/coordinacion-johanes.md)'
+verdict: accepted
+reason: 'JP: decision tomada el 2026-11-25'
 # ISO 8601 timestamp
 created_at: '2026-11-25T06:02:42.132225+00:00'
 # ISO 8601 timestamp, empty while pending
-disposed_at: ''
-disposed_by: ''
+disposed_at: '2026-11-25T12:20:46.809924+00:00'
+disposed_by: IR
 # e.g. system:deskops
 tags: []
 ---
@@ -50,3 +48,5 @@ owner receipt recorded by IR; evidence: (none)
 ## Disposition
 
 _Record the verdict rationale and who disposed of the review._
+
+Verdict accepted: JP: decision tomada el 2026-11-25
