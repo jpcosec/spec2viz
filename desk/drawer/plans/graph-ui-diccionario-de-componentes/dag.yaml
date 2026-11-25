@@ -1,0 +1,26 @@
+id: graph-ui-diccionario-de-componentes
+status: proposed
+as_of: '2026-11-24'
+source: README.md de esta carpeta; medido sobre graph_ui 36adfbb, IR f455b32, sldb 61c5847f.
+execution_authorized: false
+decisions:
+  D1: {title: Qué interfaz es el objetivo (mindmap htm o las apps TSX), task_type: task.decision, recommended: mindmap}
+  D2: {title: De dónde salen las operaciones de API de un backend que no es DRF, task_type: task.decision, recommended: tabla de rutas declarada}
+  D3: {title: Cuál es el localizador de un control, task_type: task.decision, recommended: rol y nombre accesible con data-testid cuando exista}
+  D4: {title: Hasta dónde llega el uso en pruebas, task_type: task.decision, recommended: solo cobertura}
+  D5: {title: Dónde vive el diccionario, task_type: task.decision, recommended: store de graph_ui}
+  D6: {title: Si el formato de run-user-flow se reutiliza para mindmap, task_type: task.decision, recommended: decidir después de D4}
+tasks:
+  T1: {title: Nombres de relación acotados, repo: IR, hours: 1, depends_on: []}
+  T2: {title: specir ux extract con aviso de archivos saltados, repo: IR, hours: 1.5, depends_on: [T1]}
+  T3: {title: 'Nota a sldb: facts de component y handlers en plantillas htm', repo: sldb, kind: inbox-note, hours: 0.3, depends_on: [D1]}
+  T4: {title: 'Nota a sldb: atributos estáticos del elemento, llamadas por handler y método del segundo argumento', repo: sldb, kind: inbox-note, hours: 0.3, depends_on: []}
+  T5: {title: Localizador en InterfaceControlDoc y el extractor lo llena, repo: IR, hours: 1.5, depends_on: [T4, D3], gate: T4 resuelta en sldb}
+  T6: {title: Envoltorios HTTP configurables en la regla de invokes, repo: IR, hours: 1.5, depends_on: [T4], gate: T4 resuelta en sldb}
+  T7: {title: Operaciones de API de graph_ui en el store, repo: IR, hours: 1.5, depends_on: [D2]}
+  T8: {title: specir ux dictionary (md y json), repo: IR, hours: 1.5, depends_on: [T2, T5]}
+  T9: {title: specir ux coverage contra tests/e2e, repo: IR, hours: 2, depends_on: [T8]}
+  T10: {title: Tool MCP specir_controls, repo: IR, hours: 1, depends_on: [T5]}
+  T11: {title: Vista de cada control desde el registro de vistas de mindmap, repo: IR, hours: 1.5, depends_on: [T3, T8], gate: T3 resuelta en sldb}
+  T12: {title: Sección del diccionario en skills/use-specir/SKILL.md, repo: IR, hours: 0.5, depends_on: [T8, T9]}
+  T13: {title: 'Nota a graph_ui: instalar specIR en su store y correr la cobertura en su CI', repo: graph_ui, kind: inbox-note, hours: 0.3, depends_on: [T9, D5]}
