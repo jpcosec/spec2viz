@@ -1,0 +1,207 @@
+id: graph-ui-diccionario-de-componentes
+status: proposed
+as_of: '2026-11-24'
+source: 'README.md de esta carpeta; medido sobre graph_ui 36adfbb, IR f455b32, sldb 61c5847f. UI: PROPUESTA-UI.md y maqueta-ui.html.'
+execution_authorized: false
+decisions:
+  D1:
+    title: Qué interfaz es el objetivo (mindmap htm o las apps TSX)
+    task_type: task.decision
+    state: decided
+    decided: UI nueva de specIR con la estructura del prototipo web de Kimun y la estética del SLDB Workbench (PROPUESTA-UI.md)
+    by: JP
+    'on': '2026-11-25'
+  D2:
+    title: De dónde salen las operaciones de API de un backend que no es DRF
+    task_type: task.decision
+    state: decided
+    decided: tabla de rutas declarada
+    by: JP
+    'on': '2026-11-24'
+  D3:
+    title: Cuál es el localizador de un control
+    task_type: task.decision
+    recommended: rol y nombre accesible con data-testid cuando exista
+  D4:
+    title: Hasta dónde llega el uso en pruebas
+    task_type: task.decision
+    recommended: solo cobertura
+  D5:
+    title: Dónde vive el diccionario
+    task_type: task.decision
+    recommended: store del proyecto que se prueba
+  D6:
+    title: Si el formato de run-user-flow se reutiliza para mindmap
+    task_type: task.decision
+    recommended: decidir después de D4
+  D7:
+    title: Dónde vive la UI y cómo comparte con la superficie de sldb
+    task_type: task.decision
+    recommended: app propia en IR/ui que importa de @sldb/surface
+  D8:
+    title: Cómo llegan por HTTP los datos de specIR
+    task_type: task.decision
+    recommended: sldb serve --extension
+  D9:
+    title: Qué pasa con la página generada de specir catalog build
+    task_type: task.decision
+    recommended: mantener hasta la paridad
+  D10:
+    title: En qué se escribe la UI
+    task_type: task.decision
+    recommended: React con TSX; del prototipo de Kimun solo la estructura
+tasks:
+  T1:
+    title: Nombres de relación acotados
+    repo: IR
+    hours: 1
+    depends_on: []
+  T2:
+    title: specir ux extract con aviso de archivos saltados
+    repo: IR
+    hours: 1.5
+    depends_on:
+    - T1
+  T3:
+    title: 'Nota a sldb: facts de component y handlers en plantillas htm'
+    repo: sldb
+    kind: inbox-note
+    hours: 0.3
+    depends_on:
+    - D1
+    state: dropped
+    reason: 'D1: la UI objetivo es TSX propia'
+  T4:
+    title: 'Nota a sldb: atributos estáticos del elemento, llamadas por handler y método del segundo argumento'
+    repo: sldb
+    kind: inbox-note
+    hours: 0.3
+    depends_on: []
+  T5:
+    title: Localizador en InterfaceControlDoc y el extractor lo llena
+    repo: IR
+    hours: 1.5
+    depends_on:
+    - T4
+    - D3
+    gate: T4 resuelta en sldb
+  T6:
+    title: Envoltorios HTTP configurables en la regla de invokes
+    repo: IR
+    hours: 1.5
+    depends_on:
+    - T4
+    gate: T4 resuelta en sldb
+  T7:
+    title: Operaciones de API de graph_ui en el store
+    repo: IR
+    hours: 1.5
+    depends_on: []
+  T8:
+    title: specir ux dictionary (md y json)
+    repo: IR
+    hours: 1.5
+    depends_on:
+    - T2
+    - T5
+  T9:
+    title: specir ux coverage contra tests/e2e
+    repo: IR
+    hours: 2
+    depends_on:
+    - T8
+  T10:
+    title: Tool MCP specir_controls
+    repo: IR
+    hours: 1
+    depends_on:
+    - T5
+  T11:
+    title: Vista de cada control desde el registro de vistas de mindmap
+    repo: IR
+    hours: 1.5
+    depends_on:
+    - T3
+    - T8
+    gate: T3 resuelta en sldb
+    state: dropped
+    reason: 'D1: la UI objetivo es TSX propia'
+  T12:
+    title: Sección del diccionario en skills/use-specir/SKILL.md
+    repo: IR
+    hours: 0.5
+    depends_on:
+    - T8
+    - T9
+  T13:
+    title: 'Nota a graph_ui: instalar specIR en su store y correr la cobertura en su CI'
+    repo: graph_ui
+    kind: inbox-note
+    hours: 0.3
+    depends_on:
+    - T9
+    - D5
+  U1:
+    title: Esqueleto de la app
+    repo: IR
+    hours: 2
+    depends_on:
+    - D7
+  U2:
+    title: 'Composiciones: lista de recetas de diagrama con cobertura'
+    repo: IR
+    hours: 1.5
+    depends_on:
+    - U1
+  U3:
+    title: 'Composiciones: vista previa del diagrama con zoom y panel de documento del nodo'
+    repo: IR
+    hours: 2
+    depends_on:
+    - U1
+    - D7
+  U4:
+    title: 'Composiciones: BPMN para specs de actividad'
+    repo: IR
+    hours: 1.5
+    depends_on:
+    - U3
+  U5:
+    title: Notas guardadas en el store
+    repo: IR
+    hours: 2
+    depends_on:
+    - U3
+  U6:
+    title: Grafo por capas, cadena del nodo y tira de conexiones
+    repo: IR
+    hours: 2
+    depends_on:
+    - U1
+    - D8
+  U7:
+    title: Verificar como humano
+    repo: IR
+    hours: 1.5
+    depends_on:
+    - U6
+  U8:
+    title: 'Receta del diccionario: bloques y tabla'
+    repo: IR
+    hours: 2
+    depends_on:
+    - U1
+    - T8
+  U9:
+    title: 'Anclajes: fuente, selector, estado y nodos que se apoyan'
+    repo: IR
+    hours: 1.5
+    depends_on:
+    - U1
+  U10:
+    title: La UI en su propio diccionario, con cobertura en sus pruebas
+    repo: IR
+    hours: 1
+    depends_on:
+    - U8
+    - T9
