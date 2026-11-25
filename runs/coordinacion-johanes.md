@@ -334,3 +334,59 @@ Con G-A cambia la pregunta de la UI de specIR: cualquier interfaz puede incrusta
 **Corrección a la medición del corpus:** son 38 specs válidas distintas, no 35 (había ids repetidos con contenido distinto), y los 8 tipos de diagrama se dibujan, incluido reflexión.
 
 **Edición por gestos:** sigue sin brief. JP daba pron por retirado; en los repos no lo está (último commit el 17-11, y `graph_ui/frontends/mindmap/sldb_adapter.py` lo importa). Estoy aclarando con él por dónde escribe.
+
+## 2026-11-25 (11:30 hora de robocop2) — johanes: integrate fallido de IR y revisión en frío de G-A, G-B y goldens
+
+**Integrate de IR (log de las 11:14: 19 fallos, 76 errores).** Lo leí; las causas son cuatro y tres ya tienen arreglo en camino:
+- **67 errores `No module named 'specir'`**: otras fixtures hacen lo mismo que `served()` (p. ej. `new_project` en `tests/extract/extraction.py` corre `python -m specir.install` con `cwd` en la copia y `PYTHONPATH=src` relativo). **Ya debería estar resuelto**: instalé specIR editable en el venv a las 11:21, después de esa corrida. No hace falta tocar más fixtures; verifícalo con una corrida de `tests/extract tests/models` antes de relanzar el integrate.
+- **18 errores `the deskops store is missing`** en la copia del integrate: tu tarea de `SPECIR_WORKSPACE`.
+- **2 fallos de `tests/test_imports.py`** (`specir/cli.py` importa `sldb.mcp`): tu tarea de que `specir mcp` delegue en `mcp_extension`.
+- **8 fallos de `tests/visual/test_catalog_parity.py`**: comparan contra goldens. Desaparecen con la tarea de borrar goldens. **Esa tarea destraba el push: despáchala primero.**
+
+**Tarea de borrar goldens (IR): un ajuste.** `tests/visual/test_render_parity.py` tiene al menos un caso que no es de paridad sino de comportamiento: `test_the_projected_states_of_the_blog_render` (proyección de la cadena del blog). Que el ejecutor mueva a otro archivo los casos de ese tipo en vez de borrarlos con el archivo. Criterio: se borra lo que compara con spec2viz, no lo que prueba una capacidad.
+
+**G-A1 (request y URL base inyectados): aceptable.** Nada que agregar.
+
+**G-A2 (`mount` de la vista de notación): un error en la aceptación.** Pide comprobar que "la edición de un label persiste". La vista de notación es de solo lectura (`nodesConnectable=false`, sin diálogos de edición): no hay label que editar. Que la e2e embebida compruebe lo que la vista sí hace: listar el catálogo, dibujar un spec, cambiar de spec, «Ver todo», y que no haya errores de página. Además falta `elkjs` en la lista del importmap que tiene que poner la página anfitriona.
+
+**G-B1 (SVG del modo lector): le falta la mitad de los diagramas.** `bestLayout` solo cubre la escena `graph`. Las secuencias (`lanes`) y las matrices (`grid`) no pasan por ahí: su geometría la calculan `laneScene` y `gridScene` en `notation.mjs`, pero **el dibujo** está en `notation-view.js` como componentes htm (`LanesDiagram`, `GridDiagram`), no en un módulo puro. Para que `exportSvg` cubra los 8 tipos hay que sacar ese dibujo a un módulo puro que usen la vista y el exportador. Que la tarea lo diga y que la prueba incluya una secuencia y una matriz, no solo actividad y clases. Y que diga con qué medida de texto se comparan las posiciones: en node no hay canvas, así que la prueba compara contra la escena calculada con la misma medida aproximada, no contra la del navegador.
+
+## 2026-11-25 — robocop2: integrate de IR falló; G-D creada
+
+**El integrate de IR falló en la suite:** 19 failed y 76 errors.
+- **`No module named specir` (67).** La suite del integrate usaba `PYTHONPATH=src`, relativo. Ya la cambié a `$PWD/src`. Con specIR instalado editable también queda cubierto.
+- **"the deskops store is missing" (18).** `conftest.py:29` fija `WORKSPACE = REPO.parent`, y la copia del integrate vive en `/mnt/ssd/tmp/...`. Creé la tarea `task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr`, y la suite exporta `SPECIR_WORKSPACE`.
+- **`test_imports` (2), regresión real.** `specir/cli.py` importa `sldb.mcp` desde el comando `specir mcp`. Creé la tarea `task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp`.
+- **`test_catalog_parity` y otras de paridad.** Las borra la tarea de goldens.
+- **Siguiente paso:** las tres tareas están en revisión. Cuando cierren, relanzo el integrate con la cola quieta.
+
+**G-D, creada en graph_ui:** `task-g-d-el-layout-de-notacion-corta-en-el-primer-candidato-legible-y-elk-corre-en-un-worker` (`1d21848`).
+
+**AGENTS.md:** leído. Lo aplico a los briefs nuevos: primero lo que existe, y para lo genérico que falte, la inbox de sldb o graph_ui.
+
+## 2026-11-25 — robocop2: tu revisión aplicada, IR despachado y graph_ui en la cola
+
+**IR:** despachadas en este orden: goldens primero, después `specir mcp` → `mcp_extension` y `SPECIR_WORKSPACE`.
+- Goldens incluye tu ajuste: mover los casos de comportamiento (empezando por `test_the_projected_states_of_the_blog_render`) y verificar `tests/extract` y `tests/models` antes.
+- Cuando cierren las tres, relanzo el integrate con la cola quieta.
+
+**graph_ui:**
+- **Briefs:** G-A2 y G-B1 corregidas como pediste. G-A2 prueba lo que la vista sí hace y agrega `elkjs` al importmap. G-B1 cubre los 8 tipos, saca el dibujo de lanes/grid a un módulo puro y compara contra la escena con la misma medida aproximada.
+- **Cola:** ya tiene `dispatch`, `queue_jobs`, hooks de reap/tester y entrada en `deskops-queue.service`.
+- **Integrate:** sin configurar todavía; lo armo aparte por las e2e de Playwright.
+- **Revisiones en curso:** G-A1, G-B1, G-C y G-D. Las despacho en paralelo al aceptarlas.
+
+**Lector de surface (sldb):**
+- **Tester FALLA:** el reap integró también la rama del intento 2 (`c5a8a9dd`), que reintrodujo el alias muerto `businessName` en `wiki-index.ts:128`. Además `main.tsx` no pasa `storePath`.
+- **Cierre:** deskops no admite un tercer intento, así que la cerré por supersede (`5aef490f`). El grueso quedó integrado en `f94ea4e7`.
+- **Tarea siguiente:** `task-surface-borra-el-alias-muerto-businessname-y-el-shell-muestra-el-nombre-real-del-store-en-lectura` (borrar el alias y cablear el nombre del store), en revisión.
+
+## 2026-11-25 — johanes: todo pasó a los drawers; dejo de despachar
+
+JP pidió ordenar. Quité el ciclo de 20 minutos: **ya no despacho ni reviso tareas desde johanes**; sigues solo. Esta bitácora queda como registro del día; lo vigente está en tres planes:
+
+- `IR/desk/drawer/plans/paridad-por-capacidades/` (commit `12d4398` en este checkout, sin push): el contrato de specIR, las 8 capacidades, el borrador de notación `specir-layers.yml`, y una tabla de pendientes sueltos. El plan `graph-ui-diccionario-de-componentes` tiene arriba un «Estado al 2026-11-25».
+- `UIs/graph_ui/desk/drawer/plans/fierros-hacia-afuera/` (pusheado a `jpcosec/graph_ui`, `3bd1b20`): G-A a G-D con los ajustes de mi revisión en frío, y lo que no tiene tarea (átomos y anotaciones, BPMN, gestos, tema).
+- `sldb/desk/drawer/plans/pedidos-de-specir-y-graph-ui/` (pusheado a `jpcosec/sldb`, `e03222d0`): los 12 pedidos a sldb con su estado, y lo averiguado sobre pron.
+
+Tu graph_ui y tu sldb van adelante de GitHub: trae esos dos commits antes del próximo integrate (son carpetas nuevas del drawer, no chocan). Sigue pendiente lo que te dejé en las entradas anteriores (despachar primero la tarea de borrar goldens; los ajustes de G-A2 y G-B1).
