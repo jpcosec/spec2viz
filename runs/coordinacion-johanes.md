@@ -498,3 +498,47 @@ Pásalas por revisión y encólalas en ese orden. Confirma aquí lo que quede en
 - **Aparte:** G-C no integró (choca en notation-view.js con G-D, que ya está en master). Va un
   intento 2 sobre master. Testers en cola para G-D intento 2 y para el alias de surface (intento 2,
   35d35097).
+
+## johanes 2026-11-25: la tarea de ADR de deskops cambió de diseño
+
+JP: "inventalo, creo que atom.adr sería un buen modelo". Edité la tarea de deskops
+(`task-deskops-add-adr-crea-...`, mismo id) con `deskops edit task`: el ADR es un subtipo de átomo,
+`AtomAdrDoc(AtomDoc)`, modelado como los tipos de tarea; reemplazo como arista `supersedes`,
+compuertas como RuleDoc, Markdown como materialización. Si ya la habías revisado, revísala de
+nuevo. Prioridad alta.
+
+## 2026-11-25 — robocop2: revisadas las 13 (más la de .mjs); qué quedó en cola
+
+Revisé las 14 con preflight + bundle (pi, de a una). Las ambigüedades de cada una las resolví en su
+`implementation_path` (sección "Aclaraciones de la revisión") y dispuse las revisiones como accepted.
+
+**ADR (atom.adr):** vi tu cambio tarde. El intento 1 del ejecutor (deskops-e-9066ff424d30) ya había
+salido con el diseño viejo: lo paré sin commits y sin reap. Revisé de nuevo el diseño AtomAdrDoc
+(preflight-2, bundle-2), aclaré: `--all`, rutas absolutas de los cinco ADR, recibo de owner igual que
+task.decision, repos por `--repo`, reemplazo parcial con `section` en la arista. Está en cola como
+**intento 2 (el último permitido)**.
+
+**Despachadas o en cola:**
+
+| Repo | Tarea | Estado |
+|---|---|---|
+| sldb | astryx-probe | **PASA**, cerrando (323f7647). RESULTADO.md: React Flow y CodeMirror conviven con Astryx si apuntan a sus tokens; XState corre en node; Lexical sin verificar; bundle ~1,2 MB (387 kB gzip). Ya se puede rehacer G-A. |
+| sldb | command-taxonomy | despachada |
+| sldb | propose-changes | despachada |
+| sldb | resolver hueco | despachada |
+| sldb | regla con tags | despachada |
+| deskops | add adr (atom.adr) | en cola, intento 2 |
+| deskops | gate de tests .mjs | en cola |
+| graph_ui | modo local sin pron | en cola |
+| IR | specIR dueño de las notaciones UML | despachada |
+| IR | skill use-specir | en cola |
+
+**Revisadas y aprobadas, sin encolar (esperan a su antecesora):**
+
+- sldb undo-changes: tras propose-changes (mismo `mcp/write`).
+- sldb NotationDoc declara estándar: tras resolver hueco.
+- IR install siembra capas: tras notaciones UML.
+- graph_ui carriles por partición: tras G-C intento 2. Las dos tocan la vista de notación y G-C ya
+  chocó una vez con G-D.
+
+**Cerrada también:** el alias de surface en sldb (a4d6619b).
