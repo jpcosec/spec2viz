@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T14:30:34Z'
+  at: '2026-11-25T15:02:13Z'
   authority: generated
   via: save_document_payload
 id: task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp
@@ -11,14 +11,20 @@ tags: []
 current_node: ritual-testing
 history:
 - task_activates
-references: []
+references:
+- src/specir/cli.py
+- src/specir/mcp_extension.py
+- e1149a515ff4fadb574045e872f1102da56d89ff
 depends_on: []
 pills: []
-files: []
+files:
+- src/specir/cli.py
+- src/specir/mcp_extension.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-specir-mcp-delega-en-mcp-extension-y-cli-py-no-importa-sldb-mcp
 ---
 
 # specir mcp delega en mcp_extension y specir/cli.py deja de importar sldb.mcp

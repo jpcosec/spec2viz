@@ -1,0 +1,25 @@
+name: materialization-mcp-delega-src-specir-mcp-extension-py
+path: desk/materializations/materialization-mcp-delega-src-specir-mcp-extension-py.md
+source_hash: beddf9c55ce948765cba0aaa2fcb1c03a31c1e024a4564235242fc5640cda462
+content_hash: 71f30145271176647eee7ee196709f64481a2f2b2da8f59f27b3012568af2019
+field_hashes:
+  id: 6046d133795686edb86a655c73361a88c03e255493c1ef29b80872451fe1ddb3
+  title: 91ae59fd3cf32066af20f94a3066e9691243ec336c1757bf64ab771210c324fc
+  source_atoms: 2a3806506f365392fa64d7ce0c3fb5708d71414d8af99d635fe879613d5b81c7
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: 480a3993d3c6d0a649698fc262c61c698e9b35b04427c73a4008393205e387fa
+  intent: ca5454fa6f965263ae0f8dcc53c574f12946ddabdf4958628ef076dc0dbca68d
+  validation: 496b5df54a460900980b029c3590bec007c5d8af0f9ebd28cc73b9f369fc424d
+  tags: 9ffe46ec04d56baa10f10c417ff0b9f56dfd90d8f711597a35bc17e995c33301
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:mcp-delega
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T15:02:33Z'
+  authority: generated
+  via: create_document

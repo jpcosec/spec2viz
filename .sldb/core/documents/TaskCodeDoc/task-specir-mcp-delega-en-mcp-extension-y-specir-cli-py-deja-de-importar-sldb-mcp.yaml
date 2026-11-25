@@ -1,7 +1,7 @@
 name: task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp
 path: desk/tasks/task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp.md
-source_hash: 0c154dd97d383ced440901f97e4ac4d27af9a057b6c9c082355f13a1d48ad5f1
-content_hash: 24eba82a1ea66be7bcaadb361db6b8ad3e66b060a7d04cde4fd29bc5177c81b3
+source_hash: 6a21f5f0ba006c1930eee6249c623bebe1069345f23c72fc15d181f72807e718
+content_hash: c9d8385ef46ce667e9dfdf37055092962e9ddcf1b9fa14e3a41cbd57c959f5ea
 field_hashes:
   title: b37fa0ed2a91c2848fcbe76576bf8b3e49152e7afc949350e509073b06d6e5a5
   id: 14511883148f0c4f0898f8434051334446c5df8600fa50cbfb40fdc4ccfb518f
@@ -13,17 +13,17 @@ field_hashes:
   why: 256204e88e1ef21ca05ec14994be43008ac98e189af57ad813a903f30dd62018
   goal: e33095e639dad685eaf63a218c0d0cec456d8da87df544cb5bb95d6a3958d74c
   scope: 584a3d13593c77a3c71949fb0ba7cf6375b18447dec1cd6757c253625491cba4
-  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  references: d1f69ccd84d964d7208cb1c6a60532df7defea4b0aeae64b06a3ea06eb26bbd3
   depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: d89915e1a691937c6fa6e7e6583c60346692f5e504d223d133288a571052469f
   implementation_path: 7d213d8b8983877d09c91c8f29f24847dcc51d3adc53c0960a67a47daf534282
   validation: 7712cbcc7b7473d06780a45e4f9d4204a00d99700bfd122922f4d8d90bdc66a9
   done_when: f5ff78fab4d6c3d7e968d21272d19754fb886bc95460d2e144288241566f1ca8
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
-  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atoms: 2a3806506f365392fa64d7ce0c3fb5708d71414d8af99d635fe879613d5b81c7
 semantic_tags:
 - board.tareas
 - representation.markdown
@@ -32,6 +32,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T14:30:34Z'
+  at: '2026-11-25T15:02:13Z'
   authority: generated
   via: save_document_payload
