@@ -397,6 +397,18 @@ include:
     name: review-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir-evidence-atom-1
   - path: desk/reviews/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir/evidence-materialization-1.md
     name: review-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir-evidence-materialization-1
+  - path: desk/reviews/task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir/owner-1.md
+    name: review-task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir-owner-1
+  - path: desk/reviews/task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb/owner-1.md
+    name: review-task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb-owner-1
+  - path: desk/reviews/task-decision-de-jp-cual-es-el-localizador-de-un-control-en-el-diccionario-de-componentes/owner-1.md
+    name: review-task-decision-de-jp-cual-es-el-localizador-de-un-control-en-el-diccionario-de-componentes-owner-1
+  - path: desk/reviews/task-decision-de-jp-donde-vive-el-diccionario-de-componentes/owner-1.md
+    name: review-task-decision-de-jp-donde-vive-el-diccionario-de-componentes-owner-1
+  - path: desk/reviews/task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui/owner-1.md
+    name: review-task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui-owner-1
+  - path: desk/reviews/task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build/owner-1.md
+    name: review-task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build-owner-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -1204,6 +1216,8 @@ include:
     name: run-deskops-e-6735ed85d05b
   - path: runs/subagents/exec-deskops-t-cad81b085b87-testing/run.md
     name: run-deskops-t-cad81b085b87
+  - path: runs/subagents/exec-deskops-e-1f07b310f712/run.md
+    name: run-deskops-e-1f07b310f712
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md
