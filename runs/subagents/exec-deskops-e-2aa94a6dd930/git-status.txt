@@ -1,0 +1,153 @@
+## main...origin/main [ahead 76]
+ M .sldb/core/documents/RunDoc/run-deskops-e-353d0aebfaed.yaml
+ M .sldb/core/documents/RunDoc/run-deskops-t-954d54c95477.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp.yaml
+ M .sldb/core/models/InboxNoteDoc.yaml
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/store_index.yaml
+ M desk/tasks/task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac.md
+ M desk/tasks/task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp.md
+ M runs/subagents/exec-deskops-e-353d0aebfaed/run.md
+ M runs/subagents/exec-deskops-t-954d54c95477-testing/run.md
+?? .scion/settings.yaml
+?? .scion/state.yaml
+?? .sldb/core/documents/InboxNoteDoc/20261125-112941-unclear-queue-20261125t142642z-dispatch-executor-task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp-preflight-1.yaml
+?? desk/inbox/20261125-112941-unclear-queue-20261125t142642z-dispatch-executor-task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr.md
+?? desk/reviews/task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac/
+?? desk/reviews/task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr/
+?? desk/reviews/task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp/
+?? runs/jp-dispose-graphui.sh
+?? runs/subagents/20261120-211322/
+?? runs/subagents/20261120-220249/
+?? runs/subagents/20261120-220302/
+?? runs/subagents/20261120-223745/
+?? runs/subagents/20261120-223808/
+?? runs/subagents/20261120-234747/
+?? runs/subagents/20261120-234819/
+?? runs/subagents/20261120-ir04b-wip/
+?? runs/subagents/20261121-042012/
+?? runs/subagents/20261121-042028/
+?? runs/subagents/20261121-061925/
+?? runs/subagents/20261121-061940/
+?? runs/subagents/20261123-180329/
+?? runs/subagents/20261123-180347/
+?? runs/subagents/20261123-180404/
+?? runs/subagents/20261123-180424/
+?? runs/subagents/20261123-231404/
+?? runs/subagents/20261123-232909/
+?? runs/subagents/20261123-234426/
+?? runs/subagents/20261123-234445/
+?? runs/subagents/20261125-015903/
+?? runs/subagents/20261125-021450/
+?? runs/subagents/20261125-021511/
+?? runs/subagents/20261125-022907/
+?? runs/subagents/20261125-022924/
+?? runs/subagents/20261125-023330/
+?? runs/subagents/20261125-031102/
+?? runs/subagents/20261125-032242/
+?? runs/subagents/20261125-032301/
+?? runs/subagents/20261125-033216/
+?? runs/subagents/20261125-033243/
+?? runs/subagents/20261125-054340/
+?? runs/subagents/20261125-054400/
+?? runs/subagents/20261125-054421/
+?? runs/subagents/20261125-054438/
+?? runs/subagents/20261125-054501/
+?? runs/subagents/20261125-054524/
+?? runs/subagents/20261125-123246/
+?? runs/subagents/20261125-123302/
+?? runs/subagents/20261125-123319/
+?? runs/subagents/20261125-123335/
+?? runs/subagents/20261125-123350/
+?? runs/subagents/20261125-123408/
+?? runs/subagents/20261125-123423/
+?? runs/subagents/20261125-123440/
+?? runs/subagents/20261125-123751/
+?? runs/subagents/20261125-123805/
+?? runs/subagents/20261125-131037/
+?? runs/subagents/20261125-131055/
+?? runs/subagents/20261125-132755/
+?? runs/subagents/20261125-132817/
+?? runs/subagents/20261125-142325/
+?? runs/subagents/20261125-142339/
+?? runs/subagents/20261125-142401/
+?? runs/subagents/20261125-142423/
+?? runs/subagents/20261125-142441/
+?? runs/subagents/20261125-142456/
+?? runs/subagents/exec-deskops-e-2aa94a6dd930/board.txt
+?? runs/subagents/exec-deskops-e-2aa94a6dd930/git-status.txt
+?? runs/subagents/exec-deskops-e-2aa94a6dd930/graph.txt
+?? runs/subagents/exec-deskops-e-2aa94a6dd930/next.txt
+?? runs/subagents/exec-deskops-e-2aa94a6dd930/prompt.md
+?? runs/subagents/exec-deskops-e-2aa94a6dd930/task.txt
+?? runs/subagents/exec-deskops-e-2aa94a6dd930/validation.log
+?? runs/subagents/exec-deskops-e-353d0aebfaed/board.txt
+?? runs/subagents/exec-deskops-e-353d0aebfaed/git-status.txt
+?? runs/subagents/exec-deskops-e-353d0aebfaed/graph.txt
+?? runs/subagents/exec-deskops-e-353d0aebfaed/next.txt
+?? runs/subagents/exec-deskops-e-353d0aebfaed/prompt.md
+?? runs/subagents/exec-deskops-e-353d0aebfaed/task.txt
+?? runs/subagents/exec-deskops-e-544521523f25/board.txt
+?? runs/subagents/exec-deskops-e-544521523f25/git-status.txt
+?? runs/subagents/exec-deskops-e-544521523f25/graph.txt
+?? runs/subagents/exec-deskops-e-544521523f25/next.txt
+?? runs/subagents/exec-deskops-e-544521523f25/prompt.md
+?? runs/subagents/exec-deskops-e-544521523f25/result-summary.md
+?? runs/subagents/exec-deskops-e-544521523f25/task.txt
+?? runs/subagents/exec-deskops-e-544521523f25/validation.log
+?? runs/subagents/exec-deskops-e-59807359e541/board.txt
+?? runs/subagents/exec-deskops-e-59807359e541/git-status.txt
+?? runs/subagents/exec-deskops-e-59807359e541/graph.txt
+?? runs/subagents/exec-deskops-e-59807359e541/next.txt
+?? runs/subagents/exec-deskops-e-59807359e541/prompt.md
+?? runs/subagents/exec-deskops-e-59807359e541/result-summary.md
+?? runs/subagents/exec-deskops-e-59807359e541/retirement-check.txt
+?? runs/subagents/exec-deskops-e-59807359e541/task.txt
+?? runs/subagents/exec-deskops-e-59807359e541/validation.log
+?? runs/subagents/exec-deskops-e-6735ed85d05b/board.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/git-status.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/graph.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/next.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/prompt.md
+?? runs/subagents/exec-deskops-e-6735ed85d05b/result-summary.md
+?? runs/subagents/exec-deskops-e-6735ed85d05b/task.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/validation.log
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/board.txt
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/captura-app.png
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/captura-maqueta.png
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/git-status.txt
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/graph.txt
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/next.txt
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/prompt.md
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/result-summary.md
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/task.txt
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/validation.log
+?? runs/subagents/exec-deskops-t-954d54c95477-testing/prompt.md
+?? runs/subagents/exec-deskops-t-ca0f0e14eaaa-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-ca0f0e14eaaa-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-cad81b085b87-testing/prompt.md
+?? runs/subagents/exec-deskops-t-cad81b085b87-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-cad81b085b87-testing/validation.log
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/validation.log
+?? runs/subagents/exec-deskops-t-dbcffa346aee-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-dbcffa346aee-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/validation.log
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/validation.log
+?? runs/subagents/exec-deskops-t-f68fc4d93dac-testing/prompt.md
+?? runs/subagents/exec-deskops-t-f68fc4d93dac-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-f68fc4d93dac-testing/validation.log

@@ -1,0 +1,37 @@
+# Entorno del contenedor: /usr/bin/python3 es 3.11 y el .venv del workspace se creó para 3.12
+# (symlink python -> /usr/bin/python3 roto para sus site-packages). Se usó Python 3.12.16:
+#   /dev/shm/uvpy/cpython-3.12.16-linux-x86_64-gnu/bin/python3.12
+# con PYTHONPATH a los site-packages 3.12 del .venv, IR/src y sldb/src, y un wrapper sldb
+# equivalente al console script (sys.exit(sldb.cli.main())).
+# TMPDIR=/tmp y PYTEST_ADDOPTS=--basetemp=/tmp/pytest-deskops-t-55fcdf6eef4b*
+
+## Commit
+$ git log -1 --format=%H --grep "Task-Id: task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr"
+f0c182d00cc8dd1cc0e85b09c8212bb314c62348
+$ git show --name-only --format='%H %s' f0c182d
+f0c182d00cc8dd1cc0e85b09c8212bb314c62348 test: resolve the workspace from SPECIR_WORKSPACE before the repo parent
+tests/conftest.py
+tests/test_workspace_env.py
+
+## En el repo, sin SPECIR_WORKSPACE (fallback REPO.parent)
+$ TMPDIR=/tmp python -m pytest -q -p no:cacheprovider tests/test_workspace_env.py
+...                                                                      [100%]
+3 passed in 0.08s
+
+$ TMPDIR=/tmp python -m pytest -q -p no:cacheprovider tests/test_mcp_extension.py
+...........                                                              [100%]
+11 passed in 335.99s (0:05:35)
+
+## Done When: copia del repo fuera de SLDB_1 (/tmp/ir-outside) con SPECIR_WORKSPACE=/workspace
+$ cd /tmp/ir-outside && SPECIR_WORKSPACE=/workspace TMPDIR=/tmp python -m pytest -q -p no:cacheprovider \
+    tests/test_workspace_env.py \
+    tests/test_mcp_extension.py::test_the_deskops_store_linked_is_the_session_copy \
+    tests/test_mcp_extension.py::test_no_store_linked_from_the_mounted_copy_leads_out_of_the_session_temp
+.....                                                                    [100%]
+5 passed in 133.07s (0:02:13)
+
+## Regresión: misma copia fuera, sin SPECIR_WORKSPACE
+$ cd /tmp/ir-outside && TMPDIR=/tmp python -m pytest -q -p no:cacheprovider \
+    tests/test_mcp_extension.py::test_the_deskops_store_linked_is_the_session_copy
+ERROR ... Failed: the deskops store is missing: /tmp/deskops/.sldb
+1 error in 14.66s

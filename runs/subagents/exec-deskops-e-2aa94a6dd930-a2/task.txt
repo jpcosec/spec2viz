@@ -1,0 +1,9 @@
+Task: task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr
+Title: Las pruebas de IR encuentran el workspace de SLDB_1 por SPECIR_WORKSPACE y no por el directorio padre del repo
+Status: ready_for_testing
+Current node: ritual-closeout
+Task type: task.code
+Effective atoms:
+- atom-las-pruebas-de-ir-encuentran-el-workspace-por-specir-workspace
+Lifecycle gates:
+- task_completes -> complete: open [status = "ready_for_testing"]

@@ -1,0 +1,4 @@
+$ SPECIR_WORKSPACE=/mnt/ssd/proyectos/SLDB_1 PYTHONPATH=$PWD/src /tmp/ws-venv/bin/python -m pytest -q -p no:cacheprovider tests/test_workspace_env.py tests/test_mcp_extension.py
+..............                                                           [100%]
+14 passed in 311.30s (0:05:11)
+exit=0

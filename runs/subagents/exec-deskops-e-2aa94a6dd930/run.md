@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T14:29:05Z'
+  at: '2026-11-25T15:01:17Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 # run-xxx
 id: run-deskops-e-2aa94a6dd930
 # Task identifier this run executed against
@@ -29,9 +29,9 @@ dispatch_confirmed_at: ''
 # External reference, e.g. scion://agent/<slug>
 external_ref: scion://agent/deskops-e-2aa94a6dd930
 # ISO 8601 end timestamp, empty while in progress
-ended_at: ''
+ended_at: '2026-11-25T15:01:13+00:00'
 # in_progress | success | failure | aborted
-outcome: in_progress
+outcome: success
 # Closeout commit hash, empty until closeout completes
 commit_sha: ''
 # e.g. system:deskops

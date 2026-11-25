@@ -67,3 +67,4 @@
 {"task_id": "task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados", "run_id": "run-deskops-e-a347e2092180", "run_dir": "runs/subagents/exec-deskops-e-a347e2092180", "session_sha256": null, "commit": null}
 {"task_id": "task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
 {"task_id": "task-u1b-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
+{"task_id": "task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr", "run_id": "run-deskops-e-2aa94a6dd930", "run_dir": "runs/subagents/exec-deskops-e-2aa94a6dd930", "session_sha256": null, "commit": null}
