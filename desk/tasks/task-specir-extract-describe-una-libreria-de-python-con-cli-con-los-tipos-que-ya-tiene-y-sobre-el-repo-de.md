@@ -1,23 +1,46 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T19:21:06Z'
+  at: '2026-11-25T21:11:24Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de
-status: draft
+status: active
 summary: ''
 tags: []
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-testing
+history:
+- task_activates
+references:
+- src/specir/cli.py
+- src/specir/extract/__init__.py
+- src/specir/extract/python_cli.py
+- tests/fixtures/cli_lib/mylib/__init__.py
+- tests/fixtures/cli_lib/mylib/cli.py
+- tests/fixtures/cli_lib/mylib/clicmd.py
+- tests/fixtures/cli_lib/mylib/core.py
+- tests/fixtures/cli_lib/mylib/dynamic.py
+- tests/fixtures/cli_lib/mylib/models.py
+- tests/test_extract_python_cli.py
+- 4df694b5ceeb56fcab39658d32ef47faae48346e
 depends_on: []
 pills: []
-files: []
+files:
+- src/specir/cli.py
+- src/specir/extract/__init__.py
+- src/specir/extract/python_cli.py
+- tests/fixtures/cli_lib/mylib/__init__.py
+- tests/fixtures/cli_lib/mylib/cli.py
+- tests/fixtures/cli_lib/mylib/clicmd.py
+- tests/fixtures/cli_lib/mylib/core.py
+- tests/fixtures/cli_lib/mylib/dynamic.py
+- tests/fixtures/cli_lib/mylib/models.py
+- tests/test_extract_python_cli.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-specir-extract-python-cli-describe-una-libreria-python-con-cli-con-los-tipos-existentes
 ---
 
 # specir extract describe una librería de Python con CLI con los tipos que ya tiene, y sobre el repo deskops deja sus comandos, operaciones y modelos como nodos con capa
@@ -45,6 +68,8 @@ Dentro: src/specir/extract/ (un módulo nuevo y su registro en plan.py). Fuera: 
 _Outline the expected implementation route or affected surface._
 
 Leer src/specir/extract/django_drf.py y facts.py como modelo: el extractor lee hechos, no código. Si a los hechos de sldb les falta algo para reconocer un comando de CLI (argparse o click), se pide por el inbox de sldb.
+
+Aclaraciones de la revisión: El cambio es en specIR (/mnt/ssd/proyectos/SLDB_1/IR, src/specir/extract/); deskops es solo el objetivo. Copia: un 'git worktree add --detach' de /mnt/ssd/proyectos/SLDB_1/deskops en origin/main bajo TMPDIR (o un clon local), quitado al final; el test usa un repo fixture chico en tests/fixtures/ con un comando argparse, una función pública, un handler y un modelo. Cobertura: argparse obligatorio (deskops lo usa); click solo si es trivial. API pública = nombres exportados por el paquete (__all__ o sin guion bajo en __init__); handler = la función que un subcomando de argparse llama (set_defaults(func=...) o equivalente); operación de dominio = lo que el handler llama dentro del paquete. Modelo = clase Pydantic o dataclass (los de deskops son modelos de sldb basados en Pydantic). Capa: según los tipos que ya tiene specIR (data/relation_types.yaml y las capas que use specir install); no se crean tipos. Reglas: specir lint (o el comando de reglas que tenga specIR; ver specir --help) sobre el store temporal, rc 0. Desconocido: nodo con motivo y una nota por 'deskops message send --to IR --kind unclear'; a sldb solo si falta un hecho de código, sin bloquear la tarea. No poner Task-Id en el commit de código.
 
 ## Validation
 

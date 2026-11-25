@@ -1,0 +1,36 @@
+name: review-task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a-bundle-2
+path: desk/reviews/task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a/bundle-2.md
+source_hash: 98c836600538714e814b41c9ec01d18aa9dac40637df0952fdf3d4427428650d
+content_hash: 984bbcb5677bb40735bf1b4965791a53251bd65683964f69146cc93649100a34
+field_hashes:
+  id: f1c0ab3c32adb8f149771b1f4eeb89918f01b1b3ae2dc5f5fc549a06f01e28ca
+  title: 1b18118f26e7b41f8bcb1bf0e13e62eeb07112bb533bf63b6db80a1fc0e0b5c3
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: d68e77b15ac2f59b77d3599fedf1ad4ce6719916e0f5332670057a7a799700e5
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 48e1776bc6f04aa64beda2e245f990f48bb581a0eba230d5f069322e45ee54cc
+  input_sha256: e6c38233b6f2dcbc3aaaf6e4f0ffed38bbdc99598938aa8540382b998dd15f01
+  contract_sha256: c3ed1a613f051d0677d300734a1d4fad1b9690a419331b44d4e9dd3b4fcb30f0
+  output_sha256: 608522673ff6b62a0257bc1b2189379bbf5b1ab7a49139942e2139feceb1f34a
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: abaaaebba44c7910c3a96aa4e0442d0aab504a27769a58091cdf37de031eacce
+  created_at: faf7b2f2558141a691cc0390b97a5f94951ac7cb8a9d98ebf82ee040467a861e
+  disposed_at: 9f4c207b6ca81a2e26ba2ee54fe6068f27872cd3b2549c226f7cce5e573c1035
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 338cb247ae5f1592177dc47e443aca020976dd4abd1257ca74621eb747da8764
+  disposition: 77e44e7b00302335cb0729683929219e105dc3d72c06abcc1e6d99a170b27371
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T20:55:57Z'
+  authority: generated
+  via: save_document_payload

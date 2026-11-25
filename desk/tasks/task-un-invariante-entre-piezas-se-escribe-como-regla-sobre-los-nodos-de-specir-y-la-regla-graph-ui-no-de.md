@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T19:12:52Z'
+  at: '2026-11-25T19:28:39Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de
 status: draft
 summary: ''
@@ -45,6 +45,8 @@ Dentro: data/relation_types.yaml, data/rules.yaml, el extractor que produce la r
 _Outline the expected implementation route or affected surface._
 
 Leer sldb/docs/architecture/rules.md y rules-language.md, y cómo src/specir/extract/facts.py lee los hechos de código. La regla se escribe en el lenguaje de reglas de sldb; si le falta un predicado, se pide por el inbox de sldb y no se resuelve en specIR.
+
+Aclaraciones de la revisión: Va después de la tarea del extractor (specir extract describe una librería de Python): parte de main cuando esté integrada. Todo en specIR (/mnt/ssd/proyectos/SLDB_1/IR). Pieza = paquete Python de primer nivel de un repo. Relación: tipo depends_on en data/relation_types.yaml de specIR, de pieza a pieza, sacada de los imports absolutos de los hechos de código de sldb (los relativos quedan dentro de la pieza; los condicionales cuentan). Regla en el lenguaje de reglas de sldb, sembrada en data/rules.yaml de specIR: 'graph_ui no depende de pron', con el archivo y la línea del import en el hallazgo. tests/test_dependency_invariants.py se crea con un fixture de dos paquetes. Si falta un predicado, nota a sldb por inbox y la tarea entrega el tipo y el extractor y deja la regla como pendiente explicada en result-summary. No poner Task-Id en el commit de código.
 
 ## Validation
 

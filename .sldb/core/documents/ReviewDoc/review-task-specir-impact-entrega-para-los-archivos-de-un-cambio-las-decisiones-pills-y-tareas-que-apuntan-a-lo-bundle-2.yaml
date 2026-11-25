@@ -1,0 +1,36 @@
+name: review-task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo-bundle-2
+path: desk/reviews/task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo/bundle-2.md
+source_hash: 772653adc8d00ca341987cd5cb41fbc71fde7a28d7d64ef6399d4eb9af8acde9
+content_hash: bc39a004f7b718d9f3d9e3a108a1eac24c846ff24e931e9729ef48ea25cf4e2b
+field_hashes:
+  id: 14aec922aea8f432e3ca6883eba1e4c72ef98c7f876ded3b38089a5391804053
+  title: 0366c03881229209d7553647e220fa2ac27a058745ffc025e0908f979988e43c
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 629c6d3a2856320123fea3fc51680e649fe456731c30ab57bb52a63fa74e894f
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: c4992a1df4eb68c65e99500f1455fc3074916b9c7ff413b19423dc06b3806f63
+  input_sha256: 75716e6e160c0c703d878695dbc42b934f570ceb79bf607d33f524a900d927b2
+  contract_sha256: bebffe10dac3e199b76be98d7b29ca0d7ec0f18703d261e0207b779f7b77aebb
+  output_sha256: 7cd32392f9c9677e59b423b75d9a12cd5acc9317c84a941c718310fd56fa2950
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: abaaaebba44c7910c3a96aa4e0442d0aab504a27769a58091cdf37de031eacce
+  created_at: 81fa39b5d803706146f277e406806145fbc5336f458488b7f0dc2c2d4f9b2616
+  disposed_at: 1b336d61c718c8128550609427a93d92d8a8481d4af9d3b70424d7745d52e470
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 26860265c7b0658509aa2dd61ca686a4bab6285fff523d93030f4a3d24c5dafd
+  disposition: 77e44e7b00302335cb0729683929219e105dc3d72c06abcc1e6d99a170b27371
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T21:09:35Z'
+  authority: generated
+  via: save_document_payload

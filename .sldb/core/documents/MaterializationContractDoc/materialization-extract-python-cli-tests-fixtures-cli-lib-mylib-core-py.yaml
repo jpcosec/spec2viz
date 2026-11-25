@@ -1,0 +1,25 @@
+name: materialization-extract-python-cli-tests-fixtures-cli-lib-mylib-core-py
+path: desk/materializations/materialization-extract-python-cli-tests-fixtures-cli-lib-mylib-core-py.md
+source_hash: 34779d7b712c41e06cf94fabd2e25ae36ae9964f14b802eb7be0c08598f59d10
+content_hash: 64c541f63734615f021a0eb765b2634d0bc948c4fb3713943f5231b2dc634147
+field_hashes:
+  id: 15cd3b30be63fbfc604da0a40ca01cb9fc0e40164f52c4c5234615422df35433
+  title: eb36a2185d251cda585c3e911bd747f77c1877d8247978b39867ffb17628f1f7
+  source_atoms: a7e3181b12cef379d7f76f8f5b5edd6997daa7dca0997629571f10e4c47af9fb
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: 92806b860a75a85d3e7bcc938e7336c9214f060b96c5e4a3c104085f2ec06cc4
+  intent: a18a39fb6f79f5faf2da0931c8f47f5e69b95156d4137f011fd465e9fdb36d8c
+  validation: 7124d09648b6dc84a50920fe447f45d678629c115d893fc2778869735ee43dd5
+  tags: 05480e558f72a5ab50e4cb37c1a83d8f7a37ef1b80b20a45c5cea790c4d89806
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:extract-python-cli
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T21:13:46Z'
+  authority: generated
+  via: create_document

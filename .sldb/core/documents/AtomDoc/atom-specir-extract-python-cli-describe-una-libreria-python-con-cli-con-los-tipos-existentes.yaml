@@ -1,0 +1,22 @@
+name: atom-specir-extract-python-cli-describe-una-libreria-python-con-cli-con-los-tipos-existentes
+path: desk/atoms/atom-specir-extract-python-cli-describe-una-libreria-python-con-cli-con-los-tipos-existentes.md
+source_hash: 7aa68fb9e16505ae31c8f4f4891d98f26a12dbb8609b6818b59286f4b9117532
+content_hash: a2a82923d214847f9a39b6aec9ac6f04007042a7a726f2a79fd5579aae94affa
+field_hashes:
+  id: d2703151eb51dfd90635d1145fdbec86df782b612577eb8495eb039f9281fea5
+  title: 1595faabdc61e65f294293e8dc13e0b5fda52ba173146d592ec0afded9ef2cc2
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: fe884444e05d70870b7f934c09a87ae762640f3c55f791258fc393578bbf8256
+  tags: 05480e558f72a5ab50e4cb37c1a83d8f7a37ef1b80b20a45c5cea790c4d89806
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:extract-python-cli
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-25T21:10:14Z'
+  authority: generated
+  via: create_document

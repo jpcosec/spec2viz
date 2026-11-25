@@ -1,0 +1,19 @@
+name: 20261125-194830-unclear-python-cli-el-parser-de-deskops-queda-como-desconocido
+path: desk/inbox/20261125-194830-unclear-python-cli-el-parser-de-deskops-queda-como-desconocido.md
+source_hash: 5caf70fc25c8efb98950d12d9af7be7d37771605601d02c17e7bec799ae2c98c
+content_hash: dcf94d8933eb3e02bc18fd7add718ee7606a397d5c7b665c4f6c8df81adb6ef6
+field_hashes:
+  kind: 683144a12969e0fd85512737e57b4db93ed15ee760906165a5516d581a77889a
+  sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: 011a6f73453928b5448f1321a6add98643a0d7cdb8ddb3bb3dfd9e5c26a0d6ea
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  title: 7106dd3ee0646b24f8f6da30dbba53f64e6772e853d88709f804a72677db334c
+  body: bd3dafc55a8370ee415ca967f01a5516c65dcab99aa211f694fc0ff3b5df22ef
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null

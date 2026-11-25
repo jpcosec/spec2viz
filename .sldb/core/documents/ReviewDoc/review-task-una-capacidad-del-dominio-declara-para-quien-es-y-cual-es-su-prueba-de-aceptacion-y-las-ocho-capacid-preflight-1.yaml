@@ -1,0 +1,36 @@
+name: review-task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid-preflight-1
+path: desk/reviews/task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid/preflight-1.md
+source_hash: e4a3903d61d2b7fbdb34ef661447fb07a456e2761ca9a7a79a2df8886926825a
+content_hash: d0f56e07e29ae8cb5b52beabda8297165d08787c46da414fa145dd03f4a2f9c5
+field_hashes:
+  id: 08e5c8071d051714024919f24baa9dc8e7571d7b824a1dca27f0800bb48c01d8
+  title: 60c413c16449f14db7048151cefe4f41e46c1c7644347b8bdab006b1a2e7aac8
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 20dc5a6740fb2db505cc9fa3acfd784f0f640a1419c767b77e31eb1312a871d6
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 0bf79b25efe4fe76b53d9c1f60f17134b9a60ece674c7cf085c101a1462ababb
+  input_sha256: c135c1fbbcc60b27ce908b818e16fa3a07e0dc3f0d156f0c360f55f7939c8a39
+  contract_sha256: 1ac6a3643a6d0d35f706b8cf439458a7537ea8191413f51f55e349ce0fb45a52
+  output_sha256: 29113bc5fa3d2d85bb3d126bca4f6cb71fdaeb53b4f176d72b9e3d1aa139fa9e
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 174f3380e4f131f4a41d66b3e365f557d1db14a5204cd37e063e1c2bd3dd886f
+  created_at: 0c1956a3a519725f44f98c088bcab716e677b61e6089eabaedd8cc4007e241d8
+  disposed_at: 30d5ce4c4da5e30664f3dd8b97d7131894ada304fdac0e30daea0e14f256a8b9
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: a8a18f47e43177d41a4f8c7bd26910748cdfe983d0d1d590e063eb1a4726b51b
+  disposition: 6b755c3afc25a4eaa49c567549265de855769b08c5b16a177f79472b477977a7
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T19:27:00Z'
+  authority: generated
+  via: save_document_payload

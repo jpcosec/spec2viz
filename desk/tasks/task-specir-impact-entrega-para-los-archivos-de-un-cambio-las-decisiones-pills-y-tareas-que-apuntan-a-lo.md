@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T19:13:06Z'
+  at: '2026-11-25T19:29:42Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo
 status: draft
 summary: ''
@@ -45,6 +45,8 @@ Dentro: src/specir/impact.py y su herramienta MCP. Fuera: escribir pills, decidi
 _Outline the expected implementation route or affected surface._
 
 Usa la operación de sldb que responde qué documentos aplican a un archivo o símbolo; no recorre el grafo por su cuenta. Sigue siendo de solo lectura.
+
+Aclaraciones de la revisión: va después de la tarea de sldb (task-sldb-responde-que-documentos-aplican-...) y de la de punteros de deskops; parte de main con ambas integradas. La operación de sldb es la de esa tarea (nombre canónico anchors_resolve o el que quede en sldb/docs/architecture/command-taxonomy.md), vía sldb.api, sin copiarla. Otros stores = los .sldb de los desks de /mnt/ssd/proyectos/SLDB_1/{deskops,sldb,UIs/graph_ui,IR}, más los que se pasen con --store (repetible). Categoría = tag; via es 'direct' o 'tag:<tag>' tal como lo devuelve sldb. Capa = la capa del nodo de specIR (la que asigna el extractor); una tarea apunta a la capa si su campo pointers tiene 'tag:<capa>'. Archivo→nodo: por el ancla de código del nodo (ruta del archivo del que salió). Tipos incluidos: AtomAdrDoc (decisiones), PillDoc y sus subtipos, y TaskDoc y sus subtipos. Salida: lista de {doc, model, via, node} ordenada por doc; archivo sin nodos = lista vacía, rc 0. Herramienta MCP: specir_impact en el mcp_extension de specIR, mismo contrato que el comando 'specir impact <archivos...>'. La propuesta de deskops (desk/drawer/plans/que-es-un-atomo-y-que-es-una-pill/) es contexto, no norma. No poner Task-Id en el commit de código.
 
 ## Validation
 

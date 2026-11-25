@@ -1,29 +1,29 @@
 name: task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de
 path: desk/tasks/task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de.md
-source_hash: 0679e1eda1dcf6ec78e6e8d5dc4fa198df710da33ce6e1743d8953404738cc77
-content_hash: eb2f5eae867545bee655cd587fd459ae3498d980be0281a64cbec100146c1e7a
+source_hash: 45c7e2507fadbb79c565609810cd149b15aeb026e3ff0f06ce4bf1c57c8bd106
+content_hash: 35ff3f598bd6727cfd578931804fea81d415e8708612776a354e81de14d30e40
 field_hashes:
   title: f3b273b54dd4e286286ee365bc29e64512ae2eafe2ad144ae330c71884fb67e6
   id: 1e699b1893b201070192825e8ee57739c74accef4c955434ab05560294cb55fd
-  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
   summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
-  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: d10f5286503cbf750af0584acaec732741c2d9cfbae2a6d5b8ce45b8bf83b79d
+  history: f89b8fd2ac9e43a24ba505d162381268ed901d0695f62c6ad8ec2c62718dfa1c
   why: d80b2b2d8e1ab0cb4e94e662246bc56bcf5fe7947e0e71608460b4dc562193c6
   goal: 4f9546246179a547060ca75b889121b14867141d52642ddc383e7c7fc181314d
   scope: 5c626871e050e56c5ef2479ffedc4e443e5b669af9a7da23a8c4e064e4da445a
-  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  references: 8ef69426537ad34b95a77aaf3fb7b84793783e2fe6c508245cb1c8bc07b05125
   depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 386c63f86ba4a076732dc7596082e908ab3a4bdc22a7d7b61e58dff083004954
+  files: 8f3399d7ac20bf961beb194b07f00b8a0a81328a8811fea4d4c9cd2b52521206
+  implementation_path: 4229b95e31297cbdcd494106b618860e78021342eaf799619d8715cfc368bcee
   validation: 1fdbc7cae4d43a718ea4d9628d81ff64146f4dbc91c5ccdf280bf94b11bb507d
   done_when: cf65d0862f165052f6f9aa6d8cef0c8b83245fbfef4ad620b14388644e1ebb04
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
-  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atoms: a7e3181b12cef379d7f76f8f5b5edd6997daa7dca0997629571f10e4c47af9fb
 semantic_tags:
 - board.tareas
 - representation.markdown
@@ -32,6 +32,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T19:21:06Z'
+  at: '2026-11-25T21:11:24Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

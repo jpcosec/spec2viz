@@ -1,0 +1,25 @@
+name: materialization-extract-python-cli-src-specir-cli-py
+path: desk/materializations/materialization-extract-python-cli-src-specir-cli-py.md
+source_hash: 28020d6189b980ff22a07ea9618bde30cd2ab92f0897e8d333c34865ab4f1350
+content_hash: d4bcabbe6c12f58a6d316529831dd7c8c83862726b33bd83cfaee5c3c32dfccc
+field_hashes:
+  id: 98481e3370e212fa0933993451e79e391e866c1606bad538bd99b6e319fdf7e3
+  title: 878e1aa0ea3be59eea3b7314c15c9ddfef5ae025dc603ee1a7480f56fd7e70f0
+  source_atoms: a7e3181b12cef379d7f76f8f5b5edd6997daa7dca0997629571f10e4c47af9fb
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: 5d255ee6da76e375ed6a56e115a27df811e80a51340f93e220e8974bfc823295
+  intent: dfb8122f0767c95c3628cf6e97a09a320ee21ebf6a0678c1d87dc9abcd80e585
+  validation: 7124d09648b6dc84a50920fe447f45d678629c115d893fc2778869735ee43dd5
+  tags: 05480e558f72a5ab50e4cb37c1a83d8f7a37ef1b80b20a45c5cea790c4d89806
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:extract-python-cli
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T21:11:44Z'
+  authority: generated
+  via: create_document

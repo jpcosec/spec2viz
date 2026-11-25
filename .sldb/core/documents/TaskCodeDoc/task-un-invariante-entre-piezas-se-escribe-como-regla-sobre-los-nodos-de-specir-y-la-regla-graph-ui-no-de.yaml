@@ -1,7 +1,7 @@
 name: task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de
 path: desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md
-source_hash: df67c36356bc441a3463f0d858d43cbd9a0096e4aac4b82e08f9982743be52d2
-content_hash: d218f37dee1053fb9a93cf0f903e24325c6755d36aae1597e4dc2f7e8e9e44f1
+source_hash: 3fdcb28bd17e1bf68645576b1f0f06a399b966caa7a313ce94545e87123db82e
+content_hash: 90f96aec65dfc46fc2cd8de24cada5010d2d767cf6e671063e58f21cb5f2020c
 field_hashes:
   title: de600bbf1a7965b13a2d9b17b1089f42819c916af7ee054beaf372f57f60d2a7
   id: 397793f8b1bf232f53f506565d5ac37e4a1b10fdec0184d26a6464963bb03ed7
@@ -17,7 +17,7 @@ field_hashes:
   depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 76f41b395a8eb226f779aa69aa2fbfdefeb0161fea086c660314bba1fc230d46
+  implementation_path: ccdd36139d84287eea3584152a9bbcffff8898006fd55fbbca2db18ba91ec132
   validation: 52794dde712a6652ee6f59ecd4a98874aa3b6a1b39fab707c2c5478356dc2223
   done_when: 8ecb832bfda0b47f07b222b7882d2b344969adb06ed21e3eecea5dfe4fff4ba8
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -32,6 +32,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T19:12:52Z'
+  at: '2026-11-25T19:28:39Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

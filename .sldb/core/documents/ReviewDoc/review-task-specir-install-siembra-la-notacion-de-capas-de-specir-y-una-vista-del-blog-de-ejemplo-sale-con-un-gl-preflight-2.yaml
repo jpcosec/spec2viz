@@ -1,0 +1,36 @@
+name: review-task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl-preflight-2
+path: desk/reviews/task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl/preflight-2.md
+source_hash: 3001657e41dc3c9cd1f3b6a219c8431e1cbd0626e2c7c106eddc23bf5ccf63ff
+content_hash: 894cec0441546fdbe6aa9098fa269ede01c399a187af554c1841405d1f5b4384
+field_hashes:
+  id: e1232741074ad0337387a8cd1e7a9f8ed75706faffbcc0993304d963bc43cf27
+  title: 666870741cb48cb580e18f89b0411334a8662e20def404ce53b8dc3dae7c39d6
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 05de4e12d9174acd2a006b61a9e8be051619d0abf3386570b690c105ffe3ba57
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 29922f29cc8f4c4bbc9190b9ce2910b290f3969a941ea9e1c870876b98ae7280
+  input_sha256: 2c336649229dd7490443b084e6c500e5923bf5ee313b837f6ff934e2c36f3428
+  contract_sha256: 9c0ae2500273a925abd32d7918b29d7fd1c0c089bf0b996b7b1fdcdef6c758f8
+  output_sha256: b9d7ab9a6e2fd754163a5c1cc605a4c24dd9a7bd774de191b64f872c16ba9b52
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: abaaaebba44c7910c3a96aa4e0442d0aab504a27769a58091cdf37de031eacce
+  created_at: b9d136a49179cee954fe4fe3c76a09d8fa7f0f57875762710cc5bcbbae7b6065
+  disposed_at: 345b9509d8f7a572b3727c29937a0febe1df071b8076e3ad7a3fb7cafc2f35f7
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 892b40daaee8a03d5b9e46bcabb2d877c41f7315d939b52faf630e473e4d1d7e
+  disposition: 77e44e7b00302335cb0729683929219e105dc3d72c06abcc1e6d99a170b27371
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T21:06:26Z'
+  authority: generated
+  via: save_document_payload
