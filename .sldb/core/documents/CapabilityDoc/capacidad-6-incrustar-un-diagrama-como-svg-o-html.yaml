@@ -1,0 +1,23 @@
+name: capacidad-6-incrustar-un-diagrama-como-svg-o-html
+path: specir/capabilities/capacidad-6-incrustar-un-diagrama-como-svg-o-html.md
+source_hash: 9abc8a24cfc49fc498e5502ae1974bf7c3131669d4839339852e5bf5919e338f
+content_hash: 39363bb4169a2d261ade78e2dd41f48ceafe6ac73b69259d2fbce4e28a8378ba
+field_hashes:
+  title: b8b746b03ebe5495a55c711286d0227e66ed0ac213902c6d89b1c74a6c2ee99f
+  origen: ff43eea06174917f06f5876be887fb73b15f1a19b75e7b7a0c5b7bc03542c0ad
+  verificacion: 8c458e978613f425ff90ddd7b671e2da3f92e52e46f561a1f4af35fb7de1dac6
+  verificado_por: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  evidencia: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  desconocidos: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: a6a491391f41af2cc43d52869faefe4834efde2f546fb21ba774587cc4e84556
+  audience: 53bcb99832d97c808d808c6e548009de7d43710daa6acffb9b17f44c9b54dc8f
+semantic_tags:
+- layer.domain
+- representation.markdown
+- source.document.markdown
+- type.specir.node.domain_operation.capability
+provenance:
+  by: agent
+  at: '2026-11-25T19:49:30Z'
+  authority: authored
+  via: create_document

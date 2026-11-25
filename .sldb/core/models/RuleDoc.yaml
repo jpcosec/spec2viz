@@ -3,10 +3,10 @@ model_ref: sldb.models.rule_doc:RuleDoc
 path: /home/jp/proyectos/SLDB_1/sldb/src/sldb/models/rule_doc.py
 documents_index: .sldb/core/documents/RuleDoc.yaml
 sections_index: .sldb/runtime/sections/RuleDoc.yaml
-model_hash: 8c2358d62c63e76cf2aeea85bb75e9b88f2de50b9cb02e2b2402d6ffd4270869
-roster_hash: 1f69f84d511eef23b0fa047236f6c904cb0f658cc16a6dbe86d00e520561e14c
+model_hash: 6069cc6427dfdba6f3a65c3c3c2d4a7418b9ebcdf6141b4e25d44cbfbf75a327
+roster_hash: b55347f98953300b9d7b3219f46103bceccc9653c0878620aed113637d2c8574
 contract_hash: 411e41fc4ed0641c8436fc5c5c32aef148da868661d58951614298568a237fd2
-documents_count: 16
+documents_count: 25
 version: 1
 canonical: false
 family: rule

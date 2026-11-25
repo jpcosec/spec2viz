@@ -1,0 +1,18 @@
+name: rule-specir-control-triggers-an-action
+path: specir/rules/rule-specir-control-triggers-an-action.md
+source_hash: f782e1bf8b01f0d3a75b3314482af2a50660a6d51a79316bb1c70131fb674f6f
+content_hash: fc549fa30bb5fc44d043a6336605ae479d669706ee705d28bdea0d29d0860fcf
+field_hashes:
+  title: 2e851cfea0e25cfed03212f10d8b8617aca2e8c40c1e86c1c61bc810a48bc4a9
+  subject: 572503a3e85f698bf9e764ff7804e6d9aa30804ddb443767d546534c1c00d09d
+  where: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  condition: 7b172883e0885c44bff81ceb105bd6fb717d7d0bbe88bcb0fdf0f01ccba79b39
+  severity: cf170110abc5849f756d7abf9a6131f853d2f68ba1ca7a10497850f973dc7ef0
+  moment: 9661572404a273c6135cda90c447502455cf65c46a29f9cdf63fc766d632234a
+  message: c5b9e80bdb22ff02ed96c1846083d3342bd60a29572681a3beb0199f9904b179
+semantic_tags:
+- layer.governance
+- representation.markdown
+- source.document.markdown
+- type.rule
+provenance: null

@@ -1,0 +1,20 @@
+name: CapabilityDoc
+model_ref: specir.models.domain:CapabilityDoc
+path: src/specir/models/domain.py
+documents_index: .sldb/core/documents/CapabilityDoc.yaml
+sections_index: .sldb/runtime/sections/CapabilityDoc.yaml
+model_hash: e73d6a977c536cd5dd8f4d43cdac80007583b0d7285aa8435a2210a34e27f686
+roster_hash: 2aac5628ed60a6652bba45bcdbe1c30f6a9bf799695422dcd3cbf0955762518f
+contract_hash: edc1b44dbfa5aa1bdf3be94d40f8244a1e55754025941d31fe36965ce0e20aec
+documents_count: 8
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.domain
+- representation.markdown
+- source.document.markdown
+- type.specir.node.domain_operation.capability
+base_models:
+- DomainOperationDoc
+- SpecIRNodeDoc

@@ -1,0 +1,19 @@
+name: InterfaceControlDoc
+model_ref: specir.models.domain:InterfaceControlDoc
+path: src/specir/models/domain.py
+documents_index: .sldb/core/documents/InterfaceControlDoc.yaml
+sections_index: ''
+model_hash: d1ef7c43be460e4fa8438b8862d67c658d3eeabd93d2a06fb8bafc60f9f1e49e
+roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+contract_hash: cacbd63820a6d9f0e792abe14140612a9f097b19baaab60fd802b0bb1cbf2f67
+documents_count: 0
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.interface
+- representation.markdown
+- source.document.markdown
+- type.specir.node.interface_control
+base_models:
+- SpecIRNodeDoc

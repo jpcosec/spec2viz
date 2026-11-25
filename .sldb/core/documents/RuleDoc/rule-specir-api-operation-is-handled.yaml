@@ -1,0 +1,18 @@
+name: rule-specir-api-operation-is-handled
+path: specir/rules/rule-specir-api-operation-is-handled.md
+source_hash: 28a93a4b0a9fb8e97c3f1258c6308758ea77a4c504b80008f6204778cfaac018
+content_hash: a3dcd581cab1fd8e80495fe73d5e32e07714386b7395b15e7d037e526d6d61e1
+field_hashes:
+  title: e03848d0cee70e3e1a9055d700986406213149cfac6d778eefabf2c0f6e5f81a
+  subject: eab12f20e08e55ed3a63eb89cb9a1c11818a5d12f193575fd5fc0aa3f545ecb2
+  where: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  condition: b69163223e21a09ebe07697c4b468b91ffadddc4f8e971994a2258a64b36e075
+  severity: cf170110abc5849f756d7abf9a6131f853d2f68ba1ca7a10497850f973dc7ef0
+  moment: 9661572404a273c6135cda90c447502455cf65c46a29f9cdf63fc766d632234a
+  message: c3cd6465cad86241874e5bd8ce6589a6ecb46b55c11a5de4b8dc2fc4d68187f2
+semantic_tags:
+- layer.governance
+- representation.markdown
+- source.document.markdown
+- type.rule
+provenance: null

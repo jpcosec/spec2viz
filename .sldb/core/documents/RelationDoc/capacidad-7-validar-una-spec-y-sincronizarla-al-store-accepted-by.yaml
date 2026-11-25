@@ -1,0 +1,22 @@
+name: capacidad-7-validar-una-spec-y-sincronizarla-al-store-accepted-by
+path: specir/edges/capacidad-7-validar-una-spec-y-sincronizarla-al-store-accepted-by.md
+source_hash: 30c15f548abd2dbf5d529e654981e1120a387ae0e05c978810751c5a91efa09c
+content_hash: 01ece8ad95a6573114c4a1db7fd1cff4388bb00fa64295f8f615fa68423e611c
+field_hashes:
+  title: 1d36b020ef1a0c676a9982e210c84b1a23f21564795618cf87bf8ff4daebac41
+  source_id: 12c8460c6256f6335e83dcfbb26bf99ebdf5cfd06c3d932ebdb4fdba1d690079
+  target_id: 48dd4a9bd6278d03e3f37eb20e64efd40fe3ebb322fe16ff229a9c77878abb31
+  relation_type: 2b9ea1e2695940a918aee11f19c961336ff53e8095acd23104ca3d1e239da139
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  attributes: 7c94ebf4f7badefed27630f4b9a426d6bc6953832965a59fbfebf92a38e0c894
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance
+provenance:
+  by: agent
+  at: '2026-11-25T19:51:04Z'
+  authority: generated
+  via: create_document

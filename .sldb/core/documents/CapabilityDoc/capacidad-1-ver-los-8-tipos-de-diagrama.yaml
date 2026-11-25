@@ -1,0 +1,23 @@
+name: capacidad-1-ver-los-8-tipos-de-diagrama
+path: specir/capabilities/capacidad-1-ver-los-8-tipos-de-diagrama.md
+source_hash: bd0f074ab8e1a56b0d3d51b22fb306c6747f68b70a4fd1708a82a1640b7c38ae
+content_hash: 5b1c14a5d043885bc1f2ad7e76002ed9a541a8b901a97d815a7880db06931204
+field_hashes:
+  title: 59bb997179310e52ef5b4a283f0074e3fdb2cf96f09251596c70f9cb2e4fc57f
+  origen: ff43eea06174917f06f5876be887fb73b15f1a19b75e7b7a0c5b7bc03542c0ad
+  verificacion: 8c458e978613f425ff90ddd7b671e2da3f92e52e46f561a1f4af35fb7de1dac6
+  verificado_por: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  evidencia: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  desconocidos: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 841a527f46907451f9c97cb1bc347b789efff7343f4853c9eeab7dcb45e6b52d
+  audience: 47c4a280d3603a2f34c0d150b1bcce5472406180681da06d750a5fc15c2b3a86
+semantic_tags:
+- layer.domain
+- representation.markdown
+- source.document.markdown
+- type.specir.node.domain_operation.capability
+provenance:
+  by: agent
+  at: '2026-11-25T19:45:12Z'
+  authority: authored
+  via: create_document

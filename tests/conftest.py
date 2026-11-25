@@ -35,7 +35,7 @@ def workspace_root() -> Path:
 
 
 WORKSPACE = workspace_root()
-COPIED = (".sldb", "sldb", "desk")
+COPIED = (".sldb", "sldb", "desk", "specir")
 #: The store registers RunDocs, which live outside `.sldb/` and `desk/`.
 RUN_DOCS = "runs/subagents/*/run.md"
 #: The git-tracked files of each store copy, listed once when the copy was made.
@@ -200,6 +200,20 @@ def original_digest() -> dict[str, str]:
     return tree_digest(REPO / ".sldb", REPO / "desk")
 
 
+#: The one rule whose errors the store of this repo carries by design: the capabilities without an
+#: acceptance test are reported, not hidden (tests/test_capabilities_as_nodes.py).
+EXPECTED_ERRORS = "[rules/rule-specir-capability-has-an-acceptance-test]"
+
+
+def check_store(root: Path) -> None:
+    """`sldb stores check` of a mounted copy: it passes, or its only errors are the capabilities
+    that have no acceptance test yet (EXPECTED_ERRORS)."""
+    done = subprocess.run([str(Path(sys.executable).with_name("sldb")), "stores", "check", "--store", ".sldb"], cwd=root, capture_output=True, text=True)
+    errors = [line for line in done.stdout.splitlines() if line.startswith("error:")]
+    if done.returncode != 0 and (not errors or any(EXPECTED_ERRORS not in line for line in errors)):
+        pytest.fail(f"stores check --store .sldb failed ({done.returncode}):\n{done.stdout}\n{done.stderr}")
+
+
 def mount_copy(tmp_path_factory: pytest.TempPathFactory, name: str, spec_store: Path, federated: dict[str, Path]) -> Path:
     """The project root of a new isolated copy of this repo's store, mounted and checked, with
     the `federated` stores (the deskops copy) and the specs store `spec_store` (as `spec2viz`) linked."""
@@ -218,7 +232,7 @@ def mount_copy(tmp_path_factory: pytest.TempPathFactory, name: str, spec_store: 
     sldb("stores", "add", str(spec_store), "--name", "spec2viz", "--store", ".sldb", cwd=root)
     sldb("stores", "update", "--store", ".sldb", cwd=root)
     sldb("edges", "rebuild", "--store", ".sldb", cwd=root)
-    sldb("stores", "check", "--store", ".sldb", cwd=root)
+    check_store(root)
     return root
 
 

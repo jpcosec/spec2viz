@@ -1,0 +1,19 @@
+name: ApiOperationDoc
+model_ref: specir.models.domain:ApiOperationDoc
+path: src/specir/models/domain.py
+documents_index: .sldb/core/documents/ApiOperationDoc.yaml
+sections_index: ''
+model_hash: 0879f00df8fe4349305bb2b25f25106c1203a863b23d73c47936b5e77e069e0e
+roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+contract_hash: 650374d3d90cf96323bfe16ecbd0cf5bb1748524d26997525e3adef0d631f419
+documents_count: 0
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.api
+- representation.markdown
+- source.document.markdown
+- type.specir.node.api_operation
+base_models:
+- SpecIRNodeDoc

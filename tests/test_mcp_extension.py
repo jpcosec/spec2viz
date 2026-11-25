@@ -15,7 +15,7 @@ import pytest
 import yaml
 from sldb.api import extract_document_payload
 
-from conftest import REPO, WORKSPACE, copy_digest, linked_stores, mount_copy, served, tree_digest
+from conftest import REPO, WORKSPACE, copy_digest, linked_stores, mount_copy, served, sldb, tree_digest
 
 #: sldb's read surface (sldb.mcp.registry.READ_TOOLS) and its signal log.
 SLDB_READ = {
@@ -55,14 +55,17 @@ def test_at_level_0_no_write_tool_exists(mcp) -> None:
     assert answer.is_error is False and answer.structured_content["signal"] == "unknown_tool", answer
 
 
-def test_specir_types_over_a_store_without_them(mcp) -> None:
+def test_specir_types_over_a_store_without_them(tmp_path) -> None:
+    """A new store that specIR was not installed in (the store of this repo has it, with the capabilities)."""
     from specir.models import DOMAIN_MODELS
 
-    answer = mcp.call("specir_types")
-    assert [r["type"] for r in answer["items"]] == [m.__name__ for m in DOMAIN_MODELS]
-    assert not any(r["registered"] for r in answer["items"]) and "specir.install" in answer["explanation"]
-    nodes = mcp.call("specir_nodes")
-    assert nodes["total"] == 0 and nodes["explanation"]
+    sldb("stores", "init", "--path", str(tmp_path), cwd=tmp_path)
+    with served(tmp_path) as session:
+        answer = session.call("specir_types")
+        assert [r["type"] for r in answer["items"]] == [m.__name__ for m in DOMAIN_MODELS]
+        assert not any(r["registered"] for r in answer["items"]) and "specir.install" in answer["explanation"]
+        nodes = session.call("specir_nodes")
+        assert nodes["total"] == 0 and nodes["explanation"]
 
 
 def test_a_spec_of_the_linked_spec2viz_store_is_read_through_the_server(mcp, spec_store: Path) -> None:

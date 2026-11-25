@@ -1,0 +1,18 @@
+name: rule-specir-policy-reaches-the-interface
+path: specir/rules/rule-specir-policy-reaches-the-interface.md
+source_hash: 82e85bf7d16c77c645808439ef8c6a237ec4d2fb6a794cb45c1385f21c7c7c67
+content_hash: 62b89f2af911969e155aa3a3021959c36328d3a3af9606bc359104734fcd4f0f
+field_hashes:
+  title: 7e00f0b28c4c063e840766863f1f1af9e640551fb6ec0cf36115006df35ad463
+  subject: 4e1a471abc33dd076e4a3017729688821544717a42cbb1482c05ddcbfc8540e2
+  where: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  condition: 48e29da07f8d4b66c539ff293118c8f58631553b262384d5738fd895f1b7bfd0
+  severity: cf170110abc5849f756d7abf9a6131f853d2f68ba1ca7a10497850f973dc7ef0
+  moment: 9661572404a273c6135cda90c447502455cf65c46a29f9cdf63fc766d632234a
+  message: 225fce4eae770e98deee102872d1f88cc1968f41e9f45315b2da5aaa64923104
+semantic_tags:
+- layer.governance
+- representation.markdown
+- source.document.markdown
+- type.rule
+provenance: null

@@ -1,0 +1,18 @@
+name: rule-specir-interface-field-is-served
+path: specir/rules/rule-specir-interface-field-is-served.md
+source_hash: 5f15bac4303911feac907d57f3cc5deceb0d41f67bb049be0be041e88e2ef9d1
+content_hash: e49c9316e442724eb9b6f5ea825c1ad55cef446adc0134e4c79fa347df3d9399
+field_hashes:
+  title: e29ca8b4fbed9282787c7d425bd3a4d51777eb6d3291c807f729a837aead0ea6
+  subject: 7e299c23cb6d8b352195686fd250ec0f37658be384319bc84507b0baa38c65f6
+  where: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  condition: b061e24e9c0ee3aeaa5774be1df88a4cef58f8ca202546d7705862beba998f64
+  severity: 4d01709fcd599118652e3b27bd0ca97c802f832183d01f76a034755f2bc62fa3
+  moment: 9661572404a273c6135cda90c447502455cf65c46a29f9cdf63fc766d632234a
+  message: b4d012e088285e5629ca5bfbf444d4acc8b4637022b4cfdb5dc0ffb231091375
+semantic_tags:
+- layer.governance
+- representation.markdown
+- source.document.markdown
+- type.rule
+provenance: null

@@ -1,0 +1,22 @@
+name: capacidad-8-exportar-a-plantuml-mermaid-d2-o-bpmn-xml-accepted-by
+path: specir/edges/capacidad-8-exportar-a-plantuml-mermaid-d2-o-bpmn-xml-accepted-by.md
+source_hash: d0631a44abdaec13a7efc7d2d2ae0edc6c9abc9e39ff452da5e5138d3a7bda7d
+content_hash: c3037de67c38ab95d22786be97154915c37f9150a27388e797ffc27d18d15dd8
+field_hashes:
+  title: 50a891e43b3062ab9c4bb3114027db9741b798ce9e24082e335124a73e9264d2
+  source_id: b07423a51ddb28a02536f16f8300644183137352f9a921b3e79eb67ec7bfc884
+  target_id: 592b3ca77debb5062a3e98a7bf9a1901614bb9ffa2325b272f43d6c8c57cf66e
+  relation_type: 2b9ea1e2695940a918aee11f19c961336ff53e8095acd23104ca3d1e239da139
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  notes: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  attributes: 7c94ebf4f7badefed27630f4b9a426d6bc6953832965a59fbfebf92a38e0c894
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.instance
+provenance:
+  by: agent
+  at: '2026-11-25T19:53:00Z'
+  authority: generated
+  via: create_document

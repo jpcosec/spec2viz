@@ -1,0 +1,23 @@
+name: capacidad-8-exportar-a-plantuml-mermaid-d2-o-bpmn-xml
+path: specir/capabilities/capacidad-8-exportar-a-plantuml-mermaid-d2-o-bpmn-xml.md
+source_hash: 801458cea51725b0d2915194a94dcbf836a35373bed9afc7e2ae1f8e2e34ef3a
+content_hash: f938843bbf9719d53fba062daa4d5dba66dda5252bd5f56d3494abfe93221d09
+field_hashes:
+  title: 3fccafdbb50bed4c02058169b49c64638619af059258e03fb2fcb46efa28fb82
+  origen: ff43eea06174917f06f5876be887fb73b15f1a19b75e7b7a0c5b7bc03542c0ad
+  verificacion: 8c458e978613f425ff90ddd7b671e2da3f92e52e46f561a1f4af35fb7de1dac6
+  verificado_por: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  evidencia: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  desconocidos: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 2be2120359ebe14780c78cac910b8eb2d1a07067e61fe7ed549ddef59174d8f6
+  audience: 47c4a280d3603a2f34c0d150b1bcce5472406180681da06d750a5fc15c2b3a86
+semantic_tags:
+- layer.domain
+- representation.markdown
+- source.document.markdown
+- type.specir.node.domain_operation.capability
+provenance:
+  by: agent
+  at: '2026-11-25T19:51:52Z'
+  authority: authored
+  via: create_document

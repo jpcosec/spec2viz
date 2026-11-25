@@ -1,0 +1,19 @@
+name: DomainEntityDoc
+model_ref: specir.models.domain:DomainEntityDoc
+path: src/specir/models/domain.py
+documents_index: .sldb/core/documents/DomainEntityDoc.yaml
+sections_index: ''
+model_hash: 2886b0bd1c3cc90aaade1ba8dd089ea7c482c86fceb8331e4d466506d8f89e02
+roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+contract_hash: 88a8e5442732a46bffce98a80b61e8e624ecb652a635ff40c00fb03d075eafd6
+documents_count: 0
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.domain
+- representation.markdown
+- source.document.markdown
+- type.specir.node.domain_entity
+base_models:
+- SpecIRNodeDoc

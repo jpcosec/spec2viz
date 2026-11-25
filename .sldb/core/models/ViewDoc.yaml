@@ -1,0 +1,19 @@
+name: ViewDoc
+model_ref: sldb.models.notation_models:ViewDoc
+path: /mnt/ssd/proyectos/SLDB_1/sldb/src/sldb/models/notation/view_doc.py
+documents_index: .sldb/core/documents/ViewDoc.yaml
+sections_index: .sldb/runtime/sections/ViewDoc.yaml
+model_hash: 2484894a84d89b074f393944dc3b42434ee3b6cc54be6062dc229715e29d54a0
+roster_hash: 96e41453e7b12beb7e011da12d561258bf209801b88d52ef5a6c1e5d27d3915f
+contract_hash: 1616bd1b499ad0c18556a9a4cc0ccd4982aad885727c41aa8e7fd53262d69c2b
+documents_count: 1
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.view
+base_models: []

@@ -5,7 +5,7 @@
   already has is left as it is.
 - SLDB's relation models (`init_relations`), `RuleDoc` and `ViewDoc` are registered when the
   store lacks them, as deskops does for `RuleDoc` (`deskops.lifecycle.ensure_rule_model`).
-- The relation types and rules specIR distributes (`specir/data/*.yaml`) are SLDB document
+- The relation types, rules and views specIR distributes (`specir/data/*.yaml`) are SLDB document
   seeds, written and tracked by `sldb.api.scaffold_store` in `managed` mode, the mechanism
   deskops uses for its lifecycle graph: a store's copy that differs is restored and reported.
 
@@ -33,11 +33,14 @@ from specir.models.domain import DOMAIN_MODELS
 #: Where the seeds land in the store's project, relative to its root.
 RELATION_TYPES_DIR = "specir/relation-types"
 RULES_DIR = "specir/rules"
+VIEWS_DIR = "specir/views"
 
 #: SLDB's own models specIR's data needs, by name and model ref.
 SLDB_MODELS = {
     "RuleDoc": "sldb.models.rule_doc:RuleDoc",
     "ViewDoc": "sldb.models.notation_models:ViewDoc",
+    # The acceptance test of a capability is one of deskops's materializations (`accepted_by`).
+    "MaterializationContractDoc": "deskops.models:MaterializationContractDoc",
 }
 
 
@@ -74,6 +77,11 @@ def rule_seeds() -> list[api.Seed]:
     return seeds
 
 
+def view_seeds() -> list[api.Seed]:
+    """One managed document seed per view of `views.yaml` (the view's name is also its payload's `name`)."""
+    return [api.Seed(path=f"{VIEWS_DIR}/{spec['name']}.md", mode="managed", document={"model": "ViewDoc", "name": spec["name"], "payload": spec}, track=True) for spec in _data("views.yaml")]
+
+
 @dataclass
 class InstallReport:
     store: str
@@ -85,7 +93,7 @@ class InstallReport:
 
 
 def install(store: str | Path) -> InstallReport:
-    """Register specIR's models and SLDB's models it needs, and seed its relation types and rules."""
+    """Register specIR's models and SLDB's models it needs, and seed its relation types, rules and views."""
     location = api.open_store(Path(store))
     store_path, pythonpath = location.store_path, package_pythonpath()
     report = InstallReport(store=str(store_path))
@@ -100,7 +108,7 @@ def install(store: str | Path) -> InstallReport:
         if not api.is_model_registered(store_path, name):
             api.add_model(store_path, ref, pythonpath=pythonpath)
             report.registered.append(name)
-    declaration = api.StoreDeclaration(seeds=[*relation_type_seeds(), *rule_seeds()])
+    declaration = api.StoreDeclaration(seeds=[*relation_type_seeds(), *rule_seeds(), *view_seeds()])
     scaffold = api.scaffold_store(store_path, declaration=declaration, apply=True)
     if scaffold.rewritten:
         # SLDB's scaffold writes a restored file without rehashing it (as deskops.workspace notes).

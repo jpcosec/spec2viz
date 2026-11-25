@@ -1,0 +1,18 @@
+name: CodeAnchorDoc
+model_ref: sldb.models.code_anchor_doc:CodeAnchorDoc
+path: /mnt/ssd/proyectos/SLDB_1/sldb/src/sldb/models/code_anchor_doc.py
+documents_index: .sldb/core/documents/CodeAnchorDoc.yaml
+sections_index: .sldb/runtime/sections/CodeAnchorDoc.yaml
+model_hash: cdac50079f4c29af7d3b1891bda31a72ba31e42555bb12ec0cecbcc9a9400b08
+roster_hash: c5c7f860b21182e1241e5d6d6def03d991520ec04f4938ecab47d72af787e50d
+contract_hash: 873a8c0fa29d3b52158a990c535e28b7601326a1e5db58fb6fccd442aa2d9f74
+documents_count: 2
+version: 1
+canonical: false
+family: null
+semantics:
+- representation.markdown
+- source.document.markdown
+- type.knowledge.anchor.code
+- workspace.knowledge.anchors
+base_models: []

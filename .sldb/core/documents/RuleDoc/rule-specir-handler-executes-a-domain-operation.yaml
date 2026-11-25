@@ -1,0 +1,18 @@
+name: rule-specir-handler-executes-a-domain-operation
+path: specir/rules/rule-specir-handler-executes-a-domain-operation.md
+source_hash: 7102450f430f0d7dadd41344b482602aaca23fce01db2f6be1334f3c7db876e6
+content_hash: 0fcf616f969c1bb5101501dda3f09a199592c1d0bcb5c6451b64781149c58b05
+field_hashes:
+  title: b3983b99e0e66210609ee36402aa34d7aaa65dbe7cdebe69ed3d155d65665ed1
+  subject: 82a48ecf786cc4ed47f4e6e491cb86a46edd0d127762876bcf3e3caef4063c08
+  where: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  condition: bb2e43545d66d1a54f6b6dcbf24835357b0384f826dc6670879e331dbacde248
+  severity: cf170110abc5849f756d7abf9a6131f853d2f68ba1ca7a10497850f973dc7ef0
+  moment: 9661572404a273c6135cda90c447502455cf65c46a29f9cdf63fc766d632234a
+  message: 7332357434f2b8d7e8f6eb79a9f2deabd46e4e98dcab8f76bb1b1e8a5a8f4b19
+semantic_tags:
+- layer.governance
+- representation.markdown
+- source.document.markdown
+- type.rule
+provenance: null

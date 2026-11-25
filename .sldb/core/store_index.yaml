@@ -245,6 +245,175 @@ models:
   - representation.markdown
   - source.document.markdown
   - type.rule
+- name: InterfaceControlDoc
+  model_ref: specir.models.domain:InterfaceControlDoc
+  path: src/specir/models/domain.py
+  models_index: .sldb/core/models/InterfaceControlDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.interface
+  - representation.markdown
+  - source.document.markdown
+  - type.specir.node.interface_control
+- name: InterfaceActionDoc
+  model_ref: specir.models.domain:InterfaceActionDoc
+  path: src/specir/models/domain.py
+  models_index: .sldb/core/models/InterfaceActionDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.interface
+  - representation.markdown
+  - source.document.markdown
+  - type.specir.node.interface_action
+- name: InterfaceFieldDoc
+  model_ref: specir.models.domain:InterfaceFieldDoc
+  path: src/specir/models/domain.py
+  models_index: .sldb/core/models/InterfaceFieldDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.interface
+  - representation.markdown
+  - source.document.markdown
+  - type.specir.node.interface_field
+- name: ApiOperationDoc
+  model_ref: specir.models.domain:ApiOperationDoc
+  path: src/specir/models/domain.py
+  models_index: .sldb/core/models/ApiOperationDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.api
+  - representation.markdown
+  - source.document.markdown
+  - type.specir.node.api_operation
+- name: ApiFieldDoc
+  model_ref: specir.models.domain:ApiFieldDoc
+  path: src/specir/models/domain.py
+  models_index: .sldb/core/models/ApiFieldDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.api
+  - representation.markdown
+  - source.document.markdown
+  - type.specir.node.api_field
+- name: HandlerDoc
+  model_ref: specir.models.domain:HandlerDoc
+  path: src/specir/models/domain.py
+  models_index: .sldb/core/models/HandlerDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.backend
+  - representation.markdown
+  - source.document.markdown
+  - type.specir.node.handler
+- name: DomainOperationDoc
+  model_ref: specir.models.domain:DomainOperationDoc
+  path: src/specir/models/domain.py
+  models_index: .sldb/core/models/DomainOperationDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.domain
+  - representation.markdown
+  - source.document.markdown
+  - type.specir.node.domain_operation
+- name: CapabilityDoc
+  model_ref: specir.models.domain:CapabilityDoc
+  path: src/specir/models/domain.py
+  models_index: .sldb/core/models/CapabilityDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.domain
+  - representation.markdown
+  - source.document.markdown
+  - type.specir.node.domain_operation.capability
+- name: PolicyDoc
+  model_ref: specir.models.domain:PolicyDoc
+  path: src/specir/models/domain.py
+  models_index: .sldb/core/models/PolicyDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.domain
+  - representation.markdown
+  - source.document.markdown
+  - type.specir.node.policy
+- name: StateDoc
+  model_ref: specir.models.domain:StateDoc
+  path: src/specir/models/domain.py
+  models_index: .sldb/core/models/StateDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.domain
+  - representation.markdown
+  - source.document.markdown
+  - type.specir.node.state
+- name: DomainEntityDoc
+  model_ref: specir.models.domain:DomainEntityDoc
+  path: src/specir/models/domain.py
+  models_index: .sldb/core/models/DomainEntityDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.domain
+  - representation.markdown
+  - source.document.markdown
+  - type.specir.node.domain_entity
+- name: TableDoc
+  model_ref: specir.models.domain:TableDoc
+  path: src/specir/models/domain.py
+  models_index: .sldb/core/models/TableDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.data
+  - representation.markdown
+  - source.document.markdown
+  - type.specir.node.table
+- name: ViewDoc
+  model_ref: sldb.models.notation_models:ViewDoc
+  path: /mnt/ssd/proyectos/SLDB_1/sldb/src/sldb/models/notation/view_doc.py
+  models_index: .sldb/core/models/ViewDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - layer.presentation
+  - representation.markdown
+  - source.document.markdown
+  - system.spec2viz
+  - type.view
+- name: CodeAnchorDoc
+  model_ref: sldb.models.code_anchor_doc:CodeAnchorDoc
+  path: /mnt/ssd/proyectos/SLDB_1/sldb/src/sldb/models/code_anchor_doc.py
+  models_index: .sldb/core/models/CodeAnchorDoc.yaml
+  version: 1
+  canonical: false
+  family: null
+  semantics:
+  - representation.markdown
+  - source.document.markdown
+  - type.knowledge.anchor.code
+  - workspace.knowledge.anchors
 predicates:
 - name: is_solved_by
   axis: HOW

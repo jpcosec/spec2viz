@@ -1,0 +1,18 @@
+name: rule-specir-capability-has-an-acceptance-test
+path: specir/rules/rule-specir-capability-has-an-acceptance-test.md
+source_hash: a23a0b64a894392e5c91f3e98f407e9280ee5f173b9563769c09cbdceb2bba29
+content_hash: 72b6226549fd3a75507d4bed652a562e2590d9335392ae2f174fdc5526b1afde
+field_hashes:
+  title: e71bf509748ba17b4189c87fa4357470d0eaa0ad008e2289670d5323351866d9
+  subject: fa1fde400f67fb326377860edc4f8d2eed5178f7907041a3629048e6bc496258
+  where: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  condition: e791e984b5edf46a3d67e383d63181cc0d3fa9eab64bd4ba5c2915f9ffc66f3f
+  severity: 4d01709fcd599118652e3b27bd0ca97c802f832183d01f76a034755f2bc62fa3
+  moment: 9661572404a273c6135cda90c447502455cf65c46a29f9cdf63fc766d632234a
+  message: 9ce57759dcce8c3a6382778656066359591efca3dfe02bee3adc0aa65f90d0d7
+semantic_tags:
+- layer.governance
+- representation.markdown
+- source.document.markdown
+- type.rule
+provenance: null

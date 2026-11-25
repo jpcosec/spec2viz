@@ -1,0 +1,20 @@
+name: type-executes
+path: specir/relation-types/type-executes.md
+source_hash: b1592618a9c0c129b40a5b7b14e86431aa60137e79f153207bc1dee05821172c
+content_hash: 0ca993a094c7c9f0593887258ba2cde5cc5f5a10e57aff02efa7cfab47d86049
+field_hashes:
+  title: 890b9034240856005966d6c65761a1d07e5a4b11469ea0ff8b0b2d8821bb27ff
+  name: dd59c83fc3ee7d35f4032a0454841a9b9befb01691add3a0ab2b3fdfee0fb51b
+  direction: bc5965e31ad9b9fbdee7d03f2a8a26540c86629ea7b2abb3eb4cf2ac5e63a18b
+  cardinality: 3ea55382070a4f53a291448ffcb0ca975ac9b850f2514acbd418f89c891c1ffd
+  axis: e5dde65923d9119e9031fb86ce39e4686c31e5edc82de2486b18c60d560a0a36
+  source_types: d8e47d2822f662c78ada86b238a57ec67e7493c1881d1a908f19cd03ec8bf5c0
+  target_types: 9777ed4e78382016a3666a662b388c4d8d0132e1107ce75ce5470967df564038
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  description: 01c342832b15a821d878d55bc89ce8abcc81b41efb1c8241221ab3b1d2da6eeb
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.type
+provenance: null

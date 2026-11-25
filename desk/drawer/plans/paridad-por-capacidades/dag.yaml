@@ -31,6 +31,8 @@ tasks:
     gate: 'Se ve en graph_ui solo con G-C'
   capacidades-en-el-store:
     title: Capacidades como AtomDoc con su MaterializationContractDoc, RuleDoc y ViewDoc
+    state: replaced
+    replaced_by: task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid
     depends_on: [aceptar-capacidades]
   notacion-orca:
     title: Notación ORCA sobre los tipos de specIR

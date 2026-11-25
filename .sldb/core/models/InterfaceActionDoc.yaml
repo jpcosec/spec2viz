@@ -1,0 +1,19 @@
+name: InterfaceActionDoc
+model_ref: specir.models.domain:InterfaceActionDoc
+path: src/specir/models/domain.py
+documents_index: .sldb/core/documents/InterfaceActionDoc.yaml
+sections_index: ''
+model_hash: 63af15911d95e71071f92c8bfd4e39d81ced1e1f9895b8d3b74c81290cb81836
+roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+contract_hash: dfc7051d398925b3b57cccddef651cb0c0b3616cb991993885d9e9657618ede5
+documents_count: 0
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.interface
+- representation.markdown
+- source.document.markdown
+- type.specir.node.interface_action
+base_models:
+- SpecIRNodeDoc

@@ -1,0 +1,23 @@
+name: capacidad-5-editar-desde-el-diagrama
+path: specir/capabilities/capacidad-5-editar-desde-el-diagrama.md
+source_hash: 76c3f6968d5e005cb2205fe4e3800706065ec7d19f51d76cf9061fa3ee0eb9a1
+content_hash: c780b05d16f943ec4ae619ef9155591899cad8afb318b787ec4b54ae7cbd220d
+field_hashes:
+  title: fa6bbaab8021c8834f88814667b437f3646a69ee11917d87fc6a66e9083a8e80
+  origen: ff43eea06174917f06f5876be887fb73b15f1a19b75e7b7a0c5b7bc03542c0ad
+  verificacion: 8c458e978613f425ff90ddd7b671e2da3f92e52e46f561a1f4af35fb7de1dac6
+  verificado_por: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  evidencia: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  desconocidos: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 3f1df2eb32c98baae6350de8916689142308830e13e6844fb371e78713d24874
+  audience: a92c100630673027f4d0b81abda1edf381053a03ddfd846ab2faed8e956b998b
+semantic_tags:
+- layer.domain
+- representation.markdown
+- source.document.markdown
+- type.specir.node.domain_operation.capability
+provenance:
+  by: agent
+  at: '2026-11-25T19:48:59Z'
+  authority: authored
+  via: create_document

@@ -1,0 +1,18 @@
+name: rule-specir-edges-carry-their-provenance
+path: specir/rules/rule-specir-edges-carry-their-provenance.md
+source_hash: ab527417a43d26b15df13a8c151808463327a347330eac993df51448f4b23ab7
+content_hash: ff4fd5c22b8f4525c6cec0430c83e309f5ed55bac0f2e288ebef202a6f615a32
+field_hashes:
+  title: fa678d1f11d2f8e879e64c01c688d96f8450cb2f060c7ccdb24883a81303c833
+  subject: 0ccf6c83d7cc428692171afc6997dff66c9e4fe36a0a52b7e4f474eb1d27f6c8
+  where: dfde17856e97a412036c7d87bf54a5bee196a3b06d60b46c692df54deb534eb3
+  condition: 00265e1201d0e655bee480a35804ed4f1c7ba09b95da09b51da10049bb80b8fa
+  severity: 4d01709fcd599118652e3b27bd0ca97c802f832183d01f76a034755f2bc62fa3
+  moment: bd9db2ccc19d3e0183709c1e733acebdb78e6fb67bf68171417a449a3f4b69c0
+  message: 673b5d3f5de9e90e1412e8232bad54d001172a1968c223431bcb01ce6ea13ff9
+semantic_tags:
+- layer.governance
+- representation.markdown
+- source.document.markdown
+- type.rule
+provenance: null

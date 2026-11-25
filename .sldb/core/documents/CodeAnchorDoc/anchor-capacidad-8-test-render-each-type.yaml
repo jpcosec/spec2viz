@@ -1,0 +1,22 @@
+name: anchor-capacidad-8-test-render-each-type
+path: specir/capabilities/anchor-capacidad-8-test-render-each-type.md
+source_hash: 4317364e7a24ddb1c66ddb3726780918d4c3c21149956077fd8eff7d8040536e
+content_hash: 6f105eaac4aa673de8c1368dc4ddcdb3225199def4eef0e74cedd78e9e977a70
+field_hashes:
+  ref: ce8b114bc512e989a63da53102cf450844baa710f0e159409b4f431b65d6a8d9
+  kind: a99c4de307066c6f4355786f498a1d99badc0fe63272ae7752b192ec41da16d4
+  seen: 190f0b96ee40f212af0c590f457f40fe15d48ef049249ff82c200d3afec01a59
+  normalization: 6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b
+  recorded_with: 84915b5cd6f4498320d42d780169db4581487d26143bf502ebd6987174c7fbcd
+  history: 85cf066d79bed75ff76df7dfc4acfb0c382984f5aabb3f90a2e17a2ae5e9d98b
+  claim: d95dd24613091f23271400a54d9a4ad0ee026b4a9a96d873ad5298184e4aa113
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.knowledge.anchor.code
+- workspace.knowledge.anchors
+provenance:
+  by: agent
+  at: '2026-11-25T19:57:30Z'
+  authority: theorem
+  via: create_document

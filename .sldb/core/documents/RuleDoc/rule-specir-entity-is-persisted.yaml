@@ -1,0 +1,18 @@
+name: rule-specir-entity-is-persisted
+path: specir/rules/rule-specir-entity-is-persisted.md
+source_hash: 84d9cb4fa427e708e0488126f0f41a6e14fb3b6cc0bd43994994535e5a850acb
+content_hash: 6e9d00285625b229d2ad2f7bc1277303a707421e1e44f56aa9aaa48cba150755
+field_hashes:
+  title: d3f14b46bef8b79941811a8ccc676553db27345a91f4d752612517b4cabb7c7c
+  subject: 729b9e53bb3115510417eb2463823e1839340d4ce0b6537a9af8af319483c1ac
+  where: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  condition: 185e9851e81fc0cb4a7982463844818e04f0f2768fd99c917a0a49e807c1bbdb
+  severity: cf170110abc5849f756d7abf9a6131f853d2f68ba1ca7a10497850f973dc7ef0
+  moment: 9661572404a273c6135cda90c447502455cf65c46a29f9cdf63fc766d632234a
+  message: 090dadb8fb1c80487307e91abe6212ed411561ff19f4227e547e90e69ba0168e
+semantic_tags:
+- layer.governance
+- representation.markdown
+- source.document.markdown
+- type.rule
+provenance: null

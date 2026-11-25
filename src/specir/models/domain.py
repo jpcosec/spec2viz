@@ -21,7 +21,7 @@ from __future__ import annotations
 
 from typing import Any, Literal
 
-from pydantic import Field, model_validator
+from pydantic import Field, field_validator, model_validator
 
 from sldb.api import StructuredNLDoc
 
@@ -158,6 +158,28 @@ class DomainOperationDoc(SpecIRNodeDoc):
     symbol: str | None = Field(default=None, description="The operation's qualified name in the code.")
 
 
+class CapabilityDoc(DomainOperationDoc):
+    """A capability of the domain that someone needs the system to have, and who for.
+
+    It is a `DomainOperationDoc` (a capability of the domain, however it is invoked) that also
+    names its `audience`. Whether it is met is not a field: its acceptance test is a
+    `MaterializationContractDoc` (target_identity `<path>::<test name>`) linked by `accepted_by`,
+    and `rule-specir-capability-has-an-acceptance-test` reports the capability with none. An
+    operation an extractor reads out of code is a `DomainOperationDoc`, not a capability."""
+
+    __semantics__ = {"type": ["specir", "node", "domain_operation", "capability"], "layer": ["domain"]}
+    __template__ = _template([("symbol", "optrev"), ("audience", "rev,list")])
+
+    audience: list[str] = Field(description="Who the capability is for, at least one: 'agente', 'JP', 'graph_ui'.")
+
+    @field_validator("audience")
+    @classmethod
+    def _audience(cls, value: list[str]) -> list[str]:
+        if not value or any(not a.strip() for a in value):
+            raise ValueError("a capability says who it is for: audience has at least one non-blank entry")
+        return value
+
+
 class PolicyDoc(SpecIRNodeDoc):
     """A rule of the domain an operation is governed by: who may do it and when."""
 
@@ -205,6 +227,7 @@ DOMAIN_MODELS: tuple[type[SpecIRNodeDoc], ...] = (
     ApiFieldDoc,
     HandlerDoc,
     DomainOperationDoc,
+    CapabilityDoc,
     PolicyDoc,
     StateDoc,
     DomainEntityDoc,

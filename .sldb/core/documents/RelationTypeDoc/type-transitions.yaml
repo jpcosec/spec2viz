@@ -1,0 +1,20 @@
+name: type-transitions
+path: specir/relation-types/type-transitions.md
+source_hash: e82564f60e7cf24d360307feeb8de41e210ce8006e935669e94163efa0825d33
+content_hash: 5c631594afe3c913a5fb5707fc205db58bb5d78d886e074dd7420310ab5bd63f
+field_hashes:
+  title: a8eff4209bbcedd45a4393404c8df36a36f63b35818aeac2d3618c5ac6534bee
+  name: ccb9f66709f6fdfb70dcedd6603e3cf4763675455e069ea582884bdbf478263b
+  direction: bc5965e31ad9b9fbdee7d03f2a8a26540c86629ea7b2abb3eb4cf2ac5e63a18b
+  cardinality: 3ea55382070a4f53a291448ffcb0ca975ac9b850f2514acbd418f89c891c1ffd
+  axis: 9d2f8dff0b59cbd172460e43a1026356c92cff95189cb2c851d943879d6a5f5a
+  source_types: 9777ed4e78382016a3666a662b388c4d8d0132e1107ce75ce5470967df564038
+  target_types: 6034bcdb3f7ec46a458099098986630f55019d2457495696fd6429b27ba4db42
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  description: 2e059abdc43f2e18ff910c0ca38c0ab55724267a4d4ac2cbf533269f1a23925f
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.type
+provenance: null

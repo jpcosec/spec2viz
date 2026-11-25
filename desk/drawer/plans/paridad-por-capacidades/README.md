@@ -20,7 +20,7 @@ Planes hermanos: `sldb/desk/drawer/plans/superficie-como-contrato-de-editores/` 
 | Sembrar la notación de los tipos de specIR desde `specir.install` | sin tarea; el borrador está validado |
 | Notación BPMN | sin tarea |
 | Notaciones de ORCA e IFML, y los huecos del modelo de dominio que destapan | sin tarea |
-| Capacidades como datos del store, con su regla y su vista | sin tarea |
+| Capacidades como datos del store, con su regla y su vista | **reemplazado** por la tarea `task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid` (`CapabilityDoc` con `audience`, `accepted_by` hacia una materialización, regla y vista) |
 | Reescribir el guardrail de paridad | sin verificar si la tarea de goldens lo hizo |
 | Retirar `CatalogAnnotationsDoc` y la página HTML del catálogo | espera las capacidades 1 a 4 y 6 |
 
@@ -39,7 +39,12 @@ Límites conocidos:
 
 ## Capacidades como datos
 
-Sin modelos nuevos: un `AtomDoc` por capacidad, un `MaterializationContractDoc` hacia su prueba de
+**Reemplazado** por la tarea `task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid`: una capacidad es un
+`CapabilityDoc` (un `DomainOperationDoc` con `audience`), no un `AtomDoc`; su prueba es un
+`MaterializationContractDoc` enlazado por `accepted_by`, y una regla y una vista la exigen y la
+listan. Lo que decía este apartado se conserva abajo.
+
+Antes: sin modelos nuevos: un `AtomDoc` por capacidad, un `MaterializationContractDoc` hacia su prueba de
 aceptación, una `RuleDoc` que exige esa evidencia y una `ViewDoc` que las lista.
 
 ## Pendientes sueltos

@@ -1,0 +1,20 @@
+name: type-triggers
+path: specir/relation-types/type-triggers.md
+source_hash: 3868219a8f2530740f15561d837870fc287a8c4658fbca85c5e9ddd67ada6139
+content_hash: 2918b1c0a856eb9aa451a01f775773e2ef90a919fead1cba4fc042ab0a11586c
+field_hashes:
+  title: da0eea04a18acfa9f84496cfd3ee4065b6feccc75bb3ef5ee9ca4f0af3daa0af
+  name: fc02f970573a5c59d5a05ff0a77786e4970b5aac23d47e142fb60963ebd0af21
+  direction: bc5965e31ad9b9fbdee7d03f2a8a26540c86629ea7b2abb3eb4cf2ac5e63a18b
+  cardinality: 3ea55382070a4f53a291448ffcb0ca975ac9b850f2514acbd418f89c891c1ffd
+  axis: e5dde65923d9119e9031fb86ce39e4686c31e5edc82de2486b18c60d560a0a36
+  source_types: c2f3ca8ac7d2899f01295a51e9116040a6e4507471cac1174893baa9e52086c9
+  target_types: 8b831608c431c35543aaa790235ede8eb20062a0b2a41674d952676e500bb2e6
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  description: c3af8c352f9c965557163fa6d54a6c5d9b3cfe73a5ae6ff8d8899291655eedca
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.type
+provenance: null

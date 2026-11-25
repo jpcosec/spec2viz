@@ -1,0 +1,23 @@
+name: view-specir-capabilities
+path: specir/views/view-specir-capabilities.md
+source_hash: 21108c19ccd94139de5111c41674e847192aed25c706297b53b088936952b6e9
+content_hash: 1a930dcea2f052284006a3e83778ac477bbc76b7a6ef8159f57eee704e38fcce
+field_hashes:
+  id: 2caffd8bddc7bbd03809e34747cda25a34cf983741752f0bbba9926b35852820
+  name: 2caffd8bddc7bbd03809e34747cda25a34cf983741752f0bbba9926b35852820
+  title: e7327329269c32db36303e7a4b9078657f3e23a120b6909f3c4ad16e4d12c8a7
+  nodes: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  relations: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  direction: 6a4adbca11192a326f61110cda055762eb10de529ff037da568d56e23724242d
+  notation: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  layout: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  params: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  sections: ece45b0198656b6abeb034b96d70bf813f8a656aff59546fae8428963272289e
+  description: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+semantic_tags:
+- layer.presentation
+- representation.markdown
+- source.document.markdown
+- system.spec2viz
+- type.view
+provenance: null

@@ -1,0 +1,23 @@
+name: capacidad-7-validar-una-spec-y-sincronizarla-al-store
+path: specir/capabilities/capacidad-7-validar-una-spec-y-sincronizarla-al-store.md
+source_hash: ed9a6cbe7f04dc114650cf606b4d4605ca4b4d29e516df4e597bc44518d0b31e
+content_hash: 2133679d3e36e859376b8f69697ec566fddd61e885ba3883003aafc11abab5af
+field_hashes:
+  title: 2151777615ffcd0011deea0f142946133c8e752b22e13e92929e38068d1718a7
+  origen: ff43eea06174917f06f5876be887fb73b15f1a19b75e7b7a0c5b7bc03542c0ad
+  verificacion: 8c458e978613f425ff90ddd7b671e2da3f92e52e46f561a1f4af35fb7de1dac6
+  verificado_por: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  evidencia: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  desconocidos: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: f30c944c6eacb2832e17a4370b675867ee61ecd60b07f9223ef29b2913ca3749
+  audience: 1e20759bba0023e8993fb9b183d045f5a6cc52c49913a3a0a29252a3fe771ec2
+semantic_tags:
+- layer.domain
+- representation.markdown
+- source.document.markdown
+- type.specir.node.domain_operation.capability
+provenance:
+  by: agent
+  at: '2026-11-25T19:50:01Z'
+  authority: authored
+  via: create_document

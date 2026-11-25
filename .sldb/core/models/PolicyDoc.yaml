@@ -1,0 +1,19 @@
+name: PolicyDoc
+model_ref: specir.models.domain:PolicyDoc
+path: src/specir/models/domain.py
+documents_index: .sldb/core/documents/PolicyDoc.yaml
+sections_index: ''
+model_hash: b028db253e50f669a4552a10f9ab1b77c72142756e1ff4f915fc17d15eea2f98
+roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+contract_hash: 11768a7c7b8293cedf35ae61d4baa1c73569aa0dd55af5012e10f3061ace7ebe
+documents_count: 0
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.domain
+- representation.markdown
+- source.document.markdown
+- type.specir.node.policy
+base_models:
+- SpecIRNodeDoc

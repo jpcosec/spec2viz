@@ -1,0 +1,15 @@
+# The views specIR distributes: ViewDoc payloads (composed views, sldb docs/architecture/views.md),
+# installed in a store by `specir.install` as SLDB document seeds.
+- name: view-specir-capabilities
+  id: view-specir-capabilities
+  title: Capabilities of the domain, who they are for and their acceptance test
+  params: []
+  sections:
+    - key: capabilities
+      select: {model: CapabilityDoc}
+      fields: [title, audience]
+      edges:
+        - {relation: accepted_by, direction: out, as: test}
+    - key: tests
+      select: {model: MaterializationContractDoc, path_glob: 'specir/capabilities/*'}
+      fields: [title, target_identity, source_atoms]

@@ -1,0 +1,23 @@
+name: capacidad-4-anotar-un-diagrama-o-un-nodo
+path: specir/capabilities/capacidad-4-anotar-un-diagrama-o-un-nodo.md
+source_hash: 6e5ab38aa585c78c1c9268b53b5cd5dadf584703d987c16c3cec870f81d8c4c5
+content_hash: 1de0763fabb54f612b3b741631a747b1c8673fd53e5e957e67b8b59f00579fe6
+field_hashes:
+  title: 0b66379b4c72d92d810cd792e82ff85354700eba20b058555a01d4fbfac6fa70
+  origen: ff43eea06174917f06f5876be887fb73b15f1a19b75e7b7a0c5b7bc03542c0ad
+  verificacion: 8c458e978613f425ff90ddd7b671e2da3f92e52e46f561a1f4af35fb7de1dac6
+  verificado_por: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  evidencia: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  desconocidos: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 6caa168ee28d3db6dfff6813e8ffdf5fad7ce4145806c580217c3929eeb5cd87
+  audience: 47c4a280d3603a2f34c0d150b1bcce5472406180681da06d750a5fc15c2b3a86
+semantic_tags:
+- layer.domain
+- representation.markdown
+- source.document.markdown
+- type.specir.node.domain_operation.capability
+provenance:
+  by: agent
+  at: '2026-11-25T19:48:28Z'
+  authority: authored
+  via: create_document

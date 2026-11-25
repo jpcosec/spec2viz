@@ -1,0 +1,19 @@
+name: StateDoc
+model_ref: specir.models.domain:StateDoc
+path: src/specir/models/domain.py
+documents_index: .sldb/core/documents/StateDoc.yaml
+sections_index: ''
+model_hash: 3dcb575c4501233600a24c1cbd1d46bf444f9c93696068346b4bc2960cb20f04
+roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+contract_hash: 0f92c2c5e03acd78778584e12a413401090f2f2853f9774a9c4f72b6c02377d7
+documents_count: 0
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.domain
+- representation.markdown
+- source.document.markdown
+- type.specir.node.state
+base_models:
+- SpecIRNodeDoc

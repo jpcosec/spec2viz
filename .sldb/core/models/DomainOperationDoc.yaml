@@ -1,0 +1,19 @@
+name: DomainOperationDoc
+model_ref: specir.models.domain:DomainOperationDoc
+path: src/specir/models/domain.py
+documents_index: .sldb/core/documents/DomainOperationDoc.yaml
+sections_index: ''
+model_hash: 20f4bb70ff4346195d068331e371fd1b7faf404d9c2fe1e4a8ef27357bf9ed1a
+roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+contract_hash: 54cabd1bf29bc1e5c1238a8388b84ccf02f7f81b9c4aa96667c6b9ad151dda03
+documents_count: 0
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.domain
+- representation.markdown
+- source.document.markdown
+- type.specir.node.domain_operation
+base_models:
+- SpecIRNodeDoc

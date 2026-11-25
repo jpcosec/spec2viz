@@ -66,6 +66,14 @@ def checks(root: Path) -> dict[str, tuple[int, str]]:
     return {name: (done.returncode, done.stdout + done.stderr) for name, done in (("rules", cli(root, "rules", "check")), ("edges", cli(root, "edges", "check")))}
 
 
+def clean(check: tuple[int, str]) -> bool:
+    """The check passes, or its only errors are the capabilities without an acceptance test, which the
+    store of this repo reports by design (tests/test_capabilities_as_nodes.py)."""
+    rc, output = check
+    errors = [line for line in output.splitlines() if line.startswith("error:")]
+    return rc == 0 or (bool(errors) and all("[rules/rule-specir-capability-has-an-acceptance-test]" in line for line in errors))
+
+
 @pytest.fixture(scope="module")
 def copy_root(tmp_path_factory, spec_store, federated) -> Path:
     """A writable mounted copy with specIR installed and the seed operation written by a level-1 session."""
@@ -164,7 +172,7 @@ def test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_documents(c
     assert content() == mds
     after = checks(copy_root)
     print("CHECKS before", checked, "after", after)
-    assert after == checked and all(rc == 0 for rc, _ in after.values()), after
+    assert after == checked and all(clean(check) for check in after.values()), after
 
 
 def test_the_documents_and_the_store_have_the_same_content_after_the_undo(copy_root, content) -> None:
@@ -281,7 +289,7 @@ def test_the_store_after_an_undo_passes_the_checks_and_the_registered_domain_val
         assert session.call("undo_changes", steps=1)["applied"] is True
     after = checks(copy_root)
     print("RULES/EDGES", after)
-    assert after == checked and after["rules"][0] == 0 and after["edges"][0] == 0
+    assert after == checked and clean(after["rules"]) and after["edges"][0] == 0
     assert content() == before
     documents = [BatchChange(id=OP, action="update", model="DomainOperationDoc", payload=stored(OP))]
     findings = [f for validator in context.batch_validators for f in validator(documents, context)]

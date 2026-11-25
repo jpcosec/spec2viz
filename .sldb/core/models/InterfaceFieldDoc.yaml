@@ -1,0 +1,19 @@
+name: InterfaceFieldDoc
+model_ref: specir.models.domain:InterfaceFieldDoc
+path: src/specir/models/domain.py
+documents_index: .sldb/core/documents/InterfaceFieldDoc.yaml
+sections_index: ''
+model_hash: 079481e104726f9457b1d778b00ee43f4d466c475b9406c7edaf1cd138db38be
+roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+contract_hash: 11805821243fefce41d4b33d104c486da78c826953b3f515336081e8bee83cdb
+documents_count: 0
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.interface
+- representation.markdown
+- source.document.markdown
+- type.specir.node.interface_field
+base_models:
+- SpecIRNodeDoc

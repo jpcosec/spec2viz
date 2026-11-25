@@ -1,0 +1,19 @@
+name: TableDoc
+model_ref: specir.models.domain:TableDoc
+path: src/specir/models/domain.py
+documents_index: .sldb/core/documents/TableDoc.yaml
+sections_index: ''
+model_hash: 2e0025f6240432be6a877a7b410c0352b99bc193a3eb83cc35f611646303496e
+roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+contract_hash: a054e0240c23e849ca022614ed209240744b1306527d97c4b2f7fdf82e9396af
+documents_count: 0
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.data
+- representation.markdown
+- source.document.markdown
+- type.specir.node.table
+base_models:
+- SpecIRNodeDoc

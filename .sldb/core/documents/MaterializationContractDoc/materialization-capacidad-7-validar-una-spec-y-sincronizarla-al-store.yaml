@@ -1,0 +1,25 @@
+name: materialization-capacidad-7-validar-una-spec-y-sincronizarla-al-store
+path: specir/capabilities/materialization-capacidad-7-validar-una-spec-y-sincronizarla-al-store.md
+source_hash: 1f32a7385ec0f56c15ad497ab8ba3e522283ebd94292e40c4c478cd82cdd2315
+content_hash: 4f499af8bf3054bc277a74aa0ca9d23089efc0087c0d738ff6f9671a6ce28c28
+field_hashes:
+  id: ab1869a4b62793a1064e535a9a31dbbd0bb07ce6362bf895aa0d4a35ae1ef1a8
+  title: 6e868dcbeb22be07586ccb7abc35b3db3b835d885be7d4bb976a7dd3697ac01f
+  source_atoms: 90f18352e9b8b2ba98462219120768caa38fdcc1fbe52eadce209d64e2cdae42
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: 94c874c4e856e6d46218b598ebfb1572caa1baa70def1fc170975f9775fe2565
+  intent: 85952ccca916b6ed68e54703afee0d1c6327139b004a526417917e091a488314
+  validation: f886ff860e3bd0afb8a3b571a79acc9c0b9db650226c5c5ea7180b8a2f024649
+  tags: 852b6f294b0855807abb06c76aa27a7ec79dbe6d9572f6824abaf5416efb8eda
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capacidades
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T19:50:34Z'
+  authority: generated
+  via: create_document

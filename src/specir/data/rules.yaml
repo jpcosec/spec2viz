@@ -52,6 +52,13 @@
   severity: alert
   moment: on_check
   message: No interface control reaches an operation this policy governs.
+- name: rule-specir-capability-has-an-acceptance-test
+  title: A capability has an acceptance test
+  subject: model <= CapabilityDoc
+  condition: 'any(rel:accepted_by: model <= MaterializationContractDoc)'
+  severity: error
+  moment: on_check
+  message: The capability has no materialization to a test that accredits it.
 - name: rule-specir-edges-carry-their-provenance
   title: A specIR edge carries its provenance
   subject: model <= RelationDoc

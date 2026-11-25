@@ -1,0 +1,23 @@
+name: capacidad-2-navegar-el-catalogo-por-categoria
+path: specir/capabilities/capacidad-2-navegar-el-catalogo-por-categoria.md
+source_hash: 61720a561a0ff2cf3786b5be6a50c43ee722f73ef32c1c7f335ab01fc7eaa5f9
+content_hash: 623b9bfaab3afced5b7a10f40e2dbcf6b06fa5cb62d4f8b2a5e21d2e712cc149
+field_hashes:
+  title: 8080a8a794376dbf8d911a42765f4f88a4c733f159c65946a11ea622abcda7bc
+  origen: ff43eea06174917f06f5876be887fb73b15f1a19b75e7b7a0c5b7bc03542c0ad
+  verificacion: 8c458e978613f425ff90ddd7b671e2da3f92e52e46f561a1f4af35fb7de1dac6
+  verificado_por: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  evidencia: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  desconocidos: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+  description: 15e8bce5f156e0dacf28d6e6ea0f3227aa6c4f4cead47f10fca111b8ff570116
+  audience: a92c100630673027f4d0b81abda1edf381053a03ddfd846ab2faed8e956b998b
+semantic_tags:
+- layer.domain
+- representation.markdown
+- source.document.markdown
+- type.specir.node.domain_operation.capability
+provenance:
+  by: agent
+  at: '2026-11-25T19:46:31Z'
+  authority: authored
+  via: create_document

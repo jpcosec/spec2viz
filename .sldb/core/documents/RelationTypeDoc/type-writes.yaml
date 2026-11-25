@@ -1,0 +1,20 @@
+name: type-writes
+path: specir/relation-types/type-writes.md
+source_hash: 5658fb74e96d59363e19074e848ade5306b7f274a2fc87298f1b172b8560b6e2
+content_hash: 4553c2158aba0448732be0fad8816ed70fc8cd3e6e4daa340a3254e655ae8a99
+field_hashes:
+  title: 82d4965f6ed705902a4789a2a7571befdb15055caba7ba502e83bda37e3dfea5
+  name: c16945a3a7b244af29caad82019fe2c2f37298e42d4405ac89ee48964ed6e176
+  direction: bc5965e31ad9b9fbdee7d03f2a8a26540c86629ea7b2abb3eb4cf2ac5e63a18b
+  cardinality: 3ea55382070a4f53a291448ffcb0ca975ac9b850f2514acbd418f89c891c1ffd
+  axis: 1e17359d7a476eb64fce4e5be66beac92b55686b9fb5f47596c5fefdbceeae2c
+  source_types: 9777ed4e78382016a3666a662b388c4d8d0132e1107ce75ce5470967df564038
+  target_types: d8de33317c95e7970409abb783631f439f4a78bd3326e00654fbfd0fcfd1f04c
+  condition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  description: 5a191250a5aff362b3342c339a1506ffcbe0e8333d412a2a1105e581bf840dac
+semantic_tags:
+- layer.topology
+- representation.markdown
+- source.document.markdown
+- type.relation.type
+provenance: null

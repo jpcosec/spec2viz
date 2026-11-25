@@ -1,0 +1,22 @@
+name: anchor-capacidad-7-test-validate-passes
+path: specir/capabilities/anchor-capacidad-7-test-validate-passes.md
+source_hash: bf21bd8b47c676bf0dc1e8809d52a2563f3c6ff56f385ece2378ab6dc74a8bdd
+content_hash: 57f5c1cfd6fe9e5b16ac254eb8f8181983da3b9eb054023f6c67a87d1d87db80
+field_hashes:
+  ref: 4c860b2db72755ac78a31a0863988e54e068ba3085d342387a8b5f3f34f28075
+  kind: a99c4de307066c6f4355786f498a1d99badc0fe63272ae7752b192ec41da16d4
+  seen: 79cefb12bac157c6e7704956c51453f14c8cec197b9c7d91798f3a78bb8864d6
+  normalization: 6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b
+  recorded_with: 84915b5cd6f4498320d42d780169db4581487d26143bf502ebd6987174c7fbcd
+  history: 9c58d8038cd5817c08b3f68615a6f20200a493da6350399e1a778d370694115e
+  claim: a9c1bf7d1805661fbd9083602c75018be8f02bb844bb27a3d41f45c446201964
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.knowledge.anchor.code
+- workspace.knowledge.anchors
+provenance:
+  by: agent
+  at: '2026-11-25T19:55:51Z'
+  authority: theorem
+  via: create_document

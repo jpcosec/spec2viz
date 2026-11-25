@@ -1,0 +1,19 @@
+name: HandlerDoc
+model_ref: specir.models.domain:HandlerDoc
+path: src/specir/models/domain.py
+documents_index: .sldb/core/documents/HandlerDoc.yaml
+sections_index: ''
+model_hash: 867e1f2bb23a41a1fab65a31aa42754cca7bb3a707ff09b5c124acbaf368dbb2
+roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+contract_hash: 227451b2390188c1f92847c79d02c5cd4ee55d43eaeb8713ef129908348d2a90
+documents_count: 0
+version: 1
+canonical: false
+family: null
+semantics:
+- layer.backend
+- representation.markdown
+- source.document.markdown
+- type.specir.node.handler
+base_models:
+- SpecIRNodeDoc

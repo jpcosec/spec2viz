@@ -74,3 +74,10 @@
   source_types: [ApiFieldDoc]
   target_types: [ApiOperationDoc]
   description: The API field is part of what the API operation receives or returns.
+- name: accepted_by
+  title: Accepted by
+  axis: WHY
+  cardinality: many_to_many
+  source_types: [CapabilityDoc]
+  target_types: [MaterializationContractDoc]
+  description: The materialization contract names the test that accredits the capability (target_identity `<path>::<test name>`). A capability is met when that test passes; no field says so.

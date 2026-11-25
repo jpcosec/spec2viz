@@ -1,0 +1,18 @@
+name: rule-specir-action-invokes-an-api-operation
+path: specir/rules/rule-specir-action-invokes-an-api-operation.md
+source_hash: 3693216941e7f40d982ae8018678fa7e35a49adabb3b9d4a222342e41ddbf792
+content_hash: 68114298b351ab6a5b8be6efd5671adca3ff95294ca03e043323216a3ddca7f5
+field_hashes:
+  title: 662cb7607687c3f8d452c0e2657623ac274142656121c765ec93147a1b53287f
+  subject: ca4786076a2d88a2ad81cfc6ee691d11b80a4236e09c1016138442e10c4af03e
+  where: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  condition: 54ba79876021c14b8ec11c25e9989d7f745f31939bcd78b83520222e83d94654
+  severity: 4d01709fcd599118652e3b27bd0ca97c802f832183d01f76a034755f2bc62fa3
+  moment: 9661572404a273c6135cda90c447502455cf65c46a29f9cdf63fc766d632234a
+  message: 7281c6cdb6055194a911143925dabac7b276b6357e36cfe4d8ea33ea4720c0d1
+semantic_tags:
+- layer.governance
+- representation.markdown
+- source.document.markdown
+- type.rule
+provenance: null
