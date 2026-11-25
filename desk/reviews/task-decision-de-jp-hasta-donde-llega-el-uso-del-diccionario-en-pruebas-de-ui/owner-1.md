@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T06:03:09Z'
+  at: '2026-11-25T12:21:09Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 # review-<task>-<kind>-<n>
 id: review-task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui-owner-1
 # preflight | bundle | reproduction | goldens | owner | node | evidence
@@ -26,15 +26,13 @@ input_sha256: ''
 contract_sha256: ''
 output_sha256: ''
 # pending | accepted | rejected | incomplete
-verdict: pending
-reason: 'JP decidio D4: todo, con flujos: cobertura, prueba de controles esperados
-  por vista y esqueletos de flujo (Playwright en Python, D6) (2026-11-25, sesion de
-  johanes; registrado en runs/coordinacion-johanes.md)'
+verdict: accepted
+reason: 'JP: decision tomada el 2026-11-25'
 # ISO 8601 timestamp
 created_at: '2026-11-25T06:03:06.006735+00:00'
 # ISO 8601 timestamp, empty while pending
-disposed_at: ''
-disposed_by: ''
+disposed_at: '2026-11-25T12:21:06.951270+00:00'
+disposed_by: IR
 # e.g. system:deskops
 tags: []
 ---
@@ -50,3 +48,5 @@ owner receipt recorded by IR; evidence: (none)
 ## Disposition
 
 _Record the verdict rationale and who disposed of the review._
+
+Verdict accepted: JP: decision tomada el 2026-11-25

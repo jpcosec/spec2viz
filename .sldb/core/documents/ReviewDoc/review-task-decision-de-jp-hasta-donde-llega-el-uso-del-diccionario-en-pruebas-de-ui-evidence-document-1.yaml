@@ -1,0 +1,36 @@
+name: review-task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui-evidence-document-1
+path: desk/reviews/task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui/evidence-document-1.md
+source_hash: 0f5bd14780297f7c4bf52855e9fc58d65242f5baa06739638adf66b840f5815b
+content_hash: e0bcd1b9f4b937d17db22a866480877a0d8d95c3a89a7fe739c7294cc38ada94
+field_hashes:
+  id: b09a0b9e1b20e708d4cd1cdee8a185eaa7b3d10dab08ab803c2a5242a3d91941
+  title: 0db3207fc29400ca04de3294f12154d9eb207f9e96db5ba0a08e4db69fc2dcb8
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 64ac8e615520cd1ae43ab0d47cfc9e750a82d13f9c47d468dab7cd8c982b7859
+  value: fd4063ec830cbb4b7390f32b7a1c3bfb5880519eccc084b82734a10b0e23db95
+  subject: d2ef1b1d35a824d6587aafee4924808a7034b7e9afe73f7260db959bdfb453b0
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: d49423cfa1af77857f8c797896bb127f1139668ac4b98092008ca6b75600d153
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 2b642514f21cb6964106fac43111ca728927384f6397dbaa6f8982e73c1c5565
+  created_at: cd22a76ea4b273afba2495c9ed523512990cec098ed81b651f6416f2a4469600
+  disposed_at: cd22a76ea4b273afba2495c9ed523512990cec098ed81b651f6416f2a4469600
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 6e7b8065e6f659e78e43ce65f6c4750359d25418ff6c24798b4ef3584a01258d
+  disposition: b97dad00ff3e276a5b5392ff27d13f09058daf26c70667c8a31f832ce33901f3
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T12:30:04Z'
+  authority: generated
+  via: create_document
