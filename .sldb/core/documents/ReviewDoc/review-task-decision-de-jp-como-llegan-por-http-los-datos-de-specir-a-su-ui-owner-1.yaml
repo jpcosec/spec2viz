@@ -1,7 +1,7 @@
 name: review-task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui-owner-1
 path: desk/reviews/task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui/owner-1.md
-source_hash: cc5df06d673535cf60290de85641c5ed6b2e3a63a6ae3039f4d68190e0d0c65c
-content_hash: 5f8564083ceb9df375106c58b2509030d14b49fcf84b962ac223d5aab2222c88
+source_hash: d72a5639202f2b093d5840ecafb4e904cb59a566d22a316156c4c5e92b8f4589
+content_hash: 9f133f942db24e5531fafff9a7d9c1f7356ac000113ec9873d1d77aad9deb7d4
 field_hashes:
   id: 28ba024f1af11d730800953669e237cf8e5d12854ad7b4861433b5a5f80146c7
   title: c658b9f9f680ab5859b603b3685af700e60a478ecf8e77d586d01896948ed7b5
@@ -16,13 +16,13 @@ field_hashes:
   input_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
-  reason: 3d757d241b93f9774a5309b6b300aad8cbccd1bd520c1c11b752f2fb8f5df872
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: ec611ddfec1dbd05588a6914301abf9efcd6d420602278456cabe42b67124f18
   created_at: 95900eefca649eb08e6aa446631d19cd953e060074314b943f775c4401a7f4d4
-  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_at: 29767ecf1d96cde772e3538b8bb8778b0eb3cc4ef9dc8904527d8f8fafec9352
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 7735b1af9e1a496fa0f36df9a318df8a8253c73fe4fc00804339157235f7a7c3
-  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposition: b39bab23ffb844de958117515159beb65494cb5db251c5f99d0effe17575171c
   tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
@@ -31,6 +31,6 @@ semantic_tags:
 - workspace.desk.runs
 provenance:
   by: agent
-  at: '2026-11-25T06:03:24Z'
+  at: '2026-11-25T12:21:23Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

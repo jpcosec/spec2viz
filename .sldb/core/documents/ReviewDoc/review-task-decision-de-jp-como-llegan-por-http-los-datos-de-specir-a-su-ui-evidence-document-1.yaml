@@ -1,0 +1,36 @@
+name: review-task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui-evidence-document-1
+path: desk/reviews/task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui/evidence-document-1.md
+source_hash: 8d7336c0cf6870f583d047fbd45b64f8e7b3ac20251a6b1f617c671ea045b08d
+content_hash: 1f3235b563914c83a168d274f37d1054a9e42ae59939746add387ea06ef846cc
+field_hashes:
+  id: 308420db7d5b363bac04b7d7122b18bf31b4188345c6fa99a1ba6ae62915b61d
+  title: 7fa1ada03cc9552484f08f4d261c5e84109b834072185a0940f8d6898de6cfb2
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 64ac8e615520cd1ae43ab0d47cfc9e750a82d13f9c47d468dab7cd8c982b7859
+  value: fd4063ec830cbb4b7390f32b7a1c3bfb5880519eccc084b82734a10b0e23db95
+  subject: a2339c230fc593c46f69b8c0fa35993865b68b4fb95fe1bbd5913ce96759e277
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: d49423cfa1af77857f8c797896bb127f1139668ac4b98092008ca6b75600d153
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 2b642514f21cb6964106fac43111ca728927384f6397dbaa6f8982e73c1c5565
+  created_at: f0c6134560e9599ad725be8fe78da094d209bfbfc73f344fdbd601ad812c5f93
+  disposed_at: f0c6134560e9599ad725be8fe78da094d209bfbfc73f344fdbd601ad812c5f93
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 6e7b8065e6f659e78e43ce65f6c4750359d25418ff6c24798b4ef3584a01258d
+  disposition: b97dad00ff3e276a5b5392ff27d13f09058daf26c70667c8a31f832ce33901f3
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T12:31:50Z'
+  authority: generated
+  via: create_document

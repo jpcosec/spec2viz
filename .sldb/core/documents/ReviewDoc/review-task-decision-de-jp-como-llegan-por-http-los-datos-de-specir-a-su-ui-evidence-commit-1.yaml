@@ -1,0 +1,36 @@
+name: review-task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui-evidence-commit-1
+path: desk/reviews/task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui/evidence-commit-1.md
+source_hash: 5e3e0461554a47d948353a95e8451774bc8b9932c534f624dce27da934d72389
+content_hash: 258c0a396e757bfa7f9d2a5128f806964a8029b1bf12c0c88df2793180b15133
+field_hashes:
+  id: fa3a856d6ccc32be86c5c9f7014054c7dafb0b644a132a400428cb59704160dd
+  title: d4b6f485e91028a14636613940939521db7b9e91fe0e494dd2882dc98e7f634c
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 5ea9c58673a69c87d0e5540a6f9978aad8f8e0a0b9ce3471cff139c730d97888
+  value: 711f405828dd5f781c6fdd82795f8e876ef2c0514587d9d1f2b763463823bd6a
+  subject: a2339c230fc593c46f69b8c0fa35993865b68b4fb95fe1bbd5913ce96759e277
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: a82ec4614842a7be4d3ddaac18c673582932d19d1007fb172d50c3cdd3ea1e7e
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 7bca14a07313b2b004f5ab55de3cc6c939fd5db88e5beda17add235496d883a3
+  created_at: f0c6134560e9599ad725be8fe78da094d209bfbfc73f344fdbd601ad812c5f93
+  disposed_at: f0c6134560e9599ad725be8fe78da094d209bfbfc73f344fdbd601ad812c5f93
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 0f4be0262b583b5e20762967abca9b7476dec1d8a96ba0b8732c6c59a2586f9a
+  disposition: 8ae9e25e934bb04047673f1dd795bd9ff3fba5fc842ad81ca243b818ee193267
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T12:31:48Z'
+  authority: generated
+  via: create_document

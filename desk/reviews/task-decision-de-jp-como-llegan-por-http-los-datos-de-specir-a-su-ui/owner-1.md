@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T06:03:24Z'
+  at: '2026-11-25T12:21:23Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 # review-<task>-<kind>-<n>
 id: review-task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui-owner-1
 # preflight | bundle | reproduction | goldens | owner | node | evidence
@@ -26,15 +26,13 @@ input_sha256: ''
 contract_sha256: ''
 output_sha256: ''
 # pending | accepted | rejected | incomplete
-verdict: pending
-reason: 'JP decidio D8: pedir a sldb que sldb serve acepte --extension MODULE:FUNCTION
-  como sldb mcp, para rutas HTTP de solo lectura de specIR (2026-11-25, sesion de
-  johanes; registrado en runs/coordinacion-johanes.md)'
+verdict: accepted
+reason: 'JP: decision tomada el 2026-11-25'
 # ISO 8601 timestamp
 created_at: '2026-11-25T06:03:21.078861+00:00'
 # ISO 8601 timestamp, empty while pending
-disposed_at: ''
-disposed_by: ''
+disposed_at: '2026-11-25T12:21:20.470656+00:00'
+disposed_by: IR
 # e.g. system:deskops
 tags: []
 ---
@@ -50,3 +48,5 @@ owner receipt recorded by IR; evidence: (none)
 ## Disposition
 
 _Record the verdict rationale and who disposed of the review._
+
+Verdict accepted: JP: decision tomada el 2026-11-25
