@@ -1,0 +1,22 @@
+name: atom-la-ui-de-specir-vive-en-ir-ui-con-cascaron-de-pestanas-y-lentes-y-cliente-de-sldb-serve
+path: desk/atoms/atom-la-ui-de-specir-vive-en-ir-ui-con-cascaron-de-pestanas-y-lentes-y-cliente-de-sldb-serve.md
+source_hash: f4a85bab4ed0372798f7db20108e5d9b368c6cfd5d46852b616ce0816a9592c1
+content_hash: 48f3e65935f347de99542759c63f959642590fd2c6f25d868853c318aabae576
+field_hashes:
+  id: 7d7a1c9e355cebc428270e6496f440188de10e323800f2105ec3e36084d2321f
+  title: dba7b01a780e26ac8bb5f989656e6d015ad0f3e23f45d3e55dbac7afd2c1659f
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: 1a728af9915f1e42581dc75155fa5223f785a837869c9628022dcc159237df62
+  tags: 451cbf0d95dea0925555074c601e97daf939ea6476abba1cdd82649d6836ebc5
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:ui-esqueleto
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-25T13:30:10Z'
+  authority: generated
+  via: create_document

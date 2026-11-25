@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T12:38:41Z'
+  at: '2026-11-25T13:08:44Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -18,6 +18,7 @@ tasks:
 - desk/tasks/task-u4-composiciones-muestra-las-specs-de-actividad-con-notacion-bpmn.md
 - desk/tasks/task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage.md
 - desk/tasks/task-u9-anclajes-muestra-la-fuente-con-lineas-y-el-fragmento-resaltado-el-selector-su-estado-y-los-nodos.md
+- desk/tasks/task-u1b-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -51,9 +52,10 @@ _Generated from the task references above._
 
 - Las pruebas de tests/test_mcp_extension.py fallan en el setup: el server MCP cierra la conexion al arrancar sobre la copia del store [draft] - Se identifica por que el server muere al arrancar sobre la copia del store de la sesion (fixtures store_copy y build_deskops_copy de tests/conftest.py) y se corrige la causa, de modo que tests/test_mcp_extension.py pase.
 - specir ux extract extrae la interfaz de un arbol y avisa de los archivos saltados [draft] - Un comando de CLI que corre extract_frontend, avisa de los archivos que code_facts salto, y con --strict falla (rc 1) si hubo saltados.
-- U1: esqueleto de la UI de specIR en IR/ui con tokens de papel, cascaron de pestanas y lentes y cliente de sldb serve [draft] - Una app Vite + React TSX en IR/ui que arranca, muestra el cascaron (explorador a la izquierda, pestanas Grafo, Anclajes y Composiciones, panel de documento a la derecha, lentes Lectura y Fierros) y habla con sldb serve.
+- U1: esqueleto de la UI de specIR en IR/ui con tokens de papel, cascaron de pestanas y lentes y cliente de sldb serve [active] - Una app Vite + React TSX en IR/ui que arranca, muestra el cascaron (explorador a la izquierda, pestanas Grafo, Anclajes y Composiciones, panel de documento a la derecha, lentes Lectura y Fierros) y habla con sldb serve.
 - U2: Composiciones lista las recetas de diagrama del store con filtro por capa, buscador y cobertura n/m [draft] - En la pestana Composiciones, la lista de recetas (las specs de diagrama: SpecDoc que sldb serve lista en /notations; /views solo si tambien trae specs) con filtro por capa, buscador por titulo (parcial, sin distinguir mayusculas) y la cobertura de cada una cuando sldb la de (hoy '—'). Aceptacion contra el store de pron, que tiene 15 SpecDoc; el store de IR no tiene.
 - U3: Composiciones dibuja la receta elegida con su notacion, zoom y arrastre, y un nodo abre su documento [draft] - Vista previa de la receta elegida dibujada con /notations/view, con zoom, arrastre y reinicio, y clic en un nodo que abre su documento en el panel derecho.
 - U4: Composiciones muestra las specs de actividad con notacion BPMN [draft] - Que una receta cuya spec es de actividad se dibuje con notacion BPMN, como hacia spec2viz.
 - U5: las notas sobre una receta o un nodo se guardan en el store por POST /save y no en localStorage [draft] - Notas sobre la receta o el nodo, guardadas en el store de sldb (como las anotaciones de spec2viz, pero en el store), con lista, alta y edicion.
 - U9: Anclajes muestra la fuente con lineas y el fragmento resaltado, el selector, su estado y los nodos que se apoyan [draft] - La pestana Anclajes: para un CodeAnchorDoc, la fuente con numeros de linea y el fragmento resaltado; a la derecha el selector, el estado (vigente o cambiado) y los nodos y relaciones de specIR que se apoyan en el.
+- U1b: el cascaron de la UI de specIR usa los tokens de papel y se parece a la maqueta [draft] - Que el cascaron de IR/ui se vea como desk/drawer/plans/graph-ui-diccionario-de-componentes/maqueta-ui.html#grafo: pestanas y lentes monoespaciadas con borde de 2 px y la activa en piedra; explorador con fondo piedra y borde; panel de documento con borde; titulos en serif (Newsreader); rail inferior; miga con el nombre del store en la cabecera.

@@ -1,0 +1,25 @@
+name: materialization-ui-esqueleto-ui-package-lock-json
+path: desk/materializations/materialization-ui-esqueleto-ui-package-lock-json.md
+source_hash: 74022902be25a423b97fe4afaffd9aae5c2ff4085ea1f37257cdd11574ffed94
+content_hash: 7ea167434d09a095e6996391cffef150dd3161ea017badcf28eaa97acf8223b6
+field_hashes:
+  id: 3c4c2c912be07476e2e8d0b616639b443c008bc543a86373bc849912bf838bd5
+  title: a4acdcdc0ce847372333302508dee657fb11da7c2ec772c520ec99e4e352dc86
+  source_atoms: ab7a60635b1d0da5c612061ad86a640ee8b68161fb006ea767e5607f98389156
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: c85f0b5502579dd73ce9ee4d5fb766bfbd444a87243fb48361608dd37dda9d4f
+  intent: e95ee9315c588d73f5b7cd2df32841e768b22a2f11661136dc4a4b954bf2d9a4
+  validation: 13149d479b34569bc3eb26aafd9cd22e6005f05c8b5082ffcc781d472314d13b
+  tags: 451cbf0d95dea0925555074c601e97daf939ea6476abba1cdd82649d6836ebc5
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:ui-esqueleto
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T13:30:50Z'
+  authority: generated
+  via: create_document

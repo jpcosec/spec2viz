@@ -1,0 +1,36 @@
+name: review-task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar-bundle-1
+path: desk/reviews/task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar/bundle-1.md
+source_hash: da8730f521f761dc494d6398eca300a0a3c59525ab3f71bb4e1f18384bccad19
+content_hash: a0811102e0078d45308cf994cc2a946a7f3bcccbbd2071cf5fd5073a5c9c2d0d
+field_hashes:
+  id: 2c1393220c77d6105ac9e8e85b45d3dc36deb2cb3c3bd99f54390321fc8418c3
+  title: bd0d309d0a5fe112cba9aff535bd68251fea2a1522a5ccbe1233d46f1128abfb
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 42f329981a29b1b540ad6c5a07fcd6651bb1f5cf11b2152bc4f7826abb043faf
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: b50ab8599f08d8b0a4dd3da387fc6beb75fa6cd9c933e86609a25d87e3ee1d35
+  input_sha256: 555e76fcd2f802821b1a696b70f0c1562b7f5f3f714dc5e8190a4a7d1c1cf5d4
+  contract_sha256: 37448845e85a034042b31320e5a21b48d56a297a1b85c458b7cf425062cdad10
+  output_sha256: 00757755ec46702e92cfb5fd9c76bfd5fa25634439e745097494ec9d99972110
+  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
+  reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  created_at: 9a40cf9a3d0caecadaea3582c94e75d3106e6f90b70ba8ab5397096286e99aeb
+  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  summary: 17dad5499585d28aaadd76900e80b08aab448e7f6d0bddf87b941613b4cad56e
+  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T13:28:38Z'
+  authority: generated
+  via: create_document

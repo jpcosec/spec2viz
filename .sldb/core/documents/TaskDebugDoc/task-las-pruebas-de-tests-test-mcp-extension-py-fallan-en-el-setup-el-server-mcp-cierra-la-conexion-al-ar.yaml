@@ -1,7 +1,7 @@
 name: task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar
 path: desk/tasks/task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar.md
-source_hash: 61af1d00d5011e507e855494f5e56f2c4ad178ae8c4478b33e20a1ae9bc1d315
-content_hash: dba8ee877c5023ca6afd6c6e25daa92fe71c8f9bed359c8c19bc4aedc96eb22c
+source_hash: 0452cb9e2a7dd7740561746971c78f1584457a2a6dc503c5a882c3a1caa1c507
+content_hash: 299b8c5eb750762888a74c5f9e9e81ef0d7799d86f5f3d555d2867b10804ddb5
 field_hashes:
   title: 7bc18c8a5dbbcb9955715b75a8abe6b68338408cededf5835827cdaa0f1c8498
   id: 76aa8634893aa23c41bdcae18a7266af6aae7b13fd6113eaf97e54f375bf40b4
@@ -17,7 +17,7 @@ field_hashes:
   depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 2bb620269c254cb5372bf0e2c8770aecb65738987000044ed16482e0df37c27f
+  implementation_path: 2ef2d30a89ce7feee7fb029b42cc30f98833b0bcd650e62abfb93b0bd05b5f16
   validation: 2586d0fc2d475eb7c379e85008827985de3bbc2727456f1ecf1036238c8ca6c3
   done_when: 3276bf3aa395bfbd523d50cc94af31d574f8ef4f2d6b636c1b3a5160660607ae
   task_type: 17aef8a679138336d87167505c61b03a7bc28c9a12b1ccf78947b619d28fae69
@@ -32,6 +32,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T03:44:03Z'
+  at: '2026-11-25T13:27:30Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

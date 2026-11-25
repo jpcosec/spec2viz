@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T03:44:03Z'
+  at: '2026-11-25T13:27:30Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar
 status: draft
 summary: ''
@@ -44,7 +44,7 @@ tests/conftest.py (fixtures de copia y served) o el codigo de specIR que el serv
 
 _Outline the expected implementation route or affected surface._
 
-1) Reproducir desde /mnt/ssd/proyectos/SLDB_1/IR: PYTHONPATH=src TMPDIR=/mnt/ssd/tmp/sldb1 python -m pytest -q -x tests/test_mcp_extension.py -k serves_its_tools. 2) Capturar el stderr del server: lanzar a mano el comando de served() sobre la copia que arma el fixture, o pasar errlog al cliente stdio en una prueba local, y leer el traceback. 3) Corregir la causa. 4) Correr tests/test_mcp_extension.py y tests/test_cli_mcp.py.
+Causa confirmada por johanes (runs/coordinacion-johanes.md, 2026-11-25): served() en tests/conftest.py (l.~266) lanza 'python -m sldb mcp' con cwd=str(root) (la copia del store) y env={**os.environ}; la validacion exporta PYTHONPATH=src, relativo, que en el server apunta a <copia>/src; stderr: No module named 'specir'; el server muere antes de initialize (Connection closed). specIR no esta instalado en el venv compartido. Arreglo (una linea en tests/conftest.py, l.~269): env={**os.environ, 'PYTHONPATH': os.pathsep.join(p for p in (package_pythonpath(), os.environ.get('PYTHONPATH', '')) if p)}, con package_pythonpath de specir.install (absoluto). No instalar specIR en el venv. Con PYTHONPATH absoluto ya dio 14 passed en tests/test_mcp_extension.py y tests/test_cli_mcp.py.
 
 ## Validation
 

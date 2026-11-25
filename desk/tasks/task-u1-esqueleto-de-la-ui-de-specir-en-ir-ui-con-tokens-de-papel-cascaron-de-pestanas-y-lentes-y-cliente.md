@@ -1,25 +1,60 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T06:23:58Z'
+  at: '2026-11-25T13:30:30Z'
   authority: generated
   via: save_document_payload
 id: task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente
-status: draft
+status: active
 summary: ''
 tags: []
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-testing
+history:
+- task_activates
+references:
+- ui/.gitignore
+- ui/index.html
+- ui/package-lock.json
+- ui/package.json
+- ui/src/Shell.test.tsx
+- ui/src/Shell.tsx
+- ui/src/core/client.test.ts
+- ui/src/core/client.ts
+- ui/src/core/contract.ts
+- ui/src/env.ts
+- ui/src/main.tsx
+- ui/src/shell.css
+- ui/src/styles/paper-tokens.css
+- ui/src/test-setup.ts
+- ui/tsconfig.json
+- ui/vite.config.ts
+- 1a9ec96b060a43b385934b9d4d4530cf7abe7383
 depends_on:
 - task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb
 - task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir
 pills: []
-files: []
+files:
+- ui/.gitignore
+- ui/index.html
+- ui/package-lock.json
+- ui/package.json
+- ui/src/Shell.test.tsx
+- ui/src/Shell.tsx
+- ui/src/core/client.test.ts
+- ui/src/core/client.ts
+- ui/src/core/contract.ts
+- ui/src/env.ts
+- ui/src/main.tsx
+- ui/src/shell.css
+- ui/src/styles/paper-tokens.css
+- ui/src/test-setup.ts
+- ui/tsconfig.json
+- ui/vite.config.ts
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-la-ui-de-specir-vive-en-ir-ui-con-cascaron-de-pestanas-y-lentes-y-cliente-de-sldb-serve
 from_drawer: desk/drawer/plans/graph-ui-diccionario-de-componentes/dag.yaml
 ---
 

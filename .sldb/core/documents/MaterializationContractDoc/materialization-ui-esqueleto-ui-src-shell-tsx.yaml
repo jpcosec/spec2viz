@@ -1,0 +1,25 @@
+name: materialization-ui-esqueleto-ui-src-shell-tsx
+path: desk/materializations/materialization-ui-esqueleto-ui-src-shell-tsx.md
+source_hash: 36a516818d42196154a40d322c08312a275b9b25038bbfd88585ab6fbbe5cdb4
+content_hash: 48e574aea0313b69f9e7dda765d63780bf98f74805ccdcb82cf22449ac260513
+field_hashes:
+  id: 8ccb412304d97435c5193aa784c46bfa1d404c04f11691dd5786567e2fa7acc4
+  title: 380b0890862eecefb647e137c67e144855e2f86d8762f82de4a537441ac81b9c
+  source_atoms: ab7a60635b1d0da5c612061ad86a640ee8b68161fb006ea767e5607f98389156
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: 4ae88725626d692dde961537bc092a51d4205cbeb81cc6052408047db0d2e019
+  intent: c41b31b5152d456f830b294402bd4b7138bc421530eaba5e937fac7dc7e6627b
+  validation: 13149d479b34569bc3eb26aafd9cd22e6005f05c8b5082ffcc781d472314d13b
+  tags: 451cbf0d95dea0925555074c601e97daf939ea6476abba1cdd82649d6836ebc5
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:ui-esqueleto
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T13:31:12Z'
+  authority: generated
+  via: create_document
