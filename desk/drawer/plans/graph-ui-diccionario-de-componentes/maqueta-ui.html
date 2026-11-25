@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Maqueta: UI de specIR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Maqueta estática. Tokens del SLDB Workbench (sldb/surface/DESIGN.md). Datos: la cadena
+   "publicar un post" de tests/fixtures/blog_chain.yaml. Nada aquí habla con un servidor. */
+:root{--paper:#FAF9F6;--stone:#F4F3EF;--tint:#EFECE6;--card:#FFF;--hair:#E6E4DD;--border:#D4D2CC;
+--ink:#1A1A1A;--body:#2C2C2A;--muted:#73726E;--ter:#9C9A94;
+--serif:Newsreader,Georgia,Cambria,serif;--sans:Inter,-apple-system,"Segoe UI",sans-serif;
+--mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--body);font:14px/1.5 var(--sans);height:100vh;display:grid;grid-template-rows:44px 1fr 24px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+.mono{font-family:var(--mono);font-size:12px}.muted{color:var(--muted)}.ter{color:var(--ter)}
+.caps{font:500 10px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+header{display:flex;align-items:center;gap:20px;padding:0 20px;border-bottom:1px solid var(--hair)}
+.crumb{font-family:var(--mono);font-size:12px;color:var(--muted)}.crumb b{color:var(--ink)}
+nav{display:flex;gap:2px;margin-left:12px}
+nav button{font:12px var(--mono);color:var(--muted);padding:3px 10px;border:1px solid transparent;border-radius:2px}
+nav button[aria-selected=true]{color:var(--ink);background:var(--stone);border-color:var(--border)}
+.lens{margin-left:auto;display:flex;gap:2px;align-items:center}
+.lens button{font:12px var(--mono);color:var(--muted);padding:2px 8px;border-radius:2px;border:1px solid transparent}
+.lens button[aria-pressed=true]{color:var(--ink);background:var(--stone);border-color:var(--border)}
+footer{background:var(--stone);border-top:1px solid var(--hair);display:flex;gap:18px;align-items:center;padding:0 20px;font:11px var(--mono);color:var(--muted)}
+main{display:none;min-height:0}main.on{display:grid}
+/* Catálogo */
+#catalogo{grid-template-columns:240px 1fr 380px}
+.rail{background:var(--stone);border-right:1px solid var(--hair);padding:16px 14px;overflow:auto}
+.rail input{width:100%;font:12px var(--mono);padding:5px 8px;border:1px solid var(--border);background:var(--paper);margin-bottom:14px}
+.rail h4{margin:14px 0 4px}.rail ul{list-style:none;margin:0;padding:0}
+.rail li{display:flex;justify-content:space-between;padding:3px 6px;font-size:13px;border-radius:2px}
+.rail li[aria-current=true]{background:var(--card);border:1px solid var(--border);color:var(--ink)}
+.rail li span{font:11px var(--mono);color:var(--ter)}
+.canvas{position:relative;padding:18px 24px;overflow:auto;background-image:radial-gradient(var(--hair) 1px,transparent 1px);background-size:18px 18px}
+.canvas .bar{display:flex;justify-content:space-between;margin-bottom:8px}
+svg text{font:12px var(--mono);fill:var(--ink)}svg .lbl{font-size:10.5px;fill:var(--muted)}
+.box{fill:var(--card);stroke:var(--ink);stroke-width:1.2}.box.sel{stroke-width:2.4}
+.wire{stroke:var(--ink);stroke-width:1.1;fill:none;marker-end:url(#a)}
+.note{max-width:420px;margin:6px 0 0 172px;font:italic 13px/1.4 var(--serif);border-left:2px solid var(--ink);padding:2px 0 2px 10px;color:var(--body)}
+.note small{display:block;font:10px var(--mono);font-style:normal;color:var(--ter);margin-top:4px}
+.insp{border-left:1px solid var(--hair);padding:22px 24px;overflow:auto}
+.insp h2{font:500 26px/1.2 var(--serif);letter-spacing:-.015em;color:var(--ink);margin:6px 0 4px}
+.insp p{font-size:14.5px;line-height:1.62;margin:10px 0 18px}
+.fierro{display:none}.fierros .fierro{display:revert}
+.card{background:var(--stone);border:1px solid var(--hair);border-radius:2px;padding:10px 12px;margin:6px 0}
+.card q{font:italic 14.5px/1.5 var(--serif);quotes:"“" "”"}.card .mono{display:block;color:var(--muted);margin-bottom:4px}
+.row{display:flex;justify-content:space-between;gap:10px;padding:7px 10px;border:1px solid var(--hair);background:var(--card);margin-top:-1px;font-size:13px}
+.chip{font:10.5px var(--mono);border:1px solid var(--border);padding:1px 5px;border-radius:2px;color:var(--muted);white-space:nowrap}
+.chip.ink{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip.dash{border-style:dashed}
+.btn{font:12px var(--mono);border:1px solid var(--border);background:var(--card);padding:4px 10px;border-radius:2px;margin-top:10px}
+/* Capas */
+#capas{grid-template-columns:1fr 380px}
+.lanes{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:1fr auto;overflow:auto}
+.lane{border-right:1px solid var(--hair);padding:16px 12px}.lane:nth-child(odd){background:var(--stone)}
+.lane h4{margin:0 0 14px}.lane h4 span{float:right;color:var(--ter)}
+.n{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--border);border-radius:2px;padding:8px 10px;margin-bottom:10px}
+.n b{display:block;font:600 13px var(--serif);color:var(--ink)}.n small{font:10.5px var(--mono);color:var(--muted)}
+.n.on{border-color:var(--ink);box-shadow:inset 3px 0 0 var(--ink)}.n.off{opacity:.38}
+.n.gap{border-style:dashed;background:transparent;color:var(--muted)}
+.chain{grid-column:1/-1;border-top:1px solid var(--hair);background:var(--paper);padding:12px 16px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:12px var(--mono)}
+.chain i{font-style:normal;color:var(--ter)}
+/* Diccionario */
+#diccionario{grid-template-columns:240px 1fr 380px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{text-align:left;font:500 10px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--paper)}
+td{padding:8px 10px;border-bottom:1px solid var(--hair);vertical-align:top}
+tr[aria-selected=true] td{background:var(--stone)}td .mono{color:var(--muted)}
+.tbl{overflow:auto;padding:0 12px}.empty{color:var(--ter);font-family:var(--mono);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <span class="crumb">blog / <b>specIR</b></span>
+  <nav role="tablist" aria-label="Vistas">
+    <button role="tab" aria-selected="true" data-view="catalogo" data-testid="tab-catalogo">Catálogo</button>
+    <button role="tab" aria-selected="false" data-view="capas" data-testid="tab-capas">Capas</button>
+    <button role="tab" aria-selected="false" data-view="diccionario" data-testid="tab-diccionario">Diccionario</button>
+    <button role="tab" aria-selected="false" data-view="brechas" data-testid="tab-brechas" disabled>Brechas · 3</button>
+  </nav>
+  <div class="lens" role="group" aria-label="Lente">
+    <button aria-pressed="true" data-lens="lectura" data-testid="lens-lectura">Lectura</button>
+    <button aria-pressed="false" data-lens="fierros" data-testid="lens-fierros">[ Fierros ]</button>
+  </div>
+</header>
+
+<main id="catalogo" class="on">
+  <aside class="rail">
+    <input type="search" aria-label="Filtrar vistas" placeholder="filtrar vistas…" data-testid="catalog-filter">
+    <h4 class="caps">Dominio</h4>
+    <ul><li aria-current="true">Estados de Post <span>3/3</span></li><li>Publicar: componentes <span>5/7</span></li></ul>
+    <h4 class="caps">Arquitectura</h4>
+    <ul><li>Despliegue <span>0/4</span></li><li>Secuencia de publicación <span>6/6</span></li></ul>
+    <h4 class="caps">Proceso</h4>
+    <ul><li>Editar y publicar (BPMN) <span>2/9</span></li></ul>
+    <p class="mono ter" style="margin-top:22px">n/m: nodos con átomo que los justifica</p>
+  </aside>
+  <section class="canvas" aria-label="Diagrama">
+    <div class="bar"><span class="caps">Estados de Post · notación: state</span><span class="mono muted">− 100% + · ajustar · ✎ anotar</span></div>
+    <svg viewBox="0 0 620 290" width="100%" style="max-width:760px" role="img" aria-label="Estados de Post">
+      <defs><marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z"/></marker></defs>
+      <circle cx="90" cy="70" r="7"/><path class="wire" d="M97 70H170"/>
+      <rect class="box" x="172" y="48" width="130" height="44" rx="2"/><text x="237" y="75" text-anchor="middle">Draft</text>
+      <path class="wire" d="M237 92V200"/><text class="lbl" x="246" y="150">PublishPost</text>
+      <rect class="box sel" x="172" y="202" width="130" height="44" rx="2"/><text x="237" y="229" text-anchor="middle">Published</text>
+      <rect class="box" x="400" y="125" width="150" height="44" rx="2"/><text x="475" y="152" text-anchor="middle">Post</text>
+      <path class="wire" d="M400 140C350 130 330 90 304 76" stroke-dasharray="4 3"/><path class="wire" d="M400 156C350 170 330 210 304 220" stroke-dasharray="4 3"/>
+      <text class="lbl" x="330" y="150">estado de</text>
+      <text class="lbl" x="172" y="270">2 átomos · 1 ref · 1 nota</text>
+    </svg>
+    <div class="note">¿Un post publicado puede volver a borrador? El diagrama no lo dice.<small>JP · 24-11 · sobre «Published»</small></div>
+  </section>
+  <aside class="insp" id="insp-cat">
+    <span class="mono muted fierro">StateDoc:post-published · hash 9a4f21</span>
+    <h2>Published</h2>
+    <span class="chip">declarado</span> <span class="chip dash">sin verificar</span>
+    <p>The post is visible to readers.</p>
+    <div class="caps">Átomos que lo justifican</div>
+    <div class="card"><span class="mono fierro">atom-post-published → #body</span><q>Un post publicado es visible para cualquier lector sin sesión.</q></div>
+    <div class="card"><span class="mono fierro">atom-publicar-es-irreversible → #body</span><q>Publicar no se deshace desde la interfaz.</q></div>
+    <div class="caps" style="margin-top:16px">Llega aquí</div>
+    <div class="row"><span>PublishPost <span class="muted">· transitions</span></span><span class="chip">dominio</span></div>
+    <div class="row"><span>Post <span class="muted">· estado de</span></span><span class="chip">dominio</span></div>
+    <button class="btn" data-go="capas" data-testid="ver-en-capas">Ver la cadena en Capas →</button>
+    <p class="mono ter fierro" style="margin-top:14px">GET /notations/view?spec=post-states</p>
+  </aside>
+</main>
+
+<main id="capas">
+  <section class="lanes" aria-label="Capas">
+    <div class="lane"><h4 class="caps">Interfaz <span>2</span></h4>
+      <button class="n on"><b>PublishButton</b><small>control · button</small></button>
+      <button class="n on"><b>PublishAction</b><small>acción · click</small></button>
+      <div class="n gap"><b>falta un control</b><small>brecha: CanPublish no llega a la interfaz</small></div></div>
+    <div class="lane"><h4 class="caps">API <span>2</span></h4>
+      <button class="n on"><b>POST /posts/{id}/publish</b><small>operación</small></button>
+      <button class="n off"><b>GET /posts</b><small>operación</small></button></div>
+    <div class="lane"><h4 class="caps">Backend <span>1</span></h4>
+      <button class="n on"><b>publish handler</b><small>django-rest-framework</small></button></div>
+    <div class="lane"><h4 class="caps">Dominio <span>5</span></h4>
+      <button class="n on"><b>PublishPost</b><small>operación de dominio</small></button>
+      <button class="n on"><b>CanPublish</b><small>política · regla desconocida</small></button>
+      <button class="n on"><b>Published</b><small>estado de Post</small></button>
+      <button class="n off"><b>Draft</b><small>estado de Post</small></button>
+      <button class="n off"><b>Post</b><small>entidad</small></button></div>
+    <div class="lane"><h4 class="caps">Datos <span>1</span></h4>
+      <button class="n on"><b>posts</b><small>tabla · status</small></button></div>
+    <div class="chain" aria-label="Cadena seleccionada">
+      <span class="caps">Cadena de PublishButton</span>
+      <span class="chip ink">PublishButton</span><i>triggers</i><span class="chip">PublishAction</span><i>invokes</i><span class="chip">POST /posts/{id}/publish</span><i>handled_by</i><span class="chip">publish handler</span><i>executes</i><span class="chip">PublishPost</span><i>writes</i><span class="chip">posts</span>
+      <span class="muted" style="margin-left:auto">6 saltos · todos declarados · ninguno verificado</span>
+    </div>
+  </section>
+  <aside class="insp">
+    <span class="mono muted fierro">InterfaceControlDoc:publish-button</span>
+    <h2>PublishButton</h2>
+    <span class="chip">declarado</span> <span class="chip dash">sin verificar</span>
+    <p>The button of the post editor that publishes the post.</p>
+    <div class="caps">Lo que no se sabe</div>
+    <div class="card"><span class="mono">component: null</span>el blog de ejemplo no tiene código todavía</div>
+    <div class="caps" style="margin-top:16px">Si esto cambia, alcanza</div>
+    <div class="row"><span>POST /posts/{id}/publish</span><span class="chip">api</span></div>
+    <div class="row"><span>PublishPost</span><span class="chip">dominio</span></div>
+    <div class="row"><span>posts</span><span class="chip">datos</span></div>
+    <button class="btn" data-testid="verificar">Verificar como humano…</button>
+    <p class="mono ter fierro" style="margin-top:14px">specir_impact · dependencies · 6 saltos</p>
+  </aside>
+</main>
+
+<main id="diccionario">
+  <aside class="rail">
+    <input type="search" aria-label="Filtrar controles" placeholder="filtrar controles…" data-testid="dict-filter">
+    <h4 class="caps">Mostrar</h4>
+    <ul><li aria-current="true">Todos <span>4</span></li><li>Sin prueba <span>—</span></li><li>Sin localizador <span>—</span></li><li>Sin operación <span>—</span></li></ul>
+    <h4 class="caps">Por vista</h4>
+    <ul><li>Catálogo <span>—</span></li><li>Capas <span>—</span></li><li>Diccionario <span>—</span></li></ul>
+    <p class="mono ter" style="margin-top:22px">«—»: la medición todavía no existe (cobertura y localizador son tareas del plan)</p>
+  </aside>
+  <section class="tbl" aria-label="Controles">
+    <table>
+      <thead><tr><th>Control</th><th>Componente</th><th>Evento → acción</th><th>Operación</th><th>Localizador</th><th>Prueba</th></tr></thead>
+      <tbody>
+        <tr aria-selected="true"><td>button</td><td>PublishButton<br><span class="mono">src/PublishButton.tsx:9</span></td><td>click → handlePublish</td><td>POST /posts/{id}/publish</td><td class="mono">button «Publicar»</td><td><span class="chip ink">1 prueba</span></td></tr>
+        <tr><td>button</td><td>PostEditor<br><span class="mono">src/PostEditor.tsx:22</span></td><td>click → saveDraft</td><td class="empty">sin operación</td><td class="mono">button «Guardar»</td><td><span class="chip dash">sin prueba</span></td></tr>
+        <tr><td>input</td><td>PostEditor<br><span class="mono">src/PostEditor.tsx:9</span></td><td>change → setTitle</td><td class="empty">no llama</td><td class="empty">sin localizador</td><td><span class="chip dash">sin prueba</span></td></tr>
+        <tr><td>a</td><td>PostList<br><span class="mono">src/PostList.tsx:31</span></td><td>click → openPost</td><td>GET /posts/{id}</td><td class="mono">link «…título»</td><td><span class="chip ink">2 pruebas</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+  <aside class="insp">
+    <span class="mono muted fierro">InterfaceControlDoc:control-src-publishbutton-publishbutton-button-onclick</span>
+    <h2>Publicar</h2>
+    <span class="chip">observado</span> <span class="chip dash">sin verificar</span>
+    <p>Botón de <b>PublishButton</b>. Al hacer clic llama a <span class="mono">handlePublish</span>, que invoca <span class="mono">POST /posts/{id}/publish</span>.</p>
+    <div class="caps">Cómo encontrarlo en una prueba</div>
+    <div class="card"><span class="mono">page.get_by_role("button", name="Publicar")</span></div>
+    <div class="caps" style="margin-top:16px">Pruebas que lo tocan</div>
+    <div class="row"><span class="mono">tests/e2e_publish.py:41</span><span class="chip">click</span></div>
+    <button class="btn" data-go="capas">Ver la cadena en Capas →</button>
+  </aside>
+</main>
+
+<footer><span>store: tests/fixtures (cadena del blog)</span><span>11 nodos · 8 relaciones</span><span>3 brechas</span><span style="margin-left:auto">maqueta estática · sin servidor · átomos, notas, pruebas y filas 2 a 4 del diccionario son ilustrativos</span></footer>
+
+<script>
+const show = v => {
+  document.querySelectorAll('main').forEach(m => m.classList.toggle('on', m.id === v));
+  document.querySelectorAll('nav button').forEach(b => b.setAttribute('aria-selected', b.dataset.view === v));
+};
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => show(b.dataset.view));
+document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => show(b.dataset.go));
+document.querySelectorAll('.lens button').forEach(b => b.onclick = () => {
+  document.body.classList.toggle('fierros', b.dataset.lens === 'fierros');
+  document.querySelectorAll('.lens button').forEach(x => x.setAttribute('aria-pressed', x === b));
+});
+if (location.hash) { const [v, l] = location.hash.slice(1).split(','); show(v); if (l === 'fierros') document.querySelector('[data-lens=fierros]').click(); }
+</script>
+</body>
+</html>
