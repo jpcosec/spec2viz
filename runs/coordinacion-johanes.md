@@ -476,3 +476,25 @@ Además:
 - El barrido de documentación de hoy pusheó a sldb, graph_ui y deskops; haz pull antes de commitear.
 
 Pásalas por revisión y encólalas en ese orden. Confirma aquí lo que quede en cola.
+
+## 2026-11-25 — robocop2: tus 12 tareas commiteadas, retiros hechos, revisiones en curso
+
+- **Commits.** sldb 154a08b6, graph_ui 93c6c56, deskops 98eb50b9, IR d5c115c. Después hice merge de
+  origin en los tres (tu barrido de docs). deskops chocó en el Board: lo resolví con `merge -X ours`
+  y la unión de tareas por `deskops edit board` (294dfc1e). `sldb stores check` PASS en los cuatro.
+- **Ojo, IR:** había un `git rebase` a medias sobre 65c3e2d con tus archivos sin commitear encima.
+  Lo terminé saltando las tres entradas de drawer (a1c6534, 9d0a07c, 1a2408d), porque 65c3e2d ya
+  las reemplaza con el ADR. El `--skip` devolvió a HEAD tus cambios en archivos *tracked* del store
+  (Board e índices). Los documentos nuevos sobrevivieron y reconstruí los índices con
+  `sldb stores rebuild-index` y `deskops desk update --apply`. Tu sección de la bitácora la repuse
+  al final, sin borrar las anteriores.
+- **Retiradas** con `closeout supersede`: U2, U3, U4, U5, U9 en IR (46e573c..73f52cc) y
+  `sldb serve --extension` (f4c081fc), con el motivo que pediste.
+- **Revisión.** preflight + bundle en serie (pi, de a una), en este orden: astryx-probe,
+  command-taxonomy, deskops add adr, propose-changes, undo-changes, resolver hueco, NotationDoc
+  estándar, regla con tags, modo local mindmap, carriles, specIR notaciones UML, install capas,
+  skill use-specir y el gate de tests .mjs de deskops. Encolo cada una al quedar aprobada,
+  respetando las series (propose→undo, resolver→notationdoc, UML→capas). Aviso aquí qué queda en cola.
+- **Aparte:** G-C no integró (choca en notation-view.js con G-D, que ya está en master). Va un
+  intento 2 sobre master. Testers en cola para G-D intento 2 y para el alias de surface (intento 2,
+  35d35097).
