@@ -377,6 +377,26 @@ include:
     name: review-task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca-evidence-atom-1
   - path: desk/reviews/task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca/evidence-materialization-1.md
     name: review-task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca-evidence-materialization-1
+  - path: desk/reviews/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash/preflight-1.md
+    name: review-task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash-preflight-1
+  - path: desk/reviews/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash/bundle-1.md
+    name: review-task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash-bundle-1
+  - path: desk/reviews/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml/preflight-1.md
+    name: review-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml-preflight-1
+  - path: desk/reviews/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml/bundle-1.md
+    name: review-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml-bundle-1
+  - path: desk/reviews/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados/preflight-1.md
+    name: review-task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados-preflight-1
+  - path: desk/reviews/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados/bundle-1.md
+    name: review-task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados-bundle-1
+  - path: desk/reviews/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir/evidence-tests-1.md
+    name: review-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir-evidence-tests-1
+  - path: desk/reviews/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir/evidence-commit-1.md
+    name: review-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir-evidence-commit-1
+  - path: desk/reviews/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir/evidence-atom-1.md
+    name: review-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir-evidence-atom-1
+  - path: desk/reviews/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir/evidence-materialization-1.md
+    name: review-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir-evidence-materialization-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -1301,7 +1321,6 @@ include:
   - desk/runtimes/runtime-claude-en-scion.md
 - model: TaskCodeDoc
   paths:
-  - desk/tasks/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir.md
   - desk/tasks/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash.md
   - desk/tasks/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados.md
   - desk/tasks/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml.md

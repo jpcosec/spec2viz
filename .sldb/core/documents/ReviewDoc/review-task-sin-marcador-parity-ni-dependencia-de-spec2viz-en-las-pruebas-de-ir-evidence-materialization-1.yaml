@@ -1,0 +1,36 @@
+name: review-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir-evidence-materialization-1
+path: desk/reviews/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir/evidence-materialization-1.md
+source_hash: 829439511bafa61d2675f5c820c1c1dd8542c039ab764bf3173e7315067ea852
+content_hash: 8f37054063fdec9d84efc7923bd40c39afa1766cb52f8f5794376dfe7186eb47
+field_hashes:
+  id: 0efa471eeb95f479cc0f4f2716ba89b1b702ccef5085f2739fde726642d2da20
+  title: 1106e640f80446a318031e569dc5ff28d06a6b373dee00e1dd9e390dfb44e48c
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: b77d8cf6414796c495587568e836eb101f2c47c6cbab025c9e93d24db5ead67b
+  value: 798832aaa5d3532ea05a4710c8a0e3a56e2743bf20b845b8acecad352a48a3e7
+  subject: 035ca280a7f3eb1f668382c01bb178d6642070801efaec14f4d2ee11427045d4
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: d6cd1aaa7b52bb32cd978fc89bd008c33f390befaf63d4c556f7c91af5e12b5b
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 3ce5361b313c6582ad49d528de0155640bcfdcdefd9d6e607f8a6af7f569c2b7
+  created_at: 056af95962067921b4416e74de07332cdf4273387e7dec128ee685bc6f74c92e
+  disposed_at: 056af95962067921b4416e74de07332cdf4273387e7dec128ee685bc6f74c92e
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 9e3a30ef998c279a155db0168f05909dbbd5faae55056230a44783f83ecaf135
+  disposition: 487a134b4c3a7ff3c994bb24e83523897400e29e0c97bd9536751e0cba0f4447
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T05:56:53Z'
+  authority: generated
+  via: create_document

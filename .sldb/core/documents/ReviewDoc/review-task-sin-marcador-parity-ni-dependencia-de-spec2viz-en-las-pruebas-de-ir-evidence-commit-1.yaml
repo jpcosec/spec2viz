@@ -1,0 +1,36 @@
+name: review-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir-evidence-commit-1
+path: desk/reviews/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir/evidence-commit-1.md
+source_hash: b50d5493065b649d90951c26ef15f04d721653bf50bc59dea6b6d442158059f1
+content_hash: b29d54e6f29ba3b7fef4d63aefb1a90e0f1809d00323745ccdbc8eb206852c9b
+field_hashes:
+  id: bae11e2e1af805a1c7c57678dd2a56ea2b0e293e76357bbefd22614e550676c1
+  title: 8974f53a47f9c80b4f3d31f700891854dcbf577aaef5fcd66ae63c8c3ba41843
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 5ea9c58673a69c87d0e5540a6f9978aad8f8e0a0b9ce3471cff139c730d97888
+  value: 5535ee1f332a878ad88abf05147a117d408b56539c0e0c80e962e3e9f3d687ed
+  subject: 035ca280a7f3eb1f668382c01bb178d6642070801efaec14f4d2ee11427045d4
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 3f3da115d544b0e4f60f083d6e104d8793e068f86f2f1e1db0d917bf2780be4d
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 038ac2220ade654df28f3b44d5f87c138f104c2e2b4eabb3ac519ca902d26f5f
+  created_at: 056af95962067921b4416e74de07332cdf4273387e7dec128ee685bc6f74c92e
+  disposed_at: 056af95962067921b4416e74de07332cdf4273387e7dec128ee685bc6f74c92e
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: abf087a8b60fd56638a2dd6dbf57903e72f1416cabdbe90f1998e42fd37ec887
+  disposition: 535e81d7bb0752f7a9df9ae6d0ba2147e8de957c0b42c5f091eb6c616c9e454e
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T05:56:49Z'
+  authority: generated
+  via: create_document
