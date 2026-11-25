@@ -1,0 +1,36 @@
+name: review-task-decision-de-jp-cual-es-el-localizador-de-un-control-en-el-diccionario-de-componentes-evidence-document-1
+path: desk/reviews/task-decision-de-jp-cual-es-el-localizador-de-un-control-en-el-diccionario-de-componentes/evidence-document-1.md
+source_hash: 5e1427bfb7802dd195d2d3c71bb91ec50aabaf4c27a434d47769f7b374783a2e
+content_hash: 8a928c2117a29952d0519de7856210d0fb83f893c14d69ad97a63778e899024b
+field_hashes:
+  id: d3a535da2ab81f57b89cce4c0586747fe82e86796378c6740175bd023f858be6
+  title: eaac79556775d58cdc241e8fc1d7fce9ba5ad609bd4955f68a8197c2776b8f34
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 64ac8e615520cd1ae43ab0d47cfc9e750a82d13f9c47d468dab7cd8c982b7859
+  value: fd4063ec830cbb4b7390f32b7a1c3bfb5880519eccc084b82734a10b0e23db95
+  subject: 7f0067ed412b1bc1c11f8e96938db06b85903315a222b9beea5cbcdc3c9588fa
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: d49423cfa1af77857f8c797896bb127f1139668ac4b98092008ca6b75600d153
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 2b642514f21cb6964106fac43111ca728927384f6397dbaa6f8982e73c1c5565
+  created_at: 842360ba2758ee602c08c8e587b0b1092a9bbbc059b20e9948fdcda3b193bb6a
+  disposed_at: 842360ba2758ee602c08c8e587b0b1092a9bbbc059b20e9948fdcda3b193bb6a
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 6e7b8065e6f659e78e43ce65f6c4750359d25418ff6c24798b4ef3584a01258d
+  disposition: b97dad00ff3e276a5b5392ff27d13f09058daf26c70667c8a31f832ce33901f3
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T12:29:29Z'
+  authority: generated
+  via: create_document
