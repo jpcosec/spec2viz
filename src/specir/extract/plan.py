@@ -50,8 +50,11 @@ class Planned:
         return f"{DOCUMENT_DIR}/{self.name}.md"
 
     def payload(self) -> dict[str, Any]:
-        """The document's payload: the provenance decided in IR05 (never inferido, never declarado,
-        always sin_verificar, evidencia empty) plus the model's own fields."""
+        """The document's payload: the provenance decided in IR05 (never inferido; `declarado` only for
+        the facts-less ApiOperationDoc that `extract_routes` writes from a declared route table; always
+        sin_verificar, evidencia empty) plus the model's own fields."""
+        assert self.origen != "declarado" or (self.model == "ApiOperationDoc" and not self.facts), "declarado is only for facts-less ApiOperationDoc of extract_routes"
+        assert self.origen != "inferido", "inferido is never written by the extractor"
         if self.model == "RelationDoc":
             attributes = {"origen": self.origen, "verificacion": "sin_verificar", "verificado_por": "", "evidencia": "", "anchors": anchor_refs(self.facts)}
             return {**self.fields, "attributes": attributes}
