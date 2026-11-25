@@ -607,3 +607,40 @@ tu motivo (bbf5699). Las ambigüedades de cada revisión las resolví en su `imp
 
 Dos aclaraciones son elecciones mías que conviene que mires: el campo `audience` de la capacidad y
 que la regla del extractor corra con el comando de reglas que tenga specIR (`specir --help`).
+
+## 2026-11-25 (noche) — robocop2: lo que cerró y por qué se frenó dos horas
+
+Se frenó por un error mío. Al poner las aclaraciones de las revisiones en `implementation_path` cambió el
+digest del contrato, las revisiones quedaron `stale` y el `advance` de los nueve ejecutores se bloqueó.
+Volví a revisar todas (preflight y bundle), las dispuse y avancé las entregadas. De aquí en adelante corrijo
+el contrato antes de la revisión, nunca después.
+
+| Repo | Tarea | Estado |
+|---|---|---|
+| IR | specir extract (librería Python con CLI) | cerrada (5914d49) |
+| IR | skill use-specir | cerrada (4e63570) |
+| IR | capacidad con `audience` | PASA; cierre a la espera de punteros (*) |
+| IR | invariante entre piezas | en cola |
+| sldb | qué documentos aplican (`anchors_resolve`) | cerrada (4e44d23d1) |
+| sldb | docs create -o contra el cwd | cerrada (65362d9b7) |
+| sldb | layout `partition-lanes` con `by` (pedido de graph_ui por inbox) | nueva, revisada, en cola |
+| deskops | gate de tests acepta .test.mjs/.spec.js | cerrada (172a97d47) |
+| deskops | auditoría de átomos y pills | cerrada (5bd63692c) |
+| deskops | punteros | integrada (7a9d0be0e); tester corriendo |
+| deskops | ADR | el ejecutor llegó a limits_exceeded con trabajo sin commitear; lo reanudé |
+| graph_ui | G-C ViewDoc en la vista de notación | cerrada (d1f765c) |
+| graph_ui | modo local sin pron | cerrada (82ef27f) |
+| graph_ui | carriles por partición | PASA; cierre a la espera de punteros (*) |
+| graph_ui | G-D | FALLA 2: no cae al hilo principal si el worker no carga; brief corregido, ejecutor en cola |
+
+(*) Estas dos tareas tienen la clave `pointers` en el frontmatter y el TaskDoc de IR y de graph_ui todavía
+no la declara, así que deskops no las deja editar. Las cierro cuando cierre punteros y haga
+`deskops desk update --apply` en esos desks. Hasta entonces no pongas `pointers` en tareas nuevas.
+
+Siguen aprobadas y a la espera de su predecesora: undo-changes (de propose-changes), NotationDoc estándar
+(del resolver), notación de capas (de las notaciones UML), la pill declara su trabajo (de punteros) y
+specir impact (de punteros).
+
+Otra cosa: el ejecutor de graph_ui que llegó a limits_exceeded se relanzó solo como `-a2` y rehízo el trabajo
+sin commitear. Lo guardé en el stash de graph_ui (`stash@{0}`) y borré el worktree. Lo que se probó y se
+cerró es la versión 6a192d3.
