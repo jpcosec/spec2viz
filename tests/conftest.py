@@ -266,7 +266,9 @@ def served(root: Path, *options: str) -> Iterator[McpSession]:
         command=sys.executable,
         args=["-m", "sldb", "mcp", "--store", str(root / ".sldb"), "--extension", EXTENSION, *options],
         cwd=str(root),
-        env={**os.environ},
+        # The server runs in the copy, so a relative PYTHONPATH (`src`) would point inside it:
+        # specIR is put first on the path by its absolute location.
+        env={**os.environ, "PYTHONPATH": os.pathsep.join(p for p in (str(REPO / "src"), os.environ.get("PYTHONPATH", "")) if p)},
     )
     with start_blocking_portal() as portal:
         with portal.wrap_async_context_manager(Client(params, read_timeout_seconds=TOOL_TIMEOUT)) as client:

@@ -65,3 +65,4 @@
 {"task_id": "task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash", "run_id": "run-deskops-e-1f07b310f712", "run_dir": "runs/subagents/exec-deskops-e-1f07b310f712", "session_sha256": null, "commit": null}
 {"task_id": "task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente", "run_id": "run-deskops-e-b3b53893f051", "run_dir": "runs/subagents/exec-deskops-e-b3b53893f051", "session_sha256": null, "commit": null}
 {"task_id": "task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados", "run_id": "run-deskops-e-a347e2092180", "run_dir": "runs/subagents/exec-deskops-e-a347e2092180", "session_sha256": null, "commit": null}
+{"task_id": "task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "resolved-by", "commit": null}
