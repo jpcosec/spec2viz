@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T19:13:07Z'
+  at: '2026-11-25T19:21:07Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -14,6 +14,7 @@ tasks:
 - desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md
 - desk/tasks/task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid.md
 - desk/tasks/task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo.md
+- desk/tasks/task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -49,3 +50,4 @@ _Generated from the task references above._
 - un invariante entre piezas se escribe como regla sobre los nodos de specIR, y la regla "graph_ui no depende de pron" falla cuando el código la viola [draft] - Un tipo de relación de dependencia entre piezas, extraído del código, y la posibilidad de prohibir una dependencia con una regla sembrada.
 - una capacidad del dominio declara para quién es y cuál es su prueba de aceptación, y las ocho capacidades de specIR quedan cargadas así en su store [draft] - Que una capacidad sea un nodo de specIR con destinatario y con su prueba de aceptación enlazada, y que una regla exija esa prueba.
 - specir impact entrega, para los archivos de un cambio, las decisiones, pills y tareas que apuntan a lo afectado [draft] - Que el impacto de un cambio incluya los documentos de otros stores que apuntan a los nodos afectados, con la vía por la que llega cada uno.
+- specir extract describe una librería de Python con CLI con los tipos que ya tiene, y sobre el repo deskops deja sus comandos, operaciones y modelos como nodos con capa [draft] - Un extractor más, al lado de los que existen, que lee los hechos de Python de sldb y produce nodos de los tipos actuales: un comando de CLI como control y acción de interfaz, una función de la API pública como operación de API, lo que ejecuta como handler y operación de dominio, un modelo como entidad.
