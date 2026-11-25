@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T15:30:13Z'
+  at: '2026-11-25T17:49:44Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -10,7 +10,6 @@ id: board-001
 scope: desk
 # List of task-xxx paths
 tasks:
-- desk/tasks/task-u2-composiciones-lista-las-recetas-de-diagrama-del-store-con-filtro-por-capa-buscador-y-cobertura-n.md
 - desk/tasks/task-u3-composiciones-dibuja-la-receta-elegida-con-su-notacion-zoom-y-arrastre-y-un-nodo-abre-su-document.md
 - desk/tasks/task-u4-composiciones-muestra-las-specs-de-actividad-con-notacion-bpmn.md
 - desk/tasks/task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage.md
@@ -46,7 +45,6 @@ Estado al 2026-11-21 (09:40 UTC): IR13, gate de retiro de spec2viz. specir retir
 
 _Generated from the task references above._
 
-- U2: Composiciones lista las recetas de diagrama del store con filtro por capa, buscador y cobertura n/m [draft] - En la pestana Composiciones, la lista de recetas (las specs de diagrama: SpecDoc que sldb serve lista en /notations; /views solo si tambien trae specs) con filtro por capa, buscador por titulo (parcial, sin distinguir mayusculas) y la cobertura de cada una cuando sldb la de (hoy '—'). Aceptacion contra el store de pron, que tiene 15 SpecDoc; el store de IR no tiene.
 - U3: Composiciones dibuja la receta elegida con su notacion, zoom y arrastre, y un nodo abre su documento [draft] - Vista previa de la receta elegida dibujada con /notations/view, con zoom, arrastre y reinicio, y clic en un nodo que abre su documento en el panel derecho.
 - U4: Composiciones muestra las specs de actividad con notacion BPMN [draft] - Que una receta cuya spec es de actividad se dibuje con notacion BPMN, como hacia spec2viz.
 - U5: las notas sobre una receta o un nodo se guardan en el store por POST /save y no en localStorage [draft] - Notas sobre la receta o el nodo, guardadas en el store de sldb (como las anotaciones de spec2viz, pero en el store), con lista, alta y edicion.
