@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T01:09:58Z'
+  at: '2026-11-25T01:10:08Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -10,7 +10,6 @@ id: board-001
 scope: desk
 # List of task-xxx paths
 tasks:
-- desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
 - desk/tasks/task-goldens-de-la-capa-visual-capturados-de-spec2viz-una-sola-vez-y-las-pruebas-de-paridad-pasan-a-compa.md
 - desk/tasks/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir.md
 - desk/tasks/task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca.md
@@ -47,7 +46,6 @@ Estado al 2026-11-21 (09:40 UTC): IR13, gate de retiro de spec2viz. specir retir
 
 _Generated from the task references above._
 
-- IR13 Migración de consumidores y gate final de retiro de spec2viz [draft] - Un comprobador del gate de retiro y un acta que demuestran, con evidencia, que toda capacidad de spec2viz está cubierta por specIR y que ningún consumidor importa ni invoca spec2viz.
 - Goldens de la capa visual capturados de spec2viz una sola vez, y las pruebas de paridad pasan a compararse contra esos goldens [draft] - Las salidas de referencia que hoy calcula spec2viz se guardan como goldens versionados bajo tests/visual/goldens/, y las pruebas de paridad comparan specIR contra esos archivos en vez de importar spec2viz.
 - Sin marcador parity ni dependencia de spec2viz en las pruebas de IR [draft] - pyproject.toml ya no declara el marcador parity, tests/conftest.py y tests/visual no importan ni nombran spec2viz como dependencia, y el script de captura queda borrado o documentado como historico.
 - specir mcp: el punto de entrada propio de specIR levanta el server MCP de sldb con su extension ya cargada [draft] - 'specir mcp --store <ruta> [--level N] [--actor A]' arranca sldb.mcp.server.serve con specir.mcp_extension:register cargada; 'specir mcp --help' lo explica; las tools specir_* aparecen.
