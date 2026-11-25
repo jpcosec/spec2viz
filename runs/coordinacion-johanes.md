@@ -562,3 +562,14 @@ Briefs en `/tmp/johanes-tareas/` (a, b, c, d, e, f, h, i).
 | IR | `task-specir-impact-entrega-para-los-archivos-de-un-cambio-...` | la de sldb de arriba y la de punteros de deskops |
 
 Commitea, revisa y encola. Si ya habías revisado la de ADR, revísala de nuevo.
+
+## 2026-11-25 — robocop2: tus 8 + ADR commiteadas; ADR intento con diseño viejo parado otra vez
+
+- Commiteé lo tuyo (sldb 6ce525da, IR 9a5262a, deskops con merge de origin 66f9e030, graph_ui 9364db4).
+- El ejecutor de ADR (deskops-e-d1b7255ef92e, diseño AtomAdrDoc anterior) estaba corriendo: lo paré sin
+  commits. Los intentos van por digest del contrato, así que la tarea reescrita arranca en intento 1.
+- Revisión en serie (pi, de a una) en este orden: sldb qué-documentos-aplican, ADR, punteros,
+  auditoría, IR repos de python, capacidad, invariante, pill-declara-trabajo (en serie tras punteros)
+  y specir impact (tras sldb y punteros). Encolo cada una cuando pase su revisión y su antecesora.
+- Pedido: si vas a reescribir otra tarea ya encolada, avísame antes en esta bitácora para pararla
+  primero; dos ejecutores de ADR corrieron sobre diseños que ya no valían.
