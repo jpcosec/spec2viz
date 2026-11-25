@@ -397,3 +397,44 @@ El integrate pasó con la suite completa y pushó `main` a `jpcosec/specir` (tip
 - Lo destrabaron tres tareas: borrar goldens (`1fd427c`), `SPECIR_WORKSPACE` (`aa7045a`) y `specir mcp` → `mcp_extension` (`207c578`).
 - Además, la suite del integrate pasó a usar `PYTHONPATH` absoluto, y retiré 11 materializaciones del retiro cuyos destinos borró la tarea de goldens.
 - El desk de IR queda libre para cualquiera.
+
+## johanes 2026-11-25 (tarde): cambió la arquitectura; frenar cinco tareas
+
+JP cerró la delimitación. Lo decidido está en tres planes de drawer (haz pull de sldb y graph_ui):
+
+- `sldb/desk/drawer/plans/superficie-como-contrato-de-editores/` (interfaces)
+- `sldb/desk/drawer/plans/pedidos-de-specir-y-graph-ui/` (frontera, pron, API)
+- `UIs/graph_ui/desk/drawer/plans/fierros-hacia-afuera/`
+
+En corto: pron se archiva; las notaciones pasan de sldb a specIR; la API de sldb pasa a fastmcp con
+una taxonomía de comandos; surface es un contrato de editores y graph_ui es uno de sus casos, como
+componente de integración de Astryx (React 19, con build).
+
+**Frenar, sin ejecutar ni revisar** (apuntan a una forma que ya no es la final):
+
+- graph_ui: G-A1, G-A2, G-A3, G-A4 (panel embebible sobre React 18 sin build).
+- sldb: `sldb serve acepta --extension` (se reemplaza por montar un servidor en fastmcp).
+
+**Siguen igual**: G-B1, G-B2, G-C, G-D de graph_ui; en IR, borrar los goldens y las dos tareas
+del integrate; en sldb, cobertura de átomos, fragmento de ancla y los tres facts de handler.
+
+johanes vuelve a despachar: voy a escribir las tareas nuevas en los desks de este checkout, por
+ssh, commiteando solo sus archivos. Si una de las frenadas ya está corriendo, déjala terminar y
+no la integres; avísame en esta bitácora.
+
+## 2026-11-25 — robocop2: frenadas las cinco; qué estaba corriendo
+
+- **G-A1** (request y URL base en vez de importar shell/api.js) ya estaba **cerrada e integrada en master
+  local de graph_ui** antes de tu nota (closeout 5931a36, resolved-by con las e2e .py). No está
+  pusheada: graph_ui va ahead 27 / behind 4 de origin. Si hay que sacarla, dime y la revierto con una
+  tarea; si no, queda.
+- **G-A2** (mount de la vista de notación) **estaba corriendo**: el ejecutor deskops-e-edb4d68cbe34
+  terminó (result-summary con embed/notation.js, host.html y tests/e2e_embed_notation.py), no avanzó la
+  tarea. Lo paré sin reap: **su rama `deskops/deskops-e-edb4d68cbe34` (eecb426) queda sin integrar**, la
+  tarea en draft. Sirve como referencia si la quieres leer.
+- **G-A3, G-A4**: draft, nunca revisadas ni despachadas. Quedan así.
+- **sldb serve --extension**: draft, sin revisar ni despachar. Queda así.
+
+Siguen: G-C (tester en cola), G-D intento 2 (ready_for_testing), alias de surface en sldb, goldens y
+las tareas del integrate de IR ya cerradas (main de IR pusheado, 5a1d2c1). No toco desks donde
+escribas tú sin avisar aquí; hago pull de sldb y graph_ui ahora.
