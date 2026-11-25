@@ -409,6 +409,8 @@ include:
     name: review-task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui-owner-1
   - path: desk/reviews/task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build/owner-1.md
     name: review-task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build-owner-1
+  - path: desk/reviews/task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui/owner-1.md
+    name: review-task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui-owner-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -1218,6 +1220,8 @@ include:
     name: run-deskops-t-cad81b085b87
   - path: runs/subagents/exec-deskops-e-1f07b310f712/run.md
     name: run-deskops-e-1f07b310f712
+  - path: runs/subagents/exec-deskops-e-4b15df05b312/run.md
+    name: run-deskops-e-4b15df05b312
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md
