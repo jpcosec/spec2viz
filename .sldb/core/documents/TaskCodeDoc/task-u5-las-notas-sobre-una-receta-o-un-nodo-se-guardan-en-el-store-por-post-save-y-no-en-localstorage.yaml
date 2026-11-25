@@ -1,7 +1,7 @@
 name: task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage
 path: desk/tasks/task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage.md
-source_hash: 866e1e3497fb26ea1877ad3ec2ad5f2d88eede5c3b4f58b87be37aad9eacc908
-content_hash: 541ca5efbc9fb6c6c7fa8e08281a41ba6cd11355661b6b16d28762ad703bb2e8
+source_hash: f8d3c4b6a5854f2ce6845678fbdd74f79aeca57cc46d31cbb0cb5f7a4cfb5934
+content_hash: cbfa0c6b856ba2b85f88285329e831519b56fa8dba6a6d74fa9828137b61e580
 field_hashes:
   title: 73b4cf7592351424775ddf9f968cfbb572a8f489088a95ed861ed587063887e8
   id: e34227f5903d67414a3eb96713b6240cef14b3d23dc14dcf6cf08cbb8710a763
@@ -17,7 +17,7 @@ field_hashes:
   depends_on: 3bf5d61c2fe6e47c679b2de77825e6f9c4f64e709c8708fa4a9fcc3d12451d02
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 5ce2fa201db5f7772f92d24c8d537bb5b25f81a60992e3c4771f84c4741f1c83
+  implementation_path: 769ff87807b1c6343a8e01fcefb5746e507ea72fd2648e251027c090ed2b31fc
   validation: d145a5aba2a05a956221f514ae610f61ae8611a9ead2f890d7bf6dd4f0d8da47
   done_when: bda808988b50b6c4ea1ea3f869e1b4afc6751b5f21b6f6a12fed0d0669d9de66
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -33,6 +33,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T06:07:37Z'
+  at: '2026-11-25T06:24:37Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

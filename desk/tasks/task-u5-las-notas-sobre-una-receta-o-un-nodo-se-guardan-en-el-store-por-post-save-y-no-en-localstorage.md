@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T06:07:37Z'
+  at: '2026-11-25T06:24:37Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage
 status: draft
 summary: ''
@@ -46,7 +46,7 @@ IR/ui/src/notes/ y su test. Fuera: modelos nuevos en sldb o specIR (si hace falt
 
 _Outline the expected implementation route or affected surface._
 
-Repo /mnt/ssd/proyectos/SLDB_1/IR, app en IR/ui/. Contrato de forma: desk/drawer/plans/graph-ui-diccionario-de-componentes/PROPUESTA-UI.md y la maqueta desk/drawer/plans/graph-ui-diccionario-de-componentes/maqueta-ui.html (estructura del prototipo de Kimun, estetica del SLDB Workbench). Decisiones de JP: React con TSX (D10); la app COPIA de sldb/surface lo que necesita y no importa de @sldb/surface (D7), y cada archivo copiado lleva un comentario de cabecera con su origen (ruta en sldb y commit). Reglas: la UI no calcula, toda escritura es una operacion con nombre por sldb serve, sin datos inventados (si falta un dato se muestra que falta). No tocar sldb/. Tests de componentes con vitest y @testing-library/react; ningun control sin rol y nombre accesible (D3). Escritura solo por POST /save de sldb serve con expected (control optimista) como hace surface; nada en localStorage. Elegir el modelo de nota que ya exista en el store de IR (revisar /schema); si no hay ninguno adecuado, parar y anotarlo en result-summary.md en vez de inventar uno. Test src/notes/Notes.test.tsx con fetch mockeado: lista, alta manda POST /save con el payload esperado, un 409 muestra el conflicto.
+Repo /mnt/ssd/proyectos/SLDB_1/IR, app en IR/ui/. Contrato de forma: desk/drawer/plans/graph-ui-diccionario-de-componentes/PROPUESTA-UI.md y la maqueta desk/drawer/plans/graph-ui-diccionario-de-componentes/maqueta-ui.html (estructura del prototipo de Kimun, estetica del SLDB Workbench). Decisiones de JP: React con TSX (D10); la app COPIA de sldb/surface lo que necesita y no importa de @sldb/surface (D7), y cada archivo copiado lleva un comentario de cabecera con su origen (ruta en sldb y commit). Reglas: la UI no calcula, toda escritura es una operacion con nombre por sldb serve, sin datos inventados (si falta un dato se muestra que falta). No tocar sldb/. Tests de componentes con vitest y @testing-library/react; ningun control sin rol y nombre accesible (D3). Escritura solo por POST /save de sldb serve con expected (control optimista) como hace surface; nada en localStorage. Elegir el modelo de nota que ya exista en el store de IR (revisar /schema); si no hay ninguno adecuado, parar y anotarlo en result-summary.md en vez de inventar uno. Test src/notes/Notes.test.tsx con fetch mockeado: lista, alta manda POST /save con el payload esperado, un 409 muestra el conflicto. Revision en frio de johanes (2026-11-25): el modelo ya existe: CatalogAnnotationsDoc (src/specir/visual/catalog/annotations.py:25-28), registrado con add_model como ya hace annotations.py; usar ese y no buscar otro en /schema, para que las notas de la UI y las de la pagina de catalog build (D9) sean las mismas.
 
 ## Validation
 

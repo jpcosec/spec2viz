@@ -1,0 +1,25 @@
+name: materialization-routes-declaradas-tests-extract-test-declared-routes-py
+path: desk/materializations/materialization-routes-declaradas-tests-extract-test-declared-routes-py.md
+source_hash: 67ea0fbcdc7416c9370cb4c0848eed63ca73e6191a960674babc1fe4c3b4f691
+content_hash: 85922169c05ff30a5ff06fcff6edea1dff73ffccdc035b560487e02d63f7071d
+field_hashes:
+  id: 3ad7042ddaf88c79e2a0bafcbd494901de6baac69a268a9e28b132130f864f11
+  title: 9cb6c7497fad59cb593ae8658e184cf8f193428168ec87ac61515cc213fb127b
+  source_atoms: 7b3e2a3babda7b0e85c885246803a2f3897f911f4e06b929971f1d1daa328628
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: a130df5b7b590448b3477902fc95c38ce051c55cf0c9f794125c688652d32a50
+  intent: 26bbbcde73dd63588630e3de114a596f8ffb783fddb5196531b01b77c246e9d4
+  validation: c4188fdd64a2ac62c97d49fcc3238a26fb4bddce6977daa39b2cab2b21a68af4
+  tags: cc467ce09e936483c9b494de50f8fe6da320c8b0c97598d7958192e03a7bec52
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:routes-declaradas
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T06:38:25Z'
+  authority: generated
+  via: create_document

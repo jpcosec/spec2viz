@@ -1,7 +1,7 @@
 name: task-u4-composiciones-muestra-las-specs-de-actividad-con-notacion-bpmn
 path: desk/tasks/task-u4-composiciones-muestra-las-specs-de-actividad-con-notacion-bpmn.md
-source_hash: d81d3f74471e3b972ae97f717a66547e2c51033661681c1190b78c558f4c11be
-content_hash: 6a542af88b425e833933ed0b1c55e9ee9564c6f1aa220bc9b7d47c10b243c251
+source_hash: bd246067c74d344f5d4f812c9ca37f08dcb2e2e4599cf837178b6da96bfaeb7b
+content_hash: 6f73be8fef4537778f8689d05b9d7ac7ea0ca6d1cd2a270f97d09fda375b00f1
 field_hashes:
   title: 3dd26feac224452ce45e158e2dcb0a80aaf24f6b7b018a2c3290bb63b1c7f9d3
   id: 7633ab7ada7c2eba2d0eaadcbac4be970a741d09de84c78062c040c944e69c78
@@ -17,7 +17,7 @@ field_hashes:
   depends_on: 3bf5d61c2fe6e47c679b2de77825e6f9c4f64e709c8708fa4a9fcc3d12451d02
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 147bb8d3f8017e9ac7b5818dc11c3cadb67be2eb0a69513b1dfbc5edbe510894
+  implementation_path: 528ff589ff417815c0de78a205f030063f228a480c00623631fdcaf065f4a14e
   validation: e637eb7ca34f55d312f829df2388a4b14a007177904acb4d11f17b9bc6c1f131
   done_when: b3d668a6c291b6b5b3a684d6e6aff68cba8bcb4f4041ff7e712bd5887cb3cf80
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -33,6 +33,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T06:07:27Z'
+  at: '2026-11-25T06:24:30Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

@@ -1,24 +1,37 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T05:58:18Z'
+  at: '2026-11-25T06:37:58Z'
   authority: generated
   via: save_document_payload
 id: task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml
-status: active
+status: ready_for_testing
 summary: ''
 tags: []
-current_node: ritual-testing
+current_node: ritual-closeout
 history:
 - task_activates
-references: []
+- task_hands_to_closeout
+references:
+- src/specir/extract/__init__.py
+- src/specir/extract/plan.py
+- src/specir/extract/routes.py
+- src/specir/extract/write.py
+- tests/extract/test_declared_routes.py
+- 9a093a25cbdc9092e2dffdd85508b4c8acf16a92
 depends_on: []
 pills: []
-files: []
+files:
+- src/specir/extract/__init__.py
+- src/specir/extract/plan.py
+- src/specir/extract/routes.py
+- src/specir/extract/write.py
+- tests/extract/test_declared_routes.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-las-operaciones-de-api-de-un-backend-sin-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml
 from_drawer: desk/drawer/plans/graph-ui-diccionario-de-componentes/dag.yaml
 ---
 

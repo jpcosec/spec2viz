@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T06:07:47Z'
+  at: '2026-11-25T06:24:43Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-u9-anclajes-muestra-la-fuente-con-lineas-y-el-fragmento-resaltado-el-selector-su-estado-y-los-nodos
 status: draft
 summary: ''
@@ -46,7 +46,7 @@ IR/ui/src/anchors/ y su test. Fuera: Grafo (U6), verificar (U7).
 
 _Outline the expected implementation route or affected surface._
 
-Repo /mnt/ssd/proyectos/SLDB_1/IR, app en IR/ui/. Contrato de forma: desk/drawer/plans/graph-ui-diccionario-de-componentes/PROPUESTA-UI.md y la maqueta desk/drawer/plans/graph-ui-diccionario-de-componentes/maqueta-ui.html (estructura del prototipo de Kimun, estetica del SLDB Workbench). Decisiones de JP: React con TSX (D10); la app COPIA de sldb/surface lo que necesita y no importa de @sldb/surface (D7), y cada archivo copiado lleva un comentario de cabecera con su origen (ruta en sldb y commit). Reglas: la UI no calcula, toda escritura es una operacion con nombre por sldb serve, sin datos inventados (si falta un dato se muestra que falta). No tocar sldb/. Tests de componentes con vitest y @testing-library/react; ningun control sin rol y nombre accesible (D3). Los anclajes y sus referentes salen de sldb serve (/document del anchor, /edges o referrers para quien lo usa; ver los routes de serve en sldb). El estado vigente/cambiado es el que sldb ya calcula (anchor_state); la UI no recalcula hashes. Test src/anchors/Anchors.test.tsx con payloads fijos del blog (IR/tests/fixtures): muestra lineas, resalta el fragmento, el estado y la lista de nodos que se apoyan.
+Repo /mnt/ssd/proyectos/SLDB_1/IR, app en IR/ui/. Contrato de forma: desk/drawer/plans/graph-ui-diccionario-de-componentes/PROPUESTA-UI.md y la maqueta desk/drawer/plans/graph-ui-diccionario-de-componentes/maqueta-ui.html (estructura del prototipo de Kimun, estetica del SLDB Workbench). Decisiones de JP: React con TSX (D10); la app COPIA de sldb/surface lo que necesita y no importa de @sldb/surface (D7), y cada archivo copiado lleva un comentario de cabecera con su origen (ruta en sldb y commit). Reglas: la UI no calcula, toda escritura es una operacion con nombre por sldb serve, sin datos inventados (si falta un dato se muestra que falta). No tocar sldb/. Tests de componentes con vitest y @testing-library/react; ningun control sin rol y nombre accesible (D3). Los anclajes y sus referentes salen de sldb serve (/document del anchor, /edges o referrers para quien lo usa; ver los routes de serve en sldb). El estado vigente/cambiado es el que sldb ya calcula (anchor_state); la UI no recalcula hashes. Test src/anchors/Anchors.test.tsx con payloads fijos del blog (IR/tests/fixtures): muestra lineas, resalta el fragmento, el estado y la lista de nodos que se apoyan. Revision en frio de johanes (2026-11-25): NO ACTIVAR TODAVIA. sldb serve no expone ni el texto del fragmento de un anchor ni su estado vigente/cambiado (sldb.api.anchors.check_anchors); se pidio a sldb por inbox una ruta GET para eso. Esta tarea espera esa ruta.
 
 ## Validation
 

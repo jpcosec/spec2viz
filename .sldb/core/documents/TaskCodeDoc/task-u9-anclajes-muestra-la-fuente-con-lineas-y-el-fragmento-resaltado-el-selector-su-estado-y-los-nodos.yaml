@@ -1,7 +1,7 @@
 name: task-u9-anclajes-muestra-la-fuente-con-lineas-y-el-fragmento-resaltado-el-selector-su-estado-y-los-nodos
 path: desk/tasks/task-u9-anclajes-muestra-la-fuente-con-lineas-y-el-fragmento-resaltado-el-selector-su-estado-y-los-nodos.md
-source_hash: 4ec941a18886949eff0f13688b16f0bb4030b189326b5e057868109f1bb81000
-content_hash: 9d6366aee1d44319a690d7741ed8d78f0539d5976aa0099581b8c1efe106cb56
+source_hash: 1496e2441b7c06a2b3d2a5cc199bffec5c34a2d890658ed43de368741efa087d
+content_hash: 31922fde99523b05eadfd70f959c6d2c9239e91835ed10263609324d2ad7b456
 field_hashes:
   title: 263f750d9a92aacf9190e899cb61c497c2eca412acc1fed958a95306ed64dfc7
   id: 4e89d63b9d857dfb48cdce290c073272f967ef126bdb3722bfaa113bbd0de2ca
@@ -17,7 +17,7 @@ field_hashes:
   depends_on: 9b025feb85c9a583ac9b90c6c5cad199a9c8323fd965c5dab2352aadff9b0e65
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: ba20c75738c011b854d6227a89c8b96ab6aef6c58a8d372838f297b8b09cbea8
+  implementation_path: a4cbaa32f4bac3530d542f1ae5912b87988875829a22c8a20763848cb419e56a
   validation: 48c5c303287edfa3e2127f66e74355f0803a6dc56804313e528cf82fbe6a9ece
   done_when: 3e4565c2ad244774fdca467b5e0db06531b8318257005c9211d6f9ef7fa9b528
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -33,6 +33,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T06:07:47Z'
+  at: '2026-11-25T06:24:43Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

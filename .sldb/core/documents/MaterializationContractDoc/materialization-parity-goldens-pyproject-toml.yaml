@@ -1,0 +1,25 @@
+name: materialization-parity-goldens-pyproject-toml
+path: desk/materializations/materialization-parity-goldens-pyproject-toml.md
+source_hash: bca234ad7db6921cf6d4a7104a62ce29430369ea13c933a209754c1ddbb94d15
+content_hash: 4b04f531c61a1bfc4c67272fe5d1a540eb137dfad64369a72546adfbcedae6a2
+field_hashes:
+  id: 32a187c00fb5ad1870a90296b3bcbedc2de7ef713d7df931c50d75a155e3e166
+  title: 2db2c28999dfda1ce50662df3af4d6c2f3b2d317a80907e0d6530e2bd2a18256
+  source_atoms: f0ad156a8905f37963382d934f13f7834954ab76aece24cfc4066b8a23a53471
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: 9c6cd9431da5c16d2ee820ad552f266833f2ce755f554cbf9ffc5e0d3ccf1504
+  intent: ffa9ca5ae83a2ca75443cc194fd1105a7fe7b6f461babf7e81114cd4949cc026
+  validation: 0fe3dce5b5b18fa40f1ae08611716faae8f0b961704ce77d5c171886cc2ee97b
+  tags: 8db771bd738e80671454e87633134ce6ac487189ba5fbb973143b218ebd221ac
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:parity-goldens
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T05:56:41Z'
+  authority: generated
+  via: create_document

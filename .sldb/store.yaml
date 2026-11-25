@@ -411,6 +411,14 @@ include:
     name: review-task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build-owner-1
   - path: desk/reviews/task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui/owner-1.md
     name: review-task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui-owner-1
+  - path: desk/reviews/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml/evidence-tests-1.md
+    name: review-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml-evidence-tests-1
+  - path: desk/reviews/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml/evidence-commit-1.md
+    name: review-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml-evidence-commit-1
+  - path: desk/reviews/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml/evidence-atom-1.md
+    name: review-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml-evidence-atom-1
+  - path: desk/reviews/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml/evidence-materialization-1.md
+    name: review-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml-evidence-materialization-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md

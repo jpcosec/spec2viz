@@ -1,16 +1,17 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T05:58:10Z'
+  at: '2026-11-25T06:10:18Z'
   authority: generated
   via: save_document_payload
 id: task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash
-status: active
+status: ready_for_testing
 summary: ''
 tags: []
-current_node: ritual-testing
+current_node: ritual-closeout
 history:
 - task_activates
+- task_hands_to_closeout
 references: []
 depends_on: []
 pills: []

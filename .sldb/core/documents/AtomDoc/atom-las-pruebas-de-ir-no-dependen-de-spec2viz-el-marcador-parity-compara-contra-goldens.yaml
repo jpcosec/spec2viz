@@ -1,0 +1,22 @@
+name: atom-las-pruebas-de-ir-no-dependen-de-spec2viz-el-marcador-parity-compara-contra-goldens
+path: desk/atoms/atom-las-pruebas-de-ir-no-dependen-de-spec2viz-el-marcador-parity-compara-contra-goldens.md
+source_hash: 9722fec32dbe7afde901f81a3767bdd81593719207afd963592272cfa9be851e
+content_hash: e102c23e50152acd648c44969eb7d041fd54e123c5db90b3decdba2216f080e5
+field_hashes:
+  id: 1a62856917f62e9b0f0b77f9e671077632903cf2ee728fe12653b2342dd997b5
+  title: 70faca4403c3285d92562702796678f60589bd7991abb15a87bc898a0be34307
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: b1e6b9f12a8a6681ade760a429e8581e3521d9283c36f3fb989d9181e46d2e5c
+  tags: 8db771bd738e80671454e87633134ce6ac487189ba5fbb973143b218ebd221ac
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:parity-goldens
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-25T05:56:21Z'
+  authority: generated
+  via: create_document

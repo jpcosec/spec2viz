@@ -1,7 +1,7 @@
 name: task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente
 path: desk/tasks/task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente.md
-source_hash: 75519f7bbeda82dbead6552550510b8ae557c05ed293deb262530ec2ed6b8cc9
-content_hash: 1715e0c5e8167486747bb13c5e7d8a969d6bca026d2b2a06f0a50b7c2812970d
+source_hash: d3e720d2e4460df72f82605a8c55d6466faf09ad6a65b29b71f41575957012b4
+content_hash: a65edd70ec0be7d84cc922fe33befc73d1da701cd48c588631e4b8cafe971b13
 field_hashes:
   title: 13fc560a6275e19fae6865903d352e8055ff620d7065e11e627fe2ef8d165096
   id: f51f5bf0a73e5ae268700f217cf0dde55a3da13486765108381c96a0d7dab8ca
@@ -17,7 +17,7 @@ field_hashes:
   depends_on: b47bacf3bb0258bbb6c4a759805539097a257acdd3a90018391aba40db94a108
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 54dfb579daa19005d5151a507ad5700334c267411e9e1d10f543e609f0ea6d3a
+  implementation_path: 96ab42a19597b9bb2df49b1f74e60477668db2cdf2277056bd7cadc316cdc477
   validation: 13149d479b34569bc3eb26aafd9cd22e6005f05c8b5082ffcc781d472314d13b
   done_when: 3610eca15f1cddfbfee49cc960049d7a708c3b5fe21ae69789eacdff7a631f0d
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -33,6 +33,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T06:06:54Z'
+  at: '2026-11-25T06:23:58Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

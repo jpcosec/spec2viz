@@ -1,0 +1,25 @@
+name: 20261125-032538-unclear-queue-20261125t062017z-dispatch-tester-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml
+path: desk/inbox/20261125-032538-unclear-queue-20261125t062017z-dispatch-tester-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml.md
+source_hash: 660ba100c4120bd3bdc3651f4754e7411174d471827fe6286b8bd6d96614159f
+content_hash: 23b6aa71071fb66542187afb495144c6d6bbb2e7fc07c2848f813b7b2e96a063
+field_hashes:
+  kind: 683144a12969e0fd85512737e57b4db93ed15ee760906165a5516d581a77889a
+  sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: cee3ac649a5503fb6708b6c07bbbc8e4039be33f07def691a5be4981c2488d6c
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: 005dfb8f625a0ccf2b933e36daacba547d344a4c7a0aa15140e1cd89c3eef946
+  ack_reason: 286211d711184baf3f94eee14224df4350ea54f5da4ff6622d2e295bb31264ea
+  title: 7112487666e12250f84923156918e0b51f609cde383a7e12c7eb7cde55734042
+  body: dfc3435d6f04dfc8ad26b372d992b517461fcacd9b4f62aca65791b334076960
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance:
+  by: agent
+  at: '2026-11-25T06:26:45Z'
+  authority: generated
+  via: save_document_payload

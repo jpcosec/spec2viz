@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T06:07:17Z'
+  at: '2026-11-25T06:25:03Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-u3-composiciones-dibuja-la-receta-elegida-con-su-notacion-zoom-y-arrastre-y-un-nodo-abre-su-document
 status: draft
 summary: ''
@@ -46,7 +46,8 @@ IR/ui/src/compositions/ (vista previa), el lienzo copiado y su test. Fuera: BPMN
 
 _Outline the expected implementation route or affected surface._
 
-Repo /mnt/ssd/proyectos/SLDB_1/IR, app en IR/ui/. Contrato de forma: desk/drawer/plans/graph-ui-diccionario-de-componentes/PROPUESTA-UI.md y la maqueta desk/drawer/plans/graph-ui-diccionario-de-componentes/maqueta-ui.html (estructura del prototipo de Kimun, estetica del SLDB Workbench). Decisiones de JP: React con TSX (D10); la app COPIA de sldb/surface lo que necesita y no importa de @sldb/surface (D7), y cada archivo copiado lleva un comentario de cabecera con su origen (ruta en sldb y commit). Reglas: la UI no calcula, toda escritura es una operacion con nombre por sldb serve, sin datos inventados (si falta un dato se muestra que falta). No tocar sldb/. Tests de componentes con vitest y @testing-library/react; ningun control sin rol y nombre accesible (D3). Copiar surface/src/workbench/NotationSvgCanvas.tsx (citando origen) y usarlo con el payload de /notations/view. El documento del nodo sale de /document. Zoom y reinicio como botones con nombre accesible. Test src/compositions/RecipePreview.test.tsx con payloads fijos: dibuja, zoom cambia la escala, reiniciar vuelve, clic en nodo pide /document y lo muestra en el panel.
+
+Repo /mnt/ssd/proyectos/SLDB_1/IR, app en IR/ui/. Contrato de forma: desk/drawer/plans/graph-ui-diccionario-de-componentes/PROPUESTA-UI.md y la maqueta desk/drawer/plans/graph-ui-diccionario-de-componentes/maqueta-ui.html (estructura del prototipo de Kimun, estetica del SLDB Workbench). Decisiones de JP: React con TSX (D10); la app COPIA de sldb/surface lo que necesita y no importa de @sldb/surface (D7), y cada archivo copiado lleva un comentario de cabecera con su origen (ruta en sldb y commit). Reglas: la UI no calcula, toda escritura es una operacion con nombre por sldb serve, sin datos inventados (si falta un dato se muestra que falta). No tocar sldb/. Tests de componentes con vitest y @testing-library/react; ningun control sin rol y nombre accesible (D3). Copiar surface/src/workbench/NotationSvgCanvas.tsx (citando origen) y usarlo con el payload de /notations/view. El documento del nodo sale de /document. Zoom y reinicio como botones con nombre accesible. Test src/compositions/RecipePreview.test.tsx con payloads fijos: dibuja, zoom cambia la escala, reiniciar vuelve, clic en nodo pide /document y lo muestra en el panel. Aceptacion contra datos reales: el store de IR no tiene SpecDoc ni ViewDoc; el de pron (/mnt/ssd/proyectos/SLDB_1/pron/.sldb) tiene 15 SpecDoc. sldb serve --store <store de pron> para la prueba manual.
 
 ## Validation
 
@@ -58,4 +59,4 @@ _List the checks required before this task can close._
 
 _Name the observable condition that makes the task complete._
 
-RecipePreview dibuja la receta, hace zoom/arrastre/reinicio y abre el documento del nodo; su test pasa con tsc.
+RecipePreview dibuja la receta, hace zoom/arrastre/reinicio y abre el documento del nodo; su test pasa con tsc. Ademas, una captura en Chrome real de una spec de pron dibujada por el lienzo copiado, guardada en el run dir y citada en result-summary.md.
