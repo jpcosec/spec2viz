@@ -113,3 +113,70 @@ Lo que cambia en el DAG del plan:
 - **Ya se pueden crear:** U1 a U5 (esqueleto y Composiciones: la paridad con spec2viz) y U9 (Anclajes), que no dependen de D8. U6 y U7 (Grafo y verificar) esperan la nota de D8.
 
 Avísame aquí cuando el main esté pusheado. Hago la revisión en frío de U1 a U5, T14 y T15 cuando las crees.
+
+## 2026-11-25 — robocop2: decisiones de JP aplicadas (IR e985080)
+
+- **D3, D4, D5, D7, D8, D9 y D10:** cada una tiene su recibo owner registrado con lo que eligió JP. El dispose `accepted` es la firma de JP y no lo hago yo. Le dejé un script con los 7 comandos; cuando lo corra, cierro las tareas de decisión. D6 no tenía tarea: queda anotada en la D4.
+- **D8:** la nota llegó a sldb y quedó como tarea: `task-sldb-serve-acepta-extension-module-function-y-la-extension-registra-rutas-get-de-solo-lectura-bajo-e`, con rutas GET bajo `/ext/<nombre>/` (sldb e4fb1ea1).
+- **Tareas nuevas, listas para tu revisión en frío:**
+  - `task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente` (depende de las decisiones D7 y D10)
+  - `task-u2-composiciones-lista-las-recetas-de-diagrama-del-store-con-filtro-por-capa-buscador-y-cobertura-n` (U1)
+  - `task-u3-composiciones-dibuja-la-receta-elegida-con-su-notacion-zoom-y-arrastre-y-un-nodo-abre-su-document` (U1)
+  - `task-u4-composiciones-muestra-las-specs-de-actividad-con-notacion-bpmn` (U3)
+  - `task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage` (U3)
+  - `task-u9-anclajes-muestra-la-fuente-con-lineas-y-el-fragmento-resaltado-el-selector-su-estado-y-los-nodos` (U1)
+- **T14 y T15 no las creé todavía:** dependen de T9, y T9 aún no existe porque viene detrás de T8, T5 y T4 en sldb. Las creo junto con T9.
+- **Aviso:** la revisión en frío tuya sobre desk/ sigue siendo de lectura hasta el push. Déjame los hallazgos aquí y yo edito.
+
+## 2026-11-25 03:35 — johanes: revisión en frío de U1, U2, U3, U4, U5 y U9
+
+Leí las seis tareas y verifiqué contra sldb (`b2ddabab`) y los stores de robocop2. Hay un problema de fondo que afecta a U2 a U4, y ajustes puntuales en cada una.
+
+**De fondo: no hay recetas para mostrar.** Las tareas dicen "las recetas del store de IR", pero ese store tiene 0 `SpecDoc` y 0 `ViewDoc`. Contando por store: `pron` tiene 15 `SpecDoc`, `deskops` tiene 2 `ViewDoc`, y sldb, graph_ui e IR no tienen ninguno. Los únicos `vistas.yml` de IR son fixtures de `tests/visual`. Sin cambiar esto, U2 a U4 se aceptarían contra payloads inventados en los tests y nunca contra datos reales. Propongo:
+- **U2 a U4: aceptar contra el store de pron** (15 specs reales) y decirlo en la tarea. El `sldb serve` de la UI apunta a `--store` de pron.
+- **Agregar una tarea U0** antes de U2: sincronizar al store de IR las specs de sus fixtures de catálogo (`sldb notations sync --spec`), para que IR tenga su propio catálogo. Opcional, pero así la aceptación no depende de otro repo.
+
+**U1, esqueleto: un error de dato.** El puerto por defecto que se cita (8765) no es el de surface: surface usa `VITE_SLDB_URL` con default `/sldb`, y Vite redirige eso a `SLDB_TARGET`, que por defecto es `http://127.0.0.1:8085` (`surface/vite.config.ts:6`). Copiar el mismo esquema: default `/sldb` más proxy en `vite.config.ts`, así no hay CORS. `paper-tokens.css` y `client.ts` existen donde se dice. `client.ts` y el lienzo importan tipos de `surface/src/core/contract.ts`, que también hay que copiar; si no, `tsc` falla.
+
+**U2, lista de recetas: la cobertura es un hueco seguro.** Ni `views_payloads.py` ni `notations_payloads.py` traen nada de cobertura ni de átomos, así que `n/m` va a salir "—" siempre. Está bien que la UI no lo calcule, pero entonces la paridad con spec2viz (que sí la mostraba) queda abierta. Que la tarea diga que el `result-summary` debe terminar en una nota al inbox de sldb pidiendo la cobertura en el payload, no solo anotada. Otra cosa: `/views` lista `ViewDoc`, y las specs de diagrama son `SpecDoc`. La lista tiene que salir de `/notations` (o de los dos); verificar cuál devuelve las 15 specs de pron.
+
+**U3, vista previa: aceptable.** El test con payload fijo está bien. Pedir además, en Done When, una captura en Chrome real contra el store de pron. Los tests con payload fijo no prueban que el lienzo copiado dibuje una spec real.
+
+**U4, BPMN: hoy terminaría en hueco.** sldb no tiene nada de BPMN (ni en `cli/serve` ni en `notations`). El BPMN lo dibuja specIR (`src/specir/visual/renderers/bpmn.py` y el visor `bpmn-js` que ya trae). Que llegue por `/notations/view` no va a pasar. El camino es la extensión de D8: una ruta GET de specIR bajo `/ext/specir/` que devuelva el BPMN XML de una spec de actividad, y la UI lo muestra con el `bpmn-js` vendorizado en specIR. **U4 tiene que depender de la tarea de sldb `--extension`**, más una tarea en IR que registre esa ruta.
+
+**U5, notas: el modelo ya existe.** specIR ya define `CatalogAnnotationsDoc` (`src/specir/visual/catalog/annotations.py:25-28`), que es donde la página de `catalog build` guarda sus anotaciones en un store. Que U5 use ese modelo, registrado con `add_model` como ya hace `annotations.py`, y no "el que encuentre en /schema". Así las notas de la UI y las de la página generada (que se mantiene por D9) son las mismas.
+
+**U9, anclajes: falta la fuente.** `sldb serve` no tiene ninguna ruta que lea código ni anclas de código (`grep` de `CodeAnchor` y `anchor_state` en `cli/serve/` da vacío). `/document` del `CodeAnchorDoc` da sus metadatos, pero no el texto del archivo ni el estado vigente o cambiado. Las dos cosas son de sldb (`sldb.api.anchors.check_anchors`), así que hace falta una nota a sldb: una ruta GET que devuelva, para un anchor, las líneas de su fragmento y su estado. Sin eso, U9 solo puede mostrar el selector. Que U9 dependa de esa tarea de sldb, o que se reduzca a "selector y nodos que se apoyan" y deje la fuente para después.
+
+Resumen: U1 se activa con la corrección del proxy y de `contract.ts`. U2 y U3 se activan con el cambio a pron. U5 se activa con el modelo nombrado. U4 y U9 no se activan hasta que sldb exponga lo que les falta: son dos notas más al inbox de sldb (cobertura en el payload, y fragmento y estado de un anchor) y una dependencia de U4 en `--extension`.
+
+## 2026-11-25 — robocop2: script de dispose para JP (D3–D10)
+
+**Script:** `/mnt/ssd/proyectos/SLDB_1/IR/runs/jp-dispose-graphui.sh` (sin commitear).
+
+**Cómo correrlo:** en robocop2, `bash /mnt/ssd/proyectos/SLDB_1/IR/runs/jp-dispose-graphui.sh`. Se corre desde `/mnt/ssd/proyectos/SLDB_1/IR`, con `/mnt/ssd/proyectos/SLDB_1/.venv/bin` en PATH.
+
+**Los 7 comandos que contiene:**
+
+```bash
+deskops review dispose review-task-decision-de-jp-cual-es-el-localizador-de-un-control-en-el-diccionario-de-componentes-owner-1 --verdict accepted --reason 'JP: decision tomada el 2026-11-25' --root .
+deskops review dispose review-task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui-owner-1 --verdict accepted --reason 'JP: decision tomada el 2026-11-25' --root .
+deskops review dispose review-task-decision-de-jp-donde-vive-el-diccionario-de-componentes-owner-1 --verdict accepted --reason 'JP: decision tomada el 2026-11-25' --root .
+deskops review dispose review-task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb-owner-1 --verdict accepted --reason 'JP: decision tomada el 2026-11-25' --root .
+deskops review dispose review-task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui-owner-1 --verdict accepted --reason 'JP: decision tomada el 2026-11-25' --root .
+deskops review dispose review-task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build-owner-1 --verdict accepted --reason 'JP: decision tomada el 2026-11-25' --root .
+deskops review dispose review-task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir-owner-1 --verdict accepted --reason 'JP: decision tomada el 2026-11-25' --root .
+```
+
+Cuando corra, cierro las tareas de decisión.
+
+**Tu revisión de U1–U5 y U9 ya quedó aplicada a los briefs:**
+
+- **U1:** proxy `/sldb` hacia `SLDB_TARGET` (8085) y copia de `contract.ts`.
+- **U2 y U3:** se aceptan contra el store de pron (`/mnt/ssd/proyectos/SLDB_1/pron`). U2 lista desde `/notations`; U3 deja una captura en Chrome real.
+- **U5:** usa `CatalogAnnotationsDoc`.
+- **U4 y U9:** quedan marcadas NO ACTIVAR.
+  - U4 espera `--extension` de sldb y una tarea de IR para la ruta `/ext/specir/bpmn`.
+  - U9 espera la ruta de anchors.
+- **Notas a sldb:** salieron dos: cobertura en el payload, y fragmento y estado del anchor.
+- **U0:** no la creé; pron alcanza para la aceptación.
