@@ -1,7 +1,7 @@
 name: review-task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom-preflight-2
 path: desk/reviews/task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom/preflight-2.md
 source_hash: 63c93bf125caa604a6fdab668fb53e3d8ba8c442525da8f9d221c16381c75711
-content_hash: 62a3522d85cf81e588bdf93be79731edfb405a9343cc83abdc5ff8ac97371a3f
+content_hash: 7f1dab113ace2f41f389b997698d66073db5b4736b01178337bec22016096708
 field_hashes:
   id: 7d231a4490ff65da2672bae3e2e59ab786cf4dd20b88a57bff1943c530e609e1
   title: 6c6cea915e7430c036b88e03c52439268faf126746d0463e4d9f289cd7a25f46
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: b25663cc52202761cb2d5e427485cbbcc80efa5132438ed57fcd461a1293b328
   disposition: 64f6c93d4b82c41b2fe57b8824fb22484203a7650ef55a559b0f8f677d985bd2
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

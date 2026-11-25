@@ -1,7 +1,7 @@
 name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-preflight-2
 path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/preflight-2.md
 source_hash: f7b3778ebbf868a4ed3268aef02dff3722fbb039f79408df54606b96f736d0f1
-content_hash: 2b2417ac45ebb3c9454fe9506fa28a43c8e88a6dddb2521d39a0bba654387a23
+content_hash: 39e0728f6baffe8cf55781ea9f73d14b567ea26081a7f3fa7df9565fff868c07
 field_hashes:
   id: 172b9f5004d2801f94ee006931cdf211380a910c36584d8dbda5a3c9219c7eff
   title: 6df82046b8dffd5606ca689271607b2e27140a4121e39b75d3b16da4d9c87629
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 15fbd936894494c235b549c362e364f73a5268c9c7a629d278b5670713af1f56
   disposition: 7c498694ca213a249f38966be58bbe1c2e88159b830b8cec445e2de99af862d5
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

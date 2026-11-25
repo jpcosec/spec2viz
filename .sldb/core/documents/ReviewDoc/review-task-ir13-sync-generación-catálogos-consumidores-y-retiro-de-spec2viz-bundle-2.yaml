@@ -1,7 +1,7 @@
 name: review-task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz-bundle-2
 path: desk/reviews/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz/bundle-2.md
 source_hash: a2da368684ca77048fd8cd61afb193acb14d008462742a95b6daf4fff20cc4b8
-content_hash: 93f71e4c14dae40be52e1ff0ab19b18805ee8dea9db0f9cd994918eba8980177
+content_hash: 2c5a084c7850c41bfa326474e2556a2ee37400b2aa2927a89a109bd2255acacb
 field_hashes:
   id: 28313b854ad7cae07a429ab908f8e2cbfade3830a6e163e245c7100c0b0f20ed
   title: 1db1d83d4c361a462285268d71fca9975e97f3660a7e5ff1591bc924c2060413
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 5640153e69f4f731612a09d8fdb10a3beb76176b2029d9347ef73aac99700f7a
   disposition: 6f2d804e56e67acd4b218f726eef4482d9bf4543de7f897a9de3c43532693904
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

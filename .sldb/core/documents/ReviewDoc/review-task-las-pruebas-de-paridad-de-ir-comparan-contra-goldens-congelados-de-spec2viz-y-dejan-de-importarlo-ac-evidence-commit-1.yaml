@@ -1,7 +1,7 @@
 name: review-task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac-evidence-commit-1
 path: desk/reviews/task-las-pruebas-de-paridad-de-ir-comparan-contra-goldens-congelados-de-spec2viz-y-dejan-de-importarlo-ac/evidence-commit-1.md
 source_hash: 79d8e67ddfb2de4176b06a10172897c544203baf2fc7ef053099067104e05179
-content_hash: 709fdb12762e143d0c1c417c1555eef4395ebb7b3bb002b15f31cbc68b07ad06
+content_hash: 083038d7cbea1177d2bb16e233c19929e1d7148f6d17cb441bd9c83949911eb8
 field_hashes:
   id: 1d92d0e18755ceb1ad9ddf2e8b01cb06e88f5a44d69d8e72137707ce3be8cdc4
   title: cb0f7f5e25b9491085d3db4f7ec94b5f6b80f430c9d94c06f1d14b9526e8bedb
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 6c39c4338b217b50243441e86033b12b0245374a399f6da65e2928c5ff75d996
   disposition: 31b4ef836796be3da3277331dfab683f01f3b86160d6ab840e5c612058e2952b
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

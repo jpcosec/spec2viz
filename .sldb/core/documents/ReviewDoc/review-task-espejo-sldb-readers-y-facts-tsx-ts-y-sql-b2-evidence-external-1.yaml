@@ -1,7 +1,7 @@
 name: review-task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2-evidence-external-1
 path: desk/reviews/task-espejo-sldb-readers-y-facts-tsx-ts-y-sql-b2/evidence-external-1.md
 source_hash: 0e86c3cb58176186cd6cf51aa2e8a427c6e71bba0a68c2ea018beabb92aa2e4a
-content_hash: 52b4eb7307ef6b6a1689f7df1fc1c0c7678fd5f1e17e51ead4a810e446cc3190
+content_hash: 07d1d3bb19823fb0a6760fba5478039b951fe0ed1e80528baca9cec5453cbc45
 field_hashes:
   id: 5ba762a157c8c028dd4f686b1c72cba8283d42fd0c101ecf1eba1f5135cb67b5
   title: 7304f558633c7ce452a5d973ea9fddb311337e0d5c6079288a89ed82be2b404c
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: c2e947d72f020c27fdea2f544ab39d2af749d4d0565b262139d20aaf0fa75e02
   disposition: 83510e134d87c9ad0af35d4f1e0ccc1d8b7b1c936426d347e2198a224fe0c654
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

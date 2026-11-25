@@ -1,7 +1,7 @@
 name: review-task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro-preflight-2
 path: desk/reviews/task-ir07-cobertura-completa-de-spec2viz-matriz-fuente-de-verdad-del-diagrama-y-gate-de-retiro/preflight-2.md
 source_hash: 5e5c2c46df0a314c0c70c2191fd437af6a9a16dc086e2eb2cb0157ac1875ee58
-content_hash: 6cb4e7e630a4e472bdedc543fde619dba6445eb16687956d3e4987ac605d2a73
+content_hash: 0c185afe7d87fa3b3d5b2f27db584f9b88aadb131ced38b7a657099fa7a0446a
 field_hashes:
   id: 17111947a23dd8ac40324137630e47d9514fd5e9e81fad54196ce58a597a3185
   title: 503c25f584629a11c8f74d095e3836620913dd14f61ed38aae8b57f76f11f7f5
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 0866e6e0f388ddf942c8244972fc71475448d28b2cca6157db251a2b5853cec7
   disposition: 7dde838c1a2ed518a308cd19ae01e78ad672abfa68f19eee1b23cefbe89a4bfd
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

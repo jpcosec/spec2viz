@@ -1,7 +1,7 @@
 name: review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-atom-1
 path: desk/reviews/task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo/evidence-atom-1.md
 source_hash: 1e1a25593b9dd15f2dba0e745616cfe74e3f2a631246a509d5325e53c2ff4e09
-content_hash: 4b6b699fcddffb74f764f79ecaea0d69b321c40e0898a0877363ee994659c24b
+content_hash: 2af5404d6749ca2afaa439aa1ae7fb6a6d38ae9428e7747c001c0c01eec9e3ec
 field_hashes:
   id: 3c484748d08a89dbc838a32b83baf7257f48dd0a8dd46fcb51af97f1570e67b8
   title: be6a0fb729242c453bb167ed40019c076c3ddb3919ffe6ba052239d41754ad4f
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 02370f4baa5f1d56d97d32fc3ce5db0977ce3ee8878575368461fe0185aac3fa
   disposition: df635256f5d0dd2a34c86c6c66de8e72eab21ed8513a47245e2f1dc15b0ec909
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

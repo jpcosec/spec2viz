@@ -1,7 +1,7 @@
 name: task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir
 path: desk/tasks/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir.md
-source_hash: ef337f4eaa76bce67146eefdc19e949729b4b9df93f9f44b3cb7ee7533e77b7d
-content_hash: 29086fb93ef9a19b58285c039ac9016e7cb75d80f09de9fde0969a3e14007915
+source_hash: db920b747ebf7dc732c1dd595a53765c1177510f63f9ced4c0b614de8bf7bece
+content_hash: e3e7aaa1eeee72ea67d8564d1108e7de3433c30cb062d6e6f41df11609795a41
 field_hashes:
   title: 6509e1c8b1e67b9c686e471d5b3c61ecb4fe30e05403dbc7da5270cc99fcddf7
   id: 4f89b26beda4534d24c542d7279d28e93a9d4c32d52da36d04b4b8d9ddae3752
@@ -10,16 +10,16 @@ field_hashes:
   tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
   history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  why: 319f7e7fe9c06c2acdfc99cff7bc64624e35f3008247e8fa499ec66180c91202
-  goal: 3ea46f5862ad2ee43fc9a8660ab57060754f6663bd7e84b5d515ad68b6e90614
-  scope: 6f230ea72fd74c985b3fa4d693acd62554d5e7d091840260925ae71dc827f92a
+  why: 9bbab16f3f24517480086056cd18a6d5d83a9a33a2f89320129275a4561af534
+  goal: d44ab3a884d87ec8235aea684b062a2262001feafe5c6d3ee6bfa3674e83275a
+  scope: 0953131b4cf623b07a504dbc0e2bec587114f6400bf8c951255da35f913da03a
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  depends_on: 8374eb689865b1a621753ef3923c1e3cc93537e98f17e7593851087074de8c9c
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 0592cbea24cd3541c4ee6576d4c57b82c5822809fc8d2be0c3cf5349427c36dc
-  validation: 6be441f53e8a879c61f73ccc89a1c148d55470c376e39eff4b6f9078e0f6ba33
-  done_when: 2dc8afbc3a3e37e1061834e7411a1c54dc55989b468e6e2aac8a266c013ce1ca
+  implementation_path: 04d6aad451ec5e17904ca7e309807d51e99aa462dc5819972d92ca6b18086968
+  validation: 766af5b87372276bbedc100dcadc9308380d71597fbdf3272563507dabc3b741
+  done_when: 525f46d735c914bb511b42c0d728f9d22aabb67e52ac98454383c100abd30267
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
@@ -32,6 +32,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T01:08:48Z'
+  at: '2026-11-25T03:00:41Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

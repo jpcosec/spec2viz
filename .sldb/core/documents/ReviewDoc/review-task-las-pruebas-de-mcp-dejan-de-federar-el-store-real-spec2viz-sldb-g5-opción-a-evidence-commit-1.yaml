@@ -1,7 +1,7 @@
 name: review-task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a-evidence-commit-1
 path: desk/reviews/task-las-pruebas-de-mcp-dejan-de-federar-el-store-real-spec2viz-sldb-g5-opción-a/evidence-commit-1.md
 source_hash: 53ace5f69b0fc4db4d56bc14ce72bd2ce0ad27213878f16c4aa321c0418df6c2
-content_hash: 5717ad616e74ae2adcdccc1a06159363490b93cd40e9efafad16665159aec622
+content_hash: 6cff859070d3f728b3fe150dbc3fc09d56146f76f1714c04b0a2e54794d46741
 field_hashes:
   id: 8fe5c99f1b0ad1cc4f2424643bb5969c808b4df0296ae95ec1b8bd1b76c6c22f
   title: d96ab063feacd43c7c0d3d9c8ac559c05d08e7035f07d15298473c432ec28abc
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 1a3aab3083492144f8929aba428f0a3c38c0b299c83cd1b5b4dd586ce2d6e248
   disposition: d549c77fdad643bb0b413e981846ad9b6c62ed8e1d893e047360d2ec2a8dedd3
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

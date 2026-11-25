@@ -1,7 +1,7 @@
 name: review-task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m-bundle-1
 path: desk/reviews/task-ir13i-corregir-en-el-acta-el-estado-de-g5-y-la-fila-de-ir-tras-cerrar-la-federación-de-las-pruebas-m/bundle-1.md
 source_hash: bcbfac879d3de463f3957831641832ca8a017833b25e560d0681f695427db3a3
-content_hash: f35740b690cf96384e4032c7fdecbf7cda2c0e73bbcb0fcba0ac3f7a184afce2
+content_hash: ab6f2c9d29b460e78d1ea552a4781ed69c184b4bd496530cf995e13dfb43ae41
 field_hashes:
   id: ba226f64c83568a615c7c9b054dacf278068580e5bd1f2f96111852aa488d05f
   title: 9635dd2ffff68a2daa120468f3e02beee64a65c057345c587174eff0cb5622fc
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 22c906cad918324b12807038f2f353fb814c8cc1082c5544d75f89eb279b928a
   disposition: 01637d4a341f0f2d571c6c41d027f423560acc789a8b55899254290188a1b894
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

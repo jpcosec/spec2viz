@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T03:00:11Z'
+  at: '2026-11-25T03:00:25Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -44,6 +44,6 @@ Estado al 2026-11-21 (09:40 UTC): IR13, gate de retiro de spec2viz. specir retir
 
 _Generated from the task references above._
 
-- Sin marcador parity ni dependencia de spec2viz en las pruebas de IR [draft] - pyproject.toml ya no declara el marcador parity, tests/conftest.py y tests/visual no importan ni nombran spec2viz como dependencia, y el script de captura queda borrado o documentado como historico.
+- Sin marcador parity ni dependencia de spec2viz en las pruebas de IR [draft] - La descripcion del marcador parity en pyproject.toml dice lo que hace hoy: compara specIR con los goldens congelados de spec2viz (revision 2de1056) en tests/visual/goldens/, sin necesitar spec2viz. Ninguna prueba se salta por falta de spec2viz.
 - specir mcp: el punto de entrada propio de specIR levanta el server MCP de sldb con su extension ya cargada [draft] - 'specir mcp --store <ruta> [--level N] [--actor A]' arranca sldb.mcp.server.serve con specir.mcp_extension:register cargada; 'specir mcp --help' lo explica; las tools specir_* aparecen.
 - Plan: probar UIs con graph_ui como diccionario de componentes y una forma comoda de usar specIR ahi [draft] - Un plan en desk/drawer/plans/graph-ui-diccionario-de-componentes/ que diga: que es el diccionario de componentes (que componente de graph_ui es que nodo de la capa UX de specIR), como se genera (extractor React de specIR sobre graph_ui), como se usa para probar UIs (que prueba lee el diccionario: auto_user_test, flujos, controles esperados), la ergonomia (comando o tool MCP de specIR), y el DAG de tareas chicas con depends_on para implementarlo. Decisiones abiertas como task.decision para JP.

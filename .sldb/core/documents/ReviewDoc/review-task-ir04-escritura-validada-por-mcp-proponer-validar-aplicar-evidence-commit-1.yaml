@@ -1,7 +1,7 @@
 name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-evidence-commit-1
 path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/evidence-commit-1.md
 source_hash: 8ff024709d435f49d3ac2b78aa415765a9f73353f7d641bd2fe5cece6216a6fd
-content_hash: 2e45731602e95b02673c8b473f5b9a65aa55ea10a36bc332f9e52544b34d3f70
+content_hash: 6bd04e720235551cc3fc4f13953b006ebdf58d06da6548199ea89fcad4f42d73
 field_hashes:
   id: b9b594d2b1af9bde531dd082b01bbab744531d574b7aa885cd06bfe5694b2141
   title: dd4395f7c96bcc96f97e8a2279dfb03ba33b54a088eb6f2a05a4f96b81e02472
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: ba1d79d984e778405a7fd0e9856aab67f80a4519a7c23c616ca87fad3f32d84b
   disposition: 6ae83ce41a375a26642ddcad85b4915ebe41e70dc714e1ab66e6f11a388c0944
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

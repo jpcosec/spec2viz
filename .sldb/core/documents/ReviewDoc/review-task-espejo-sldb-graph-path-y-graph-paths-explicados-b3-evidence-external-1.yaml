@@ -1,7 +1,7 @@
 name: review-task-espejo-sldb-graph-path-y-graph-paths-explicados-b3-evidence-external-1
 path: desk/reviews/task-espejo-sldb-graph-path-y-graph-paths-explicados-b3/evidence-external-1.md
 source_hash: 42702cac8ec6ee1c5650f8b021e2e34f57e961a892f229bd234c5c88e3593a5c
-content_hash: dc27cd7a0b4a9975a5fbc6c32df9052c8c32e6f00b9ea20e3118e891e65553a3
+content_hash: 97d3cc40b8cd007fe9701fcdb14bf5bf8c1bf1d14494a11b948276ba5003eed8
 field_hashes:
   id: 2fbbf576a427c21b82ff86adad85bd426feb798705720977ee3d978c8671fa00
   title: 7290f030c7bb7354e3a6ec7499dfe95cf273e8c37cc5c35615691ffcc6a807c6
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 56db8297de3551c2068dc069d858695ac91e29418d6cd2cec94e59560ea9ad45
   disposition: 472168054c86366d3f014f3b84cfe456e57a4e7397fc2f1408cec98c2b186086
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

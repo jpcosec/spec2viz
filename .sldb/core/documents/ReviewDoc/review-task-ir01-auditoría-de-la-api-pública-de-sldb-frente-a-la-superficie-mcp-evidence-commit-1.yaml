@@ -1,7 +1,7 @@
 name: review-task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp-evidence-commit-1
 path: desk/reviews/task-ir01-auditoría-de-la-api-pública-de-sldb-frente-a-la-superficie-mcp/evidence-commit-1.md
 source_hash: c7dd5a2f8d3033ce697ef4a0d265fe16f689252f474fdb3030315e36a86aa242
-content_hash: 789e677f2fb79819f2f9751ce5e7917b061f5d12a5e2bce705113b566cac2f11
+content_hash: 0576db65232f5eb18c6c5a2dbef66ac45e49db7d5a028f3b05a06d43235ef0c6
 field_hashes:
   id: 56843cd452ce1e449fde1c84ea0b3381bb898447a61f9e4f9b9ae132b0031aa6
   title: b5faa2781a8e48d0c08ebee638e7dbdbef8d5dd7e6cc2a54d4e75dd9361efd51
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 214d851718173d451e9ba45655d1db19490bcfe0cf9fd3e81178a437296d8365
   disposition: 587f224a1765db072b00a6ab5f0ce8e1a2894e402c0f19caefa7e55ba0bb7536
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

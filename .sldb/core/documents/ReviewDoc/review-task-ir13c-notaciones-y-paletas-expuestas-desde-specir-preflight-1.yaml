@@ -1,7 +1,7 @@
 name: review-task-ir13c-notaciones-y-paletas-expuestas-desde-specir-preflight-1
 path: desk/reviews/task-ir13c-notaciones-y-paletas-expuestas-desde-specir/preflight-1.md
 source_hash: 88a4b90e06e050e4f42e7a2b4c6a24bdbaf5e9d1c2a1c0534c4a4e9d5c58fb16
-content_hash: ac1de0a5ef17f94320d018e6f3a3ad122c6d1c985c6c2b8a40b14b82fe9906e7
+content_hash: 463e8f6549f91fd07968152383a6fa9a960f3e15ff4f7c32d860ed9237369fcf
 field_hashes:
   id: 57f1d59bbc694aadd0bc8ffd6918b03968b775defba31abc7df234738c56d486
   title: 904d1184ddb54166731ee6ec6671e6240bc110a1977420ca7d1b670206bf1740
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: dcdbc8572d438199c0d7853205cf12266f8b4baf6c74fa19f5783243a120cf43
   disposition: 8f08e1f9b52922fc821ca117086dbb766c4d89404078c38907b30938643eafd5
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

@@ -1,7 +1,7 @@
 name: review-task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz-bundle-2
 path: desk/reviews/task-ir12-renderers-linter-y-recursos-estáticos-de-spec2viz/bundle-2.md
 source_hash: 91b9bda8c39ad1510636c6778c95c4daf6325539f21baae8ecd34bf97de06254
-content_hash: c39fdea0d4082a7d6ffb59f2d2e73e5863260e293ef5de3a44fc08b5f90733b9
+content_hash: e87824de989dbf5d77a8333bfba2d7467a75bb3070ad13131b455c1997a30c11
 field_hashes:
   id: 13851fdac19d7e1bfc2118900d426e474d0020a63ecbfa6010adf3a96bc04394
   title: 2952343fc7d0ea5e63b7c72c11c86643c622f1e92c72fa4d4572347a26b9d335
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: b90f8a5dd3369beda32e5b83c0cc41a1e7805b54666c9316422220c26c814f07
   disposition: 408ebdb32c08b334a5a56c4baca1134700c4886f8f846c7fc3cb8af5783dc5db
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

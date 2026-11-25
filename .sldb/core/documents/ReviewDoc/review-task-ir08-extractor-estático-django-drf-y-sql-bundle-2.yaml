@@ -1,7 +1,7 @@
 name: review-task-ir08-extractor-estático-django-drf-y-sql-bundle-2
 path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/bundle-2.md
 source_hash: 19e7ecdd4ab7f6570ce1d95b716f2f5fddb3158a3b4ea24253e6acc96269dc9f
-content_hash: 9fdc4ad863af0d75bfb50bb13a2a10834d59eedab3d4e0618706aa9ab9bbc03b
+content_hash: 4045db92e93f1d9724c60832de791f30ad23d36f040733f2be883d48dff4c2d1
 field_hashes:
   id: 4e4f214a96bd7bc8407991ef5024d17c44108a8deb034f5c1ff5aeddef3d2d15
   title: 64eebda22562883a76eb334497357bb3be2a9028479ce5deafa5f3e46d97582e
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: b6381727d7dfb5560115c2c2e51b2e1ec8ee7bd038774ce5fe7ba1bcd32fa1b9
   disposition: 3cc74fb5fe92a1f22992dca6474e6a01f76d285d1dac69a1ddf69dedd905b83b
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

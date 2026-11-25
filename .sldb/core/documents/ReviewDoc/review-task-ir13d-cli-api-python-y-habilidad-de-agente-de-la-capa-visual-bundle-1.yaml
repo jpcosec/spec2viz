@@ -1,7 +1,7 @@
 name: review-task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual-bundle-1
 path: desk/reviews/task-ir13d-cli-api-python-y-habilidad-de-agente-de-la-capa-visual/bundle-1.md
 source_hash: 68a8a8c49a283664f5443832090552685ff75b42f69587c9ced3f179a3fd142f
-content_hash: 1bccf7bf9e2205a50225d97231b375e8e4c412f02a2f5b9b896c80df40ea660b
+content_hash: ac7c6490592b6ad0866bcf78f592790fae13f351389e429fede0ea87fead691a
 field_hashes:
   id: 2d029f586402fc59b18ea9bee47ce1b9884f3cb39087a6d79027f87dfffb9a72
   title: 6271acbd908aa9aaf16077514b06162097bcc0a03bc34c24b6143ac3fe0b59bd
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 1c88e217002956fe38f79ca4f65c33fcbabe5e7b4a3ccfe8fffb536796b2a540
   disposition: e5b15c5c788be4fa343ec2f8ecf87cc4e7095a3c1f68c4d3d5765ab2944deee1
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

@@ -1,7 +1,7 @@
 name: review-task-ir-gitignore-ignora-egg-info-y-pycache-bundle-1
 path: desk/reviews/task-ir-gitignore-ignora-egg-info-y-pycache/bundle-1.md
 source_hash: 70ca449f1ac9b50c299db75736d80d86beedc72a2855e7ff771cf979f4aff82c
-content_hash: b2c0ee230789e11dcf1c0bd7eef9c48dc22f0f739d9ca32c1d453ae86a23b898
+content_hash: 24613d7e5a4b66f745aa08bb164640663c7b413f0938bc6ccce3acd4178923ff
 field_hashes:
   id: cf3d3a33cf024572cae496a6f322044983aa78b15775b12869c326b0c58b24b7
   title: 4e3e3629013cc936f11be465c7c0d8a998980cb98be332e50e6ef0ff73dba972
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 886fe3f706d885da0a690d752c4d4088dee3822167d255b763c337e48eda8aac
   disposition: dfcf336b90339cbd285caf3d563ed93ff04f0e171376f7d58b683ce73ae1a2bc
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

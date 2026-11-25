@@ -1,7 +1,7 @@
 name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-bundle-2
 path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/bundle-2.md
 source_hash: de29d28d92c1f2fd4d16a3b6aef5820e628181e1c269d6c64a95d384fbeb3b83
-content_hash: f2f0b58ed1c09efd1b414f56f55fd4cfe643d5c96ffdf50e28795b2d035521c5
+content_hash: efdedeb9ecd517b2ad2fbc0a5b3b18aaadc7cc04c7a7cf66bd3a1702ad9028b1
 field_hashes:
   id: eb4fb27c7a7ed502cd512bfbc1d79f546e0aaf02236d1efabfeb616fe60f74d7
   title: cbae82cc187287640e2d7933b1b7fe65cf991860e1934cb255d56efd27012718
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   summary: f5ce7f93f35ac158fd2b27f2eaec73c3826085fc00eb8eddb21a88a5d57f37f5
   disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

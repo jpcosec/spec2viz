@@ -3,9 +3,9 @@ model_ref: sldb.models.rule_doc:RuleDoc
 path: /home/jp/proyectos/SLDB_1/sldb/src/sldb/models/rule_doc.py
 documents_index: .sldb/core/documents/RuleDoc.yaml
 sections_index: .sldb/runtime/sections/RuleDoc.yaml
-model_hash: 35130c326a68b62c84338e476052790b997fee3c81ab5465940ca0775f31ddb0
+model_hash: 8c2358d62c63e76cf2aeea85bb75e9b88f2de50b9cb02e2b2402d6ffd4270869
 roster_hash: 1f69f84d511eef23b0fa047236f6c904cb0f658cc16a6dbe86d00e520561e14c
-contract_hash: f2d2b1e396ed140aece657606b2fd71913fed64d3e5ca0a999eda4f1be60a930
+contract_hash: 411e41fc4ed0641c8436fc5c5c32aef148da868661d58951614298568a237fd2
 documents_count: 16
 version: 1
 canonical: false

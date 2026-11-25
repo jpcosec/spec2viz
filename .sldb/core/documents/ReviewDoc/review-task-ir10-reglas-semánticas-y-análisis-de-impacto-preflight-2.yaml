@@ -1,7 +1,7 @@
 name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-preflight-2
 path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/preflight-2.md
 source_hash: f3e74f6652f5a1726cf3e766a0c3e91208061a154ea73a3d119494077167245a
-content_hash: f8e7cbbecd5068c0d9d4766a7c813555e58305455bc84482af3128f39e1d3bc6
+content_hash: 475bd8136a5afa295c75b8bc2b33ec9fc9b4e71e7f2a8fb6cc75578f82334021
 field_hashes:
   id: 0df6fa90af2c2f294b638821e4d1286b3f9ff4ab51e4b03883256c4e2d3edff1
   title: a9d063a098a3b6efcbbcd31eb408da1542f831c28cd7d1ff53cbb96847fc3fa6
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: fbeec77111ca8d7af890f73ecbfda3bd8500150a1c69784a66971e5ee6ea9076
   disposition: f29343bdf4407bbcbbba253a119d1f66b0ff3335a0be7cd0d01f7750482935ff
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

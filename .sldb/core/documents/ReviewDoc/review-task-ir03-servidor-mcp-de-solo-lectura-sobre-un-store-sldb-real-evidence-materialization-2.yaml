@@ -1,7 +1,7 @@
 name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-evidence-materialization-2
 path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/evidence-materialization-2.md
 source_hash: f19fbc805becb2e0643407f082b102c5f76f0df10fac24615738f17f578c42c3
-content_hash: 5788a87a44e7fa10ca27d05ad9b2c21d4397d139b943406b334db2a7a833e2de
+content_hash: 63a713b33fe0a9729456c1bef4bb9e14ba72451bee3728f2fefa1dc74ccac58b
 field_hashes:
   id: f7f7db6d9fb9a8b01346484ac463cea5975bc1da331414f1c1715ecbdbf674ea
   title: 2e6bc4823d28f7d034c4e6b2cd697b3f217aeb6f5bdc48a80b1971d2f8cfa081
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 409a47f3b64c6e3453f12047367f463bed3df8601b396bddd34db63365d6cf78
   disposition: 64f37556d967c4be2e6d27aa542ed728dfcd5bd70991dc28505b9baf9c2bbf38
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

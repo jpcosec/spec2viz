@@ -1,7 +1,7 @@
 name: review-task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5-bundle-1
 path: desk/reviews/task-ir13f-anotar-en-el-acta-de-retiro-la-resolución-de-pron-4224186-y-la-decisión-de-jp-sobre-g5/bundle-1.md
 source_hash: e8f4c9dbe6fcdaae04947bda9827103934aafed2bdfe21c621392c9d84944910
-content_hash: 2b7a697f53b095c001ef2d5eb53b0a929652f0fbfb6f2d37374038c496e1a7ca
+content_hash: 9d8e4f7854d70d394adda694f2248c54415bcdb0b8d7e168fb1a0313cbe83d1f
 field_hashes:
   id: 4cebad0a11595fb5f9faa1b8fcba6308076796c00e5b505279dadee8c63e547f
   title: 4b5029bbc1e58f90191911bc542f500c0d337989adc2d74e3f3996c95ed76f12
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 8db0346bd20f148864fc827568be721a7a22be922812cea4a725f5af89c1a2b3
   disposition: f7e27292973ee28886999ad44c22248d31d34cc01aacb8b396eb762ef05e93b2
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

@@ -1,7 +1,7 @@
 name: review-task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents-bundle-1
 path: desk/reviews/task-fixture-mount-copy-de-las-pruebas-copia-los-rundoc-de-runs-subagents/bundle-1.md
 source_hash: b4cc4f9ed45cfda52cb446c9ec176261a58c803948ec445ae35f69e05e6b67ea
-content_hash: 1256260d2aa9cfd2429a87c5e2b324db4624b4bae26e7cf5908f22b8698bac8c
+content_hash: f89232a9e1fdcb6420f4f3510fb36149d31849154c3fc08cc2a122452af485c1
 field_hashes:
   id: 25246a373f09c011a6bd79d11011e85b332a102ec1626abd6cbae575dec5d264
   title: e32683b2e1628314d8a532a00a024f855b0c00b30d7bbf4a85dcf48090e562d7
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 0c74f17bceeba8643f12e090ce63a2e3a1c0e56a188ba32900f813190f7e6287
   disposition: 045f58c12c1b74f1209228b2d0ba5181abd0cd3d89c62f36768c0e9afd367f04
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

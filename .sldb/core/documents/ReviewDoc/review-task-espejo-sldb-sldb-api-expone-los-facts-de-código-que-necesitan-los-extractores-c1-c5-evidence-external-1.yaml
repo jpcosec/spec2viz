@@ -1,7 +1,7 @@
 name: review-task-espejo-sldb-sldb-api-expone-los-facts-de-código-que-necesitan-los-extractores-c1-c5-evidence-external-1
 path: desk/reviews/task-espejo-sldb-sldb-api-expone-los-facts-de-código-que-necesitan-los-extractores-c1-c5/evidence-external-1.md
 source_hash: 743bd482fc2edda32397e1897e34d44e358e56f00bb647acfd4f216458408c07
-content_hash: 52e5ece016a336ef96884a0ed1a4c9c8762cbfa0f29225199eb93c850c67a89a
+content_hash: 231367a0f0efcf03fa74221b85ef47a48a561f0911799644c5b096eaee093fed
 field_hashes:
   id: a21c2f78d2bdd0eebd41957aad8f23e92b48b40ad1c84cd717124856d5a8a5b9
   title: 90eeb08e074f6279fe3c64aad503d9d0c86967e95fe5a761c262377ad53ee8be
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: d9e8831a873d097a8b134654fdb3e900b901b6f69bea0b69a5c53b2c0c2f2975
   disposition: d71835e4d3affc2476ff9f2edaebedd85acb86b0f19995bcc52d8dd8494cb60d
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

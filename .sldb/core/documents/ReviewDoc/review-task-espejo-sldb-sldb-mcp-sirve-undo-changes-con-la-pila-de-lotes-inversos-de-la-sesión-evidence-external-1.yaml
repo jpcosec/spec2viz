@@ -1,7 +1,7 @@
 name: review-task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesión-evidence-external-1
 path: desk/reviews/task-espejo-sldb-sldb-mcp-sirve-undo-changes-con-la-pila-de-lotes-inversos-de-la-sesión/evidence-external-1.md
 source_hash: 573447e1fbb753e63bbc2500cff69e6412246db94bf54da5b7bb21f0c6bc8af1
-content_hash: 60969965d8b1799b76f97e6e6628621947ab495d67741158a5d9e8e0f39de675
+content_hash: 4f27a14d7cce37508e4bdd85727b3b3d1628f46463e44503ad27478fa9e53208
 field_hashes:
   id: 46ba90e697bfbaeeec735e7e04cdf42691efa0fd04ea8af9b887218027c71062
   title: fea53580c6b4d33becf91d7ca39e8f05889be5245c86ef0ad91b39c12e2b2ba2
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: aed85d6c84dda10250e7bdac69df7bc4bb191c8b3db54077d8ce9f8ab109aed4
   disposition: 452651009963ee55747b92e73bca723125b03b5206582a89fe9c6578306fe617
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

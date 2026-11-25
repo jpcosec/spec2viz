@@ -1,7 +1,7 @@
 name: review-task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo-owner-1
 path: desk/reviews/task-ir05-decisión-procedencia-y-divergencia-entre-código-y-modelo/owner-1.md
 source_hash: 971fb6124843a30264bed92b6b3dfb5b81476d18a7bd2ea89f16b9773c80efc0
-content_hash: eb713c9908194d05ddcf9dec9ceeef044eab8e8eb5ceb4eeee03f2f2dce285b5
+content_hash: 00f0211ca6539f954475e23a56a3aa2d1003ffa54916f82a1f7769787a1375d0
 field_hashes:
   id: 0fbb33c39bf2730bc6222b6f9bb0411dca1d6479925bef583b2c540a0a33187e
   title: 4b1cf6042e83c3d3581628d0e585d8205a0103d00107749fbcb5d845a1b86221
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 7735b1af9e1a496fa0f36df9a318df8a8253c73fe4fc00804339157235f7a7c3
   disposition: d8eb8ceb9fadf1fa0ad5d9712be4469375e41b8c6356da99a6856e809ba8c06a
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

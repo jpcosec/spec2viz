@@ -1,7 +1,7 @@
 name: review-task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos-preflight-1
 path: desk/reviews/task-ir13b-catálogos-anotaciones-y-emparejamiento-de-átomos/preflight-1.md
 source_hash: 0c393d59964808c82790d8cd2dfab18f9f0bd8065be644f3a6a356094bd731d8
-content_hash: f8448a9d794c3ba8963ee19a7f8f84da9f8c59bace8460da3bcc0c7c2117f0f6
+content_hash: ea1886f867e66988c6b9e0d6f235641cf7239642e82aab8bd5ff52b12a58095a
 field_hashes:
   id: 0c045f2b22bec51f827308e5203c60a3d190e2cc0ec9e7a057620a73c11d2827
   title: 92e526250a5183b5fb5dc4e39bfbd7570ad672ad06bd2b09e96f16d1bc061062
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: c0967066eed34b4fe1487d4f7d19e28ac9183172dcacd0a6da2793a3449f43a3
   disposition: 8f08e1f9b52922fc821ca117086dbb766c4d89404078c38907b30938643eafd5
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

@@ -1,7 +1,7 @@
 name: review-task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02-evidence-commit-1
 path: desk/reviews/task-quitar-el-xfail-obsoleto-de-label-key-en-test-catalog-tras-el-arreglo-de-sldb-06dbcf02/evidence-commit-1.md
 source_hash: 10b7bd354740bbb8144ebd5aae11c5883daa8394a01eacfe0d1a2d58b0cfe865
-content_hash: 5eb62520a4d4b734344f7078a4bd0827f692768a885971c7cde26ddfe640b4c7
+content_hash: 087a3522792880c08439fdf68e059f41ee49038e86fa888e28951ab47d9f5456
 field_hashes:
   id: f93f4424856743f6e919e09ae8e618532beeb2c0996b829b554e97b60ee67dcb
   title: 832c2d616bbd53e2e32d60afdb1478d3f8e11c2c023d1f0b9d9fc9b4fb2b2860
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 214d851718173d451e9ba45655d1db19490bcfe0cf9fd3e81178a437296d8365
   disposition: 587f224a1765db072b00a6ab5f0ce8e1a2894e402c0f19caefa7e55ba0bb7536
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

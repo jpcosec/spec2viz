@@ -1,7 +1,7 @@
 name: review-task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs-bundle-1
 path: desk/reviews/task-ir13a-sincronización-de-specs-al-store-y-generación-de-specs/bundle-1.md
 source_hash: 45ad7525d47e9167aa6de71f1760adccdeae8bbc51150e3d0069d8d841674bb5
-content_hash: 7cb39fb3218fd7ccc7aeb444936ae47e73be442fe46e3bc8552b1a1356fb79fd
+content_hash: 00aa6b36ac1b631050daeebd7fd97f8bf0bc8de7835c00a96afd2a3a5231d9b2
 field_hashes:
   id: 43ddf98ad831e7fb2d77545cfb8d92eb31c17b1a0098a4e323977b0e47cd86e5
   title: 20fc30dc6c7037f1711e8c3dd89c3a182240c963d61d5d89799ffda149d5b063
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: d6494ebff75a5a793ca1daa78421ed55547c8c07d7d2b05b8281987641eb3908
   disposition: e5b15c5c788be4fa343ec2f8ecf87cc4e7095a3c1f68c4d3d5765ab2944deee1
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

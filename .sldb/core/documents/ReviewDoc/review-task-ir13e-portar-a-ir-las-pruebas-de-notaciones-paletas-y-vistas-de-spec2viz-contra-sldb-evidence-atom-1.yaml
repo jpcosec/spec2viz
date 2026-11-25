@@ -1,7 +1,7 @@
 name: review-task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb-evidence-atom-1
 path: desk/reviews/task-ir13e-portar-a-ir-las-pruebas-de-notaciones-paletas-y-vistas-de-spec2viz-contra-sldb/evidence-atom-1.md
 source_hash: c27f5d7ae97a999ec06caaf3320b982a621c2a80d617645896953ec3eb3206d0
-content_hash: f192ac20581b60fad5de7593746e21f5840edf08137b1a8094318eb806b12942
+content_hash: e1931f7fd48f6d0fc0840c3eddaf3579890891e922dc57812c69f7a08fdeda62
 field_hashes:
   id: 1aaa58029505f95625d3e2de08898669aa9a29adad5e9ce0f92ce90f164361de
   title: 43877c208c80551bb1d633509aa9c1d85e740071e12ea460e29050ae13f5fecc
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 6e26cd608cd85fd560e8e26cb70702dbc2756bbd770ab7c15373b00ab5ce7277
   disposition: ee38c07238fb466f4c25b8236ea70ad89f72fac934b8504463964e8bb879f593
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

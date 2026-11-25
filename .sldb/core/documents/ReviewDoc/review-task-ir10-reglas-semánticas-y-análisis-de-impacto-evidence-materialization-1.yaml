@@ -1,7 +1,7 @@
 name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-evidence-materialization-1
 path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/evidence-materialization-1.md
 source_hash: 20e7ae804d3911e101dc18138e163522b498edd371479ad8e2311caa09596725
-content_hash: 213ea8dcb6acb90ddb51aec19563eaa6180381272f8cbde5ba9e6291df9528f4
+content_hash: f5bfee4688e6da22be96cf45d37e08ec35605180243115d845d4f77e417392d5
 field_hashes:
   id: bc0ba421072917f2ec680ad0553d0e981c86a125f5886c4c0c4a74be48147f92
   title: 37e15f48d28e0ab61410a13370f3c3c874e0635baa70f168c6e5feb224bd7127
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 45c6f3ee076c18959d814d5ded19ebb8da22dca51e906fddbe9ef41751ded5a2
   disposition: 3c3f23a31145beea73a6207601a95ae78b4932730dbdd645a07bde91f716ec06
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

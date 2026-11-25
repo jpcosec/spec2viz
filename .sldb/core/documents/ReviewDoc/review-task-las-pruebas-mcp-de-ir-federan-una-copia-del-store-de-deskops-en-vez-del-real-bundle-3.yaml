@@ -1,7 +1,7 @@
 name: review-task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real-bundle-3
 path: desk/reviews/task-las-pruebas-mcp-de-ir-federan-una-copia-del-store-de-deskops-en-vez-del-real/bundle-3.md
 source_hash: 1f781bc13ca0f675f4cc2f29978e2023d67ef2f3a072ed4b7fbdf31faa7c00ba
-content_hash: c56f41cac68ba82576ff631db723f69034e1a1645f4f99eebfcdba2415ed11c1
+content_hash: af01769e027643545413a541de44324993c98be679ec1ed0c79dd02863ff155e
 field_hashes:
   id: 61400bd1bf42cfed3051da72f7f65f874aa3be6922d906cc912c8813d6698355
   title: 50893d1ed66190e69eb21db1ea2e4e280d2266a89d5f9b13a8128ddbe55f0c21
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   summary: c9c0327e1b6e87ad2f81bf80f7b361fb9408a8c4726512261e1398b05df62faa
   disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

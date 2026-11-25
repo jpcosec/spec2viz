@@ -1,7 +1,7 @@
 name: review-task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real-preflight-5
 path: desk/reviews/task-ir03-servidor-mcp-de-solo-lectura-sobre-un-store-sldb-real/preflight-5.md
 source_hash: 979caa8e095a98a22769ba2e5458e5c4b15b1f3c946bdd03f139838360ec1631
-content_hash: 1da2378eeb3462f66087af1bc972b77775edd966339c787375797628512f70cc
+content_hash: 34953d8b55eabe024d08a1558941857f3287f2f15b171965ce0e1c6b3f08ea7f
 field_hashes:
   id: 1fd16d6c253ca11358b5cba67102de33059b0198016f84c51b68c619571ae884
   title: 64b2f07cdad8ee7fe5eb517e852eec085ccf0a88d73d33d92b323396689845e0
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   summary: d7f8ad781a46af973d9e480eafcd37b29bf21e5987f9a89b6afe36caa6845427
   disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

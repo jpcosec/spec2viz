@@ -1,7 +1,7 @@
 name: review-task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import-bundle-1
 path: desk/reviews/task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import/bundle-1.md
 source_hash: 5062a17198ff6a7991333a02e449425185a427ad8fb053e316396f7592837fcc
-content_hash: f43c1c2f5be40f5b228c4708d7eb5c4c085ce5ea2f7b48c443e2b4233c74feac
+content_hash: 9a0868db8079ce97c67b1797440f28d3fa338f5e34942a04dd4b67c07666d0f8
 field_hashes:
   id: 8e16ef727146d908bdc1c0c5b46e1b80b616389811526fb090d3a443fbd56a6d
   title: 3e695f1d7eb619db230ebd93391391161466be9a9cf7a5147ea9e25794f08c18
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 92445765bc0fa4a3964ba5cc283b45d5e8361064f521f5a9ce723ce9dfb610ee
   disposition: 3341faafd529d0741b6676133cea49db1e91c88e83351c47bfd6788123e651e5
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

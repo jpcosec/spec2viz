@@ -3,9 +3,9 @@ model_ref: deskops.models:TaskAggregateDoc
 path: ''
 documents_index: .sldb/core/documents/TaskAggregateDoc.yaml
 sections_index: ''
-model_hash: 9214d8df794419aba370aa7f623cd210837614255521717c431714fd925730b9
+model_hash: 128e4848eaf7417d845b53b2513b6fd5b07b130851b60639fc160a78b47436fb
 roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-contract_hash: 6ecfd294671880bb41d5a72daa82bf310e4618809f3696bb64111d232c8ac9c3
+contract_hash: 6161d05a36c66c113c1eec817c0ab0f9907eb1b2bfbe4c7fc3bd8fc66eaafed5
 documents_count: 0
 version: 1
 canonical: false

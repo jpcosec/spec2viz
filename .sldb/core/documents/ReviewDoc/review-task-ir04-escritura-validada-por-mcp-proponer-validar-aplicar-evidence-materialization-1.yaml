@@ -1,7 +1,7 @@
 name: review-task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar-evidence-materialization-1
 path: desk/reviews/task-ir04-escritura-validada-por-mcp-proponer-validar-aplicar/evidence-materialization-1.md
 source_hash: 24bbe90269eff6c3c2494c25361d2b34502b1a671d20c23ca8227927d601858a
-content_hash: 36987bb24ac8dfe4205e5f5df2623d04e31b609c7279a0d3febfed32f60a9bc8
+content_hash: 560ffc04e6877c9daf6e69b212ec99ffe8941aecee52c2d0efb675ac4af3a50f
 field_hashes:
   id: e60d9be90a26cf7d42a5a158a365ffef71590a9674621e2dc6e45832c3329854
   title: af00fef53983f6daa6db53b27f1a616dc625a6281e248cad2e1b1db3c7468a19
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 3d086593ae36ed44bceca3a42282c4c9141373ba4e64f8eca0465a3cce280935
   disposition: b95b51b651ed80688a1bc6dbd10fe4b63c32e7b61b3d7734483825001ced00e6
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

@@ -1,7 +1,7 @@
 name: review-task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr-evidence-atom-1
 path: desk/reviews/task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr/evidence-atom-1.md
 source_hash: d4c37f9b6e4dd4ac80f4532669f4aecd1cacd3829e3bede23ade20663511eddc
-content_hash: 32f79e39d76dae79fe6be7fc7bbc909286470dcaa715d4e6cbd64acdf68964c8
+content_hash: 4091eb51e5c5abdc6b5ff74cb0be2cc79294e398d3dde9fe9054b83e9d21d424
 field_hashes:
   id: 4f3863a1bd4ff3664e932c32f4c4c732723df5e291f1f0dc8ff7a230bc722bb5
   title: 7083c4e9e371f3f86ebfa8ab17e440dead9c53764855b6c32f9c26d055692825
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 6ab114e43ea26899d24a7c80e69a5af0528115fa6a7435526e9b566a9328510d
   disposition: ba3be879b1c9a757d0e5df7997f0f361cccda2110ce9a0ff56a2843d74e93e53
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

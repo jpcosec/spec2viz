@@ -1,15 +1,15 @@
 name: task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca
 path: desk/tasks/task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca.md
-source_hash: b1c278ecaec97c8591dfac637f211a919a99ec4ed8dea6e250d1f523d9740102
-content_hash: 38066833af80f102f1b03089ccd8fffbd47541e622ab60fa4ff67ec0fdfca945
+source_hash: 5e8a6bfce76707aced0c69499c009e0e5cfcc357afe44a7726782c98069e2ca9
+content_hash: a3dd991c0c2ea22373f8adac080f4bc13bb48fb8cc58d0d16f8021b98386a650
 field_hashes:
   title: f321ae6cfa9ffa51a6d33be6ebff3eb23c00ad3789c88d5de39dc36540563515
   id: 2dbbb13b526eabd03fb749bcccc36ec410380b136ac9d47baf8171b6927dabbd
-  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
   summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
-  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: d10f5286503cbf750af0584acaec732741c2d9cfbae2a6d5b8ce45b8bf83b79d
+  history: f89b8fd2ac9e43a24ba505d162381268ed901d0695f62c6ad8ec2c62718dfa1c
   why: 5f92c7996f9a2e402710fe5a308fed481aa3d0f7244d86365060fb2965303b27
   goal: 9410843dc46643aebc94054af16266bf6a26fcf4b8ad4775d799a3beea54cc9e
   scope: d6969123243d5407f69756fb7211442194268214354023e9256165cf2e3b96d7
@@ -32,6 +32,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T02:28:18Z'
+  at: '2026-11-25T03:14:00Z'
   authority: generated
   via: save_document_payload

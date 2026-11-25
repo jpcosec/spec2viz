@@ -1,7 +1,7 @@
 name: review-task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog-evidence-materialization-2
 path: desk/reviews/task-ir06-tipos-de-dominio-transversales-y-cadena-de-prueba-del-blog/evidence-materialization-2.md
 source_hash: 2521df9df6985591556ed08b9c8a584bcd3ef44c39e3a1123e06a2603639532c
-content_hash: c6b6369f3ac31ce978d8787d7de7ebeaa7e5e0dc8b7a1fc4224a67f98a4ef1de
+content_hash: 09f2851cae213459d42961ed013f07070b30d4bbb31fd36f026b54abc70cd92f
 field_hashes:
   id: 5ecc465ac1893e0f9c2947e0b85230334479c927105a9df75de92684c44b8621
   title: 2d4fa6ce762f4fae6e45d08a325c2410557ac857240951484e38497db308ccb4
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: a86634f8c473aabde9dc0c6701ae5c61e36480a974f2a09ed13f500605cf76de
   disposition: 0cd1bd0a17dc49bb4dc8612e938206e9047450186a18ee2e72597c6e4c95ed4e
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

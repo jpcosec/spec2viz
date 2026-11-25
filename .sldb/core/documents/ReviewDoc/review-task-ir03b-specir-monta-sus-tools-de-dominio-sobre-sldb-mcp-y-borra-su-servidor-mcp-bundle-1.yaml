@@ -1,7 +1,7 @@
 name: review-task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp-bundle-1
 path: desk/reviews/task-ir03b-specir-monta-sus-tools-de-dominio-sobre-sldb-mcp-y-borra-su-servidor-mcp/bundle-1.md
 source_hash: 312403d8e766c9463f048b22eebff1951a3f581986dad22550d92942735ee23c
-content_hash: 41be7bcebf81c737fd88e54a77ad08cd2968bbeb53e65cff747f441fcbc64e9e
+content_hash: 2315e3f37552f25e2f1a5dda02bb3bb12549988ddceb167ecfa48205ed09b413
 field_hashes:
   id: 3968ba02451c019886b33f960c81a9529dd579bbcd802829e83fc22b287f76a0
   title: 5b969c27df2ba99dd0d1d56e6c4b180ab7fc7e8c820bb0d4a8531b12f7b06983
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 551184598fd7fcff04b51341fd3e7994bc96f013b3facc8f956450f70492a1c9
   disposition: ef56544d55a4f8f685c1b990aeb991c3655778d2da5e615639d1ddafabeddbc1
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

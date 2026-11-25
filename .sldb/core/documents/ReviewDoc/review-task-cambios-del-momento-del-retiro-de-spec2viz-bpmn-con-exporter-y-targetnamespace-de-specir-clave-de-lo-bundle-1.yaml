@@ -1,7 +1,7 @@
 name: review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-bundle-1
 path: desk/reviews/task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo/bundle-1.md
 source_hash: bf798486f1eebf04ba9715b26c0bafd79d15807817245cabb38f112108e413df
-content_hash: 540665cf818336ac81132bfaddc5946ff5337651e4d051fcc0fbc5565e6ba040
+content_hash: 1defb74363809247b63ef1ef364c5265fd9877977f772e5ee3ce00a261282150
 field_hashes:
   id: 977d5a969560ac53be1035de5468a87432b9ae188e48eaac452f7678499694b5
   title: 3f228811c51acca6966da04748767d35c37178a0d059fee1a81e9b00920f6d91
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 79a4e0f0be7b09f989ecbec92fd2952ed2c9ed8400b2e0c300acebd7300b1b13
   disposition: 6eabeebea456bac6555e17b732f03dfc4989f1d86c71cbda06070e5e412594af
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

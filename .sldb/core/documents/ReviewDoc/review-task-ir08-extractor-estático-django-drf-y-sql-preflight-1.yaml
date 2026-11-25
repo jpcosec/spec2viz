@@ -1,7 +1,7 @@
 name: review-task-ir08-extractor-estático-django-drf-y-sql-preflight-1
 path: desk/reviews/task-ir08-extractor-estático-django-drf-y-sql/preflight-1.md
 source_hash: 809299aee006f25584ba7a5819abc4eac8372c1a86d838123b013ab598eb6049
-content_hash: 9f09c4f96326f1622745a33b4766b0d84f8f3ef339d58f453fc6ff3d0183ae24
+content_hash: 3d12e55e3ce12e64d3f780718a307636409654cbeddbb36eb38c23f3436dc4bc
 field_hashes:
   id: ff64c27137d8475af026eaee21813b323f9eafd0b716c31756d7ca61c11867f4
   title: eaca64321f8ecb89cd3449887d366f58823a7ca5da6facbaf7de7a7491c10630
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 4ef4e4927a6a4a877615604398d798d08c3c73b550d7abd031a581069259a7ff
   disposition: 8f08e1f9b52922fc821ca117086dbb766c4d89404078c38907b30938643eafd5
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

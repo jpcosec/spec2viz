@@ -1,7 +1,7 @@
 name: review-task-ir10-reglas-semánticas-y-análisis-de-impacto-evidence-atom-1
 path: desk/reviews/task-ir10-reglas-semánticas-y-análisis-de-impacto/evidence-atom-1.md
 source_hash: 4f615c1d480f2313816a17f348b3832b4f5e9f0973b9b0ca93af55dbb402bde0
-content_hash: 49040545f105fcf0ff7b4816257381967e745fd6745a054e2878c7cc48f3960a
+content_hash: 0cc5570c212b298258f02a603ddac0373fae34db82bac6c37b72d48f455fd088
 field_hashes:
   id: cb2d96fefc544a6f0ff0c76980532a029a5a0269da013ae60bcd5a7a812d50b5
   title: 993aaa04d29f251f3cbf71fd9480b62ff57c0494b0321a56812dbe86b6576c2b
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: d3825499618df7ef33a7619dc86b2d3262a5e868716d4be0c2c3c9fff4b8b4f9
   disposition: dfb71f8d06d74906ad6d3ce8bf1ed41512a52944c09260b99d6f8c57fcb2cc24
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

@@ -1,7 +1,7 @@
 name: review-task-ir11-compiladores-y-proyecciones-de-spec2viz-bundle-2
 path: desk/reviews/task-ir11-compiladores-y-proyecciones-de-spec2viz/bundle-2.md
 source_hash: 4fda4c2e966c463ddfaa862d2aea75ad173e2e5e2f1b7a9325d0ddd7b89d52b2
-content_hash: 6d0f9908de81ebdbab193477cc9d44ecbf9a95deca98169f1f13723a1dbd2be0
+content_hash: 492d6bdaf09c698f58f26ce72982f6eaefe3cabcce74baf6a8970eebf54ad5d5
 field_hashes:
   id: e3e0141220deec3a95f33dfe22444aa66bf06be85f39a26cefab1a3aef5bbc9a
   title: 0f28db38627fdebb5989948c2e81e3384ae1cb2fc9027ecfb9c4fe4011dd74b3
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 0b3c17758e4d9f9e68e99b1eb06efccef20905d7b56e227928d5efb2bcd100a6
   disposition: 640d39390f97d4a169d27b0531285332eef81db42a32b3658644f9ccc0929335
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

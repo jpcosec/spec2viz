@@ -1,7 +1,7 @@
 name: review-task-ir09-extractor-estático-react-tsx-y-contratos-de-api-evidence-atom-1
 path: desk/reviews/task-ir09-extractor-estático-react-tsx-y-contratos-de-api/evidence-atom-1.md
 source_hash: 7861bef8d3afcc248621293c281f36c4dd22fd9ba649f0304d45866d23e2791c
-content_hash: 0ef13078bf4d6b5d05cbced9573b0bac385f92dc8bb7194db2254c7a8912985b
+content_hash: 9cd3042a25b79c886ab5102aaa9d22918fc7af1cf305989e0021e27ff277ee94
 field_hashes:
   id: c5cc489b79cf70b4b7d450696e56950612e4d3a8a8df9ebf1473928787651b53
   title: 83f2b9d77878a8256e7c110323f3a84bdb64086d4267eaf033961b9acdf5c049
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: d3825499618df7ef33a7619dc86b2d3262a5e868716d4be0c2c3c9fff4b8b4f9
   disposition: dfb71f8d06d74906ad6d3ce8bf1ed41512a52944c09260b99d6f8c57fcb2cc24
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

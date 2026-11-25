@@ -1,0 +1,36 @@
+name: review-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir-preflight-1
+path: desk/reviews/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir/preflight-1.md
+source_hash: 4fba841772050b1842df93dccebcc98e0e864a6b0d43d6b5b3f4fc043efef6ae
+content_hash: 06736bdd52040262b683e16184340304c2d92b3ca3376c40270ea1bbb03f83a2
+field_hashes:
+  id: b53099a2d4c6a663cf403a5c12acd5871048d374ce6fbfcdcd32d474187874d1
+  title: 85773395942dec8446166947478604d08b72a153191bf187fea06c20b9ab5744
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 5f00f83ad2de3ccddfa06112226b3b751c4f7e074e12286f3c7e605b81ad02f5
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 1e03bca5e12ab9a3f30176ba8977c2ac777e683e68487eadeefd11b01e5abb48
+  input_sha256: aa15f90512bbdb3f901908691b4f75b2c02f261b576e8583a203332256114e09
+  contract_sha256: 09b78ddac6bd148f70dbc3cb498e1d899d96046215950385aba06896ee89b786
+  output_sha256: 24a3f92da0ede2ec6929fe39c3584b832072114671c7d64b8a2b9d078efaa2b8
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: b3d26e3bc5c7f6298d2572623067dc9cfd353abe1ef51ecb4017f4acb9871c6f
+  created_at: 0713524eb0e8a0e914cd369c9a0eb6641eb778b5a5920be7febdb8d1e2621f9e
+  disposed_at: 45d867d4ce3942d6acbf3e885163652d1a1ff68f9a7b3853a14d6de64f36b97a
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 0b4195b2ab415e4361daedaaf80419767d3f4fe0404435dc98fdef385910ec1c
+  disposition: 35e8b4b235759fc574497a9ff869fb29571d31baae8ef1d66bba216b9e927a24
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T03:23:48Z'
+  authority: generated
+  via: save_document_payload

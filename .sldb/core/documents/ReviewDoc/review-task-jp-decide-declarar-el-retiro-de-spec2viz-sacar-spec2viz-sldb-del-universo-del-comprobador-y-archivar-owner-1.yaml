@@ -1,7 +1,7 @@
 name: review-task-jp-decide-declarar-el-retiro-de-spec2viz-sacar-spec2viz-sldb-del-universo-del-comprobador-y-archivar-owner-1
 path: desk/reviews/task-jp-decide-declarar-el-retiro-de-spec2viz-sacar-spec2viz-sldb-del-universo-del-comprobador-y-archivar/owner-1.md
 source_hash: 8e0650233b319fa8cd9e060bde5e87424e9728c0ba557448e82391b1f5872a9a
-content_hash: f4a3a7018b46e511e5f3117281964000a9d6a0a38bb85a90a3096408ac7ed60e
+content_hash: b96c1bde839f05100f75c86ba7aff0b0d0176a482d68d1d4cec5658fd41303b6
 field_hashes:
   id: d543d4872316f508e1d8cdca94edc1fe336015122e4e3b365d1d72eea5b7e03b
   title: 5d966b709f79580a65a3bfa71faecdf94d8e1fce4fc6dce7388c0699218c60ec
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   summary: 2cb7f8015b12fdbee39bb7bbfefc93b3e0889c5b6ccee5e873e08014b6fa67fe
   disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

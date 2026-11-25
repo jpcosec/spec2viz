@@ -1,7 +1,7 @@
 name: review-specir-reemplazo-spec2viz-sobre-sldb-ir03-node-2
 path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir03/node-2.md
 source_hash: 14af3637874da535ef2db2b9c2714eac87751903ed474c4553730879e53052bb
-content_hash: 358cadf59c81672998beae9229acd84e6c44c4c65f704259334ee701e850e6a6
+content_hash: d9928cb7c7fa2c25cf2cd2dfd6a90aa4ea6bbea44f7bfb6936c0601648ab8c65
 field_hashes:
   id: 760f2b1ccdedc3ad177f107c78b247c42f0e5ee9ea4269238dbcb29f4bb0cc96
   title: bb2db38d070491738ebb3ba8d5f0d1eda07cc34a1ae72455b5e60d33bc2d4538
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   summary: f78a164aa5d71136d12e4d15642bd3de0ec56e38580812179cbb3c6e0a26899b
   disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

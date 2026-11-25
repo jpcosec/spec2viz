@@ -1,7 +1,7 @@
 name: review-task-espejo-sldb-component-spec-from-python-lee-solo-py-regresión-de-b2-que-rompe-2-pruebas-de-ir-evidence-external-1
 path: desk/reviews/task-espejo-sldb-component-spec-from-python-lee-solo-py-regresión-de-b2-que-rompe-2-pruebas-de-ir/evidence-external-1.md
 source_hash: 63e9bb1eb514f5413d103e119d81cdb60f6fcda8f5d09a6a6cf4228e098dc57e
-content_hash: 8cafde7f56ddbdc8475f5cc71affc2a94ef42abaa9f3d6570d0c03644e701c63
+content_hash: b4696f05920328c7d4358461321255f68153a2e1051364115d6e20e265759676
 field_hashes:
   id: 39639a322237601d273b4d0d795410556be605c593e4345b9745ca7af42caee9
   title: 700d0fb78c2ab3bde473d9eaa280f9deb0d24303650d4d269fbbe1ad8b83ee4b
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: f733cd2a5e3a3db10c0945b2cdb61d07b95bb591f94b5048366440019ed47a0c
   disposition: 6c0dfff060da43b2472890ee9b2b01ccd1ec42cae16ab94fbe5d642d321e32ca
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

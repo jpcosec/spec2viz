@@ -1,7 +1,7 @@
 name: review-task-ir-gitignore-ignora-egg-info-y-pycache-preflight-1
 path: desk/reviews/task-ir-gitignore-ignora-egg-info-y-pycache/preflight-1.md
 source_hash: bb5694ecb09f1f5134a6f56bd61d8343ade17f7295f1092ef1820c393936aab1
-content_hash: 86d8b75a6cc0823bfe340a69adee60699181c0f2468cc9d122c71c7a5e1ea416
+content_hash: 3f67f151a78a81961018d6abf61632cc084c9bc4fa8037282aa928d90a395199
 field_hashes:
   id: b6724f845284efa5858d120b794ac3303f40d72a4371be660202bc36af4bcfb0
   title: 543b9720654624be29ad97e1e751929d273a73dd868c02f222a297c16a0bd1f7
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 4db4b1d3c491945f778f4b628b0eb1478bb9ec49c363ae540921996c5bb63af1
   disposition: ef363be2e8db00f944b6a143d2a5e70cacce6143840a2f533456d8dab6499fd2
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

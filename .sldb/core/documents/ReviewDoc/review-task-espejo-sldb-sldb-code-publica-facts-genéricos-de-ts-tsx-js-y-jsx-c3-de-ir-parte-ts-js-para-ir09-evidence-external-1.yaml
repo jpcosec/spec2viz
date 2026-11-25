@@ -1,7 +1,7 @@
 name: review-task-espejo-sldb-sldb-code-publica-facts-genéricos-de-ts-tsx-js-y-jsx-c3-de-ir-parte-ts-js-para-ir09-evidence-external-1
 path: desk/reviews/task-espejo-sldb-sldb-code-publica-facts-genéricos-de-ts-tsx-js-y-jsx-c3-de-ir-parte-ts-js-para-ir09/evidence-external-1.md
 source_hash: 380917ed978f291b41d825428c864722f0f9262c319646a236cfb3ec7ba7de1a
-content_hash: db2a06481ec2e7305b19f6c086cff3092a283a060c9cff9b7c82287f4a3d301c
+content_hash: 553983ef0ac0747ff45c7e16702749213d6dfe3c65e082a7686d5e86c7c91df2
 field_hashes:
   id: 0d5bac8919b1d9950557f770f288cd204bd6a5092fea1fb895f65812f3e06dab
   title: 814cf2ac610786a0360e9758ecb703a470a7597cbf0da1de995c90ed4cd07463
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 5ae2535ac619bbfa07512b8b0f9c0bc0709f4c4d6e05b94b2e28f50b54e3a8f5
   disposition: 346e1b59f2db58fc9f3eab732f1625457da3b9260d18a2ad630286a4d4a010b1
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

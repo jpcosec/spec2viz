@@ -1,7 +1,7 @@
 name: review-task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4-evidence-commit-1
 path: desk/reviews/task-ir13h-registrar-en-el-acta-que-deskops-ya-no-depende-de-spec2viz-y-actualizar-g4/evidence-commit-1.md
 source_hash: bf707b1c1acbb5e6b16f5fa0fd65b2099e1d5824ee442680e7f8cf4e63cdbea4
-content_hash: 41d934120e703478f303d47acc0516f34aebc89f341fc964bc32fdad0fc5d475
+content_hash: fe22ed350743201eefc017daae73bd0c5e2b3260aafc3396fc554692a7b10612
 field_hashes:
   id: 5e58c6c367bff27cf32df593fc8e19b03bdf047a931d8ca11b84504d6653c4d6
   title: 31b0b18640a91a6341f9a35b8006b55dc313f8f1a113d79523361921bfc953ba
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 5ed6e7f6b26d7e319f2156b33700203ebea5796a5c8ce825572ee244424c6fe0
   disposition: fb2df828e0f389369cc5d2c623975d64ad089cbfa37e23d44f7d6ebd392061a5
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

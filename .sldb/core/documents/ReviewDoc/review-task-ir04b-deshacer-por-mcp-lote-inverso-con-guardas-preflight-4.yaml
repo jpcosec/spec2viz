@@ -1,7 +1,7 @@
 name: review-task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas-preflight-4
 path: desk/reviews/task-ir04b-deshacer-por-mcp-lote-inverso-con-guardas/preflight-4.md
 source_hash: cfa22e4ac3f5a0b87ba14040d0f93fbaedb950c992be90b0f969ebf2d112bd20
-content_hash: 93f7bb0da8db2f5c4e35b542301597f191ff412898f8945801ba60a24a6bdd38
+content_hash: 84fcdbbf2d5f78a342281e9ec3af37d6ffd49094d7fd7c2a0be4c23f016058db
 field_hashes:
   id: 9decc285a1683e10096756ef4aa31c59ef3bccea925621e0bb67dfa86c48a111
   title: 21e830a1bb4e1939bacaad2a6ec91ab7a20021f6962c50e518aee4bbd4ff3d5b
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 16be30f0e714e70ff7123634fb9fd7e6ffa89415e45b3326ac5308aa636020da
   disposition: 43b5bd5c9cdb912f3c2fce2c5dc477a70dd3d44b97d20bd4402f7bcbd6a376b5
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

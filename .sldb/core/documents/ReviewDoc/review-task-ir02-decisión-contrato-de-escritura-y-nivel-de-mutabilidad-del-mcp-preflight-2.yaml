@@ -1,7 +1,7 @@
 name: review-task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp-preflight-2
 path: desk/reviews/task-ir02-decisión-contrato-de-escritura-y-nivel-de-mutabilidad-del-mcp/preflight-2.md
 source_hash: 40627d4e14db5d8c789257ae0d6acc9cac9366b8edfe51b3c23215d8a2515e12
-content_hash: 5e857f84f728a2b04e09ed96febcf9308ea41b451087e28f72e9a93f817cbfc2
+content_hash: 96c3046a2c755bd308dbbeb51251482434ce9cd258eb4e7aae69a374e6c8c999
 field_hashes:
   id: cd125ac6d00be4566d3222ebc25f95913154a13b1edfbd448cd3501ddb5e0755
   title: 24791af5dbd6a950fefa06db754c77f6d20a3b86b690629b250a33ab0c413c48
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: cade9acbb3fbc72fa8e40c837dd8e03ddf0cc1ae54001be8041320a9dc139e89
   disposition: 8f08e1f9b52922fc821ca117086dbb766c4d89404078c38907b30938643eafd5
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

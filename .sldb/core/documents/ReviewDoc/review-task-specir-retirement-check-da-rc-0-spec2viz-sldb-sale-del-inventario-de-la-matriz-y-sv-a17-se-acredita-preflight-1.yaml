@@ -1,7 +1,7 @@
 name: review-task-specir-retirement-check-da-rc-0-spec2viz-sldb-sale-del-inventario-de-la-matriz-y-sv-a17-se-acredita-preflight-1
 path: desk/reviews/task-specir-retirement-check-da-rc-0-spec2viz-sldb-sale-del-inventario-de-la-matriz-y-sv-a17-se-acredita/preflight-1.md
 source_hash: da5da8e429811fe258a83a48a657dd6a382d3718ce0594dbead4caa891683159
-content_hash: 18671f76beb271b557a90df3c5a80aec8a1aad5e83e3edad8bca47249fb332dd
+content_hash: 45d6a6038197f55e2aa118348f932599ea4d9585c6b548e521952b079d7c1293
 field_hashes:
   id: b100a27c422b09a6da20a465be9edc3c6102650d4ac7da73888db78f22dd24b4
   title: 89c27bd831e5e3e2dee6c4ea6244de13ddf4828b84cd83fdf30f7ec7e5f3d216
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: d25cd5c801c75c20862ee0c03a1060e1124a135fe668cce0fd24a3aec8f8ab75
   disposition: 985d8bcd022070724262f9637b7a3c832e5dc600d792d4ca6affc1357801dbed
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

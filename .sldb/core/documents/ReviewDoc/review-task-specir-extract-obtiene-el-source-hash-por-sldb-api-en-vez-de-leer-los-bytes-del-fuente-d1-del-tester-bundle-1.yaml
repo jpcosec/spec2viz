@@ -1,7 +1,7 @@
 name: review-task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester-bundle-1
 path: desk/reviews/task-specir-extract-obtiene-el-source-hash-por-sldb-api-en-vez-de-leer-los-bytes-del-fuente-d1-del-tester/bundle-1.md
 source_hash: ad79448b826784fa268e56a230c0ab26f8fc55d3bd7ab38fa24823c396c666ee
-content_hash: fca975257cad12a54f66c126af055047ad95b2a260eac020d99bf26ff2486676
+content_hash: dad30c8f7f753cfe7104ee6f239a2c39780b5835d128d7f8fba90bda13d92a3f
 field_hashes:
   id: 2ebf6cbb1c9e221d80b1ffe2f42240b94ab88daf23e332eeb135c0dc9fbcf6cc
   title: ddb4782d8de5e7e72de754d9cff6a3fe5a629f54241fb2d3ca4c92d69a0b4597
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: d1eb3e39ec3c7c65244eef20d90a9d39d46d320888debac1393105dcf90e5a50
   disposition: 012f1b3c1a60aea25ce9d2e07e0ab5ff35b7679b0faf7e2b2908854928b86d29
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

@@ -1,7 +1,7 @@
 name: review-task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b-evidence-external-2
 path: desk/reviews/task-espejo-deskops-deskops-sldb-deja-de-enlazar-el-store-de-spec2viz-g5-opción-b/evidence-external-2.md
 source_hash: 52c9678b9753adca5bf9ef1675220e2fb77e79459443cee4267644f25775f8aa
-content_hash: afd142d32c6fd1d96a28dffeffa254cfa1d7b3fb89b7ea59fc42a59ec35bfdee
+content_hash: 957439e95ccdd07e78d814922385a4135584c523cb58ef29ba279dd97cca7d31
 field_hashes:
   id: 9775d21b5f4812ffc0cb6e5d40710277d0ea7c9fda08e9366f2cee6657b02655
   title: 0bf1f6ee93f61a4d30615300886a07b9db3627e4753836b0579853cd2d4c365e
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: dfaed1332bba8893b88474f8d60e017054548a812e3e0b972294d1e53eb47348
   disposition: 1fb6daf22c61ebf0f4e416859d60c627b7d328af1575a054690897b03af57d96
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

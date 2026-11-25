@@ -1,7 +1,7 @@
 name: review-task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer-evidence-external-1
 path: desk/reviews/task-espejo-sldb-apply-batch-devuelve-el-lote-inverso-deshacer/evidence-external-1.md
 source_hash: ed90ccd6bdb617133f111d8d2c7cdbc38419f9e2ba6ab148059aa9e7b53fe64f
-content_hash: e325cc0108545bf5b0811f29e99a87f26549c2e1e73f3ef010d3c05b432f8050
+content_hash: b910efbf32bb7911782cc6d9a232ad44a8204354a623972dc169a29a7bab959c
 field_hashes:
   id: f79211ff4d17e7c93265b8e978d3729f3b6f1872bd0a0e1fbf74ef8f44d6103c
   title: f736c16fc4a49493ce3ed265f3aa2ab5e1f56d38cd06714c614c4ff3fe611425
@@ -23,7 +23,7 @@ field_hashes:
   disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: e3bbd2187d4bf35f363cbc12d2d4d861bd72d8fe5fb208f35169186141e75608
   disposition: 312129d7f651a4b36958fa4577a2f1e6230581364df627b7e6fddce9b70acece
-  tags: 26f66ebae91f717518f0d0c6585e99f1cbd539bcb3504598ddeb732dec3a0af9
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown
