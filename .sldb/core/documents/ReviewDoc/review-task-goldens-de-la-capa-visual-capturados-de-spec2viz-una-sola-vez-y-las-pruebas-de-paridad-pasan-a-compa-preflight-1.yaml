@@ -1,0 +1,36 @@
+name: review-task-goldens-de-la-capa-visual-capturados-de-spec2viz-una-sola-vez-y-las-pruebas-de-paridad-pasan-a-compa-preflight-1
+path: desk/reviews/task-goldens-de-la-capa-visual-capturados-de-spec2viz-una-sola-vez-y-las-pruebas-de-paridad-pasan-a-compa/preflight-1.md
+source_hash: 94ef0d42750067b2831de4c0cd4282439060d7eb18879ddffe5bc6724a4c4168
+content_hash: d4cd45f4e12447f3dfe7f9fa8469f3aea2374b710b2b04a3b175cf6f9334e0c0
+field_hashes:
+  id: c7cb068ed723590a0ead7416f9e0ca3db1f371dcfb19b0a196cf17b391396274
+  title: 6497084cb1ae0cfcf4c07daa658f422f314c94f7aa2c65ee1412ac78543b7636
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: a85ed115dc7f7db0bb3b24cd1f9817cf185107f83f162c363c36bb6d3b8873fb
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 0e1e5f691c0b96025867eef3e1045ac74af26fc6d4e26492d7e77b62382d2b93
+  input_sha256: 713ed74449b4e8bbf0d489510a5b3bdff8d6681044121d23c0b098a119646dd6
+  contract_sha256: daa0f20b375e07dd3ba88d062a46e31f0303c5fe30949c08d9b67440ccaf75b6
+  output_sha256: 61c30c262f818922933b8fd6239446feb251ea5464aeac9ca44c48aaf74b2ad7
+  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
+  reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  created_at: 408ff43509de8027ffc66f24c3bb793b7c3fc526370f21cfe1872c00bcad5b3c
+  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  summary: 08873262ca53c1a2d612eb4ffb1cb47d21540788e015b59970c171ef1856595a
+  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T02:15:09Z'
+  authority: generated
+  via: create_document

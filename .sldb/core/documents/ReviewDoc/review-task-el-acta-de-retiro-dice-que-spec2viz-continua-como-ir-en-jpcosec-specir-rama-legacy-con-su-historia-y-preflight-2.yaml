@@ -1,0 +1,36 @@
+name: review-task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y-preflight-2
+path: desk/reviews/task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y/preflight-2.md
+source_hash: 875fb1f08c6f7ad8c31c3082f668f39c1dfee84c472ae57c715e5dbc069d9b51
+content_hash: 3115c18cc2aaae2c4c3f6902d2a4610492446e0f12b522e05bf109fbd998412f
+field_hashes:
+  id: 9f180ca83005d848fc163136f8d7c553709dd476442e1cdbd447b5fbe89f81e4
+  title: 78fb0012f28fcf482e8a41cc915da78bd910253ba4a184e81d52e9a698126108
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: b1d0056ba554a56221fd7dc590fe375b2266d45d88af107c06ef4759267afe18
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 1c0d81fe238189a911c7ccfa6e1a56e102360d8d727f17e1fe0bdffbe79617c5
+  input_sha256: 666b34e1352e7fd56085036e275427f3a41d15d4ddacc61e14aeb6b2ea579310
+  contract_sha256: 84bff3b2c8bed06be587b0c040974ac92fa9a8f4d2b30cd02ec41dd592837a01
+  output_sha256: de9e9a4994bdc5967d2c0159f1fe9a8a50cb811a6f59085fad8d0d4c0d851abc
+  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
+  reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  created_at: aacdfc11017cba57659cc2796c97b1f6fae60f0b3231f08e81b3737a61eede8e
+  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  summary: 494d6b3a96f6b046ce10755bd7b964430567458f943a63878aed644c2db55e8f
+  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T02:29:22Z'
+  authority: generated
+  via: create_document

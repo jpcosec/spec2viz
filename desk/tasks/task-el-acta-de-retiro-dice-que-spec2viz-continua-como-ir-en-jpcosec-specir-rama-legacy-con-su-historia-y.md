@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T01:09:40Z'
+  at: '2026-11-25T02:32:17Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y
 status: draft
 summary: ''
@@ -38,22 +38,23 @@ docs/spec2viz/acta-de-retiro.md registra el cambio: spec2viz no queda archivado 
 
 _State what is in scope and what is out of scope._
 
-Solo docs/spec2viz/acta-de-retiro.md (y gate-de-retiro.md si nombra el archivo).
+Solo docs/spec2viz/acta-de-retiro.md. gate-de-retiro.md no se toca. El punto 9 se localiza por su prefijo y se reemplaza el item entero (sus dos lineas).
 
 ## Implementation Path
 
 _Outline the expected implementation route or affected surface._
 
-1) Leer el acta y el gate. 2) Agregar la salvedad fechada 2026-11-24 y marcar el punto 9. 3) Nada de codigo.
+Repo: /mnt/ssd/proyectos/SLDB_1/IR. Solo docs/spec2viz/acta-de-retiro.md (gate-de-retiro.md no se toca). Tres ediciones, sin borrar historia (se reemplaza el estado, se conserva lo que paso): 1) Punto 9 de la lista 'Lo que falta para declarar el retiro' (hoy empieza con '9. **Pendiente, último paso (coordinador, en GitHub).** Archivar spec2viz'): reemplazar ese item por '9. **Hecho el 2026-11-24, con cambio de JP.** El 2026-11-23 el coordinador archivó jpcosec/spec2viz; el 2026-11-24 JP decidió que spec2viz continúa como IR: el repo se desarchivó y se renombró a jpcosec/specir (las URL de spec2viz redirigen), la rama master pasó a llamarse legacy y conserva intacta la historia de spec2viz (con el store spec2viz/.sldb), y main es IR y la rama por defecto. spec2viz no queda archivado: legacy es su archivo.' 2) La frase de la cabecera que dice 'Lo único que queda es archivar el repo spec2viz en GitHub (punto 9 de «Lo que falta para declarar el retiro»), el último paso, que hace el coordinador; esta tarea no lo hace.' pasa a 'El punto 9 quedó hecho el 2026-11-24: spec2viz continúa como IR en jpcosec/specir, con su historia en la rama legacy.' 3) La linea 'Estado al 2026-11-23: el retiro está declarado; solo queda el punto 9.' pasa a 'Estado al 2026-11-24: el retiro está declarado y los nueve puntos están hechos.' Nada de codigo.
 
 ## Validation
 
 _List the checks required before this task can close._
 
-- grep -n 'jpcosec/specir' docs/spec2viz/acta-de-retiro.md
+- grep -n "jpcosec/specir" docs/spec2viz/acta-de-retiro.md
+- ! grep -n "Lo único que queda es archivar" docs/spec2viz/acta-de-retiro.md
 
 ## Done When
 
 _Name the observable condition that makes the task complete._
 
-El acta nombra jpcosec/specir, la rama legacy y la decision de JP del 2026-11-24, y el punto 9 esta marcado.
+El acta nombra jpcosec/specir y la rama legacy en el punto 9 marcado como hecho el 2026-11-24, la cabecera y la linea de estado ya no dicen que falta archivar.

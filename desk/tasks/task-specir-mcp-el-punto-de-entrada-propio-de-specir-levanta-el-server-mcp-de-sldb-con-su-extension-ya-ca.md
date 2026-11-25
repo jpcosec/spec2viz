@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T01:09:20Z'
+  at: '2026-11-25T02:28:18Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca
 status: draft
 summary: ''
@@ -44,16 +44,16 @@ src/specir/cli.py (comando mcp), su test y skills/use-specir/SKILL.md (una linea
 
 _Outline the expected implementation route or affected surface._
 
-1) Leer sldb.mcp.server.serve (firma: store, level, actor, extensions). 2) Comando click 'mcp' que llama serve con extensions=('specir.mcp_extension:register',). 3) Test: build_server con la extension registra specir_types/specir_nodes/specir_rules/specir_impact (sin levantar stdio). 4) Correr solo ese test.
+Repo: /mnt/ssd/proyectos/SLDB_1/IR (src/ y tests/ cuelgan de ahi). 1) En src/specir/cli.py, un comando click 'mcp' montado en main: opciones --store (ruta, requerida), --level (int, default sldb.mcp.mutability.READ) y --actor (str, default None); llama sldb.mcp.server.serve(store, level=level, actor=actor, extensions=('specir.mcp_extension:register',)). Docstring de una linea para --help: 'Serve sldb's MCP server on a store with specIR's tools (specir_types, specir_nodes, specir_rules, specir_impact) already loaded.' 2) Test NUEVO tests/test_cli_mcp.py, siguiendo como tests/test_mcp_extension.py arma un store y llama sldb.mcp.server.build_server(store, extensions=[sldb.mcp.extension.load_extension('specir.mcp_extension:register')]): (a) el server tiene las cuatro tools specir_*; (b) con click.testing.CliRunner, 'specir mcp --help' sale 0 y nombra --store; (c) monkeypatch de sldb.mcp.server.serve para capturar argumentos: 'specir mcp --store X' llega con extensions=('specir.mcp_extension:register',) y level READ. Sin levantar stdio. 3) En skills/use-specir/SKILL.md, agregar la linea: '- MCP: specir mcp --store <store del proyecto> levanta el server MCP de sldb con las tools de specIR cargadas (igual que sldb mcp --extension specir.mcp_extension:register).' Correr solo tests/test_cli_mcp.py y tests/test_mcp_extension.py.
 
 ## Validation
 
 _List the checks required before this task can close._
 
-- PYTHONPATH=src TMPDIR=/mnt/ssd/tmp/sldb1 /mnt/ssd/proyectos/SLDB_1/.venv/bin/python -m pytest -q tests/test_cli_mcp.py
+- PYTHONPATH=src TMPDIR=/mnt/ssd/tmp/sldb1 /mnt/ssd/proyectos/SLDB_1/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cli_mcp.py tests/test_mcp_extension.py
 
 ## Done When
 
 _Name the observable condition that makes the task complete._
 
-specir mcp --help existe y el test que construye el server por ese camino ve las cuatro tools specir_*; pasa.
+tests/test_cli_mcp.py (nuevo) cubre (a) las cuatro tools, (b) --help y (c) los argumentos que llegan a serve; pasa junto con tests/test_mcp_extension.py.
