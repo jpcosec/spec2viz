@@ -1,9 +1,33 @@
-body { margin: 0; background: var(--wb-paper); color: var(--wb-ink); font-family: Inter, system-ui, sans-serif; }
-.shell { display: grid; grid-template-columns: 260px 1fr 340px; grid-template-rows: auto 1fr; height: 100vh; }
-.shell > header { grid-column: 1 / -1; display: flex; gap: 16px; align-items: center; padding: 8px 16px; border-bottom: 1px solid var(--wb-ink-tertiary); }
-.shell aside, .shell main { padding: 16px; overflow: auto; }
-.shell [role="tablist"] { display: flex; gap: 8px; }
-.shell [role="tab"][aria-selected="true"] { font-weight: 600; border-bottom: 2px solid var(--wb-ink); }
-.empty { color: var(--wb-ink-muted); font-style: italic; }
+/* Cascarón de specIR. Estructura y reglas tomadas de IR/desk/drawer/plans/graph-ui-diccionario-de-componentes/maqueta-ui.html#grafo
+   (a su vez de sldb/surface/src/styles/app.css); todo color, fuente y radio viene de las variables --wb-* de paper-tokens.css. */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--wb-paper); color: var(--wb-ink-body); font: 14px/1.5 var(--wb-font-sans); }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+h1, h2 { font: 500 22px/1.2 var(--wb-font-serif); letter-spacing: -0.015em; color: var(--wb-ink); margin: 0 0 8px; }
+h3 { font: 600 13px var(--wb-font-serif); color: var(--wb-ink); margin: 0 0 8px; }
+h3.caps { font: 500 10px var(--wb-font-mono); letter-spacing: 0.05em; text-transform: uppercase; color: var(--wb-ink-muted); }
+
+.shell { display: grid; grid-template-columns: 232px 1fr 340px; grid-template-rows: 44px 1fr 24px; height: 100vh; }
+.shell > header { grid-column: 1 / -1; display: flex; gap: 6px; align-items: center; padding: 0 18px; border-bottom: 1px solid var(--wb-hairline); }
+.shell .brand { font: 500 20px var(--wb-font-serif); color: var(--wb-ink); letter-spacing: -0.01em; margin-right: 4px; }
+.shell .crumb { font: 12px var(--wb-font-mono); color: var(--wb-ink-muted); margin-right: 10px; }
+.shell [role="tablist"] { display: flex; gap: 2px; }
+.shell [role="tab"], .shell [role="group"] button {
+  font: 12px var(--wb-font-mono); color: var(--wb-ink-muted); padding: 3px 10px;
+  border: 2px solid transparent; border-radius: var(--wb-radius);
+}
+.shell [role="tab"][aria-selected="true"], .shell [role="group"] button[aria-pressed="true"] {
+  color: var(--wb-ink); background: var(--wb-stone); border-color: var(--wb-border);
+}
+.shell [role="group"] { margin-left: auto; display: flex; gap: 2px; }
+
+.shell aside { padding: 14px 16px; overflow: auto; background: var(--wb-stone); border-right: 1px solid var(--wb-hairline); }
+.shell aside[aria-label="Documento"] { background: var(--wb-paper); border-right: 0; border-left: 1px solid var(--wb-border); }
+.shell main { padding: 14px 18px; overflow: auto; min-width: 0; }
+.shell .rail {
+  grid-column: 1 / -1; display: flex; gap: 18px; align-items: center; padding: 0 18px;
+  background: var(--wb-stone); border-top: 1px solid var(--wb-hairline); font: 11px var(--wb-font-mono); color: var(--wb-ink-muted);
+}
+.empty { color: var(--wb-ink-tertiary); font: 12px var(--wb-font-mono); }
 .fierro { display: none; }
 .shell.fierros .fierro { display: revert; }
