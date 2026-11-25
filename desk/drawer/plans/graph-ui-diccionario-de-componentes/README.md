@@ -7,43 +7,13 @@ Medido el 2026-11-24 sobre graph_ui `36adfbb`, IR `f455b32` y sldb `61c5847f`.
 
 ## Estado al 2026-11-25 (leer primero)
 
-Este plan se escribió el 24 y 25 de noviembre y parte de él quedó corregido el mismo 25. Lo que
-sigue manda sobre el resto del documento.
+La parte de interfaz de este plan quedó sin efecto: specIR no tiene interfaz propia
+(`docs/decisiones/paridad-por-capacidades.md`). Las decisiones D1, D7 y D10 y las tareas U2, U3,
+U4, U5 y U9 no se ejecutan. `PROPUESTA-UI.md` y `maqueta-ui.html` quedan como referencia de forma.
 
-**Corrección de rumbo.** JP fijó que el render principal de los diagramas es la vista de notación
-de graph_ui. La propuesta de una app propia de specIR se hizo sin haber leído cómo está hecho
-graph_ui. `PROPUESTA-UI.md` y `maqueta-ui.html` quedan como referencia de **forma y estética**
-(estructura del prototipo de Kimun, tokens de papel del Workbench), no como arquitectura. El plan
-vigente es `../paridad-por-capacidades/`.
-
-**Tareas del diccionario.**
-
-| Tarea | Estado |
-|---|---|
-| T1, nombres de relación acotados | cerrada |
-| T2, `specir ux extract` | cerrada |
-| T7, operaciones de API desde una tabla de rutas declarada | cerrada |
-| T4, nota a sldb | sldb la partió en 3 tareas (atributos del handler, llamadas por handler, `method` del segundo argumento) |
-| T3, facts de `htm` en sldb | **revive**: graph_ui es React con htm y el extractor ve 0 controles ahí. Sin pedir todavía |
-| T5, T6, T8 a T13 | sin crear; esperan a sldb |
-| T14 y T15 (por D4: controles esperados y esqueletos de flujo) | sin crear; van después de T9 |
-
-**Decisiones.**
-
-| Decisión | Lo que JP eligió | Estado |
-|---|---|---|
-| D2 | tabla de rutas declarada en YAML | hecha (T7) |
-| D3 | rol y nombre accesible, con `data-testid` cuando exista | vigente |
-| D4 | todo: cobertura, controles esperados y esqueletos de flujo | vigente |
-| D5 | el diccionario vive en el store del proyecto que se prueba | vigente |
-| D6 | esqueletos de flujo en Playwright con Python | vigente |
-| D8 | `sldb serve --extension` | vigente; tarea creada en sldb |
-| D9 | `specir catalog build` se mantiene hasta la paridad | vigente; pasa a ser una exportación |
-| D1, D7, D10 | UI nueva, app en `IR/ui/` que copia de surface, React con TSX | **en revisión**: JP decidió esperar al panel embebible de graph_ui |
-
-**Tareas de la UI (app `IR/ui/`).** U1 (esqueleto) y U1b (tokens de papel) están hechas e
-integradas. U2, U3, U4, U5 y U9 están en borrador y **retenidas** hasta que exista el panel
-embebible. U6 a U8 y U10 no se crearon.
+Sigue vigente el diccionario: los tipos, la extracción de controles y su chequeo con Playwright
+(D2 a D6), con los datos en el store del proyecto probado. Se ve como un `ViewDoc` en el editor de
+grafo, sin pantalla propia.
 
 ## Decisiones tomadas
 
