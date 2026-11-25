@@ -218,6 +218,14 @@ class TableDoc(SpecIRNodeDoc):
     columns: list[str] = Field(default_factory=list, description="The columns the model knows of.")
 
 
+class PieceDoc(SpecIRNodeDoc):
+    """A piece of a system: a top-level package of a repo. What it depends on is the `depends_on`
+    relation between pieces."""
+
+    __semantics__ = {"type": ["specir", "node", "piece"], "layer": ["system"]}
+    __template__ = _template([])
+
+
 #: The domain types, registered in a store by `specir.install`. The base is not.
 DOMAIN_MODELS: tuple[type[SpecIRNodeDoc], ...] = (
     InterfaceControlDoc,
@@ -232,4 +240,5 @@ DOMAIN_MODELS: tuple[type[SpecIRNodeDoc], ...] = (
     StateDoc,
     DomainEntityDoc,
     TableDoc,
+    PieceDoc,
 )

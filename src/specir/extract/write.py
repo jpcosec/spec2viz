@@ -35,6 +35,8 @@ class ExtractionReport:
     stale_declared: list[str] = field(default_factory=list)
     #: Files `code_facts` skipped (no installed grammar); only `extract_frontend` fills it.
     skipped: list[str] = field(default_factory=list)
+    #: Unverified observed edges of the `retire` relation type whose fact is gone; deleted.
+    retired: list[str] = field(default_factory=list)
 
 
 def claim_of(fact: dict[str, Any]) -> str:
@@ -66,7 +68,9 @@ def _same(existing: dict[str, Any], wanted: dict[str, Any]) -> bool:
     return all(blank(existing.get(k)) == blank(v) for k, v in wanted.items())
 
 
-def write_plan(store: Path, root: Path, pythonpath: str, nodes: list[Planned], edges: list[Planned], not_derived: list[str]) -> ExtractionReport:
+def write_plan(store: Path, root: Path, pythonpath: str, nodes: list[Planned], edges: list[Planned], not_derived: list[str], retire: str | None = None) -> ExtractionReport:
+    """Write the plan. `retire` names a relation type whose observed, unverified edges are removed when
+    the plan no longer produces them (the fact they stood on is gone); anything else is never deleted."""
     facts = {ref_of(f): f for p in (*nodes, *edges) for f in p.facts}
     blocks = checked_blocks(root, facts)
     if not api.is_model_registered(store, ANCHOR_MODEL):
@@ -98,6 +102,12 @@ def write_plan(store: Path, root: Path, pythonpath: str, nodes: list[Planned], e
     anchored = {d.name: d.payload.get("ref") for d in held.values()}
     for key, old in sorted(current.items()):
         export_id = f"{key[0]}:{key[1]}"
+        if retire and key[0] == "RelationDoc" and export_id not in planned_ids and old.payload.get("relation_type") == retire:
+            edge = old.payload.get("attributes") or {}
+            if edge.get("origen") == "observado" and edge.get("verificacion") == UNVERIFIED:
+                changes.append({"action": "delete", "id": key[1]})
+                report.retired.append(export_id)
+                continue
         fields = old.payload.get("attributes") or old.payload if key[0] == "RelationDoc" else old.payload
         if export_id in planned_ids or fields.get("origen") not in ("observado", "derivado"):
             continue

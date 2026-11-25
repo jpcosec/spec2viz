@@ -81,3 +81,10 @@
   source_types: [CapabilityDoc]
   target_types: [MaterializationContractDoc]
   description: The materialization contract names the test that accredits the capability (target_identity `<path>::<test name>`). A capability is met when that test passes; no field says so.
+- name: depends_on
+  title: Depends on
+  axis: WHAT
+  cardinality: many_to_many
+  source_types: [PieceDoc]
+  target_types: [PieceDoc]
+  description: The piece imports code of the target piece (an absolute import of its top-level package; a relative import stays inside the piece, a conditional or nested one counts). It is the fact an architecture invariant forbids or requires, such as "graph_ui does not depend on pron". The edge lists where each import is in `attributes.sitios`.

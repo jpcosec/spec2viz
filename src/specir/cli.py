@@ -270,6 +270,25 @@ def extract_python_cli_cmd(root: Path, store: Path | None, paths: tuple[str, ...
         click.echo(f"  {item}")
 
 
+@extract_group.command("dependencies", short_help="Extract the pieces of a Python tree and the dependencies between them.")
+@click.argument("root", type=click.Path(exists=True, file_okay=False, path_type=Path))
+@click.option("--store", type=click.Path(path_type=Path), default=None, help="Store path. Default: <ROOT>/.sldb.")
+@click.option("--path", "paths", multiple=True, help="Only extract this path relative to ROOT (repeatable).")
+def extract_dependencies_cmd(root: Path, store: Path | None, paths: tuple[str, ...]):
+    """Write a PieceDoc per top-level package under ROOT and a `depends_on` edge for each piece whose
+    modules import another (file and line of every import in the edge). An edge whose import is gone is removed."""
+    from specir.extract import extract_dependencies
+
+    try:
+        report = extract_dependencies(root, store, list(paths) or None)
+    except ValueError as exc:
+        click.echo(f"Error extracting: {exc}", err=True)
+        sys.exit(1)
+    click.echo(f"created: {len(report.created)}, updated: {len(report.changed)}, unchanged: {len(report.unchanged)}, retired: {len(report.retired)}, desconocidos: {len(report.not_derived)}")
+    for item in report.not_derived:
+        click.echo(f"  {item}")
+
+
 __all__ = ["ALIASES", "main"]
 
 

@@ -16,6 +16,7 @@ import sldb.api as api
 
 from sldb.api.code import code_facts
 
+from specir.extract.dependencies import extract_dependencies
 from specir.extract.django_drf import interpret
 from specir.extract.facts import Facts
 from specir.extract.plan import Planned
@@ -25,7 +26,7 @@ from specir.extract.routes import extract_routes
 from specir.extract.write import ExtractionReport, write_plan
 from specir.install import package_pythonpath
 
-__all__ = ["ExtractionReport", "extract", "extract_frontend", "extract_python_cli", "extract_routes"]
+__all__ = ["ExtractionReport", "extract", "extract_dependencies", "extract_frontend", "extract_python_cli", "extract_routes"]
 
 
 def extract(root: str | Path, store: str | Path | None = None, paths: list[str] | None = None) -> ExtractionReport:

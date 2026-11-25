@@ -14,7 +14,7 @@ ANCHOR_DIR = "specir/anchors"
 #: Name prefix by model: document names are unique in a store whatever their model.
 PREFIXES = {
     "ApiOperationDoc": "api", "HandlerDoc": "handler", "DomainOperationDoc": "op", "PolicyDoc": "policy",
-    "StateDoc": "state", "InterfaceControlDoc": "control", "InterfaceActionDoc": "action", "DomainEntityDoc": "entity", "TableDoc": "table", "RelationDoc": "edge",
+    "StateDoc": "state", "InterfaceControlDoc": "control", "InterfaceActionDoc": "action", "DomainEntityDoc": "entity", "TableDoc": "table", "RelationDoc": "edge", "PieceDoc": "piece",
 }
 
 
@@ -40,6 +40,8 @@ class Planned:
     origen: str
     rule: str
     facts: list[dict[str, Any]] = field(default_factory=list)
+    #: Extra keys of an edge's `attributes`, next to its provenance and anchors.
+    attributes: dict[str, Any] = field(default_factory=dict)
 
     @property
     def export_id(self) -> str:
@@ -56,7 +58,7 @@ class Planned:
         assert self.origen != "declarado" or (self.model == "ApiOperationDoc" and not self.facts), "declarado is only for facts-less ApiOperationDoc of extract_routes"
         assert self.origen != "inferido", "inferido is never written by the extractor"
         if self.model == "RelationDoc":
-            attributes = {"origen": self.origen, "verificacion": "sin_verificar", "verificado_por": "", "evidencia": "", "anchors": anchor_refs(self.facts)}
+            attributes = {"origen": self.origen, "verificacion": "sin_verificar", "verificado_por": "", "evidencia": "", "anchors": anchor_refs(self.facts), **self.attributes}
             return {**self.fields, "attributes": attributes}
         return {"origen": self.origen, "verificacion": "sin_verificar", "verificado_por": "", "evidencia": "", **self.fields}
 

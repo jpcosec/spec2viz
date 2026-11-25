@@ -62,8 +62,16 @@
 - name: rule-specir-edges-carry-their-provenance
   title: A specIR edge carries its provenance
   subject: model <= RelationDoc
-  where: relation_type in ["triggers", "invokes", "handled_by", "executes", "governed_by", "transitions", "writes", "persisted_in", "bound_to", "field_of"]
+  where: relation_type in ["triggers", "invokes", "handled_by", "executes", "governed_by", "transitions", "writes", "persisted_in", "bound_to", "field_of", "depends_on"]
   condition: attributes.origen in ["observado", "derivado", "inferido", "declarado"] and attributes.verificacion in ["sin_verificar", "verificado", "refutado"]
   severity: error
   moment: on_write
   message: 'An edge of a specIR relation type declares origen and verificacion in its attributes (IR05 D1-B).'
+- name: rule-specir-graph-ui-does-not-depend-on-pron
+  title: graph_ui does not depend on pron
+  subject: model <= PieceDoc
+  where: title = "graph_ui"
+  condition: 'none(rel:depends_on: title = "pron")'
+  severity: error
+  moment: on_check
+  message: 'graph_ui depends on pron, which is archived (sldb ADR pron-is-archived). The depends_on edge lists each import in attributes.sitios.'
