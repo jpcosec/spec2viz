@@ -1,0 +1,36 @@
+name: review-task-docs-decisiones-specir-describe-repos-de-python-md-propone-como-specir-modela-un-repo-que-es-una-lib-preflight-1
+path: desk/reviews/task-docs-decisiones-specir-describe-repos-de-python-md-propone-como-specir-modela-un-repo-que-es-una-lib/preflight-1.md
+source_hash: 6a8e309f596ca643424770ae9f698c35f0a4f4f0cc7ca44795cc316df318cd56
+content_hash: 1a6bd55a1fed3b4befefb88313e40781ee0d3b890c35871a92004dd270156f57
+field_hashes:
+  id: 235f5ab4387d96af6aea9dd3dd74c8061294e06253504a4c2698a8729b2350a4
+  title: c4e2bd296fbf24834032372cd5775d93f43d7deb5217eda6eddf78dde6364227
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 152db3797814c2dff3d620069680fe5f8da19bda9d4edde0e0ae5d34d71b21ff
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 07c155b7d83a16f4dccad382d0c0047bf436997c54342bded9d17f003e098f5d
+  input_sha256: efb49e38cdbc9b59837ab2d4971b044efd100b0ddd841150a5fa2d6fbfe7b42d
+  contract_sha256: 5ccab4f05dc5427e726870a073627a3b2fa3aa3ef45b5cbe5b2a160874ca91f9
+  output_sha256: 4bc6a4d6c46b32554057b59f9b4771962d813919408a5cdd2c2c9aeaa520ce73
+  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
+  reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  created_at: 1cdd070afff88803a808052d6d6b356a37ef62671c5438f15ecb1879c8bdec9c
+  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  summary: c7bad553eda52f7ded20873346e561ec64a04d5e9969154620515bd57c7fe2c9
+  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T19:20:50Z'
+  authority: generated
+  via: create_document

@@ -1531,9 +1531,6 @@ include:
 - model: RuntimeProfileDoc
   paths:
   - desk/runtimes/runtime-claude-en-scion.md
-- model: TaskDocsDoc
-  paths:
-  - desk/tasks/task-docs-decisiones-specir-describe-repos-de-python-md-propone-como-specir-modela-un-repo-que-es-una-lib.md
 - model: TaskCodeDoc
   paths:
   - desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md

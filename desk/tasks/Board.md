@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T19:21:07Z'
+  at: '2026-11-25T19:23:59Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -10,7 +10,6 @@ id: board-001
 scope: desk
 # List of task-xxx paths
 tasks:
-- desk/tasks/task-docs-decisiones-specir-describe-repos-de-python-md-propone-como-specir-modela-un-repo-que-es-una-lib.md
 - desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md
 - desk/tasks/task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid.md
 - desk/tasks/task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo.md
@@ -46,7 +45,6 @@ Estado al 2026-11-21 (09:40 UTC): IR13, gate de retiro de spec2viz. specir retir
 
 _Generated from the task references above._
 
-- docs/decisiones/specir-describe-repos-de-python.md propone cómo specIR modela un repo que es una librería de Python con CLI, con alternativas y recomendación para JP [draft] - Un documento de decisión, en el formato de docs/decisiones/, que diga qué nodos y qué capas tendría un repo de Python con CLI, de dónde salen, y qué se reutiliza.
 - un invariante entre piezas se escribe como regla sobre los nodos de specIR, y la regla "graph_ui no depende de pron" falla cuando el código la viola [draft] - Un tipo de relación de dependencia entre piezas, extraído del código, y la posibilidad de prohibir una dependencia con una regla sembrada.
 - una capacidad del dominio declara para quién es y cuál es su prueba de aceptación, y las ocho capacidades de specIR quedan cargadas así en su store [draft] - Que una capacidad sea un nodo de specIR con destinatario y con su prueba de aceptación enlazada, y que una regla exija esa prueba.
 - specir impact entrega, para los archivos de un cambio, las decisiones, pills y tareas que apuntan a lo afectado [draft] - Que el impacto de un cambio incluya los documentos de otros stores que apuntan a los nodos afectados, con la vía por la que llega cada uno.
