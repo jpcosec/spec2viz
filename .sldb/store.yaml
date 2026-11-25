@@ -1294,6 +1294,8 @@ include:
     name: run-deskops-t-dbcffa346aee-a2
   - path: runs/subagents/exec-deskops-e-b3b53893f051/run.md
     name: run-deskops-e-b3b53893f051
+  - path: runs/subagents/exec-deskops-t-c0347e75854a-testing/run.md
+    name: run-deskops-t-c0347e75854a
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md
