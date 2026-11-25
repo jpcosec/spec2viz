@@ -1,23 +1,28 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T02:32:17Z'
+  at: '2026-11-25T02:49:52Z'
   authority: generated
   via: save_document_payload
 id: task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y
-status: draft
+status: active
 summary: ''
 tags: []
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-testing
+history:
+- task_activates
+references:
+- docs/spec2viz/acta-de-retiro.md
+- 70374fc0992f25272640db04cdb42bca5288a2b1
 depends_on: []
 pills: []
-files: []
+files:
+- docs/spec2viz/acta-de-retiro.md
 task_type: task.docs
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-spec2viz-continua-como-ir-en-jpcosec-specir
 ---
 
 # El acta de retiro dice que spec2viz continua como IR en jpcosec/specir (rama legacy con su historia) y marca hecho el punto 9
