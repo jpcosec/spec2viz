@@ -8,9 +8,9 @@ decisions:
     title: Qué interfaz es el objetivo (mindmap htm o las apps TSX)
     task_type: task.decision
     state: decided
-    decided: UI nueva de specIR (PROPUESTA-UI.md)
+    decided: UI nueva de specIR con la estructura del prototipo web de Kimun y la estética del SLDB Workbench (PROPUESTA-UI.md)
     by: JP
-    'on': '2026-11-24'
+    'on': '2026-11-25'
   D2:
     title: De dónde salen las operaciones de API de un backend que no es DRF
     task_type: task.decision
@@ -46,6 +46,10 @@ decisions:
     title: Qué pasa con la página generada de specir catalog build
     task_type: task.decision
     recommended: mantener hasta la paridad
+  D10:
+    title: En qué se escribe la UI
+    task_type: task.decision
+    recommended: React con TSX; del prototipo de Kimun solo la estructura
 tasks:
   T1:
     title: Nombres de relación acotados
@@ -144,57 +148,56 @@ tasks:
     depends_on:
     - D7
   U2:
-    title: 'Catálogo: riel con filtro y cobertura'
+    title: 'Composiciones: lista de recetas de diagrama con cobertura'
     repo: IR
     hours: 1.5
     depends_on:
     - U1
   U3:
-    title: 'Catálogo: lienzo con zoom e inspector del nodo'
+    title: 'Composiciones: vista previa del diagrama con zoom y panel de documento del nodo'
     repo: IR
     hours: 2
     depends_on:
     - U1
     - D7
   U4:
-    title: 'Catálogo: BPMN para specs de actividad'
+    title: 'Composiciones: BPMN para specs de actividad'
     repo: IR
     hours: 1.5
     depends_on:
     - U3
   U5:
-    title: Notas al margen guardadas en el store
+    title: Notas guardadas en el store
     repo: IR
     hours: 2
     depends_on:
     - U3
   U6:
-    title: 'Capas: columnas, selección y cadena'
+    title: Grafo por capas, cadena del nodo y tira de conexiones
     repo: IR
     hours: 2
     depends_on:
     - U1
     - D8
   U7:
-    title: 'Capas: verificar como humano'
+    title: Verificar como humano
     repo: IR
     hours: 1.5
     depends_on:
     - U6
   U8:
-    title: 'Diccionario: tabla, filtros e inspector'
+    title: 'Receta del diccionario: bloques y tabla'
     repo: IR
     hours: 2
     depends_on:
     - U1
     - T8
   U9:
-    title: Brechas
+    title: 'Anclajes: fuente, selector, estado y nodos que se apoyan'
     repo: IR
     hours: 1.5
     depends_on:
-    - U6
-    - D8
+    - U1
   U10:
     title: La UI en su propio diccionario, con cobertura en sus pruebas
     repo: IR

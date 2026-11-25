@@ -9,7 +9,8 @@ Medido el 2026-11-24 sobre graph_ui `36adfbb`, IR `f455b32` y sldb `61c5847f`.
 
 - **D1 (JP, 2026-11-24):** el objetivo no es mindmap ni las apps TSX de graph_ui, sino una UI nueva
   de specIR inspirada en la superficie de sldb, con paridad mínima con la UI del spec2viz antiguo.
-  La propuesta está en `PROPUESTA-UI.md` y la maqueta en `maqueta-ui.html`. Con esto T3 (soporte de
+  El 2026-11-25 JP fijó la forma: la estructura del prototipo web de Kimun con la estética del
+  Workbench. La propuesta está en `PROPUESTA-UI.md` y la maqueta en `maqueta-ui.html`. Con esto T3 (soporte de
   `htm` en sldb) y T11 (registro de vistas de mindmap) salen del plan, y graph_ui queda como medición.
 - **D2 (JP, 2026-11-24):** aprobada la tabla de rutas declarada en YAML para las operaciones de API
   de un backend que no es DRF.
