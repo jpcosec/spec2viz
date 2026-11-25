@@ -53,8 +53,11 @@ def extract_frontend(root: str | Path, store: str | Path | None = None, paths: l
     """
     root = Path(root).resolve()
     store_path = Path(store).resolve() if store is not None else root / ".sldb"
-    facts = code_facts(root, paths)["facts"]
+    result = code_facts(root, paths)
+    facts = result["facts"]
     held = [d for d in api.load_runtime_documents(store_path, package_pythonpath()) if d.model_name == "ApiOperationDoc"]
     operations = [Planned("ApiOperationDoc", d.name, {"title": d.payload["title"], "method": d.payload.get("method"), "route": d.payload.get("route") or ""}, "derivado", "") for d in held if d.payload.get("method")]
     plan = interpret_frontend(Facts(facts), operations)
-    return write_plan(store_path, root, package_pythonpath(), list(plan.nodes.values()), list(plan.edges.values()), list(dict.fromkeys(plan.not_derived)))
+    report = write_plan(store_path, root, package_pythonpath(), list(plan.nodes.values()), list(plan.edges.values()), list(dict.fromkeys(plan.not_derived)))
+    report.skipped = list(result.get("skipped", []))
+    return report

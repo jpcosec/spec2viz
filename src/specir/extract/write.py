@@ -33,6 +33,8 @@ class ExtractionReport:
     not_derived: list[str] = field(default_factory=list)
     #: ApiOperationDoc with origen `declarado` no longer in the route table (`extract_routes`); never deleted.
     stale_declared: list[str] = field(default_factory=list)
+    #: Files `code_facts` skipped (no installed grammar); only `extract_frontend` fills it.
+    skipped: list[str] = field(default_factory=list)
 
 
 def claim_of(fact: dict[str, Any]) -> str:

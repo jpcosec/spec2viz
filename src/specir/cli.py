@@ -214,6 +214,39 @@ def retirement_check(matrix: Path, paths: tuple[str, ...]):
     sys.exit(0 if report.ok else 1)
 
 
+@main.group("ux", short_help="Extract the interface of a tree (graph_ui).")
+def ux():
+    """The interface extraction of a tree into a store."""
+
+
+@ux.command("extract", short_help="Extract the interface nodes of a tree and warn of the skipped files.")
+@click.argument("root", type=click.Path(exists=True, file_okay=False, path_type=Path))
+@click.option("--store", type=click.Path(path_type=Path), default=None, help="Store path. Default: <ROOT>/.sldb.")
+@click.option("--path", "paths", multiple=True, help="Only extract this path relative to ROOT (repeatable).")
+@click.option("--strict", is_flag=True, help="Exit 1 if code_facts skipped any file.")
+def ux_extract(root: Path, store: Path | None, paths: tuple[str, ...], strict: bool):
+    """Run the frontend extraction over ROOT and print a summary. Files `code_facts` skipped (no
+    installed grammar) are warned on stderr; with --strict they make the exit code 1."""
+    from specir.extract import extract_frontend
+
+    try:
+        report = extract_frontend(root, store, list(paths) or None)
+    except ValueError as exc:
+        click.echo(f"Error extracting: {exc}", err=True)
+        sys.exit(1)
+    click.echo(f"created: {len(report.created)}, updated: {len(report.changed)}, unchanged: {len(report.unchanged)}, not derived: {len(report.not_derived)}")
+    for item in report.not_derived:
+        click.echo(f"  not derived: {item}")
+    if report.skipped:
+        shown = report.skipped[:10]
+        more = f" (+{len(report.skipped) - 10} more)" if len(report.skipped) > 10 else ""
+        click.echo(f"warning: code_facts skipped {len(report.skipped)} file(s) (no installed grammar or unreadable){more}:", err=True)
+        for item in shown:
+            click.echo(f"  {item}", err=True)
+        if strict:
+            sys.exit(1)
+
+
 __all__ = ["ALIASES", "main"]
 
 
