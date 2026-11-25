@@ -361,6 +361,10 @@ include:
     name: review-task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y-evidence-document-1
   - path: desk/reviews/task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca/bundle-1.md
     name: review-task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca-bundle-1
+  - path: desk/reviews/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir/preflight-1.md
+    name: review-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir-preflight-1
+  - path: desk/reviews/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir/bundle-1.md
+    name: review-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir-bundle-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -1164,6 +1168,8 @@ include:
     name: run-deskops-t-c2c904fcede7
   - path: runs/subagents/exec-deskops-t-9a8463c0092f-testing/run.md
     name: run-deskops-t-9a8463c0092f
+  - path: runs/subagents/exec-deskops-e-6735ed85d05b/run.md
+    name: run-deskops-e-6735ed85d05b
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md
