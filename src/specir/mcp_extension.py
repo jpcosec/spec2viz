@@ -217,3 +217,11 @@ def register(server: Any, context: Any) -> None:
         tool = None
     if tool is not None:
         tool.description = f"{tool.description} specIR: {VERIFIES}."
+
+
+def serve(store: Any, level: int | None = None, actor: str | None = None) -> None:
+    """Serve sldb's MCP server on `store` with this extension loaded (read-only unless `level` is given)."""
+    from sldb.mcp import server
+    from sldb.mcp.mutability import READ
+
+    server.serve(store, level=READ if level is None else level, actor=actor, extensions=("specir.mcp_extension:register",))
