@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T15:01:22Z'
+  at: '2026-11-25T15:07:07Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -16,7 +16,6 @@ tasks:
 - desk/tasks/task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage.md
 - desk/tasks/task-u9-anclajes-muestra-la-fuente-con-lineas-y-el-fragmento-resaltado-el-selector-su-estado-y-los-nodos.md
 - desk/tasks/task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac.md
-- desk/tasks/task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -54,4 +53,3 @@ _Generated from the task references above._
 - U5: las notas sobre una receta o un nodo se guardan en el store por POST /save y no en localStorage [draft] - Notas sobre la receta o el nodo, guardadas en el store de sldb (como las anotaciones de spec2viz, pero en el store), con lista, alta y edicion.
 - U9: Anclajes muestra la fuente con lineas y el fragmento resaltado, el selector, su estado y los nodos que se apoyan [draft] - La pestana Anclajes: para un CodeAnchorDoc, la fuente con numeros de linea y el fragmento resaltado; a la derecha el selector, el estado (vigente o cambiado) y los nodos y relaciones de specIR que se apoyan en el.
 - IR borra los goldens de spec2viz y las pruebas que los leen; la paridad se acredita por pruebas de aceptacion [active] - Que en IR no quede ningun golden de spec2viz ni prueba, helper o marcador que exista solo para compararse con ellos, y que la suite siga verde.
-- specir mcp delega en mcp_extension y specir/cli.py deja de importar sldb.mcp [active] - Que solo mcp_extension.py importe sldb.mcp y que specir mcp siga funcionando igual.

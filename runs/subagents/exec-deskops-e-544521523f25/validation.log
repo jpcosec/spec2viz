@@ -1,0 +1,2 @@
+PYTHONPATH=$PWD/src /tmp/ws-venv/bin/python -m pytest -q -p no:cacheprovider tests/test_imports.py tests/test_cli_mcp.py
+12 passed; exit 0

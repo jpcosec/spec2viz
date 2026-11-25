@@ -1,30 +1,33 @@
+Task: task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp
+Title: specir mcp delega en mcp_extension y specir/cli.py deja de importar sldb.mcp
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-25T15:02:13Z'
+  at: '2026-11-25T14:22:15Z'
   authority: generated
-  via: save_document_payload
+  via: create_document
 id: task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp
-status: active
+status: draft
 summary: ''
 tags: []
-current_node: ritual-testing
-history:
-- task_activates
-references:
-- src/specir/cli.py
-- src/specir/mcp_extension.py
-- e1149a515ff4fadb574045e872f1102da56d89ff
+current_node: ritual-execution
+history: []
+references: []
 depends_on: []
 pills: []
-files:
-- src/specir/cli.py
-- src/specir/mcp_extension.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-specir-mcp-delega-en-mcp-extension-y-cli-py-no-importa-sldb-mcp
+atoms: []
 ---
 
 # specir mcp delega en mcp_extension y specir/cli.py deja de importar sldb.mcp
@@ -64,3 +67,26 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 tests/test_imports.py y tests/test_cli_mcp.py pasan.
+
+## Entrega del ejecutor
+
+Al terminar, commitea solo los archivos que cambiaste para la tarea, nombrados uno por uno (los mismos que listas en result-summary.md):
+
+    git add <ruta> <ruta> ...
+    git commit -m "<resumen>" -m "Task-Id: task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp"
+
+Nunca uses `git add -A`, `git add -u` sobre todo el arbol ni `git stash`: puede haber trabajo ajeno sin commitear. No hagas push. Recien despues ejecuta `deskops advance task`.
+
+## Temporales de pytest
+
+Antes de cualquier pytest exporta, para que sus temporales caigan en el /tmp del contenedor (muere con el agente) y no en el /dev/shm del host:
+
+    export PYTEST_ADDOPTS="--basetemp=/tmp/pytest-deskops-e-544521523f25"
+
+## Tu worktree
+
+Tu codigo vive en un worktree propio, en la rama `deskops/deskops-e-544521523f25`:
+
+    /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/deskops-e-544521523f25
+
+Haz `cd` ahi: edita, corre los tests y commitea ahi (git add / git commit), no en el checkout principal /mnt/ssd/proyectos/SLDB_1/IR. Las operaciones de desk (`deskops ... --root /mnt/ssd/proyectos/SLDB_1/IR`, evidencia en runs/subagents/..., `deskops advance task`) siguen usando el checkout principal. Al terminar, reap trae tus commits a la rama principal y borra el worktree.

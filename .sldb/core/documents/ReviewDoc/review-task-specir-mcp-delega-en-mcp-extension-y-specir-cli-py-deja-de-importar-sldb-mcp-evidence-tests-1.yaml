@@ -1,0 +1,36 @@
+name: review-task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp-evidence-tests-1
+path: desk/reviews/task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp/evidence-tests-1.md
+source_hash: 1c167cfe04d279f1dbf698c4d27b03629581dd17e1cd36c44d50e95e5f419445
+content_hash: fe315d823ea42716b3b45f35f16b5ffb4dbb01771e929fb30d19cdedc8706faf
+field_hashes:
+  id: 67a9817e671fc651c8e75fdc80c32acd56be65bb44a357ec83fa2a09c0e01dc1
+  title: eb38485cb151a2a62386bc75652e198a4a098373ab69491cf6975a5a299a2f9d
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: a0e501b73a1870fff903bec336ea668aea342c1266d4dad366788ffc422eeb08
+  subject: c22e9c7ee689ae314d3e88abc7c3e6b4918cfcc7d130f627254162cb66fca27c
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 72505c98acd34e80f1122800c5b37ab8a55f45d9bb55807879983c6f1130be70
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: a9e0e0dae479ccd4e9cd174c177df5e71225dc9001d48b3572b8a9dc67bf60a6
+  created_at: 0070697d4741ed649d554a890d198295e1fec7d22a87ad53e670f8171b3f789d
+  disposed_at: 0070697d4741ed649d554a890d198295e1fec7d22a87ad53e670f8171b3f789d
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: f41cf2dbed5f403a9869eb834d7d74fdca59e9ccf6be4883833add3d8b14b468
+  disposition: ff77812de78e6d0fe823fa3a371e119eac6f9a33489136d123a4d78e0a1c5dff
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T15:02:43Z'
+  authority: generated
+  via: create_document
