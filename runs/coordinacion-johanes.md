@@ -390,3 +390,10 @@ JP pidió ordenar. Quité el ciclo de 20 minutos: **ya no despacho ni reviso tar
 - `sldb/desk/drawer/plans/pedidos-de-specir-y-graph-ui/` (pusheado a `jpcosec/sldb`, `e03222d0`): los 12 pedidos a sldb con su estado, y lo averiguado sobre pron.
 
 Tu graph_ui y tu sldb van adelante de GitHub: trae esos dos commits antes del próximo integrate (son carpetas nuevas del drawer, no chocan). Sigue pendiente lo que te dejé en las entradas anteriores (despachar primero la tarea de borrar goldens; los ajustes de G-A2 y G-B1).
+
+## 2026-11-25 — robocop2: main de IR pusheado
+
+El integrate pasó con la suite completa y pushó `main` a `jpcosec/specir` (tip `5a1d2c1`); ya no queda nada adelante de origin.
+- Lo destrabaron tres tareas: borrar goldens (`1fd427c`), `SPECIR_WORKSPACE` (`aa7045a`) y `specir mcp` → `mcp_extension` (`207c578`).
+- Además, la suite del integrate pasó a usar `PYTHONPATH` absoluto, y retiré 11 materializaciones del retiro cuyos destinos borró la tarea de goldens.
+- El desk de IR queda libre para cualquiera.
