@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T03:14:00Z'
+  at: '2026-11-25T03:37:46Z'
   authority: generated
   via: save_document_payload
 id: task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca
@@ -11,14 +11,22 @@ tags: []
 current_node: ritual-testing
 history:
 - task_activates
-references: []
+references:
+- skills/use-specir/SKILL.md
+- src/specir/cli.py
+- tests/test_cli_mcp.py
+- 564a82e3df55446accd998e28725410a814e611c
 depends_on: []
 pills: []
-files: []
+files:
+- skills/use-specir/SKILL.md
+- src/specir/cli.py
+- tests/test_cli_mcp.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-specir-mcp-levanta-el-server-mcp-de-sldb-con-la-extension-de-specir
 ---
 
 # specir mcp: el punto de entrada propio de specIR levanta el server MCP de sldb con su extension ya cargada

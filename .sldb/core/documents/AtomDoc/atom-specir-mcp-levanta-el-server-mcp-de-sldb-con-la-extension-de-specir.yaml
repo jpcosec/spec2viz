@@ -1,0 +1,22 @@
+name: atom-specir-mcp-levanta-el-server-mcp-de-sldb-con-la-extension-de-specir
+path: desk/atoms/atom-specir-mcp-levanta-el-server-mcp-de-sldb-con-la-extension-de-specir.md
+source_hash: 99e5dc1a030d1660724eca6c034fc87e637aced36485a4076d81748499492a4b
+content_hash: 7a73d775cd8e242bf4630192018e8ba4081a435d46335d1ffc9fcb0e7e815cba
+field_hashes:
+  id: 46466e6430d03b0f9de7c1438d8c8b03dd87e706b8398d1ee55e4bdb91345445
+  title: 8cce9eaef06e76a9be04be0755454fa8ffaf8db421bb2a7e6546610fe6f13326
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: 163a11060232e75c2686504b5123f8a3b7ef8d52d7f468a8334ce2bb493e9167
+  tags: 9bef2916e3fbba8c10a2a2c9f4ff59ec39b25499003a92cf3cb2d74747de443b
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:specir-mcp
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-25T03:37:32Z'
+  authority: generated
+  via: create_document

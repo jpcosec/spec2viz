@@ -1,7 +1,7 @@
 name: task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca
 path: desk/tasks/task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca.md
-source_hash: 5e8a6bfce76707aced0c69499c009e0e5cfcc357afe44a7726782c98069e2ca9
-content_hash: a3dd991c0c2ea22373f8adac080f4bc13bb48fb8cc58d0d16f8021b98386a650
+source_hash: 1cc393eea38b1458259beba81045c7129636cbfb967df4eca4c24b09eb0fe91f
+content_hash: 5273dcd260feaf868966597ddac6f30862f434364f6fadf9ef474d495bedf1b6
 field_hashes:
   title: f321ae6cfa9ffa51a6d33be6ebff3eb23c00ad3789c88d5de39dc36540563515
   id: 2dbbb13b526eabd03fb749bcccc36ec410380b136ac9d47baf8171b6927dabbd
@@ -13,17 +13,17 @@ field_hashes:
   why: 5f92c7996f9a2e402710fe5a308fed481aa3d0f7244d86365060fb2965303b27
   goal: 9410843dc46643aebc94054af16266bf6a26fcf4b8ad4775d799a3beea54cc9e
   scope: d6969123243d5407f69756fb7211442194268214354023e9256165cf2e3b96d7
-  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  references: 450bcf6b33f9636dd55e59ac1d2f7826651922217abc1bed46353922e69b2d89
   depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: eff55d9bac8872206310fca5367ff7db21da9eea99c80a2e3b66f9b2c8c92726
   implementation_path: ee042cdb3015f0accb60597b53014ea4c06189bcd0408229ae497b153f8c9eb5
   validation: d17aa84b4e4a8d8f3a075aad8361b788fd38ed7789b34701648312edc22c68c4
   done_when: ede32e26f838d4c55bd7861b379a250dc585c07b1ff3da0b524b2398ce6a1a6a
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
-  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  atoms: 5364cb3e9837fc037d246a6f6a5e31c88c790329f7f467025e8c551e268bc485
 semantic_tags:
 - board.tareas
 - representation.markdown
@@ -32,6 +32,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T03:14:00Z'
+  at: '2026-11-25T03:37:46Z'
   authority: generated
   via: save_document_payload

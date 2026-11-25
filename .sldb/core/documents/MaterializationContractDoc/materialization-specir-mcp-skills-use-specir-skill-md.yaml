@@ -1,0 +1,25 @@
+name: materialization-specir-mcp-skills-use-specir-skill-md
+path: desk/materializations/materialization-specir-mcp-skills-use-specir-skill-md.md
+source_hash: ed6fffdb2419e1d8b2ac4b3306baa40e71b48f826f82d5d81725207d1aeb6e1f
+content_hash: d5b9526d9e632d2700210c4741a3a30aa54d196cb425bcdd07c17505ca0b762d
+field_hashes:
+  id: ab4de8ac1a017e3e8a1323fd232437d2c7a22f1665bdcaee0952b936c32c9d9a
+  title: 49b0130f985c5ebdf22b9512942788ef6f87d506b425d830b7d2c6b4b610275b
+  source_atoms: 5364cb3e9837fc037d246a6f6a5e31c88c790329f7f467025e8c551e268bc485
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: 6f1822a6149be251847c37113e2796296c6738e5a80ea573ecc6670cf2c33e3f
+  intent: fba8f1ebb27b47168ecb6782d7eb69140d9dc2abfb5f3c41ae144e91999f5d2a
+  validation: 7c30a5972c1ee60985baf6704e35e6eeb27833c385ba88678a749364ffb35b9c
+  tags: 9bef2916e3fbba8c10a2a2c9f4ff59ec39b25499003a92cf3cb2d74747de443b
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:specir-mcp
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T03:37:51Z'
+  authority: generated
+  via: create_document
