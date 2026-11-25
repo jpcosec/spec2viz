@@ -1,0 +1,36 @@
+name: review-task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca-evidence-atom-1
+path: desk/reviews/task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca/evidence-atom-1.md
+source_hash: e4b06e614264e5d26305e859442f4699363b3f7d010c499bc9aeb098e42d194d
+content_hash: d1952f81ae8cbddd28b3adb864dca07291949521a819327beb439ebad8a4525e
+field_hashes:
+  id: 1cb94887499d40325d6da77992cd2c4835afb181f85628882df834f124f638a9
+  title: c522fbcf0a0ee710aa901365d94f94c6ea62c65d26e60a4f25f0df1433488d1c
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: c833c202b5b45ac10909767bb422916db457ddd48188a4ee591f0618893df0ba
+  value: 46466e6430d03b0f9de7c1438d8c8b03dd87e706b8398d1ee55e4bdb91345445
+  subject: a7f4890fc1dc1d75737b3a51122d7d3beeb7339ae22c8ef9116c363e63536cfe
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 0f6367880d23c297b97c2a37ad6110c59ac0f3ff14b28f9a1bd6a443ec92f759
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 20133adae38be63a7dd9ea61941f149519b5930a21eaaf497be53ffaf8abaecf
+  created_at: e3ad6a3529febd364d4899040371a17efcbf9d050a7a384cef3ed2891e0693a6
+  disposed_at: e3ad6a3529febd364d4899040371a17efcbf9d050a7a384cef3ed2891e0693a6
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 1f167504f67de66966589edea1139bdce654e4bf65b47ff9ae8ce7290069de15
+  disposition: b56bbcd352763cd6d0ce574b2477415b92635d9b59aedc2fe1cb96fc60814c2b
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T03:38:10Z'
+  authority: generated
+  via: create_document

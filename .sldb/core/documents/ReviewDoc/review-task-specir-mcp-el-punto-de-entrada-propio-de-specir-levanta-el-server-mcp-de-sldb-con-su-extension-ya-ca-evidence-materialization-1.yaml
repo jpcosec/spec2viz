@@ -1,0 +1,36 @@
+name: review-task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca-evidence-materialization-1
+path: desk/reviews/task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca/evidence-materialization-1.md
+source_hash: f9681325720314de4dc08ff20d6054ee8fa5c541f3ed0791895ff31b9ed01e1a
+content_hash: b375bc318589846f61c4059834da0b3f60eb699914898f717aaed31cedafc2bf
+field_hashes:
+  id: 2cd636a5d74dc2f9506b7e6e74db5cf7608d4498dee0a28ec3a8c5a5ec8ef3b4
+  title: 65d4d50b52ffbaeec6638c48924ec82cd9156722828e6ff4d2e06b7c1b1e4fd6
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: b77d8cf6414796c495587568e836eb101f2c47c6cbab025c9e93d24db5ead67b
+  value: 8b7dcb38a2701cb942d600b000751e6b18dc93cb496c654b9194fcbab6e9f4d8
+  subject: a7f4890fc1dc1d75737b3a51122d7d3beeb7339ae22c8ef9116c363e63536cfe
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 03afd59f15796ec5731372a8a302a4c2c9541c0df646ecc85bc5c3ba9cba6e38
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: b7daa063628cf4a60ac1675793b5351b8dc9713b9cc6eb6c5458fe293aa4ec12
+  created_at: e3ad6a3529febd364d4899040371a17efcbf9d050a7a384cef3ed2891e0693a6
+  disposed_at: e3ad6a3529febd364d4899040371a17efcbf9d050a7a384cef3ed2891e0693a6
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 90a5a0e7e3bcfba8081c5a27682eb3ac6e27cd4d9bd3cffc13abdccd0d44e669
+  disposition: 82394217053fa84a4711b07d5f5ed5601336cea0b6e71fb5b89bb7f037ea30e3
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T03:38:12Z'
+  authority: generated
+  via: create_document

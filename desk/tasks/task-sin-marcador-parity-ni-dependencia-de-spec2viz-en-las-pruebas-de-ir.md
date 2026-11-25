@@ -1,15 +1,16 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T03:00:41Z'
+  at: '2026-11-25T03:40:29Z'
   authority: generated
   via: save_document_payload
 id: task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir
-status: draft
+status: active
 summary: ''
 tags: []
-current_node: ritual-execution
-history: []
+current_node: ritual-testing
+history:
+- task_activates
 references: []
 depends_on: []
 pills: []

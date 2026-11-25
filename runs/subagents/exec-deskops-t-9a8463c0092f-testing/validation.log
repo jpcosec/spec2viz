@@ -1,0 +1,45 @@
+Task-Id: task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca
+Commit: 564a82e3df55446accd998e28725410a814e611c
+Worktree: /mnt/ssd/proyectos/SLDB_1/IR-tester-t9a (detached at 564a82e3; removed afterwards)
+Python: /dev/shm/deskops-test-venv/bin/python (3.12.16)
+PYTHONPATH=/mnt/ssd/proyectos/SLDB_1/IR-tester-t9a/src:/mnt/ssd/proyectos/SLDB_1/sldb/src:/mnt/ssd/proyectos/SLDB_1/deskops:/mnt/ssd/proyectos/SLDB_1/.venv/lib/python3.12/site-packages
+TMPDIR=/tmp
+PYTEST_ADDOPTS=--basetemp=/tmp/pytest-deskops-t-9a8463c0092f-wt
+
+[1] python -m pytest -q -p no:cacheprovider tests/test_cli_mcp.py
+...                                                                      [100%]
+3 passed in 1.21s
+rc=0
+
+[2] python -m pytest -q -p no:cacheprovider tests/visual/test_cli.py
+........................................                                 [100%]
+40 passed in 56.49s
+rc=0
+
+[3] python -m pytest -q -p no:cacheprovider tests/test_mcp_extension.py
+11 errors in 84.46s
+Todos: ERROR en setup/fixture tests/conftest.py:153 (`sldb stores check --store .sldb` rc 1).
+No se ejecutó ningún test de test_mcp_extension.py.
+
+[4] Control en el commit padre 2d7bd09 (sin cambios del ejecutor):
+python -m pytest -q -p no:cacheprovider tests/test_mcp_extension.py::test_the_server_of_sldb_serves_its_tools_and_specirs
+1 error in 55.28s
+Mismo error de fixture tests/conftest.py:153; confirma que no lo introduce 564a82e3.
+
+[5] Inspección de la causa en el worktree limpio en 564a82e3:
+sldb stores check --store .sldb
+rc=1
+FAIL: store integrity — 608 documents in 26 models — 420 damaged — 9 contract moved — root hash stale — 416 error(es), 21 alerta(s)
+Alertas de `anchors/doc_lost` y `anchors/doc_changed` en ReviewDoc de otras tareas (p.ej. review-task-ir13j..., review-task-las-pruebas-mcp..., review-task-specir-retirement-check...).
+
+[6] `specir mcp --help` (CliRunner):
+exit 0
+Usage: main mcp [OPTIONS]
+  Serve sldb's MCP server on a store with specIR's tools (specir_types,
+  specir_nodes, specir_rules, specir_impact) already loaded.
+Options:
+  --store PATH     The sldb store to serve.  [required]
+  --level INTEGER  Mutability level (default: read-only,
+                   sldb.mcp.mutability.READ).
+  --actor TEXT     Actor recorded on writes.
+  --help           Show this message and exit.

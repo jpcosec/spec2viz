@@ -1,7 +1,17 @@
+Task: task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca
+Title: specir mcp: el punto de entrada propio de specIR levanta el server MCP de sldb con su extension ya cargada
+Status: active
+Current node: ritual-testing
+Task type: task.code
+Lifecycle gates:
+- task_hands_to_closeout -> ritual-closeout: open [nonempty(validation)]
+  post-hook evento-para-el-coordinador: sh -c mkdir -p runs/hooks && printf '%s %s %s %s->%s\n' "$(date -u +%FT%TZ)" "$DESKOPS_TASK_ID" "$DESKOPS_TRANSITION" "$DESKOPS_FROM_NODE" "$DESKOPS_TO_NODE" >> runs/hooks/events.log
+  post-hook encola-reap-del-tester: deskops queue add dispatch-reap --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-25T03:37:46Z'
+  at: '2026-11-25T03:14:00Z'
   authority: generated
   via: save_document_payload
 id: task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca
@@ -11,22 +21,14 @@ tags: []
 current_node: ritual-testing
 history:
 - task_activates
-references:
-- skills/use-specir/SKILL.md
-- src/specir/cli.py
-- tests/test_cli_mcp.py
-- 564a82e3df55446accd998e28725410a814e611c
+references: []
 depends_on: []
 pills: []
-files:
-- skills/use-specir/SKILL.md
-- src/specir/cli.py
-- tests/test_cli_mcp.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-specir-mcp-levanta-el-server-mcp-de-sldb-con-la-extension-de-specir
+atoms: []
 ---
 
 # specir mcp: el punto de entrada propio de specIR levanta el server MCP de sldb con su extension ya cargada
@@ -66,3 +68,20 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 tests/test_cli_mcp.py (nuevo) cubre (a) las cuatro tools, (b) --help y (c) los argumentos que llegan a serve; pasa junto con tests/test_mcp_extension.py.
+
+## Como probar (tester)
+
+Ubica el trabajo del ejecutor:
+
+    git log -1 --format=%H --grep "Task-Id: task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca"   # commit del ejecutor
+    git show --name-only <commit>                           # sus archivos
+
+Los tests a correr son los archivos tests/*.py de ese commit, mas tests/test_<modulo>.py cuando exista para cada modulo de codigo tocado; de a uno, con `TMPDIR=/tmp python -m pytest -q <archivo>`. No corras la suite completa: la corre integrate en el host.
+
+Escribe result-summary.md con el veredicto PASA o FALLA en la primera linea.
+
+## Temporales de pytest
+
+Antes de cualquier pytest exporta, para que sus temporales caigan en el /tmp del contenedor (muere con el agente) y no en el /dev/shm del host:
+
+    export PYTEST_ADDOPTS="--basetemp=/tmp/pytest-deskops-t-9a8463c0092f"
