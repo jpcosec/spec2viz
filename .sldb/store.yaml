@@ -1300,9 +1300,21 @@ include:
 - model: TaskCodeDoc
   paths:
   - desk/tasks/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir.md
+  - desk/tasks/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash.md
+  - desk/tasks/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados.md
+  - desk/tasks/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml.md
 - model: TaskDebugDoc
   paths:
   - desk/tasks/task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar.md
+- model: TaskDecisionDoc
+  paths:
+  - desk/tasks/task-decision-de-jp-cual-es-el-localizador-de-un-control-en-el-diccionario-de-componentes.md
+  - desk/tasks/task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui.md
+  - desk/tasks/task-decision-de-jp-donde-vive-el-diccionario-de-componentes.md
+  - desk/tasks/task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb.md
+  - desk/tasks/task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui.md
+  - desk/tasks/task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build.md
+  - desk/tasks/task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir.md
 graph_backend: networkx
 policy: {}
 tag_models:
