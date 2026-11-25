@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T06:07:51Z'
+  at: '2026-11-25T06:39:13Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -13,7 +13,6 @@ tasks:
 - desk/tasks/task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar.md
 - desk/tasks/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash.md
 - desk/tasks/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados.md
-- desk/tasks/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml.md
 - desk/tasks/task-decision-de-jp-cual-es-el-localizador-de-un-control-en-el-diccionario-de-componentes.md
 - desk/tasks/task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui.md
 - desk/tasks/task-decision-de-jp-donde-vive-el-diccionario-de-componentes.md
@@ -59,9 +58,8 @@ Estado al 2026-11-21 (09:40 UTC): IR13, gate de retiro de spec2viz. specir retir
 _Generated from the task references above._
 
 - Las pruebas de tests/test_mcp_extension.py fallan en el setup: el server MCP cierra la conexion al arrancar sobre la copia del store [draft] - Se identifica por que el server muere al arrancar sobre la copia del store de la sesion (fixtures store_copy y build_deskops_copy de tests/conftest.py) y se corrige la causa, de modo que tests/test_mcp_extension.py pase.
-- Los nombres de relacion de specIR quedan acotados a 255 bytes con un resumen con hash [active] - Que edge_name nunca produzca un nombre de mas de 255 bytes, de forma determinista y estable.
+- Los nombres de relacion de specIR quedan acotados a 255 bytes con un resumen con hash [ready_for_testing] - Que edge_name nunca produzca un nombre de mas de 255 bytes, de forma determinista y estable.
 - specir ux extract extrae la interfaz de un arbol y avisa de los archivos saltados [draft] - Un comando de CLI que corre extract_frontend, avisa de los archivos que code_facts salto, y con --strict falla (rc 1) si hubo saltados.
-- Las operaciones de API de un backend que no es DRF salen de una tabla de rutas declarada en YAML [active] - Leer un YAML de rutas declaradas y escribir un ApiOperationDoc por entrada con origen 'declarado', para que extract_frontend pueda enlazar invokes.
 - Decision de JP: cual es el localizador de un control en el diccionario de componentes [draft] - Registrar la eleccion de JP y su razon.
 - Decision de JP: hasta donde llega el uso del diccionario en pruebas de UI [draft] - Registrar la eleccion de JP y su razon.
 - Decision de JP: donde vive el diccionario de componentes [draft] - Registrar la eleccion de JP y su razon.

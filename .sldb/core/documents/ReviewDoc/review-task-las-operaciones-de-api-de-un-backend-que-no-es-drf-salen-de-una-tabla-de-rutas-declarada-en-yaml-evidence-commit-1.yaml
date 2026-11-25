@@ -1,0 +1,36 @@
+name: review-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml-evidence-commit-1
+path: desk/reviews/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml/evidence-commit-1.md
+source_hash: 1d3303df1c06311c5ae68f6db58ada161e939f64f493a85d38135bc8d28e8b7f
+content_hash: fe2ebe2002c37053330972655fa12cbb9d780ea614bbc0a935cc7780c4fe97c6
+field_hashes:
+  id: 30790de7f2086287e42e20f87829592cf039ac20b283bfb52801fe00e03787e1
+  title: 57a2e8b15363c83553ba241818b3e65d437426c7a9a9eaa01596690c65ea1513
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 5ea9c58673a69c87d0e5540a6f9978aad8f8e0a0b9ce3471cff139c730d97888
+  value: 7a941dcf1d5dff07c1bccd97d042ab7e1c6e2276adeaa995bcf30d344f53c268
+  subject: 3eebd32c250f2ca314533c2e2ba25692dc91731e6caad37b451ab8fca2d76ef5
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 10df5c31e987942399a8974361e89432227bfff265d9cb9f61a547a948bf2424
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: e3aafbce36536622e8216def0d3ae3e2f902919f30b5b9f73010f021db3fdf45
+  created_at: 4340b6634b7f5d1ba8a36eb2ffa0afc327335b63dfb65baf3b41efa64243b4f5
+  disposed_at: 4340b6634b7f5d1ba8a36eb2ffa0afc327335b63dfb65baf3b41efa64243b4f5
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 699c0629cf8e8ac8e9043032ab7c124d0fd8002461d6618fba01229b23d9547d
+  disposition: 4f65b4e15b1d08c8f74ef8df598d1a90cbe492f2c8b9e2dc64ce4db962164352
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T06:38:34Z'
+  authority: generated
+  via: create_document

@@ -1,0 +1,7 @@
+bringing up nodes...
+bringing up nodes...
+
+....................                                                     [100%]
+20 passed in 153.79s (0:02:33)
+cmd: python -m pytest -q -p no:cacheprovider -n 4 tests/extract/test_declared_routes.py tests/extract/test_frontend_extraction.py
+exit: 0

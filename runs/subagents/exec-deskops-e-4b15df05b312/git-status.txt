@@ -1,0 +1,138 @@
+## main...origin/main [ahead 26]
+ M .sldb/core/documents/BoardDoc/Board.yaml
+ M .sldb/core/documents/RunDoc/run-deskops-e-1f07b310f712.yaml
+ M .sldb/core/documents/RunDoc/run-deskops-e-4b15df05b312.yaml
+ M .sldb/core/documents/RunDoc/run-deskops-t-cad81b085b87.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados.yaml
+ M .sldb/core/models/AtomDoc.yaml
+ M .sldb/core/models/BoardDoc.yaml
+ M .sldb/core/models/MaterializationContractDoc.yaml
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/store_index.yaml
+ M .sldb/store.yaml
+ M desk/tasks/Board.md
+ M desk/tasks/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml.md
+ M desk/tasks/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash.md
+ M desk/tasks/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados.md
+ M runs/subagents/exec-deskops-e-1f07b310f712/run.md
+ M runs/subagents/exec-deskops-e-4b15df05b312/run.md
+ M runs/subagents/exec-deskops-t-cad81b085b87-testing/run.md
+?? .scion/settings.yaml
+?? .scion/state.yaml
+?? .sldb/core/documents/AtomDoc/atom-las-pruebas-de-ir-no-dependen-de-spec2viz-el-marcador-parity-compara-contra-goldens.yaml
+?? .sldb/core/documents/MaterializationContractDoc/materialization-parity-goldens-pyproject-toml.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui-owner-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-decision-de-jp-cual-es-el-localizador-de-un-control-en-el-diccionario-de-componentes-owner-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-decision-de-jp-donde-vive-el-diccionario-de-componentes-owner-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb-owner-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir-owner-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui-owner-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build-owner-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados-preflight-1.yaml
+?? .sldb/core/documents/TaskCodeDoc/task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente.yaml
+?? .sldb/core/documents/TaskCodeDoc/task-u2-composiciones-lista-las-recetas-de-diagrama-del-store-con-filtro-por-capa-buscador-y-cobertura-n.yaml
+?? .sldb/core/documents/TaskCodeDoc/task-u3-composiciones-dibuja-la-receta-elegida-con-su-notacion-zoom-y-arrastre-y-un-nodo-abre-su-document.yaml
+?? .sldb/core/documents/TaskCodeDoc/task-u4-composiciones-muestra-las-specs-de-actividad-con-notacion-bpmn.yaml
+?? .sldb/core/documents/TaskCodeDoc/task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage.yaml
+?? desk/atoms/atom-las-pruebas-de-ir-no-dependen-de-spec2viz-el-marcador-parity-compara-contra-goldens.md
+?? desk/materializations/materialization-parity-goldens-pyproject-toml.md
+?? desk/reviews/task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui/
+?? desk/reviews/task-decision-de-jp-cual-es-el-localizador-de-un-control-en-el-diccionario-de-componentes/
+?? desk/reviews/task-decision-de-jp-donde-vive-el-diccionario-de-componentes/
+?? desk/reviews/task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb/
+?? desk/reviews/task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir/
+?? desk/reviews/task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui/
+?? desk/reviews/task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build/
+?? desk/reviews/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml/
+?? desk/reviews/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash/
+?? desk/reviews/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados/
+?? desk/tasks/task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente.md
+?? desk/tasks/task-u2-composiciones-lista-las-recetas-de-diagrama-del-store-con-filtro-por-capa-buscador-y-cobertura-n.md
+?? desk/tasks/task-u3-composiciones-dibuja-la-receta-elegida-con-su-notacion-zoom-y-arrastre-y-un-nodo-abre-su-document.md
+?? desk/tasks/task-u4-composiciones-muestra-las-specs-de-actividad-con-notacion-bpmn.md
+?? desk/tasks/task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage.md
+?? runs/coordinacion-johanes.md
+?? runs/subagents/20261120-211322/
+?? runs/subagents/20261120-220249/
+?? runs/subagents/20261120-220302/
+?? runs/subagents/20261120-223745/
+?? runs/subagents/20261120-223808/
+?? runs/subagents/20261120-234747/
+?? runs/subagents/20261120-234819/
+?? runs/subagents/20261120-ir04b-wip/
+?? runs/subagents/20261121-042012/
+?? runs/subagents/20261121-042028/
+?? runs/subagents/20261121-061925/
+?? runs/subagents/20261121-061940/
+?? runs/subagents/20261123-180329/
+?? runs/subagents/20261123-180347/
+?? runs/subagents/20261123-180404/
+?? runs/subagents/20261123-180424/
+?? runs/subagents/20261123-231404/
+?? runs/subagents/20261123-232909/
+?? runs/subagents/20261123-234426/
+?? runs/subagents/20261123-234445/
+?? runs/subagents/20261125-015903/
+?? runs/subagents/20261125-021450/
+?? runs/subagents/20261125-021511/
+?? runs/subagents/20261125-022907/
+?? runs/subagents/20261125-022924/
+?? runs/subagents/20261125-023330/
+?? runs/subagents/20261125-031102/
+?? runs/subagents/20261125-032242/
+?? runs/subagents/20261125-032301/
+?? runs/subagents/20261125-033216/
+?? runs/subagents/20261125-033243/
+?? runs/subagents/20261125-054340/
+?? runs/subagents/20261125-054400/
+?? runs/subagents/20261125-054421/
+?? runs/subagents/20261125-054438/
+?? runs/subagents/20261125-054501/
+?? runs/subagents/20261125-054524/
+?? runs/subagents/exec-deskops-e-1f07b310f712/prompt.md
+?? runs/subagents/exec-deskops-e-4b15df05b312/board.txt
+?? runs/subagents/exec-deskops-e-4b15df05b312/git-status.txt
+?? runs/subagents/exec-deskops-e-4b15df05b312/graph.txt
+?? runs/subagents/exec-deskops-e-4b15df05b312/next.txt
+?? runs/subagents/exec-deskops-e-4b15df05b312/prompt.md
+?? runs/subagents/exec-deskops-e-4b15df05b312/task.txt
+?? runs/subagents/exec-deskops-e-59807359e541/board.txt
+?? runs/subagents/exec-deskops-e-59807359e541/git-status.txt
+?? runs/subagents/exec-deskops-e-59807359e541/graph.txt
+?? runs/subagents/exec-deskops-e-59807359e541/next.txt
+?? runs/subagents/exec-deskops-e-59807359e541/prompt.md
+?? runs/subagents/exec-deskops-e-59807359e541/result-summary.md
+?? runs/subagents/exec-deskops-e-59807359e541/retirement-check.txt
+?? runs/subagents/exec-deskops-e-59807359e541/task.txt
+?? runs/subagents/exec-deskops-e-59807359e541/validation.log
+?? runs/subagents/exec-deskops-e-6735ed85d05b/board.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/git-status.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/graph.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/next.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/prompt.md
+?? runs/subagents/exec-deskops-e-6735ed85d05b/result-summary.md
+?? runs/subagents/exec-deskops-e-6735ed85d05b/task.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/validation.log
+?? runs/subagents/exec-deskops-t-ca0f0e14eaaa-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-ca0f0e14eaaa-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-cad81b085b87-testing/prompt.md
+?? runs/subagents/exec-deskops-t-cad81b085b87-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-cad81b085b87-testing/validation.log
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/validation.log
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/validation.log
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/validation.log
