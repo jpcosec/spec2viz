@@ -73,3 +73,4 @@
 {"task_id": "task-u2-composiciones-lista-las-recetas-de-diagrama-del-store-con-filtro-por-capa-buscador-y-cobertura-n", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "superseded", "commit": null}
 {"task_id": "task-u3-composiciones-dibuja-la-receta-elegida-con-su-notacion-zoom-y-arrastre-y-un-nodo-abre-su-document", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "superseded", "commit": null}
 {"task_id": "task-u4-composiciones-muestra-las-specs-de-actividad-con-notacion-bpmn", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "superseded", "commit": null}
+{"task_id": "task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "superseded", "commit": null}
