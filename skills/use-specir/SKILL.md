@@ -1,19 +1,35 @@
 ---
 name: use-specir
-description: Use when rendering, validating, linting or exporting the schema of semantic diagram specs, building the HTML catalog of diagrams (vistas.yml or diagram-store), or choosing a renderer, with specIR's `specir` command and its Python API (`specir.visual`). Replaces use-spec2viz. What is generic (syncing specs, notations, palettes and catalogs into a store, generating specs from a graph or from Python, resolving views, serving annotations) is sldb's and is used with the `sldb` command directly.
+description: Use when declaring and extracting diagram content with specIR (spec classes, notations, specs from code or text), exporting a spec to PlantUML, Mermaid, D2 or BPMN XML, linting or exporting the schema of specs, or choosing an exporter, with specIR's `specir` command and its Python API (`specir.visual`). specIR declares and extracts; it does not draw and has no interface of its own: a diagram is seen and edited in graph_ui's notation view. What is generic (syncing specs, notations, palettes and catalogs into a store, generating specs from a graph or from Python, resolving views, serving) is sldb's and is used with the `sldb` command directly.
 ---
 
-# Use specIR (visual layer)
+# Use specIR (declares and extracts)
 
-specIR is the visual layer and domain mapping over SLDB stores. It replaces spec2viz: same diagram
-types, same renderers, same catalog page. sldb owns everything generic; specIR never wraps it.
+specIR declares and extracts: it owns the diagram content (notations, spec classes) and the extraction
+from code and text exports. It does not draw and it has no interface of its own (decided 2026-11-25, see
+`docs/decisiones/paridad-por-capacidades.md`). It replaces spec2viz by capabilities, not by code: each
+capability is proved by an acceptance test of what it does, never by identical output. sldb owns
+everything generic; specIR never wraps it.
+
+## Where a diagram is seen or edited
+
+A diagram is a `SpecDoc` or a `ViewDoc` in an sldb store with its notation. To see it or edit it, go to
+graph_ui's notation view (`UIs/graph_ui`, view `specs/notation`). Do not build a renderer, a page or a
+viewer in specIR. Static HTML or SVG is only for embedding inline.
+
+Capability state, from that decision (2026-11-25):
+
+- Seeing any of the 8 diagram types with its notation: met in graph_ui's notation view.
+- Validating a spec and syncing it to the store: met, in sldb.
+- Exporting to PlantUML, Mermaid, D2 or BPMN XML: met, in specIR (`specir diagram render`).
+- Opening a node to see its document, atoms and references; annotating a diagram or a node; editing from
+  the diagram: missing (decided 2026-11-25, not executed). Do not describe them as done.
 
 Use this skill when the task touches:
 
-- rendering a diagram spec (plantuml, mermaid, vega, d2, antonia-html, tree, graph, bpmn, json)
-- validating a spec, linting rendered mermaid, or exporting the JSON Schema of specs or diagram stores
-- building the catalog HTML from a `vistas.yml` registry or a `project.yml` / diagram-store config
-- saving the catalog's annotations in an sldb store
+- exporting a diagram spec to a text format (plantuml, mermaid, vega, d2, antonia-html, tree, graph, bpmn, json)
+- validating a spec, linting exported mermaid, or exporting the JSON Schema of specs or diagram stores
+- building the legacy catalog HTML from a `vistas.yml` registry (retiring, see below)
 - the Python API `specir.visual` (compile, render, render to file, schema, lint, catalog)
 
 ## Fast orientation
@@ -34,9 +50,9 @@ specir catalog --help
 
 | Need | Use | Not |
 |---|---|---|
-| Render, lint, schema of a spec | `specir diagram render`, `specir diagram lint`, `specir diagram schema` | |
+| Export (render to a text format), lint, schema of a spec | `specir diagram render`, `specir diagram lint`, `specir diagram schema` | |
 | Validate a spec, a notation or a palette | `sldb notations validate <name\|path> [--json]` (specIR has no validate command) | |
-| Catalog HTML | `specir catalog build` | |
+| Legacy catalog HTML (retiring: decided 2026-11-25, not executed) | `specir catalog build` | |
 | Catalog schema | `specir catalog schema` | |
 | Sync a spec into a store | `sldb notations sync --spec` | a specIR command |
 | Sync a notation or a palette | `sldb notations sync --notation`, `sldb notations sync --palette` | a specIR command |
@@ -44,7 +60,8 @@ specir catalog --help
 | Spec from a graph, a store or Python | `sldb notations from-graph` (`--snapshot`, `--store`, `--python`) | a specIR command |
 | List notations, palettes, views | `sldb notations list` | a specIR command |
 | Resolve a spec's view | `sldb notations view` | a specIR command |
-| Serve the catalog's annotations | `sldb serve` | spec2viz's catalog serve |
+| Serve a store over HTTP | `sldb serve` (the store has one door: sldb's API; the move to fastmcp is decided 2026-11-25, not executed) | a specIR server |
+| See or edit a diagram | graph_ui notation view (`UIs/graph_ui`, `specs/notation`) | a specIR page or renderer |
 | Load and validate a spec in Python | `sldb.api.notations.load_spec`, `validate_spec` | a specIR re-export |
 
 If sldb lacks something generic, write it to sldb's inbox (`deskops message send --to sldb`); do not
@@ -63,7 +80,7 @@ add it to specIR.
 - `diagram`: `render`, `lint`, `schema`
 - `catalog`: `build`, `schema`
 - top level: `about`, and the aliases `render`, `lint`, `schema`, `build`
-- MCP: specir mcp --store <store del proyecto> levanta el server MCP de sldb con las tools de specIR cargadas (igual que sldb mcp --extension specir.mcp_extension:register).
+- MCP: `specir mcp --store <project store>` starts sldb's MCP server with specIR's tools loaded (same as `sldb mcp --extension specir.mcp_extension:register`). Mounting specIR's tools on sldb's own server once its API is on fastmcp is decided 2026-11-25, not executed.
 
 Core commands (canonical form):
 
@@ -91,7 +108,7 @@ The default per type: class `mermaid`; sequence, state, activity and deployment 
 `graph`; matrix `vega`; reflection `json`. `bpmn` writes `<stem>.bpmn` and `<stem>.bpmn.html` (offline
 viewer). Do not document a renderer list that disagrees with `RENDERER_MAP`.
 
-## Full flow to HTML
+## Flow to the legacy catalog HTML
 
 ```
 sldb notations validate -> specir diagram render -> specir diagram lint -> specir catalog build -> HTML
@@ -125,7 +142,7 @@ sldb notations from-graph --python <src_dir> --output <spec.yml>
 sldb notations view <spec_id> --store <.sldb>
 ```
 
-`specir catalog build` (and the alias `specir build`):
+Legacy `specir catalog build` (and the alias `specir build`):
 
 - input: a `vistas.yml` registry or a hierarchical diagram-store config (`project.yml`)
 - output: one self-contained HTML file
@@ -133,18 +150,12 @@ sldb notations view <spec_id> --store <.sldb>
 - `--atoms-dir`: W5H1 atom markdown files injected as `window.ATOMS_DB`; atoms are matched to diagram
   elements by sldb (`sldb.api.matching`)
 
-## Catalog annotations (replaces spec2viz's catalog serve)
+## Catalog page and its annotations (retiring)
 
-The page saves its annotations in a `CatalogAnnotationsDoc` of an sldb store, through `sldb serve`:
-
-```bash
-sldb models add specir.visual.catalog.annotations:CatalogAnnotationsDoc --store <.sldb>
-sldb serve --store <.sldb> --cors --port 8765
-specir catalog build --config <vistas.yml> --out <out.html> --sldb-url http://127.0.0.1:8765
-```
-
-`--annotations-doc <id>` fixes the document id; `--annotations` alone embeds the saver and the page
-takes the server from its URL (`?sldb=<url>&annotations=<id>`).
+`specir catalog build` still writes the legacy catalog HTML, and `CatalogAnnotationsDoc` still exists.
+Both are retired once capabilities 1 to 4 and 6 are met (decided 2026-11-25, not executed). Do not build
+new work on them: annotating a diagram or a node belongs to graph_ui and the text editor, and that is
+not built yet (decided 2026-11-25, not executed).
 
 ## Python API
 
@@ -160,7 +171,7 @@ path = render_to_file("spec.yml", out="build", renderer="plantuml")
 
 `specir.visual` also exports the IR dataclasses, the compilers, `RENDERER_MAP`, `EXT_MAP`,
 `DEFAULT_RENDERER`, `with_provenance`, `provenance_header`, `provenance_text`, `write_json_schema`,
-`assert_mermaid_ok`, `render_catalog`, `AnnotationsTarget` and the errors `Spec2VizError`,
+`assert_mermaid_ok`, `render_catalog`, `AnnotationsTarget` (tied to the retiring catalog) and the errors `Spec2VizError`,
 `CompileError` and `RenderError`.
 
 ## Validation
