@@ -26,7 +26,15 @@ import pytest
 import yaml
 
 REPO = Path(__file__).resolve().parents[1]
-WORKSPACE = REPO.parent
+
+
+def workspace_root() -> Path:
+    """The SLDB_1 workspace: `SPECIR_WORKSPACE` if set, else the parent of this repo."""
+    env = os.environ.get("SPECIR_WORKSPACE")
+    return Path(env) if env else REPO.parent
+
+
+WORKSPACE = workspace_root()
 COPIED = (".sldb", "sldb", "desk")
 #: The store registers RunDocs, which live outside `.sldb/` and `desk/`.
 RUN_DOCS = "runs/subagents/*/run.md"
