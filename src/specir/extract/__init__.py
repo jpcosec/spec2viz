@@ -19,12 +19,13 @@ from sldb.api.code import code_facts
 from specir.extract.django_drf import interpret
 from specir.extract.facts import Facts
 from specir.extract.plan import Planned
+from specir.extract.python_cli import extract_python_cli
 from specir.extract.react_tsx import interpret_frontend
 from specir.extract.routes import extract_routes
 from specir.extract.write import ExtractionReport, write_plan
 from specir.install import package_pythonpath
 
-__all__ = ["ExtractionReport", "extract", "extract_frontend", "extract_routes"]
+__all__ = ["ExtractionReport", "extract", "extract_frontend", "extract_python_cli", "extract_routes"]
 
 
 def extract(root: str | Path, store: str | Path | None = None, paths: list[str] | None = None) -> ExtractionReport:

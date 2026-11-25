@@ -246,6 +246,30 @@ def ux_extract(root: Path, store: Path | None, paths: tuple[str, ...], strict: b
             sys.exit(1)
 
 
+@main.group("extract", short_help="Extract nodes from a tree into a store.")
+def extract_group():
+    """Extractions of code into the nodes of specIR's types."""
+
+
+@extract_group.command("python-cli", short_help="Extract the CLI, public API, handlers, operations and models of a Python library.")
+@click.argument("root", type=click.Path(exists=True, file_okay=False, path_type=Path))
+@click.option("--store", type=click.Path(path_type=Path), default=None, help="Store path. Default: <ROOT>/.sldb.")
+@click.option("--path", "paths", multiple=True, help="Only extract this path relative to ROOT (repeatable).")
+def extract_python_cli_cmd(root: Path, store: Path | None, paths: tuple[str, ...]):
+    """Run the Python CLI extraction over ROOT and print a summary. What the facts did not let a rule
+    classify is printed as `desconocido` with its reason and counted."""
+    from specir.extract import extract_python_cli
+
+    try:
+        report = extract_python_cli(root, store, list(paths) or None)
+    except ValueError as exc:
+        click.echo(f"Error extracting: {exc}", err=True)
+        sys.exit(1)
+    click.echo(f"created: {len(report.created)}, updated: {len(report.changed)}, unchanged: {len(report.unchanged)}, desconocidos: {len(report.not_derived)}")
+    for item in report.not_derived:
+        click.echo(f"  {item}")
+
+
 __all__ = ["ALIASES", "main"]
 
 
