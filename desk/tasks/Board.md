@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T06:39:13Z'
+  at: '2026-11-25T12:28:54Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -19,7 +19,6 @@ tasks:
 - desk/tasks/task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb.md
 - desk/tasks/task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui.md
 - desk/tasks/task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build.md
-- desk/tasks/task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir.md
 - desk/tasks/task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente.md
 - desk/tasks/task-u2-composiciones-lista-las-recetas-de-diagrama-del-store-con-filtro-por-capa-buscador-y-cobertura-n.md
 - desk/tasks/task-u3-composiciones-dibuja-la-receta-elegida-con-su-notacion-zoom-y-arrastre-y-un-nodo-abre-su-document.md
@@ -66,7 +65,6 @@ _Generated from the task references above._
 - Decision de JP: donde vive la UI nueva de specIR y como comparte con la superficie de sldb [draft] - Registrar la eleccion de JP y su razon.
 - Decision de JP: como llegan por HTTP los datos de specIR a su UI [draft] - Registrar la eleccion de JP y su razon.
 - Decision de JP: que pasa con la pagina generada de specir catalog build [draft] - Registrar la eleccion de JP y su razon.
-- Decision de JP: en que se escribe la UI nueva de specIR [draft] - Registrar la eleccion de JP y su razon.
 - U1: esqueleto de la UI de specIR en IR/ui con tokens de papel, cascaron de pestanas y lentes y cliente de sldb serve [draft] - Una app Vite + React TSX en IR/ui que arranca, muestra el cascaron (explorador a la izquierda, pestanas Grafo, Anclajes y Composiciones, panel de documento a la derecha, lentes Lectura y Fierros) y habla con sldb serve.
 - U2: Composiciones lista las recetas de diagrama del store con filtro por capa, buscador y cobertura n/m [draft] - En la pestana Composiciones, la lista de recetas (los diagramas/vistas del store de IR) con filtro por capa, buscador y la cobertura de cada una cuando sldb la da.
 - U3: Composiciones dibuja la receta elegida con su notacion, zoom y arrastre, y un nodo abre su documento [draft] - Vista previa de la receta elegida dibujada con /notations/view, con zoom, arrastre y reinicio, y clic en un nodo que abre su documento en el panel derecho.

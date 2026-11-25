@@ -419,6 +419,10 @@ include:
     name: review-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml-evidence-atom-1
   - path: desk/reviews/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml/evidence-materialization-1.md
     name: review-task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml-evidence-materialization-1
+  - path: desk/reviews/task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir/evidence-commit-1.md
+    name: review-task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir-evidence-commit-1
+  - path: desk/reviews/task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir/evidence-document-1.md
+    name: review-task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir-evidence-document-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -1372,7 +1376,6 @@ include:
   - desk/tasks/task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb.md
   - desk/tasks/task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui.md
   - desk/tasks/task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build.md
-  - desk/tasks/task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir.md
 graph_backend: networkx
 policy: {}
 tag_models:
