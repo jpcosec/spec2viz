@@ -443,6 +443,10 @@ include:
     name: review-task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui-evidence-commit-1
   - path: desk/reviews/task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui/evidence-document-1.md
     name: review-task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui-evidence-document-1
+  - path: desk/reviews/task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build/evidence-commit-1.md
+    name: review-task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build-evidence-commit-1
+  - path: desk/reviews/task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build/evidence-document-1.md
+    name: review-task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build-evidence-document-1
 - model: ReviewDoc
   paths:
   - path: desk/reviews/specir-reemplazo-spec2viz-sobre-sldb-ir02/node-1.md
@@ -1388,9 +1392,6 @@ include:
 - model: TaskDebugDoc
   paths:
   - desk/tasks/task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar.md
-- model: TaskDecisionDoc
-  paths:
-  - desk/tasks/task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build.md
 graph_backend: networkx
 policy: {}
 tag_models:
