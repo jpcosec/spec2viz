@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T14:54:37Z'
+  at: '2026-11-25T15:26:12Z'
   authority: generated
   via: save_document_payload
 id: task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac
@@ -11,14 +11,40 @@ tags: []
 current_node: ritual-testing
 history:
 - task_activates
-references: []
+references:
+- pyproject.toml
+- tests/conftest.py
+- tests/visual/test_cli.py
+- tests/visual/test_lint_mermaid.py
+- tests/visual/test_refs_models.py
+- tests/visual/test_render_cases.py
+- tests/visual/test_render_commands.py
+- tests/visual/test_render_projections.py
+- tests/visual/test_renderers.py
+- tests/visual/test_resources.py
+- tests/visual/test_schema.py
+- tests/visual/test_visual_names.py
+- 735cd5766919f452caa33e93d114d5cc1bcac32a
 depends_on: []
 pills: []
-files: []
+files:
+- pyproject.toml
+- tests/conftest.py
+- tests/visual/test_cli.py
+- tests/visual/test_lint_mermaid.py
+- tests/visual/test_refs_models.py
+- tests/visual/test_render_cases.py
+- tests/visual/test_render_commands.py
+- tests/visual/test_render_projections.py
+- tests/visual/test_renderers.py
+- tests/visual/test_resources.py
+- tests/visual/test_schema.py
+- tests/visual/test_visual_names.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-ir-no-tiene-goldens-de-spec2viz-la-paridad-se-acredita-por-pruebas-de-aceptacion
 ---
 
 # IR borra los goldens de spec2viz y las pruebas que los leen; la paridad se acredita por pruebas de aceptacion

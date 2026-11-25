@@ -1,0 +1,25 @@
+name: materialization-goldens-fuera-tests-visual-test-resources-py
+path: desk/materializations/materialization-goldens-fuera-tests-visual-test-resources-py.md
+source_hash: 048622d583301d37fa348d2d01aa072aa142f35489b1bd38510833c2541848fc
+content_hash: 7bb393783046e4a7286bf5314c1b6b6229e944a6d6aa6d173b46ceb2105e39c5
+field_hashes:
+  id: 6699cd6e825160550e4520879df21f51617cc13cbfc0e594693831b17b321d69
+  title: 651d911384aca2753742071799582a41848eec78ad318e3d45043922304580d2
+  source_atoms: 4e7fadeeaa038fc2983738918053e6d05fa014ee8e39d457b81a77cc367a9e8b
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: d091551c22a962f8e4b162c2e9bbe2b6ab1e5ad1f3111f3e27e2f4acc24ca8c8
+  intent: 6c016f96506973700101981bba496e0c5beb838c1db6fb1a2e48ecc47686364d
+  validation: 72617769af1c9f58ddfc702aa13fc0c092767528d0b8096c2f3d852cd3c53051
+  tags: e397ea4f1a144c245cbf174c5868ceda185025e5ba1b4fe7322d1687d4a67544
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:goldens-fuera
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T15:27:10Z'
+  authority: generated
+  via: create_document

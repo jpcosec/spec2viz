@@ -1,0 +1,25 @@
+name: materialization-goldens-fuera-pyproject-toml
+path: desk/materializations/materialization-goldens-fuera-pyproject-toml.md
+source_hash: e1229d6d452eced5c8a8ba949eee64ba136a1fc8fce9f31e109b6ac98ceebea1
+content_hash: 2ab4ecbd0fd3618945e05800d3f672c1ae9583b873edccd26395c23ed1651f94
+field_hashes:
+  id: d7a2f6f2b1b482e12791abe2fdfb46e6f8421fdb97faee390804c5ca3e66a79e
+  title: afa79a9c92c6c1e9473769aa7dad6ecb570c6d87c54c1ce1234ac56596e49ff6
+  source_atoms: 4e7fadeeaa038fc2983738918053e6d05fa014ee8e39d457b81a77cc367a9e8b
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: 9c6cd9431da5c16d2ee820ad552f266833f2ce755f554cbf9ffc5e0d3ccf1504
+  intent: 921ee6966366bda04f924cccdf085a56af537742edaaf2798f98e4aa6d01b33f
+  validation: 72617769af1c9f58ddfc702aa13fc0c092767528d0b8096c2f3d852cd3c53051
+  tags: e397ea4f1a144c245cbf174c5868ceda185025e5ba1b4fe7322d1687d4a67544
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:goldens-fuera
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T15:26:18Z'
+  authority: generated
+  via: create_document

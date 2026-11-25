@@ -1,0 +1,25 @@
+name: materialization-goldens-fuera-tests-visual-test-render-projections-py
+path: desk/materializations/materialization-goldens-fuera-tests-visual-test-render-projections-py.md
+source_hash: 36d428f42a76b2f14ae29c7b986eb8164868b30d4cdaa0c30f66ed7478e4ff02
+content_hash: facbf94fc7e806f1df0a4c215570b9ef2ef84aaed9dc0d64f1d9b63b2f5d1bf2
+field_hashes:
+  id: 3f3a714cdc4ead6a65f615eac5ac7d827935dab42c31104b7136603cd5963946
+  title: 7deaac36fb161fa5cbe03266b73c959c809b9e0f8ddcc9acc489150841c5550a
+  source_atoms: 4e7fadeeaa038fc2983738918053e6d05fa014ee8e39d457b81a77cc367a9e8b
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: 7091f83cb824ef56d4fa96da88d905638df369e532f36540842a1f069cf29e6a
+  intent: 4774b865bd95e3d6014f29a052dd783d9c8f85bfc5467063dbe06f8798090ef7
+  validation: 72617769af1c9f58ddfc702aa13fc0c092767528d0b8096c2f3d852cd3c53051
+  tags: e397ea4f1a144c245cbf174c5868ceda185025e5ba1b4fe7322d1687d4a67544
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:goldens-fuera
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T15:26:58Z'
+  authority: generated
+  via: create_document
