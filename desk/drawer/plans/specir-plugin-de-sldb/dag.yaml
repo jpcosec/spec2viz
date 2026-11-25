@@ -1,5 +1,5 @@
 id: specir-plugin-de-sldb
-status: proposed
+status: accepted
 as_of: '2026-11-25'
 source: README.md de esta carpeta
 estimate_legend:
@@ -18,13 +18,13 @@ external:
     state: tarea creada
   surface-composicion-como-dato:
     owner: sldb/surface
-    state: sin pedir
+    state: pedido por inbox el 2026-11-25
   grafo-carriles-por-particion:
     owner: graph_ui
     state: tarea creada
   grafo-modo-lector:
     owner: graph_ui
-    state: tareas G-B1 y G-B2; falta la composición entera
+    state: tareas G-B1 y G-B2; la composición entera pedida por inbox el 2026-11-25
   deskops-punteros-del-donde:
     owner: deskops
     state: tarea creada
@@ -33,7 +33,7 @@ external:
     state: en curso
   sldb-instalacion-de-plugin:
     owner: sldb
-    state: sin pedir
+    state: pedido por inbox el 2026-11-25
 tasks:
   K1:
     title: La decisión "specIR es un plugin sobre sldb" queda en docs/decisiones/ con las cuatro reglas

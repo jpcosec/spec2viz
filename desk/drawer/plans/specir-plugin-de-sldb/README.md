@@ -91,31 +91,30 @@ instalación y sigue sin resolverse.
 
 | A quién | Qué | Estado |
 |---|---|---|
-| sldb | Cómo instala un plugin sus modelos y semillas en un store | **sin pedir**; se ve cuando asiente el CLI de sldb |
+| sldb | Cómo instala un plugin sus modelos y semillas en un store | pedido por inbox el 2026-11-25 |
 | sldb | Aplicar reglas y relaciones de un store enlazado, para no copiar semillas | pedido por deskops (C1) |
 | sldb | Un CLI estable al que las herramientas de specIR puedan llamar | en curso en sldb |
 | sldb | Argumentos literales en las llamadas de Python | tarea creada |
 | sldb | Qué documentos aplican a un archivo o símbolo | tarea creada |
 | sldb | Notación que declara su estándar; documento sin glifo como hueco; predicado sobre tags | tareas creadas |
-| surface | Composición de pantalla declarada como dato por un plugin | **sin pedir**; depende del compositor |
-| editor de grafo | Dibujar `ViewDoc`; carriles por partición; exportar el modo lector de una composición entera, no de un diagrama | las dos primeras con tarea; la tercera **sin pedir** |
+| surface | Composición de pantalla declarada como dato por un plugin | pedido por inbox el 2026-11-25 |
+| editor de grafo | Dibujar `ViewDoc`; carriles por partición; exportar el modo lector de una composición entera, no de un diagrama | las dos primeras con tarea; la tercera pedida por inbox el 2026-11-25 |
 | deskops | Guardar el dónde como punteros | tarea creada |
 
 ## Decisiones de JP que fijan este plan
 
-Tomadas el 2026-11-25:
+Tomadas el 2026-11-25 y registradas en `docs/decisiones/specir-es-un-plugin-de-sldb.md`:
 
 - specIR es un plugin sobre sldb y no tiene interfaz propia.
-- specIR describe también los repos del workspace, no solo aplicaciones de terceros.
+- specIR describe cualquier sistema, no solo aplicaciones web ni solo los repos del workspace.
+- El plugin aporta como dato la composición de su pantalla.
 - La lista de ocho capacidades de `docs/decisiones/paridad-por-capacidades.md` se acepta.
-- El modelo se amplía con pantalla y navegación; lo de ORCA espera.
+- El modelo se amplía con pantalla y navegación; lo de ORCA va después.
 - El diccionario de controles se prueba sobre `sldb/surface`, sin esperar la migración de graph_ui.
 - Los exportes de texto se quedan. El HTML de un diagrama y la página del catálogo son funciones
   distintas: el primero lo reemplaza el modo lector del editor de grafo; la segunda es una
   composición de surface sobre el catálogo de specIR.
-
-Las cuatro primeras las aceptó con un "démosle" a la lista de recomendaciones; conviene que las
-confirme al leer esto.
+- Lo que specIR necesita de otro repo va a su inbox, nunca como tarea en su Board.
 
 ## Planes hermanos
 
