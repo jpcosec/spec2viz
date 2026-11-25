@@ -1,0 +1,36 @@
+name: review-task-u1b-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta-evidence-atom-1
+path: desk/reviews/task-u1b-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta/evidence-atom-1.md
+source_hash: 03e5a41565c2c2ccad7a664827e8bf25c8a369ceb5054673d070748d945a69a3
+content_hash: 79ccf2c9d103595737e25e934aca70f893bdf6850c4949a0210d4d823e370b2e
+field_hashes:
+  id: 0fcb4a6f49f5ea7a299caff7254c194ba632aa6aaa5db15a5298753ff16a9175
+  title: 0b4806e6c11990373b53edd911f636766337eb953a55d95d599f361a661c16e1
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: c833c202b5b45ac10909767bb422916db457ddd48188a4ee591f0618893df0ba
+  value: 213e699747612a6af9b4c831a49539838bcfb9d651ba4cb4cfaaec4ff826e301
+  subject: 254fb15f07a846b7b5cbba74c94d57d1d8d862955f48995fc4c75e4f7ba399fc
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 9380feb0d13f0bb8e1a6cb69453818f185eeafebd8d15936e69fecb6f8a02db0
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 90e3aac21b6d7354bc05fafcdf06ed9e72da383739ea8d43818b09109dc9a1c4
+  created_at: 76b0c57c01d58a90ab647868056a424968d3e9451f0e506fb9896963d95e85cb
+  disposed_at: 76b0c57c01d58a90ab647868056a424968d3e9451f0e506fb9896963d95e85cb
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 930b81959328b8905a39ed5aeb51f82f961ccb043faa0ff73745a40dee45278b
+  disposition: aa0ffd7028846559c3f64c0492a532276c3bdcb9af2904c6f0144a2d5ce9a5b2
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T14:08:54Z'
+  authority: generated
+  via: create_document
