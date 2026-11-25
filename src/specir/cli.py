@@ -57,6 +57,18 @@ main.add_command(diagram)
 main.add_command(catalog)
 
 
+@main.command("mcp", short_help="Serve sldb's MCP server with specIR's tools loaded.")
+@click.option("--store", required=True, type=click.Path(path_type=Path), help="The sldb store to serve.")
+@click.option("--level", default=None, type=int, help="Mutability level (default: read-only, sldb.mcp.mutability.READ).")
+@click.option("--actor", default=None, help="Actor recorded on writes.")
+def mcp(store: Path, level: int | None, actor: str | None):
+    """Serve sldb's MCP server on a store with specIR's tools (specir_types, specir_nodes, specir_rules, specir_impact) already loaded."""
+    from sldb.mcp import server
+    from sldb.mcp.mutability import READ
+
+    server.serve(store, level=READ if level is None else level, actor=actor, extensions=("specir.mcp_extension:register",))
+
+
 @main.command("about", short_help="Where diagrams live and how the flow reaches HTML.")
 def about():
     """Point to where the diagrams live and the full spec -> HTML flow, with sldb's commands for the store."""

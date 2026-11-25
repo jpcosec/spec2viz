@@ -63,6 +63,7 @@ add it to specIR.
 - `diagram`: `render`, `lint`, `schema`
 - `catalog`: `build`, `schema`
 - top level: `about`, and the aliases `render`, `lint`, `schema`, `build`
+- MCP: specir mcp --store <store del proyecto> levanta el server MCP de sldb con las tools de specIR cargadas (igual que sldb mcp --extension specir.mcp_extension:register).
 
 Core commands (canonical form):
 
