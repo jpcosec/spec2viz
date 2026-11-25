@@ -1222,6 +1222,8 @@ include:
     name: run-deskops-e-1f07b310f712
   - path: runs/subagents/exec-deskops-e-4b15df05b312/run.md
     name: run-deskops-e-4b15df05b312
+  - path: runs/subagents/exec-deskops-t-fc77ced1248e-testing/run.md
+    name: run-deskops-t-fc77ced1248e
 - model: RunDoc
   paths:
   - path: runs/subagents/deskops-e-31500ac1cfa1/run.md
