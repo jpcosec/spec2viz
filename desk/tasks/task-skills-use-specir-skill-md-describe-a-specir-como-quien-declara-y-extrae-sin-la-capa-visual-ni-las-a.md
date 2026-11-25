@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T20:56:24Z'
+  at: '2026-11-25T21:22:43Z'
   authority: generated
   via: save_document_payload
 id: task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a
@@ -11,14 +11,18 @@ tags: []
 current_node: ritual-testing
 history:
 - task_activates
-references: []
+references:
+- skills/use-specir/SKILL.md
+- e0ae0115910bf7eb13f2cd9a30bd019cfbbb2deb
 depends_on: []
 pills: []
-files: []
+files:
+- skills/use-specir/SKILL.md
 task_type: task.docs
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-la-skill-use-specir-describe-a-specir-como-quien-declara-y-extrae
 ---
 
 # skills/use-specir/SKILL.md describe a specIR como quien declara y extrae, sin la capa visual ni las anotaciones del catálogo

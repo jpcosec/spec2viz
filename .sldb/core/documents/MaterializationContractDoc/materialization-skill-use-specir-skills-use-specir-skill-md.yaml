@@ -1,0 +1,25 @@
+name: materialization-skill-use-specir-skills-use-specir-skill-md
+path: desk/materializations/materialization-skill-use-specir-skills-use-specir-skill-md.md
+source_hash: 0386d537dd8a021a7f6a7320c30e7df0fce512e3fd0d8e9a62f054e790e3a8d3
+content_hash: 547ebcdc29c36794c9fefbb094a0510ee4dea27a6f294fdfd0ec72b822d10a57
+field_hashes:
+  id: 74cf52df90618a4f738a8164e4e0536a06a2373c902fd1d9ce1ea3583ddbb27a
+  title: 413840924ce5d880d2bc3b1fdb70dffbeaa662f119e0e1c5495d93b51b6fa4cd
+  source_atoms: 74f15abfe4817ebf976e386c4f259477b4a0da64522bf92330483b0075421408
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: 6f1822a6149be251847c37113e2796296c6738e5a80ea573ecc6670cf2c33e3f
+  intent: 0c08b5ae3503cb0570fddc89ee8ad9bb491a3ff2fb418d68eef433ce192cc29a
+  validation: 5367f0ae43a97e660a977281f93355c63331fc382319409b0c3c9a23407d2c06
+  tags: bd7bde64651c3f6d1703b370617a13e99cc8d5fd900f2a720abde5144de5cce6
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:skill-use-specir
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T21:22:55Z'
+  authority: generated
+  via: create_document
