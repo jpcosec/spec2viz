@@ -180,3 +180,43 @@ Cuando corra, cierro las tareas de decisión.
   - U9 espera la ruta de anchors.
 - **Notas a sldb:** salieron dos: cobertura en el payload, y fragmento y estado del anchor.
 - **U0:** no la creé; pron alcanza para la aceptación.
+
+## 2026-11-25 10:10 — johanes: U1 funciona pero no se parece a la maqueta
+
+Verifiqué U1 (`1a9ec96`) en robocop2: `tsc` en 0 y vitest 6/6 en verde, y los tres archivos copiados citan su origen. Pero la compilé y la miré en Chrome real, y **visualmente no cumple el contrato de forma** (`maqueta-ui.html` y `PROPUESTA-UI.md`):
+
+- Los botones de las pestañas y de las lentes son los nativos del navegador (gris, con borde 3D). En la maqueta son monoespaciados, con borde de 2 px y la activa en piedra.
+- El explorador no tiene el fondo piedra ni el borde, y el panel de documento tampoco tiene borde: las tres columnas flotan sobre el papel sin separación.
+- El título de la vista sale en sans negrita. En la maqueta los títulos van en serif (Newsreader).
+- Falta la barra inferior (rail), y la cabecera no tiene la miga "Blog de ejemplo".
+
+La causa probable: se copió `paper-tokens.css` (843 líneas) pero `shell.css` tiene 9 y no usa esas variables. Los tokens están, sin aplicar.
+
+U2, U3 y U5 se construyen encima de este cascarón. Propongo **no despacharlas hasta corregir el cascarón**: un intento 2 de U1, o una tarea U1b "el cascarón usa los tokens de papel y se parece a la maqueta", con una captura en Chrome comparada con `maqueta-ui.html#grafo` en su Done When. Las pruebas de componentes no ven esto; hace falta mirar la página.
+
+## 2026-11-25 — robocop2: U1b y retención de U2, U3 y U5
+
+- **U1b creada:** `task-u1b-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta`, que depende de U1.
+  - El Done When pide capturas de la app y de `maqueta-ui.html#grafo` en el run dir.
+  - También pide que `shell.css` use los tokens `--wb-*`.
+  - Ahora corren sus revisiones de deskops (preflight y bundle).
+- **U1:** si su tester pasa, la cierro tal cual. U1b corrige la forma encima.
+- **U2, U3 y U5:** no las despacho hasta que cierre U1b. No les edité `depends_on`, para no invalidar las revisiones ya aceptadas, así que la retención es manual mía.
+- **Lector de surface (sldb), decisión (b) de JP aplicada al brief del intento 3:**
+  - se borran `businessName`, `NegocioDoc` y el test de la línea 396;
+  - las líneas 109 y 168 dejan de buscar "informe" y usan `route.doc` o el primer documento;
+  - el modo de lectura de la wiki queda genérico: cualquier store en Lectura, con `storeTitle`.
+
+## 2026-11-25 10:35 — johanes: causa del debug MCP, confirmada
+
+**Causa:** `served()` en `tests/conftest.py` (línea 266 y siguientes) lanza `python -m sldb mcp` con `cwd=str(root)`, que es la copia del store, y con `env={**os.environ}`. La validación de la tarea exporta `PYTHONPATH=src`, que es **relativo**: en el proceso del server apunta a `<copia>/src`, que no existe. El stderr del setup dice `Unexpected: No module named 'specir'`, y el server muere antes de `initialize`, de ahí el `Connection closed`. specIR tampoco está instalado en `/mnt/ssd/proyectos/SLDB_1/.venv`, así que no hay otra forma de que lo encuentre.
+
+**Confirmado:** con `PYTHONPATH=$PWD/src` (absoluto), `tests/test_mcp_extension.py tests/test_cli_mcp.py` da **14 passed** en 3 min 19 s. No hay problema en sldb ni en la extensión.
+
+**Arreglo propuesto:** que `served()` no dependa del PYTHONPATH de quien corre las pruebas. Agregar al env del server `PYTHONPATH=package_pythonpath()` (absoluto, de `specir.install`), antepuesto al que haya:
+
+```python
+env={**os.environ, "PYTHONPATH": os.pathsep.join(p for p in (package_pythonpath(), os.environ.get("PYTHONPATH", "")) if p)},
+```
+
+Es una línea en `tests/conftest.py`, dentro del scope de la tarea de debug. Con eso la tarea cierra y el push de IR queda libre. La alternativa (instalar specIR en el venv compartido) es la pregunta abierta del venv de IR, y no hace falta para esto.
