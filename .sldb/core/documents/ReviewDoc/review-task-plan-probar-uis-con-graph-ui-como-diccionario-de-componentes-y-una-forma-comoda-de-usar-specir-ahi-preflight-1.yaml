@@ -1,7 +1,7 @@
 name: review-task-plan-probar-uis-con-graph-ui-como-diccionario-de-componentes-y-una-forma-comoda-de-usar-specir-ahi-preflight-1
 path: desk/reviews/task-plan-probar-uis-con-graph-ui-como-diccionario-de-componentes-y-una-forma-comoda-de-usar-specir-ahi/preflight-1.md
-source_hash: d3d3cce64892e7f2384c9e1524616025dad2b0b59fc48f2315ab541852300ea1
-content_hash: 79bdcd1ff21529f54ecde3ae5587beed8ed6ebfd6cebcd4330a376081d3d474c
+source_hash: 8be454b7d76ee794065428e402921f9bf24372464d0664f5a35a9428ac793f62
+content_hash: 65f1587000bd4ebf3d265b61280adb1281c5f89f087b545fa082e903be585000
 field_hashes:
   id: 96d962c23ca968d664efd860ffd4e4b9a9f0f43eeac0665973f388238f0d9122
   title: 870bd15bfe35d18aaedcffa7008624bdda7aa407ca505ff0540f0f2e39d96fcb
@@ -16,13 +16,13 @@ field_hashes:
   input_sha256: 52d89e6cff823e7085e10ae6b4ade051ceb31e4cdc3ca2c40eba661ceafd2f74
   contract_sha256: 673d91515e00f752e6a2e01fecc6c9b804cd1a34674db6f7abf0c4d89a919bdf
   output_sha256: 9a9d62dc6db9073950d700c8c59faaf291a940d335f0cefb7d6a8f7f932f92cb
-  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
-  reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 830d3bf2c582d6872a9502c81d0f96f9ad27a1828f5f1e1c830d4a47ae5bd248
   created_at: a12799331d5d8b8b8d335697da1ad272e7beacbc0d0ea0bb60bcc1a8201d2198
-  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
-  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_at: 18ed731fe47619d015ba22517a70ccdeeaf3a215e7382f497d68aaf5bca14978
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   summary: 11ad2a988a69b2848e4e00ae5f5934a1d3a88d036e92c8fe46703f0cc6183bd1
-  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposition: 0bbfd064213bfbb75a53b93a86195989a692a6e4c08c2ef73f6cad8f78a98fa6
   tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
@@ -31,6 +31,6 @@ semantic_tags:
 - workspace.desk.runs
 provenance:
   by: agent
-  at: '2026-11-25T03:32:41Z'
+  at: '2026-11-25T03:50:39Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

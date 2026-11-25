@@ -1,0 +1,25 @@
+name: 20261125-004348-unclear-queue-20261125t034032z-dispatch-reap-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir
+path: desk/inbox/20261125-004348-unclear-queue-20261125t034032z-dispatch-reap-task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir.md
+source_hash: 64d693c20c4ed488ac0b1e9bed48d7637183c8b6a35441f0617050d6a2d6ce87
+content_hash: e65dbe073402aeadaeef543ebee02f942f821472b7ce415020a7dc8f3a163bdc
+field_hashes:
+  kind: 683144a12969e0fd85512737e57b4db93ed15ee760906165a5516d581a77889a
+  sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: ed275461680b01e55d05b72d0d9aa6123e719629a176db366c934dd5b77a0267
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: 15892e135e06d5fc24cda63159432e079eb9c9c2a9ad087752bae2795c937091
+  ack_reason: 9dbc9307d1de5ccb32f31fe43f9f79eb60ffddfa900e529d04147fd7e68bc01e
+  title: 1599f5a1a2d69809b2ac54e233b06778f2252b9e1510364d2c6cf43841b50749
+  body: 9957441da3e24cce1fa6d991d9738c83d95e97ccbd5663a5bd7347390dec4bba
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance:
+  by: agent
+  at: '2026-11-25T05:01:55Z'
+  authority: generated
+  via: save_document_payload
