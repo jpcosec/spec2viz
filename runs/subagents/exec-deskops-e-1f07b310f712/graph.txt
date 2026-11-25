@@ -1,0 +1,48 @@
+Missing graph references:
+- missing_declared_target: config_file:.worktrees/deskops-e-1f07b310f712/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-bundle-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-1f07b310f712/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-bundle-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-1f07b310f712/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-atom-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-1f07b310f712/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-atom-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-1f07b310f712/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-commit-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-1f07b310f712/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-commit-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-1f07b310f712/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-materialization-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-1f07b310f712/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-materialization-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-1f07b310f712/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-tests-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-1f07b310f712/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-tests-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-1f07b310f712/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-preflight-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-1f07b310f712/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-preflight-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+Informational (archived records):
+- planned_target: task:task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml -> test_file:tests/extract/test_declared_routes.py
+  provenance: desk/tasks/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml.md:line:49:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml -> test_file:tests/extract/test_declared_routes.py
+  provenance: desk/tasks/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml -> test_file:tests/extract/test_declared_routes.py
+  provenance: desk/tasks/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml.md:line:61:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash -> test_file:tests/extract/test_edge_name_bounded.py
+  provenance: desk/tasks/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash.md:line:49:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash -> test_file:tests/extract/test_edge_name_bounded.py
+  provenance: desk/tasks/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash -> test_file:tests/extract/test_edge_name_bounded.py
+  provenance: desk/tasks/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash.md:line:61:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados -> test_file:tests/extract/test_ux_extract_cli.py
+  provenance: desk/tasks/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados.md:line:49:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados -> test_file:tests/extract/test_ux_extract_cli.py
+  provenance: desk/tasks/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados -> test_file:tests/extract/test_ux_extract_cli.py
+  provenance: desk/tasks/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados.md:line:61:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+6 missing, 9 informational (9 planned_target)

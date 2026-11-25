@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T12:36:52Z'
+  at: '2026-11-25T12:38:41Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -11,7 +11,6 @@ scope: desk
 # List of task-xxx paths
 tasks:
 - desk/tasks/task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar.md
-- desk/tasks/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash.md
 - desk/tasks/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados.md
 - desk/tasks/task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente.md
 - desk/tasks/task-u2-composiciones-lista-las-recetas-de-diagrama-del-store-con-filtro-por-capa-buscador-y-cobertura-n.md
@@ -51,7 +50,6 @@ Estado al 2026-11-21 (09:40 UTC): IR13, gate de retiro de spec2viz. specir retir
 _Generated from the task references above._
 
 - Las pruebas de tests/test_mcp_extension.py fallan en el setup: el server MCP cierra la conexion al arrancar sobre la copia del store [draft] - Se identifica por que el server muere al arrancar sobre la copia del store de la sesion (fixtures store_copy y build_deskops_copy de tests/conftest.py) y se corrige la causa, de modo que tests/test_mcp_extension.py pase.
-- Los nombres de relacion de specIR quedan acotados a 255 bytes con un resumen con hash [ready_for_testing] - Que edge_name nunca produzca un nombre de mas de 255 bytes, de forma determinista y estable.
 - specir ux extract extrae la interfaz de un arbol y avisa de los archivos saltados [draft] - Un comando de CLI que corre extract_frontend, avisa de los archivos que code_facts salto, y con --strict falla (rc 1) si hubo saltados.
 - U1: esqueleto de la UI de specIR en IR/ui con tokens de papel, cascaron de pestanas y lentes y cliente de sldb serve [draft] - Una app Vite + React TSX en IR/ui que arranca, muestra el cascaron (explorador a la izquierda, pestanas Grafo, Anclajes y Composiciones, panel de documento a la derecha, lentes Lectura y Fierros) y habla con sldb serve.
 - U2: Composiciones lista las recetas de diagrama del store con filtro por capa, buscador y cobertura n/m [draft] - En la pestana Composiciones, la lista de recetas (las specs de diagrama: SpecDoc que sldb serve lista en /notations; /views solo si tambien trae specs) con filtro por capa, buscador por titulo (parcial, sin distinguir mayusculas) y la cobertura de cada una cuando sldb la de (hoy '—'). Aceptacion contra el store de pron, que tiene 15 SpecDoc; el store de IR no tiene.

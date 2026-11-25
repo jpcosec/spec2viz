@@ -1,0 +1,36 @@
+name: review-task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash-evidence-tests-1
+path: desk/reviews/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash/evidence-tests-1.md
+source_hash: 1e8063755c01550335b536b30de3a8404bb8920369e86aae82517a4d6a9381ef
+content_hash: f13009f83e03b69f96ef4c208d0f5fcfe60690aa168ed6ce2a35b68b6ad23bd5
+field_hashes:
+  id: c2bb46022d832ced5d80874df6e2e4964c16c3662f498734aab3b5b87df898ff
+  title: 058fda56468385db2713ab3197aed336d1842cd11bbc586a66185fc37e667e84
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: b503e4e37b061748c1318d18bc4cc590ab1c5674daa013962ae4a14e06d80390
+  subject: 6202a5f3b9eca6a7e4cb08cdfac1cd0646c834cac4ff3960003609c115981049
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 2532dfe2b1d833a4a423633d9a0a387ac1ab25d94cd952af0b8ef929021110a8
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: c9cf8f9010bd28fcb7810f1ded7466bec10983db1b7429deddbad3800b5645fe
+  created_at: 47321f25420fd2160aee04c15dea44e5a33acf45dba82143d0f41c711ed2d768
+  disposed_at: 47321f25420fd2160aee04c15dea44e5a33acf45dba82143d0f41c711ed2d768
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 2e1728d95fe9007b8c92d6fd7e6d48adc48f044123ee1edbbb8bc934a28e03cd
+  disposition: fc14bdb6a6d9ef0922091de76a91fa943759b28b5a941ab38cd69c97e1ab7e29
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T12:37:58Z'
+  authority: generated
+  via: create_document

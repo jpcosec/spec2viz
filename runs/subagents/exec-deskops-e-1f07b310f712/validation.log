@@ -1,0 +1,3 @@
+cd worktree; PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/extract/test_edge_name_bounded.py tests/extract/test_frontend_extraction.py
+17 passed in 96.15s; exit 0
+(venv /tmp/ws-venv needed extra tree-sitter, tree-sitter-typescript/javascript/python/sql)

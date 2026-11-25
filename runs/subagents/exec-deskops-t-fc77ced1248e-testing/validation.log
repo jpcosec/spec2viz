@@ -1,0 +1,63 @@
+COMMIT
+=======
+6d2d1699df7b603c74873866033b0512ff6da52e edge_name bounded to 200 bytes with sha256 digest
+Task-Id: task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash
+
+FILES
+=====
+src/specir/extract/plan.py
+tests/extract/test_edge_name_bounded.py
+
+ENVIRONMENT
+===========
+Python: /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python (3.13.18)
+pytest: 9.2.0
+PYTHONPATH=src (o /tmp/sldb-ir-test-6d2d169/src en el worktree)
+TMPDIR=/tmp
+PYTEST_ADDOPTS=--basetemp=/tmp/pytest-deskops-t-fc77ced1248e...
+
+NOTA: /mnt/ssd/proyectos/SLDB_1/.venv/bin/python no es ejecutable en este contenedor
+(symlink a /home/robocop/...); se uso el venv valido IR/.venv.
+
+RUN 1 — tests individuales en HEAD
+==================================
+$ python -m pytest -q -p no:cacheprovider tests/extract/test_edge_name_bounded.py
+.....                                                                    [100%]
+5 passed in 21.57s
+
+$ python -m pytest -q -p no:cacheprovider tests/extract/test_frontend_extraction.py
+............                                                             [100%]
+12 passed in 56.65s
+
+RUN 2 — validacion conjunta en HEAD
+===================================
+$ python -m pytest -q -p no:cacheprovider tests/extract/test_edge_name_bounded.py tests/extract/test_frontend_extraction.py
+.................                                                        [100%]
+17 passed in 90.74s
+
+RUN 3 — mismo par en worktree detached del commit exacto 6d2d169
+=================================================================
+$ git worktree add --detach /tmp/sldb-ir-test-6d2d169 6d2d1699df7b603c74873866033b0512ff6da52e
+HEAD is now at 6d2d169 edge_name bounded to 200 bytes with sha256 digest
+$ PYTHONPATH=/tmp/sldb-ir-test-6d2d169/src python -m pytest -q -p no:cacheprovider tests/extract/test_edge_name_bounded.py tests/extract/test_frontend_extraction.py
+.................                                                        [100%]
+17 passed in 62.27s
+
+RUN 4 — regresion del extractor que usa plan.py
+===============================================
+$ python -m pytest -q -p no:cacheprovider tests/extract/test_blog_extraction.py
+................                                                         [100%]
+16 passed in 100.45s
+
+MANUAL
+======
+bounded_name(longitud de entrada -> longitud de salida):
+  201 -> 200, termina en -<12 hex>
+  600 -> 199, UTF-8 valido
+  901 -> 200, UTF-8 valido
+  1200 -> 197, UTF-8 valido
+  407 (origen profundo) -> 200, termina en -<12 hex>
+
+Artefacto del test (d):
+  max nombre .yaml = 205 bytes (nombre <= 200 + ".yaml")
+  max nombre .md   = 203 bytes (nombre <= 200 + ".md")

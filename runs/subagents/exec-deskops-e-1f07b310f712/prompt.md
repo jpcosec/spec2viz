@@ -1,31 +1,35 @@
+Task: task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash
+Title: Los nombres de relacion de specIR quedan acotados a 255 bytes con un resumen con hash
+Status: active
+Current node: ritual-testing
+Task type: task.code
+From drawer: desk/drawer/plans/graph-ui-diccionario-de-componentes/dag.yaml
+Lifecycle gates:
+- task_hands_to_closeout -> ritual-closeout: open [nonempty(validation)]
+  post-hook evento-para-el-coordinador: sh -c mkdir -p runs/hooks && printf '%s %s %s %s->%s\n' "$(date -u +%FT%TZ)" "$DESKOPS_TASK_ID" "$DESKOPS_TRANSITION" "$DESKOPS_FROM_NODE" "$DESKOPS_TO_NODE" >> runs/hooks/events.log
+  post-hook encola-reap-del-tester: deskops queue add dispatch-reap --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-25T12:37:39Z'
+  at: '2026-11-25T05:58:10Z'
   authority: generated
   via: save_document_payload
 id: task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash
-status: ready_for_testing
+status: active
 summary: ''
 tags: []
-current_node: ritual-closeout
+current_node: ritual-testing
 history:
 - task_activates
-- task_hands_to_closeout
-references:
-- src/specir/extract/plan.py
-- tests/extract/test_edge_name_bounded.py
-- 6d2d1699df7b603c74873866033b0512ff6da52e
+references: []
 depends_on: []
 pills: []
-files:
-- src/specir/extract/plan.py
-- tests/extract/test_edge_name_bounded.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-los-nombres-de-relacion-de-specir-quedan-acotados-con-un-resumen-con-hash
+atoms: []
 from_drawer: desk/drawer/plans/graph-ui-diccionario-de-componentes/dag.yaml
 ---
 
@@ -66,3 +70,26 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 tests/extract/test_edge_name_bounded.py cubre (a)-(e), incluido el largo del nombre de archivo de Planned.path, y pasa junto con tests/extract/test_frontend_extraction.py.
+
+## Entrega del ejecutor
+
+Al terminar, commitea solo los archivos que cambiaste para la tarea, nombrados uno por uno (los mismos que listas en result-summary.md):
+
+    git add <ruta> <ruta> ...
+    git commit -m "<resumen>" -m "Task-Id: task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash"
+
+Nunca uses `git add -A`, `git add -u` sobre todo el arbol ni `git stash`: puede haber trabajo ajeno sin commitear. No hagas push. Recien despues ejecuta `deskops advance task`.
+
+## Temporales de pytest
+
+Antes de cualquier pytest exporta, para que sus temporales caigan en el /tmp del contenedor (muere con el agente) y no en el /dev/shm del host:
+
+    export PYTEST_ADDOPTS="--basetemp=/tmp/pytest-deskops-e-1f07b310f712"
+
+## Tu worktree
+
+Tu codigo vive en un worktree propio, en la rama `deskops/deskops-e-1f07b310f712`:
+
+    /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/deskops-e-1f07b310f712
+
+Haz `cd` ahi: edita, corre los tests y commitea ahi (git add / git commit), no en el checkout principal /mnt/ssd/proyectos/SLDB_1/IR. Las operaciones de desk (`deskops ... --root /mnt/ssd/proyectos/SLDB_1/IR`, evidencia en runs/subagents/..., `deskops advance task`) siguen usando el checkout principal. Al terminar, reap trae tus commits a la rama principal y borra el worktree.

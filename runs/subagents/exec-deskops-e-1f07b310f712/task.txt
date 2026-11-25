@@ -1,0 +1,10 @@
+Task: task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash
+Title: Los nombres de relacion de specIR quedan acotados a 255 bytes con un resumen con hash
+Status: active
+Current node: ritual-testing
+Task type: task.code
+From drawer: desk/drawer/plans/graph-ui-diccionario-de-componentes/dag.yaml
+Lifecycle gates:
+- task_hands_to_closeout -> ritual-closeout: open [nonempty(validation)]
+  post-hook evento-para-el-coordinador: sh -c mkdir -p runs/hooks && printf '%s %s %s %s->%s\n' "$(date -u +%FT%TZ)" "$DESKOPS_TASK_ID" "$DESKOPS_TRANSITION" "$DESKOPS_FROM_NODE" "$DESKOPS_TO_NODE" >> runs/hooks/events.log
+  post-hook encola-reap-del-tester: deskops queue add dispatch-reap --root .

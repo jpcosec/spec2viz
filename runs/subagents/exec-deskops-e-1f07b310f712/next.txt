@@ -1,0 +1,24 @@
+Task: task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash
+Title: Los nombres de relacion de specIR quedan acotados a 255 bytes con un resumen con hash
+Status: active
+Current node: ritual-testing
+Task type: task.code
+Phase: testing
+Required ritual:
+- desk/rituals/testing.md
+Required pills:
+- desk/contexts/pills.md
+Next actions:
+1. Confirm the handoff names the contract, touched files, and pill guardrails.
+2. Add or update relevant tests.
+3. Run the smallest relevant test scope, then broader validation if shared behavior changed.
+Advance when:
+- Relevant tests pass and the testing-to-closeout handoff is explicit.
+Post-hooks:
+- task_hands_to_closeout:
+  - evento-para-el-coordinador: sh -c mkdir -p runs/hooks && printf '%s %s %s %s->%s\n' "$(date -u +%FT%TZ)" "$DESKOPS_TASK_ID" "$DESKOPS_TRANSITION" "$DESKOPS_FROM_NODE" "$DESKOPS_TO_NODE" >> runs/hooks/events.log
+  - encola-reap-del-tester: deskops queue add dispatch-reap --root .
+Sources:
+- task: desk/tasks/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash.md
+- board: desk/tasks/Board.md
+- workflow: deskops/spec/workflows/task_lifecycle.yaml
