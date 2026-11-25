@@ -10,8 +10,7 @@ El comprobador `specir retirement check` sale con código 0: 0 dependencias de s
 auditado y 0 filas de la matriz sin acreditar (corrida del 2026-11-23, ver «Salida del comprobador»).
 `specir catalog build` termina: 55,8 s, rc 0, 1,7 GB de RSS, después de que sldb cerrara
 `attach_atom_edges` (sldb `c377aff6`; ver «Medición de `specir catalog build`»). Los cambios del momento
-del retiro están hechos (`109684f`). Lo único que queda es archivar el repo spec2viz en GitHub (punto 9 de
-«Lo que falta para declarar el retiro»), el último paso, que hace el coordinador; esta tarea no lo hace.
+del retiro están hechos (`109684f`). El punto 9 quedó hecho el 2026-11-24: spec2viz continúa como IR en jpcosec/specir, con su historia en la rama legacy.
 
 Historia, hasta la declaración: el retiro estaba **no declarado** y el comprobador salía con código 1: quedaban 63
 dependencias de spec2viz en el universo auditado y 8 filas de la matriz sin acreditar (corrida del
@@ -245,7 +244,7 @@ Es de sldb, no de specIR: specIR solo usa la API pública. Pedido en
 
 ## Lo que falta para declarar el retiro
 
-Estado al 2026-11-23: el retiro está declarado; solo queda el punto 9. Cada punto indica cómo quedó.
+Estado al 2026-11-24: el retiro está declarado y los nueve puntos están hechos. Cada punto indica cómo quedó.
 
 1. **Hecho el 2026-11-23** (sldb `c377aff6`; `specir retirement check` rc 0). Consumidores (G4): que sldb resuelva su pedido y responda con el commit
    (`runs/subagents/20261116-exec-oraculo-d2/gen_golden.py:5`); lo demás que queda en G4 es de IR (los
@@ -280,8 +279,7 @@ Estado al 2026-11-23: el retiro está declarado; solo queda el punto 9. Cada pun
    **Hecho el 2026-11-23** (task-cambios-del-momento-del-retiro-de-spec2viz…): `exporter="specir"`,
    `targetNamespace="http://specir/bpmn"`, clave `specir.catalog.annotations.v1` con migración desde la vieja y
    goldens regenerados; commit `109684f`.
-9. **Pendiente, último paso (coordinador, en GitHub).** Archivar spec2viz, y con él el store `spec2viz/.sldb`,
-   ahora que `specir retirement check` sale con 0 (decisión 6). No lo hace esta tarea.
+9. **Hecho el 2026-11-24, con cambio de JP.** El 2026-11-23 el coordinador archivó jpcosec/spec2viz; el 2026-11-24 JP decidió que spec2viz continúa como IR: el repo se desarchivó y se renombró a jpcosec/specir (las URL de spec2viz redirigen), la rama master pasó a llamarse legacy y conserva intacta la historia de spec2viz (con el store spec2viz/.sldb), y main es IR y la rama por defecto. spec2viz no queda archivado: legacy es su archivo.
 
 ## Decisiones
 
