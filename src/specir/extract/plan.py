@@ -62,8 +62,23 @@ def node_name(model: str, text: str) -> str:
     return f"{PREFIXES[model]}-{slug(text)}"
 
 
+#: A name longer than this is shortened (`bounded_name`): room for the `.yaml` suffix inside 255 bytes.
+MAX_NAME_BYTES = 200
+
+
+def bounded_name(name: str, limit: int = MAX_NAME_BYTES) -> str:
+    """`name` itself when it fits `limit` UTF-8 bytes; else a readable prefix (cut at a valid UTF-8
+    boundary) + `-` + the first 12 hex of the sha256 of the full name, `limit` bytes at most."""
+    raw = name.encode()
+    if len(raw) <= limit:
+        return name
+    suffix = "-" + hashlib.sha256(raw).hexdigest()[:12]
+    head = raw[: limit - len(suffix)].decode(errors="ignore")
+    return head + suffix
+
+
 def edge_name(source: Planned, relation: str, target: Planned) -> str:
-    return f"{PREFIXES['RelationDoc']}-{slug(source.name)}--{relation}--{slug(target.name)}"
+    return bounded_name(f"{PREFIXES['RelationDoc']}-{slug(source.name)}--{relation}--{slug(target.name)}")
 
 
 def where(fact: dict[str, Any]) -> str:
