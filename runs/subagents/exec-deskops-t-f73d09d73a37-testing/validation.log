@@ -1,0 +1,46 @@
+# Validación — task-skills-use-specir-...
+Fecha: 2026-11-25T21:05:29Z
+Repo: /mnt/ssd/proyectos/SLDB_1/IR
+Commit ejecutor: e0ae0115910bf7eb13f2cd9a30bd019cfbbb2deb docs: use-specir skill describes specIR as declaring and extracting
+
+## 1. grep de la validación exigida (debe ser rc 1: sin coincidencias)
+grep rc=1
+
+## 2. Estado del archivo respecto al commit
+diff rc=0
+status rc=0
+
+## 3. Comandos --help nombrados por la skill
+./.venv/bin/specir about --help rc=0
+./.venv/bin/specir diagram render --help rc=0
+./.venv/bin/specir diagram lint --help rc=0
+./.venv/bin/specir diagram schema --help rc=0
+./.venv/bin/specir catalog build --help rc=0
+./.venv/bin/specir catalog schema --help rc=0
+./.venv/bin/specir build --help rc=0
+./.venv/bin/specir mcp --help rc=0
+./.venv/bin/python -m specir.cli --help rc=0
+./.venv/bin/sldb notations validate --help rc=0
+./.venv/bin/sldb notations sync --help rc=0
+./.venv/bin/sldb notations from-graph --help rc=0
+./.venv/bin/sldb notations list --help rc=0
+./.venv/bin/sldb notations view --help rc=0
+./.venv/bin/sldb serve --help rc=0
+./.venv/bin/sldb mcp --help rc=0
+deskops message send --help rc=0
+
+## 4. Archivos enlazados por la skill
+OK docs/spec2viz/correspondencia-cli.md
+OK src/specir/cli.py
+OK src/specir/visual/__init__.py
+OK src/specir/visual/renderers/__init__.py
+OK src/specir/visual/catalog/build.py
+OK docs/decisiones/paridad-por-capacidades.md
+
+## 5. Vista de notación de graph_ui
+OK /workspace/UIs/graph_ui/frontends/mindmap/views/specs/notation
+
+## 6. pytest (tests/visual/test_cli.py, incluye los tests de la skill)
+PYTEST_ADDOPTS=--basetemp=/tmp/pytest-deskops-t-f73d09d73a37 TMPDIR=/tmp
+Resultado: 40 passed in 126.92s (rc 0)
+  tests de la skill: 2 passed, 38 deselected (46.54s)
