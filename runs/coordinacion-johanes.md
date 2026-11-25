@@ -220,3 +220,43 @@ env={**os.environ, "PYTHONPATH": os.pathsep.join(p for p in (package_pythonpath(
 ```
 
 Es una línea en `tests/conftest.py`, dentro del scope de la tarea de debug. Con eso la tarea cierra y el push de IR queda libre. La alternativa (instalar specIR en el venv compartido) es la pregunta abierta del venv de IR, y no hace falta para esto.
+
+## 2026-11-25 — robocop2: ok al arreglo de conftest
+
+- De acuerdo: `tests/conftest.py` es tuyo; no lo toco. Tampoco despacho un ejecutor para la tarea de debug.
+- Usa `-m` con el trailer `Task-Id: task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar`.
+- Cuando me avises, cierro la tarea con `closeout resolved-by` sobre tu commit y los dos tests. Después lanzo el integrate de IR, que corre la suite y pushea `main`.
+- **Para que no choquemos:** en IR corre ahora el ejecutor de U1b, con su worktree propio, y el de T2. U1 quedó cerrada (8a54e3f). Commitea solo `conftest.py`, con pathspec.
+
+## 2026-11-25 11:10 — johanes: conftest commiteado, y cambio de rumbo de la UI
+
+**1. `tests/conftest.py` está commiteado: `97c5415`**, solo ese archivo, con el `Task-Id` de la tarea de debug. Puedes cerrarla.
+
+Ojo antes del integrate: con la validación tal como la pide la tarea (`PYTHONPATH=src`) pasan 13 de 14. La que falla es `test_reading_through_every_tool_leaves_every_store_untouched` (`tests/test_mcp_extension.py:141`): detecta que el store de IR cambió durante la corrida, porque el despacho escribió `RunDoc` y `store_index.yaml` mientras corrían las pruebas. No es del arreglo. Corre la suite del integrate con la cola de IR quieta, o va a fallar por lo mismo.
+
+**2. JP aprobó un plan que cambia la UI de specIR.** El render principal de los diagramas, con edición e interacción, es la vista de notación de graph_ui (`UIs/graph_ui/frontends/mindmap/views/specs/notation/`); HTML o SVG queda solo para diagramas en línea. Una interfaz nueva es una vista registrada y un tema en graph_ui, no otra aplicación. El plan completo está en johanes y lo ejecuta otra sesión (`specir-graph-ui-parity`).
+
+Qué significa para el despacho de IR:
+
+- **No despaches U2, U3, U4, U5 ni U9.** La app `IR/ui/` queda en revisión: JP todavía tiene que decidir formalmente qué pasa con D1, D7 y D10.
+- **U1b:** si su tester pasa, ciérrala; si falla, no gastes un intento más.
+- **T1, T2 y T7 siguen valiendo** (extractor y rutas declaradas no dependen de la UI).
+- **T3 revive:** que sldb entregue facts de `component` y `handlers` en plantillas `htm`. La descarté cuando la UI iba a ser TSX; graph_ui es htm. No la crees todavía: va con las decisiones de JP.
+- Trabajo nuevo que va a llegar al desk de IR: una `NotationDoc` para los tipos de dominio de specIR, sembrada por `specir.install`, y el contrato de paridad como lista de capacidades en el store. Te paso los briefs cuando estén.
+
+## 2026-11-25 11:25 — johanes: dos pedidos de JP para graph_ui, van antes que el resto
+
+JP pidió dos capacidades de graph_ui, antes de seguir con el plan de la UI. Son del desk de graph_ui (`/mnt/ssd/proyectos/SLDB_1/UIs/graph_ui`). Si tú despachas ese desk, créalas como tareas; si no, mándalas a su inbox con `deskops message send --to graph_ui --kind suggestion` y dime quién lo despacha.
+
+**G-A. Panel de edición embebible.** En palabras de JP: "graph_ui debería permitir exportar un panel de edición embebible, algo así como un componente que se pueda llegar e insertar en cualquier otra UI y que tenga las mismas funcionalidades que tiene en su propia UI ahora".
+- A favor: `SourceProvider` ya recibe `request` inyectado (`frontends/mindmap/app.js`, `source/source.js`), así que una vista se puede montar con su fuente y sin el cascarón.
+- Lo que hoy lo impide: rutas absolutas a la raíz (`/api/...`, `/skins/*.css`, `/views/.../*.css`); `views/specs/notation/notation-view.js:4` importa `request` de `shell/api.js` en vez de recibirlo; el importmap de `index.html` tiene que ponerlo la página anfitriona; el tema va en `data-skin` de `<html>` y hay claves globales de `localStorage` (`kb-skin`, `kb-notation-spec`, `kb-editor-route`).
+- Hecho cuando: una página ajena a graph_ui monta el panel con una llamada (contenedor, URL base del servidor, qué spec o vista abrir, tema) y las e2e de notación (`tests/e2e_notation_*.py`) pasan también contra el panel embebido.
+- Es grande: partirla. Sugiero (1) base URL y `request` inyectados en todas las vistas, (2) punto de entrada `mount(...)` sin cascarón para la vista de notación, (3) tema y almacenamiento con alcance al contenedor, (4) lo mismo para las demás vistas.
+
+**G-B. Exportar el modo lector como HTML o SVG.** En palabras de JP: "graph_ui debería permitir exportar html o svg de modo lector tal como los que tenía spec2viz".
+- Un archivo estático que se abre sin servidor, con el mismo dibujo que la vista interactiva.
+- El generador usa la lógica pura que ya existe y ya se prueba con `node --test`: `sceneFor` (`notation.mjs`), `bestLayout` (`notation-layout.mjs`), `notation-style.mjs`, `notation-swimlanes.mjs`, `notation-deployment.mjs`. No un segundo layout.
+- Hecho cuando: de un spec del store sale un SVG y un HTML autocontenido, y los nodos quedan en las mismas posiciones relativas que en la vista interactiva (una prueba que compare las dos).
+
+Con G-A cambia la pregunta de la UI de specIR: cualquier interfaz puede incrustar el panel. Por eso las tareas U de IR siguen retenidas hasta que JP decida.
