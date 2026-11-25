@@ -1,15 +1,16 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T05:27:33Z'
+  at: '2026-11-25T05:58:10Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash
-status: draft
+status: active
 summary: ''
 tags: []
-current_node: ritual-execution
-history: []
+current_node: ritual-testing
+history:
+- task_activates
 references: []
 depends_on: []
 pills: []
@@ -45,7 +46,7 @@ Solo src/specir/extract/plan.py (edge_name) y un test. Fuera: nombres de nodos, 
 
 _Outline the expected implementation route or affected surface._
 
-Repo /mnt/ssd/proyectos/SLDB_1/IR. edge_name (src/specir/extract/plan.py:65) concatena prefijo, slug del origen, relacion y slug del destino, y los nombres ya llevan la ruta completa del componente. Contrato: si el nombre completo cabe en 200 bytes UTF-8 queda igual (los stores existentes no cambian); si no, se recorta a un prefijo legible y se termina con '-' + los 12 primeros hex del sha256 del nombre completo, total <= 200 bytes (margen para el sufijo .yaml del archivo). Determinista: la misma entrada da el mismo nombre; dos entradas distintas largas dan nombres distintos. Test nuevo tests/extract/test_edge_name_bounded.py: (a) nombre corto sin cambios; (b) un origen con ruta profunda (> 300 bytes) da un nombre <= 200 bytes que termina en el hash; (c) dos destinos largos que solo difieren al final dan nombres distintos; (d) extract_frontend sobre un arbol temporal con un componente TSX en una ruta profunda escribe sin OSError (si el fixture TSX necesita tree-sitter-typescript, ya esta en el venv). Correr solo ese test y tests/extract/test_frontend_extraction.py.
+Repo /mnt/ssd/proyectos/SLDB_1/IR. edge_name (src/specir/extract/plan.py:65) concatena prefijo, slug del origen, relacion y slug del destino, y los nombres ya llevan la ruta completa del componente. Contrato: si el nombre completo cabe en 200 bytes UTF-8 queda igual (los stores existentes no cambian); si no, se recorta a un prefijo legible y se termina con '-' + los 12 primeros hex del sha256 del nombre completo, total <= 200 bytes (margen para el sufijo .yaml del archivo). Determinista: la misma entrada da el mismo nombre; dos entradas distintas largas dan nombres distintos. Test nuevo tests/extract/test_edge_name_bounded.py: (a) nombre corto sin cambios; (b) un origen con ruta profunda (> 300 bytes) da un nombre <= 200 bytes que termina en el hash; (c) dos destinos largos que solo difieren al final dan nombres distintos; (d) extract_frontend sobre un arbol temporal con un componente TSX en una ruta profunda escribe sin OSError (si el fixture TSX necesita tree-sitter-typescript, ya esta en el venv). Correr solo ese test y tests/extract/test_frontend_extraction.py. Agregados de la revision en frio (johanes): Planned.path (plan.py:49) tambien usa el nombre (DOCUMENT_DIR/<name>.md), asi que el test comprueba ademas len(Path(p.path).name.encode()) <= 255 para el .md y el .yaml del shard; y (e) el recorte corta en un limite de byte UTF-8 valido: probar edge_name con un nombre largo con caracteres multibyte (llamando al recorte directamente si slug los quitaria) y que el resultado decodifique como UTF-8.
 
 ## Validation
 
@@ -57,4 +58,4 @@ _List the checks required before this task can close._
 
 _Name the observable condition that makes the task complete._
 
-tests/extract/test_edge_name_bounded.py cubre (a)-(d) y pasa junto con tests/extract/test_frontend_extraction.py.
+tests/extract/test_edge_name_bounded.py cubre (a)-(e), incluido el largo del nombre de archivo de Planned.path, y pasa junto con tests/extract/test_frontend_extraction.py.

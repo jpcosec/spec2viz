@@ -1,0 +1,36 @@
+name: review-task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build-owner-1
+path: desk/reviews/task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build/owner-1.md
+source_hash: 9a2400c5be78c3fd56d2794a38d2f20ce58dbdd9dda32ebcbf12a2a200f87bdb
+content_hash: b22528d2615294d732e5c8ea00acd104d7d1f951f3e32fcf0cf5962721f16ef8
+field_hashes:
+  id: d63c9bd0dabd041896bd7e94e9e06e44f1ecfbed2379018f490e40fb2aea8b05
+  title: c8f5e15d4e789463cbe0f0b3abf7022c707ffdd3c7eba9c2e63c8b217901de1d
+  kind: 622f06cbcd2e7e61637e17212e714e6c721d2dd5a9f7bc1aec911b65b34edcf5
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: aa2c8913f21d3fb7c34258251e7e4c57801fbdaf482cc6187ed50a0e179a8ea5
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 11e25bab0df4bb9f63c6dde985fea5de0ef16abdb2ec640dc08e7e97ec6b1d15
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
+  reason: 024425b2b60bb925180e13f3fba47266beef26f745a793abf210364e561472c3
+  created_at: 1e9fb8c6fd447b9908169bce4f87a4243bfbd4353af84a0870db679b4c2196e8
+  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  summary: 7735b1af9e1a496fa0f36df9a318df8a8253c73fe4fc00804339157235f7a7c3
+  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T06:03:17Z'
+  authority: generated
+  via: create_document

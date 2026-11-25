@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T05:27:39Z'
+  at: '2026-11-25T05:43:20Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados
 status: draft
 summary: ''
@@ -34,7 +34,7 @@ T2 del plan graph_ui: hoy solo existe specir.extract.extract_frontend en Python 
 
 _Describe the concrete result this task must produce._
 
-Un comando de CLI que corre extract_frontend y avisa de los archivos que code_facts salto.
+Un comando de CLI que corre extract_frontend, avisa de los archivos que code_facts salto, y con --strict falla (rc 1) si hubo saltados.
 
 ## Scope
 

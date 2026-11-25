@@ -1,0 +1,36 @@
+name: review-task-decision-de-jp-donde-vive-el-diccionario-de-componentes-owner-1
+path: desk/reviews/task-decision-de-jp-donde-vive-el-diccionario-de-componentes/owner-1.md
+source_hash: 06b4d6f9971bd9cd8ae1a25d7bdf33ac7ba0d6f847c29654a831c59584f4f97c
+content_hash: edd56d3caa21b57420f4481d7f7b43ff06954c285697ebd010cf02017a249cd3
+field_hashes:
+  id: c933834b5638d9743f1acc8ed81256e485526175a0afa50536f96f4c6d517d29
+  title: b3c10a7a819429f81a81d90668ef2ef6796fd7598808c4b880ea463351b29d58
+  kind: 622f06cbcd2e7e61637e17212e714e6c721d2dd5a9f7bc1aec911b65b34edcf5
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 9b3338f4031eee623a6d10f2590e4e581025afd91bb2b9071c8725555b91a02d
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 11e25bab0df4bb9f63c6dde985fea5de0ef16abdb2ec640dc08e7e97ec6b1d15
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
+  reason: c88425e474aa1d193041fc45242182a08770003876b23123fe18df79a75b9e7a
+  created_at: 6845b80165a2c5fbb29c92198357dd77f7a05f04065ccd5a91be3bef704c01e3
+  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  summary: 7735b1af9e1a496fa0f36df9a318df8a8253c73fe4fc00804339157235f7a7c3
+  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T06:03:02Z'
+  authority: generated
+  via: create_document

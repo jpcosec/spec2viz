@@ -1,0 +1,36 @@
+name: review-task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados-preflight-1
+path: desk/reviews/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados/preflight-1.md
+source_hash: 7435a1fd08271927574dedeafb32a91d15a86abbf407e141f306ac278d8f22fa
+content_hash: 4b5c1034a354ff6d50956c051cad332cc962103b3cc9fea5e36c691c406d8456
+field_hashes:
+  id: ca815c9534c77bb1151ad94331a63db8c2e263987d3dfc8293128b4daca76f90
+  title: 4ecd05e62622b0b8753c0a636687e5e07293021b08d07a764b268d720db422f5
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 7322c0c6b1ecb4db90d4783e699a3875e7823d678110b787719dcea0129191bd
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 5b8e0cd8a2a28ba994265ed323c1cd4be00f0b1e0232e9cb12298bc46e171d61
+  input_sha256: 6ec862cd4963a5fbc917a166b31dfb6be83214f9d4a7579626502b4231b48e6c
+  contract_sha256: 71a52331f582b3deb3bd820fb63d6cf307d33f8c3bd32b761ee3166e9f754d62
+  output_sha256: 9e5f7f9759a11f4b405d0c1cf0c68eeac06b92d5cb65fb7e769688f908138f51
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 692920ef005c1f365a21fc703e8603613eca7c466c5629ea293669d1de84dd18
+  created_at: 5f47b12bb3cf144ae180da063ec0ea126ecb5071ea53a2b4a09466d7291350d8
+  disposed_at: 98f4cb85a9bf9e813fa635941e921a0cc2fa268e97e88af82e4e6b013365186c
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 042951cf6516c692c022b75e75187bf945eda9f808ecc75ace21dce8429639cc
+  disposition: 0333446aa3b8d8a69e9d717fb6924844fa1e7050097071f90e83275b4eeac745
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T05:57:57Z'
+  authority: generated
+  via: save_document_payload

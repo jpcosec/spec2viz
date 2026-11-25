@@ -1,15 +1,15 @@
 name: task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml
 path: desk/tasks/task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml.md
-source_hash: b58cf28d01a657aac0b1f32364c27afe27ed5d197f5ea6b3d3cf7242a1b6700b
-content_hash: 8b8100083ffb98d0e53ca85062d0ec5f455fb17857a378f2de918679c724ea9b
+source_hash: 12f77a14cd536b7e6641e25720d789f0132a90bf28a7ace8fa3e3826f23e91f8
+content_hash: 73710c52ba227922f6e900066bedff43c4c9928f92d6ff24f785d92b9c2d4759
 field_hashes:
   title: 6722d96fa7d927f20e1d8350bbdb1347a1873e1de72397caae2c8feebce2be0a
   id: 7bb350065aed37959f36267e10d3ea5ff9cf1d248822190828f0694ef9412f8c
-  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
   summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
-  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: d10f5286503cbf750af0584acaec732741c2d9cfbae2a6d5b8ce45b8bf83b79d
+  history: f89b8fd2ac9e43a24ba505d162381268ed901d0695f62c6ad8ec2c62718dfa1c
   why: 974593b2707d7cf0a915b9752d49558b51364a2b82a30a243535fbdc12dd8015
   goal: 48b57934838ef06754b254fb599871970688860c66442322bc981f30e710a6f0
   scope: 51e798fa2c43549f79be0fb5a4ce6a0ed5d27b1cb3d0fd948151ee719b6155d0
@@ -17,9 +17,9 @@ field_hashes:
   depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 815cfe387465b14cfa71266d2292c17714d07310af153defd46e7125e6d8d4c9
+  implementation_path: 8ed0e999b3dadd39cf77f5a511d34776d17cec8c7e92d2f706ae63735d875a21
   validation: 82efaa4a156d1c9d3346df662b8acbc29a0fede9420a7983465ae4fb67ec34b5
-  done_when: a1316426759154789460ee63e5a7e8ee5083e2e3808863e4a1350f68f56e7d46
+  done_when: 3b7b22af200e5a55b95aa4f480012f0156395a81337c3fc398e3a9ec0337a036
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
   inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
@@ -33,6 +33,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T05:27:45Z'
+  at: '2026-11-25T05:58:18Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

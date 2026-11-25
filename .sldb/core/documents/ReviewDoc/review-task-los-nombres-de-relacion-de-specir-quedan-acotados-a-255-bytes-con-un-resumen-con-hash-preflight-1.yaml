@@ -1,0 +1,36 @@
+name: review-task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash-preflight-1
+path: desk/reviews/task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash/preflight-1.md
+source_hash: c60dfe3784d844d7db64f6fe8a158c7071e105b2ede6b9102a64ba947fce05c1
+content_hash: f1f585200202c9d039b4eef5ecb63a04e941df653ce227fc4dd78c3885849982
+field_hashes:
+  id: 36e620b6584524d6db17979e04b5ac95e41b7ec054e3a6f11b995758fff0b7fa
+  title: 9a31d40d7311773c3a097290eeb0753b865dcad25920b173c3c96724d3eb0f63
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 85a19b19b74115fecb00330197cf31beae722f5b67aa6b0c083386709db085b8
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 8dea03aa03e5a5d3708365ea278c36088bd33d5a86b2026ef7d5f316784a3853
+  input_sha256: 11b0e809564a7f957c7e19f82b0400533a849b2873e84d8bbbb4b237a04db06d
+  contract_sha256: 19fe4ef7f488e131ad862ce61c9a0790cde66d6bc8bf752ffffc47eecc0c8d52
+  output_sha256: beee0882caf306a84fbd4fc85b3e87d1ad917b4a1c3449f7e61f283b006bd427
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 692920ef005c1f365a21fc703e8603613eca7c466c5629ea293669d1de84dd18
+  created_at: f0729751b8032e346a5824af1eadd9abd471088541afe64a6fa5fafaaed63ca3
+  disposed_at: ee51f43e9d78e487b21586568cec199e8111f502c13645a6a95cfd6318b75857
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: c8e9108747762ba4e3c8605154786ed8e714ee398fa278c6eeb357ab5d7de10e
+  disposition: 0333446aa3b8d8a69e9d717fb6924844fa1e7050097071f90e83275b4eeac745
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T05:57:30Z'
+  authority: generated
+  via: save_document_payload

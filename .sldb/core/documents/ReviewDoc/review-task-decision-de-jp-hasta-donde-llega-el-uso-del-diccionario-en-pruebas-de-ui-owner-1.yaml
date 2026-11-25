@@ -1,0 +1,36 @@
+name: review-task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui-owner-1
+path: desk/reviews/task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui/owner-1.md
+source_hash: e291729bba0c2b62883f23a1f0d0f6fba4f6b2e2417ac636f61618021f82b457
+content_hash: c339927fc90ad186950d3fd999bcab023c961a2708ccbb6257658dfbd6809c9b
+field_hashes:
+  id: 79e9dbe03bc37515a9efb4152559e01947f0bc2116a899832c9bbf2b4d19c210
+  title: 785c5f4ce45ae25650f06606761cbe27cea6f31ef1d4ee74c7f06f7f6dabd572
+  kind: 622f06cbcd2e7e61637e17212e714e6c721d2dd5a9f7bc1aec911b65b34edcf5
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: d2ef1b1d35a824d6587aafee4924808a7034b7e9afe73f7260db959bdfb453b0
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 11e25bab0df4bb9f63c6dde985fea5de0ef16abdb2ec640dc08e7e97ec6b1d15
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
+  reason: e07b1b7977dd5b4728620d79047d04ed79b64db8a8983b037f01067574c30629
+  created_at: 65c48f1c9dd9e5e3b6aa673311afb82658fe5c10a3eed3e39c04ac42c4e6cae1
+  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  summary: 7735b1af9e1a496fa0f36df9a318df8a8253c73fe4fc00804339157235f7a7c3
+  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T06:03:09Z'
+  authority: generated
+  via: create_document

@@ -1,0 +1,38 @@
+name: task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage
+path: desk/tasks/task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage.md
+source_hash: 866e1e3497fb26ea1877ad3ec2ad5f2d88eede5c3b4f58b87be37aad9eacc908
+content_hash: 541ca5efbc9fb6c6c7fa8e08281a41ba6cd11355661b6b16d28762ad703bb2e8
+field_hashes:
+  title: 73b4cf7592351424775ddf9f968cfbb572a8f489088a95ed861ed587063887e8
+  id: e34227f5903d67414a3eb96713b6240cef14b3d23dc14dcf6cf08cbb8710a763
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 5d297612dd56b04f615d51c2b97c1a229bfa69a8797b570251929a0a057a9a99
+  goal: b493b5bb126b7272b1c60e1e84c276f1aad3c4a9364e7174f08be8c7f3f2eb8e
+  scope: 5a0aa94ceecf3b7378dead64b10cf34c7b99d5c85255f5d3c814e88e68cff869
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 3bf5d61c2fe6e47c679b2de77825e6f9c4f64e709c8708fa4a9fcc3d12451d02
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 5ce2fa201db5f7772f92d24c8d537bb5b25f81a60992e3c4771f84c4741f1c83
+  validation: d145a5aba2a05a956221f514ae610f61ae8611a9ead2f890d7bf6dd4f0d8da47
+  done_when: bda808988b50b6c4ea1ea3f869e1b4afc6751b5f21b6f6a12fed0d0669d9de66
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  from_drawer: 497146f62eaa8bb4779719a6b090092cce4076e5054ab0988b976c35ddfa63d9
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T06:07:37Z'
+  authority: generated
+  via: create_document
