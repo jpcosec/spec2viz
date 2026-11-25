@@ -1,0 +1,18 @@
+name: rule-adr-supersedes
+path: desk/lifecycle/rule-adr-supersedes.md
+source_hash: 7932bfaa59ca9327b85339047ce4cfbf919eb743524d4ada43a11779c2d7f3a5
+content_hash: 8e088031ae85a367b8e10627192750e241ca52486f94210259cb6f03a225225d
+field_hashes:
+  title: 750cda4b401c391b62585e3a14bf022f9bbe4d3c956056f5b9de3b6d3119c2d8
+  subject: 03df3fe67cb78520faf3dbe101ff9445ca8d7b2dbf60b800b7d8fd80b5b7b4c5
+  where: 6c3db9fc5a99e93055619e8b44f8abeddb1e1061112958c0f405a0e880b972ef
+  condition: ac6c80460f96720e60fd9b300e9f708a705b211d279cf94923f0a79c50eacce2
+  severity: 4d01709fcd599118652e3b27bd0ca97c802f832183d01f76a034755f2bc62fa3
+  moment: 9661572404a273c6135cda90c447502455cf65c46a29f9cdf63fc766d632234a
+  message: 8df4d860ca94eaae511af48109da6e5a970dced87d3b159d1fb6fe91c57e575f
+semantic_tags:
+- layer.governance
+- representation.markdown
+- source.document.markdown
+- type.rule
+provenance: null

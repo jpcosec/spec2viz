@@ -1,13 +1,14 @@
 name: atom-las-operaciones-de-api-de-un-backend-sin-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml
 path: desk/atoms/atom-las-operaciones-de-api-de-un-backend-sin-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml.md
 source_hash: 7344554f0309380958f3fc57e231ed00027d37b570115862e1f1b5ac32d6b5f2
-content_hash: 431a57c8f391e4d02b894c5bf3e748d8519630ce0424d7dfae990f96e5928d50
+content_hash: 00f67f203804bb4ffb7b805382a41daa16c4e9c8268c1027cd5060ec89885b9b
 field_hashes:
   id: 1c9498fbb5e345c04e3f935302286039e7a41d254c2e13d023008ed4eda27a61
   title: e5aea7c09fb3d47d279bb3f467d7a5b0b8c1fdd1fb16806661841d8505fe87be
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: d85a6215da87c7de522be3ad17e68bd37b693db32da335ada5f43856d43184e2
   tags: cc467ce09e936483c9b494de50f8fe6da320c8b0c97598d7958192e03a7bec52
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

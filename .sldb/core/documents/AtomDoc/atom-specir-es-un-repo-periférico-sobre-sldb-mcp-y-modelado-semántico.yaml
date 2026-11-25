@@ -1,13 +1,14 @@
 name: atom-specir-es-un-repo-periférico-sobre-sldb-mcp-y-modelado-semántico
 path: desk/atoms/atom-specir-es-un-repo-periférico-sobre-sldb-mcp-y-modelado-semántico.md
 source_hash: 97411fed67822b71b3df3a717cfbbae81cea408884cfb5a26cfbb57248a318ee
-content_hash: 192de6bb85e5296682a763a91358326e6f59e92e2b279f8042226f243b73706f
+content_hash: 1ffb7dcbd4af4b0ebee8228394888c4e58956f8d601e9e4b08aaf583bafa0dd5
 field_hashes:
   id: 50738df4e1a5a56cbae8b4e9f19a603aa050e74cdae7d04177fe3a6b5cfa7825
   title: 5041c6db6e700dd53e754f7ee3560aed60f4329ccdd2c6ae0415a34a034415ff
   five_wh_one_plus: 0ac5b48a10a651e75b01f8d26468c18977ea336c90a9607a6163d0d330a4bb40
   answer: 670c68f759b5d4892789f8ed4fdf1c5293a82d1573c423b7927923c9255e9ee8
   tags: 03eef0b808d077c51f0adcb8fc21426325522bc1c853709f3a0bd71c65692155
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - layer:arquitectura
 - representation.markdown

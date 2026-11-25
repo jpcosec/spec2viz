@@ -1,0 +1,25 @@
+name: materialization-capability-doc-specir-rules-rule-specir-edges-carry-their-provenance-md
+path: desk/materializations/materialization-capability-doc-specir-rules-rule-specir-edges-carry-their-provenance-md.md
+source_hash: 3446a5fcc292bc8cd24e0db2d5364034532fd798c9f05448b48ecdbdac0b2fe9
+content_hash: 62af8679d5668fd409eb912c6a1dc16b872dc0a57136b7518d56dbb499007cba
+field_hashes:
+  id: 05801ebc62393469a61ab996e3be578e00321c97c294cbbecdc15594ebc4d2fd
+  title: 6591d5fd84c76f5d4241038b9cd0c407ee76d32b97aa77d02152aabb8cd10388
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: 6db69023d9d9163f3f5b957b49a208718e5476718af784f40d94913488a2b1a5
+  intent: 2f207b429ce24abba213ea02fb851eeee44cc9a7d0ba72af4dae2d389d49c19b
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T23:10:44Z'
+  authority: generated
+  via: create_document

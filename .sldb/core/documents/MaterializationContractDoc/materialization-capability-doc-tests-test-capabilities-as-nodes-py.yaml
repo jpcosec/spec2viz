@@ -1,0 +1,25 @@
+name: materialization-capability-doc-tests-test-capabilities-as-nodes-py
+path: desk/materializations/materialization-capability-doc-tests-test-capabilities-as-nodes-py.md
+source_hash: 890242081e25a20d41db978810953381cd593405d8775a0a02025ab6cef9f0bc
+content_hash: 718a7c7da501cf57f3767504499eb440d341d470fcec65eb95959d9072ac9252
+field_hashes:
+  id: 57d70e2bb60bf499a594645616805bcfea9ec82f5086f6b718dfa2135ffa3d42
+  title: b9ce1f1963f99cdaa9e9c096263544bf86e3f20c3457141b36524d940338cf55
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: 9df26b2e362504ae4652cdc9e8f919178baf145887722473689843ac22de9dac
+  intent: 869324540b0d9f1cad6f0b4dc0123fc2e12d9e04726a6a3c9b9b9f78c4c82775
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T23:28:17Z'
+  authority: generated
+  via: create_document

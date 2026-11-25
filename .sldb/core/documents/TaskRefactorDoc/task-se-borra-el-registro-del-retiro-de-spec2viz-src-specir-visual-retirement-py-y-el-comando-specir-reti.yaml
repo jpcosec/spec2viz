@@ -1,0 +1,38 @@
+name: task-se-borra-el-registro-del-retiro-de-spec2viz-src-specir-visual-retirement-py-y-el-comando-specir-reti
+path: desk/tasks/task-se-borra-el-registro-del-retiro-de-spec2viz-src-specir-visual-retirement-py-y-el-comando-specir-reti.md
+source_hash: a3d2f34251ef39857218fcf106337b085238310329953d9997138e5fb087d1ba
+content_hash: b087bfb1d0e3f0e8321801faf625b587b5b30ab520dd251f5a41fd8664b273fb
+field_hashes:
+  title: 38ad1fbce84558e383d85ac73fd8272439a212c9ff5736d6f17a96ab1f6aaed8
+  id: 142a94f60f12809f17a37f266a182385803a85eb43ade5edb919830e8a1a1ef0
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 95d944218149283bf679b2a25383d3ec9081287425e36f3d01b8eb0815104aa2
+  goal: 5dde3e56c86cf2874c26cf491da688ec3f1050c5964a401c7d2ce2ddef22da38
+  scope: feca6ff2364b87e642439748ba82c12f61c1aaf5499273d4359ba9f19d3a9a5a
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 81953cffde4a080c3c709ec1cdad8b2809992665226e0a73cd00fa9d1e4c55a0
+  validation: 7f87c8ccdf230a567b7337aef1a6821433c8c146d76346792ba30c968c34120a
+  done_when: 3387f4897f8f329ea2671ba03fb060cbe9973ee6101a219609c2fdb78b32b794
+  task_type: d0b4cbfeadc448bca1492079dfd36948fd84b4ae366c521b0e71add2bea3fa86
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T22:45:56Z'
+  authority: generated
+  via: create_document

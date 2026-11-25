@@ -1,13 +1,14 @@
 name: atom-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta
 path: desk/atoms/atom-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta.md
 source_hash: 8789e24427ffaa362566f80e273cb6a7fecaaaaa6c8cdf0dd2f1a02d4e8e3a64
-content_hash: b12924baf58251a3454f8c5b2b7a505e569dea6a09b241e9a19ce9a2c4d5d604
+content_hash: 7da37320656ba1962b207ae8b1957b59114e50d0bc07f9b3c64f59d33e6c3ba8
 field_hashes:
   id: 213e699747612a6af9b4c831a49539838bcfb9d651ba4cb4cfaaec4ff826e301
   title: dab53768387ee6aca2ff986645bf4c9c578375cf393f15b6b382a3ade6d2aca5
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: 73890a65e946625af32c23a329c80ca853a5d3d3f4b05e4a8d5281a874540403
   tags: 643d2a84cff15a05cc29cef14ef0ac40ebb121e82797e0199d171684d90bc6ed
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

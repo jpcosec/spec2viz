@@ -1,13 +1,14 @@
 name: atom-spec2viz-continua-como-ir-en-jpcosec-specir
 path: desk/atoms/atom-spec2viz-continua-como-ir-en-jpcosec-specir.md
 source_hash: 162f950c76bd465e8b7f34f13672914db3abea336c460fc710569fd82d776342
-content_hash: 467035694de64e739451f289604955b5928a955c30901af51fd5e28086e33203
+content_hash: 4b80c929ba92b1e032ad44a70ab019b7e217379168a5963421e065f7a961e8b8
 field_hashes:
   id: 4e7780bc32453938f3f757c36ead599bada4cc17f3816d4afedee8d3deb86d10
   title: 0d48b26fe6ece4049ba701a0752f872601436fdcac0f08f6a2ced882dadb197f
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: 28f605ec8456d98daa03471b55365c9b1bb93f8ca7a9717fe57ab9513dc8e64b
   tags: 2d498eff92820f6c42a4e7850fc40b1077b05da548d3edaa4e6d8b0aed0b4916
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

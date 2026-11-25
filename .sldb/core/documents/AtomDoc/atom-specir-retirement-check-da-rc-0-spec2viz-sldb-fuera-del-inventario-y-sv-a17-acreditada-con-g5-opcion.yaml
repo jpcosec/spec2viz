@@ -1,13 +1,14 @@
 name: atom-specir-retirement-check-da-rc-0-spec2viz-sldb-fuera-del-inventario-y-sv-a17-acreditada-con-g5-opcion
 path: desk/atoms/atom-specir-retirement-check-da-rc-0-spec2viz-sldb-fuera-del-inventario-y-sv-a17-acreditada-con-g5-opcion.md
 source_hash: b6f34703b9229ecaaf41d594869f75f3ace4f886695b4079d7fc504f8413e3f5
-content_hash: ef62c94cc99a8f8fd9278763e149ed919f8e33e3ff060435719474c61a6bbfe0
+content_hash: 088ca817193b085e138e1be9b9439604b8abda973aaf5dbeb6239100895f8d9f
 field_hashes:
   id: b000dd9faf99ced1f37bf4eb9b2a0192ceef6bc4e5e305a6ac82aa6b4de435c6
   title: 8f1a0ced8b19b98df94c33b93b5370878b66b74dc071ff548b74923f56c4cd4d
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: f71981845a54bbaa69bdba19f06fcca1849a19236fa1690604fc08dd5f084af2
   tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

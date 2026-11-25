@@ -1,7 +1,7 @@
 name: pill-guardrail-specir-solo-usa-la-api-pública-de-sldb
 path: desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
 source_hash: 4b48dc0685cc3b457dfc02102855266f1c1fb6e13bcea74758c908562e28ba37
-content_hash: 587b98a08233e290b26b9fac1629da6e33f28097927922a28fa1eb195b77bfe5
+content_hash: 52ed912506abfa20642d395c920fb056ace49c98922b815c92964a428b53641e
 field_hashes:
   title: 693e2fa962f9fd8e5dc3a1f9ad5d5d14f1a3c69ae863bfe93033a991871a5bea
   id: 31856e41578707c73231e389b202575570d7df8ede0d98e202bfee04f33ca14a
@@ -14,6 +14,7 @@ field_hashes:
   where: d23ed1fa2094afb6e8d887e05b3257539d75bd93ae7add65944f58b8ea92a899
   how: e27966223da90ce958038faddd6199d166042cbf84cc275005b37e286bbfcaf0
   how_not: 3b4554f49746cf2c8b4abf5269b6d7e5dc2dc74da79d5aa003d6d17b2714b852
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

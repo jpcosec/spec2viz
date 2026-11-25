@@ -1,7 +1,7 @@
 name: atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir
 path: desk/atoms/atom-reglas-de-seguridad-de-la-superficie-mcp-de-specir.md
 source_hash: bf086abc0fc0e8176ec30c0fa01d4c2e33b6dfbe00c2e8a39825f0f4c3cb1bc5
-content_hash: 593d7eef50dee4fe6f6c585633c3f901b43a1860e208ef2214c5f13b767d79eb
+content_hash: c933fb0878676df973353229a3b53632379c962c9bd0c5e65d7334538801666f
 field_hashes:
   id: 3df3c3aa476d3ca4738ba7a6761b56e701210b670c5060f24aab792b9ac2e662
   title: 66b26e71f7f7a73805592ae5dc9ea154e11c281a6f21e062ef7ffc75d223f358
@@ -9,6 +9,7 @@ field_hashes:
   answer: f6c6c78839facdd36211799c13ddcbb0a76fc8db0d1a120aa665eb736e36bdee
   tags: 4287656baef054a53f296c34ef75dd81f3df53a405897927278c53d065c4a331
   provenance: a295e34faee33b6e64f7219affbb5f453cb54791f8963d6d0db348e73dba7524
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - layer:superficie
 - representation.markdown

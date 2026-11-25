@@ -1,13 +1,14 @@
 name: atom-las-pruebas-de-ir-no-dependen-de-spec2viz-el-marcador-parity-compara-contra-goldens
 path: desk/atoms/atom-las-pruebas-de-ir-no-dependen-de-spec2viz-el-marcador-parity-compara-contra-goldens.md
 source_hash: 9722fec32dbe7afde901f81a3767bdd81593719207afd963592272cfa9be851e
-content_hash: e102c23e50152acd648c44969eb7d041fd54e123c5db90b3decdba2216f080e5
+content_hash: fc92196fe1f51354e6d0a7cdd2fabc0fd88c9b38a65fa9aa787b0678756c8f31
 field_hashes:
   id: 1a62856917f62e9b0f0b77f9e671077632903cf2ee728fe12653b2342dd997b5
   title: 70faca4403c3285d92562702796678f60589bd7991abb15a87bc898a0be34307
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: b1e6b9f12a8a6681ade760a429e8581e3521d9283c36f3fb989d9181e46d2e5c
   tags: 8db771bd738e80671454e87633134ce6ac487189ba5fbb973143b218ebd221ac
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

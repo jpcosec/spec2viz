@@ -1,0 +1,25 @@
+name: materialization-capability-doc-specir-rules-rule-specir-entity-is-persisted-md
+path: desk/materializations/materialization-capability-doc-specir-rules-rule-specir-entity-is-persisted-md.md
+source_hash: bef8d1d8740fab45d13ff971bfc27eef3f0e20b430c1aa7d3302f54b412b0ede
+content_hash: d3665bbe3b3912fc4137bd36e04847a9e26ac740085801c593c4bae708b597cb
+field_hashes:
+  id: 2d4fbf0d79c8fe047e1795a7b66e74fe4df4add66339a95c4134bed58715307a
+  title: 9a6961abb002d0b8f552ea8246a49a25153a2689bbedc1f06ef1d70a7afffa95
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: 23c4efd7215d908014eecd342011caa71ac0c802a58a0e24a1f62b4c51cb0695
+  intent: 39598fdd957e7059eaca9cf5f9f1cac8e10669981920dcce3b0403da051e074e
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T23:11:36Z'
+  authority: generated
+  via: create_document

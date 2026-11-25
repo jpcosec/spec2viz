@@ -1,0 +1,38 @@
+name: task-una-entidad-del-dominio-tiene-atributos-y-relaciones-con-otras-entidades-el-extract-las-llena-desde
+path: desk/tasks/task-una-entidad-del-dominio-tiene-atributos-y-relaciones-con-otras-entidades-el-extract-las-llena-desde.md
+source_hash: 182168443ecd953c37e28a71bf183f99420aeb0bdb55ce9f519a68d1bc65f68f
+content_hash: 669e6fce4128513e6ea2e4cb1815e1357c556b22cf9e5dd1ce78be1aeea0cc47
+field_hashes:
+  title: c2929f3dc2d568d0a39419c62c2dfa40f91c045c9a32f6fd464213538e9a70bb
+  id: cd275e51153aadf75d00920eab13610c36464238b37e2546536fd43824c1c250
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 5ef6cd148c0c34cede1944802e860db3b465a2bb0d2e7e15aaec130e03730c8f
+  goal: aaf92313a334be94a17c21734f1e675cde350c8cf4b7be47c7cab9eb6c76e1ce
+  scope: 6caeeb1b14d5159f20266f37f3b07627d02ef7628086f22ddf0c6a33ad8fb490
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 68a5918609cbf67190744a03b10c4c6b18cafe41190c02d1a6cf79a9249765ef
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 077e8b26e6931c35444e046c177c4b8360527ae8d89882e2d115539b6edaf2d8
+  validation: 34114d82100904b73de3be050eaeab8eaa08a173015d6141d37d058df64533b6
+  done_when: 3914d0c018bab450199ff4378d3a188f85f1de55094915b376d4e8f34872a7d5
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T22:52:42Z'
+  authority: generated
+  via: create_document

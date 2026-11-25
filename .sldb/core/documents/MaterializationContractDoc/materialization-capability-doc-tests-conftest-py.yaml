@@ -1,0 +1,25 @@
+name: materialization-capability-doc-tests-conftest-py
+path: desk/materializations/materialization-capability-doc-tests-conftest-py.md
+source_hash: 5d747a6eb7c86e7c41ebdfc6cabdbfeea567991c2137139c8c422a827914c437
+content_hash: c60bc648f1541f83f2e133a5d5c2ccc7d064d08cab93c4da80a9a4ad4beea741
+field_hashes:
+  id: 37205fcb49d68274731ed0921179c3d799f3d16fd77ae664b7492805bf8d8ba3
+  title: de2ac589ee69827cacf6a2157ad11f8cff407fa8af75d9f527eacaf31ccce2e4
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: 5bed7a18d828af8088f63e6c9456a1cd030642713cfbadfbd151fc39c415eb4e
+  intent: 4c6f3f7fb0aa6dc02e7802dda336fe874702176ca2c02e7b9b2e5790734f9d84
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T23:26:30Z'
+  authority: generated
+  via: create_document

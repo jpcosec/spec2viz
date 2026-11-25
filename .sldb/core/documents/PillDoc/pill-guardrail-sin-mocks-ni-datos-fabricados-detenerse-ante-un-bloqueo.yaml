@@ -1,7 +1,7 @@
 name: pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo
 path: desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
 source_hash: aecd844c7ddd17f0b5cc0d541e28362e0ae2fb69e7cbeeb3c6f5496d0059df19
-content_hash: 11bc98d3b732788200075d509439e66f24af886a87e4f63172a9490fb7d04def
+content_hash: fe12752882151f0fc8106b5a06c62b1fc07a71df0bf848fe1b1e050dda93e4b4
 field_hashes:
   title: 73c40f27750ccb10d7f6a7bccba0c2a3d2c04e1891cb93fd43cf234674b2b6a6
   id: 3216d28c36156c8f8cddb259bed9a47f3654d82386926a1f1228ed79d321c42c
@@ -14,6 +14,7 @@ field_hashes:
   where: 140f10670e0f3dfaf084d5431ee30c9164b33430721a2e8fd5233ce096dac0b2
   how: a28e6f4eaf244a8931b563a25f110c96dbbd1e1d3aece8c1fcc6f224a3af1f6c
   how_not: 8d1e5db0c4aa03e9f43d53b2b32a6aebc1170c3af5f5666a9a4656b8b09b741f
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

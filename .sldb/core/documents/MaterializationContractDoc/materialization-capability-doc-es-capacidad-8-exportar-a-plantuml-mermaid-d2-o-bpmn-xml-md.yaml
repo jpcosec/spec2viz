@@ -1,0 +1,25 @@
+name: materialization-capability-doc-es-capacidad-8-exportar-a-plantuml-mermaid-d2-o-bpmn-xml-md
+path: desk/materializations/materialization-capability-doc-es-capacidad-8-exportar-a-plantuml-mermaid-d2-o-bpmn-xml-md.md
+source_hash: 1413aa896885a3bf5a3cb9d1f7b30d980ddb3dcf2c705c64fbbc3272349551f8
+content_hash: 5deeae239b5fe18cfa89deef334ef34c082b3403adca49057d63bcc946269e51
+field_hashes:
+  id: 66a92e063e7ebf2a113790ba750cbec95fc205769ccf37ccb8163e6f271e1fa3
+  title: 166c88bc42b4cbcb8b5aab5531b14bbeea84e8f72633ffa64337b86de85e6194
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: 1bae33e074cd5da5cf24decd6d5f3a1bf96bd0e5aab40fdf5fabfa5a0ed7be7d
+  intent: 925b1950c8f2fad7237ffb0c71084692b417461ccb8e55ae7d18e8c414f95718
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T22:53:12Z'
+  authority: generated
+  via: create_document

@@ -1,7 +1,7 @@
 name: atom-el-vocabulario-visual-y-el-resolvedor-de-vistas-ya-viven-en-sldb
 path: desk/atoms/atom-el-vocabulario-visual-y-el-resolvedor-de-vistas-ya-viven-en-sldb.md
 source_hash: 9912e4c0539e907ef5cb2ced8705b938763773eab5c4e788e289bc766719b14e
-content_hash: 6d848cedabdeb34b2dc1bc1fe998daf7ae73b010b7d420c8d96087d2154bf5de
+content_hash: 4aa5a69c39ab64cc32b016a8e65f6a25e6e796a8ae41085e20b54353b8952f56
 field_hashes:
   id: 7592f0279d90c773f2b65b69b6268f88232aee1e6081fc4ff15b507f44ea2758
   title: 675e43f0400cd3174115b0f7cffcfbf98748443c192260918a906809b3b1c365
@@ -9,6 +9,7 @@ field_hashes:
   answer: f005f0026df4249f28bdfa7724832e5c3082217e5c92d1a6710e7804774cba7e
   tags: f9bd4ca9772261ca58be851e268121b0d83eae6f65bb30ebc97fe26508b7dd2d
   provenance: 5322f31d6e99718362b7c604a981f9851f109c6afb8a53465a696d7edf7c9ac3
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - layer:modelo
 - representation.markdown

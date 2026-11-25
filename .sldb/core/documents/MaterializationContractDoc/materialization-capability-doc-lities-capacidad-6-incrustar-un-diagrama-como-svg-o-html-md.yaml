@@ -1,0 +1,25 @@
+name: materialization-capability-doc-lities-capacidad-6-incrustar-un-diagrama-como-svg-o-html-md
+path: desk/materializations/materialization-capability-doc-lities-capacidad-6-incrustar-un-diagrama-como-svg-o-html-md.md
+source_hash: c587c3c40693b5e77e769ab384b263d8b396a9f66deede7842fd4b019bb25e17
+content_hash: a879e37611b13cee5a5c07573dc2259a1c7da4672cef23da9d68ca1a0e5f4fd1
+field_hashes:
+  id: 3459759aedb5718aad79e36fad4f35cafb3860f342aa78ccc7db4b7c8d630d4e
+  title: 5afcc4f0063eeba26b77b4b8d10248ec1d2ab2d1e1258d26ea0ecde125952e94
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: c3165bf58cedb0400e3b7af6ecb12c1b512fb5ccba6eb5b383c5bb0c9a94c813
+  intent: e9d1c68ca2e49370659925981df06af7af3f6a7b8ef59b4f264255a7099eae9c
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T22:51:22Z'
+  authority: generated
+  via: create_document

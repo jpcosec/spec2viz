@@ -1,0 +1,25 @@
+name: materialization-capability-doc-specir-capabilities-capacidad-5-editar-desde-el-diagrama-md
+path: desk/materializations/materialization-capability-doc-specir-capabilities-capacidad-5-editar-desde-el-diagrama-md.md
+source_hash: bddc069ed5f8e295c0c2e78428a544f3ab1e364b539c7c8cb39ed43fb6b5cd5f
+content_hash: 16967d3979180faf333ffbff75333a6bdb99445fa4da0e5e374931928e3670c4
+field_hashes:
+  id: 3af1d41f412bf2f37b791604ce029184bcd83cbd9fdd2a6c6e0b308f47e35829
+  title: e14ad661f09a2a3b60d55cb1933d65510ba77d04c5dd092f5bc91369f71d13c3
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: cd6ad418406bc0ea43bf9c60952ecb60cc8f3ea5831efda1a561aa9e36d40507
+  intent: d13435eede30e36215e03773ce9651454a0fb0ae0be03d68de4b3de8f943c87e
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T22:50:24Z'
+  authority: generated
+  via: create_document

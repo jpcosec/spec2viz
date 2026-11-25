@@ -1,0 +1,38 @@
+name: task-specir-install-siembra-la-composicion-de-la-pantalla-del-catalogo-como-documento-del-store
+path: desk/tasks/task-specir-install-siembra-la-composicion-de-la-pantalla-del-catalogo-como-documento-del-store.md
+source_hash: fd7a4c9d89fd6af0d424f8d581ef231f3cac3e7f0ad5ebae2556dfa930646bb6
+content_hash: cdc704d932d9aa7e554cb1bd7b1f94d04159799f15c6aa89c0f117e86cd30659
+field_hashes:
+  title: c90a98059ba3958923c4a946bcdbad177b972b771368956226dd606728b5ceab
+  id: e78dfbcc84589afb35d30b7de21729626301921f3818e3d9a10e2ba05ced5219
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 60a75f15209c53aa7e6e06840969b12180de776f5a913aa857307dafd158cd99
+  goal: 20ffb06902758f92cd099a295bf5109eea61f374bea933324d21668b06bcbec8
+  scope: 47130ac5ef8e876c68b60073970ec9b26ba24d0b45b4f3754062957c7b983423
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 932ce76c020141dcecf509a77d9c632090ce222f54f9d72d70cf28978eaa55e1
+  validation: 529ac60a30634b8b1598bd648ac21e850f745e9fcab2ea21ab72a3f27b9406e6
+  done_when: 2115929ebaebf75da4e82c67e29971ae506e35da9f3bbe0a4db9a696d0487a73
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T22:53:45Z'
+  authority: generated
+  via: create_document

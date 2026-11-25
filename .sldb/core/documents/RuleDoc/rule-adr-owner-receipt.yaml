@@ -1,0 +1,18 @@
+name: rule-adr-owner-receipt
+path: desk/lifecycle/rule-adr-owner-receipt.md
+source_hash: e4dc0f99bbf77895e45232aba0a3c7efaa7578f39206509e991a0ef78b3bf3b1
+content_hash: da708bce3cc1dd6df575b6fdfc83d8afd13ac1ae25eaa455580fff2d4de41b4c
+field_hashes:
+  title: bd44e723b51dbbae0970c09874c9b6a94ecf1272753a0e5716bafdbaf18fc705
+  subject: 03df3fe67cb78520faf3dbe101ff9445ca8d7b2dbf60b800b7d8fd80b5b7b4c5
+  where: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  condition: 3116ae045d3736c998d5a55ff8a4b19bf421f8b6426f83f65afbc4298edb012b
+  severity: 4d01709fcd599118652e3b27bd0ca97c802f832183d01f76a034755f2bc62fa3
+  moment: 9661572404a273c6135cda90c447502455cf65c46a29f9cdf63fc766d632234a
+  message: 89c6662d21edb0586f159de8cfb2030bb3b12e59f2fdee6c331a4ffe9b21ed67
+semantic_tags:
+- layer.governance
+- representation.markdown
+- source.document.markdown
+- type.rule
+provenance: null

@@ -1,0 +1,38 @@
+name: task-el-modelo-de-specir-tiene-pantalla-y-navegacion-el-extract-las-llena-en-el-frontend-de-ejemplo-y-la
+path: desk/tasks/task-el-modelo-de-specir-tiene-pantalla-y-navegacion-el-extract-las-llena-en-el-frontend-de-ejemplo-y-la.md
+source_hash: 41f52ce9da034df74a97745e6532924702f7860db2905e15c0f4a5213940772c
+content_hash: b28ae249b202b16a8ee838920e77feee40a7744d089ddaa505baec52af3aa480
+field_hashes:
+  title: decb834a9faec27a080eb3a1ec77227a074c78ded95f50b8d0979cb7288988fb
+  id: a3193d7d67e872b53fcfab4f00fac19c6a949cfe95d336c0b2be11336e027d82
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: cf3b64bc8e1aa8bb3b234681f0267ed433054461af0d3e9b089679a55bc305b9
+  goal: e601e1a72f84048c8fb51db8565f2754f01f0b796901c3a7939476bd227e488f
+  scope: b788d6e99d46a9793a2c6e44eae34e313c55f8ea0f00d6f21920b437958d9276
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 51f8077d8293decd1c771802ae544418ab3ee200e3188baa7ceb1b20c958878b
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: ca412506778b72ef062cd80a37aef0759a83c950240a9e9425d52835c927ac56
+  validation: b194c7ad10659cc64795b0a541d2b162b01b16bfd594b01891491a6f9321c850
+  done_when: 5e90c43e1f3aa31d20a0674aeda3824e71b55de0134eaadfd1fd269fc175b532
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T22:48:10Z'
+  authority: generated
+  via: create_document

@@ -1,0 +1,38 @@
+name: task-se-borran-los-renderers-de-html-de-un-diagrama-de-specir-que-reemplaza-el-modo-lector-del-editor-de
+path: desk/tasks/task-se-borran-los-renderers-de-html-de-un-diagrama-de-specir-que-reemplaza-el-modo-lector-del-editor-de.md
+source_hash: d6d472facc32a50271d1b8d7f98e8279b9ae5c3c3cc5cb7980f4d5f114532ab6
+content_hash: 32e521f5c2b5b7554a14a6093a142e8ba1a76b43d0b8876b981f93d3e45d36a4
+field_hashes:
+  title: 675bce5a2ff8dbdba2dee009bf111332137544901aaad57dc707b7d96835171a
+  id: e01bf093361413bea9e07355378a29c5c7f1ff07779130554b60f624a37e20f1
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 5eda047385afb497da951afac8075226fb4470dbd7717c74536e9cab9a892b74
+  goal: 9903667c87062fb02e7c93bf8449cdb88342adf27bb2b3de2e6d2381b4f09f2b
+  scope: d2becf5728f7cfd16070262fee0ef575489dd2c4579abf00197bd70fc4f20aec
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 6e4e5f853b8aed3f6a930b59aa786f0baf213ce955b200e26f0144d773e62cc3
+  validation: 00d8e28f33f3a7eef12e92d1dc29e6b15cc814641400e87253786db49c6e939f
+  done_when: be17e6613e5564cd633e4cbe5706989c2ced0dd54628b7c07afdb668aef67e42
+  task_type: d0b4cbfeadc448bca1492079dfd36948fd84b4ae366c521b0e71add2bea3fa86
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T22:51:24Z'
+  authority: generated
+  via: create_document

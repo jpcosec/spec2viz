@@ -1,13 +1,14 @@
 name: atom-las-filas-de-validate-de-la-matriz-de-spec2viz-remiten-a-sldb-notations-validate
 path: desk/atoms/atom-las-filas-de-validate-de-la-matriz-de-spec2viz-remiten-a-sldb-notations-validate.md
 source_hash: b5fddb5b5310c5cb518993bf7afc0eb901069b80703b88efa477962f8d7a8e57
-content_hash: 23e2397f918cd8ed9ec7bd6d8493c943f73ef19e6826b622bd1bc074f3e527a8
+content_hash: 0b9402c0c9c9bb2325cc4af387681437a8d9a591482c615ddbcde3bdff4ef3b8
 field_hashes:
   id: 63a7ef5ff70db27b87c6a713e0db1c0f57088a8fc1b0bd7bb075720a95ae952f
   title: 0d685ce1e1ffe0b500fe2ca353e3630bf28b409b99015477ef8a0f9cf02cb551
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: 99bf737141f363c6af9f37f7403cea8cabe494be362a04cbff93281eea47b7f7
   tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

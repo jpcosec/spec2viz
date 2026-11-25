@@ -1,13 +1,14 @@
 name: atom-ir04b-specir-deshace-por-mcp-aplicando-el-lote-inverso-de-sldb-con-guard-de-contenido
 path: desk/atoms/atom-ir04b-specir-deshace-por-mcp-aplicando-el-lote-inverso-de-sldb-con-guard-de-contenido.md
 source_hash: 8f344f01bca7e5e610c908cc6bd1eb1b3ac9e5dfb47f5336df78ce879920ed94
-content_hash: 5635f232413211ab32172f18277891a7462e6705f04284a024db83b9d4621ae4
+content_hash: 9225756e8ccc1ca7bdc830874b27996a22fbc4e42fbedbcc27821b26f827383d
 field_hashes:
   id: a91e4bb08ee9ce7a8cf5510742739689b51012d0da44a74ac07c8a1478dc136f
   title: 319430c37435fce86780e91398f60e2f83d05f5294ed398db643428598bcb24a
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: a094633fab4f02cfbdc13e634d9f9d6d1deeb94279452b9b37ff1de3ba440a3f
   tags: 5f44539b43dff20e27c48e803b1220545b57a127bdd04149bf62506f992a5401
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

@@ -1,13 +1,14 @@
 name: atom-ir-no-tiene-goldens-de-spec2viz-la-paridad-se-acredita-por-pruebas-de-aceptacion
 path: desk/atoms/atom-ir-no-tiene-goldens-de-spec2viz-la-paridad-se-acredita-por-pruebas-de-aceptacion.md
 source_hash: 4d4cbc9e9d3abbfa3a730d470912f3afc5819f82a364b0b3d785da1899ea7300
-content_hash: f8493c237a3e9fe1820ae710a6cc23b613fa756e9e96ba1b0fa2f3f6fd096c4f
+content_hash: a3ba59a4afc4b7e34ee2f133985679e3e6a2c4680565985cc00bd9ae00c739b7
 field_hashes:
   id: 305ef437fdb910fb1f1eb875ae35bdc110cde205e4ecc3ba468833df07504d40
   title: e698524fe3064d99123af5586770e98d0928baa6e69c325dafab3b1c5f8caed1
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: 0be492f62179f13255842c32037c7e3f3a37686646dd8eede75139873cb32863
   tags: e397ea4f1a144c245cbf174c5868ceda185025e5ba1b4fe7322d1687d4a67544
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

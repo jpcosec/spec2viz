@@ -1,13 +1,14 @@
 name: atom-la-skill-use-specir-describe-a-specir-como-quien-declara-y-extrae
 path: desk/atoms/atom-la-skill-use-specir-describe-a-specir-como-quien-declara-y-extrae.md
 source_hash: 517b8b9b9532feddbf044f72490c7cfe0b1bf681f7bdbb33ca93bb94f957bf7c
-content_hash: af5456fbf9ec984ab594cc75739ef7393e504d024b4b12fdf84cc265f1c17ac0
+content_hash: 9e4854cc44e6dda791da57330ad598dd176712f61815a2a9459bc4e14365aff2
 field_hashes:
   id: e9291941aa4aaee9dee527f8e1e3a3d13895c868b0b1fb6adc5c9e7415e3323f
   title: 10d15b174adbbd4474b9d6e2c378ab50b5d477e247bbc807971f0ab2a8a51c8d
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: 064e04c40f85e64802af72bcb6183ed87d638d3c59938e0d35048eec0cba0eb1
   tags: bd7bde64651c3f6d1703b370617a13e99cc8d5fd900f2a720abde5144de5cce6
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

@@ -1,19 +1,21 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T19:28:39Z'
+  at: '2026-11-25T22:00:36Z'
   authority: generated
   via: save_document_payload
 id: task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de
-status: draft
+status: active
 summary: ''
 tags: []
-current_node: ritual-execution
-history: []
+current_node: ritual-testing
+history:
+- task_activates
 references: []
 depends_on: []
 pills: []
 files: []
+pointers: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false

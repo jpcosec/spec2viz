@@ -1,0 +1,38 @@
+name: task-los-exportes-de-texto-leen-la-vista-que-resuelve-sldb-y-se-borra-la-representacion-paralela-de-speci
+path: desk/tasks/task-los-exportes-de-texto-leen-la-vista-que-resuelve-sldb-y-se-borra-la-representacion-paralela-de-speci.md
+source_hash: fa7c0c155cdc141f3bec22995af7fe49e82d2b8c06b9dd579ce9617577171098
+content_hash: 353a7914a54d895ebd295d03d78e9abb4bbc15b97fc386974cc797007445626e
+field_hashes:
+  title: d9599ea5c5765d64f8486a190db657810dd8b951b4862d353a7ad47aafc62cda
+  id: 47d530d18dda6351134e4151671346d5579d529c52c5f070861c122e11d61118
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 549d78e6745b81365a3192372f88ea5ce91487ea6de04d92259b86e7c3093bab
+  goal: 98a784fabb0c4b6e2336b9b73c826363fca9150ed7e7861b343ec61fc68a4584
+  scope: c6a6ee3dc098913b9fed5a1a7d073c311d6c98a7585a1a60291b8f906f09dacd
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 51f8077d8293decd1c771802ae544418ab3ee200e3188baa7ceb1b20c958878b
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 9c7980a6513e8edf650eb71467100eb8428e1742dc4494cbf75d90c2c3db41d8
+  validation: fc1d576105169a66ff7841f18d598a5ce62de6b8e4f64db639946f402464d595
+  done_when: d56c93ac5d77e6575343d8137c6c02c497f869ffff3ff41c13c9e220ebb8366b
+  task_type: d0b4cbfeadc448bca1492079dfd36948fd84b4ae366c521b0e71add2bea3fa86
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T22:50:19Z'
+  authority: generated
+  via: create_document

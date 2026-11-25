@@ -1,7 +1,7 @@
 name: atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al
 path: desk/atoms/atom-decisión-de-jp-2026-11-15-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al.md
 source_hash: db3a3d6f6b4621fcefee08e6fcddefaa7a4b20fbf5b2d062201f9710a9dc92f1
-content_hash: 6c2928bf5cc7bf3103dfa667e06f166695b1f97b7b06c82b1f33d28d6465fa83
+content_hash: 27abd3b212fb2a9e988e95076ac82155ee6b8bc4c07fbcc826220dff6c2f0a5c
 field_hashes:
   id: f844ac02e8cda8e7de4bfc0a72c4c54875485e3db609de71c5a6002c8b2603fb
   title: d8b9c29f24344aaddf9b69e026ecd97177ff5ca753e163bea525e6ec82719333
@@ -9,6 +9,7 @@ field_hashes:
   answer: bc8546d4fa1f1229f5ee12df62f210293144ab3c399f39c04b53e1669021b451
   tags: 549b842eb0ab37ecb1505c6a3307f954f02e0377b8aed362a9185ca2e0c4826f
   provenance: 9516ddd6716e54461c81ecd8e3453027ba8f7b679b9c25dd436e68604734f37d
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

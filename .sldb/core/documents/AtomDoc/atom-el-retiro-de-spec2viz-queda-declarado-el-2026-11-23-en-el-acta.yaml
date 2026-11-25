@@ -1,13 +1,14 @@
 name: atom-el-retiro-de-spec2viz-queda-declarado-el-2026-11-23-en-el-acta
 path: desk/atoms/atom-el-retiro-de-spec2viz-queda-declarado-el-2026-11-23-en-el-acta.md
 source_hash: c35cca13bc690ec72600aad63ef7e9ca38b3665c757f3c67f9376e04396c37a1
-content_hash: 2f5b4591796c2d80984470be458be2edfa8cdd92bf0d9c7574f8526713f28cd3
+content_hash: e30a07298fa8c8a9b478765e15f2483a2b35536ed06934172c14d747306b47c8
 field_hashes:
   id: db4fde00a3bd7e60877890ba920764f9c166ee3f2bef40e05c14c3cabb55c395
   title: b04a64854e8394fab6d05db43bee9483cd236ff976c9cd33f31fa8e8e959f066
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: 3302143ef1b23b35e944a3fa29b687f7e91d6f8e45d240f96f5ed1ac3584c0b4
   tags: 97b4a05e4bfc6bc6c4b84cc0c5775f2d7411aba761478215092107219e32f57a
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

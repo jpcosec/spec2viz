@@ -1,13 +1,14 @@
 name: atom-specir-mcp-delega-en-mcp-extension-y-cli-py-no-importa-sldb-mcp
 path: desk/atoms/atom-specir-mcp-delega-en-mcp-extension-y-cli-py-no-importa-sldb-mcp.md
 source_hash: a72e2b1fee3c76e68b1ea7fcca40224718cb4e5f8ee3fb2c683ae4d0066866c8
-content_hash: dbb109574c71572db820a6990d183acb39c67640cf5617fb8e52912c8a408fd2
+content_hash: 2a50473cb427bdfcee250d722b671caa3b94b85fceb30f6486fa51e7237ebcb0
 field_hashes:
   id: 7cd755f1d3c2d3866fcbe95284c10baad8b735dc0ee0f04914f7f0e6ac99fbb4
   title: f8abfc07bbc5ba03a46f67b38564c1262f9c85c9bf457f7a5cfbc88fa0425b88
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: 51de63de93957a04134ce968e7c9e5cdcc057c9c821b15f996ce74a98bdfa9b4
   tags: 9ffe46ec04d56baa10f10c417ff0b9f56dfd90d8f711597a35bc17e995c33301
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

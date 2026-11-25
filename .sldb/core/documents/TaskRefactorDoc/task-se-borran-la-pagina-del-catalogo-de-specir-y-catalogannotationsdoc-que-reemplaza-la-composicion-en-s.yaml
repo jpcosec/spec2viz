@@ -1,0 +1,38 @@
+name: task-se-borran-la-pagina-del-catalogo-de-specir-y-catalogannotationsdoc-que-reemplaza-la-composicion-en-s
+path: desk/tasks/task-se-borran-la-pagina-del-catalogo-de-specir-y-catalogannotationsdoc-que-reemplaza-la-composicion-en-s.md
+source_hash: c019caf98d4c0e3844075160a782d3e489b8d59cbf112fcac4ffa7b913e7f5c1
+content_hash: 685254ef5c6fa3720eb097ada830cba012d40af32a9dec15497ce3026532980a
+field_hashes:
+  title: 587de044012923f586ad7cfb61c9a97d24815176fd3eed76a6118ec9cb076f9a
+  id: 7168e1be951a3ea50590f087c0800cf8823bd2aebe469a6a5ae04d531fd1c968
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 31b8a3faa674a6c5d4250e672b1922792764d4af76ba724439f3c1776a9871d0
+  goal: 6d9605888eeae23a18c5cde6b7a5a4aeaef2106510ef6952e3dd4618bd56cd8d
+  scope: d5e619a416891d2c656b1ae0f9d188d9680d8d35cc8c8d975f880a13a4fcbc1a
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 863de312c4ef7c041614d3f13167712b6a3a2589d7b813cf78041189839e342c
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 1f82331b5c9df605b6812fc164c4d98afa5671e036ea9aefd433dc19988bc269
+  validation: 7678e0aa1a58d8469151f28fd5621e9947c7174fa9e60b674f9a054978357279
+  done_when: 20e2174d5571d9fb0ac9eb282ed637988191375f8c640db34378617d4860abbd
+  task_type: d0b4cbfeadc448bca1492079dfd36948fd84b4ae366c521b0e71add2bea3fa86
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T22:54:47Z'
+  authority: generated
+  via: create_document

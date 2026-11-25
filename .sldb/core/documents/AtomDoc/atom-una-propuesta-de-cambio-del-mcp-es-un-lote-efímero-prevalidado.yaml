@@ -1,7 +1,7 @@
 name: atom-una-propuesta-de-cambio-del-mcp-es-un-lote-efímero-prevalidado
 path: desk/atoms/atom-una-propuesta-de-cambio-del-mcp-es-un-lote-efímero-prevalidado.md
 source_hash: 8add58f6e7fe1896caa19527c34ef64b13e436d8437d066901b964eda1cb860a
-content_hash: a32fa6a4754175c714adc02d9d80a824bf5694b7972fd6fddde8bef074e68de8
+content_hash: 009614fda5deebdcaab4ab14a8163b9f81e0b6d123c603471c9233703e1cccda
 field_hashes:
   id: ef035f6d98a1fcf6445c291367ce73bcd877dd20c5025d8de350c395267419d1
   title: bb44d104ada1ec1e2c5a7eeb51314fcbb9692f7305f4a838aa152fa933d8423f
@@ -9,6 +9,7 @@ field_hashes:
   answer: 9297219ed5b6ef5811bda78af9f447950ae060a27e088553fd726e9c34024f01
   tags: 22129faf8f65ae58291a144c2e2642cae27ae91a84a72cb5af861724c1edc81a
   provenance: 28618bb9e04205ef3684013a53613155389241bdfe9b33c83aa0d174ae780e1e
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - layer:superficie
 - representation.markdown

@@ -1,0 +1,25 @@
+name: materialization-capability-doc-pabilities-capacidad-2-navegar-el-catalogo-por-categoria-md
+path: desk/materializations/materialization-capability-doc-pabilities-capacidad-2-navegar-el-catalogo-por-categoria-md.md
+source_hash: 156a085409b2fc8128580fdaebb648eed7036c0d5b6f081f9582386c6b1db905
+content_hash: 2c565d069f96559d11a3f6ea2228d8cf80f25561b0a35c8922da744bd31d3c84
+field_hashes:
+  id: 3b8029caa9026b4ceb03f2ac5b54a1d85b0bf3101b5d0e77c609dd249a923e93
+  title: 8448764cafdb26bc77c7eda9cb47d2079e7bdb473e6a43eefebca63edfefe741
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: d833b269ceb70ce9022ffe04fa0473e588941c1fe8de4bfd317461d0798684f4
+  intent: fe69f6f2bd05c58fa3f11f3a8cf40e965f773cab558145e120cc1d73b56ae4fc
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T22:47:39Z'
+  authority: generated
+  via: create_document

@@ -2,11 +2,11 @@ name: TaskRefactorDoc
 model_ref: deskops.models:TaskRefactorDoc
 path: ''
 documents_index: .sldb/core/documents/TaskRefactorDoc.yaml
-sections_index: ''
-model_hash: 7367ec4341fbe31ce952691d0c3b9af272dfe968c1974ca52b21bc93193da44b
-roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-contract_hash: f68af83792a372bdb0c150a1f11a95678327ae33ad58e6b75ff7cd4a0ab66261
-documents_count: 0
+sections_index: .sldb/runtime/sections/TaskRefactorDoc.yaml
+model_hash: 08f4a615f92d17ed704870b32a9075bfc8ce291878a3619412eb77a1004c5500
+roster_hash: 07a3f8b960dc6f86d7e43c13a78f75ecfc6bf80b49b611e5b3e2c689b803e171
+contract_hash: 64418ee0270b8b2ac35e2801f113a1e3b59f3682bbd1af1de2ee5cf981bad909
+documents_count: 4
 version: 1
 canonical: false
 family: null

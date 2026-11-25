@@ -1,0 +1,25 @@
+name: materialization-capability-doc-cir-capabilities-capacidad-1-ver-los-8-tipos-de-diagrama-md
+path: desk/materializations/materialization-capability-doc-cir-capabilities-capacidad-1-ver-los-8-tipos-de-diagrama-md.md
+source_hash: 39c84ce9f8d24dd7854338046bbee69bf09d1ddb62fa89675a5aa8d1c7649724
+content_hash: 90cc40baee6bdc15f0caec99b16ac99918af76970af75f64c2e572f2b290720d
+field_hashes:
+  id: 188b33502a67a1a22cc6ee74431f9d95fae35dbe2244f42105a9f66069141b89
+  title: 2a6664d27a387d4fd08774ecffbb5b747a486213ba8028c7623d7387fa5164af
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: 2160a12c727539db5118a0e76317766bca58208c63f364013bf81dec63716471
+  intent: dfc44c5e9bde8208e52700951694043c0c3c87dbed822926e3f9ec06bb874760
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T22:46:44Z'
+  authority: generated
+  via: create_document

@@ -1,7 +1,7 @@
 name: atom-omg-es-referencia-conceptual-no-dependencia
 path: desk/atoms/atom-omg-es-referencia-conceptual-no-dependencia.md
 source_hash: f199a4451dfd83e5d7ade39bfc5dc08b7bd534cb906a45cb2e45c4d802b02950
-content_hash: d94a169b8df7bf17d6ca5b898b5e5f17a1103695dc1b726799ce76996d1d4f96
+content_hash: f193ba6890a7aadfb5a56910d3c697f6e4fcb46534f033da948a303f45de9001
 field_hashes:
   id: 75a5d2bff93213a9787676b60cbf9d156bba180dacfd95d59566e70b91ec7a03
   title: c32c13b5d7f30febc4bd21d9cd0b1a41fad9d08429dbf4954ebcc79dd944b26a
@@ -9,6 +9,7 @@ field_hashes:
   answer: 44607faf85b94927662921e273efb81da0288090640c950efc84a940e87a3d46
   tags: 71c2eb089f9eabd516cff0acd245d6d11dc365bac6813956ed9b7ae991dd6217
   provenance: a295e34faee33b6e64f7219affbb5f453cb54791f8963d6d0db348e73dba7524
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

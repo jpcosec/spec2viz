@@ -1,0 +1,38 @@
+name: task-specir-install-siembra-la-notacion-bpmn-y-una-actividad-con-particiones-se-resuelve-con-eventos-tare
+path: desk/tasks/task-specir-install-siembra-la-notacion-bpmn-y-una-actividad-con-particiones-se-resuelve-con-eventos-tare.md
+source_hash: a79669c29170a270c0f161f717dc838d3947e1a0c5e3d71a18b8389c96adb1f4
+content_hash: 0b3bb06a78ad39073e94da8a1a7326784caf0cb6965e8acfa721dc92e0e52f51
+field_hashes:
+  title: 5e169046636d484258ad3712fe741477ff7edc0bfd68dd0efcaa504e4616e92b
+  id: d5d13f06827329cd7bb48df868a05f84c862c952bacf2fbce1163bb96c426a8e
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 2a0dc5e1fabaed0c0a2ce9b62f55c7d317eb638083f85b7515db8bb634a48bf8
+  goal: f623afa0e91b7f35d535e8b9af6362f40321e448ca38e1f7e2e0ed9b35988a59
+  scope: 26d2122b1788a7ff6a3bf357ccd3317fcb36eb42864213eead111e4f28e362f0
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 51f8077d8293decd1c771802ae544418ab3ee200e3188baa7ceb1b20c958878b
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: d3161f46642be303aeec09d4e9aea3b1e2796e9f703eaec4fefd3dfcf087f66b
+  validation: 06abb0b9a5d058bcaf1447a2e63e9d8958b9b2e5de9c0e2c9accb158e23d2ffa
+  done_when: 168908866fbbdbe7493f16e33049e9cf6766929260f27547f8c76339cf87e9d3
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T22:47:07Z'
+  authority: generated
+  via: create_document

@@ -1,7 +1,7 @@
 name: pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk
 path: desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
 source_hash: 29cff042e91d7b973c448f91c31ae71409e44b054119b1471d18797c23a34d8e
-content_hash: 17c8784974745dfbbd146a68222fd4401ccafdaa6df98896e588256cb66aaafc
+content_hash: 90576c6c16f88755cbe4e6596e1c6405d7c2fa99e6f322cc18ee260ae46bceca
 field_hashes:
   title: d6184a573c5e273bee74303f2f1ddd8b408751d821c7f7d30ed7601f93ce370d
   id: 801c4c19956d25478dd2ac39432a4878d19182c3a0e5d7f02e902ae6dab64008
@@ -14,6 +14,7 @@ field_hashes:
   where: 29924656dab66ee514b5fd8701721a75060e44529c298c061eabffe2573592c1
   how: db599e354e848d9888bf14eb2a9bb1a5ad83c7bfa2415c24da4ce99fcfb91167
   how_not: 1c75c76a52680af9ea95e782aef2687410bc3a9b46d9b4d9e71362d9cf7bf77d
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

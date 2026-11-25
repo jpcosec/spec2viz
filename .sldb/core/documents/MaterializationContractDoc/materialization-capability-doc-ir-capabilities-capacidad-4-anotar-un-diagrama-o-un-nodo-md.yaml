@@ -1,0 +1,25 @@
+name: materialization-capability-doc-ir-capabilities-capacidad-4-anotar-un-diagrama-o-un-nodo-md
+path: desk/materializations/materialization-capability-doc-ir-capabilities-capacidad-4-anotar-un-diagrama-o-un-nodo-md.md
+source_hash: 2da479a7b29e9a711515b2958f4798be31cb66ef98c97fa23458ab00407a82ee
+content_hash: 3105c94fe31832fa277ec3c7f574cf1d4f02c20dd7639b5ed506d7b22b8a4d10
+field_hashes:
+  id: 9d34a8e67d85a04a27d76406da552da6524646a59d3da9979ff27b1e75996359
+  title: 4107de01ba3f5f284aa245a4443a28c957eca589aab3ed77a14dfc08c7e42827
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: d46786c3d874d94350c603ea5a5c58126a4f46e08ff8043442fd1ff465a6fc18
+  intent: 420eaf79637559ad9fb5f5e94a9a5a0dd51967534d9e717038d3eb0829c49ec5
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T22:49:29Z'
+  authority: generated
+  via: create_document

@@ -1,13 +1,14 @@
 name: atom-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados
 path: desk/atoms/atom-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados.md
 source_hash: dc2c819455c49c67b39827d27520107db36be4331d3c623bbb01d87e67dd8764
-content_hash: 019f2d42e2df0d96dae0d5ed6e0ca53e63d2dc1ebabb2c5b4bc26a7bc04ec31e
+content_hash: d585fac49dbaaed8ecc56a1ed3b374b3a1678248dd98e580461194fb38fe5eb1
 field_hashes:
   id: 85c5b4ce916e68d08448da8df2639dbac3dcf0bb64bbb7c91282f79fdaf6afd5
   title: 97735111ac3ecef988a0533be4c75049504588af915cdb09c08cdf348b3e9a3c
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: b1e62400389acd06b764392a6341cf3603ac5ecbebe9e68f3139036a382f5173
   tags: 1415bc8d8f42e0d92c6e11ad96c99abc45dd4b6cf41c342e631fcac1b4cc5f1a
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

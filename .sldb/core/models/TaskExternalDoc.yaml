@@ -3,9 +3,9 @@ model_ref: deskops.models:TaskExternalDoc
 path: ''
 documents_index: .sldb/core/documents/TaskExternalDoc.yaml
 sections_index: .sldb/runtime/sections/TaskExternalDoc.yaml
-model_hash: 2d5e92ade529f4de4c486348423fcd0615d0acf74cb2b2327aabf3c8411ad6e3
+model_hash: fed8ef397283149f8485e6acce7856a2dc4f106c08ee35c1467c0a010ed7f27e
 roster_hash: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-contract_hash: e734b217c8dc346862754f1058aecd29e3235e3e0b40915dce7a6129a1c6269d
+contract_hash: f8ebf931cdfd9bb62e2ff4179afb545fd5f5dbb05b31028447da93f8903ef039
 documents_count: 0
 version: 1
 canonical: false

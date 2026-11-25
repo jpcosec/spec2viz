@@ -1,0 +1,36 @@
+name: review-task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de-bundle-3
+path: desk/reviews/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de/bundle-3.md
+source_hash: a325f10bcc380a14263f1a9d6fcd539c6fa11a869655885998df5b0f53d3a607
+content_hash: 912ff706a8a412fa2acca6daec719c7b607f0c84e62609af446b76727e6bbe0e
+field_hashes:
+  id: 326e1019ec9a932e0036f54a0d7b1ebde93a3d1825d0281e07a448b8b71d0deb
+  title: caebb5fb6306b4ee567c778c3a90393603b73e006e2c4bdfd6978c0341ff51b9
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 72e2311206e4e1143c90ba7c7273ea57b8f19386ddf20640a7a985007102641e
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: c703bf0d42ea7b86408389d1c6aa26cc5ecd6e6bf6a188037cf138f9f86fe9a6
+  input_sha256: f6930db4e0739418f159ec442c0b87ef0d0558b04d85feff7138fe5eb66f14d6
+  contract_sha256: e890e633932e0ed4853e88c3a0b4c80b51951abbf501aeac8d7b2803fe2fa5e9
+  output_sha256: 79bb692806413b80bfc24908058e8d1b27c9a56b10e0da95d97b39721143589a
+  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
+  reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  created_at: e3f72b18055c256311ad8f703e2291a909ac51efeb3b46cd2ad0189b2fae61f7
+  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  summary: fc5d9f55b21cbc6d3a347fe6f37774e4c53803bcd8a689c17a7b9188e479361c
+  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T22:10:43Z'
+  authority: generated
+  via: create_document

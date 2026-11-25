@@ -1,15 +1,15 @@
 name: task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de
 path: desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md
-source_hash: 3fdcb28bd17e1bf68645576b1f0f06a399b966caa7a313ce94545e87123db82e
-content_hash: 90f96aec65dfc46fc2cd8de24cada5010d2d767cf6e671063e58f21cb5f2020c
+source_hash: bc5759a1d3b63ce233a01faca06d88bfa6da95ec71611b3bcdf354a9e94b0575
+content_hash: 1dd72ffcd1a1cc1bf3c1af98912389756a2137690ec0848a24f7f691e677d875
 field_hashes:
   title: de600bbf1a7965b13a2d9b17b1089f42819c916af7ee054beaf372f57f60d2a7
   id: 397793f8b1bf232f53f506565d5ac37e4a1b10fdec0184d26a6464963bb03ed7
-  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
   summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
-  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: d10f5286503cbf750af0584acaec732741c2d9cfbae2a6d5b8ce45b8bf83b79d
+  history: f89b8fd2ac9e43a24ba505d162381268ed901d0695f62c6ad8ec2c62718dfa1c
   why: 549527d9db52146bb1b34d3baf91e386a2e2bdad95a90eff0a40f06f5bbe457e
   goal: 983db42b3185d00c1a6bd1ba8269e3aa662eec08ec7d6bbfb560491be8dd93d2
   scope: 32f079aae292e963ddbae7d77c5ee6a60a3203790b776c28752a88d77a5e41bf
@@ -17,6 +17,7 @@ field_hashes:
   depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   implementation_path: ccdd36139d84287eea3584152a9bbcffff8898006fd55fbbca2db18ba91ec132
   validation: 52794dde712a6652ee6f59ecd4a98874aa3b6a1b39fab707c2c5478356dc2223
   done_when: 8ecb832bfda0b47f07b222b7882d2b344969adb06ed21e3eecea5dfe4fff4ba8
@@ -32,6 +33,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T19:28:39Z'
+  at: '2026-11-25T22:00:36Z'
   authority: generated
   via: save_document_payload

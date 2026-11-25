@@ -1,0 +1,25 @@
+name: materialization-capability-doc-apabilities-capacidad-3-abrir-un-nodo-y-ver-su-documento-md
+path: desk/materializations/materialization-capability-doc-apabilities-capacidad-3-abrir-un-nodo-y-ver-su-documento-md.md
+source_hash: 22ca04f5669023f9c0269a4b59fc683fc3516f022e67f7f93313fcd1396991d2
+content_hash: d3fa5840b2667e9964cccd4f0564dffd82930cc7de5d4adec0b5e9487fd23803
+field_hashes:
+  id: 118d201bb1e9d8f88bae96fa5a98a0c3c05b0a34b8fd0582cb480695b50a6cd3
+  title: 4fc2949b1e2f6331e3cd384648d34d26b0689da48618ecfa66643594e7d4a677
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: 3290befc5fc64e831fd2e760f54f9bbfe711313269edb20116ad4b97c34874b1
+  intent: 07d9fcd92a977eac49dae1641a6128a66c64f2de7a9834dc0e2ea8202e59bdda
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T22:48:34Z'
+  authority: generated
+  via: create_document

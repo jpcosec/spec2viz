@@ -1,7 +1,7 @@
 name: atom-ir-ignora-en-git-los-artefactos-de-instalación-editable-y-de-bytecode
 path: desk/atoms/atom-ir-ignora-en-git-los-artefactos-de-instalación-editable-y-de-bytecode.md
 source_hash: 4bf3d2f1f17f1450d1e289628d6fa1815426c460b893c055b2ffe5c29fe3b2b4
-content_hash: 46bd9c16a11caa4bfb03ba35cff78a5de5c2bfd18a347f2bfb9b4b2f077e8793
+content_hash: 6c83ec40cf925ee8dcb69629970aa10cd7546170980a40637ed646ab9cabfa17
 field_hashes:
   id: 0001ec3fb575d0d9a4df2df242e10b2835222ccd4ca5005ea25f846d6f2e2022
   title: b59d2bf45e55d4a5dac66c298521e1c8184fdd7c51837e3992d0fb6f845bf458
@@ -9,6 +9,7 @@ field_hashes:
   answer: bdb1eaa629baf612795b1a83140d5bc6fa23417364c638491e11a7b0f39a6ea9
   tags: debb002bf7a18593304b0046b0512fba892368b49e0a487200b31c4da268b137
   provenance: 659fe84b2d8250ad58a57a3d1044245a0dc68f3edd6f8d545287418f219a879e
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

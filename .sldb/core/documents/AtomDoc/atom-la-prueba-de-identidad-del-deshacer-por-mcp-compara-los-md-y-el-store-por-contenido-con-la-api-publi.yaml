@@ -1,13 +1,14 @@
 name: atom-la-prueba-de-identidad-del-deshacer-por-mcp-compara-los-md-y-el-store-por-contenido-con-la-api-publi
 path: desk/atoms/atom-la-prueba-de-identidad-del-deshacer-por-mcp-compara-los-md-y-el-store-por-contenido-con-la-api-publi.md
 source_hash: ce6a89f232f8bece80e1c36d85a98604060029198919ea74dedafa26bfba5116
-content_hash: a0b5e314ba2bae7aecaabccdecc8400943d6bdfc9754d6161bbef02edaadb5b9
+content_hash: 8fb0a890a9bd131096a8a6b574ec4a588178b98a9c383c946aec14e1bfe1754f
 field_hashes:
   id: bce85ad69855a8fdb37aa0d0c4d36b1846ab01aa4204a1d68fb144638d24a381
   title: 26db62e00d5e07ae0562686bc947b04c3405e14658dd9fc28a1f2a292734198a
   five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
   answer: d3d53082eeef8427ab77e32dc553735163ed96b6333b08c2417a15c7f9955d76
   tags: 5f44539b43dff20e27c48e803b1220545b57a127bdd04149bf62506f992a5401
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

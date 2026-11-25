@@ -1,7 +1,7 @@
 name: atom-propuesta-pendiente-de-jp-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al
 path: desk/atoms/atom-propuesta-pendiente-de-jp-el-yaml-de-spec-queda-como-formato-de-autoría-e-intercambio-subordinado-al.md
 source_hash: da3f99fa637ddd2fb0b8835f25dc8ad60e3c1eabb92b9159264d2eaeb75a6a21
-content_hash: 0978c7a0374f8e1c553b8f4abab0ef86cea76b3a8a78521b77a2b084847d3741
+content_hash: a20532efa32f4e8ea41cb66471982038c8c7dba52c6e060004f72be46bfa68cc
 field_hashes:
   id: 203061d32d627dee60294f14add63050872566d7e054237c02fe3d984acf735a
   title: ca99bb95353b748c1611e89e81abb9d372230b3690b425ed1b82e910a55b7123
@@ -9,6 +9,7 @@ field_hashes:
   answer: 975a70a0f6172fbb861b060b78212d6381163020de18ae5aba380dfb207e0444
   tags: 549b842eb0ab37ecb1505c6a3307f954f02e0377b8aed362a9185ca2e0c4826f
   provenance: 9516ddd6716e54461c81ecd8e3453027ba8f7b679b9c25dd436e68604734f37d
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - representation.markdown
 - source.document.markdown

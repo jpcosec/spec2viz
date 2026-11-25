@@ -1,0 +1,25 @@
+name: materialization-capability-doc-ir-capabilities-anchor-capacidad-8-test-render-each-type-md
+path: desk/materializations/materialization-capability-doc-ir-capabilities-anchor-capacidad-8-test-render-each-type-md.md
+source_hash: 2b0bfbbe2ad5c97c57908d758be616a25891929a1e92e5819c9244d88d51c072
+content_hash: 2d68cb06ddf2efc9ecf3d60d73b3e3b87d2f80e2ac478b137b068a4d09d86630
+field_hashes:
+  id: 66238d2e8e5f23beaaeac6a082770c08bcc631a8d67db2ca889ffe0843aabc27
+  title: f84aa1aef1912b21a545968b5b17e56d5dda3673d44a88e7bf228a5777a9fe0c
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 5310eeb1d153dad19cd89e627b129d763e0cb2029f901c1a54fcc70478405c04
+  target_identity: a5b1d355a233be1e3134ed944b1d94e3b5bbb0e51d40723a4b40173397d5c81f
+  intent: ed409e33da1dd3dc393a3958b1e9dd83d37bd63e8121fc455e01f3c48927ca12
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T22:45:50Z'
+  authority: generated
+  via: create_document

@@ -1,7 +1,7 @@
 name: atom-el-consumidor-principal-de-specir-es-un-agente-por-mcp
 path: desk/atoms/atom-el-consumidor-principal-de-specir-es-un-agente-por-mcp.md
 source_hash: 1063a0dedf0701661d43b005741eea344b302acd43c065dd75a0025c7cbc14e8
-content_hash: ce28f185cd6276e4e8af99893894b261fb6012975c2d55aa1e0bb6c36ce6d377
+content_hash: ab9da745793299e59c80dfa4c70294e7d3643fea96dc365aa48904182166b810
 field_hashes:
   id: 0d1ee59c5e5f50473c6e35e3b8c0b8d95dd1ddd31154dcf3ecced6fc807b8f4f
   title: e4901a8ebaa8c425bb818e50b089628a226b1cb98e9078dca11fde26491a5541
@@ -9,6 +9,7 @@ field_hashes:
   answer: 6f91093272573a5b16b79f4aade20000e36b9ff6b70b6e08ec1d4ae5c1e1d125
   tags: 22129faf8f65ae58291a144c2e2642cae27ae91a84a72cb5af861724c1edc81a
   provenance: a295e34faee33b6e64f7219affbb5f453cb54791f8963d6d0db348e73dba7524
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - layer:superficie
 - representation.markdown

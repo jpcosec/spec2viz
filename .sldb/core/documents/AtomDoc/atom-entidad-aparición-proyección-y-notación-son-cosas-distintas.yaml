@@ -1,7 +1,7 @@
 name: atom-entidad-aparición-proyección-y-notación-son-cosas-distintas
 path: desk/atoms/atom-entidad-aparición-proyección-y-notación-son-cosas-distintas.md
 source_hash: 4131eda71854fb1e216e61fb00b6bad67ea943c7adeb94db4c5c073b95588243
-content_hash: c2ece0e830311987bc5e8fb1e23ee41339a46aafb3cedb2adcb3589be9307184
+content_hash: 256a9155e516b50ec8ca96d17d32d1cd1e54d538d40e6d2c36ac01eaab0cedf1
 field_hashes:
   id: 18595059ca2a7509fea05a06df3d7bf1a54e0358be45d62ac23f9a3f9f9e7a84
   title: a29b7a51ad38d470f9bbc01b2404e8a4272b8134151eaca08cac9331831e6f6c
@@ -9,6 +9,7 @@ field_hashes:
   answer: 8896f9113c7575dec897aad74d4dec4ccca3d9e0c9e1cc8c80f6880ddc75e6f0
   tags: 89e0cbd5b21047603fbdb8f5e3960d323521d73928472034021dd97106081406
   provenance: a295e34faee33b6e64f7219affbb5f453cb54791f8963d6d0db348e73dba7524
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
 semantic_tags:
 - layer:modelo
 - representation.markdown

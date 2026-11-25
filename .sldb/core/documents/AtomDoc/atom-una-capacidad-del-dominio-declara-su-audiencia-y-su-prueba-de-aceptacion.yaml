@@ -1,0 +1,23 @@
+name: atom-una-capacidad-del-dominio-declara-su-audiencia-y-su-prueba-de-aceptacion
+path: desk/atoms/atom-una-capacidad-del-dominio-declara-su-audiencia-y-su-prueba-de-aceptacion.md
+source_hash: 8b3b2459c8f1a89fa745a8a47797e805b0045b523304b6f95a63cc7487c0f68b
+content_hash: efec21bdc11ecf2881f305610d346c70a986502ade60c9457a382e300f26237a
+field_hashes:
+  id: 73421696b0d6529c0b0db21d1c5aed89902f667f58fe409f01ee1a3d6e789a17
+  title: 856a63a6f3c766f4b1e664841f08548882bfd25768f8d397cd1239773ea9b00d
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: 8464a0bea0984b593b6dcf1ea507eb7790661470ceed0e85416622be55c10ee5
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-25T22:41:22Z'
+  authority: generated
+  via: create_document

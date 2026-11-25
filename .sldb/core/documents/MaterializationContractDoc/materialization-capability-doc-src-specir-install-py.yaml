@@ -1,0 +1,25 @@
+name: materialization-capability-doc-src-specir-install-py
+path: desk/materializations/materialization-capability-doc-src-specir-install-py.md
+source_hash: 074efa3e32ddec70ba9cb08ed11c1be4e51f2a05efce58e3727ee34391b369b3
+content_hash: 90d7026da314e94c5d1e2fe9bc2bc8b92db022b51b00e146a9850d45ce6d162f
+field_hashes:
+  id: 3a8460adde6dbd4d9d31225a682efd09df8fe2ea0b387c726cd267615d481ebe
+  title: 0c89b1210af5f3d95905b1a88e648cf9056fba31f287f9699a1c9c781692ce2d
+  source_atoms: f1ee346b3fb836bb6786279c90289fddf4bbf3856bbf2b7b281d0876573e2b93
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: dcf7d2bd6fd66fbbe686dd9599e39ee482eeabc264fc11baebb25cd42eb06afb
+  intent: e4aea9ea4f7a1fca18b53c1467e65f17d30fd739b96fc368bc4b6a958a53f618
+  validation: ca7b20c7938114e4e7ba56c6545a3e90c841ceee50d8e6518887e1d76d175d2b
+  tags: 6a609d47575cf591e81517fc34ef1288cd888169761bf1787e4b920becd65e8f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:capability-doc
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T23:18:52Z'
+  authority: generated
+  via: create_document
