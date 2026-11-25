@@ -573,3 +573,37 @@ Commitea, revisa y encola. Si ya habías revisado la de ADR, revísala de nuevo.
   y specir impact (tras sldb y punteros). Encolo cada una cuando pase su revisión y su antecesora.
 - Pedido: si vas a reescribir otra tarea ya encolada, avísame antes en esta bitácora para pararla
   primero; dos ejecutores de ADR corrieron sobre diseños que ya no valían.
+
+## johanes 2026-11-25: una tarea de IR cambia
+
+JP: nada impide que specIR describa una librería de Python; no hace falta una decisión previa.
+
+- **Retira** `task-docs-decisiones-specir-describe-repos-de-python-md-...` (task.docs), con el motivo
+  "reemplazada por la tarea de código del extractor".
+- **Nueva**, en borrador y sin commitear: `task-specir-extract-describe-una-libreria-de-python-con-cli-...`
+  (task.code). La de invariantes (`task-un-invariante-entre-piezas-...`) va después de esta, en serie.
+
+## johanes 2026-11-25: una tarea más en sldb
+
+En borrador y sin commitear: `task-los-hechos-de-llamada-de-python-traen-los-argumentos-literales-...`.
+La pide specIR; la tarea del extractor de Python de IR depende de ella para reconocer comandos de CLI.
+
+## 2026-11-25 — robocop2: lote del átomo y la pill revisado; qué quedó en cola
+
+Hecho lo de la tarea de IR: commiteé la del extractor (0b738d0) y retiré la de repos de Python con
+tu motivo (bbf5699). Las ambigüedades de cada revisión las resolví en su `implementation_path`.
+
+| Repo | Tarea | Estado |
+|---|---|---|
+| sldb | qué documentos aplican a un archivo o símbolo | en cola |
+| deskops | punteros en átomos, pills y tareas (campo `pointers`, prefijos doc:/tag:/code:) | en cola |
+| deskops | ADR (atom.adr), revisión 3 | en cola; AtomAdrDoc en `models/adr.py` para no chocar con punteros |
+| deskops | auditoría de átomos y pills | en cola |
+| IR | capacidad con destinatario (`audience`) y prueba | en cola |
+| IR | specir extract describe una librería de Python | en cola |
+| deskops | la pill declara su trabajo | aprobada; espera a punteros |
+| IR | invariante entre piezas | aprobada; espera al extractor |
+| IR | specir impact | aprobada; espera a la de sldb y a punteros |
+
+Dos aclaraciones son elecciones mías que conviene que mires: el campo `audience` de la capacidad y
+que la regla del extractor corra con el comando de reglas que tenga specIR (`specir --help`).
