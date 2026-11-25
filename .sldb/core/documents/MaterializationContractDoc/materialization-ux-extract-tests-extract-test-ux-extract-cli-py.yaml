@@ -1,0 +1,25 @@
+name: materialization-ux-extract-tests-extract-test-ux-extract-cli-py
+path: desk/materializations/materialization-ux-extract-tests-extract-test-ux-extract-cli-py.md
+source_hash: 0916858c95cf01dbadac0e7590c1b53dae3d76a5fb359bb56614f4639ce6c907
+content_hash: b7cdf2eeee407e6f9046951a57faa6566eb89e9e4f67aaa800d3c057593fcd39
+field_hashes:
+  id: 2b12fe69724f4c27b3ff30a8bcd7660f502ed945cc3d254a3efc580f0cd03947
+  title: 37b1c415e8e3aa9aa52fb3181c20e7b481ce7f91ac97184d13a372ded84d8493
+  source_atoms: 000977d8fdee12ca7a6b5e9fc69fbfc432977c88f096d1839179291376f997a4
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: f99e812058741d83a1f58b59c8ae71def995044e80c167d2e05911a987e8d807
+  intent: cc5b8fedd10bc856a29485b41785f953a56ab07023ffa8dd814e7fcd18baaa00
+  validation: 6059ac4a7f744b2a516eaffbd0e06cc9169db21aec9468f985be4d3e0d34b9d1
+  tags: 1415bc8d8f42e0d92c6e11ad96c99abc45dd4b6cf41c342e631fcac1b4cc5f1a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:ux-extract
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T13:43:30Z'
+  authority: generated
+  via: create_document

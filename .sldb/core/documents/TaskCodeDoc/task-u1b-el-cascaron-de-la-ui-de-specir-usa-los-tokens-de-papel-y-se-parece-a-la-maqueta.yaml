@@ -1,15 +1,15 @@
 name: task-u1b-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta
 path: desk/tasks/task-u1b-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta.md
-source_hash: d4f5eb7e90629cc52c7573e49b1f683b09c91d622ae3a1cb55e624bafd4c9c88
-content_hash: bc99e97b060e58bfbe8556578078efd368777b8e0e8e490230be16338a65c335
+source_hash: 105e97cdbd69bc9bde90897f7274f34ab83d6a173d7bb56082c90035da664a53
+content_hash: 9e5f7447e0a51be83092db7a5eb770e278e778ea45de8397bf4bb03ffaa9ba18
 field_hashes:
   title: 9a1a7c2e736e9f2659a6fc9ac83561b8eba4f6ca42e699836230417452e00d59
   id: c6fd55b7bf157cbaab5ae49af440d572f43107239b12aa1b965f3cc80123baf0
-  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
   summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
-  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: d10f5286503cbf750af0584acaec732741c2d9cfbae2a6d5b8ce45b8bf83b79d
+  history: f89b8fd2ac9e43a24ba505d162381268ed901d0695f62c6ad8ec2c62718dfa1c
   why: ec6b99b6320a6380fcf95fd2e0ddb6eaa9d44cfe35eb447e4ff71e0c24c0e8c9
   goal: 0e803488ad9e65d7b14a369e04c05726a5b949d861412665451ebb8c4efbf1c0
   scope: ba052644eb0056959dab28e5cc21ab5bcb56e3b527d393332a53bfeca156810a
@@ -33,6 +33,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T13:08:42Z'
+  at: '2026-11-25T13:37:22Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

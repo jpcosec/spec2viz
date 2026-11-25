@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T13:32:44Z'
+  at: '2026-11-25T13:43:04Z'
   authority: generated
   via: save_document_payload
 id: task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados
@@ -11,15 +11,25 @@ tags: []
 current_node: ritual-testing
 history:
 - task_activates
-references: []
+references:
+- src/specir/cli.py
+- src/specir/extract/__init__.py
+- src/specir/extract/write.py
+- tests/extract/test_ux_extract_cli.py
+- 1f196cb189df9e80f7ccb4a6de420e3218583d28
 depends_on:
 - task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash
 pills: []
-files: []
+files:
+- src/specir/cli.py
+- src/specir/extract/__init__.py
+- src/specir/extract/write.py
+- tests/extract/test_ux_extract_cli.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados
 from_drawer: desk/drawer/plans/graph-ui-diccionario-de-componentes/dag.yaml
 ---
 

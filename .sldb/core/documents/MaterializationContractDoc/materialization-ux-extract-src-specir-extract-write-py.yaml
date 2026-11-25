@@ -1,0 +1,25 @@
+name: materialization-ux-extract-src-specir-extract-write-py
+path: desk/materializations/materialization-ux-extract-src-specir-extract-write-py.md
+source_hash: 5b674cf5372756dd6709819d7864989226ce7fbcf2c5cb580e4df08a86e5dbaf
+content_hash: 02fac3a5f87d8d0098af3da7b569c539a9559ceae9d2e42f2d19a8c27633b3f0
+field_hashes:
+  id: b8da0b5f38d9ad6b3f78725c951dfa02106b42f4e023eb264d312355b81ae73b
+  title: c1c8ef526f7107cab8cfee8d4f4bd4aa4433f2e7089b8aefa1388ff3f8854730
+  source_atoms: 000977d8fdee12ca7a6b5e9fc69fbfc432977c88f096d1839179291376f997a4
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: ac823285215bbe983bf72a1dd393197902b71dfc752408242827e1a074850a8b
+  intent: bd281f6e34a67338e3a6de94f9167bb94bac982e858cf0bc2279370d521a0b8f
+  validation: 6059ac4a7f744b2a516eaffbd0e06cc9169db21aec9468f985be4d3e0d34b9d1
+  tags: 1415bc8d8f42e0d92c6e11ad96c99abc45dd4b6cf41c342e631fcac1b4cc5f1a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:ux-extract
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T13:43:23Z'
+  authority: generated
+  via: create_document
