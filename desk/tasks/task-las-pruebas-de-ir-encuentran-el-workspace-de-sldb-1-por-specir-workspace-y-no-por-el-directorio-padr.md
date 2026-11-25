@@ -1,23 +1,30 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T14:22:22Z'
+  at: '2026-11-25T14:55:29Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr
-status: draft
+status: active
 summary: ''
 tags: []
-current_node: ritual-execution
-history: []
-references: []
+current_node: ritual-testing
+history:
+- task_activates
+references:
+- tests/conftest.py
+- tests/test_workspace_env.py
+- f0c182d00cc8dd1cc0e85b09c8212bb314c62348
 depends_on: []
 pills: []
-files: []
+files:
+- tests/conftest.py
+- tests/test_workspace_env.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-las-pruebas-de-ir-encuentran-el-workspace-por-specir-workspace
 ---
 
 # Las pruebas de IR encuentran el workspace de SLDB_1 por SPECIR_WORKSPACE y no por el directorio padre del repo

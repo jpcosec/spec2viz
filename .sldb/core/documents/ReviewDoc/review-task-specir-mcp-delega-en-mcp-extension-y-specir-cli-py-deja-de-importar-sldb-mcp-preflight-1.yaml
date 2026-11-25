@@ -1,0 +1,36 @@
+name: review-task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp-preflight-1
+path: desk/reviews/task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp/preflight-1.md
+source_hash: 29128e0ac504195c959a9170f678cba4840267b69d086447f0d1db00a1917e1c
+content_hash: a2b9f38b44b7ec93d3916370a3be136a3e52471514cd3b76ab0ff5651fe769f3
+field_hashes:
+  id: 11bfb6b314b1b0c4659d76e091ff78633e5948a87647e159acfc00cb15bfc56d
+  title: 3f3a55c28fc6bbeb4434508b82b6e928a5bc5a9272ceb70f34bfda1249c3f07b
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: ef26bf59f1ddd5ca97f8f1ca41d99c11ca8a561f1ae96581a3b1b61947b719b7
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: d9eaa861f2ac09b0bc9cfabb3003ba87808fd8557d9293e1aacce79b55cff62d
+  input_sha256: 850828d7e8fdde12f0fa83b23fc1b88fb58775e0df03e2586e846f6dc63c9566
+  contract_sha256: 6809e781bc3c295aa776c0b2278405db249ba2943d59635deefc430ddeda1a2c
+  output_sha256: 7c13186a844acaf5079305164a5658a0756a963bd9b5c14c969a7f43a7cb06e0
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 5d05455584cc04f7174bc42a82e26f3cfcfb499ec06a222b42d0b5a0b522ea6c
+  created_at: 8a5cc6ebff6e62689244772209d943d32d00ac1ec63a5a4ed93f6805e71fa90e
+  disposed_at: 1fb953bc918b8120573aeadd99f541f12ef67cf4b7dcc536e535c395ea6a4929
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 3cc2690f4e865a6c19ad72f3d05ca50c7fbfc45740aa3a5295e9d60cac5f15ad
+  disposition: b1cd2e4500026dd24711d68d0e1f838d019fd29cd2e315a0dcd8dc80e34ffe3a
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T14:25:47Z'
+  authority: generated
+  via: save_document_payload

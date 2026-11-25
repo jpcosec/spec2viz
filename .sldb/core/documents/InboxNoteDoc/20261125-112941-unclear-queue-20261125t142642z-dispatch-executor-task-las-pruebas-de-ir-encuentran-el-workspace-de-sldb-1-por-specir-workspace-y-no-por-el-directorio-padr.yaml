@@ -1,0 +1,25 @@
+name: 20261125-112941-unclear-queue-20261125t142642z-dispatch-executor-task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr
+path: desk/inbox/20261125-112941-unclear-queue-20261125t142642z-dispatch-executor-task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr.md
+source_hash: b31d0d69ec03b5209b107a00d0ce74cde2869b7eaa62dedeac9558d650d591b2
+content_hash: 77527db3b9f848ab00575d63000d16d42ad7607f6c54d23c692c70e26029b9a6
+field_hashes:
+  kind: 683144a12969e0fd85512737e57b4db93ed15ee760906165a5516d581a77889a
+  sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: 329662cd14419b4a5d39fe9d1ba8574dd488868699344835e8d3c39a701634db
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: 3f7c4ba0ca2631e57ec0f888b471f06a3c59d32ef99953af1e65adeb1b3138a0
+  ack_reason: b97baa39bd695ec0ac764b2c237bae0a6f06704ef51b57c379a6377aa717d88b
+  title: 4f8cf8289231aa4784e59a2a775baad482863fba3d50dd360a7f8e4a63485f49
+  body: dcc6bff9749aba302e335b412577e78575746afa3d072a24453117118a02915b
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance:
+  by: agent
+  at: '2026-11-25T14:43:40Z'
+  authority: generated
+  via: save_document_payload

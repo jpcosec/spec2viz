@@ -1,0 +1,36 @@
+name: review-task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr-bundle-1
+path: desk/reviews/task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr/bundle-1.md
+source_hash: 26489555b255c8e146b0b72efeca84a5730530905b0ec2ffe70cca1b43e525c6
+content_hash: 6b64f21b7f4584aa9025ef12e96765828c81cc4343c2dbcc20ab02831024834e
+field_hashes:
+  id: cebfc611ecdbd50ba657ace9800bae101c8c0bff9cd45ad462e96bcf105b9cb3
+  title: 3e2319a11f287c7990e016cff455629a9468b62b13f3b7e2e8739ac57ab84249
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 72a5e9644abd3c72ebf836dd0e8830f74db180d52745045c4f4e0e345bd003c7
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 09a969dfe1f974dfe9566db3d410d27c0cecf2e4821f5cd8bf57ab54c9dd41e9
+  input_sha256: 91f3d2c9ba8a7010712dc83553b20c4e051e0f4d028cb9a5706b9d683b46e6a8
+  contract_sha256: 8530e0ad411f5a42ef0d27dd5508833c2356a17f97eec88340a2194810993588
+  output_sha256: 7884ad0b82c3b2bd4bff9df8eeed89ce8b4b6ff77e251d2659f34769eadd7217
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 5d05455584cc04f7174bc42a82e26f3cfcfb499ec06a222b42d0b5a0b522ea6c
+  created_at: 8cc842085ae10f860ace6ea0bb90a271b12e3978c805ee45a76f9a4279f92267
+  disposed_at: 5a89fa2ed7d55ab3cc9f12005e63af4da1abdae41a52e4fa56551cfbc29a109b
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: c44769a639d6ed96a75f8db9fb8c7c016c117982e88f775a630e9009e9492507
+  disposition: b1cd2e4500026dd24711d68d0e1f838d019fd29cd2e315a0dcd8dc80e34ffe3a
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T14:26:18Z'
+  authority: generated
+  via: save_document_payload

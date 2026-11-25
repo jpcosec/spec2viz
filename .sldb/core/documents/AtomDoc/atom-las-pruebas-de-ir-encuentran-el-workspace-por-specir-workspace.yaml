@@ -1,0 +1,22 @@
+name: atom-las-pruebas-de-ir-encuentran-el-workspace-por-specir-workspace
+path: desk/atoms/atom-las-pruebas-de-ir-encuentran-el-workspace-por-specir-workspace.md
+source_hash: 3195bb2eafa7266b92d4274a7f3268ec04146ca9b40baebb8c32de8db9d8d243
+content_hash: 03d131cbf480599a7d38876b6fbf4366a838d5b640331ef4740c2d27c8c1c359
+field_hashes:
+  id: 5949d49fc4e1b22ea50938c7043548bb5b2219c430f914bb681e0662ae2aa2e6
+  title: be54134fb51d97f696aec92280763157b091f49f5e291c7434b9126f2ebd8f89
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: c8d3e8f289b669f6beae55fd6e23e1561aa0450cbe0cc805396f775662498f9d
+  tags: 10b34dfb0deedb8b4d4bae423599ad9676c8ce1020b337f63758878be7fb9b2a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:specir-workspace
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-25T14:55:03Z'
+  authority: generated
+  via: create_document

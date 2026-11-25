@@ -1,0 +1,25 @@
+name: materialization-specir-workspace-tests-conftest-py
+path: desk/materializations/materialization-specir-workspace-tests-conftest-py.md
+source_hash: f2e1aff2e194519ed5a6bb8a38f6e3b535d8074cc8865903388ce97548e96a44
+content_hash: bd0065159d8df0a64ae05aa09c1c55ed4a912c6d2f73b0a1880da3140034c2e8
+field_hashes:
+  id: dffbf1b76d9db1124c63a619d74c43fc77663cc3fc8b9f6e794e5ba870e6e339
+  title: eae1aeea26ffedc32d60d3e8cb49d5301cfcaba4b0186255712034a39947e932
+  source_atoms: 7b228d1f19e4d4a1fea287049c8c1cff2ea824c8953eb280877738d4251f1a3a
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: 5bed7a18d828af8088f63e6c9456a1cd030642713cfbadfbd151fc39c415eb4e
+  intent: 61fd3e5f35a06f8782090d858497c15e391ed4a5e488301e9fde40cdd8830777
+  validation: 7b178311d37d4f103abeec03d7ccafabb1aadfabfc0f512cfb39decc6420907e
+  tags: 10b34dfb0deedb8b4d4bae423599ad9676c8ce1020b337f63758878be7fb9b2a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:specir-workspace
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T14:55:37Z'
+  authority: generated
+  via: create_document
