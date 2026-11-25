@@ -52,3 +52,4 @@
 {"task_id": "task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y", "run_id": "run-deskops-e-cedee283c366", "run_dir": "runs/subagents/exec-deskops-e-cedee283c366", "session_sha256": null, "commit": null}
 {"task_id": "task-goldens-de-la-capa-visual-capturados-de-spec2viz-una-sola-vez-y-las-pruebas-de-paridad-pasan-a-compa", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "superseded", "commit": null}
 {"task_id": "task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca", "run_id": "run-deskops-e-3d0893847263", "run_dir": "runs/subagents/exec-deskops-e-3d0893847263", "session_sha256": null, "commit": null}
+{"task_id": "task-plan-probar-uis-con-graph-ui-como-diccionario-de-componentes-y-una-forma-comoda-de-usar-specir-ahi", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "superseded", "commit": null}

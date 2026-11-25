@@ -1300,9 +1300,6 @@ include:
 - model: TaskCodeDoc
   paths:
   - desk/tasks/task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir.md
-- model: TaskDocsDoc
-  paths:
-  - desk/tasks/task-plan-probar-uis-con-graph-ui-como-diccionario-de-componentes-y-una-forma-comoda-de-usar-specir-ahi.md
 - model: TaskDebugDoc
   paths:
   - desk/tasks/task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar.md
