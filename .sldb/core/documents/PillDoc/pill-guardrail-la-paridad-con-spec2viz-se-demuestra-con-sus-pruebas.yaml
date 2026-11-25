@@ -1,28 +1,27 @@
 name: pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas
 path: desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md
-source_hash: 1e506d60129a5e8581506f1ac4b58aef645417948a7e2da697625943afff1db0
-content_hash: 44d82bf087d810ce63b2b19c697f59d348a19de31d6f959ade496fc635b613a8
+source_hash: 284763844fb9ebc2b8efb8211a2470c0d5faafdbeb742214b86d202e4184972b
+content_hash: 9112ebe882feeb8368b7caef21ffc9c214ab3c783c70a923212519e37df7f910
 field_hashes:
   title: a1d1419b8308230655cae2945fe3bd16b48ad81c99c19a40ff3be34ea819e0d2
   id: 26df09c94775d64250df10534d76631a378882bfd78bb159203103de6fc64ba0
   status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
-  summary: 982d71ab56c54d2e70bc5074e6a4e1665ac73a3add5aa4aa2d911f35b106cf4a
+  summary: 68a8af37d8395d1683052184b25b47d9730db828ec6c34286601a52b4bd8ebd0
   tags: 1d1b33258aa95f8a02e031b976027940bdae86cceabe0fc167055c323b971e96
-  what: 550b0d643fcfc5c9df3decdf5391f1fd4d157422c010e3681f7fbbbc69eabfe4
-  why: 31c42082cba89e4392861882b14fe047e88e79fb17adb111be5cc00564ffda71
-  when: 66962c2001187717339a5c5881f37fd8718fc166bb94457178eed79e06e0c3bd
-  where: 1e8e63cbf048c1e48854c8678490952ed0e02bff4964df9f78e03f5408821cf8
-  how: a65226b498d65eaa4795f462c08c5dae0ba44f380522f9e568c3eeca3c72869f
-  how_not: 22c6944a67b29948f9cb0d4ea0b6bc4370c35efc119fca1f8780768e92555ce4
+  what: 96ed0c575c4234e604da1a45a7b8f533f0747c9799f0fa964386e74a72358a2e
+  why: 169d0a59c1a757d3537efb89d06c2d96b0a011f76889be44f0f9d90d80c8b4c8
+  when: 941afb75a57e1aa40ca55a45e23700f75a87c8984ecea7afd864c186b32ea2ad
+  where: 220837ef20a0549cef4b5fbb47146934f74afac3648aeeb2b96c43b95d2e6506
+  how: 01aa7dc7e784895cf48a6787ecc9ccab8fb638f83855d19731b15ad96e644429
+  how_not: d3937e21540557da554cf8170f47e290d1b045a696c70320a995d312513e2cc3
 semantic_tags:
 - representation.markdown
 - source.document.markdown
 - system:specir
 - type.workflow.pill
 - workspace.desk
-- workspace:desk
 provenance:
   by: agent
-  at: '2026-11-12T01:22:50Z'
+  at: '2026-11-25T14:20:33Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

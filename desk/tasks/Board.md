@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T14:09:30Z'
+  at: '2026-11-25T14:22:24Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -15,6 +15,9 @@ tasks:
 - desk/tasks/task-u4-composiciones-muestra-las-specs-de-actividad-con-notacion-bpmn.md
 - desk/tasks/task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage.md
 - desk/tasks/task-u9-anclajes-muestra-la-fuente-con-lineas-y-el-fragmento-resaltado-el-selector-su-estado-y-los-nodos.md
+- desk/tasks/task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac.md
+- desk/tasks/task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp.md
+- desk/tasks/task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr.md
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -51,3 +54,6 @@ _Generated from the task references above._
 - U4: Composiciones muestra las specs de actividad con notacion BPMN [draft] - Que una receta cuya spec es de actividad se dibuje con notacion BPMN, como hacia spec2viz.
 - U5: las notas sobre una receta o un nodo se guardan en el store por POST /save y no en localStorage [draft] - Notas sobre la receta o el nodo, guardadas en el store de sldb (como las anotaciones de spec2viz, pero en el store), con lista, alta y edicion.
 - U9: Anclajes muestra la fuente con lineas y el fragmento resaltado, el selector, su estado y los nodos que se apoyan [draft] - La pestana Anclajes: para un CodeAnchorDoc, la fuente con numeros de linea y el fragmento resaltado; a la derecha el selector, el estado (vigente o cambiado) y los nodos y relaciones de specIR que se apoyan en el.
+- IR borra los goldens de spec2viz y las pruebas que los leen; la paridad se acredita por pruebas de aceptacion [draft] - Que en IR no quede ningun golden de spec2viz ni prueba, helper o marcador que exista solo para compararse con ellos, y que la suite siga verde.
+- specir mcp delega en mcp_extension y specir/cli.py deja de importar sldb.mcp [draft] - Que solo mcp_extension.py importe sldb.mcp y que specir mcp siga funcionando igual.
+- Las pruebas de IR encuentran el workspace de SLDB_1 por SPECIR_WORKSPACE y no por el directorio padre del repo [draft] - Que conftest.py tome el workspace de la variable SPECIR_WORKSPACE si existe y, si no, de REPO.parent como hoy.

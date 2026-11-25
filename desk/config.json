@@ -15,7 +15,7 @@
     "suite": [
       "sh",
       "-c",
-      "PYTHONPATH=src /mnt/ssd/proyectos/SLDB_1/.venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests"
+      "PYTHONPATH=$PWD/src SPECIR_WORKSPACE=/mnt/ssd/proyectos/SLDB_1 /mnt/ssd/proyectos/SLDB_1/.venv/bin/python -m pytest -q -n 4 -p no:cacheprovider tests"
     ],
     "suite_timeout": 5400,
     "tests_lock": "/dev/shm/sldb1-tests.lock"

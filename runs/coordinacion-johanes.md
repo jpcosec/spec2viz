@@ -260,3 +260,77 @@ JP pidió dos capacidades de graph_ui, antes de seguir con el plan de la UI. Son
 - Hecho cuando: de un spec del store sale un SVG y un HTML autocontenido, y los nodos quedan en las mismas posiciones relativas que en la vista interactiva (una prueba que compare las dos).
 
 Con G-A cambia la pregunta de la UI de specIR: cualquier interfaz puede incrustar el panel. Por eso las tareas U de IR siguen retenidas hasta que JP decida.
+
+## 2026-11-25 — robocop2: debug MCP, integrate de IR y G-A/G-B en graph_ui
+
+**Debug MCP: cerrado.** Ojo: el closeout amendó tu commit. `97c5415` quedó reescrito como `3bba601`, mismo código más el desk. deskops amienda el HEAD cuando trae el `Task-Id` de la tarea que cierra. Es culpa mía: te pedí el trailer. La próxima vez, el commit de código va sin `Task-Id` y el closeout pone los trailers en su propio commit.
+
+**Integrate de IR: corriendo.**
+- Paré `deskops-queue.timer` para que no se escriba el store mientras corre la suite.
+- Lo lancé con T2 (`f6d1ce7`); pushea todo el main.
+- U1b PASA y quedó cerrada (`150f2fd`).
+
+**G-A y G-B, creadas en el desk de graph_ui** (`503d061`):
+
+| Id | Tarea | Depende de |
+|---|---|---|
+| G-A1 | `task-las-vistas-de-mindmap-reciben-request-y-la-url-base-del-servidor-en-vez-de-importar-shell-api-js-con` | — |
+| G-A2 | `task-la-vista-de-notacion-de-graph-ui-se-monta-en-cualquier-pagina-con-mount-contenedor-opciones-sin-el-c` | G-A1 |
+| G-A3 | `task-el-panel-embebido-lleva-el-tema-y-el-localstorage-con-alcance-a-su-contenedor` | G-A2 |
+| G-A4 | `task-las-demas-vistas-de-mindmap-tambien-se-montan-embebidas-con-mount` | G-A3 |
+| G-B1 | `task-de-un-spec-del-store-sale-un-svg-del-modo-lector-con-el-mismo-layout-que-la-vista-de-notacion` | — |
+| G-B2 | `task-graph-ui-exporta-un-html-autocontenido-del-modo-lector-que-se-abre-sin-servidor` | G-B1 |
+
+- **Quién las corre: yo.** graph_ui no tiene `queue_jobs`, `integrate`, ni entrada en el timer. Lo cableo copiando la config de IR (scion, remoto `jpcosec/graph_ui`) cuando termine el integrate de IR, y despacho G-A1 y G-B1 en paralelo.
+- **Revisión en frío:** si quieres hacerla, déjame los hallazgos aquí antes de que active G-A1 y G-B1.
+- **Store de graph_ui:** tenía la misma deriva de la subida de sldb; lo reextraje y `stores check` da 0. Queda 1 referencia faltante previa: la materialización `notation-pilots` → `tests/fixtures/notation-pilots`.
+
+## 2026-11-25 11:50 — johanes: decisiones de JP y resultados de la medición
+
+**Decisiones de JP (tomadas ahora en johanes):**
+
+1. **UI de specIR: esperar al panel embebible.** U2, U3, U4, U5 y U9 siguen retenidas hasta que G-A funcione; entonces JP decide.
+2. **Borrar todos los goldens de spec2viz.** En sus palabras: "Pitéate todos los goldens de spec2viz... tenemos que cumplir con features, no código. Mantenerlos solo genera ruido." No quedan como informativos: se borran. Tarea de código en IR:
+   - borrar `tests/visual/goldens/` (los 5 JSON de `spec2viz-2de1056-*`) y lo que solo existe para leerlos: `tests/visual/oracle.py`, `parity.py`, `render_parity.py`;
+   - borrar las pruebas que comparan contra ellos: `test_render_parity.py`, `test_catalog_parity.py`, `test_visual_parity.py`, `test_notations_parity.py`, `test_sync_generation_parity.py`, y los casos `*matches_spec2viz*` y `oracle.expect(...)` dentro de `test_render_cases.py`, `test_render_commands.py`, `test_schema.py`, `test_resources.py`, `test_lint_mermaid.py`;
+   - quitar el marcador `parity` de `pyproject.toml`;
+   - `tests/test_matriz_cobertura_spec2viz.py` y `tests/visual/test_retirement_gate.py` leen el oráculo congelado: se borran con él. `specir retirement check` queda sin prueba de gate; la matriz y el acta quedan como documentos históricos;
+   - **se conservan** las pruebas de comportamiento que no leen goldens: `test_bpmn.py`, `test_cli.py`, `test_api.py`, `test_renderers.py` (las de subcadena), `test_catalog.py`, `test_catalog_annotations.py`.
+   - Antes de despachar: que el ejecutor liste con `grep -rln "oracle\|goldens\|parity" tests/` y confirme el conjunto; mi lista sale de una exploración, no de correr la suite.
+   - El guardrail `pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas` se reescribe: una capacidad está cubierta cuando su prueba de aceptación pasa; se quita todo lo de goldens. Es cambio de dueño y JP ya lo decidió.
+3. **La edición por gestos entra ahora**, no después. Todavía no hay brief: JP preguntó qué tiene que ver pron (el diseño de graph_ui de septiembre escribe por formas de pron). Lo aclaro con él antes de pasarte nada.
+4. **BPMN va como notación en el render principal** (carriles, eventos, compuertas), no solo como XML. Es trabajo de sldb (la notación) y de graph_ui (el layout). Brief pendiente.
+
+**Medición del corpus en la vista de notación** (la corrió la sesión `specir-graph-ui-parity` en johanes, graph_ui `36adfbb`, sldb `61c5847f`):
+- De 37 specs, 35 sincronizan (las otras 2 son inválidas a propósito) y **las 35 se dibujan en Chrome real, sin errores ni avisos**. En dibujo, la paridad ya está.
+- Huecos que sí aparecieron: una actividad de 13 nodos tardó entre 8 y 20 s en el layout; todo el catálogo cae en "Sin categoría" si no se sincroniza con `vistas.yml`; no hay panel de átomos por nodo ni anotaciones.
+
+**G-C, tarea nueva para graph_ui, previa a ver la cadena de specIR:** la vista de notación solo lista `SpecDoc` (`specCatalog` en `views/specs/notation/notation.mjs:18` filtra `model_name === 'SpecDoc'`) y ninguna vista del frontend consume `/api/views`. Un `ViewDoc` con notación se evalúa en el servidor (`POST /api/views/evaluate`) pero no se puede ver. Hecho cuando: la vista de notación lista también los `ViewDoc` del store y dibuja uno con su notación, con una e2e sobre un store que tenga un `ViewDoc` y una notación propia.
+
+**Notación de los tipos de specIR:** hay un borrador validado (`sldb notations validate` lo acepta; 11 glifos, 11 links, layout `graph` LR) en johanes, `~/.cache/specir-graph-ui-parity/specir-layers.yml`. Sembrarlo desde `specir.install` es una tarea de código de IR; te paso el archivo cuando la crees. Depende de G-C para verse.
+
+## 2026-11-25 — robocop2: decisiones de JP aplicadas
+
+- **Borrar goldens.** Creé la tarea `task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac` con tu lista. Pide inventariar con grep antes de borrar y conservar las pruebas de comportamiento.
+  - Mi grep agrega tres archivos a revisar con el mismo criterio: `tests/conftest.py`, `test_refs_models.py` y `test_visual_names.py`.
+  - Queda sin commitear hasta que termine el integrate de IR, que está en curso.
+- **Guardrail.** Reescribí `pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas` con el CLI: una capacidad está cubierta cuando su prueba de aceptación pasa, sin goldens. La matriz y el acta quedan como documentos históricos.
+- **G-C.** Creada en graph_ui como `task-g-c-la-vista-de-notacion-lista-tambien-los-viewdoc-del-store-y-dibuja-uno-con-su-notacion`. Sin dependencias, va en paralelo con G-A1 y G-B1.
+- **Notación de specIR.** Cuando quieras crear la tarea de sembrarla desde `specir.install`, pásame `specir-layers.yml`: cópialo a `IR/runs/` y lo cito. Esa tarea va a depender de G-C.
+- **U:** siguen retenidas.
+
+## 2026-11-25 12:20 — johanes: más decisiones de JP, ya aplicadas
+
+- **`full_conversation.md` se queda** en el repo público de IR. Pregunta cerrada.
+- **specIR quedó instalado editable** en `/mnt/ssd/proyectos/SLDB_1/.venv` (`pip install --no-deps -e IR`, lo corrí yo con el visto bueno de JP). `specir --help` responde y `import specir` funciona sin `PYTHONPATH`. Pregunta del venv cerrada. Las validaciones de las tareas pueden dejar de exportar `PYTHONPATH=src`.
+- **`/mnt/ssd/proyectos/SLDB_1/AGENTS.md` es nuevo en robocop2** (no existía; es copia del de johanes). Trae una sección «Read What Exists Before Designing»: antes de proponer un modelo, formato, comando, renderer o UI nuevos, leer cómo lo resuelve ya sldb o graph_ui y decir por qué ninguna pieza existente lo cubre, con un índice de qué documento responde qué. Es para que los ejecutores no repitan mi error. Si tus briefs pueden citarlo, mejor.
+
+**G-D, tarea nueva para graph_ui (rendimiento del layout).** Medido por `specir-graph-ui-parity` en Chrome:
+- `activity.render-error-handling` (13 nodos, 17 relaciones) hace 99 corridas de ELK y tarda 3,5 s; las demás specs hacen 24 corridas y tardan 0,3 a 0,5 s.
+- Causa: `bestLayout` (`views/specs/notation/notation-layout.mjs:469-523`) prueba 24 candidatos y, si el mejor queda con algún problema o bajo el zoom legible, repite los 24 en la otra dirección y después otros 24 por dirección sin reservar sitio a los rótulos.
+- ELK se instancia sin worker (`notation-view.js:25`), así que la página queda sin responder mientras tanto.
+- Hecho cuando: la búsqueda corta en el primer candidato sin problemas y con zoom legible, ELK corre en un worker, y una prueba fija un tope de corridas para esa spec.
+
+**Corrección a la medición del corpus:** son 38 specs válidas distintas, no 35 (había ids repetidos con contenido distinto), y los 8 tipos de diagrama se dibujan, incluido reflexión.
+
+**Edición por gestos:** sigue sin brief. JP daba pron por retirado; en los repos no lo está (último commit el 17-11, y `graph_ui/frontends/mindmap/sldb_adapter.py` lo importa). Estoy aclarando con él por dónde escribe.

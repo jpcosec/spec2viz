@@ -1,0 +1,25 @@
+name: materialization-ui-cascaron-ui-index-html
+path: desk/materializations/materialization-ui-cascaron-ui-index-html.md
+source_hash: 4181be2a23c16fcd1b29f0caf21add3cdfaa13b8a6a457cb3db95ffa9f4dd1ef
+content_hash: f8e16ef1b3b5dba790a22030efbde5f30cb418c745c785ab20158e38ea90168e
+field_hashes:
+  id: 8694c6b0eeaaa2fac8c9e7a3970db82f703d93bba17a3aa5bf8b3eac5c6725f7
+  title: 8b6d26930bdab4592fce3eaa52d5d1bddda1ba33e403e5cd84b28a813c3242dd
+  source_atoms: c711bae81a02e9d9f47c7f44fc204b84222419e4aa368d0da7edc6924798c06f
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: 7c74ad74767a413d7f5747ff7631fe87d29dd98340df4b4fad14bc554c667983
+  intent: e0f3a7d3c4d24e6bf0e03f05695647bc97b42ce79449c3488fcc1948a2036e65
+  validation: 13149d479b34569bc3eb26aafd9cd22e6005f05c8b5082ffcc781d472314d13b
+  tags: 643d2a84cff15a05cc29cef14ef0ac40ebb121e82797e0199d171684d90bc6ed
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:ui-cascaron
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T14:08:33Z'
+  authority: generated
+  via: create_document

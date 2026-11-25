@@ -1,0 +1,37 @@
+name: task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp
+path: desk/tasks/task-specir-mcp-delega-en-mcp-extension-y-specir-cli-py-deja-de-importar-sldb-mcp.md
+source_hash: 57ae642699d1e81884dce95cd9389f73fe6d93d16c15a9e7530183b1e4e87619
+content_hash: 0248d5c5114c4774ae4b53e265d39caf174d8d3e4997680464518c66060f69e9
+field_hashes:
+  title: b37fa0ed2a91c2848fcbe76576bf8b3e49152e7afc949350e509073b06d6e5a5
+  id: 14511883148f0c4f0898f8434051334446c5df8600fa50cbfb40fdc4ccfb518f
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: 256204e88e1ef21ca05ec14994be43008ac98e189af57ad813a903f30dd62018
+  goal: e33095e639dad685eaf63a218c0d0cec456d8da87df544cb5bb95d6a3958d74c
+  scope: 584a3d13593c77a3c71949fb0ba7cf6375b18447dec1cd6757c253625491cba4
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 7d213d8b8983877d09c91c8f29f24847dcc51d3adc53c0960a67a47daf534282
+  validation: 7712cbcc7b7473d06780a45e4f9d4204a00d99700bfd122922f4d8d90bdc66a9
+  done_when: f5ff78fab4d6c3d7e968d21272d19754fb886bc95460d2e144288241566f1ca8
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T14:22:15Z'
+  authority: generated
+  via: create_document
