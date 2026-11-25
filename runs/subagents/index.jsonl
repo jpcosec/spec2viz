@@ -50,3 +50,4 @@
 {"task_id": "task-jp-decide-declarar-el-retiro-de-spec2viz-sacar-spec2viz-sldb-del-universo-del-comprobador-y-archivar", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "superseded", "commit": null}
 {"task_id": "task-ir13-sync-generaci\u00f3n-cat\u00e1logos-consumidores-y-retiro-de-spec2viz", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "superseded", "commit": null}
 {"task_id": "task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y", "run_id": "run-deskops-e-cedee283c366", "run_dir": "runs/subagents/exec-deskops-e-cedee283c366", "session_sha256": null, "commit": null}
+{"task_id": "task-goldens-de-la-capa-visual-capturados-de-spec2viz-una-sola-vez-y-las-pruebas-de-paridad-pasan-a-compa", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "superseded", "commit": null}
