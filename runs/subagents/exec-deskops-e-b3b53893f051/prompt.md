@@ -1,60 +1,36 @@
+Task: task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente
+Title: U1: esqueleto de la UI de specIR en IR/ui con tokens de papel, cascaron de pestanas y lentes y cliente de sldb serve
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+From drawer: desk/drawer/plans/graph-ui-diccionario-de-componentes/dag.yaml
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-25T13:30:30Z'
+  at: '2026-11-25T06:23:58Z'
   authority: generated
   via: save_document_payload
 id: task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente
-status: active
+status: draft
 summary: ''
 tags: []
-current_node: ritual-testing
-history:
-- task_activates
-references:
-- ui/.gitignore
-- ui/index.html
-- ui/package-lock.json
-- ui/package.json
-- ui/src/Shell.test.tsx
-- ui/src/Shell.tsx
-- ui/src/core/client.test.ts
-- ui/src/core/client.ts
-- ui/src/core/contract.ts
-- ui/src/env.ts
-- ui/src/main.tsx
-- ui/src/shell.css
-- ui/src/styles/paper-tokens.css
-- ui/src/test-setup.ts
-- ui/tsconfig.json
-- ui/vite.config.ts
-- 1a9ec96b060a43b385934b9d4d4530cf7abe7383
+current_node: ritual-execution
+history: []
+references: []
 depends_on:
 - task-decision-de-jp-donde-vive-la-ui-nueva-de-specir-y-como-comparte-con-la-superficie-de-sldb
 - task-decision-de-jp-en-que-se-escribe-la-ui-nueva-de-specir
 pills: []
-files:
-- ui/.gitignore
-- ui/index.html
-- ui/package-lock.json
-- ui/package.json
-- ui/src/Shell.test.tsx
-- ui/src/Shell.tsx
-- ui/src/core/client.test.ts
-- ui/src/core/client.ts
-- ui/src/core/contract.ts
-- ui/src/env.ts
-- ui/src/main.tsx
-- ui/src/shell.css
-- ui/src/styles/paper-tokens.css
-- ui/src/test-setup.ts
-- ui/tsconfig.json
-- ui/vite.config.ts
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-la-ui-de-specir-vive-en-ir-ui-con-cascaron-de-pestanas-y-lentes-y-cliente-de-sldb-serve
+atoms: []
 from_drawer: desk/drawer/plans/graph-ui-diccionario-de-componentes/dag.yaml
 ---
 
@@ -95,3 +71,26 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 npx tsc --noEmit y vitest de src/Shell.test.tsx pasan en IR/ui; los archivos copiados citan su origen.
+
+## Entrega del ejecutor
+
+Al terminar, commitea solo los archivos que cambiaste para la tarea, nombrados uno por uno (los mismos que listas en result-summary.md):
+
+    git add <ruta> <ruta> ...
+    git commit -m "<resumen>" -m "Task-Id: task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente"
+
+Nunca uses `git add -A`, `git add -u` sobre todo el arbol ni `git stash`: puede haber trabajo ajeno sin commitear. No hagas push. Recien despues ejecuta `deskops advance task`.
+
+## Temporales de pytest
+
+Antes de cualquier pytest exporta, para que sus temporales caigan en el /tmp del contenedor (muere con el agente) y no en el /dev/shm del host:
+
+    export PYTEST_ADDOPTS="--basetemp=/tmp/pytest-deskops-e-b3b53893f051"
+
+## Tu worktree
+
+Tu codigo vive en un worktree propio, en la rama `deskops/deskops-e-b3b53893f051`:
+
+    /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/deskops-e-b3b53893f051
+
+Haz `cd` ahi: edita, corre los tests y commitea ahi (git add / git commit), no en el checkout principal /mnt/ssd/proyectos/SLDB_1/IR. Las operaciones de desk (`deskops ... --root /mnt/ssd/proyectos/SLDB_1/IR`, evidencia en runs/subagents/..., `deskops advance task`) siguen usando el checkout principal. Al terminar, reap trae tus commits a la rama principal y borra el worktree.

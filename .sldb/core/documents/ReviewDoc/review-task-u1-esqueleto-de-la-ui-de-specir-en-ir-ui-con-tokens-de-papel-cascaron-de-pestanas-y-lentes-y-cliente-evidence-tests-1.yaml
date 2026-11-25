@@ -1,0 +1,36 @@
+name: review-task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente-evidence-tests-1
+path: desk/reviews/task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente/evidence-tests-1.md
+source_hash: c55011951fb42baaa64eb8558aa948bb7f66b1d862be0625a99fb16b3eb648e8
+content_hash: 2a91469839635bf1ab9cf7f85c4edbc548a11fe3d2dfa7e2cd70c9362c45abd5
+field_hashes:
+  id: 25751dcd537474cd985383ff293c7f4659eda9fb7f96e456dc62661d173032c5
+  title: c99ea9ffcdcb757c6b78902964d66ab8b6389f5f741a7a3710b120a304a7a49f
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: 6e6c5bfd8aa324fec38308acd1c0e2bbce290bcc7b6f5f2777e6711d0decd02f
+  subject: 2c5a0531a24e559a6dc2c4c859d531ddd9d583f07dc6136b896ef98829b161d8
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 60b19596bda07c6074dd0421397fb6781684b8a04f0f64ff4de0cf4200d476e1
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: e69db9345d1aba47873c0ebe73eb5ef3a94147dc55aaa3a92c0e3991795c948f
+  created_at: 4f0c7aa5ae02db0707a0fc3646429e87ce144ff332643830f5c4301948feadff
+  disposed_at: 4f0c7aa5ae02db0707a0fc3646429e87ce144ff332643830f5c4301948feadff
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: f1d4f56ab8bb23a0d11d7730d619bb18099f587c049e3a039ffbeeae5b2e7f7f
+  disposition: 7c133bf8d1450268110f34915a86fbc2dbd55e67db9d25f9e00dcab9abec29f4
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T13:32:37Z'
+  authority: generated
+  via: create_document

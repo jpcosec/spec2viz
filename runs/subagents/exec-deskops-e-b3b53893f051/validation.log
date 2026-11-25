@@ -1,0 +1,11 @@
+$ cd ui && npx tsc --noEmit && npx vitest run
+tsc exit 0
+ RUN  v4.1.12 /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/deskops-e-b3b53893f051/ui
+
+
+ Test Files  2 passed (2)
+      Tests  6 passed (6)
+   Start at  12:44:03
+   Duration  1.31s (transform 60ms, setup 108ms, import 140ms, tests 156ms, environment 645ms)
+
+vitest exit 

@@ -63,3 +63,4 @@
 {"task_id": "task-decision-de-jp-como-llegan-por-http-los-datos-de-specir-a-su-ui", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
 {"task_id": "task-decision-de-jp-que-pasa-con-la-pagina-generada-de-specir-catalog-build", "run_id": null, "run_dir": null, "session_sha256": null, "mode": "manual", "commit": null}
 {"task_id": "task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash", "run_id": "run-deskops-e-1f07b310f712", "run_dir": "runs/subagents/exec-deskops-e-1f07b310f712", "session_sha256": null, "commit": null}
+{"task_id": "task-u1-esqueleto-de-la-ui-de-specir-en-ir-ui-con-tokens-de-papel-cascaron-de-pestanas-y-lentes-y-cliente", "run_id": "run-deskops-e-b3b53893f051", "run_dir": "runs/subagents/exec-deskops-e-b3b53893f051", "session_sha256": null, "commit": null}

@@ -1,0 +1,26 @@
+$ cd ui && npx tsc --noEmit
+tsc exit 0
+
+$ npx vitest run src/Shell.test.tsx
+
+ RUN  v4.1.12 /mnt/ssd/proyectos/SLDB_1/IR/ui
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  12:49:11
+   Duration  862ms (transform 51ms, setup 70ms, import 149ms, tests 156ms, environment 348ms)
+
+vitest exit 0
+
+$ npx vitest run
+
+ RUN  v4.1.12 /mnt/ssd/proyectos/SLDB_1/IR/ui
+
+
+ Test Files  2 passed (2)
+      Tests  6 passed (6)
+   Start at  12:49:13
+   Duration  1.01s (transform 150ms, setup 143ms, import 268ms, tests 171ms, environment 863ms)
+
+vitest-all exit 0
