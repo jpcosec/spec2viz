@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T17:50:23Z'
+  at: '2026-11-25T17:50:34Z'
   authority: generated
   via: save_document_payload
 # board-xxx
@@ -9,8 +9,7 @@ id: board-001
 # Affected workspace or domain
 scope: desk
 # List of task-xxx paths
-tasks:
-- desk/tasks/task-u9-anclajes-muestra-la-fuente-con-lineas-y-el-fragmento-resaltado-el-selector-su-estado-y-los-nodos.md
+tasks: []
 # List of pill-xxx paths
 pills:
 - desk/contexts/pills.md
@@ -41,5 +40,3 @@ Estado al 2026-11-21 (09:40 UTC): IR13, gate de retiro de spec2viz. specir retir
 ## Task Details
 
 _Generated from the task references above._
-
-- U9: Anclajes muestra la fuente con lineas y el fragmento resaltado, el selector, su estado y los nodos que se apoyan [draft] - La pestana Anclajes: para un CodeAnchorDoc, la fuente con numeros de linea y el fragmento resaltado; a la derecha el selector, el estado (vigente o cambiado) y los nodos y relaciones de specIR que se apoyan en el.
