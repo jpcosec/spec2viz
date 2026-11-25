@@ -1,0 +1,36 @@
+name: review-task-u2-composiciones-lista-las-recetas-de-diagrama-del-store-con-filtro-por-capa-buscador-y-cobertura-n-bundle-1
+path: desk/reviews/task-u2-composiciones-lista-las-recetas-de-diagrama-del-store-con-filtro-por-capa-buscador-y-cobertura-n/bundle-1.md
+source_hash: 31d1a4a2b852069d2a37f7eb15034bb2233a8ba856257ef1c9783b2c28e0fd4e
+content_hash: cb34af88c43c31de57cc07b0b9cad93c81ede0549f0288c83a01aad238247cf4
+field_hashes:
+  id: 7b5cbb39ca0b22df9277c07bd5d737a923d28f33946d9943a7606b86ad556ee4
+  title: 25d62a023eb6f752154332a2ed8934e201fd8f2f0c72b6149812159b6538773e
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: abc4789dce10797f5f26ae1966c5dfc3022389192b9b37197ee795ddcbcd691d
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 252f5e4ae17c7bdb98f7f8646f302e025f99e8f1ccb1860ce361a3e0b127a5b3
+  input_sha256: 35af20ad4837f6c5be42dfba2cb7108b112da433c40c88b8a547e4c8e0ee5b3d
+  contract_sha256: 8ceb8ba5eb04ba1013a08be412360e8b81b95500572127bccd3eed167772f493
+  output_sha256: 057d04095f23759fd8141d7f87585af928627f8acde91d22bee38c12f69e12ab
+  verdict: 12adac54ac6f7140109391b670b3cbcd51f083d8f5ee62ce26857c794ed67d36
+  reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  created_at: f027ecb3de568447ac59291789acdf91428857864e41c4e533f3e7ceab4c8cec
+  disposed_at: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  disposed_by: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  summary: 05efc390ba0521fe15d73817fd8afe1ea18c88753bf176e30d36f1f154f32707
+  disposition: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T12:33:47Z'
+  authority: generated
+  via: create_document

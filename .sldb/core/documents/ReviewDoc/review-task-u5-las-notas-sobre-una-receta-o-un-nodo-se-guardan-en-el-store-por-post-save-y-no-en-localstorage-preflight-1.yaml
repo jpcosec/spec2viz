@@ -1,0 +1,36 @@
+name: review-task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage-preflight-1
+path: desk/reviews/task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage/preflight-1.md
+source_hash: 7eefa51c41b901e2e6b185df3d506dc8b43741f127b49cde0ef46e934b5b0bf9
+content_hash: b00aa837bb9ae359c59746debb4937cd3280084da4df8ac1003738f2059b98fb
+field_hashes:
+  id: 40d0b61e9ca039947fe326a95872e7786331e3dbefa71f027fd5ab90e433c97c
+  title: ab42aa54a0655baaad335320be06fb0109cb7a40ad6f024fc0cff879ff65b60a
+  kind: b7aa467a101908787d614f7bfc1dadd75a976b85a3bf6022dd451c30158bbff2
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: ed2357a36a28dfe0a0470927792e27af349c4a2c4a1aa91ff4ef55531b5cba98
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: ce21623630043ee226859c79b820c8ff6abc4c7af8f4444149a6991fcac72719
+  input_sha256: c10ce068fa9a231783e4c5374c09baf4f02ec8071f27aeb5ea035c61fa777150
+  contract_sha256: e4af511d9cc651011a528d16d2cbff638ff559343d1d6de57b375f87b006a678
+  output_sha256: 942c7572d9c4525d44a041b7cd629320628fb065a155bedb1cef6c2ae595204f
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 0d22b478d6766e2832ef264d46a76398f6f23d0a7decfa9cc5b140ceacff2ef1
+  created_at: fa7d0f1d51220dd2ba070f3eb8429e4be45d49291a5c5cb15faf6981682212ee
+  disposed_at: 32dff2eebf33a8a0f12a07963ac059cb6c0f3fab6beea6619fc803f00d68b2f3
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 71c031e21d5b3bca2554a2388d7aaee53796f18abd7e5ae3d8ab57f60915c119
+  disposition: bc99b3035e53382202d5d659ea761990baec41084d6258351298dd59cb6cbf6a
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T12:36:37Z'
+  authority: generated
+  via: save_document_payload

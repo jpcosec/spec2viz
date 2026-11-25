@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T06:10:18Z'
+  at: '2026-11-25T12:37:39Z'
   authority: generated
   via: save_document_payload
 id: task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash
@@ -12,14 +12,20 @@ current_node: ritual-closeout
 history:
 - task_activates
 - task_hands_to_closeout
-references: []
+references:
+- src/specir/extract/plan.py
+- tests/extract/test_edge_name_bounded.py
+- 6d2d1699df7b603c74873866033b0512ff6da52e
 depends_on: []
 pills: []
-files: []
+files:
+- src/specir/extract/plan.py
+- tests/extract/test_edge_name_bounded.py
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-los-nombres-de-relacion-de-specir-quedan-acotados-con-un-resumen-con-hash
 from_drawer: desk/drawer/plans/graph-ui-diccionario-de-componentes/dag.yaml
 ---
 

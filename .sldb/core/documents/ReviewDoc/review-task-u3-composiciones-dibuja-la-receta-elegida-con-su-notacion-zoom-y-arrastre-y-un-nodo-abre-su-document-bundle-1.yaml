@@ -1,0 +1,36 @@
+name: review-task-u3-composiciones-dibuja-la-receta-elegida-con-su-notacion-zoom-y-arrastre-y-un-nodo-abre-su-document-bundle-1
+path: desk/reviews/task-u3-composiciones-dibuja-la-receta-elegida-con-su-notacion-zoom-y-arrastre-y-un-nodo-abre-su-document/bundle-1.md
+source_hash: 89dc6248cfa868c3b272dc31666832d7fef3f22174192c6461977fbdbe293766
+content_hash: bf2d60b39129586332168fbd9f6c8a1d177419ae4469b4ba86dd4e885cd73eb5
+field_hashes:
+  id: 7d05f9a3c4cd6f4653ecbc9082497ea59f2e0fe3ac5ac5e3b3eccd3ea5574cdc
+  title: cc9d0394f2a7c8ef9130248469984dd99d7300a6a3b1ab0a58c276fa62ac5df0
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: c44c5ef06278febe439b2f4378c7ef37877b67592e1052d4ca593ea49040da5b
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: cae5cd0862a7d91c289fbd41cdd4c4a35b91d943fbbd117fe6f064d5c166c1aa
+  input_sha256: f5665f3aeba98baeb82d162f8c0a5385ef1980f639be5f02491aab4372bd76bc
+  contract_sha256: 6c37f78bde0b86222a5d72446007cf0d4fc0079e823ee3b0bb42a05b0e6c53ac
+  output_sha256: 4c2832488e05b1e4ca7b538e758e35930b54c39a4c98d5d02500e623b2c76aa4
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 0d22b478d6766e2832ef264d46a76398f6f23d0a7decfa9cc5b140ceacff2ef1
+  created_at: 18a30e69e368ae20b7bb4ac7e340300683d62e68138d3e668933005f5754bd47
+  disposed_at: 58373eef58299256e81681a5ba70b67d7498f1b76891cc754ddfd7222bc56cec
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 4447b1e5514e7c01a72157ca705f47bf6b6d5c485e50ae1d99927c3b59e1994a
+  disposition: bc99b3035e53382202d5d659ea761990baec41084d6258351298dd59cb6cbf6a
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T12:36:30Z'
+  authority: generated
+  via: save_document_payload

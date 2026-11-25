@@ -1,0 +1,25 @@
+name: materialization-edge-name-acotado-src-specir-extract-plan-py
+path: desk/materializations/materialization-edge-name-acotado-src-specir-extract-plan-py.md
+source_hash: 417bcbc61974927fde9191c74212d0c54107f97dd5d16e479f0a77daba44865d
+content_hash: 0d30239e3a7c66ea1248886420a32eb17c609816b8d0bd0b7bb13131af693da6
+field_hashes:
+  id: 77b83447486bc27a2f9f77a73ebe67861e44b95224b10ae38cb7be2f19c953df
+  title: 160e449ad912cb818234b66180fc9cc012bdf6b6c5ad061f6f734e1d0dfa1f0e
+  source_atoms: 138d6e2158d0bcfdc514fd30747841da335cc755b0582ebe12031e0d6bc5a702
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: 9df871e35d719f7dfeba9816c079a9c6f20dfe7c92c23467770b80fc1c37b5ae
+  intent: 996bbfc6affbb269975bc827f3b8a4fc2fe524f92b4ed5991d6ce18017c61ca6
+  validation: 62e31977e404886c78ecc4cf105696b5bac0078281040804179859a3fbbf2172
+  tags: 3d4ad3e30c008d39a75d5a87e2dc3b8bcc1da1577a24dccd470731f6051fe037
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:edge-name-acotado
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-25T12:37:45Z'
+  authority: generated
+  via: create_document

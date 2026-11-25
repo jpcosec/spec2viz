@@ -1,0 +1,22 @@
+name: atom-los-nombres-de-relacion-de-specir-quedan-acotados-con-un-resumen-con-hash
+path: desk/atoms/atom-los-nombres-de-relacion-de-specir-quedan-acotados-con-un-resumen-con-hash.md
+source_hash: 711545a54c984c96527d6c5531ce15cf47b129c4717d45c7986578e9b7510c28
+content_hash: 44b0c0ef9bb9d3b778a4b36096a71ddaf6757ba68e7e7edf7e8e2d57f3f79980
+field_hashes:
+  id: 8b53ebbed50b8c6c9dbd0f69528dee78698ff4c3ee422d201db5b300a34762ee
+  title: 95d8241ea3b293ae34baaa77d7775147ad73369b2d04059141327dd1a58e81bc
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: facd774fe07f79256d660511b5065b4c3955f7d7a15cd5c49cffe5bf548a8709
+  tags: 3d4ad3e30c008d39a75d5a87e2dc3b8bcc1da1577a24dccd470731f6051fe037
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:edge-name-acotado
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-25T12:37:19Z'
+  authority: generated
+  via: create_document

@@ -1,6 +1,6 @@
 name: Board
 path: desk/tasks/Board.md
-source_hash: 7c2aeae3d14ca20acb552e54908091bd30a7ee6114f40922aea994602fe1d533
+source_hash: a3e5d76eef9342ec756d05085bbb80efccffac3f2150ebd44d78fc495915d482
 content_hash: b446d18de8d0fee87035a8e492e3e241b54d0d084a9c1847b225c086d1d5ec69
 field_hashes:
   title: c0a1e78e27ac75c1547410080c6f3b914f73ad7a4dae93bcdee6693a6236c15f
@@ -23,6 +23,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T12:32:32Z'
+  at: '2026-11-25T12:36:52Z'
   authority: generated
   via: save_document_payload
