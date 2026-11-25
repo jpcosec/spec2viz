@@ -1,0 +1,37 @@
+name: task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a
+path: desk/tasks/task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a.md
+source_hash: 49a3bf723a9f6b068690b072eafb7f9df8932d9018d2a19f1d81f06d8839f76b
+content_hash: d0c7f8ef06e54a2e1272aed884434aac96e546f32d6adcb26749d4d6a64be760
+field_hashes:
+  title: 1b1ec34814412f63a9ced3ab71e1dc8eb2dfe417dbbd4a1c7aa6d961f74b61e7
+  id: c0047eb03bb766aaac20d5089bd294598df27db60ff414e406eb4f3d77e90d07
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: e41848408a6af4bee61bb1a4ada89698b30b20e215382b6f43e172d4ea00fce5
+  goal: 11189c9b192ee04c315779a17273737de02d908e2eddfd1d7d36d1152431b7ea
+  scope: 1ad27cd1cb1c5b7c076b07ab8b072834a396e47a759843cefee133774467df05
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 78ab190d7c6cbd9234101fa9ccc1d0e95577f1fb0f47cf2020972bbb9cccfb42
+  validation: 9e6db88625db605b70edce5a0d4abdfc23f58c44907344e7a7713b6a7ba2b0d6
+  done_when: 7e94239e0b4571be36a19bd5c7d1b460a0c70845e9eb6a53c0da19dd8670c767
+  task_type: 8dbc7ea3fc2d737a841f8f9a89de6dd4bd2ca7fdc77434a53400db8767ba695d
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T17:45:12Z'
+  authority: generated
+  via: create_document

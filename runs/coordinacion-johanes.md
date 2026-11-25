@@ -438,3 +438,41 @@ no la integres; avísame en esta bitácora.
 Siguen: G-C (tester en cola), G-D intento 2 (ready_for_testing), alias de surface en sldb, goldens y
 las tareas del integrate de IR ya cerradas (main de IR pusheado, 5a1d2c1). No toco desks donde
 escribas tú sin avisar aquí; hago pull de sldb y graph_ui ahora.
+
+## johanes 2026-11-25 (tarde): 12 tareas nuevas en borrador, sin commitear
+
+Las creé con `deskops add task --from-yaml` en los checkouts de aquí. **No commiteé nada**: los
+archivos compartidos del store (Board, store_index) ya tenían cambios tuyos sin commitear, así que
+el commit es tuyo, junto con lo que tengas pendiente. Los briefs fuente están en `/tmp/johanes-tareas/`.
+
+Las decisiones están en cinco ADR: cuatro en `sldb/docs/architecture/` (mechanism-in-sldb-content-in-specir,
+pron-is-archived, one-command-taxonomy-served-by-fastmcp, surface-is-an-editor-contract) y
+`IR/docs/decisiones/paridad-por-capacidades.md`. Los planes de drawer quedaron solo con el trabajo.
+
+| Repo | Tarea (empieza por) | Notas de orden |
+|---|---|---|
+| sldb | `task-surface-dev-astryx-probe-...` | **primera**: de su resultado depende rehacer G-A |
+| sldb | `task-docs-architecture-command-taxonomy-md-...` | **primera**: de ella depende el servidor fastmcp |
+| sldb | `task-propose-changes-rechaza-antes-de-escribir-...` | toca `mcp/write`; va antes que la de undo |
+| sldb | `task-undo-changes-deshace-un-cambio-aplicado-en-una-sesion-anterior-...` | toca `mcp/write`; en serie tras la anterior |
+| sldb | `task-resolver-una-vista-informa-como-hueco-...` | toca notaciones; en serie con la siguiente |
+| sldb | `task-una-notationdoc-declara-que-estandar-implementa-...` | |
+| sldb | `task-una-regla-puede-preguntar-por-los-tags-semanticos-...` | independiente |
+| graph_ui | `task-el-modo-local-de-mindmap-abre-el-store-por-sldb-api-...` | independiente |
+| graph_ui | `task-una-notacion-con-carriles-por-particion-...` | independiente; no chocar con G-B1 en `notation.mjs` |
+| IR | `task-specir-es-dueno-de-las-notaciones-de-uml-...` | toca `install.py`; va antes que la de capas |
+| IR | `task-specir-install-siembra-la-notacion-de-capas-...` | en serie tras la anterior |
+| IR | `task-skills-use-specir-skill-md-...` | task.docs, independiente |
+| deskops | `task-deskops-add-adr-crea-un-registro-de-decision-...` | pedido expreso de JP, prioridad alta |
+
+Además:
+
+- **IR**: las tareas en borrador U2, U3, U4, U5 y U9 (app `IR/ui/`) quedaron sin efecto; retíralas
+  con el verbo que corresponda y el motivo "specIR no tiene interfaz propia
+  (docs/decisiones/paridad-por-capacidades.md)".
+- **graph_ui**: G-A1 integrada se queda. G-A2 a G-A4 siguen frenadas; la rama sin integrar de G-A2
+  queda de referencia. Se rehacen cuando cierre la prueba de Astryx.
+- **sldb**: `sldb serve acepta --extension` queda sin efecto; retírala igual.
+- El barrido de documentación de hoy pusheó a sldb, graph_ui y deskops; haz pull antes de commitear.
+
+Pásalas por revisión y encólalas en ese orden. Confirma aquí lo que quede en cola.
