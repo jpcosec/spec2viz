@@ -39,6 +39,7 @@ tasks:
     title: La decisión "specIR es un plugin sobre sldb" queda en docs/decisiones/ con las cuatro reglas
     phase: F1
     estimate: S
+    state: 'hecho: docs/decisiones/specir-es-un-plugin-de-sldb.md'
   K2:
     title: Una capacidad declara para quién es y su prueba; las ocho de specIR cargadas
     phase: F1
@@ -62,18 +63,21 @@ tasks:
     estimate: M
     depends_on:
     - N1
+    task: task-specir-install-siembra-la-notacion-bpmn-y-una-actividad-con-particiones-se-resuelve-con-eventos-tare
   N4:
     title: El modelo tiene pantalla y navegación, y la notación IFML las usa
     phase: F2
     estimate: M
     depends_on:
     - N1
+    task: task-el-modelo-de-specir-tiene-pantalla-y-navegacion-el-extract-las-llena-en-el-frontend-de-ejemplo-y-la
   N5:
     title: Atributos y relaciones entre entidades, y la notación ORCA
     phase: F2
     estimate: M
     depends_on:
     - N4
+    task: task-una-entidad-del-dominio-tiene-atributos-y-relaciones-con-otras-entidades-el-extract-las-llena-desde
   E1:
     title: specir extract describe una librería de Python con CLI
     phase: F3
@@ -92,6 +96,7 @@ tasks:
     title: Diccionario de controles extraído de sldb/surface y comprobado con Playwright
     phase: F3
     estimate: M
+    task: task-el-diccionario-de-controles-de-sldb-surface-sale-de-specir-extract-con-el-localizador-de-cada-contro
   S1:
     title: El impacto de un cambio llega a decisiones, pills y tareas
     phase: F4
@@ -101,7 +106,8 @@ tasks:
     - deskops-punteros-del-donde
     task: task-specir-impact-entrega-para-los-archivos-de-un-cambio-...
   S2:
-    title: specIR declara sus herramientas en un servidor fastmcp propio, del que salen su MCP y su CLI; llaman a sldb por su CLI
+    title: specIR declara sus herramientas en un servidor fastmcp propio, del que salen su MCP y su CLI; llaman
+      a sldb por su CLI
     phase: F4
     estimate: M
     requires:
@@ -120,22 +126,28 @@ tasks:
     estimate: M
     requires:
     - surface-composicion-como-dato
+    task: task-specir-install-siembra-la-composicion-de-la-pantalla-del-catalogo-como-documento-del-store
+    state: tarea en borrador, bloqueada por otro repo
   R1:
     title: Se borra visual/retirement.py
     phase: F5
     estimate: S
+    task: task-se-borra-el-registro-del-retiro-de-spec2viz-src-specir-visual-retirement-py-y-el-comando-specir-reti
   R2:
     title: Los exportes de texto leen la vista resuelta de sldb; se borra la representación paralela
     phase: F5
     estimate: L
     depends_on:
     - N1
+    task: task-los-exportes-de-texto-leen-la-vista-que-resuelve-sldb-y-se-borra-la-representacion-paralela-de-speci
   R3:
     title: Se borran los HTML de un diagrama
     phase: F5
     estimate: S
     requires:
     - grafo-modo-lector
+    task: task-se-borran-los-renderers-de-html-de-un-diagrama-de-specir-que-reemplaza-el-modo-lector-del-editor-de
+    state: tarea en borrador, bloqueada por otro repo
   R4:
     title: Se borran la página del catálogo y CatalogAnnotationsDoc
     phase: F5
@@ -144,6 +156,8 @@ tasks:
     - S5
     requires:
     - grafo-modo-lector
+    task: task-se-borran-la-pagina-del-catalogo-de-specir-y-catalogannotationsdoc-que-reemplaza-la-composicion-en-s
+    state: tarea en borrador, bloqueada por otro repo
   R5:
     title: Se retiran las tareas U2, U3, U4, U5 y U9 de la app IR/ui
     phase: F5
