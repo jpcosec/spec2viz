@@ -1,0 +1,9 @@
+{
+  "key": "task-ir04b-cierre-la-prueba-de-identidad-tras-deshacer-compara-tambien-el-store-por-contenido-y-no-import/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "00c900d9f7779624092fddff3470c6f8cf698080e335a5d28abaf4319c01cc50",
+  "output_sha256": "8c185927b2c10822b6ce2d6cb50eb87f6dc0845db495b5ca9cd3fb55f75f2c11",
+  "start": "2026-11-20T23:47:47.492584+00:00",
+  "end": "2026-11-20T23:48:14.971695+00:00"
+}

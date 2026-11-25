@@ -1,0 +1,9 @@
+{
+  "key": "task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "d7b6c9148c349dc46fac757a547cbb9018559205b8e192d2f046f359e19ee8bc",
+  "output_sha256": "99effbc2bd8cc0b193f36ed0d2cb630c85c882e4bf77cfeb89ab3daae6a3ebbd",
+  "start": "2026-11-25T05:43:40.571266+00:00",
+  "end": "2026-11-25T05:43:53.922177+00:00"
+}

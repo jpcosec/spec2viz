@@ -1,0 +1,48 @@
+{
+  "key": "task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y/preflight",
+  "input_sha256": "f1c48dd0ab2121b2707e15b8bbc9b3e0abeaf4bdba3dae6ec007ed779743927c",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261125-015903/context-review/task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y/preflight/f1c48dd0ab2121b2707e15b8bbc9b3e0abeaf4bdba3dae6ec007ed779743927c/attempt-1/input.md"
+  ],
+  "binary": "pi",
+  "model": "deepseek/deepseek-flash",
+  "input_delivery": "file",
+  "isolation_flags": [
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools"
+  ],
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-el-acta-de-retiro-dice-que-spec2viz-continua-como-ir-en-jpcosec-specir-rama-legacy-con-su-historia-y.md",
+      "sha256": "bc7882f5b796a693b115c2c5c3b8e794abd6b20e198796d12b2cfb417a262446",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-25T01:59:03.940079+00:00",
+  "finished": "2026-11-25T01:59:28.701918+00:00"
+}

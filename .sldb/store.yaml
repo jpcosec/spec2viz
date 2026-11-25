@@ -1519,6 +1519,14 @@ include:
 - model: RuntimeProfileDoc
   paths:
   - desk/runtimes/runtime-claude-en-scion.md
+- model: TaskDocsDoc
+  paths:
+  - desk/tasks/task-docs-decisiones-specir-describe-repos-de-python-md-propone-como-specir-modela-un-repo-que-es-una-lib.md
+- model: TaskCodeDoc
+  paths:
+  - desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md
+  - desk/tasks/task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid.md
+  - desk/tasks/task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo.md
 graph_backend: networkx
 policy: {}
 tag_models:

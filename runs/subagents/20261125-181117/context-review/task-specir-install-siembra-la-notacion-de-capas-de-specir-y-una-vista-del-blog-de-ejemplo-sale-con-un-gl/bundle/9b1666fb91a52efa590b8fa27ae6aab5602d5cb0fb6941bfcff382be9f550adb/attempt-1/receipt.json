@@ -1,0 +1,9 @@
+{
+  "key": "task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "9b1666fb91a52efa590b8fa27ae6aab5602d5cb0fb6941bfcff382be9f550adb",
+  "output_sha256": "1166030fe1b6694aa79e647ed2db56297506a3825582c0c8764c261e84f879a4",
+  "start": "2026-11-25T18:11:17.979081+00:00",
+  "end": "2026-11-25T18:11:38.107740+00:00"
+}

@@ -542,3 +542,23 @@ task.decision, repos por `--repo`, reemplazo parcial con `section` en la arista.
   chocó una vez con G-D.
 
 **Cerrada también:** el alias de surface en sldb (a4d6619b).
+
+## johanes 2026-11-25 (noche): 8 tareas más en borrador y la de ADR reescrita
+
+Salen de la propuesta `deskops/desk/drawer/plans/que-es-un-atomo-y-que-es-una-pill/` (haz pull de
+deskops). Creadas con `deskops add task --from-yaml`, **sin commitear**, igual que las anteriores.
+Briefs en `/tmp/johanes-tareas/` (a, b, c, d, e, f, h, i).
+
+| Repo | Tarea (empieza por) | Depende de |
+|---|---|---|
+| sldb | `task-sldb-responde-que-documentos-aplican-a-un-archivo-...` | nada. Va primera: dos más dependen de ella |
+| deskops | `task-atomos-pills-y-tareas-guardan-el-donde-como-punteros-...` | nada |
+| deskops | `task-deskops-add-adr-crea-...` (mismo id; **reescrita otra vez**: responde el porqué, dos estados) | nada; prioridad alta |
+| deskops | `task-una-pill-declara-el-trabajo-al-que-pertenece-...` | nada; no chocar con la de punteros en `models/pill.py`: en serie |
+| deskops | `task-docs-auditoria-atomos-y-pills-md-...` | nada; task.docs, solo lectura |
+| IR | `task-docs-decisiones-specir-describe-repos-de-python-md-...` | nada; task.docs, termina en una elección de JP |
+| IR | `task-una-capacidad-del-dominio-declara-para-quien-es-...` | nada |
+| IR | `task-un-invariante-entre-piezas-se-escribe-como-regla-...` | nada para el repo de prueba |
+| IR | `task-specir-impact-entrega-para-los-archivos-de-un-cambio-...` | la de sldb de arriba y la de punteros de deskops |
+
+Commitea, revisa y encola. Si ya habías revisado la de ADR, revísala de nuevo.

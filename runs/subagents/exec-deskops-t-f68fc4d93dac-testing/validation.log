@@ -1,0 +1,15 @@
+# Tester U1b — 2026-11-25T13:43:56Z
+# commit ejecutor: 9e0ca79cc2b806c480b07ae4ab28e7c858e7c76c
+
+$ cd ui && npx tsc --noEmit && npx vitest run src/Shell.test.tsx
+
+ RUN  v4.1.12 /mnt/ssd/proyectos/SLDB_1/IR/ui
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  13:44:00
+   Duration  1.23s (transform 106ms, setup 89ms, import 295ms, tests 209ms, environment 464ms)
+
+
+EXIT=0

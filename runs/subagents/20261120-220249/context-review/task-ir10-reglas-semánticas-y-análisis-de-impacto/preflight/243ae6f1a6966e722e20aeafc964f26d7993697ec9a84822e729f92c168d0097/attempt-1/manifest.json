@@ -1,0 +1,48 @@
+{
+  "key": "task-ir10-reglas-semánticas-y-análisis-de-impacto/preflight",
+  "input_sha256": "243ae6f1a6966e722e20aeafc964f26d7993697ec9a84822e729f92c168d0097",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261120-220249/context-review/task-ir10-reglas-semánticas-y-análisis-de-impacto/preflight/243ae6f1a6966e722e20aeafc964f26d7993697ec9a84822e729f92c168d0097/attempt-1/input.md"
+  ],
+  "binary": "pi",
+  "model": "deepseek/deepseek-flash",
+  "input_delivery": "file",
+  "isolation_flags": [
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools"
+  ],
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-ir10-reglas-semánticas-y-análisis-de-impacto.md",
+      "sha256": "ce9d66684113f1ac3ef8fe9af5dea73dabbeefc2aa17d5d62be44cc782369554",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-20T22:02:49.798489+00:00",
+  "finished": "2026-11-20T22:02:58.079237+00:00"
+}

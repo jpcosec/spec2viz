@@ -1,0 +1,9 @@
+{
+  "key": "task-u5-las-notas-sobre-una-receta-o-un-nodo-se-guardan-en-el-store-por-post-save-y-no-en-localstorage/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "674ebf43866f30946cb70f42f7a5bb5864f23bca770318046f34eaec6a658b69",
+  "output_sha256": "f54704eaa3dca14e6ff2e2e98a3d10da7c6a75e9693e37fff95db4497b80690a",
+  "start": "2026-11-25T12:34:23.926175+00:00",
+  "end": "2026-11-25T12:34:35.402694+00:00"
+}

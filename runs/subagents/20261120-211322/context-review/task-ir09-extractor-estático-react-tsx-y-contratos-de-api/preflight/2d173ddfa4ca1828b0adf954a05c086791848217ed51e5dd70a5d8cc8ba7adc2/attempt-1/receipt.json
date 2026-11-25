@@ -1,0 +1,9 @@
+{
+  "key": "task-ir09-extractor-estático-react-tsx-y-contratos-de-api/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "2d173ddfa4ca1828b0adf954a05c086791848217ed51e5dd70a5d8cc8ba7adc2",
+  "output_sha256": "83e5664e734d74ad8df80593dac30f0ce6763805c852cfbcf0801507d0a3bf48",
+  "start": "2026-11-20T21:13:23.103470+00:00",
+  "end": "2026-11-20T21:13:36.402669+00:00"
+}

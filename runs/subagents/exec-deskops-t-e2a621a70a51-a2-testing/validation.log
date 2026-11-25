@@ -1,0 +1,22 @@
+Tester IR09 intento 2 — commit 6121f69f9da3b924875991a2f432886ad58e2a02
+Worktree limpio: /tmp/ir09-clean (detached HEAD 6121f69)
+Entorno: PYTHONPATH=/tmp/ir09-clean/src TMPDIR=/tmp /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+
+tests/extract/test_frontend_extraction.py  -> 12 passed, rc 0
+tests/extract                            -> 28 passed, rc 0
+tests/models/test_blog_chain.py           -> 7 passed, 2 xfailed, rc 0
+tests/test_imports.py                     -> 9 passed, rc 0
+TOTAL (sin suite completa)                -> 44 passed, 2 xfailed, rc 0
+
+grep -rnE "tree_sitter|import ast|from ast|pglast|read_bytes|read_text|sldb\.code\b|spec2viz" src/specir/extract
+  -> rc 1, sin coincidencias
+
+deskops graph missing --root .
+  -> rc 0, "No missing graph references found."
+
+Reproducción del fallo del intento 1:
+  probe.js: export function probePublish() { return fetch("/posts/{id}/publish"); }
+  ProbeButton.tsx: handler handleProbe -> probePublish()
+  extract_frontend not_derived:
+    frontend/src/api/probe.js:2 fetch: fetch no da el método en los facts (hueco declarado)
+  invokes para handleProbe: ninguno.

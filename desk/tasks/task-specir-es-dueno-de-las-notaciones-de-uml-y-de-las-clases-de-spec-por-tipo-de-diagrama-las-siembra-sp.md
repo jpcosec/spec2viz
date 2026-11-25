@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T17:45:00Z'
+  at: '2026-11-25T18:27:12Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp
 status: draft
 summary: ''
@@ -45,6 +45,8 @@ Dentro: src/specir/ (datos de notación, clases de spec, install.py, visual/spec
 _Outline the expected implementation route or affected surface._
 
 Leer sldb/docs/architecture/notations-and-views.md y store-declaration.md. El mecanismo (NotationDoc, GlyphDoc, LinkDoc, resolver, validar) se sigue usando desde sldb.api; solo se muda el contenido.
+
+Aclaraciones de la revisión: Repo: /mnt/ssd/proyectos/SLDB_1/IR. Las ocho notaciones son los YAML de /mnt/ssd/proyectos/SLDB_1/sldb/src/sldb/notations/builtin/: activity, component-view-matrix, component, deployment, reflection, statechart, uml-class, uml-sequence; se mueven todas (BPMN y capas no están ahí y quedan fuera). Las clases de spec por tipo de diagrama son las que hoy importa specir.visual.spec_models desde sldb.notations; el mapeo tipo→clase se toma de ese módulo. Se siembran como specir/data/ igual que relation_types.yaml (el mismo camino de specir install). La exención a quitar es la de tests/test_imports.py que permite a specir.visual.spec_models importar sldb.notations (líneas 3-17 del docstring y su lista); quitarla y que el test pase. 'Las 38 specs validan' = un test que recorre los fixtures de specs de tests/visual (los que haya, contarlos) y los valida con las clases de specIR. sldb deja de exportarlas: eso es una nota al inbox de sldb, no un cambio en sldb. No poner Task-Id en el commit de código.
 
 ## Validation
 

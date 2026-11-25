@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T17:45:12Z'
+  at: '2026-11-25T18:29:04Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a
 status: draft
 summary: ''
@@ -45,6 +45,8 @@ Dentro: skills/use-specir/SKILL.md y sus referencias. Fuera: el código, la skil
 _Outline the expected implementation route or affected surface._
 
 Comprobar cada comando que la skill nombre corriendo su --help; no describir como hecho lo que solo está decidido.
+
+Aclaraciones de la revisión: Repo: /mnt/ssd/proyectos/SLDB_1/IR. Dentro: skills/use-specir/SKILL.md y los archivos que ese SKILL.md enlaza dentro de skills/use-specir/. Leer docs/decisiones/paridad-por-capacidades.md. Para ver o editar un diagrama se va a la vista de notación de graph_ui (UIs/graph_ui, vista specs/notation); specIR declara y extrae. Lo decidido sin ejecutar se marca con '(decidido 2026-11-25, sin ejecutar)' en la línea. 'El comando existe' = su --help sale con rc 0. La validación con '!' es negación de shell (el grep no debe encontrar nada).
 
 ## Validation
 

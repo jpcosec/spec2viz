@@ -1,0 +1,9 @@
+{
+  "key": "task-specir-retirement-check-da-rc-0-spec2viz-sldb-sale-del-inventario-de-la-matriz-y-sv-a17-se-acredita/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "6a5b0f57aaf4f4c7c24d919f22481ae173e9fc6e29e5a83c7d3d77fdb49c4e35",
+  "output_sha256": "cda78fb913e323525dfd08fd34693aabb9a4eebbca4b20e3cda89c41156a078b",
+  "start": "2026-11-23T18:03:30.454492+00:00",
+  "end": "2026-11-23T18:03:43.465915+00:00"
+}

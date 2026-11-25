@@ -1,0 +1,37 @@
+name: task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo
+path: desk/tasks/task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo.md
+source_hash: 24dd2ca11bd6da18a34fd1bb976020785a797b49d52b7391088ccfb9d07c0d08
+content_hash: a2a87f49922021560aefbb7c1e3b72cd85b5f597f1bfa99c2e613d824d1d6ab3
+field_hashes:
+  title: ddff67e36bfd2089e90bf30bf9e52eaab02c04cba3b2e71e00632ef7e32139ab
+  id: 5b2c65ab49b672b583a1a60c170f0c38142ec167f4d2fa17f5f41b726fe097de
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: d47f46e638cf272d3a599c8592e044034aaca805ac7172a7ada307d6c0116a6c
+  goal: 9c8ea0b440c74611bb7f0da074c9b887f38ce039d3c2cd6b2231ba585f51ba31
+  scope: 57492ac55d31c19780c3b5bdfeedae6664d1339dd0f0c1680c22d7d946550aae
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: a6c612ccaec5e61989e72c6d8c51a073004f0572e2f5a6f0fc9f7776b9324fd2
+  validation: 6347472f42e1895fbd1b726996dbe9b9802d0e67217b01fcfdf1af02c5197545
+  done_when: fa5a3abedb99042f92b8084b1a22e8e3e02b87073d479840a60f1512fa5848b8
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T19:13:06Z'
+  authority: generated
+  via: create_document

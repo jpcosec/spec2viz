@@ -1,0 +1,9 @@
+{
+  "key": "task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "e007bf82882f5da879c4247d4c70e16c883b424f4913f5a25460476ded3fa0b7",
+  "output_sha256": "1ee2de03281a2dd76df175a7bc2c0aac239b4a9d3c0b1804c94be2f31242bfd6",
+  "start": "2026-11-25T14:24:57.354346+00:00",
+  "end": "2026-11-25T14:25:10.876399+00:00"
+}

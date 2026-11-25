@@ -1,0 +1,9 @@
+{
+  "key": "task-matriz-de-spec2viz-sv-k16-k21-k26-y-k29-pasan-a-sldb-notations-validate-y-se-retiran-los-validate-pr/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "5e1c4ab082ef0657e025d030c71df935fea20f25d59ca3fd5a4eb7a342e3c154",
+  "output_sha256": "0f67b1d46440a03a540c5ce4f41d6a773e05944746279986f63db513da15bbfc",
+  "start": "2026-11-21T04:20:28.984072+00:00",
+  "end": "2026-11-21T04:20:40.400347+00:00"
+}

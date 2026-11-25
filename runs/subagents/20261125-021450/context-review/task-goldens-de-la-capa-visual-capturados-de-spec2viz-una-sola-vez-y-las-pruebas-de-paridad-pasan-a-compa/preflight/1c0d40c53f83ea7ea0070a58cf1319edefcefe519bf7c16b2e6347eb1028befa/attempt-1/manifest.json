@@ -1,0 +1,48 @@
+{
+  "key": "task-goldens-de-la-capa-visual-capturados-de-spec2viz-una-sola-vez-y-las-pruebas-de-paridad-pasan-a-compa/preflight",
+  "input_sha256": "1c0d40c53f83ea7ea0070a58cf1319edefcefe519bf7c16b2e6347eb1028befa",
+  "argv": [
+    "pi",
+    "--provider",
+    "deepseek",
+    "--model",
+    "deepseek-flash",
+    "--thinking",
+    "low",
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools",
+    "--print",
+    "--system-prompt",
+    "Revisor barato aislado de un encargo de planificación. Trabajas solo con el input explícito: sin herramientas, historial ni otras fuentes. No ejecutas nada. Responde en español con estas secciones exactas: REFORMULACION (propósito, resultado, repo, límites), AMBIGUEDADES (numeradas, cada una con cita textual del input y qué obligaría a inventar; escribe \"ninguna\" si no hay), DRY-RUN (lecturas, cambios previstos, dependencias y validaciones futuras, sin ejecutar), FUTURO (lo que produce otro nodo o decide un humano, no ambigüedad). REFORMULACION describe el encargo del nodo, no esta revisión. DRY-RUN describe cómo lo ejecutaría un ejecutor futuro, hipotéticamente y sin ejecutar nada. Si el nodo es un agregado o paquete no ejecutable, dilo y además recorre cómo lo cumplen sus hijos, qué transfiere cada uno al siguiente y cómo se valida el resultado conjunto. Máximo 350 palabras.",
+    "@/mnt/ssd/proyectos/SLDB_1/IR/runs/subagents/20261125-021450/context-review/task-goldens-de-la-capa-visual-capturados-de-spec2viz-una-sola-vez-y-las-pruebas-de-paridad-pasan-a-compa/preflight/1c0d40c53f83ea7ea0070a58cf1319edefcefe519bf7c16b2e6347eb1028befa/attempt-1/input.md"
+  ],
+  "binary": "pi",
+  "model": "deepseek/deepseek-flash",
+  "input_delivery": "file",
+  "isolation_flags": [
+    "--offline",
+    "--no-session",
+    "--no-context-files",
+    "--no-skills",
+    "--no-extensions",
+    "--no-prompt-templates",
+    "--no-tools"
+  ],
+  "profile": "runtime-pi-deepseek-flash",
+  "selection_reason": "deepseek-flash: perfil barato verificado en esta máquina por ritual-context-review (D4)",
+  "sources": [
+    {
+      "path": "desk/tasks/task-goldens-de-la-capa-visual-capturados-de-spec2viz-una-sola-vez-y-las-pruebas-de-paridad-pasan-a-compa.md",
+      "sha256": "970aff9f6d3a554915afaae3e18ecffb0578ca1eb1d686c77a076fbd6b3a77ad",
+      "projection": "whole_file"
+    }
+  ],
+  "omitted_sources": [],
+  "started": "2026-11-25T02:14:50.783990+00:00",
+  "finished": "2026-11-25T02:15:07.249369+00:00"
+}

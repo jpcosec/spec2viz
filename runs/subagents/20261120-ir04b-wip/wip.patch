@@ -1,0 +1,509 @@
+diff --git a/src/specir/mcp_extension.py b/src/specir/mcp_extension.py
+index 2b745c3..0876fae 100644
+--- a/src/specir/mcp_extension.py
++++ b/src/specir/mcp_extension.py
+@@ -7,11 +7,12 @@ adds only what is its own, over its domain types (`specir.models.domain`, IR06):
+   store registers it and how many documents it tracks.
+ - `specir_nodes` (every level, read-only): the specIR nodes of the store with their provenance
+   (IR05 D1-B), filtered by type, layer, origen and verificacion, as a page.
+-- From level 1, `propose_changes` refuses a change that writes `verificacion: verificado` (IR05
+-  D2-E: an agent does not verify through the MCP; only a human outside it or a deterministic
+-  check does). sldb's own write tools are served unchanged otherwise: the extension serves
+-  `propose_changes` and `apply_changes` from one `WriteTools` of sldb, so the proposal it seals
+-  is the one `apply_changes` accepts.
++- From level 1, a batch validator (`context.add_batch_validator` of sldb) refuses a change that
++  writes `verificacion: verificado` (IR05 D2-E: an agent does not verify through the MCP; only a
++  human outside it or a deterministic check does). sldb runs it on `propose_changes` (over the
++  typed changes) and on `apply_changes` (over the proposal's batch changes) and answers a `domain`
++  rejection with nothing written. The write tools, their proposal and the undo of the session
++  are sldb's, served unchanged: this module creates none of them.
+ 
+ This is the only module of specIR that reaches `sldb.mcp`; the rest uses `sldb.api` alone.
+ """
+@@ -21,10 +22,9 @@ from __future__ import annotations
+ from typing import Any, Literal
+ 
+ import sldb.api as api
+-from sldb.mcp.changes import AssertEdge, Change, CreateDocument, UpdateDocument
++from sldb.mcp.changes import AssertEdge, BatchChange, CreateDocument, UpdateDocument
+ from sldb.mcp.paging import DEFAULT_LIMIT, page
+-from sldb.mcp.registry import PROPOSES, READ_ONLY, WRITES
+-from sldb.mcp.write import WriteTools
++from sldb.mcp.registry import READ_ONLY
+ 
+ from specir.models.domain import DOMAIN_MODELS, PROVENANCE_FIELDS, Origen, SpecIRNodeDoc, Verificacion
+ 
+@@ -41,18 +41,39 @@ def own_fields(model: type[SpecIRNodeDoc]) -> list[str]:
+     return [name for name in model.model_fields if name not in SpecIRNodeDoc.model_fields]
+ 
+ 
+-def claims_verified(change: Any) -> bool:
+-    """Whether a change writes `verificacion: verificado` on a node or in an edge's attributes."""
++def _says_verified(values: Any) -> bool:
++    return isinstance(values, dict) and values.get("verificacion") == "verificado"
++
++
++def _payload_verified(payload: dict[str, Any] | None) -> bool:
++    return _says_verified(payload) or _says_verified((payload or {}).get("attributes"))
++
++
++def claims_verified(change: Any, store_path: Any = None) -> bool:
++    """Whether a change writes `verificacion: verificado` on a node or in an edge's attributes.
++
++    It reads the typed changes of `propose_changes` and the `BatchChange`s of `apply_changes`. A
++    batch update carries the whole payload, so it claims it only if the stored document is not
++    verified already (a human's verification stays; editing another field of it is not a claim)."""
+     if isinstance(change, CreateDocument):
+-        written = [change.payload, change.payload.get("attributes") or {}]
+-    elif isinstance(change, UpdateDocument):
++        return _payload_verified(change.payload)
++    if isinstance(change, UpdateDocument):
+         fields = change.fields
+-        written = [fields, fields.get("attributes") or {}, {"verificacion": fields.get("attributes.verificacion")}]
+-    elif isinstance(change, AssertEdge):
+-        written = [change.attributes]
+-    else:
+-        return False
+-    return any(isinstance(values, dict) and values.get("verificacion") == "verificado" for values in written)
++        return _payload_verified(fields) or fields.get("attributes.verificacion") == "verificado"
++    if isinstance(change, AssertEdge):
++        return _says_verified(change.attributes)
++    if isinstance(change, BatchChange) and change.action in ("create", "update"):
++        if not _payload_verified(change.payload):
++            return False
++        if change.action == "update" and store_path is not None:
++            current = api.serialize_document(api.runtime_document(store_path, None, f"{change.model}/{change.id}"))["payload"]
++            return not _payload_verified(current)
++        return True
++    return False
++
++
++def change_name(change: Any) -> str:
++    return getattr(change, "name", None) or getattr(change, "id", "")
+ 
+ 
+ class DomainTools:
+@@ -113,16 +134,13 @@ def register(server: Any, context: Any) -> None:
+     server.add_tool(tools.specir_nodes, annotations=READ_ONLY)
+     if context.level < 1:
+         return
+-    writes = WriteTools(context.store_path, context.level, context.actor)
+-
+-    def propose_changes(changes: list[Change]) -> dict[str, Any]:
+-        for change in changes:
+-            if claims_verified(change):
+-                raise ValueError(f"{change.name}: {VERIFIES}")
+-        return writes.propose_changes(changes)
+-
+-    propose_changes.__doc__ = f"{writes.propose_changes.__doc__} specIR: {VERIFIES}."
+-    for name in ("propose_changes", "apply_changes"):
+-        server.remove_tool(name)
+-    server.add_tool(propose_changes, annotations=PROPOSES)
+-    server.add_tool(writes.apply_changes, annotations=WRITES)
++
++    def verification_is_not_written(changes: list[Any], validating: Any) -> list[dict[str, Any]]:
++        """sldb's `BatchValidator`: one error finding per change that writes `verificacion: verificado`."""
++        return [
++            {"code": "specir_agent_verifies", "level": "error", "what": f"{change_name(change)}: {VERIFIES}", "subject": change_name(change)}
++            for change in changes
++            if claims_verified(change, validating.store_path)
++        ]
++
++    context.add_batch_validator(verification_is_not_written)
+diff --git a/tests/test_mcp_extension.py b/tests/test_mcp_extension.py
+index dfab6a8..1d8159a 100644
+--- a/tests/test_mcp_extension.py
++++ b/tests/test_mcp_extension.py
+@@ -6,13 +6,16 @@ and specIR's, changes no file of any store."""
+ 
+ from __future__ import annotations
+ 
++import subprocess
++import sys
+ from pathlib import Path
+ from typing import Any
+ 
++import pytest
+ import yaml
+ from sldb.api import extract_document_payload
+ 
+-from conftest import REPO, WORKSPACE, copy_digest, linked_stores, tree_digest
++from conftest import REPO, WORKSPACE, copy_digest, linked_stores, mount_copy, served, tree_digest
+ 
+ #: sldb's read surface (sldb.mcp.registry.READ_TOOLS) and its signal log.
+ SLDB_READ = {
+@@ -134,3 +137,105 @@ def test_reading_through_every_tool_leaves_every_store_untouched(mcp, store_copy
+     now = tree_digest(REPO / ".sldb", REPO / "desk")
+     moved = sorted(path for path in set(original_digest) | set(now) if original_digest.get(path) != now.get(path))
+     assert not moved, f"the repo's own store changed during the tests: {moved}"
++
++
++# --- IR05 D2-E: an agent does not verify through the MCP. specIR registers it as a batch validator of
++# sldb (`context.add_batch_validator`); sldb answers a `domain` rejection with nothing written.
++
++ACTOR = "agent:specir-d2e"
++NODE = {"title": "Node", "origen": "declarado", "description": "A node.", "symbol": None, "desconocidos": {"symbol": "no code yet"}}
++VERIFIED = {"verificacion": "verificado", "verificado_por": "human:jp", "evidencia": "x"}
++
++
++@pytest.fixture(scope="module")
++def writable(tmp_path_factory, spec_store, federated) -> Path:
++    root = mount_copy(tmp_path_factory, "specir-d2e", spec_store, federated)
++    done = subprocess.run([sys.executable, "-m", "specir.install", "--store", str(root / ".sldb")], cwd=root, capture_output=True, text=True)
++    assert done.returncode == 0, done.stdout + done.stderr
++    return root
++
++
++def create(name: str, **extra: Any) -> dict[str, Any]:
++    return {"action": "create", "model": "DomainEntityDoc", "name": name, "path": f"d2e/{name}.md", "payload": {**NODE, **extra}}
++
++
++def test_the_write_tools_are_sldbs_own_and_the_extension_adds_a_validator_not_a_tool(writable) -> None:
++    with served(writable, "--level", "1", "--actor", ACTOR) as session:
++        names = {t.name for t in session.list_tools()}
++        assert names == SLDB_READ | DOMAIN | SLDB_WRITE | {"undo_changes"}, names
++
++
++def test_a_change_that_writes_verificado_is_refused_in_propose_as_a_domain_rejection_and_nothing_is_written(writable, spec_store, federated) -> None:
++    before = copy_digest(writable, spec_store, federated)
++    seed = create("d2e-seed")
++    with served(writable, "--level", "1", "--actor", ACTOR) as session:
++        proposal = session.call("propose_changes", changes=[seed])["proposal"]
++        assert session.call("apply_changes", proposal=proposal)["applied"] is True
++        seeded = copy_digest(writable, spec_store, federated)
++        edge = {"action": "assert_edge", "name": "d2e-edge", "path": "d2e/edges/d2e-edge.md", "source": "DomainEntityDoc:d2e-seed", "target": "DomainEntityDoc:d2e-seed",
++                "relation_type": "references", "attributes": {"origen": "declarado", **VERIFIED}}
++        refused = [
++            create("d2e-self-verified", **VERIFIED),
++            {"action": "update", "model": "DomainEntityDoc", "name": "d2e-seed", "fields": VERIFIED},
++            {"action": "update", "model": "RelationDoc", "name": "d2e-edge", "fields": {"attributes.verificacion": "verificado"}},
++            edge,
++        ]
++        for change in refused:
++            answer = session.call("propose_changes", changes=[change])
++            print("D2-E", change["action"], answer)
++            assert answer["applied"] is False and answer["rejected"] == "domain" and answer["written"] is False, answer
++            assert "proposal" not in answer
++            found = answer["findings"]
++            assert [f["level"] for f in found] == ["error"] and found[0]["code"] == "specir_agent_verifies" and "IR05 D2-E" in found[0]["what"], found
++        assert copy_digest(writable, spec_store, federated) == seeded
++    assert seeded != before
++
++
++def test_the_same_rule_refuses_the_batch_changes_apply_receives_and_leaves_what_is_stored_alone(writable, spec_store, federated) -> None:
++    """In `apply_changes` sldb hands the validator the proposal's `BatchChange`s. The seal makes a
++    proposal untouchable, so the batch changes are built by sldb from a benign proposal and edited
++    here to say verificado: the validator, the one the server registered, must refuse them."""
++    from sldb.mcp.context import ServerContext
++    from sldb.mcp.server import build_server
++    from sldb.mcp.write import WriteTools
++    from sldb.mcp.changes import Proposal
++
++    import specir.mcp_extension as extension
++
++    store = writable / ".sldb"
++    context = ServerContext(store, 1, ACTOR)
++    extension.register(build_server(store, 1, ACTOR), context)
++    assert len(context.batch_validators) == 1
++    writes = WriteTools(store, 1, ACTOR, context=context)
++    from sldb.mcp.changes import CreateDocument
++
++    proposal = writes.propose_changes([CreateDocument(action="create", model="DomainEntityDoc", name="d2e-batch", path="d2e/d2e-batch.md", payload=NODE)])["proposal"]
++    benign = Proposal.model_validate(proposal).changes
++    assert context.batch_validators[0](benign, context) == []
++    claiming = [c.model_copy(update={"payload": {**c.payload, **VERIFIED}}) for c in benign]
++    found = context.batch_validators[0](claiming, context)
++    assert [f["level"] for f in found] == ["error"] and found[0]["subject"] == "d2e-batch", found
++    # A seal check comes first: the edited proposal does not even reach the validator, and nothing is written.
++    tampered = {**proposal, "changes": [c.model_dump(mode="json") for c in claiming]}
++    before = copy_digest(writable, spec_store, federated)
++    try:
++        answer = writes.apply_changes(Proposal.model_validate(tampered))
++    except Exception as error:  # the seal refuses it
++        answer = {"applied": False, "error": str(error)}
++    assert answer["applied"] is False
++    assert copy_digest(writable, spec_store, federated) == before
++
++
++def test_an_edit_of_a_node_a_human_verified_is_not_a_claim_of_the_agent(writable) -> None:
++    """A batch update carries the whole payload: if the stored node is verified already, editing
++    another field of it is not a new `verificacion: verificado`."""
++    from sldb.mcp.changes import BatchChange
++
++    import specir.mcp_extension as extension
++
++    with served(writable, "--level", "1", "--actor", ACTOR) as session:
++        stored = session.call("read_document", ref="DomainEntityDoc:d2e-seed")["payload"]
++    assert stored["verificacion"] == "sin_verificar"
++    claim = BatchChange(id="d2e-seed", action="update", model="DomainEntityDoc", payload={**stored, **VERIFIED})
++    assert extension.claims_verified(claim, writable / ".sldb") is True
++    assert extension.claims_verified(claim.model_copy(update={"payload": stored}), writable / ".sldb") is False
+diff --git a/tests/test_mcp_undo.py b/tests/test_mcp_undo.py
+new file mode 100644
+index 0000000..4a446df
+--- /dev/null
++++ b/tests/test_mcp_undo.py
+@@ -0,0 +1,263 @@
++"""IR04b: the `undo_changes` of `sldb mcp` over a mounted copy of this repo's store, with specIR's
++extension mounted, driven by the real MCP client (tests/conftest.py `served`). Nothing is mocked and
++specIR implements no undo: the tool, the stack of inverse batches and the guards are sldb's."""
++
++from __future__ import annotations
++
++import subprocess
++import sys
++from pathlib import Path
++from typing import Any, Iterator
++
++import pytest
++
++from conftest import REPO, copy_digest, mount_copy, served, tree_digest
++
++ACTOR = "agent:specir-ir04b"
++EDGE = {"origen": "declarado", "verificacion": "sin_verificar"}
++OP = "undo-seed-op"
++
++
++def node(model: str, description: str, **extra: Any) -> dict[str, Any]:
++    return {"title": description, "origen": "declarado", "description": description, "symbol": None, "desconocidos": {"symbol": "no code yet"}, **extra}
++
++
++def seed() -> list[dict[str, Any]]:
++    """What the copy holds before the cases: one domain operation, written through the server."""
++    return [{"action": "create", "model": "DomainOperationDoc", "name": OP, "path": "undo/domain/seed-op.md", "payload": node("DomainOperationDoc", "A seed operation.")}]
++
++
++def content_batch(tag: str) -> list[dict[str, Any]]:
++    """Level 1: create a DomainEntityDoc, edit the existing DomainOperationDoc, assert `writes` between them."""
++    entity = f"undo-entity-{tag}"
++    return [
++        {"action": "create", "model": "DomainEntityDoc", "name": entity, "path": f"undo/domain/{entity}.md", "payload": node("DomainEntityDoc", f"Entity {tag}.")},
++        {"action": "update", "model": "DomainOperationDoc", "name": OP, "fields": {"description": f"Edited by the batch {tag}."}},
++        {"action": "assert_edge", "name": f"undo-op-writes-{tag}", "path": f"undo/edges/op-writes-{tag}.md", "source": f"DomainOperationDoc:{OP}", "target": f"DomainEntityDoc:{entity}", "relation_type": "writes", "attributes": EDGE},
++    ]
++
++
++def rule_change(tag: str) -> dict[str, Any]:
++    return {"action": "create", "model": "RuleDoc", "name": f"rule-undo-{tag}", "path": f"undo/rules/rule-undo-{tag}.md",
++            "payload": {"title": f"Undo rule {tag}", "subject": "model <= DomainEntityDoc", "where": "", "condition": "any(rel:writes: model <= DomainOperationDoc)", "severity": "alert", "moment": "on_check", "message": "No operation writes this entity."}}
++
++
++def propose_apply(session: Any, changes: list[dict[str, Any]]) -> dict[str, Any]:
++    proposal = session.call("propose_changes", changes=changes)["proposal"]
++    return session.call("apply_changes", proposal=proposal)
++
++
++def install(root: Path) -> None:
++    """`python -m specir.install --store <root>/.sldb`, specIR's own command."""
++    done = subprocess.run([sys.executable, "-m", "specir.install", "--store", str(root / ".sldb")], cwd=root, capture_output=True, text=True)
++    assert done.returncode == 0, done.stdout + done.stderr
++
++
++def cli(root: Path, *args: str) -> subprocess.CompletedProcess:
++    return subprocess.run([str(Path(sys.executable).with_name("sldb")), *args, "--store", ".sldb"], cwd=root, capture_output=True, text=True)
++
++
++def checks(root: Path) -> dict[str, tuple[int, str]]:
++    """`sldb rules check` and `sldb edges check` over the copy: (rc, output)."""
++    return {name: (done.returncode, done.stdout + done.stderr) for name, done in (("rules", cli(root, "rules", "check")), ("edges", cli(root, "edges", "check")))}
++
++
++@pytest.fixture(scope="module")
++def copy_root(tmp_path_factory, spec_store, federated) -> Path:
++    """A writable mounted copy with specIR installed and the seed operation written by a level-1 session."""
++    root = mount_copy(tmp_path_factory, "specir-undo", spec_store, federated)
++    install(root)
++    with served(root, "--level", "1", "--actor", ACTOR) as session:
++        assert propose_apply(session, seed())["applied"] is True
++    return root
++
++
++class Digest(dict):
++    """The sha256 of every file of the copy and the linked stores; comparing two of them that
++    differ prints, for each file of the copy that changed, what changed (a unified diff)."""
++
++    files: dict[str, bytes]
++
++    def __eq__(self, other: object) -> bool:
++        same = dict.__eq__(self, other)
++        if not same and isinstance(other, Digest):
++            import difflib
++
++            for path in sorted(p for p in set(self) | set(other) if self.get(p) != other.get(p)):
++                old, new = other.files.get(path, b""), self.files.get(path, b"")
++                print("CHANGED", path)
++                print("".join(difflib.unified_diff(old.decode(errors="replace").splitlines(True), new.decode(errors="replace").splitlines(True), "before", "after", n=1))[:3000])
++        return same
++
++    __hash__ = None  # type: ignore[assignment]
++
++
++@pytest.fixture
++def digest(copy_root, spec_store, federated):
++    def take() -> Digest:
++        taken = Digest(copy_digest(copy_root, spec_store, federated))
++        taken.files = {str(p): p.read_bytes() for p in sorted(copy_root.rglob("*")) if p.is_file() and ".sldb_cache" not in p.parts and p.suffix in (".yaml", ".md")}
++        return taken
++
++    return take
++
++
++@pytest.fixture
++def content(copy_root):
++    """What the store holds as documents: the sha256 of every Markdown document of the copy."""
++    def take() -> Digest:
++        taken = Digest(md_digest(copy_root))
++        taken.files = {str(p): p.read_bytes() for p in sorted(copy_root.rglob("*.md")) if ".sldb_cache" not in p.parts}
++        return taken
++
++    return take
++
++
++def md_digest(root: Path) -> dict[str, str]:
++    return {k: v for k, v in tree_digest(*(root / n for n in (".sldb", "sldb", "desk", "undo") if (root / n).exists())).items() if k.endswith(".md")}
++
++
++def test_level_1_batch_of_create_edit_and_edge_is_undone_to_the_same_documents(copy_root, digest, content) -> None:
++    before, mds, checked = digest(), md_digest(copy_root), checks(copy_root)
++    with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
++        assert "undo_changes" in {t.name for t in session.list_tools()}
++        applied = propose_apply(session, content_batch("a"))
++        assert applied["applied"] is True and applied["edge_findings"] == [], applied
++        assert digest() != before
++        undone = session.call("undo_changes", steps=1)
++        print("UNDO", undone)
++        assert undone["applied"] is True and undone["undone"] == 1 and undone["remaining"] == 0, undone
++    assert content() == mds
++    after = checks(copy_root)
++    print("CHECKS before", checked, "after", after)
++    assert after == checked and all(rc == 0 for rc, _ in after.values()), after
++
++
++def test_the_store_files_are_byte_identical_after_the_undo(copy_root, digest) -> None:
++    """Validation 1 asks the sha256 of the store files to match too. It does not: see the finding
++    for sldb in runs/subagents/deskops-e-674fcb14989b-a2/result-summary.md. Kept strict, not xfail."""
++    before = digest()
++    with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
++        assert propose_apply(session, content_batch("h"))["applied"] is True
++        assert session.call("undo_changes", steps=1)["applied"] is True
++    assert digest() == before
++
++
++def foreign_edit(root: Path, description: str) -> None:
++    """Someone else writes over the operation, outside the MCP session: `sldb.api.apply_batch`."""
++    from sldb import api
++
++    payload = api.serialize_document(api.runtime_document(root / ".sldb", None, f"DomainOperationDoc/{OP}"))["payload"]
++    api.apply_batch(root / ".sldb", [{"action": "update", "id": OP, "payload": {**payload, "description": description}}])
++
++
++def test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted(copy_root, digest, content) -> None:
++    before, mds = digest(), content()
++    with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
++        assert propose_apply(session, content_batch("b"))["applied"] is True
++        foreign_edit(copy_root, "Edited by someone else.")
++        foreign_state = digest()
++        refused = session.call("undo_changes", steps=1)
++        print("STALE", refused)
++        assert refused["applied"] is False and refused["rejected"] == "stale" and refused["written"] is False, refused
++        assert OP in str(refused["document"]), refused
++        assert digest() == foreign_state, "a stale undo wrote something"
++        # The foreign change is reverted by another batch, from another session (its own stack),
++        # that returns the document to the content it had after the batch.
++        with served(copy_root, "--level", "1", "--actor", ACTOR) as other:
++            assert propose_apply(other, [{"action": "update", "model": "DomainOperationDoc", "name": OP, "fields": {"description": "Edited by the batch b."}}])["applied"] is True
++        # The batch stayed on the stack: it is undone now.
++        undone = session.call("undo_changes", steps=1)
++        print("UNDO AFTER REVERT", undone)
++        assert undone["applied"] is True and undone["undone"] == 1, undone
++    assert content() == mds
++
++
++def test_two_batches_are_undone_newest_first_with_steps_and_an_empty_stack_refuses(copy_root, digest, content) -> None:
++    before = content()
++    with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
++        first = propose_apply(session, content_batch("d1"))
++        second = propose_apply(session, [{"action": "update", "model": "DomainEntityDoc", "name": "undo-entity-d1", "fields": {"description": "Edited again."}}])
++        assert first["applied"] and second["applied"]
++        undone = session.call("undo_changes", steps=2)
++        print("UNDO 2", undone)
++        assert undone["applied"] is True and undone["undone"] == 2 and undone["remaining"] == 0, undone
++        assert content() == before
++        nothing = session.call("undo_changes", steps=1)
++        print("EMPTY", nothing)
++        assert nothing["applied"] is False and nothing["rejected"] == "nothing_to_undo" and nothing["written"] is False, nothing
++    assert content() == before
++
++
++def test_level_0_serves_neither_write_tools_nor_undo_changes(copy_root, digest) -> None:
++    before = digest()
++    with served(copy_root) as session:
++        names = {t.name for t in session.list_tools()}
++        assert not names & {"propose_changes", "apply_changes", "undo_changes"}, names
++        answer = session.portal.call(lambda: session.client.call_tool("undo_changes", {"steps": 1}))
++        print("LEVEL 0", answer.is_error, answer.structured_content)
++        assert answer.structured_content["signal"] == "unknown_tool", answer
++    assert digest() == before
++
++
++def test_level_1_refuses_a_batch_of_rules_so_none_is_on_its_stack_and_a_level_2_batch_is_not_undone_from_it(copy_root, digest, content) -> None:
++    before = content()
++    with served(copy_root, "--level", "1", "--actor", ACTOR) as session:
++        refusal = session.error_of("propose_changes", changes=[*content_batch("e"), rule_change("e")])
++        print("LEVEL 1 RULEDOC", refusal)
++        assert "level" in refusal
++        nothing = session.call("undo_changes", steps=1)
++        assert nothing["applied"] is False and nothing["rejected"] == "nothing_to_undo", nothing
++    assert content() == before
++    with served(copy_root, "--level", "2", "--actor", ACTOR) as rules:
++        assert propose_apply(rules, [*content_batch("f"), rule_change("f")])["applied"] is True
++        applied_state = content()
++        with served(copy_root, "--level", "1", "--actor", ACTOR) as level_1:
++            nothing = level_1.call("undo_changes", steps=1)
++            print("LEVEL 1 OVER A LEVEL 2 BATCH", nothing)
++            assert nothing["applied"] is False and nothing["rejected"] == "nothing_to_undo", nothing
++        assert content() == applied_state
++        undone = rules.call("undo_changes", steps=1)
++        print("LEVEL 2 UNDO", undone)
++        assert undone["applied"] is True and undone["undone"] == 1, undone
++    assert content() == before
++
++
++def test_the_store_after_an_undo_passes_the_checks_and_the_registered_domain_validators(copy_root, digest, content) -> None:
++    """sldb applies the inverse batch with `apply_batch` directly, so the batch validators specIR
++    registered (`add_batch_validator`) do not run on it. After the undo the store must pass sldb's
++    rules and edges checks, and the registered validators, run over the documents of the batch as
++    they are stored, must find no error."""
++    from sldb import api
++    from sldb.mcp.changes import BatchChange
++    from sldb.mcp.context import ServerContext
++    from sldb.mcp.server import build_server
++
++    import specir.mcp_extension as extension
++
++    before, checked = content(), checks(copy_root)
++    context = ServerContext(copy_root / ".sldb", 2, ACTOR)
++    extension.register(build_server(copy_root / ".sldb", 2, ACTOR), context)
++    assert len(context.batch_validators) == 1
++    stored = lambda name: api.serialize_document(api.runtime_document(copy_root / ".sldb", None, f"DomainOperationDoc/{name}"))["payload"]
++    with served(copy_root, "--level", "2", "--actor", ACTOR) as session:
++        assert propose_apply(session, [*content_batch("g"), rule_change("g")])["applied"] is True
++        assert session.call("undo_changes", steps=1)["applied"] is True
++    after = checks(copy_root)
++    print("RULES/EDGES", after)
++    assert after == checked and after["rules"][0] == 0 and after["edges"][0] == 0
++    assert content() == before
++    documents = [BatchChange(id=OP, action="update", model="DomainOperationDoc", payload=stored(OP))]
++    findings = [f for validator in context.batch_validators for f in validator(documents, context)]
++    print("VALIDATORS over the documents of the batch after the undo", findings)
++    assert [f for f in findings if f["level"] == "error"] == [], findings
++
++
++def test_specir_defines_no_undo() -> None:
++    """(f): an own implementation is a `def`, a registered tool or a structure keeping batches; docstring
++    mentions and calls to sldb's tool do not count. Today the only hit is the vendored, minified bpmn-js."""
++    done = subprocess.run(["grep", "-rnE", "undo_changes|inverse", "src/specir"], cwd=REPO, capture_output=True, text=True)
++    print("GREP", [line[:120] for line in done.stdout.splitlines()])
++    own_code = [line for line in done.stdout.splitlines() if "/vendor/" not in line.split(":", 1)[0]]
++    assert own_code == [], own_code
++    assert all(line.startswith("src/specir/visual/templates/vendor/bpmn-js/") for line in done.stdout.splitlines())

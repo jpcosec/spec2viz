@@ -1,0 +1,22 @@
+Tester IR04b cierre — commit e5c575592a333fbd55ca6628beb9bdd732700e7d
+Worktree limpio: /workspace/ir04b-test-e5c5755 (detached HEAD e5c5755)
+Entorno: PYTHONPATH=/workspace/ir04b-test-e5c5755/src TMPDIR=/tmp /mnt/ssd/proyectos/SLDB_1/IR/.venv/bin/python
+Nota: se copiaron runs/subagents/*/run.md al worktree (el .sldb los referencia y no están en el commit).
+
+tests/test_mcp_undo.py                  -> 8 passed, rc 0 (213 s), sin xfail
+tests/test_mcp_extension.py             -> 11 passed, rc 0 (117 s)
+tests/models/test_blog_chain.py         -> 7 passed, 2 xfailed, rc 0 (14 s)
+tests/models/test_domain_tools.py       -> 5 passed, rc 0 (11 s)
+tests/test_imports.py                   -> 9 passed, rc 0 (1 s)
+
+Comprobación del encargo:
+  md_digest: sldb.api.select_documents(root / ".sldb", {}) por documento
+             + sha256 del texto de su archivo sin el bloque sldb
+             + clave estable store:{export_id}@{path}
+  Identidad: test_the_documents_and_the_store_have_the_same_content_after_the_undo
+             compara set de claves y contenido antes/después.
+  Stale:     test_a_stale_batch_is_refused_without_writing_and_undone_once_the_foreign_change_is_reverted
+             pasa (ya no depende de load_runtime_documents).
+  Digest:    sin sldb.models / strip_block; solo from sldb import api.
+
+Veredicto: PASA

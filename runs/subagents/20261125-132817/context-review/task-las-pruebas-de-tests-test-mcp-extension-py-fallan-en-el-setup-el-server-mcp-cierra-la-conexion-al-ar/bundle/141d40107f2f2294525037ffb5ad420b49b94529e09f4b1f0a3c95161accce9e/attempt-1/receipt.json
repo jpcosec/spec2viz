@@ -1,0 +1,9 @@
+{
+  "key": "task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "141d40107f2f2294525037ffb5ad420b49b94529e09f4b1f0a3c95161accce9e",
+  "output_sha256": "1cab9d2756b6fc26866f9ba09fc16185bf7ad4a3da1ea6921d9ccfe3c08cbe66",
+  "start": "2026-11-25T13:28:17.915969+00:00",
+  "end": "2026-11-25T13:28:34.555314+00:00"
+}

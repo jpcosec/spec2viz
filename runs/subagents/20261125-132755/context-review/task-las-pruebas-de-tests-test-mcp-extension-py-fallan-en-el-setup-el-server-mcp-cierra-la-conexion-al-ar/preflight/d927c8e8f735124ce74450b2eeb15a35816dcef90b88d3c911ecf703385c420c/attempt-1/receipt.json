@@ -1,0 +1,9 @@
+{
+  "key": "task-las-pruebas-de-tests-test-mcp-extension-py-fallan-en-el-setup-el-server-mcp-cierra-la-conexion-al-ar/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "d927c8e8f735124ce74450b2eeb15a35816dcef90b88d3c911ecf703385c420c",
+  "output_sha256": "62681c100690be75dca4327e122e005fd71de2eaff7995b5026f22cb42ae0976",
+  "start": "2026-11-25T13:27:56.575285+00:00",
+  "end": "2026-11-25T13:28:10.205117+00:00"
+}

@@ -1,0 +1,9 @@
+{
+  "key": "task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "7ae45ea4b6b4eacb1ce76c35a2cf219f958c39aa998573090cc1675e697fbe54",
+  "output_sha256": "46afc55f74f2631f0afbdd461f6313ed40cee3cf015ebfc9d0596547df2ed447",
+  "start": "2026-11-25T18:10:54.985300+00:00",
+  "end": "2026-11-25T18:11:07.552464+00:00"
+}

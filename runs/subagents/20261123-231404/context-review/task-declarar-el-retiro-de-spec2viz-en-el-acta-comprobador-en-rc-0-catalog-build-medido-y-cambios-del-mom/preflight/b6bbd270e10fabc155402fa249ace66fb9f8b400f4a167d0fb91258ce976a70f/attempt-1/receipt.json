@@ -1,0 +1,9 @@
+{
+  "key": "task-declarar-el-retiro-de-spec2viz-en-el-acta-comprobador-en-rc-0-catalog-build-medido-y-cambios-del-mom/preflight",
+  "technical_ok": false,
+  "returncode": null,
+  "input_sha256": "b6bbd270e10fabc155402fa249ace66fb9f8b400f4a167d0fb91258ce976a70f",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "start": "2026-11-23T23:14:04.687461+00:00",
+  "end": "2026-11-23T23:29:04.795488+00:00"
+}

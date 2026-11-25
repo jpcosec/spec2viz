@@ -1,0 +1,9 @@
+{
+  "key": "task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "022af77a517bc0992b42e4bf773881ef540d68fbb821b368ed057c230edbf24c",
+  "output_sha256": "7ba19bc9f377d5fc9382f6dd05bf8048ca1416dfccc7251d9a59e0ed05fc64f0",
+  "start": "2026-11-25T05:44:00.852129+00:00",
+  "end": "2026-11-25T05:44:15.160440+00:00"
+}

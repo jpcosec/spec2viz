@@ -1,0 +1,29 @@
+Task: task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz
+Title: IR13 Migración de consumidores y gate final de retiro de spec2viz
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Phase: execution
+Required ritual:
+- desk/rituals/execution.md
+Required pills:
+- desk/contexts/pills.md
+- desk/contexts/pill-guardrail-specir-solo-usa-la-api-pública-de-sldb.md
+- desk/contexts/pill-guardrail-sin-mocks-ni-datos-fabricados-detenerse-ante-un-bloqueo.md
+- desk/contexts/pill-guardrail-los-cambios-en-otros-repos-se-piden-por-su-desk.md
+- desk/contexts/pill-guardrail-la-paridad-con-spec2viz-se-demuestra-con-sus-pruebas.md
+Next actions:
+1. Make the active task, scope, touched files, and validation targets explicit.
+2. Run a fresh-context subagent review.
+3. Bind matching board and task pills.
+4. Start implementation only after the initialization gate is satisfied.
+Advance when:
+- Execution gate obligations are recorded or satisfied.
+Post-hooks:
+- task_activates:
+  - encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  - encola-tester: deskops queue add dispatch-tester --root .
+Sources:
+- task: desk/tasks/task-ir13-sync-generación-catálogos-consumidores-y-retiro-de-spec2viz.md
+- board: desk/tasks/Board.md
+- workflow: deskops/spec/workflows/task_lifecycle.yaml

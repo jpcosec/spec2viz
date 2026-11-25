@@ -1,0 +1,9 @@
+{
+  "key": "task-u2-composiciones-lista-las-recetas-de-diagrama-del-store-con-filtro-por-capa-buscador-y-cobertura-n/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "4434d79ccfbd37d6e14224ea1da1079ddee20e86e16cb2929f232600ca65fc6a",
+  "output_sha256": "218a5390718321bf3a522bcfbed7e51af86bf92ddf3c7892bd8027e97c546651",
+  "start": "2026-11-25T12:33:19.911374+00:00",
+  "end": "2026-11-25T12:33:29.914349+00:00"
+}

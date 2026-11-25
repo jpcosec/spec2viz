@@ -1,0 +1,26 @@
+Tester IR04b intento 2 — commit 57616e89123162b9117109ad3fa5765f0ce960cf
+Worktree limpio: /workspace/ir04b-clean (detached HEAD 57616e8)
+Entorno: PYTHONPATH=/workspace/ir04b-clean/src TMPDIR=/tmp /workspace/IR/.venv/bin/python
+Nota: se copiaron runs/subagents/*/run.md al worktree (el .sldb los referencia y no están en el commit).
+
+tests/test_mcp_undo.py                  -> 8 passed, rc 0 (198 s), sin xfail
+tests/test_mcp_extension.py             -> 11 passed, rc 0 (117 s)
+tests/models/test_blog_chain.py         -> 7 passed, 2 xfailed, rc 0 (14 s)
+tests/models/test_domain_tools.py       -> 5 passed, rc 0 (11 s)
+tests/test_imports.py                   -> 9 passed, rc 0 (1 s)
+
+grep -rnE "undo_changes|inverse" src/specir
+  -> rc 1, sin implementación propia (solo bpmn-js vendorizado)
+
+deskops graph missing --root .
+  -> rc 0, "No missing graph references found."
+
+Hallazgo bloqueante:
+  test_the_documents_and_the_store_have_the_same_content_after_the_undo
+  solo compara *.md (content()/md_digest); no lee .sldb/core/documents/**/*.yaml.
+  Comprobación manual del criterio que falta, tras aplicar content_batch("y") y
+  undo_changes(steps=1):
+    conjunto de .sldb/core/documents/**/*.yaml igual: True
+    content_hash por documento igual: True
+  (source_hash/procedencia derivados cambian, como permite el contrato de sldb).
+  Falta la aserción en la prueba entregada.

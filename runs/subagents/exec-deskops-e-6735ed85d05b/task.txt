@@ -1,0 +1,9 @@
+Task: task-sin-marcador-parity-ni-dependencia-de-spec2viz-en-las-pruebas-de-ir
+Title: Sin marcador parity ni dependencia de spec2viz en las pruebas de IR
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .

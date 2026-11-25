@@ -1,7 +1,7 @@
 name: task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl
 path: desk/tasks/task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl.md
-source_hash: e4df9ede49627a041b94e447e96655c9164317ed75d448a26f75fe3c8a664f84
-content_hash: b47eb160d779e1574e6d64a36ede7f0eb976f46ca721e8c8f70e14ea7e6507bc
+source_hash: 3bda065832e009d41508ebb1d835c329469ad27ff2cb3d3899cb73252de12e5b
+content_hash: d88d59e3837037b0572f578beb1323e799e7b5f9742af127681afd9b14e114da
 field_hashes:
   title: 91956bc57c5a57aaa9835f011ece09a31d51801bb930c609cbb2b9c9fd361fe8
   id: 8422109dbb52fb55435fbeb1b866c76026767567a41bbb8f420b91dd802301ae
@@ -17,7 +17,7 @@ field_hashes:
   depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: d071a8c3c8181acd946945776f5977afcb4be65bff92ebe8b6d5ba43f1ad0755
+  implementation_path: 01498f8c5eb70bde0eae37f3842bfac1c25befa8b91cd24277be78823a1a10cc
   validation: 223b45ba80297ac80bc72f3717a825e291d24d3859c0bf81c4793f078ed646d1
   done_when: e33e667c68c1a1e92a76a3de3bc002286d117eb88f0e03fbf3a2decf9cae01e3
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -32,6 +32,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T17:45:06Z'
+  at: '2026-11-25T18:27:55Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

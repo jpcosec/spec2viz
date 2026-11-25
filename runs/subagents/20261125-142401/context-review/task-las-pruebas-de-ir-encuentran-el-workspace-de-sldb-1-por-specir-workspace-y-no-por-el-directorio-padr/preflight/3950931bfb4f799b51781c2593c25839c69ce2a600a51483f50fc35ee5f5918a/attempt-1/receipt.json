@@ -1,0 +1,9 @@
+{
+  "key": "task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "3950931bfb4f799b51781c2593c25839c69ce2a600a51483f50fc35ee5f5918a",
+  "output_sha256": "0ae2c4dd88af9289682dd51eeb5ca221e73fe462fee12b2f6b81413ac8920b38",
+  "start": "2026-11-25T14:24:02.530385+00:00",
+  "end": "2026-11-25T14:24:16.789064+00:00"
+}

@@ -1,0 +1,10 @@
+Task: task-u1b-el-cascaron-de-la-ui-de-specir-usa-los-tokens-de-papel-y-se-parece-a-la-maqueta
+Title: U1b: el cascaron de la UI de specIR usa los tokens de papel y se parece a la maqueta
+Status: draft
+Current node: ritual-execution
+Task type: task.code
+From drawer: desk/drawer/plans/graph-ui-diccionario-de-componentes/dag.yaml
+Lifecycle gates:
+- task_activates -> ritual-testing: open [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .

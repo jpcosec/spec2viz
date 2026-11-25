@@ -1,0 +1,9 @@
+{
+  "key": "task-specir-mcp-el-punto-de-entrada-propio-de-specir-levanta-el-server-mcp-de-sldb-con-su-extension-ya-ca/preflight",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "b65993bf483730982012d2d32a652978c0851cc18e2e5ffd66deb55c17dfa4e7",
+  "output_sha256": "81a068651e7e602d1e5e923b5525077a52db0f030ee2ec51dbbf4eecfb9bc3d3",
+  "start": "2026-11-25T02:29:24.611468+00:00",
+  "end": "2026-11-25T02:29:41.054924+00:00"
+}

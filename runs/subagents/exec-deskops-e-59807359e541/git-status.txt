@@ -1,0 +1,25 @@
+## main
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/store_index.yaml
+ M .sldb/store.yaml
+?? .scion/settings.yaml
+?? .scion/state.yaml
+?? .sldb/core/documents/RunDoc/run-deskops-e-59807359e541.yaml
+?? runs/subagents/20261120-211322/
+?? runs/subagents/20261120-220249/
+?? runs/subagents/20261120-220302/
+?? runs/subagents/20261120-223745/
+?? runs/subagents/20261120-223808/
+?? runs/subagents/20261120-234747/
+?? runs/subagents/20261120-234819/
+?? runs/subagents/20261120-ir04b-wip/
+?? runs/subagents/exec-deskops-e-59807359e541/
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/validation.log
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/validation.log
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/validation.log

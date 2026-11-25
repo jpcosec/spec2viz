@@ -1,9 +1,9 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T17:45:06Z'
+  at: '2026-11-25T18:27:55Z'
   authority: generated
-  via: create_document
+  via: save_document_payload
 id: task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl
 status: draft
 summary: ''
@@ -45,6 +45,8 @@ Dentro: los datos de notación de specIR y src/specir/install.py. Fuera: carrile
 _Outline the expected implementation route or affected surface._
 
 Partir del borrador del drawer. La notación es dato sembrado, igual que relation_types.yaml y rules.yaml.
+
+Aclaraciones de la revisión: Repo: /mnt/ssd/proyectos/SLDB_1/IR. La notación de capas va en src/specir/data/ como relation_types.yaml y se siembra por el mismo camino de specir install, con la misma idempotencia (reinstalar no duplica ni pisa ediciones; seguir lo que ya hace con rules.yaml). El blog de ejemplo es el fixture de extracción que ya usan los tests de IR (buscar 'blog' en tests/); la vista se resuelve con sldb.api.notations.resolve_view. 'Sin huecos' = el campo gaps de la tarea de sldb sobre huecos vacío o, si aún no existe, ningún documento de dominio sin glifo. '11 glifos, 11 links' = 11 tipos de documento de dominio con glifo y 11 tipos de relación con link. Va después de la tarea de notaciones UML: parte de main actual. No poner Task-Id en el commit de código.
 
 ## Validation
 

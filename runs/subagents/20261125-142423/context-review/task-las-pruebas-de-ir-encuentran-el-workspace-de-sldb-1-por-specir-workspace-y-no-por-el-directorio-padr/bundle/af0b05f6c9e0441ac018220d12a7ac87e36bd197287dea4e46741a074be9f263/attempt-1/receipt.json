@@ -1,0 +1,9 @@
+{
+  "key": "task-las-pruebas-de-ir-encuentran-el-workspace-de-sldb-1-por-specir-workspace-y-no-por-el-directorio-padr/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "af0b05f6c9e0441ac018220d12a7ac87e36bd197287dea4e46741a074be9f263",
+  "output_sha256": "fbfba5b53112b12aa35c41c3516f8b70c6da5890f07df0bd8642c09b955ebb26",
+  "start": "2026-11-25T14:24:23.921864+00:00",
+  "end": "2026-11-25T14:24:35.029724+00:00"
+}

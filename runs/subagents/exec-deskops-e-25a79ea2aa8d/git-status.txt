@@ -1,0 +1,151 @@
+## main...origin/main [ahead 12]
+ M .sldb/core/documents/RunDoc/run-deskops-e-25a79ea2aa8d.yaml
+ M .sldb/core/documents/RunDoc/run-deskops-e-3a1e7ef9d105.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl.yaml
+ M .sldb/core/documents/TaskDocsDoc/task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a.yaml
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/models/TaskDocsDoc.yaml
+ M .sldb/core/store_index.yaml
+ M desk/tasks/task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a.md
+ M desk/tasks/task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp.md
+ M desk/tasks/task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl.md
+ M runs/subagents/exec-deskops-e-25a79ea2aa8d/run.md
+ M runs/subagents/exec-deskops-e-3a1e7ef9d105/run.md
+?? .scion/settings.yaml
+?? .scion/state.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp-preflight-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl-bundle-1.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl-preflight-1.yaml
+?? desk/reviews/task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a/
+?? desk/reviews/task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp/
+?? desk/reviews/task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl/
+?? runs/jp-dispose-graphui.sh
+?? runs/subagents/20261120-211322/
+?? runs/subagents/20261120-220249/
+?? runs/subagents/20261120-220302/
+?? runs/subagents/20261120-223745/
+?? runs/subagents/20261120-223808/
+?? runs/subagents/20261120-234747/
+?? runs/subagents/20261120-234819/
+?? runs/subagents/20261120-ir04b-wip/
+?? runs/subagents/20261121-042012/
+?? runs/subagents/20261121-042028/
+?? runs/subagents/20261121-061925/
+?? runs/subagents/20261121-061940/
+?? runs/subagents/20261123-180329/
+?? runs/subagents/20261123-180347/
+?? runs/subagents/20261123-180404/
+?? runs/subagents/20261123-180424/
+?? runs/subagents/20261123-231404/
+?? runs/subagents/20261123-232909/
+?? runs/subagents/20261123-234426/
+?? runs/subagents/20261123-234445/
+?? runs/subagents/20261125-015903/
+?? runs/subagents/20261125-021450/
+?? runs/subagents/20261125-021511/
+?? runs/subagents/20261125-022907/
+?? runs/subagents/20261125-022924/
+?? runs/subagents/20261125-023330/
+?? runs/subagents/20261125-031102/
+?? runs/subagents/20261125-032242/
+?? runs/subagents/20261125-032301/
+?? runs/subagents/20261125-033216/
+?? runs/subagents/20261125-033243/
+?? runs/subagents/20261125-054340/
+?? runs/subagents/20261125-054400/
+?? runs/subagents/20261125-054421/
+?? runs/subagents/20261125-054438/
+?? runs/subagents/20261125-054501/
+?? runs/subagents/20261125-054524/
+?? runs/subagents/20261125-123246/
+?? runs/subagents/20261125-123302/
+?? runs/subagents/20261125-123319/
+?? runs/subagents/20261125-123335/
+?? runs/subagents/20261125-123350/
+?? runs/subagents/20261125-123408/
+?? runs/subagents/20261125-123423/
+?? runs/subagents/20261125-123440/
+?? runs/subagents/20261125-123751/
+?? runs/subagents/20261125-123805/
+?? runs/subagents/20261125-131037/
+?? runs/subagents/20261125-131055/
+?? runs/subagents/20261125-132755/
+?? runs/subagents/20261125-132817/
+?? runs/subagents/20261125-142325/
+?? runs/subagents/20261125-142339/
+?? runs/subagents/20261125-142401/
+?? runs/subagents/20261125-142423/
+?? runs/subagents/20261125-142441/
+?? runs/subagents/20261125-142456/
+?? runs/subagents/20261125-181009/
+?? runs/subagents/20261125-181032/
+?? runs/subagents/20261125-181053/
+?? runs/subagents/20261125-181117/
+?? runs/subagents/20261125-181148/
+?? runs/subagents/20261125-181205/
+?? runs/subagents/exec-deskops-e-25a79ea2aa8d/board.txt
+?? runs/subagents/exec-deskops-e-25a79ea2aa8d/git-status.txt
+?? runs/subagents/exec-deskops-e-25a79ea2aa8d/graph.txt
+?? runs/subagents/exec-deskops-e-25a79ea2aa8d/next.txt
+?? runs/subagents/exec-deskops-e-25a79ea2aa8d/prompt.md
+?? runs/subagents/exec-deskops-e-25a79ea2aa8d/task.txt
+?? runs/subagents/exec-deskops-e-3a1e7ef9d105/board.txt
+?? runs/subagents/exec-deskops-e-3a1e7ef9d105/git-status.txt
+?? runs/subagents/exec-deskops-e-3a1e7ef9d105/graph.txt
+?? runs/subagents/exec-deskops-e-3a1e7ef9d105/next.txt
+?? runs/subagents/exec-deskops-e-3a1e7ef9d105/prompt.md
+?? runs/subagents/exec-deskops-e-3a1e7ef9d105/result-summary.md
+?? runs/subagents/exec-deskops-e-3a1e7ef9d105/task.txt
+?? runs/subagents/exec-deskops-e-3a1e7ef9d105/validation.log
+?? runs/subagents/exec-deskops-e-59807359e541/board.txt
+?? runs/subagents/exec-deskops-e-59807359e541/git-status.txt
+?? runs/subagents/exec-deskops-e-59807359e541/graph.txt
+?? runs/subagents/exec-deskops-e-59807359e541/next.txt
+?? runs/subagents/exec-deskops-e-59807359e541/prompt.md
+?? runs/subagents/exec-deskops-e-59807359e541/result-summary.md
+?? runs/subagents/exec-deskops-e-59807359e541/retirement-check.txt
+?? runs/subagents/exec-deskops-e-59807359e541/task.txt
+?? runs/subagents/exec-deskops-e-59807359e541/validation.log
+?? runs/subagents/exec-deskops-e-6735ed85d05b/board.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/git-status.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/graph.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/next.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/prompt.md
+?? runs/subagents/exec-deskops-e-6735ed85d05b/result-summary.md
+?? runs/subagents/exec-deskops-e-6735ed85d05b/task.txt
+?? runs/subagents/exec-deskops-e-6735ed85d05b/validation.log
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/board.txt
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/captura-app.png
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/captura-maqueta.png
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/git-status.txt
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/graph.txt
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/next.txt
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/prompt.md
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/result-summary.md
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/task.txt
+?? runs/subagents/exec-deskops-e-c5a02bd67c2b/validation.log
+?? runs/subagents/exec-deskops-t-ca0f0e14eaaa-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-ca0f0e14eaaa-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-cad81b085b87-testing/prompt.md
+?? runs/subagents/exec-deskops-t-cad81b085b87-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-cad81b085b87-testing/validation.log
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-da81f2bd34e0-a2-testing/validation.log
+?? runs/subagents/exec-deskops-t-dbcffa346aee-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-dbcffa346aee-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-e2a621a70a51-a2-testing/validation.log
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/prompt.md
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-ef3b25a2dd59-a2-testing/validation.log
+?? runs/subagents/exec-deskops-t-f68fc4d93dac-testing/prompt.md
+?? runs/subagents/exec-deskops-t-f68fc4d93dac-testing/result-summary.md
+?? runs/subagents/exec-deskops-t-f68fc4d93dac-testing/validation.log

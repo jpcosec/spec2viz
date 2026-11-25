@@ -1,0 +1,10 @@
+Task: task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a
+Title: skills/use-specir/SKILL.md describe a specIR como quien declara y extrae, sin la capa visual ni las anotaciones del catálogo
+Status: draft
+Current node: ritual-execution
+Task type: task.docs
+Lifecycle gates:
+- task_activates -> ritual-testing: closed [(none)]
+  post-hook encola-reap-del-ejecutor: deskops queue add dispatch-reap --root .
+  post-hook encola-tester: deskops queue add dispatch-tester --root .
+  blocked by: error: [rules/rule-activation-task-docs] TaskDocsDoc:task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a: Una tarea task.docs se activa con un recibo preflight aceptado e intacto y sus dependencias cerradas. | any(^subject: anchor_state = "intact" and verdict = "accepted" and kind = "preflight") (seen: {}) (witness: ReviewDoc:review-task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a-bundle-1 {"anchor_state":"changed"})

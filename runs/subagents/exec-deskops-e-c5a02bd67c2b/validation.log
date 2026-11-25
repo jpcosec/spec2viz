@@ -1,0 +1,1 @@
+cd ui && npx tsc --noEmit && npx vitest run src/Shell.test.tsx -> exit 0 (4 tests passed)

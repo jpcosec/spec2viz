@@ -1,0 +1,30 @@
+Missing graph references:
+- missing_declared_target: config_file:.worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-bundle-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-bundle-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-atom-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-atom-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-commit-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-commit-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-materialization-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-materialization-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-tests-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-tests-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-preflight-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-preflight-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+Informational (archived records):
+- planned_target: task:task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp -> test_file:tests/test_install.py
+  provenance: desk/tasks/task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl -> test_file:tests/test_install.py
+  provenance: desk/tasks/task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl -> test_file:tests/test_layers_notation.py
+  provenance: desk/tasks/task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+6 missing, 3 informational (3 planned_target)

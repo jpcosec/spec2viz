@@ -1,7 +1,7 @@
 name: task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a
 path: desk/tasks/task-skills-use-specir-skill-md-describe-a-specir-como-quien-declara-y-extrae-sin-la-capa-visual-ni-las-a.md
-source_hash: 49a3bf723a9f6b068690b072eafb7f9df8932d9018d2a19f1d81f06d8839f76b
-content_hash: d0c7f8ef06e54a2e1272aed884434aac96e546f32d6adcb26749d4d6a64be760
+source_hash: 929804527f3e0b468d3619705eb4a0a4b7b7e5f60182f49299e354de7a863844
+content_hash: bfcdb63683c51a88aa620dc2fa41c49b51e29af4fa2de31d5f8ea92afc2dbef0
 field_hashes:
   title: 1b1ec34814412f63a9ced3ab71e1dc8eb2dfe417dbbd4a1c7aa6d961f74b61e7
   id: c0047eb03bb766aaac20d5089bd294598df27db60ff414e406eb4f3d77e90d07
@@ -17,7 +17,7 @@ field_hashes:
   depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 78ab190d7c6cbd9234101fa9ccc1d0e95577f1fb0f47cf2020972bbb9cccfb42
+  implementation_path: 87e3522224f986d8feaa8c0e8131985b1d73db7150a0ba2cef1dba01a8b4b8f8
   validation: 9e6db88625db605b70edce5a0d4abdfc23f58c44907344e7a7713b6a7ba2b0d6
   done_when: 7e94239e0b4571be36a19bd5c7d1b460a0c70845e9eb6a53c0da19dd8670c767
   task_type: 8dbc7ea3fc2d737a841f8f9a89de6dd4bd2ca7fdc77434a53400db8767ba695d
@@ -32,6 +32,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T17:45:12Z'
+  at: '2026-11-25T18:29:04Z'
   authority: generated
-  via: create_document
+  via: save_document_payload

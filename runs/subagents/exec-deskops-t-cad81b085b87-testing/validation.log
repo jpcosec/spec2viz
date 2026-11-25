@@ -1,0 +1,20 @@
+Commit del ejecutor: 3de8d97e58fc7b1ce9d0d37391f11bfa6b73b462
+Archivos del commit: pyproject.toml (solo la línea del marcador parity)
+
+$ git show --stat 3de8d97
+ pyproject.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git show 3de8d97 -- pyproject.toml
+-    "parity: compares specIR with spec2viz as the oracle; skipped when spec2viz is not installed",
++    "parity: compares specIR with the frozen spec2viz outputs (revision 2de1056) in tests/visual/goldens/; spec2viz is not needed",
+
+$ python -m pytest --markers | grep parity
+@ pytest.mark.parity: compares specIR with the frozen spec2viz outputs (revision 2de1056) in tests/visual/goldens/; spec2viz is not needed
+
+$ PYTEST_ADDOPTS=--basetemp=/tmp/pytest-deskops-t-cad81b085b87 TMPDIR=/tmp PYTHONPATH=src:... python -m pytest -q -m parity -rs -p no:cacheprovider tests/visual
+...............................................................          [100%]
+63 passed, 563 deselected in 296.59s (0:04:56)
+rc=0
+
+No se listaron skips con -rs. Nota: el .venv del repo no arranca en este contenedor (Python 3.12 vs /usr/bin/python3 3.11); se usó Python 3.12.16 de /dev/shm/uvpy con los site-packages 3.12 del .venv, sldb/src y envoltorios sldb/specir equivalentes a los console scripts.

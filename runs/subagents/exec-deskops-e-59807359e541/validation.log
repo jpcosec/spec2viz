@@ -1,0 +1,4 @@
+$ specir retirement check --path graph_ui=… --path deskops=… --path pron=… --path sldb=… --path spec2viz/.sldb=…  -> exit 1
+$ pytest tests/visual/test_retirement_gate.py -> exit 0
+......s                                                                  [100%]
+6 passed, 1 skipped in 0.57s

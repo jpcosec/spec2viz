@@ -1,0 +1,9 @@
+{
+  "key": "task-u2-composiciones-lista-las-recetas-de-diagrama-del-store-con-filtro-por-capa-buscador-y-cobertura-n/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "c398b689eac76586edfac63cbb9c4bd9ab49119bfa9592dd4822172204914007",
+  "output_sha256": "a31a9c0aef0c1a3654787ba7ab9333e3bbe31a586e7a151e7b745d79773ab2ed",
+  "start": "2026-11-25T12:38:06.292122+00:00",
+  "end": "2026-11-25T12:38:21.311671+00:00"
+}

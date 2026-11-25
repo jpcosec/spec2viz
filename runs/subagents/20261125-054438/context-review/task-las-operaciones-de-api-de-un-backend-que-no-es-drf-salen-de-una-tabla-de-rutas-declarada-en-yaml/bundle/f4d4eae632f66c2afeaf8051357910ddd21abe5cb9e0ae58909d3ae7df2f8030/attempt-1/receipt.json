@@ -1,0 +1,9 @@
+{
+  "key": "task-las-operaciones-de-api-de-un-backend-que-no-es-drf-salen-de-una-tabla-de-rutas-declarada-en-yaml/bundle",
+  "technical_ok": true,
+  "returncode": 0,
+  "input_sha256": "f4d4eae632f66c2afeaf8051357910ddd21abe5cb9e0ae58909d3ae7df2f8030",
+  "output_sha256": "d453ffe31ac034c4bc750aaea1805714471ec7d3132bbe3f74d6160969ae6738",
+  "start": "2026-11-25T05:44:38.582452+00:00",
+  "end": "2026-11-25T05:44:55.837334+00:00"
+}
