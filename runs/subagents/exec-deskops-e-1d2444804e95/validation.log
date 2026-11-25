@@ -1,0 +1,10 @@
+cd .worktrees/deskops-e-1d2444804e95; SPECIR_WORKSPACE=/mnt/ssd/proyectos/SLDB_1
+python -m pytest -q -p no:cacheprovider tests/test_capabilities_as_nodes.py  -> exit 0, 8 passed
+python -m pytest -q -p no:cacheprovider -n 4 tests (full, before the last two test edits) -> 3 failed, 480 passed:
+  - test_reading_through_every_tool_leaves_every_store_untouched: I edited the plan files while the suite ran (timing, mine).
+  - tests/test_mcp_undo.py x2: rules check rc 1 from the expected capability errors; fixed (clean()) and
+    test_level_1_batch... re-run alone: 1 passed.
+python -m pytest -n 3 tests/test_mcp_undo.py tests/test_mcp_extension.py tests/test_capabilities_as_nodes.py tests/models
+  -> 3 failed, 57 passed: test_the_server_of_sldb_serves_its_tools_and_specirs and
+     test_the_write_tools_are_sldbs_own... fail on the extra tool `anchors_resolve`, added to sldb (commit f68074750)
+     while I worked; not caused by this change. test_level_1_batch... passed alone (4 min, load-sensitive).

@@ -1,0 +1,33 @@
+# Tester: task-una-capacidad-del-dominio-declara-para-quien-es-y-cual-es-su-prueba-de-aceptacion-y-las-ocho-capacid
+# Commit del ejecutor: 7314305e75895593732758da8489c449256f920d
+# Nota: el arbol de trabajo principal estaba contaminado por el ciclo de vida de deskops
+# (modificaciones posteriores a .sldb/core/models/TaskCodeDoc.yaml y al indice), que hacen
+# fallar el fixture check_store por data_mutation en 4 TaskCodeDoc ajenos a este commit.
+# Por eso los tests se corrieron en un worktree limpio EXACTAMENTE en el commit del ejecutor.
+
+SPECIR_WORKSPACE=/mnt/ssd/proyectos/SLDB_1
+PYTHONPATH=/tmp/ir-exec/src:$PYTHONPATH
+PYTEST_ADDOPTS=--basetemp=/tmp/pytest-deskops-t-98adf0afcc1f-*
+TMPDIR=/tmp
+
+python -m pytest -q tests/test_capabilities_as_nodes.py
+# => 8 passed in 100.86s
+
+python -m pytest -q tests/models/test_domain_models.py
+# => 7 passed in 18.60s
+
+python -m pytest -q tests/test_mcp_undo.py
+# => 8 passed in 344.65s
+
+python -m pytest -q tests/test_mcp_extension.py
+# => 3 failed, 8 passed in 169.65s
+# Fallos: test_the_server_of_sldb_serves_its_tools_and_specirs,
+#         test_reading_through_every_tool_leaves_every_store_untouched,
+#         test_the_write_tools_are_sldbs_own_and_the_extension_adds_a_validator_not_a_tool
+# Causa: el sldb actual expone el tool 'anchors_resolve', ausente de SLDB_READ en el test.
+# Reproducido en el commit padre 1952fc6 (mismo fallo, 1 failed con -k write_tools_are):
+# es deriva del entorno (sldb), no de este commit.
+
+# Ademas, en el commit del ejecutor:
+python -m pytest -q tests/test_capabilities_as_nodes.py  # en worktree limpio = 8 passed
+git show --format=%B --no-patch 7314305 | grep -i task-id  # => sin Task-Id (como pedia el encargo)
