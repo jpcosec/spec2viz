@@ -1,0 +1,38 @@
+name: task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados
+path: desk/tasks/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados.md
+source_hash: a40f4f80045a4a9cc84020a56a0f400ca1d089de6e915a5654206dd53157ffb0
+content_hash: d83cec86eb023d7f3e88af86abb661eeca45bc4454ee790b9ded3c3dce2bce30
+field_hashes:
+  title: 97735111ac3ecef988a0533be4c75049504588af915cdb09c08cdf348b3e9a3c
+  id: b91dba503c135d4c7a8b833b77de410c47a03ed2a422e76148c03b49bc85eaf0
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: e8075ca837d2c32d0ff1d91a5c225cfa455f998d77eaa553ab3ecd7f777d09b1
+  goal: a99e0dc9b5619f7cba25e0ebc80a34ace2338d59fbb71bb5e78fa47616fdc68b
+  scope: c377b72bbea4446c3b4bb79fa7f39f92f237e308f6b9ad229835a63ef0f8af3a
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 0e44f2be82a6fa2d2483773437bf60176a6658e62f800ec06f8e3960ecd8e9cf
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: ce6cf10f4164fac7b745af52c7902ae1f58f0fa2ffa4b53ff0da8fdb6075d010
+  validation: 95b6b43fde9ed25ed96f9e01436e11ceb251df02dcb639bca6900dabbb72bb36
+  done_when: a0d60e88fde740c776596018a40e6dce822ff345af4b4690e8860eff4692720f
+  task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  from_drawer: 497146f62eaa8bb4779719a6b090092cce4076e5054ab0988b976c35ddfa63d9
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T05:27:39Z'
+  authority: generated
+  via: create_document

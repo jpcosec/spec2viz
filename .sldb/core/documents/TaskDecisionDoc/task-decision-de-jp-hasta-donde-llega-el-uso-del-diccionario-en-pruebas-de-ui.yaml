@@ -1,0 +1,38 @@
+name: task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui
+path: desk/tasks/task-decision-de-jp-hasta-donde-llega-el-uso-del-diccionario-en-pruebas-de-ui.md
+source_hash: 6f8affaa82530b4f0d887cd0f30bab85962a5263c1a45ba4a6789a9ec8f3313d
+content_hash: ee64d29c3c1e1ba85905d7edc44379cb522fe842e57cd9e337f1e5df91c7c8af
+field_hashes:
+  title: acac1fc587f0ccef6843ba2943398828d959b5580975b54ed6cfc52dfee6bd83
+  id: 064a70285b9a1dc612b1de93f86e37a5abb55489dd3f911e78a1746d7f00f18d
+  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
+  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  why: fd66effd4bb0f6656038fa41d39eedd04c089465bdb76b7ee95f959bce5fa60c
+  goal: c34ebf1bc55a3d7e20ea8b15b5fe572f93b3fc98c5e1fcc7b1206f8970a468f9
+  scope: a76f82ed48c26c0abbe0af2bc6b02828af70c9e1b40c0c143891e1f585f6d037
+  references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  implementation_path: 69d4b98f9bda14246364eba5bb5a918c7a0ab5add7303fb7791a329c54927ba5
+  validation: a587a2af5b63eddaac516fb1d1377995a6a02a9bd208927c3c23b758e69772ad
+  done_when: 6689e37fe143313f885475b946ebdece6885f169248d6f2885c4c3c63c85f0df
+  task_type: a4df8849de4c7c42dff3bfe95bbeb8759b5ca37238136b51e418b9d2f5ef311c
+  inherits_from: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  inherit_acceptance_context: fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa
+  atoms: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  from_drawer: 497146f62eaa8bb4779719a6b090092cce4076e5054ab0988b976c35ddfa63d9
+semantic_tags:
+- board.tareas
+- representation.markdown
+- source.document.markdown
+- type.workflow.task
+- workspace.desk
+provenance:
+  by: agent
+  at: '2026-11-25T05:27:58Z'
+  authority: generated
+  via: create_document
