@@ -1,0 +1,31 @@
+bringing up nodes...
+bringing up nodes...
+
+........................s............................................... [ 15%]
+F....................................................................... [ 31%]
+.................................................x....x....ss..........s [ 47%]
+...............s...s....................s..................sssss........ [ 62%]
+........................................................................ [ 78%]
+........................................................................ [ 94%]
+...........................                                              [100%]
+=================================== FAILURES ===================================
+___________ test_the_tables_columns_and_keys_come_from_the_sql_facts ___________
+[gw1] linux -- Python 3.12.16 /tmp/ws-venv/bin/python
+
+project = (PosixPath('/tmp/pytest-deskops-e-353d0aebfaed/popen-gw1/extract0/blog_app'), ExtractionReport(created=['TableDoc:tabl...e assignment dentro de Post.publish muestra el estado al que pasa (Draft, Published)'], stale_declared=[], skipped=[]))
+
+    def test_the_tables_columns_and_keys_come_from_the_sql_facts(project) -> None:
+        root, _ = project
+        table = documents(root)["TableDoc:table-posts"].payload
+>       assert table["columns"] == ["id", "title", "body", "status", "published_at", "author_id"]
+E       AssertionError: assert ['title', 'bo..., 'author_id'] == ['id', 'title..., 'author_id']
+E         
+E         At index 0 diff: 'title' != 'id'
+E         Right contains one more item: 'author_id'
+E         Use -v to get more diff
+
+tests/extract/test_blog_extraction.py:67: AssertionError
+=========================== short test summary info ============================
+FAILED tests/extract/test_blog_extraction.py::test_the_tables_columns_and_keys_come_from_the_sql_facts
+1 failed, 444 passed, 12 skipped, 2 xfailed in 527.70s (0:08:47)
+exit 1

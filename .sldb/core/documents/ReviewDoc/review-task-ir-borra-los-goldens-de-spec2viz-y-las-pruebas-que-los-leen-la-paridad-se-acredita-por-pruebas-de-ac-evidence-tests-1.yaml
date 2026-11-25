@@ -1,0 +1,36 @@
+name: review-task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac-evidence-tests-1
+path: desk/reviews/task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac/evidence-tests-1.md
+source_hash: 9c337bf9f48f593832020e1cf7956eb6145ce145f1f3c1c9163a9e888bc290f7
+content_hash: 6b111c4472262708622d693a976d7189914c6c4f5126d422d5a11a9b8b7e01d5
+field_hashes:
+  id: 28b0c3d732fafe363f73df589b533d5ff5cf0655a00e97f63e0f247bb3da100a
+  title: 627d2d0d8282585caae05e3b6adc4d4a423d5af1eedbee5bf3114183f2115388
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: 9c527267ba974bea8080027ef706b155e55d40e4e92e819995f20b3f47736ba7
+  subject: 5335a22089ebedaefbf109b97efb0839380a70fccf62ebf771583d507670391e
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 265f40bb1cf32ab3983ed6650fdc126881023170766907d3055ae65c683c477e
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 9e4b1d0864c4bd579c358c83e0df8792576c29cbb25a77058bf6b6d40c16a619
+  created_at: af205e3c01d2401a6c2bd86464d28d7eb7655ca11709b1d059f6b008572c77fb
+  disposed_at: af205e3c01d2401a6c2bd86464d28d7eb7655ca11709b1d059f6b008572c77fb
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 84ae409dbd62f6d5ea205c9546aa30ccd031bd85bea93d987ff69d0b89b39aee
+  disposition: 2ef9c7cedf4cb8fb6fa1af91ed65a46cb74cd82feb90da355385db0e3ce0a8ff
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T15:27:28Z'
+  authority: generated
+  via: create_document

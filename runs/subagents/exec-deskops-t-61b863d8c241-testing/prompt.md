@@ -1,7 +1,17 @@
+Task: task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac
+Title: IR borra los goldens de spec2viz y las pruebas que los leen; la paridad se acredita por pruebas de aceptacion
+Status: active
+Current node: ritual-testing
+Task type: task.code
+Lifecycle gates:
+- task_hands_to_closeout -> ritual-closeout: open [nonempty(validation)]
+  post-hook evento-para-el-coordinador: sh -c mkdir -p runs/hooks && printf '%s %s %s %s->%s\n' "$(date -u +%FT%TZ)" "$DESKOPS_TASK_ID" "$DESKOPS_TRANSITION" "$DESKOPS_FROM_NODE" "$DESKOPS_TO_NODE" >> runs/hooks/events.log
+  post-hook encola-reap-del-tester: deskops queue add dispatch-reap --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-25T15:26:12Z'
+  at: '2026-11-25T14:54:37Z'
   authority: generated
   via: save_document_payload
 id: task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac
@@ -11,40 +21,14 @@ tags: []
 current_node: ritual-testing
 history:
 - task_activates
-references:
-- pyproject.toml
-- tests/conftest.py
-- tests/visual/test_cli.py
-- tests/visual/test_lint_mermaid.py
-- tests/visual/test_refs_models.py
-- tests/visual/test_render_cases.py
-- tests/visual/test_render_commands.py
-- tests/visual/test_render_projections.py
-- tests/visual/test_renderers.py
-- tests/visual/test_resources.py
-- tests/visual/test_schema.py
-- tests/visual/test_visual_names.py
-- 735cd5766919f452caa33e93d114d5cc1bcac32a
+references: []
 depends_on: []
 pills: []
-files:
-- pyproject.toml
-- tests/conftest.py
-- tests/visual/test_cli.py
-- tests/visual/test_lint_mermaid.py
-- tests/visual/test_refs_models.py
-- tests/visual/test_render_cases.py
-- tests/visual/test_render_commands.py
-- tests/visual/test_render_projections.py
-- tests/visual/test_renderers.py
-- tests/visual/test_resources.py
-- tests/visual/test_schema.py
-- tests/visual/test_visual_names.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-ir-no-tiene-goldens-de-spec2viz-la-paridad-se-acredita-por-pruebas-de-aceptacion
+atoms: []
 ---
 
 # IR borra los goldens de spec2viz y las pruebas que los leen; la paridad se acredita por pruebas de aceptacion
@@ -84,3 +68,20 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 No queda tests/visual/goldens ni oracle/parity/render_parity, ni pruebas que comparen contra spec2viz, ni el marcador parity; el grep final esta vacio; la suite de tests/visual y los archivos editados pasan.
+
+## Como probar (tester)
+
+Ubica el trabajo del ejecutor:
+
+    git log -1 --format=%H --grep "Task-Id: task-ir-borra-los-goldens-de-spec2viz-y-las-pruebas-que-los-leen-la-paridad-se-acredita-por-pruebas-de-ac"   # commit del ejecutor
+    git show --name-only <commit>                           # sus archivos
+
+Los tests a correr son los archivos tests/*.py de ese commit, mas tests/test_<modulo>.py cuando exista para cada modulo de codigo tocado; de a uno, con `TMPDIR=/tmp python -m pytest -q <archivo>`. No corras la suite completa: la corre integrate en el host.
+
+Escribe result-summary.md con el veredicto PASA o FALLA en la primera linea.
+
+## Temporales de pytest
+
+Antes de cualquier pytest exporta, para que sus temporales caigan en el /tmp del contenedor (muere con el agente) y no en el /dev/shm del host:
+
+    export PYTEST_ADDOPTS="--basetemp=/tmp/pytest-deskops-t-61b863d8c241"
