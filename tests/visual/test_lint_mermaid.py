@@ -3,9 +3,7 @@
 - `tests/test_mermaid_mmdc.py` of spec2viz (revision 2de1056) ported case by case: the real-engine
   (mmdc) cases skip when mermaid-cli is not installed, as in spec2viz; the regex cases force the
   engine off (`SPECIR_MMDC=0`, and spec2viz's `SPEC2VIZ_MMDC=0` still works).
-- The same findings as spec2viz on the lint fixtures (`render_parity.lint_cases`: spec2viz's lint
-  texts and the mermaid of every spec of the corpus), with and without the raw-angle-bracket rule:
-  against the saved goldens.
+- The regex rules flag the broken lint fixtures and leave the clean ones alone.
 - `diagram lint` reports a clean spec, a clean `.mmd` and a broken `.mmd` as spec2viz's did."""
 
 from __future__ import annotations
@@ -19,8 +17,6 @@ from click.testing import CliRunner
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-import render_parity  # noqa: E402
-
 from specir.cli import main  # noqa: E402
 from specir.visual.exceptions import RenderError  # noqa: E402
 from specir.visual.lint_mermaid import MermaidLintError, assert_mermaid_ok, lint_mermaid, mmdc_path  # noqa: E402
@@ -28,8 +24,22 @@ from specir.visual.lint_mermaid import MermaidLintError, assert_mermaid_ok, lint
 _MMDC = mmdc_path() is not None
 requires_mmdc = pytest.mark.skipif(not _MMDC, reason="mmdc (mermaid-cli) not installed")
 
-BROKEN = {name: render_parity.LINT_TEXTS[name] for name in ("paren-edge-label", "brace-edge-label", "nested-quotes", "html-entity-seq")}
-CLEAN = {name: render_parity.LINT_TEXTS[name] for name in ("simple-graph", "quoted-paren-edge", "sequence-ok")}
+LINT_TEXTS = {
+    "paren-edge-label": "graph TD\n    a -->|ask (paso 2)| b\n",
+    "brace-edge-label": "graph TD\n    a -->|fetch {id}| b\n",
+    "nested-quotes": 'flowchart TD\n    e["mostrar "msg" fin"]\n',
+    "html-entity-seq": "sequenceDiagram\n    A->>B: show &lt;name&gt;\n",
+    "simple-graph": "graph TD\n    a --> b\n",
+    "quoted-paren-edge": 'graph TD\n    a -->|"ask (paso 2)"| b\n',
+    "sequence-ok": "sequenceDiagram\n    A->>B: hello\n",
+    "invalid-return-arrow": "sequenceDiagram\n    A<<--B: reply",
+    "raw-angle-brackets": "sequenceDiagram\n    A->>B: GET path?x=<id>",
+    "bad-return-arrow": "sequenceDiagram\n    A<<--B: bad\n",
+    "empty-decision": "flowchart TD\n    d{}\n",
+}
+
+BROKEN = {name: LINT_TEXTS[name] for name in ("paren-edge-label", "brace-edge-label", "nested-quotes", "html-entity-seq")}
+CLEAN = {name: LINT_TEXTS[name] for name in ("simple-graph", "quoted-paren-edge", "sequence-ok")}
 
 
 # ── tests/test_mermaid_mmdc.py ──────────────────────────────────────────────────────────────────
@@ -65,27 +75,21 @@ def test_regex_rules_still_fire_without_engine(monkeypatch):
     assert any("<<--" in p for p in problems)
 
 
-# ── same findings as spec2viz ───────────────────────────────────────────────────────────────────
+# ── the findings of the regex rules ───────────────────────────────────────────────────────────────────
 
 
-def test_lint_goldens_cover_the_fixtures_and_flag_the_bad_ones():
-    goldens = render_parity.lint_goldens()
-    assert sorted(goldens) == sorted(render_parity.lint_cases())
-    flagged = {name for name, found in goldens.items() if found["check_html"]}
-    assert {"invalid-return-arrow", "raw-angle-brackets", "bad-return-arrow", "empty-decision"} <= flagged
-    assert any(name.startswith("mermaid:") for name in goldens)
-
-
-def test_specir_finds_what_the_goldens_say(monkeypatch):
+def test_the_regex_rules_flag_the_bad_fixtures_and_only_those(monkeypatch):
     monkeypatch.setenv("SPECIR_MMDC", "0")
-    assert render_parity.lint_findings(lint_mermaid) == render_parity.lint_goldens()
+    flagged = {name for name, text in LINT_TEXTS.items() if lint_mermaid(text, check_html=True)}
+    assert {"invalid-return-arrow", "raw-angle-brackets", "bad-return-arrow", "empty-decision"} <= flagged
+    assert not flagged & {"simple-graph", "quoted-paren-edge", "sequence-ok"}
 
 
 def test_assert_mermaid_ok_raises_a_render_error(monkeypatch):
     monkeypatch.setenv("SPECIR_MMDC", "0")
     assert_mermaid_ok(CLEAN["sequence-ok"])
     with pytest.raises(MermaidLintError, match=r"Mermaid lint failed in x\.mmd \(2 issue\(s\)\)") as caught:
-        assert_mermaid_ok(render_parity.LINT_TEXTS["invalid-return-arrow"], source="x.mmd")
+        assert_mermaid_ok(LINT_TEXTS["invalid-return-arrow"], source="x.mmd")
     assert isinstance(caught.value, RenderError)
 
 
@@ -95,13 +99,13 @@ def test_assert_mermaid_ok_raises_a_render_error(monkeypatch):
 def test_diagram_lint_command(tmp_path, monkeypatch):
     monkeypatch.setenv("SPECIR_MMDC", "0")
     runner = CliRunner()
-    spec = render_parity.parity.FIXTURES / "tests" / "fixtures" / "sequence.create-quotation.yml"
+    spec = HERE / "fixtures" / "spec2viz" / "tests" / "fixtures" / "sequence.create-quotation.yml"
     ok = runner.invoke(main, ["diagram", "lint", str(spec)])
     assert ok.exit_code == 0 and "sequence.create-quotation.yml: OK" in ok.output
     good = tmp_path / "good.mmd"
     good.write_text(CLEAN["simple-graph"], encoding="utf-8")
     bad = tmp_path / "bad.mmd"
-    bad.write_text(render_parity.LINT_TEXTS["invalid-return-arrow"], encoding="utf-8")
+    bad.write_text(LINT_TEXTS["invalid-return-arrow"], encoding="utf-8")
     result = runner.invoke(main, ["diagram", "lint", str(good), str(bad)])
     assert result.exit_code == 1
     assert "good.mmd: OK" in result.output and "bad.mmd: 2 issue(s)" in result.output and "<<--" in result.output

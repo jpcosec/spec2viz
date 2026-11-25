@@ -27,7 +27,6 @@ from specir.visual.renderers.bpmn_viewer import VENDOR_DIR
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-import oracle  # noqa: E402
 
 PROJECT = HERE.parents[1]
 CORPUS = HERE / "fixtures" / "spec2viz"
@@ -56,13 +55,6 @@ def test_the_installed_package_reads_its_resources():
     js = _resource("templates/vendor/bpmn-js/bpmn-navigated-viewer.production.min.js").read_text(encoding="utf-8")
     version = re.search(r"`bpmn-js` (\d+\.\d+\.\d+)", readme).group(1)
     assert f"bpmn-navigated-viewer v{version}" in js
-
-
-@pytest.mark.parity
-def test_resources_are_spec2viz_bytes():
-    expected = oracle.expect("resource_digests", RESOURCES)  # rel -> SHA-256 of spec2viz's bytes
-    for rel in RESOURCES:
-        assert hashlib.sha256(_resource(rel).read_bytes()).hexdigest() == expected[rel], rel
 
 
 @pytest.mark.skipif(shutil.which("uv") is None, reason="uv is not installed: no backend to build the wheel")

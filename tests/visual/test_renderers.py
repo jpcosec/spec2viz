@@ -1,7 +1,7 @@
 """Renderers of specIR's visual layer: `tests/test_renderers.py` of spec2viz (revision 2de1056) ported
 case by case, over the same fixtures (`fixtures/spec2viz/`), loading with sldb (`load_spec`, D3) and
-compiling and rendering with specIR. The parity of every renderer over the whole corpus, and the
-drawing of a transition without a source state, are in `test_render_parity.py`."""
+compiling and rendering with specIR. The drawing of a transition without a source state is in
+`test_render_projections.py`."""
 
 import json
 import pytest

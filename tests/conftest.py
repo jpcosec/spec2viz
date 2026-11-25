@@ -174,7 +174,7 @@ def spec_store_digest(spec_store: Path) -> dict[str, str]:
 
 def build_spec_store(tmp_path_factory: pytest.TempPathFactory) -> Path:
     """A new sldb store, outside any mounted copy, with the SpecDoc of this repo's spec fixture
-    synced by `sldb.api` (as tests/visual/test_notations_parity.py does); its `.sldb` path."""
+    synced by `sldb.api` (as the notation tests of tests/visual do); its `.sldb` path."""
     from sldb.api import init_store
     from sldb.api.notations import SpecSync
 

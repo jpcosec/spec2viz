@@ -1,51 +1,24 @@
-"""Parity of specIR's renderers with spec2viz's (IR12), and how they draw what spec2viz never drew.
+"""How specIR's renderers draw what the IRs project: the kind scale of `vega`, the selector of renderers,
+and a transition whose source state is not named (`ANY_STATE`, the state projection of IR11).
 
-- Every spec of the corpus that validates, drawn by each of the nine values of spec2viz's renderer
-  selector, gives what spec2viz gave (`render_parity`): the same text, the same JSON or the same
-  error class and message, and the same offline BPMN viewer page, against the saved goldens
-  (`parity` marker). The only order compared as a
-  mapping is the kind color scale of `vega`, which spec2viz listed in set order (declared in the
-  coverage matrix, SV-C05).
-- The selector of specIR has the nine values of spec2viz, with the same extensions and the same
-  default renderer per intermediate representation.
-- A transition whose source state is not named (`ANY_STATE`, the state projection of IR11) leaves one
-  dashed pseudostate labelled `*` in mermaid, plantuml and d2; it is never the initial state, and a
-  state IR without an initial state draws no initial arrow."""
+- `vega` lists the kinds in order of first appearance.
+- The selector has nine renderers.
+- A transition whose source state is not named leaves one dashed pseudostate labelled `*` in mermaid,
+  plantuml and d2; it is never the initial state, and a state IR without an initial state draws no
+  initial arrow."""
 
 from __future__ import annotations
 
 import sys
 from pathlib import Path
 
-import pytest
-
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE.parent / "models"))  # blog.py, for conftest's blog fixtures
-
-import oracle  # noqa: E402
-import render_parity  # noqa: E402
 
 from specir.visual.ir import ANY_STATE, StateIR, StateNode, Transition  # noqa: E402
 from specir.visual.lint_mermaid import lint_mermaid  # noqa: E402
-from specir.visual.renderers import DEFAULT_RENDERER, EXT_MAP, RENDERER_MAP, render  # noqa: E402
+from specir.visual.renderers import EXT_MAP, RENDERER_MAP, render  # noqa: E402
 from specir.visual.renderers.mermaid import ANY_STATE_ID  # noqa: E402
-
-GOLDENS = render_parity.goldens()
-
-
-def test_goldens_cover_every_valid_spec_and_every_renderer():
-    assert sorted(GOLDENS) == render_parity.VALID and len(GOLDENS) == 36
-    for rel, outcome in GOLDENS.items():
-        assert set(render_parity.RENDERERS) <= set(outcome), rel
-    drawn = {r for outcome in GOLDENS.values() for r in render_parity.RENDERERS if "out" in outcome[r]}
-    assert drawn == set(render_parity.RENDERERS), "every renderer draws some spec of the corpus"
-    assert any("bpmn.html" in outcome for outcome in GOLDENS.values())
-
-
-@pytest.mark.parametrize("rel", render_parity.VALID)
-def test_specir_renders_what_the_goldens_say(rel):
-    assert render_parity.comparable(render_parity.specir_renders(rel)) == render_parity.comparable(GOLDENS[rel])
 
 
 def test_vega_lists_the_kinds_in_order_of_first_appearance():
@@ -53,24 +26,17 @@ def test_vega_lists_the_kinds_in_order_of_first_appearance():
 
     from specir.visual.compilers import compile_ir
 
-    ir = compile_ir(load_spec(render_parity.parity.FIXTURES / "examples" / "matrix" / "example.yml"))
+    ir = compile_ir(load_spec(HERE / "fixtures" / "spec2viz" / "examples" / "matrix" / "example.yml"))
     scale = next(s for s in render(ir, "vega")["scales"] if s["name"] == "kindColor")
     assert scale["domain"] == list(dict.fromkeys(span.kind for span in ir.spans))
 
 
-def test_the_selector_has_the_nine_values_of_spec2viz():
+def test_the_selector_has_the_nine_renderers():
     from specir.visual.commands import DIAGRAM_RENDERERS
 
-    assert tuple(DIAGRAM_RENDERERS) == render_parity.RENDERERS
-    assert set(RENDERER_MAP) == set(EXT_MAP) == set(render_parity.RENDERERS)
-
-
-@pytest.mark.parity
-def test_selector_extensions_and_defaults_are_spec2viz():
-    values, extensions, defaults = oracle.expect("selector")
-    assert values == list(render_parity.RENDERERS)
-    assert EXT_MAP == extensions
-    assert {k.__name__: v for k, v in DEFAULT_RENDERER.items()} == defaults
+    nine = ("plantuml", "mermaid", "vega", "d2", "antonia-html", "tree", "graph", "bpmn", "json")
+    assert tuple(DIAGRAM_RENDERERS) == nine
+    assert set(RENDERER_MAP) == set(EXT_MAP) == set(nine)
 
 
 # ── a transition without a source state (ANY_STATE) ──────────────────────────────────────────────

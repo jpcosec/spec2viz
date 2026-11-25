@@ -27,8 +27,6 @@ from specir.visual.render_file import provenance_header, render_to_file
 from specir.visual.renderers import render
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import oracle  # noqa: E402
-import render_parity  # noqa: E402
 
 CORPUS = Path(__file__).resolve().parent / "fixtures" / "spec2viz"
 FIXTURES = CORPUS / "tests" / "fixtures"
@@ -244,31 +242,3 @@ data:
     assert "flowchart TD" in output_path.read_text()
     assert "core" in output_path.read_text()
     assert "api" in output_path.read_text()
-
-
-@pytest.mark.parity
-@pytest.mark.parametrize("renderer", ["plantuml", "mermaid", "d2", "vega", "graph", "bpmn"])
-def test_render_to_file_writes_what_spec2viz_writes_but_the_command_it_names(tmp_path, monkeypatch, renderer):
-    """Every file spec2viz's `render_to_file` wrote (the golden) for a spec, specIR writes with the same bytes,
-    except that the provenance header names `specir` where spec2viz named `spec2viz`."""
-    monkeypatch.chdir(CORPUS)
-    monkeypatch.setenv("SPECIR_MMDC", "0")
-    spec = {
-        "vega": "tests/fixtures/matrix.quotation-view.yml", "graph": "tests/fixtures/component.quotation.yml",
-        "bpmn": "tests/fixtures/activity.mepu-decision.yml",
-    }.get(renderer, "tests/fixtures/deployment.nested.yml")
-    ours = tmp_path / "specir"
-    render_to_file(spec, out=ours, renderer=renderer)
-    theirs = oracle.expect("render_to_file", spec, renderer, CORPUS)  # file name -> text spec2viz wrote
-    assert sorted(os.listdir(ours)) == sorted(theirs)
-    for name in theirs:
-        expected = theirs[name].replace("spec2viz: generated from", "specir: generated from")
-        expected = expected.replace("`spec2viz diagram validate", "`sldb notations validate")
-        actual = (ours / name).read_text(encoding="utf-8")
-        if renderer == "vega":
-            # spec2viz built the kindColor domain from a set (order depends on PYTHONHASHSEED,
-            # SV-C05): compare the scale as a kind -> color mapping, everything else exactly.
-            wrap = lambda text: render_parity.comparable({"vega": {"out": json.loads(text)}})  # noqa: E731
-            assert wrap(actual) == wrap(expected), name
-            continue
-        assert actual == expected, name

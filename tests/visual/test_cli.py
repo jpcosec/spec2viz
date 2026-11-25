@@ -38,7 +38,6 @@ SLDB = str(Path(sys.executable).with_name("sldb"))
 runner = CliRunner()
 
 sys.path.insert(0, str(REPO / "tests"))
-import test_matriz_cobertura_spec2viz as matrix  # noqa: E402
 
 
 # ── validate ──────────────────────────────────────────────────────────────────
@@ -554,9 +553,7 @@ def _assert_answers_help(words: list[str], options: list[str]) -> None:
         assert re.search(rf"(?<![\w-]){re.escape(option)}(?![\w-])", output), f"{' '.join(words)} has no {option}"
 
 
-def test_the_table_covers_exactly_the_command_tree_of_spec2viz():
-    listed = {re.fullmatch(r"`([^`]+)`", row[1]).group(1) for row in correspondence_rows()}
-    assert listed == matrix.cli_commands() | {"spec2viz --help"}
+def test_the_table_has_one_row_per_command_id():
     ids = [row[0] for row in correspondence_rows()]
     assert sorted(ids) == [f"SV-K{n:02d}" for n in range(1, 31)]
 

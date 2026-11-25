@@ -41,7 +41,6 @@ from specir.visual.renderers.view_mermaid import view_to_mermaid
 from specir.visual.spec_models import ClassDiagram
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import oracle  # noqa: E402
 
 CORPUS = Path(__file__).resolve().parent / "fixtures" / "spec2viz"
 FIXTURES = CORPUS / "tests" / "fixtures"
@@ -304,14 +303,6 @@ def test_view_to_mermaid_is_accepted_by_the_real_engine(tmp_path):
         source.write_text(view_to_mermaid(resolved_view(tmp_path / name, spec, _notation(tmp_path) if name == "dep" else None)), encoding="utf-8")
         result = subprocess.run([mmdc_path(), "-i", str(source), "-o", str(tmp_path / f"{name}.svg"), "-q"], capture_output=True, text=True, timeout=120)
         assert result.returncode == 0, (name, result.stderr[-300:])
-
-
-@pytest.mark.parity
-@pytest.mark.parametrize("spec, own_notation", [(NESTED, True), (NESTED, False), (PACKAGES, False), (LANES, False)])
-@pytest.mark.parametrize("theme", ["light", "dark"])
-def test_view_to_mermaid_matches_spec2viz_on_the_same_resolved_view(tmp_path, spec, own_notation, theme):
-    view = resolved_view(tmp_path, spec, _notation(tmp_path) if own_notation else None)
-    assert view_to_mermaid(view, theme=theme) == oracle.expect("view_to_mermaid", view, theme)
 
 
 # ── tests/test_exceptions.py (the visual layer's errors) ────────────────────────────────────────

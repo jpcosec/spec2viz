@@ -39,6 +39,3 @@ specir = ["data/*.yaml", "visual/templates/*.html", "visual/templates/*.js", "vi
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = [
-    "parity: compares specIR with the frozen spec2viz outputs (revision 2de1056) in tests/visual/goldens/; spec2viz is not needed",
-]

@@ -2,7 +2,7 @@
 spec models (D3) and specIR's schema export, without a wrapper.
 
 The resolution cases of that file are in sldb (`tests/matching/test_matching_refs.py`, D4), the store
-discovery in `tests/visual/test_catalog_parity.py` (IR13b) and the import rule in `tests/test_imports.py`."""
+discovery and the import rule in `tests/test_imports.py`."""
 
 from __future__ import annotations
 
