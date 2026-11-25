@@ -1,0 +1,4 @@
+python -m pytest -q -p no:cacheprovider tests/extract/test_ux_extract_cli.py tests/extract/test_frontend_extraction.py (venv /tmp/ws-venv + tree-sitter grammars)
+..............                                                           [100%]
+14 passed in 71.20s (0:01:11)
+exit code: 0

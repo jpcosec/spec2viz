@@ -1,0 +1,43 @@
+Tarea: task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados
+Commit del ejecutor: 1f196cb189df9e80f7ccb4a6de420e3218583d28
+Archivos del commit: src/specir/cli.py, src/specir/extract/__init__.py, src/specir/extract/write.py, tests/extract/test_ux_extract_cli.py
+
+Entorno: /mnt/ssd/proyectos/SLDB_1/IR
+  Python: .venv/bin/python -> 3.13.18 (click 8.5.1, pytest 9.2.0, sldb instalado)
+  PYTHONPATH=src
+  TMPDIR=/tmp
+  PYTEST_ADDOPTS=--basetemp=/tmp/pytest-deskops-t-4fe82aa7eac2
+Nota: /mnt/ssd/proyectos/SLDB_1/.venv/bin/python es Python 3.11.2 sin click/pytest; se usó el .venv del repo.
+
+$ git log -1 --format=%H --grep "Task-Id: task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados"
+1f196cb189df9e80f7ccb4a6de420e3218583d28
+
+$ git show --name-only --format='' 1f196cb189df9e80f7ccb4a6de420e3218583d28
+src/specir/cli.py
+src/specir/extract/__init__.py
+src/specir/extract/write.py
+tests/extract/test_ux_extract_cli.py
+
+$ pytest -q -p no:cacheprovider tests/extract/test_ux_extract_cli.py
+..                                                                       [100%]
+2 passed in 17.82s
+
+$ pytest -q -p no:cacheprovider tests/extract/test_frontend_extraction.py
+............                                                             [100%]
+12 passed in 54.41s
+
+$ pytest -q -p no:cacheprovider tests/extract/test_blog_extraction.py
+................                                                         [100%]
+16 passed in 118.09s (0:01:58)
+
+$ pytest -q -p no:cacheprovider tests/extract/test_edge_name_bounded.py
+.....                                                                    [100%]
+5 passed in 17.22s
+
+$ pytest -q -p no:cacheprovider tests/extract/test_declared_routes.py
+........                                                                 [100%]
+8 passed in 63.52s (0:01:03)
+
+Observación (no atribuible al commit): tests/test_imports.py falla en 2 casos porque
+src/specir/cli.py importa sldb.mcp desde 564a82e, anterior a esta tarea; el commit no
+toca cli.py en esa zona ni test_imports.py.

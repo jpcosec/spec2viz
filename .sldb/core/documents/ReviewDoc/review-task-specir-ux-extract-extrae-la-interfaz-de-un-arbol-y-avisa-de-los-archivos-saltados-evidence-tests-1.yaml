@@ -1,0 +1,36 @@
+name: review-task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados-evidence-tests-1
+path: desk/reviews/task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados/evidence-tests-1.md
+source_hash: a6b3d465cc8e255f98e38c484724bdecda21d288ae28b3d7930b38b5a7e0f799
+content_hash: 6d370ae2ba37947436c751e4b1ccf25dd312c086cf2e8cb95ec1264ebf6f1434
+field_hashes:
+  id: b750635c476583b9a26b0bc96c6c4115b42b831b1b152f64eb27f7b8d268fe09
+  title: 44317ea761a216531756f6ec267780e80bf3adf9e8cb165cc73d4a63b3db7287
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: 68f05093bc600659c0aecd265fad80c71a658cc857e91cdfeeee782eb670c200
+  value: 85205524b79978ce330d66d3e96a99bd1d70e894d1bf6eaa237c2106681d16df
+  subject: f1bc8603ace2afcbcf3845dfad51fbfa5e27164796c805bdaf9f0b6fbff6f70d
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 96576c5e78c4ee9096e29e8bb77351ce01dc5d4ee62ec6123a337fe4223d7d79
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: 3c341a98de363f4470c5fd279de930946e2161ea9795c29609f201e9ed4fcab0
+  created_at: 430fb68d8bed38518253d011091fcce6c69e698c203f0d61bf981923503a2172
+  disposed_at: 430fb68d8bed38518253d011091fcce6c69e698c203f0d61bf981923503a2172
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 91a5211c30130d5fc65e9eb79308d785054f6de344d43ab4df351789d0dfb939
+  disposition: 08d5a9f5788df28549a670c8e4e026d92a0242962e984f3cc312d5794a577b66
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-25T13:43:36Z'
+  authority: generated
+  via: create_document

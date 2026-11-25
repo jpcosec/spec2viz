@@ -1,0 +1,97 @@
+---
+sldb:
+  by: agent
+  at: '2026-11-25T13:43:43Z'
+  authority: generated
+  via: create_document
+# review-<task>-<kind>-<n>
+id: review-task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados-evidence-materialization-1
+# preflight | bundle | reproduction | goldens | owner | node | evidence
+kind: evidence
+# kind evidence only: tests | commit | atom | materialization | document | external
+fact: materialization
+# kind evidence only: what the producer verified, one item per line
+value: 'materialization-extract-src-specir-extract-init-py
+
+  materialization-extract-src-specir-extract-write-py
+
+  materialization-retiro-src-specir-cli-py
+
+  materialization-routes-declaradas-src-specir-extract-init-py
+
+  materialization-routes-declaradas-src-specir-extract-write-py
+
+  materialization-specir-mcp-src-specir-cli-py
+
+  materialization-ux-extract-src-specir-cli-py
+
+  materialization-ux-extract-src-specir-extract-init-py
+
+  materialization-ux-extract-src-specir-extract-write-py
+
+  materialization-ux-extract-tests-extract-test-ux-extract-cli-py'
+# doc:<Model>:<id> or empty for reviews of plan nodes
+subject: doc:TaskCodeDoc:task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados@sha256:928454d609de53d8b4738ef9a415dfe9a96cc2a7ac7b81c3cc722f61adbad3ed
+# <plan>/dag.yaml#node:<ID>; empty when subject names a document
+subject_ref: ''
+# RuntimeProfileDoc name or "human"
+engine: deskops-closeout
+actor: IR
+# Run evidence directory under runs/, relative to the project root
+run_dir: ''
+input_sha256: f4aacadfe4e32c8ade8ece07e7ebbec2c89c50a6a0672c42555b8c013ad97d04
+# preflight/bundle: SHA-256 of the input with the TaskDoc replaced by its __contract__ digest
+contract_sha256: ''
+output_sha256: ''
+# pending | accepted | rejected | incomplete
+verdict: accepted
+reason: 'verified: materialization materialization-extract-src-specir-extract-init-py
+
+  materialization-extract-src-specir-extract-write-py
+
+  materialization-retiro-src-specir-cli-py
+
+  materialization-routes-declaradas-src-specir-extract-init-py
+
+  materialization-routes-declaradas-src-specir-extract-write-py
+
+  materialization-specir-mcp-src-specir-cli-py
+
+  materialization-ux-extract-src-specir-cli-py
+
+  materialization-ux-extract-src-specir-extract-init-py
+
+  materialization-ux-extract-src-specir-extract-write-py
+
+  materialization-ux-extract-tests-extract-test-ux-extract-cli-py'
+# ISO 8601 timestamp
+created_at: '2026-11-25T13:43:36.312359+00:00'
+# ISO 8601 timestamp, empty while pending
+disposed_at: '2026-11-25T13:43:36.312359+00:00'
+disposed_by: IR
+# e.g. system:deskops
+tags: []
+---
+
+# Closeout evidence materialization of task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados
+
+## Summary
+
+_Summarize what was reviewed and the evidence this receipt records._
+
+closeout verify checked materialization: materialization-extract-src-specir-extract-init-py, materialization-extract-src-specir-extract-write-py, materialization-retiro-src-specir-cli-py, materialization-routes-declaradas-src-specir-extract-init-py, materialization-routes-declaradas-src-specir-extract-write-py, materialization-specir-mcp-src-specir-cli-py, materialization-ux-extract-src-specir-cli-py, materialization-ux-extract-src-specir-extract-init-py, materialization-ux-extract-src-specir-extract-write-py, materialization-ux-extract-tests-extract-test-ux-extract-cli-py
+
+## Disposition
+
+_Record the verdict rationale and who disposed of the review._
+
+Verdict accepted: verified: materialization materialization-extract-src-specir-extract-init-py
+materialization-extract-src-specir-extract-write-py
+materialization-retiro-src-specir-cli-py
+materialization-routes-declaradas-src-specir-extract-init-py
+materialization-routes-declaradas-src-specir-extract-write-py
+materialization-specir-mcp-src-specir-cli-py
+materialization-ux-extract-src-specir-cli-py
+materialization-ux-extract-src-specir-extract-init-py
+materialization-ux-extract-src-specir-extract-write-py
+materialization-ux-extract-tests-extract-test-ux-extract-cli-py

@@ -1,7 +1,18 @@
+Task: task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados
+Title: specir ux extract extrae la interfaz de un arbol y avisa de los archivos saltados
+Status: active
+Current node: ritual-testing
+Task type: task.code
+From drawer: desk/drawer/plans/graph-ui-diccionario-de-componentes/dag.yaml
+Lifecycle gates:
+- task_hands_to_closeout -> ritual-closeout: open [nonempty(validation)]
+  post-hook evento-para-el-coordinador: sh -c mkdir -p runs/hooks && printf '%s %s %s %s->%s\n' "$(date -u +%FT%TZ)" "$DESKOPS_TASK_ID" "$DESKOPS_TRANSITION" "$DESKOPS_FROM_NODE" "$DESKOPS_TO_NODE" >> runs/hooks/events.log
+  post-hook encola-reap-del-tester: deskops queue add dispatch-reap --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-25T13:43:04Z'
+  at: '2026-11-25T13:32:44Z'
   authority: generated
   via: save_document_payload
 id: task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados
@@ -11,25 +22,15 @@ tags: []
 current_node: ritual-testing
 history:
 - task_activates
-references:
-- src/specir/cli.py
-- src/specir/extract/__init__.py
-- src/specir/extract/write.py
-- tests/extract/test_ux_extract_cli.py
-- 1f196cb189df9e80f7ccb4a6de420e3218583d28
+references: []
 depends_on:
 - task-los-nombres-de-relacion-de-specir-quedan-acotados-a-255-bytes-con-un-resumen-con-hash
 pills: []
-files:
-- src/specir/cli.py
-- src/specir/extract/__init__.py
-- src/specir/extract/write.py
-- tests/extract/test_ux_extract_cli.py
+files: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados
+atoms: []
 from_drawer: desk/drawer/plans/graph-ui-diccionario-de-componentes/dag.yaml
 ---
 
@@ -70,3 +71,20 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 specir ux extract existe, propaga e imprime los saltados, --strict da rc 1 con saltados, y tests/extract/test_ux_extract_cli.py pasa con tests/extract/test_frontend_extraction.py.
+
+## Como probar (tester)
+
+Ubica el trabajo del ejecutor:
+
+    git log -1 --format=%H --grep "Task-Id: task-specir-ux-extract-extrae-la-interfaz-de-un-arbol-y-avisa-de-los-archivos-saltados"   # commit del ejecutor
+    git show --name-only <commit>                           # sus archivos
+
+Los tests a correr son los archivos tests/*.py de ese commit, mas tests/test_<modulo>.py cuando exista para cada modulo de codigo tocado; de a uno, con `TMPDIR=/tmp python -m pytest -q <archivo>`. No corras la suite completa: la corre integrate en el host.
+
+Escribe result-summary.md con el veredicto PASA o FALLA en la primera linea.
+
+## Temporales de pytest
+
+Antes de cualquier pytest exporta, para que sus temporales caigan en el /tmp del contenedor (muere con el agente) y no en el /dev/shm del host:
+
+    export PYTEST_ADDOPTS="--basetemp=/tmp/pytest-deskops-t-4fe82aa7eac2"
