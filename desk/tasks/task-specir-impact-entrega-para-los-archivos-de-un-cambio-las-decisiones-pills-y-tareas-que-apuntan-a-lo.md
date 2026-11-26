@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T19:29:42Z'
+  at: '2026-11-26T03:07:01Z'
   authority: generated
   via: save_document_payload
 id: task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo
@@ -14,6 +14,7 @@ references: []
 depends_on: []
 pills: []
 files: []
+pointers: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
@@ -26,7 +27,7 @@ atoms: []
 
 _Explain why this task exists or the business driver behind it._
 
-Propuesta deskops/desk/drawer/plans/que-es-un-atomo-y-que-es-una-pill/README.md (JP, 2026-11-25): el contexto que se le entrega a quien ejecuta un trabajo (qué leer y qué respetar) no debería escribirse a mano en una pill. specIR ya calcula a qué nodos alcanza un cambio (src/specir/impact.py, sobre graph_path de sldb), pero su respuesta se queda en los nodos del sistema y no llega a los documentos de trabajo que apuntan a ellos.
+Propuesta «qué es un átomo y qué es una pill», en el drawer de planes de deskops (JP, 2026-11-25): el contexto que se le entrega a quien ejecuta un trabajo (qué leer y qué respetar) no debería escribirse a mano en una pill. specIR ya calcula a qué nodos alcanza un cambio (src/specir/impact.py, sobre graph_path de sldb), pero su respuesta se queda en los nodos del sistema y no llega a los documentos de trabajo que apuntan a ellos.
 
 ## Goal
 

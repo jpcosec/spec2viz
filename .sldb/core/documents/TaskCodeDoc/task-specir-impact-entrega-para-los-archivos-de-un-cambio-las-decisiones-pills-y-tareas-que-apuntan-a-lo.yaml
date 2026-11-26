@@ -1,7 +1,7 @@
 name: task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo
 path: desk/tasks/task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo.md
-source_hash: 9c6f3299f25cc4b53f879dbae97ae8cf36c241f65ac4e4585dc57fe6b75fb3d1
-content_hash: 9df4a17692e385ea2f7a4be67e5455536be12666eaf4fdc90329c285759ab18b
+source_hash: 589a789c292d21174228e922c3f98bc8fe0a16981da44d1f693c07628e882db2
+content_hash: cc7a61d2acf855f9750e01bc61f27d2667949519fe6c37492a057482c3b12686
 field_hashes:
   title: ddff67e36bfd2089e90bf30bf9e52eaab02c04cba3b2e71e00632ef7e32139ab
   id: 5b2c65ab49b672b583a1a60c170f0c38142ec167f4d2fa17f5f41b726fe097de
@@ -10,7 +10,7 @@ field_hashes:
   tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
   history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  why: d47f46e638cf272d3a599c8592e044034aaca805ac7172a7ada307d6c0116a6c
+  why: 59266ffa686cec8115b4d60b8369e2a488de68a501231e5a15496fd64f48b596
   goal: 9c8ea0b440c74611bb7f0da074c9b887f38ce039d3c2cd6b2231ba585f51ba31
   scope: 57492ac55d31c19780c3b5bdfeedae6664d1339dd0f0c1680c22d7d946550aae
   references: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
@@ -33,6 +33,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T19:29:42Z'
+  at: '2026-11-26T03:07:01Z'
   authority: generated
   via: save_document_payload
