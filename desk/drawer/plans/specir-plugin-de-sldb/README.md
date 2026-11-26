@@ -54,7 +54,7 @@ Medido el 2026-11-25 sobre `main` `65c3e2d`: 7.857 líneas de Python en `src/spe
 | HTML de un diagrama | `visual/renderers/` (bpmn_viewer, graph_html, tree, antonia_html) | 1.007 | se borra cuando el editor de grafo exporte el modo lector |
 | Página del catálogo | `visual/catalog/` | 1.054 | se borra cuando exista la composición en surface y su exportación |
 | Instalación | `install.py` | 122 | genérico: declaración de plugin de sldb |
-| CLI y servidor | `cli.py`, `mcp_extension.py`, `visual/commands.py`, `render_file.py`, `visual/__init__.py` | 793 | se reemplaza por un servidor fastmcp propio que declara cada herramienta una vez; queda para después |
+| CLI y servidor | `cli.py`, `mcp_extension.py`, `visual/commands.py`, `render_file.py`, `visual/__init__.py` | 793 | se reemplaza por lo que defina la especificación de plugins de sldb |
 | Registro del retiro de spec2viz | `visual/retirement.py` | 344 | legado: se borra |
 
 Queda propio: 3.459 líneas. Sale o se adelgaza: 4.398.
@@ -66,26 +66,20 @@ Queda propio: 3.459 líneas. Sale o se adelgaza: 4.398.
 | F1 Contrato | La decisión registrada y las capacidades como nodos con su prueba | no |
 | F2 Contenido | Notaciones de UML y clases de spec recibidas de sldb; notación de capas; BPMN; pantalla y navegación en el modelo, e IFML; ORCA después | no, salvo ver BPMN y capas con carriles |
 | F3 Describir sistemas | Mapeo de una librería de Python con CLI; relación de dependencia e invariantes; diccionario de controles sobre `sldb/surface` | sldb: argumentos literales de las llamadas de Python |
-| F4 Servir | El impacto llega a decisiones, pills y tareas; servidor fastmcp propio; composición de la pantalla como dato | sldb y surface; el servidor queda para después |
+| F4 Servir | El impacto llega a decisiones, pills y tareas; servir las herramientas como defina sldb; composición de la pantalla como dato | sldb (especificación de plugins) y surface |
 | F5 Retirar | Legado, representación paralela, HTML de un diagrama, página del catálogo | el editor de grafo y surface |
 
 F1, F2 y F3 se pueden hacer ya. F4 y F5 esperan a otros repos.
 
 ## El servidor de specIR
 
-JP (2026-11-25): es mejor que specIR declare su propio MCP con fastmcp, aparte, y no que sea una
-extensión del servidor de sldb.
+JP (2026-11-26): cómo sirve specIR sus herramientas (servidor propio o montado en el de sldb) y
+cómo conversa con sldb (librería o CLI) lo resuelve sldb cuando declare cómo funcionan los plugins.
+No es una decisión de specIR. Se espera esa especificación para todo lo de F4, incluida la
+instalación de modelos y semillas.
 
-- De esa declaración salen su MCP, su CLI y el code mode, igual que se decidió para sldb.
-- Eventualmente se fusiona con el de sldb.
-- Mientras tanto, las herramientas de specIR llaman a sldb por su CLI, no como librería en el
-  mismo proceso.
-- **Queda para después**: el CLI de sldb se está modificando, así que no se empieza hasta que
-  asiente.
-
-Consecuencia: el pedido a sldb de "una forma única de declarar un plugin" pierde buena parte de su
-motivo, porque el servidor es la declaración. Sembrar modelos y datos en un store sigue siendo
-instalación y sigue sin resolverse.
+Queda sin efecto lo anotado el 2026-11-25: servidor fastmcp propio, aparte, que llama a sldb por
+su CLI.
 
 ## Lo que specIR pide a otros
 

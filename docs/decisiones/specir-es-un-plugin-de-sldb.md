@@ -29,9 +29,10 @@ sobre sldb que lleva el trabajo, y las interfaces son editores bajo el contrato 
   es qué nodo.
 - **specIR no dibuja ni tiene interfaz.** Su pantalla (el catálogo) es una composición declarada
   como dato, que aporta el plugin; los componentes que la arman son de surface.
-- **specIR declara su propio servidor con fastmcp**, del que salen su MCP y su CLI. Eventualmente
-  se fusiona con el de sldb. Mientras tanto sus herramientas llaman a sldb por el CLI. Queda para
-  después: el CLI de sldb se está modificando.
+- **Cómo sirve specIR sus herramientas y cómo conversa con sldb lo fija la especificación de
+  plugins de sldb**, igual que para cualquier plugin (JP, 2026-11-26). specIR no lo decide por su
+  cuenta y espera esa especificación. Con esto queda sin efecto lo anotado el 2026-11-25
+  (servidor fastmcp propio, aparte, que llama a sldb por el CLI).
 - **Se quedan como código propio** los tipos de dominio, el mapeo de hechos a nodos, el impacto y
   los exportes de texto (PlantUML, Mermaid, D2, Vega, BPMN XML).
 - **Se borran** el HTML de un diagrama (lo reemplaza el modo lector del editor de grafo), la página

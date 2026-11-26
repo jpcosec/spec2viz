@@ -117,13 +117,12 @@ tasks:
     task: task-specir-impact-entrega-para-los-archivos-de-un-cambio-...
     state: desbloqueada el 2026-11-26
   S2:
-    title: specIR declara sus herramientas en un servidor fastmcp propio, del que salen su MCP y su CLI; llaman
-      a sldb por su CLI
+    title: specIR sirve sus herramientas y conversa con sldb como defina la especificación de plugins de sldb
     phase: F4
     estimate: M
     requires:
     - sldb-cli-estable
-    state: 'diferido por JP (2026-11-25): el CLI de sldb se está modificando'
+    state: 'espera la especificación de plugins de sldb (JP, 2026-11-26); specIR no decide la forma'
   S4:
     title: specIR instala sus modelos y semillas por el mecanismo que sldb defina; se borra install.py
     phase: F4
