@@ -1,0 +1,175 @@
+id: specir-plugin-de-sldb
+status: accepted
+as_of: '2026-11-25'
+source: README.md de esta carpeta
+estimate_legend:
+  S: hasta medio día
+  M: uno a dos días
+  L: más de dos días
+external:
+  sldb-reglas-de-store-enlazado:
+    owner: sldb
+    state: pedido por deskops (C1)
+  sldb-argumentos-literales-python:
+    owner: sldb
+    state: tarea creada
+  sldb-que-aplica-a-un-archivo:
+    owner: sldb
+    state: tarea creada
+  surface-composicion-como-dato:
+    owner: sldb/surface
+    state: pedido por inbox el 2026-11-25
+  grafo-carriles-por-particion:
+    owner: graph_ui
+    state: tarea creada
+  grafo-modo-lector:
+    owner: graph_ui
+    state: tareas G-B1 y G-B2; la composición entera pedida por inbox el 2026-11-25
+  deskops-punteros-del-donde:
+    owner: deskops
+    state: tarea creada
+  sldb-cli-estable:
+    owner: sldb
+    state: en curso
+  sldb-instalacion-de-plugin:
+    owner: sldb
+    state: pedido por inbox el 2026-11-25
+tasks:
+  K1:
+    title: La decisión "specIR es un plugin sobre sldb" queda en docs/decisiones/ con las cuatro reglas
+    phase: F1
+    estimate: S
+    state: 'hecho: docs/decisiones/specir-es-un-plugin-de-sldb.md'
+  K2:
+    title: Una capacidad declara para quién es y su prueba; las ocho de specIR cargadas
+    phase: F1
+    estimate: M
+    task: task-una-capacidad-del-dominio-declara-para-quien-es-...
+  N1:
+    title: specIR es dueño de las notaciones de UML y de las clases de spec
+    phase: F2
+    estimate: M
+    task: task-specir-es-dueno-de-las-notaciones-de-uml-...
+  N2:
+    title: specir install siembra la notación de capas
+    phase: F2
+    estimate: S
+    depends_on:
+    - N1
+    task: task-specir-install-siembra-la-notacion-de-capas-...
+  N3:
+    title: Notación BPMN
+    phase: F2
+    estimate: M
+    depends_on:
+    - N1
+    task: task-specir-install-siembra-la-notacion-bpmn-y-una-actividad-con-particiones-se-resuelve-con-eventos-tare
+  N4:
+    title: El modelo tiene pantalla y navegación, y la notación IFML las usa
+    phase: F2
+    estimate: M
+    depends_on:
+    - N1
+    task: task-el-modelo-de-specir-tiene-pantalla-y-navegacion-el-extract-las-llena-en-el-frontend-de-ejemplo-y-la
+  N5:
+    title: Atributos y relaciones entre entidades, y la notación ORCA
+    phase: F2
+    estimate: M
+    depends_on:
+    - N4
+    task: task-una-entidad-del-dominio-tiene-atributos-y-relaciones-con-otras-entidades-el-extract-las-llena-desde
+  E1:
+    title: specir extract describe una librería de Python con CLI
+    phase: F3
+    estimate: M
+    requires:
+    - sldb-argumentos-literales-python
+    task: task-specir-extract-describe-una-libreria-de-python-con-cli-...
+  E2:
+    title: Un invariante entre piezas es una regla sobre los nodos; relación de dependencia
+    phase: F3
+    estimate: M
+    depends_on:
+    - E1
+    task: task-un-invariante-entre-piezas-se-escribe-como-regla-...
+  E3:
+    title: Diccionario de controles extraído de sldb/surface y comprobado con Playwright
+    phase: F3
+    estimate: M
+    task: task-el-diccionario-de-controles-de-sldb-surface-sale-de-specir-extract-con-el-localizador-de-cada-contro
+  S1:
+    title: El impacto de un cambio llega a decisiones, pills y tareas
+    phase: F4
+    estimate: M
+    requires:
+    - sldb-que-aplica-a-un-archivo
+    - deskops-punteros-del-donde
+    task: task-specir-impact-entrega-para-los-archivos-de-un-cambio-...
+  S2:
+    title: specIR declara sus herramientas en un servidor fastmcp propio, del que salen su MCP y su CLI; llaman
+      a sldb por su CLI
+    phase: F4
+    estimate: M
+    requires:
+    - sldb-cli-estable
+    state: 'diferido por JP (2026-11-25): el CLI de sldb se está modificando'
+  S4:
+    title: specIR instala sus modelos y semillas por el mecanismo que sldb defina; se borra install.py
+    phase: F4
+    estimate: S
+    requires:
+    - sldb-instalacion-de-plugin
+    - sldb-reglas-de-store-enlazado
+  S5:
+    title: La pantalla del catálogo es una composición declarada como dato
+    phase: F4
+    estimate: M
+    requires:
+    - surface-composicion-como-dato
+    task: task-specir-install-siembra-la-composicion-de-la-pantalla-del-catalogo-como-documento-del-store
+    state: tarea en borrador, bloqueada por otro repo
+  R1:
+    title: Se borra visual/retirement.py
+    phase: F5
+    estimate: S
+    task: task-se-borra-el-registro-del-retiro-de-spec2viz-src-specir-visual-retirement-py-y-el-comando-specir-reti
+  R2:
+    title: Los exportes de texto leen la vista resuelta de sldb; se borra la representación paralela
+    phase: F5
+    estimate: L
+    depends_on:
+    - N1
+    task: task-los-exportes-de-texto-leen-la-vista-que-resuelve-sldb-y-se-borra-la-representacion-paralela-de-speci
+  R3:
+    title: Se borran los HTML de un diagrama
+    phase: F5
+    estimate: S
+    requires:
+    - grafo-modo-lector
+    task: task-se-borran-los-renderers-de-html-de-un-diagrama-de-specir-que-reemplaza-el-modo-lector-del-editor-de
+    state: tarea en borrador, bloqueada por otro repo
+  R4:
+    title: Se borran la página del catálogo y CatalogAnnotationsDoc
+    phase: F5
+    estimate: S
+    depends_on:
+    - S5
+    requires:
+    - grafo-modo-lector
+    task: task-se-borran-la-pagina-del-catalogo-de-specir-y-catalogannotationsdoc-que-reemplaza-la-composicion-en-s
+    state: tarea en borrador, bloqueada por otro repo
+  R5:
+    title: Se retiran las tareas U2, U3, U4, U5 y U9 de la app IR/ui
+    phase: F5
+    estimate: S
+  D1:
+    title: skills/use-specir/SKILL.md describe a specIR como plugin que declara y extrae
+    phase: F1
+    estimate: S
+    task: task-skills-use-specir-skill-md-...
+order_notes:
+- 'N1 y N2 tocan install.py: en serie, N1 primero'
+- E1 antes que E2
+- 'K2, N1, E3, R1, R5 y D1 no se pisan: pueden ir en paralelo'
+- 'R2 se verifica antes de estimarse en firme: no se comprobó cuánto de visual/ir.py usan los exportes'
+- El servidor de specIR se fusiona eventualmente con el de sldb
