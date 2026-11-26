@@ -1,0 +1,76 @@
+## main...origin/main [ahead 40, behind 4]
+ M .sldb/core/documents/RunDoc/run-deskops-e-1d2444804e95.yaml
+ M .sldb/core/documents/RunDoc/run-deskops-e-b747fa3581d8.yaml
+ M .sldb/core/documents/RunDoc/run-deskops-t-2fb9ad808572.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp.yaml
+ M .sldb/core/documents/TaskCodeDoc/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.yaml
+ M .sldb/core/models/InboxNoteDoc.yaml
+ M .sldb/core/models/ReviewDoc.yaml
+ M .sldb/core/models/RunDoc.yaml
+ M .sldb/core/models/TaskCodeDoc.yaml
+ M .sldb/core/store_index.yaml
+ M desk/tasks/task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp.md
+ M desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md
+ M runs/subagents/exec-deskops-e-1d2444804e95/run.md
+ M runs/subagents/exec-deskops-e-3a1e7ef9d105/run.md
+ M runs/subagents/exec-deskops-e-a7b551599695/run.md
+ M runs/subagents/exec-deskops-e-b747fa3581d8/run.md
+ M runs/subagents/exec-deskops-t-2fb9ad808572-testing/run.md
+?? .scion/settings.yaml
+?? .scion/state.yaml
+?? .sldb/core/documents/InboxNoteDoc/20261125-205151-unclear-queue-20261125t234600z-dispatch-reap-task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp-bundle-2.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp-preflight-2.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de-bundle-4.yaml
+?? .sldb/core/documents/ReviewDoc/review-task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de-preflight-4.yaml
+?? desk/inbox/20261125-205151-unclear-queue-20261125t234600z-dispatch-reap-task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp.md
+?? desk/reviews/task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp/bundle-2.md
+?? desk/reviews/task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp/preflight-2.md
+?? desk/reviews/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de/bundle-4.md
+?? desk/reviews/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de/preflight-4.md
+?? runs/jp-dispose-graphui.sh
+?? runs/subagents/20261125-192037/
+?? runs/subagents/20261125-192117/
+?? runs/subagents/20261125-192155/
+?? runs/subagents/20261125-192214/
+?? runs/subagents/20261125-192232/
+?? runs/subagents/20261125-192246/
+?? runs/subagents/20261125-192414/
+?? runs/subagents/20261125-192430/
+?? runs/subagents/20261125-192452/
+?? runs/subagents/20261125-192510/
+?? runs/subagents/20261125-203628/
+?? runs/subagents/20261125-203707/
+?? runs/subagents/20261125-204307/
+?? runs/subagents/20261125-204340/
+?? runs/subagents/20261125-204408/
+?? runs/subagents/20261125-204438/
+?? runs/subagents/20261125-205437/
+?? runs/subagents/20261125-205503/
+?? runs/subagents/20261125-205737/
+?? runs/subagents/20261125-205813/
+?? runs/subagents/20261125-205840/
+?? runs/subagents/20261125-205910/
+?? runs/subagents/20261125-220836/
+?? runs/subagents/20261125-220941/
+?? runs/subagents/20261125-234041/
+?? runs/subagents/20261125-234147/
+?? runs/subagents/20261125-234719/
+?? runs/subagents/20261125-234839/
+?? runs/subagents/exec-deskops-e-25a79ea2aa8d/result-summary.md
+?? runs/subagents/exec-deskops-e-25a79ea2aa8d/validation.log
+?? runs/subagents/exec-deskops-e-aefda88c6e62/board.txt
+?? runs/subagents/exec-deskops-e-aefda88c6e62/git-status.txt
+?? runs/subagents/exec-deskops-e-aefda88c6e62/graph.txt
+?? runs/subagents/exec-deskops-e-aefda88c6e62/next.txt
+?? runs/subagents/exec-deskops-e-aefda88c6e62/prompt.md
+?? runs/subagents/exec-deskops-e-aefda88c6e62/result-summary.md
+?? runs/subagents/exec-deskops-e-aefda88c6e62/task.txt
+?? runs/subagents/exec-deskops-e-aefda88c6e62/validation.log
+?? runs/subagents/exec-deskops-e-b747fa3581d8/board.txt
+?? runs/subagents/exec-deskops-e-b747fa3581d8/git-status.txt
+?? runs/subagents/exec-deskops-e-b747fa3581d8/graph.txt
+?? runs/subagents/exec-deskops-e-b747fa3581d8/next.txt
+?? runs/subagents/exec-deskops-e-b747fa3581d8/prompt.md
+?? runs/subagents/exec-deskops-e-b747fa3581d8/task.txt
+?? runs/subagents/exec-deskops-t-2fb9ad808572-testing/prompt.md

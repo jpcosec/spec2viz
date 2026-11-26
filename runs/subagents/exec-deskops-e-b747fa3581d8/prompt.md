@@ -1,60 +1,35 @@
+Task: task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de
+Title: un invariante entre piezas se escribe como regla sobre los nodos de specIR, y la regla "graph_ui no depende de pron" falla cuando el código la viola
+Status: active
+Current node: ritual-testing
+Task type: task.code
+Lifecycle gates:
+- task_hands_to_closeout -> ritual-closeout: open [nonempty(validation)]
+  post-hook evento-para-el-coordinador: sh -c mkdir -p runs/hooks && printf '%s %s %s %s->%s\n' "$(date -u +%FT%TZ)" "$DESKOPS_TASK_ID" "$DESKOPS_TRANSITION" "$DESKOPS_FROM_NODE" "$DESKOPS_TO_NODE" >> runs/hooks/events.log
+  post-hook encola-reap-del-tester: deskops queue add dispatch-reap --root .
+
 ---
 sldb:
   by: agent
-  at: '2026-11-26T00:25:05Z'
+  at: '2026-11-25T23:47:12Z'
   authority: generated
   via: save_document_payload
 id: task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de
-status: ready_for_testing
+status: active
 summary: ''
 tags: []
-current_node: ritual-closeout
+current_node: ritual-testing
 history:
 - task_activates
-- task_hands_to_closeout
-references:
-- src/specir/cli.py
-- src/specir/data/relation_types.yaml
-- src/specir/data/rules.yaml
-- src/specir/extract/__init__.py
-- src/specir/extract/dependencies.py
-- src/specir/extract/plan.py
-- src/specir/extract/write.py
-- src/specir/models/__init__.py
-- src/specir/models/domain.py
-- tests/fixtures/dep_pieces/graph_ui/__init__.py
-- tests/fixtures/dep_pieces/graph_ui/app.py
-- tests/fixtures/dep_pieces/graph_ui/view.py
-- tests/fixtures/dep_pieces/pron/__init__.py
-- tests/fixtures/dep_pieces/pron/core.py
-- tests/models/test_domain_models.py
-- tests/test_dependency_invariants.py
-- d1648afa17a5cc8964cbd6acb732189ae7623858
+references: []
 depends_on: []
 pills: []
-files:
-- src/specir/cli.py
-- src/specir/data/relation_types.yaml
-- src/specir/data/rules.yaml
-- src/specir/extract/__init__.py
-- src/specir/extract/dependencies.py
-- src/specir/extract/plan.py
-- src/specir/extract/write.py
-- src/specir/models/__init__.py
-- src/specir/models/domain.py
-- tests/fixtures/dep_pieces/graph_ui/__init__.py
-- tests/fixtures/dep_pieces/graph_ui/app.py
-- tests/fixtures/dep_pieces/graph_ui/view.py
-- tests/fixtures/dep_pieces/pron/__init__.py
-- tests/fixtures/dep_pieces/pron/core.py
-- tests/models/test_domain_models.py
-- tests/test_dependency_invariants.py
+files: []
 pointers: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms:
-- atom-un-invariante-entre-piezas-es-una-regla-sobre-los-nodos-de-specir
+atoms: []
 ---
 
 # un invariante entre piezas se escribe como regla sobre los nodos de specIR, y la regla "graph_ui no depende de pron" falla cuando el código la viola
@@ -97,3 +72,26 @@ _List the checks required before this task can close._
 _Name the observable condition that makes the task complete._
 
 Con un repo de prueba donde un módulo importa a otro, la extracción deja la relación de dependencia con su origen observado. Una regla sembrada que prohíbe esa dependencia la informa como violación, con el archivo y la línea del import. Quitar el import hace pasar la regla.
+
+## Entrega del ejecutor
+
+Al terminar, commitea solo los archivos que cambiaste para la tarea, nombrados uno por uno (los mismos que listas en result-summary.md):
+
+    git add <ruta> <ruta> ...
+    git commit -m "<resumen>" -m "Task-Id: task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de"
+
+Nunca uses `git add -A`, `git add -u` sobre todo el arbol ni `git stash`: puede haber trabajo ajeno sin commitear. No hagas push. Recien despues ejecuta `deskops advance task`.
+
+## Temporales de pytest
+
+Antes de cualquier pytest exporta, para que sus temporales caigan en el /tmp del contenedor (muere con el agente) y no en el /dev/shm del host:
+
+    export PYTEST_ADDOPTS="--basetemp=/tmp/pytest-deskops-e-b747fa3581d8"
+
+## Tu worktree
+
+Tu codigo vive en un worktree propio, en la rama `deskops/deskops-e-b747fa3581d8`:
+
+    /mnt/ssd/proyectos/SLDB_1/IR/.worktrees/deskops-e-b747fa3581d8
+
+Haz `cd` ahi: edita, corre los tests y commitea ahi (git add / git commit), no en el checkout principal /mnt/ssd/proyectos/SLDB_1/IR. Las operaciones de desk (`deskops ... --root /mnt/ssd/proyectos/SLDB_1/IR`, evidencia en runs/subagents/..., `deskops advance task`) siguen usando el checkout principal. Al terminar, reap trae tus commits a la rama principal y borra el worktree.

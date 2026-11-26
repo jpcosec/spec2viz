@@ -2359,7 +2359,6 @@ include:
   - desk/runtimes/runtime-claude-en-scion.md
 - model: TaskCodeDoc
   paths:
-  - desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md
   - desk/tasks/task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo.md
   - desk/tasks/task-specir-extract-describe-una-libreria-de-python-con-cli-con-los-tipos-que-ya-tiene-y-sobre-el-repo-de.md
   - desk/tasks/task-specir-install-siembra-la-notacion-bpmn-y-una-actividad-con-particiones-se-resuelve-con-eventos-tare.md

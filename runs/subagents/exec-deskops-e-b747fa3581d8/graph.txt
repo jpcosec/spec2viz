@@ -1,0 +1,99 @@
+Missing graph references:
+- missing_declared_target: config_file:.worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-bundle-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-bundle-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-atom-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-atom-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-commit-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-commit-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-materialization-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-materialization-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-tests-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-evidence-tests-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: config_file:.worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-preflight-1.yaml -> task:task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo
+  provenance: .worktrees/deskops-e-25a79ea2aa8d/.sldb/core/documents/ReviewDoc/review-task-cambios-del-momento-del-retiro-de-spec2viz-bpmn-con-exporter-y-targetnamespace-de-specir-clave-de-lo-preflight-1.yaml:frontmatter
+  reason: declared target was not resolved by the sldb edge index (missing_document)
+- missing_declared_target: task:task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo -> deskops/desk/drawer/plans/que-es-un-atomo-y-que-es-una-pill/README.md
+  provenance: desk/tasks/task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo.md:line:29:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- missing_declared_target: task:task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de -> deskops/desk/drawer/plans/que-es-un-atomo-y-que-es-una-pill/README.md
+  provenance: desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md:line:31:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+Informational (archived records):
+- planned_target: task:task-el-diccionario-de-controles-de-sldb-surface-sale-de-specir-extract-con-el-localizador-de-cada-contro -> doc:docs/decisiones/specir-es-un-plugin-de-sldb.md
+  provenance: desk/tasks/task-el-diccionario-de-controles-de-sldb-surface-sale-de-specir-extract-con-el-localizador-de-cada-contro.md:line:30:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-el-diccionario-de-controles-de-sldb-surface-sale-de-specir-extract-con-el-localizador-de-cada-contro -> test_file:tests/extract/test_control_check_playwright.py
+  provenance: desk/tasks/task-el-diccionario-de-controles-de-sldb-surface-sale-de-specir-extract-con-el-localizador-de-cada-contro.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-el-diccionario-de-controles-de-sldb-surface-sale-de-specir-extract-con-el-localizador-de-cada-contro -> test_file:tests/extract/test_control_locator.py
+  provenance: desk/tasks/task-el-diccionario-de-controles-de-sldb-surface-sale-de-specir-extract-con-el-localizador-de-cada-contro.md:line:54:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-el-modelo-de-specir-tiene-pantalla-y-navegacion-el-extract-las-llena-en-el-frontend-de-ejemplo-y-la -> doc:docs/decisiones/specir-es-un-plugin-de-sldb.md
+  provenance: desk/tasks/task-el-modelo-de-specir-tiene-pantalla-y-navegacion-el-extract-las-llena-en-el-frontend-de-ejemplo-y-la.md:line:31:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-el-modelo-de-specir-tiene-pantalla-y-navegacion-el-extract-las-llena-en-el-frontend-de-ejemplo-y-la -> test_file:tests/models/test_screens_and_navigation.py
+  provenance: desk/tasks/task-el-modelo-de-specir-tiene-pantalla-y-navegacion-el-extract-las-llena-en-el-frontend-de-ejemplo-y-la.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-el-modelo-de-specir-tiene-pantalla-y-navegacion-el-extract-las-llena-en-el-frontend-de-ejemplo-y-la -> test_file:tests/notations/test_ifml_notation.py
+  provenance: desk/tasks/task-el-modelo-de-specir-tiene-pantalla-y-navegacion-el-extract-las-llena-en-el-frontend-de-ejemplo-y-la.md:line:56:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-los-exportes-de-texto-leen-la-vista-que-resuelve-sldb-y-se-borra-la-representacion-paralela-de-speci -> doc:docs/decisiones/specir-es-un-plugin-de-sldb.md
+  provenance: desk/tasks/task-los-exportes-de-texto-leen-la-vista-que-resuelve-sldb-y-se-borra-la-representacion-paralela-de-speci.md:line:31:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-se-borra-el-registro-del-retiro-de-spec2viz-src-specir-visual-retirement-py-y-el-comando-specir-reti -> doc:docs/decisiones/specir-es-un-plugin-de-sldb.md
+  provenance: desk/tasks/task-se-borra-el-registro-del-retiro-de-spec2viz-src-specir-visual-retirement-py-y-el-comando-specir-reti.md:line:30:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-se-borran-la-pagina-del-catalogo-de-specir-y-catalogannotationsdoc-que-reemplaza-la-composicion-en-s -> doc:docs/decisiones/specir-es-un-plugin-de-sldb.md
+  provenance: desk/tasks/task-se-borran-la-pagina-del-catalogo-de-specir-y-catalogannotationsdoc-que-reemplaza-la-composicion-en-s.md:line:31:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-se-borran-los-renderers-de-html-de-un-diagrama-de-specir-que-reemplaza-el-modo-lector-del-editor-de -> doc:docs/decisiones/specir-es-un-plugin-de-sldb.md
+  provenance: desk/tasks/task-se-borran-los-renderers-de-html-de-un-diagrama-de-specir-que-reemplaza-el-modo-lector-del-editor-de.md:line:30:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp -> test_file:tests/test_install.py
+  provenance: desk/tasks/task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp.md:line:57:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo -> test_file:tests/test_impact_reaches_work_documents.py
+  provenance: desk/tasks/task-specir-impact-entrega-para-los-archivos-de-un-cambio-las-decisiones-pills-y-tareas-que-apuntan-a-lo.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-install-siembra-la-composicion-de-la-pantalla-del-catalogo-como-documento-del-store -> doc:docs/decisiones/specir-es-un-plugin-de-sldb.md
+  provenance: desk/tasks/task-specir-install-siembra-la-composicion-de-la-pantalla-del-catalogo-como-documento-del-store.md:line:30:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-install-siembra-la-composicion-de-la-pantalla-del-catalogo-como-documento-del-store -> test_file:tests/test_catalog_composition.py
+  provenance: desk/tasks/task-specir-install-siembra-la-composicion-de-la-pantalla-del-catalogo-como-documento-del-store.md:line:54:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-install-siembra-la-notacion-bpmn-y-una-actividad-con-particiones-se-resuelve-con-eventos-tare -> doc:docs/decisiones/specir-es-un-plugin-de-sldb.md
+  provenance: desk/tasks/task-specir-install-siembra-la-notacion-bpmn-y-una-actividad-con-particiones-se-resuelve-con-eventos-tare.md:line:31:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-install-siembra-la-notacion-bpmn-y-una-actividad-con-particiones-se-resuelve-con-eventos-tare -> test_file:tests/notations/test_bpmn_notation.py
+  provenance: desk/tasks/task-specir-install-siembra-la-notacion-bpmn-y-una-actividad-con-particiones-se-resuelve-con-eventos-tare.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl -> test_file:tests/test_install.py
+  provenance: desk/tasks/task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl -> test_file:tests/test_layers_notation.py
+  provenance: desk/tasks/task-specir-install-siembra-la-notacion-de-capas-de-specir-y-una-vista-del-blog-de-ejemplo-sale-con-un-gl.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de -> test_file:tests/test_dependency_invariants.py
+  provenance: desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md:line:50:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de -> test_file:tests/test_dependency_invariants.py
+  provenance: desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md:line:52:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de -> test_file:tests/test_dependency_invariants.py
+  provenance: desk/tasks/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md:line:58:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-una-entidad-del-dominio-tiene-atributos-y-relaciones-con-otras-entidades-el-extract-las-llena-desde -> doc:docs/decisiones/specir-es-un-plugin-de-sldb.md
+  provenance: desk/tasks/task-una-entidad-del-dominio-tiene-atributos-y-relaciones-con-otras-entidades-el-extract-las-llena-desde.md:line:31:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-una-entidad-del-dominio-tiene-atributos-y-relaciones-con-otras-entidades-el-extract-las-llena-desde -> test_file:tests/models/test_entity_attributes_and_relations.py
+  provenance: desk/tasks/task-una-entidad-del-dominio-tiene-atributos-y-relaciones-con-otras-entidades-el-extract-las-llena-desde.md:line:55:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+- planned_target: task:task-una-entidad-del-dominio-tiene-atributos-y-relaciones-con-otras-entidades-el-extract-las-llena-desde -> test_file:tests/notations/test_orca_notation.py
+  provenance: desk/tasks/task-una-entidad-del-dominio-tiene-atributos-y-relaciones-con-otras-entidades-el-extract-las-llena-desde.md:line:56:source-file-reference
+  reason: declared target was not found among extracted graph nodes
+8 missing, 24 informational (24 planned_target)

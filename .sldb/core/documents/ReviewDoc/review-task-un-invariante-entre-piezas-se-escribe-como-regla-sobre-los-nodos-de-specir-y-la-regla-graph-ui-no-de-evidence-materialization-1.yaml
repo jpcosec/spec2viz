@@ -1,0 +1,36 @@
+name: review-task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de-evidence-materialization-1
+path: desk/reviews/task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de/evidence-materialization-1.md
+source_hash: 2d8567bd5c7e4f4ab9cf203c166fbf84f9620a96fd6081866118f717be505a59
+content_hash: 5c4934b39e4c7d767024a9d316282e5eadfd1dda6d5e4a28b2cacc14e961eefd
+field_hashes:
+  id: 5a841916d9e530b80efcab89b87ec4a98405f20c2ae71c96798007490ed42953
+  title: b0bd17317f21a2fc3072ee14dcbe10de3bf744fa9d6237425b82a24e385be292
+  kind: edecec53ab11f560816e75a17681eb83886beace01d7fb927d99707d3d031aac
+  fact: b77d8cf6414796c495587568e836eb101f2c47c6cbab025c9e93d24db5ead67b
+  value: e1c17a135bda34cea11cb5fa177cd4004fdd58aaa553606b607e4e13a2551e63
+  subject: 06eae22956fa9d6c874a94a807702551b7d8f2f9933d27a1781241d9af5f0761
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 9eeef991471c47a0f748cc581c93b036c7560af99f0fcdf1ed75357a5551f1ac
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  input_sha256: 570fcf3a3157fdb18c700e4643fc8bcc58638731fd17fad3229afba8006feaea
+  contract_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  output_sha256: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: fe3f9be3703ea6da6b33c94fb2e9f2668abe7fdd1d332368cebdd04a9a723fa9
+  created_at: ba62d71e6a3075feb952e8ce8234df7b7c6bf48bfa9d14528e176f33d8fbf966
+  disposed_at: ba62d71e6a3075feb952e8ce8234df7b7c6bf48bfa9d14528e176f33d8fbf966
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: 8c334685d27efdfe66e0daf0be9fd102d8f7dcfb3639f94a09460ec96f2b9213
+  disposition: de86d500e4dbf902a87bf449f58dd52df232a0f9fd1a3b06d16f956db80edf08
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-26T00:44:20Z'
+  authority: generated
+  via: create_document

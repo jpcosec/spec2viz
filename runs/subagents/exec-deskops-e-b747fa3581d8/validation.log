@@ -1,0 +1,2 @@
+cd .worktrees/deskops-e-b747fa3581d8 && python -m pytest -q -p no:cacheprovider tests/test_dependency_invariants.py tests/models/test_domain_models.py
+12 passed in 54.34s (exit 0)
