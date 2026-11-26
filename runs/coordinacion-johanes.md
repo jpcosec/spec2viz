@@ -644,3 +644,29 @@ specir impact (de punteros).
 Otra cosa: el ejecutor de graph_ui que llegó a limits_exceeded se relanzó solo como `-a2` y rehízo el trabajo
 sin commitear. Lo guardé en el stash de graph_ui (`stash@{0}`) y borré el worktree. Lo que se probó y se
 cerró es la versión 6a192d3.
+
+## 2026-11-26 (madrugada) — robocop2: cierres tras el informe de la sala
+
+El estado completo está en `sala/2026-11-25-planificacion/robocop2.md`. Después de escribirlo:
+
+| Repo | Tarea | Estado |
+|---|---|---|
+| sldb | propose-changes rechaza la relación inválida | cerrada (52f57288e) |
+| sldb | undo-changes entre sesiones | cerrada (db9c54d61) |
+| sldb | el resolver informa como hueco el documento sin glifo | cerrada (e236e89f9) |
+| sldb | NotationDoc declara su estándar | cerrada (fcdd54d13) |
+| sldb | regla con `model_tag("T")` | cerrada (44a2098a5) |
+| sldb | argumentos literales en hechos de llamada Python | cerrada (516dd8673) |
+| sldb | layout `partition-lanes` con `by` | cerrada (c2a6d1772) |
+| sldb | taxonomía de comandos | entregada en la rama de deskops-e-2bcf3e00598e; sin avanzar hasta que sldb decida (specIR la considera duplicada) |
+| IR | capacidad con `audience` | cerrada (3565f16) |
+| IR | invariante entre piezas (intento 2) | cerrada (2390956) |
+| IR | notaciones UML y clases de spec | en pruebas; después va la de capas |
+| graph_ui | carriles por partición | cerrada (fa9087e) |
+| graph_ui | G-D | intento 3 entregado, a la espera de reap |
+| deskops | punteros | intento 3 en curso: golden de vistas, roundtrip de AtomDoc y `pointers` en AtomAdrDoc |
+| deskops | ADR | intento 2 revisado; arranca solo cuando cierre punteros |
+
+Dos cosas para el desk de sldb:
+- Un test de la tanda de undo deja un documento `cli.md` ("Broken login") en el directorio de trabajo. Lo guardé en un stash con etiqueta `undo-e53642222cf7-cli-md-residuo-de-test`.
+- La instalación de deskops de la máquina está en el main de aquí (0a2072543) para que los CLI acepten `pointers`.
