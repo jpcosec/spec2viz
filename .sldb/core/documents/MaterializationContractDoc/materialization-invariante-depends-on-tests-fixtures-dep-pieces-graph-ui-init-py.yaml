@@ -1,0 +1,25 @@
+name: materialization-invariante-depends-on-tests-fixtures-dep-pieces-graph-ui-init-py
+path: desk/materializations/materialization-invariante-depends-on-tests-fixtures-dep-pieces-graph-ui-init-py.md
+source_hash: 9980e0d0ce22b7c170ec5759fe1e18f6b91c41a53e89073da50042ec91846d92
+content_hash: 58a6d378ea1a94e1d113705a8668dab7522ff787175e3e7b8037987a050e381b
+field_hashes:
+  id: 8ece9d8e515dccd447da729ad3115746a8e439c21204e5a2280463b4a1ece483
+  title: ba018abf3bd8d0e522f782c35bc4350a406fd3170ef1d9cd108ee11f926d6d28
+  source_atoms: 4544d3e5993d69bb3968f70ba8a1d55f5000938a9e0fb0b148a3608ffbf0116e
+  target_kind: 4d967a30111bf29f0eba01c448b375c1629b2fed01cdfcc3aed91f1b57d5dd5e
+  target_identity: 60bfcecfa1108bf4f05474fc5625a25388cc8718e73d97ab373b5a090efd71a0
+  intent: 43d77aff6de3edbca1e46f28168050fa7f98d54a997bfdce54efc22a03b20fdc
+  validation: f54bc63a4b1343f4235d1d482e1477cd63e8c6e6f4b17e64474a53dd6a31c8c3
+  tags: 9eee7e51beec3c560de9a4df2dabc17ab93aec2edf68d9dce1d12fe2434f4bb8
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:invariante-depends-on
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-26T00:36:11Z'
+  authority: generated
+  via: create_document

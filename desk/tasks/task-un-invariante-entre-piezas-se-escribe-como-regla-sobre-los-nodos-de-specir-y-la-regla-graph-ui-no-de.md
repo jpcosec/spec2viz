@@ -1,25 +1,60 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T22:00:36Z'
+  at: '2026-11-26T00:25:05Z'
   authority: generated
   via: save_document_payload
 id: task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de
-status: active
+status: ready_for_testing
 summary: ''
 tags: []
-current_node: ritual-testing
+current_node: ritual-closeout
 history:
 - task_activates
-references: []
+- task_hands_to_closeout
+references:
+- src/specir/cli.py
+- src/specir/data/relation_types.yaml
+- src/specir/data/rules.yaml
+- src/specir/extract/__init__.py
+- src/specir/extract/dependencies.py
+- src/specir/extract/plan.py
+- src/specir/extract/write.py
+- src/specir/models/__init__.py
+- src/specir/models/domain.py
+- tests/fixtures/dep_pieces/graph_ui/__init__.py
+- tests/fixtures/dep_pieces/graph_ui/app.py
+- tests/fixtures/dep_pieces/graph_ui/view.py
+- tests/fixtures/dep_pieces/pron/__init__.py
+- tests/fixtures/dep_pieces/pron/core.py
+- tests/models/test_domain_models.py
+- tests/test_dependency_invariants.py
+- d1648afa17a5cc8964cbd6acb732189ae7623858
 depends_on: []
 pills: []
-files: []
+files:
+- src/specir/cli.py
+- src/specir/data/relation_types.yaml
+- src/specir/data/rules.yaml
+- src/specir/extract/__init__.py
+- src/specir/extract/dependencies.py
+- src/specir/extract/plan.py
+- src/specir/extract/write.py
+- src/specir/models/__init__.py
+- src/specir/models/domain.py
+- tests/fixtures/dep_pieces/graph_ui/__init__.py
+- tests/fixtures/dep_pieces/graph_ui/app.py
+- tests/fixtures/dep_pieces/graph_ui/view.py
+- tests/fixtures/dep_pieces/pron/__init__.py
+- tests/fixtures/dep_pieces/pron/core.py
+- tests/models/test_domain_models.py
+- tests/test_dependency_invariants.py
 pointers: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false
-atoms: []
+atoms:
+- atom-un-invariante-entre-piezas-es-una-regla-sobre-los-nodos-de-specir
 ---
 
 # un invariante entre piezas se escribe como regla sobre los nodos de specIR, y la regla "graph_ui no depende de pron" falla cuando el código la viola
@@ -47,8 +82,9 @@ Dentro: data/relation_types.yaml, data/rules.yaml, el extractor que produce la r
 _Outline the expected implementation route or affected surface._
 
 Leer sldb/docs/architecture/rules.md y rules-language.md, y cómo src/specir/extract/facts.py lee los hechos de código. La regla se escribe en el lenguaje de reglas de sldb; si le falta un predicado, se pide por el inbox de sldb y no se resuelve en specIR.
-
 Aclaraciones de la revisión: Va después de la tarea del extractor (specir extract describe una librería de Python): parte de main cuando esté integrada. Todo en specIR (/mnt/ssd/proyectos/SLDB_1/IR). Pieza = paquete Python de primer nivel de un repo. Relación: tipo depends_on en data/relation_types.yaml de specIR, de pieza a pieza, sacada de los imports absolutos de los hechos de código de sldb (los relativos quedan dentro de la pieza; los condicionales cuentan). Regla en el lenguaje de reglas de sldb, sembrada en data/rules.yaml de specIR: 'graph_ui no depende de pron', con el archivo y la línea del import en el hallazgo. tests/test_dependency_invariants.py se crea con un fixture de dos paquetes. Si falta un predicado, nota a sldb por inbox y la tarea entrega el tipo y el extractor y deja la regla como pendiente explicada en result-summary. No poner Task-Id en el commit de código.
+
+Intento 2: la entrega del intento 1 (commit 4256522, rama deskops/deskops-e-aefda88c6e62) no entra en main porque choca con 7314305 (CapabilityDoc) en src/specir/data/relation_types.yaml y tests/models/test_domain_models.py: los dos agregan entradas en el mismo lugar. Parte de main, trae los cambios de 4256522 con git cherry-pick 4256522 y, en esos dos archivos, conserva las entradas de ambos. Corre tests/test_dependency_invariants.py y tests/models/test_domain_models.py. Commit sin trailer Task-Id.
 
 ## Validation
 

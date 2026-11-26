@@ -1,0 +1,23 @@
+name: atom-un-invariante-entre-piezas-es-una-regla-sobre-los-nodos-de-specir
+path: desk/atoms/atom-un-invariante-entre-piezas-es-una-regla-sobre-los-nodos-de-specir.md
+source_hash: 4db16f046fef64021aca696850e43e3e00606efae600ae5791e9b762a094982d
+content_hash: eda83431fb8e85e0f546ffac53aa37c42049239b21553ade6e63bbda43964114
+field_hashes:
+  id: b6bdcf6fa7f131ed1de39cd3d94f8c11522642ed86d7e6ade3efe1fdbb54f2bf
+  title: 4a6ec221212b3353f80747b775ddfc9794923d6cb0ebb6de93a328dda105fe9e
+  five_wh_one_plus: 5cada7d158df7d5d2f211af6f0f652e095e9f6ed1f2f2da0bd61ecab7e8ee74f
+  answer: 127d13540f40f8bf42b57dd3e067ce29bb1f0fbc9b58a76b76281db413a0f5f6
+  tags: 9eee7e51beec3c560de9a4df2dabc17ab93aec2edf68d9dce1d12fe2434f4bb8
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:invariante-depends-on
+- type.knowledge.atom
+- workspace.desk.atoms
+provenance:
+  by: agent
+  at: '2026-11-26T00:19:34Z'
+  authority: generated
+  via: create_document

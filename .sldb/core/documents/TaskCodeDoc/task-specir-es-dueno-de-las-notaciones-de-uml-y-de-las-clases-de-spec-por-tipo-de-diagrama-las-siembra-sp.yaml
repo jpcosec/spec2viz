@@ -1,15 +1,15 @@
 name: task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp
 path: desk/tasks/task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp.md
-source_hash: 5256decff2401e71c87c5956bcf2a82becf85a4dee02c50fd4e9cf43c2b04e2e
-content_hash: 2e9c6ad4fb8b3ec850ade562d1ce4118dc225761dfd81d759bf6a15cd42b7fe6
+source_hash: be9fdbe6de8d53f9a6b465605101350c089d1f93b60956431cb638032d7b078d
+content_hash: 041d8dbadc4f438b6066c0a4d1d259c2f1d523a8a7cc6b7847977aab0b3b2490
 field_hashes:
   title: 4c480f16eb65b036b48d6b65acc0ba7b6b17cc9c2d50a608fbe0cac1a6900bc1
   id: 85ff7d7a37a7463426b357885709be2ca1b655af0c517d264601cb29a8b11b90
-  status: 6ae048f08fcab44bfbc8463f074bfdb40f94c6bdf56d3aad9a7e1c05e5d5b5c1
+  status: db0fb2bf5ebc424454c3e11b5ee8bfb43af24a52e561aa49e94143831dc6fd93
   summary: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
   tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  current_node: ff5161892aac34735bf10c411f7230b62b7b56446e230a5d26fb75afde4704b6
-  history: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  current_node: d10f5286503cbf750af0584acaec732741c2d9cfbae2a6d5b8ce45b8bf83b79d
+  history: f89b8fd2ac9e43a24ba505d162381268ed901d0695f62c6ad8ec2c62718dfa1c
   why: e9e7e50c815ed890dd00217189c55e5dc736cf11aa8a32d97e66aa48a86f1efc
   goal: a21af9164cf36e7b90d2c9ceb7dea8dd832a722bda094e309d5e6dee8c3ea1a1
   scope: 533b987798677c1e683d81a184b1db668a460ee448180681e818c75e6c3c4e53
@@ -17,6 +17,7 @@ field_hashes:
   depends_on: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+  pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   implementation_path: 177028442d1cca32a6083e4406d38448ee7ea14d4311c3a1849de5f8f78da48a
   validation: 3a03b813ecb8f2cc3fc28d0ad5e8c95e4cd659e35ecccc1ab6d9accb368b86e0
   done_when: 060d4c16d4cd04d4ba3567f18f5cae725f8e06bcd40fb80e3b10d4aa499ec822
@@ -32,6 +33,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T18:27:12Z'
+  at: '2026-11-25T23:45:58Z'
   authority: generated
   via: save_document_payload

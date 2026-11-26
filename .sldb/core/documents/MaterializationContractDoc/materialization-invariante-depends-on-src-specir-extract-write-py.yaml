@@ -1,0 +1,25 @@
+name: materialization-invariante-depends-on-src-specir-extract-write-py
+path: desk/materializations/materialization-invariante-depends-on-src-specir-extract-write-py.md
+source_hash: b109a23ce47ccd6b99739e86b47e259b4621d5d3e58148e3476c8eb31c03ed46
+content_hash: 8faa48cffd5c1ec43dd019c1925553c93f76ed5d4a575dded0e8c7dbba4bec8d
+field_hashes:
+  id: 2f3bc22a96a05d6cff9d6a5e532863c2ca0e599707af7315f5b33dc6c3563232
+  title: 3823dfc2ad19db512ff94dc57d705a6ffb4a23efbd6093b810f6b205f16efd20
+  source_atoms: 4544d3e5993d69bb3968f70ba8a1d55f5000938a9e0fb0b148a3608ffbf0116e
+  target_kind: 4a1933b06cf695fcff4acaba1fdbaa7f10ce109d3c7f57bbf62f6bb572658de8
+  target_identity: ac823285215bbe983bf72a1dd393197902b71dfc752408242827e1a074850a8b
+  intent: c46ba23c966825cefff54859bcedb315bea565a9b271b0bfa399432570b77f52
+  validation: f54bc63a4b1343f4235d1d482e1477cd63e8c6e6f4b17e64474a53dd6a31c8c3
+  tags: 9eee7e51beec3c560de9a4df2dabc17ab93aec2edf68d9dce1d12fe2434f4bb8
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- system:ir
+- topic:invariante-depends-on
+- type.knowledge.materialization_contract
+- workspace.desk.materializations
+provenance:
+  by: agent
+  at: '2026-11-26T00:33:24Z'
+  authority: generated
+  via: create_document

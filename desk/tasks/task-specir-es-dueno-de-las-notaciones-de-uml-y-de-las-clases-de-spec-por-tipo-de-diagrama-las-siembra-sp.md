@@ -1,19 +1,21 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T18:27:12Z'
+  at: '2026-11-25T23:45:58Z'
   authority: generated
   via: save_document_payload
 id: task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp
-status: draft
+status: active
 summary: ''
 tags: []
-current_node: ritual-execution
-history: []
+current_node: ritual-testing
+history:
+- task_activates
 references: []
 depends_on: []
 pills: []
 files: []
+pointers: []
 task_type: task.code
 inherits_from: []
 inherit_acceptance_context: false

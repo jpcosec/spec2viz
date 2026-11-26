@@ -1,0 +1,19 @@
+name: 20261125-205151-unclear-queue-20261125t234600z-dispatch-reap-task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp
+path: desk/inbox/20261125-205151-unclear-queue-20261125t234600z-dispatch-reap-task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp.md
+source_hash: 42ea2e5b17a2544d74f3bce3d16d939a3ac73ea6f1360575440602fe9e517cbe
+content_hash: 060f90940ec243b711c6ce8f2c2123dd3e99f622068a7a8e61e5bb8acfe49f0b
+field_hashes:
+  kind: 683144a12969e0fd85512737e57b4db93ed15ee760906165a5516d581a77889a
+  sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: bc7f2a78e786c26c3c05b76a3024c7716196a2014744a7bc2f52b3101977523f
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  title: 8cf1c31a00017427a0665f3fb907516cc0d55deacdc526ff30439d7f5054b2c6
+  body: a29f04d80371e97c91e0e37a231f11f42b46c8b1618bdbd28d5c6088eaee957b
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null

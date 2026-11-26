@@ -1,0 +1,19 @@
+name: 20261125-211245-unclear-queue-20261126t000806z-dispatch-reap-task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de
+path: desk/inbox/20261125-211245-unclear-queue-20261126t000806z-dispatch-reap-task-un-invariante-entre-piezas-se-escribe-como-regla-sobre-los-nodos-de-specir-y-la-regla-graph-ui-no-de.md
+source_hash: 62b5388c71fad895aa7d2ccfa8f4566a0dbaa6baedbc4f01df3a41d8ae8b1450
+content_hash: 8eebcf35c7b2284a3dbe9eda189bc750a8aaffb706ce6a51d3cf12c287a48f4c
+field_hashes:
+  kind: 683144a12969e0fd85512737e57b4db93ed15ee760906165a5516d581a77889a
+  sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: 5929f2f7c80d8d8f8cf072fbe31a3a1e6f2d3b90fa9c398471586f7d3430dced
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  title: 921674e4af40f88532ae55d6510424e95cf089dc510030ac30111390ccb674a0
+  body: 39626ba2d05897143df7803b667762f68fffa43a0bdbe52268419177120c171a
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null
