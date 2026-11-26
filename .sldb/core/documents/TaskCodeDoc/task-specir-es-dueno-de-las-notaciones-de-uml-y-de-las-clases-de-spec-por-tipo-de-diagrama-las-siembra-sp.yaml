@@ -1,7 +1,7 @@
 name: task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp
 path: desk/tasks/task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp.md
-source_hash: be9fdbe6de8d53f9a6b465605101350c089d1f93b60956431cb638032d7b078d
-content_hash: 041d8dbadc4f438b6066c0a4d1d259c2f1d523a8a7cc6b7847977aab0b3b2490
+source_hash: 7fb3afa921aa4ac04e5a64f104b4aa33c1855f64f8bb4a94cb3f604490e6d18e
+content_hash: bd5ed228574fea63f44fcfcaae5373e3ff0ea126bdda6feaeb2be0ecfc2c53b3
 field_hashes:
   title: 4c480f16eb65b036b48d6b65acc0ba7b6b17cc9c2d50a608fbe0cac1a6900bc1
   id: 85ff7d7a37a7463426b357885709be2ca1b655af0c517d264601cb29a8b11b90
@@ -18,7 +18,7 @@ field_hashes:
   pills: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   files: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
   pointers: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
-  implementation_path: 177028442d1cca32a6083e4406d38448ee7ea14d4311c3a1849de5f8f78da48a
+  implementation_path: c133c0dcfe07f41c0c6df060131fc684ab25f926480e6a13c13d516c3b109e99
   validation: 3a03b813ecb8f2cc3fc28d0ad5e8c95e4cd659e35ecccc1ab6d9accb368b86e0
   done_when: 060d4c16d4cd04d4ba3567f18f5cae725f8e06bcd40fb80e3b10d4aa499ec822
   task_type: 430e281fc3506e5a61bf187bc4220dab834ca38806ca4f603f817cc82f9791bb
@@ -33,6 +33,6 @@ semantic_tags:
 - workspace.desk
 provenance:
   by: agent
-  at: '2026-11-25T23:45:58Z'
+  at: '2026-11-26T03:40:16Z'
   authority: generated
   via: save_document_payload

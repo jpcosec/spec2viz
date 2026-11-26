@@ -1,0 +1,36 @@
+name: review-task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp-bundle-3
+path: desk/reviews/task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp/bundle-3.md
+source_hash: 6d73c8fb3db38c29df3d26117ceda512f7cfc0ca0f5b31c5eaffcf98f4dde3f4
+content_hash: 29fd00dced1f429f9c72186e554f272eb3458165467ec7114557c3cd785df5f4
+field_hashes:
+  id: 3a0a24e88ea8afbdc496139e6a8ce79184ab724ad80bfd620d54b49d60637072
+  title: b7786ecf67106379ab881976a680cc10159564be40ea9d2b8bb8024b666a5fd7
+  kind: 4c522949265daa3973b2389b594a235b5c6e47c70d2af6e23bd14f8173f56280
+  fact: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  value: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  subject: 2dd4765a750181a9b12a33add9a51590d3c2952999dbc66b0307d4f388635d02
+  subject_ref: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  engine: 6874c40de9971944b9706ccc769074b7f77cb595ed78bafba748db5266461238
+  actor: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  run_dir: 5e81251a92161c9ed7e91ae61a94f187da33e5fe631c2d82a5647251e4be92e1
+  input_sha256: 69d2e5cde5caad573b6b9d38c674df0eef8acf3b5b64d51e51bfadfcd3a64968
+  contract_sha256: e7bdd6719c1523a3f57bbf73148cadba0c35c62336d2cdcad59f3475a6fc8c03
+  output_sha256: 14400284a79fa500edaf136a028dabf4d14aa7f59930fa7ab0e3553cbc6b3fd9
+  verdict: d288c584af270151f7b7cd7977b94160ce1d7b501dee2d6308f2ac84ebaacc99
+  reason: f7acbd21b32df95ac3a5c1a4a198882f4f4c9071ca8d16e56c3c74ba7b483d66
+  created_at: 22f09511f98b2288082fab7953043adaa315300c25b261a162dc01a020bc7e2a
+  disposed_at: 16a87d9825a08eea9fe1557450166a5e5371db9b5f7f5ef4ecedf1d0bb68400e
+  disposed_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  summary: dbde0617410df1d2dabd9d3871dce5b131dc950c05cc332969ef56c10a742cc1
+  disposition: f6ffdf43879648f70adbc44d67ea42eca58d3b46812cf778052c06e6c03f5e5d
+  tags: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.workflow.review
+- workspace.desk.runs
+provenance:
+  by: agent
+  at: '2026-11-26T03:45:17Z'
+  authority: generated
+  via: save_document_payload

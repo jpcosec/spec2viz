@@ -1,14 +1,16 @@
 name: 20261125-194830-unclear-python-cli-el-parser-de-deskops-queda-como-desconocido
 path: desk/inbox/20261125-194830-unclear-python-cli-el-parser-de-deskops-queda-como-desconocido.md
-source_hash: 5caf70fc25c8efb98950d12d9af7be7d37771605601d02c17e7bec799ae2c98c
-content_hash: dcf94d8933eb3e02bc18fd7add718ee7606a397d5c7b665c4f6c8df81adb6ef6
+source_hash: 055ca55ddff98a655582e8ccafc6a1cf23ee0159d04b8c839648fe287a99ee3c
+content_hash: b0e282a0e582165125c5017c7e20401119d4c563ba29cf5eb250d0da52211c2c
 field_hashes:
   kind: 683144a12969e0fd85512737e57b4db93ed15ee760906165a5516d581a77889a
   sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
   created_at: 011a6f73453928b5448f1321a6add98643a0d7cdb8ddb3bb3dfd9e5c26a0d6ea
-  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
-  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  status: 02e31f51aa8b1b6a622c4f7c30fab328d711cad4c9da74b9965ada8aa15d9df2
+  acknowledged_by: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  acknowledged_at: 5575fd0ddb7a305d99c682e31e52ab5a7c9e6282d16e4bedcb08713126e258bf
+  ack_reason: 296632abe174d25bff2e00cd441294b4ebd0534cacdd0a83ae125e8204dac727
   title: 7106dd3ee0646b24f8f6da30dbba53f64e6772e853d88709f804a72677db334c
   body: bd3dafc55a8370ee415ca967f01a5516c65dcab99aa211f694fc0ff3b5df22ef
 semantic_tags:
@@ -16,4 +18,8 @@ semantic_tags:
 - source.document.markdown
 - type.desk.inbox-note
 - workspace.desk.inbox
-provenance: null
+provenance:
+  by: agent
+  at: '2026-11-26T03:56:20Z'
+  authority: generated
+  via: save_document_payload

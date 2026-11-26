@@ -1,4 +1,9 @@
 ---
+sldb:
+  by: agent
+  at: '2026-11-26T03:56:20Z'
+  authority: generated
+  via: save_document_payload
 # unclear | suggestion
 kind: unclear
 # e.g., other_repo
@@ -8,11 +13,16 @@ target_project: IR
 # ISO 8601 timestamp
 created_at: '2026-11-25T19:48:30'
 # open | closed
-status: open
+status: closed
 # project identity that acknowledged the note
+acknowledged_by: IR
 # ISO 8601 timestamp, set when acknowledged
+acknowledged_at: '2026-11-26T00:55:23'
 # why the note was acknowledged; empty when no reason was given
-ack_reason: ''
+ack_reason: 'No es trabajo de specIR hoy: el mapeo no reconoce los comandos de deskops
+  porque los hechos de sldb no traen los argumentos de las llamadas dentro del cuerpo
+  de una funcion. El pedido ya esta en el inbox de sldb. Se vuelve a correr specir
+  extract python-cli sobre deskops cuando llegue ese hecho.'
 # conversation thread/message the note came from, e.g. #hilo/1234
 ---
 

@@ -1,7 +1,7 @@
 ---
 sldb:
   by: agent
-  at: '2026-11-25T23:45:58Z'
+  at: '2026-11-26T03:40:16Z'
   authority: generated
   via: save_document_payload
 id: task-specir-es-dueno-de-las-notaciones-de-uml-y-de-las-clases-de-spec-por-tipo-de-diagrama-las-siembra-sp
@@ -47,8 +47,9 @@ Dentro: src/specir/ (datos de notación, clases de spec, install.py, visual/spec
 _Outline the expected implementation route or affected surface._
 
 Leer sldb/docs/architecture/notations-and-views.md y store-declaration.md. El mecanismo (NotationDoc, GlyphDoc, LinkDoc, resolver, validar) se sigue usando desde sldb.api; solo se muda el contenido.
-
 Aclaraciones de la revisión: Repo: /mnt/ssd/proyectos/SLDB_1/IR. Las ocho notaciones son los YAML de /mnt/ssd/proyectos/SLDB_1/sldb/src/sldb/notations/builtin/: activity, component-view-matrix, component, deployment, reflection, statechart, uml-class, uml-sequence; se mueven todas (BPMN y capas no están ahí y quedan fuera). Las clases de spec por tipo de diagrama son las que hoy importa specir.visual.spec_models desde sldb.notations; el mapeo tipo→clase se toma de ese módulo. Se siembran como specir/data/ igual que relation_types.yaml (el mismo camino de specir install). La exención a quitar es la de tests/test_imports.py que permite a specir.visual.spec_models importar sldb.notations (líneas 3-17 del docstring y su lista); quitarla y que el test pase. 'Las 38 specs validan' = un test que recorre los fixtures de specs de tests/visual (los que haya, contarlos) y los valida con las clases de specIR. sldb deja de exportarlas: eso es una nota al inbox de sldb, no un cambio en sldb. No poner Task-Id en el commit de código.
+
+Intento 2: la entrega del intento 1 (commit dff92c2, rama deskops/deskops-e-25a79ea2aa8d) no entra en main porque choca en src/specir/install.py y tests/models/test_domain_models.py con lo que entró después (CapabilityDoc, 7314305, y la relación depends_on, d1648af). Parte de main, trae los cambios con git cherry-pick dff92c2 y, en esos dos archivos, conserva lo de los tres: las notaciones y clases de spec de dff92c2, y lo que sembraron o probaron la capacidad y depends_on. Corre los tests que dff92c2 agregó o tocó, más tests/models/test_domain_models.py y tests/test_dependency_invariants.py. Commit sin trailer Task-Id.
 
 ## Validation
 
