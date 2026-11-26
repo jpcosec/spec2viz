@@ -12,28 +12,35 @@ external:
     state: pedido por deskops (C1)
   sldb-argumentos-literales-python:
     owner: sldb
-    state: tarea creada
+    state: cerrada en robocop2 el 2026-11-25
   sldb-que-aplica-a-un-archivo:
     owner: sldb
-    state: tarea creada
+    state: cerrada en robocop2 el 2026-11-25
   surface-composicion-como-dato:
     owner: sldb/surface
     state: pedido por inbox el 2026-11-25
   grafo-carriles-por-particion:
     owner: graph_ui
-    state: tarea creada
+    state: cerrada en robocop2 el 2026-11-25
   grafo-modo-lector:
     owner: graph_ui
-    state: tareas G-B1 y G-B2; la composición entera pedida por inbox el 2026-11-25
+    state: G-B1 cerrada; G-B2 pendiente. Solo un diagrama; la composición entera es de surface
   deskops-punteros-del-donde:
     owner: deskops
-    state: tarea creada
+    state: cerrada en robocop2 (9c0b57a58), sin subir a GitHub
   sldb-cli-estable:
     owner: sldb
     state: en curso
   sldb-instalacion-de-plugin:
     owner: sldb
     state: pedido por inbox el 2026-11-25
+  surface-exportar-composicion:
+    owner: sldb/surface
+    state: 'acordado en la sala del 2026-11-25: exporta surface, graph_ui entrega su parte por diagrama. La nota
+      quedó en el inbox de graph_ui'
+  sldb-atributos-del-handler-jsx:
+    owner: sldb
+    state: tarea en borrador en sldb
 tasks:
   K1:
     title: La decisión "specIR es un plugin sobre sldb" queda en docs/decisiones/ con las cuatro reglas
@@ -97,6 +104,9 @@ tasks:
     phase: F3
     estimate: M
     task: task-el-diccionario-de-controles-de-sldb-surface-sale-de-specir-extract-con-el-localizador-de-cada-contro
+    requires:
+    - sldb-atributos-del-handler-jsx
+    state: tarea en borrador; el localizador espera a sldb, el resto no
   S1:
     title: El impacto de un cambio llega a decisiones, pills y tareas
     phase: F4
@@ -105,6 +115,7 @@ tasks:
     - sldb-que-aplica-a-un-archivo
     - deskops-punteros-del-donde
     task: task-specir-impact-entrega-para-los-archivos-de-un-cambio-...
+    state: desbloqueada el 2026-11-26
   S2:
     title: specIR declara sus herramientas en un servidor fastmcp propio, del que salen su MCP y su CLI; llaman
       a sldb por su CLI
@@ -155,7 +166,7 @@ tasks:
     depends_on:
     - S5
     requires:
-    - grafo-modo-lector
+    - surface-exportar-composicion
     task: task-se-borran-la-pagina-del-catalogo-de-specir-y-catalogannotationsdoc-que-reemplaza-la-composicion-en-s
     state: tarea en borrador, bloqueada por otro repo
   R5:

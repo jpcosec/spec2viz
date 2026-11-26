@@ -98,7 +98,9 @@ instalación y sigue sin resolverse.
 | sldb | Qué documentos aplican a un archivo o símbolo | tarea creada |
 | sldb | Notación que declara su estándar; documento sin glifo como hueco; predicado sobre tags | tareas creadas |
 | surface | Composición de pantalla declarada como dato por un plugin | pedido por inbox el 2026-11-25 |
-| editor de grafo | Dibujar `ViewDoc`; carriles por partición; exportar el modo lector de una composición entera, no de un diagrama | las dos primeras con tarea; la tercera pedida por inbox el 2026-11-25 |
+| editor de grafo | Dibujar `ViewDoc`; carriles por partición; SVG y HTML del modo lector de un diagrama | las dos primeras cerradas; del modo lector falta G-B2 |
+| surface | Exportar el modo lector de una composición entera (graph_ui entrega su parte por diagrama) | acordado en la sala del 2026-11-25; la nota quedó en el inbox de graph_ui |
+| sldb | Atributos estáticos del elemento con handler JSX, para el localizador del diccionario de controles | tarea suya en borrador |
 | deskops | Guardar el dónde como punteros | tarea creada |
 
 ## Decisiones de JP que fijan este plan
