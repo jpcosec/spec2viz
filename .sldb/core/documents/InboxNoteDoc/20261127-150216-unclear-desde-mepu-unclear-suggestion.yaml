@@ -1,0 +1,23 @@
+name: 20261127-150216-unclear-desde-mepu-unclear-suggestion
+path: desk/inbox/20261127-150216-unclear-desde-mepu-unclear-suggestion.md
+source_hash: 64e14f26659cccf4c76167d370c8fc5de934d889585f5110120fb1f0dae99736
+content_hash: 874ff054030b48db24219b50ae124201e9b37f8337bb32611bec84c429f74e03
+field_hashes:
+  kind: 683144a12969e0fd85512737e57b4db93ed15ee760906165a5516d581a77889a
+  sender_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: 0cbd8cb75328199e29038f7efd5ffaf0ed23d7ae206df09c8e3632c1d0bce330
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  title: 42554a5121183426ee3a68e45661c2ab3867009a4075140539ee08baa74d010c
+  body: ab74b51a6fa9d06c9a0d8d0ba6a1f119978566d56bbc43a85602ae837f51ab51
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance:
+  by: agent
+  at: '2026-11-27T18:05:55Z'
+  authority: generated
+  via: save_document_payload
