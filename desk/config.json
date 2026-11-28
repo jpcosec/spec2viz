@@ -22,31 +22,29 @@
   },
   "project_identity": "IR",
   "dispatch": {
-    "project": "sldb-1",
-    "workspace": "/mnt/ssd/proyectos/SLDB_1",
-    "templates_dir": "/home/robocop/.scion/project-configs/sldb-1__b0899ed7/.scion/templates",
-    "context_file": "/mnt/ssd/proyectos/SLDB_1/.bootstrap/ir-scion-context.json",
+    "runtime": "paseo",
     "roles_root": "/mnt/ssd/proyectos/SLDB_1/deskops",
     "roles": {
       "executor": {
         "role": "deskops-executor",
-        "harness": "claude",
-        "model_alias": "medium",
-        "harness_auth": "oauth-token",
-        "env_config": "/mnt/ssd/proyectos/SLDB_1/.bootstrap/ir-scion-env.yaml"
+        "provider": "claude",
+        "mode": "bypass"
       },
       "tester": {
         "role": "deskops-tester",
-        "harness": "pi",
-        "model_alias": "medium",
-        "harness_auth": "api-key",
-        "env_config": "/mnt/ssd/proyectos/SLDB_1/.bootstrap/pi-scion-env.yaml"
+        "provider": "pi"
       }
     }
   },
   "queue_jobs": {
     "integrate": {
-      "run": ["deskops", "integrate", "--task-from-env", "--root", "."],
+      "run": [
+        "deskops",
+        "integrate",
+        "--task-from-env",
+        "--root",
+        "."
+      ],
       "timeout": 7200
     },
     "dispatch-executor": {
