@@ -1,0 +1,19 @@
+name: 20261127-211434-suggestion-integrar-el-diagrama-de-anillos-conc-ntricos-de-sldb-piezas-del-spec
+path: desk/inbox/20261127-211434-suggestion-integrar-el-diagrama-de-anillos-conc-ntricos-de-sldb-piezas-del-spec.md
+source_hash: ea29e387763165e57baf8c518709d93fbbd7951296bb388dfbb8387302eb62bc
+content_hash: a81c9c22fdca90674988182dde553a2d3f06d36e387daf2ba8cf92b88d1076e0
+field_hashes:
+  kind: f4accece99081750b6b8b5089a3f24b11d5ceba70797c3eb49000d84b98344fc
+  sender_project: adf8f4fb55456ba91d0b029904c49d4d1b85540b989a86435dfb80c0a89f7efb
+  target_project: bedfd7658116eea0e9c6aa56c43288b769f14cc22546ef2cbac2588069909ad8
+  created_at: 8045bf1db5b3e4d9df87a954c071ea1546d533680ea07b36a6162a15be9bfbd4
+  status: 35ff74aeea25311f4fe759a6b762c8cd41a79adb23dd5615b92cf215175a63e5
+  ack_reason: 12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126
+  title: 0b872e79c03562c8da68e74af5a53f15a4b6cb7569115e4e9c07c6c87de2c484
+  body: 3e0bae1113d91c52d2dcbc0d0c315082aab8e110287aa04f291828043be97d5f
+semantic_tags:
+- representation.markdown
+- source.document.markdown
+- type.desk.inbox-note
+- workspace.desk.inbox
+provenance: null
